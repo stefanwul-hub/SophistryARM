@@ -9,3 +9,5 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-004 — états réels** : paire Lightgarden conservée, 51 schémas de classes récupérés depuis les descriptions originales, lecteur C++ de conteneur et décodage structurel des valeurs, comparaison des deux états. Le moteur complet, le chargement sémantique DSP et l’AU natif restent absents.
 
 - **CP-005 — sauvegarde après interruption** : sample BT_cronox18.wav et provenance conservés ; autorisation de publication consignée ; publication non confirmée. Les résultats techniques validés restent ceux de CP-004.
+
+- **CP-006 — traduction statique sélectionnée** : export p-code, génération C++ de 2518 instructions, tests différentiels de saturation et FilterMoogSI sur 148 cas sans écart de sortie ou d’état. Aucun moteur complet ni AU natif obtenu.

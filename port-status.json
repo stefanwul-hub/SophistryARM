@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-005",
+  "checkpoint": "CP-006",
   "original_version": "3.0.8",
   "original_architectures": [
     "ppc",
@@ -21,7 +21,7 @@
   "logic_projects_verified": false,
   "ableton_projects_verified": false,
   "install_allowed": false,
-  "implemented_dsp_scope": "isolated Satur_c numeric process routine from i386 address 0x73fb0",
+  "implemented_dsp_scope": "Manually translated Satur_c plus statically emitted selected saturation and FilterMoogSI processing routines; full synth graph absent",
   "arm64_scope": "cross-compiled relocatable Mach-O object of the isolated kernel; no ARM64 execution in this Linux environment",
   "next_work": [
     "Recover and test full Synth/Kaja object graph and all DSP modules",
@@ -42,5 +42,11 @@
   "github_archive_publication_confirmed": false,
   "sample_received": "BT_cronox18.wav",
   "sample_used_for_full_synth_audio_test": false,
-  "sample_sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050"
+  "sample_sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050",
+  "static_lifter_implemented": true,
+  "static_lifter_scope": "2518 original i386 instructions: saturation, FilterMoogSI process dispatch and eight mono/stereo helpers, additive output and PIC thunk",
+  "static_lifter_test_cases": 148,
+  "static_lifter_bit_exact_vs_unicorn": true,
+  "static_lifter_original_apple_libm_tested": false,
+  "sample_used_for_partial_filter_test": true
 }

@@ -1,0 +1,31 @@
+{
+  "source": {
+    "source_commit": "0ecf4ccfabcb154fa793d08df26d56b501df8656",
+    "source_path": "Presets/BT_cronox18.wav",
+    "bytes": 1342752,
+    "sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050"
+  },
+  "audio_format": "PCM signed 16-bit little-endian",
+  "sample_rate": 44100,
+  "channels": 2,
+  "frames": 334664,
+  "duration_seconds": 7.58875283446712,
+  "preset_root_midi_note": 60,
+  "preset_start_value": 0,
+  "preset_end_value": 1000,
+  "smpl_loop_chunk_present": false,
+  "channels_summary": [
+    {
+      "channel": 0,
+      "peak": 0.451812744140625,
+      "rms": 0.1495618976799974
+    },
+    {
+      "channel": 1,
+      "peak": 0.43414306640625,
+      "rms": 0.10095065821955641
+    }
+  ],
+  "full_synth_rendered": false,
+  "sample_has_been_decoded": true
+}

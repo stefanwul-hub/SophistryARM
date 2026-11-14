@@ -1,0 +1,18 @@
+{
+  "scope": "Selected statically lifted saturation and filter routines, not full DSP engine or AU",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "cases": 148,
+  "compared_audio_samples": 14544,
+  "bit_exact_audio_and_object_state": true,
+  "mismatches": [],
+  "native_executed_instruction_addresses": 2450,
+  "exported_instructions": 2518,
+  "shared_log10_calls_in_original": 200,
+  "shared_log10_calls_in_lift": 200,
+  "sample_source": "BT_cronox18.wav",
+  "x86_runtime_decoder_in_lift": false,
+  "host_math_note": "Both executions use Python math.log10 through explicit ABI adapters; original Apple libm has not been executed",
+  "architecture_executed": "Linux x86_64 C++ build",
+  "apple_silicon_executed": false,
+  "project_reopening_tested": false
+}

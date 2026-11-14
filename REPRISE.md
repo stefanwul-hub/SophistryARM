@@ -49,3 +49,14 @@ Le sample demandé a été récupéré depuis Presets/BT_cronox18.wav au commit 
 Une seconde tentative d’envoi monolithique de l’archive par github_create_blob a bloqué et a été interrompue par l’utilisateur. Aucun succès de publication n’est confirmé. Ne plus recommencer cet envoi monolithique. La branche distante créée précédemment était codex/sophistry-cp003-20261114 ; aucun lien de téléchargement du checkpoint n’a été vérifié. Le dépôt main utilisateur n’a pas été modifié par nos opérations.
 
 Les archives CP-003 et CP-004 restent conservées localement. CP-005 contient l’état actuel, le sample et l’historique Git. Le moteur DSP complet, l’Audio Unit ARM64, sa validation et le rappel des projets restent à réaliser ; ne pas les déclarer fonctionnels.
+
+
+## CP-006 — première traduction statique d’instructions
+
+Le sample est analysé : PCM16 stéréo 44100 Hz, 334664 frames, 7,588752834 s ; pas de boucle smpl embarquée. Échantillon exploité dans des tests isolés de filtre, pas dans un rendu du synthé complet.
+
+`scripts/ghidra/ExportPcode.java` exporte les opérations p-code brutes des instructions sélectionnées. `scripts/lift_pcode_cpp.py` émet un C++ à opérations et labels fixes, sans décodeur x86 au runtime. Export sélectionné : 2518 instructions, 12 fonctions (saturation, dispatch et huit variantes de FilterMoogSI, addition de sortie, thunk PIC). Les fonctions non sélectionnées ne sont pas portées par ce résultat. Les opérations et formats non pris en charge entraînent une erreur explicite de génération.
+
+`scripts/compare_lifted_dsp.py` n’existe pas : le test réel est `tests/compare_lifted_dsp.py`. Il compare l’exécution C++ à Unicorn sur les octets originaux et contrôle les sorties et la mémoire de l’objet. 148 cas, 14544 valeurs de buffers comparées, aucun écart, 2450 adresses d’instructions exécutées sur 2518 exportées. Les deux exécutions partagent un adaptateur Python math.log10 ; le libm Apple original n’a pas été exécuté. Ne pas déclarer la fidélité du synthétiseur entier ni la validation AU.
+
+Sources : `src/lifter/LifterRuntime.h/.cpp`, `src/lifter/GeneratedDsp.cpp`. Rapport : `evidence/static-lift-comparison.json`. Fixtures natives : `evidence/static-lift-comparison.fixtures`. Un programme de replay natif et les vérifications ARM64 sont l’étape suivante.
