@@ -1,0 +1,12 @@
+{
+  "checkpoint": "CP-010",
+  "code_commit": "35ded33fe7bbebcf859188186a78b5c014068d4c",
+  "download_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/35ded33fe7bbebcf859188186a78b5c014068d4c",
+  "archive_bytes": 43157139,
+  "archive_sha256": "1d3fd5f04f20b0b04a12614a10ab193f96b487f0ae64e30fbf06e4e497277292",
+  "tracked_blobs_verified": 3923,
+  "all_tracked_blobs_match_git": true,
+  "full_preset_sound_verified": false,
+  "native_audio_unit_available": false,
+  "main_branch_modified": false
+}
