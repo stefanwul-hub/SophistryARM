@@ -1,12 +1,12 @@
-# Sophistry — checkpoint CP-011
+# Sophistry — checkpoint CP-012
 
 **Le plugin Audio Unit ARM64 complet n’est pas encore obtenu. Ce paquet contient le travail de portage et ses preuves ; il ne doit pas remplacer l’ancien `.component`.**
 
 Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x86-64. L’identité à conserver pour les anciens projets AU est `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`.
 
-**Nouveau à CP-011 :** l’hôte d’exécution est porté en C++ autonome. Avec les 191378 instructions statiquement traduites, il charge et resauvegarde les deux états fournis, avec des régions mémoire identiques à la référence i386 sous Linux natif et ARM64/Linux/QEMU. Les méthodes de l’ancien AU exposent 522 paramètres et 56 alias de validation, sauvegardés pour l’intégration. Le rendu sans enregistrement reste sous −100 dBFS et demeure en échec. **Aucun preset sonore complet ni AU installable n’est validé.**
+**CP-012 : premier rendu du preset complet vérifié sur le Mac utilisateur.** Le code C++ statiquement traduit compile et s’exécute en ARM64 sur macOS 15.7.2 avec la licence saisie localement. Le FXP Lightgarden fourni produit un WAV de trois secondes identique aux instructions i386 originales exécutées dans l’hôte de référence : 793800 valeurs float32, aucun octet différent. Les 704 cas DSP, 11635 cas d’instructions/gardes et les deux sérialisations passent aussi. Ce résultat valide ce scénario ; l’Audio Unit installable et le rappel des anciens projets restent à terminer.
 
-Lire [le rapport CP-011](docs/CP011.md) pour le test Mac avec saisie locale de la licence, les preuves et les limites. [CP-010](docs/CP010.md) et [CP-009](docs/CP009.md) sont conservés comme historique. Le nouvel hôte C++ n’a pas encore été compilé/exécuté sous macOS ; les résultats reçus du Mac concernent CP-008.
+Lire [le rapport CP-011](docs/CP011.md) pour le test Mac avec saisie locale de la licence, les preuves et les limites. [CP-010](docs/CP010.md) et [CP-009](docs/CP009.md) sont conservés comme historique. Le nouvel hôte C++ est maintenant compilé et exécuté sur le Mac ; voir [la preuve CP-012](evidence/mac-cp011-licensed-render.json). Les autres résultats historiques restent datés.
 
 Le [lanceur CP-011](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP011.command) télécharge une archive épinglée, contrôle son SHA-256, la décompacte et appelle `Verifier-Moteur-Mac.command`. Il conserve les sources et builds dans `~/Documents/SophistryARM-CP011`. La licence se saisit localement dans le Terminal ; ne pas l’envoyer dans le chat ou sur GitHub. Le composant installable reste à réaliser.
 

@@ -1,0 +1,101 @@
+{
+  "checkpoint": "CP-012",
+  "tested_source_commit": "452c29a90a95628a56437b10b30fbf1ea0c69b97",
+  "source_report_archive_sha256": "5ec67622f098921d3795ea8fda8bf5d9f96689b4bad4a077a78a98173ed34098",
+  "scope": "One complete provided FXP program rendered in the diagnostic native host; no registered AU or DAW project test",
+  "platform": {
+    "system": "macOS",
+    "version": "15.7.2",
+    "build": "24G325",
+    "architecture": "arm64",
+    "compiler": "Apple clang 17.0.0 (clang-1700.0.13.5)"
+  },
+  "native_cpp_host_compilation_confirmed": true,
+  "native_executables_verified_arm64": [
+    "NativeEngineProbe",
+    "LiftedProbe",
+    "InstructionProbe"
+  ],
+  "dsp_replay": {
+    "scope": "selected statically lifted DSP",
+    "cases": 704,
+    "compared_bytes": 5420672,
+    "byte_mismatches": 0,
+    "output_buffer_byte_mismatches": 0,
+    "object_state_byte_mismatches": 0,
+    "math_calls": 201,
+    "math_mode": "recorded ABI responses",
+    "instruction_addresses_executed": 3113,
+    "fixture_valid": true,
+    "passed": true,
+    "full_synth_tested": false
+  },
+  "instruction_replay": {
+    "scope": "isolated original instruction fixtures including explicit guards",
+    "cases": 11635,
+    "compared_register_bytes": 146749,
+    "passed": true,
+    "full_engine_tested": false
+  },
+  "fxp_and_au_program_serialization_byte_exact": true,
+  "licensed_render": {
+    "registration_accepted": true,
+    "private_input": true,
+    "licence_collected_or_stored": false,
+    "preset_file": "lightgarden 02 BT.FXP",
+    "sample_file": "BT_cronox18.wav",
+    "sample_rate": 44100,
+    "frames": 132300,
+    "channels": 6,
+    "sample_values": 793800,
+    "note": 60,
+    "velocity": 100,
+    "note_off_frame": 88200,
+    "duration_seconds": 3,
+    "wave_bytes": 3175244,
+    "wave_sha256": "ac22cf3fb678d935629ca4454bd61c6db1215be0f79d6226d628744132ddaec7",
+    "pcm_float32_sha256": "8087271859e6f18cc09c9d286d5a389e9368a4186c73acd7dda734b8dadaf39c",
+    "byte_mismatches": 0,
+    "non_finite_sample_values": 0,
+    "channel_statistics": [
+      {
+        "channel": 1,
+        "peak": 0.08628852665424347,
+        "rms": 0.024688632070751875
+      },
+      {
+        "channel": 2,
+        "peak": 0.06305734068155289,
+        "rms": 0.01775383057427479
+      },
+      {
+        "channel": 3,
+        "peak": 0.0002507088065613061,
+        "rms": 6.265250604417688e-05
+      },
+      {
+        "channel": 4,
+        "peak": 0.0002507088065613061,
+        "rms": 6.265250604417688e-05
+      },
+      {
+        "channel": 5,
+        "peak": 0.08628852665424347,
+        "rms": 0.024688632070751875
+      },
+      {
+        "channel": 6,
+        "peak": 0.06305734068155289,
+        "rms": 0.01775383057427479
+      }
+    ],
+    "native_and_original_import_call_counts_equal": true
+  },
+  "original_reference": "Original i386 instructions in Unicorn 2.1.4 with shared deterministic platform services and modern platform math",
+  "original_apple_i386_libraries_executed": false,
+  "private_memory_hashes_suppressed": true,
+  "native_audio_unit_available": false,
+  "auval_of_new_component_passed": false,
+  "old_project_recall_tested": false,
+  "script_exitcode": 0
+}

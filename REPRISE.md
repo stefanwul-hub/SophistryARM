@@ -1,4 +1,12 @@
-# Reprendre à CP-011
+# Reprendre à CP-012
+
+**Le rapport Mac CP-011 reçu confirme un premier rendu musical complet réussi.** Lire evidence/mac-cp011-licensed-render.json. Le code source testé est 452c29a90a95628a56437b10b30fbf1ea0c69b97. macOS 15.7.2 ARM64 / Apple clang17 : tous les builds et tests passent. Licence privée acceptée ; ne jamais demander ou récupérer la clé. Le WAV natif de 3s, six canaux VST, 132300 frames / 793800 floats, est byte-exact avec le WAV original i386/Unicorn. SHA-256 WAV ac22cf3fb678d935629ca4454bd61c6db1215be0f79d6226d628744132ddaec7 ; PCM 8087271859e6f18cc09c9d286d5a389e9368a4186c73acd7dda734b8dadaf39c. Cas : FXP Lightgarden, note60/vélocité100/off à2s, 44100Hz/bloc512. Pics L/R 0.0863 / 0.0631 ; ce ne sont plus les offsets quasi silencieux de CP-010. Les appels hôtes correspondent aussi. Le libm Apple i386 n’est pas exécuté.
+
+La preuve indépendante et anonymisée est sauvegardée ; les logs bruts avec chemins /Users restent dans work/mac-report-cp011 et la pièce jointe, à ne pas publier. Pas de données de licence collectées. Le .component, son auval et le rappel des projets ne sont toujours pas validés.
+
+**Travail suivant :** couche AU moderne. SDK officiel Apple cloné dans work/apple-audio-unit-sdk, commit bd98b31feff57a15989fcfab4cd86dc63382b1ac ; inspecter/vendorer include/src/LICENSE si utilisé. Vérifier la construction AU originale et ses bus : constructeur AUBase0inputs/1output mais nombre de canaux/support à confirmer ; sous-objet Kaja change de vtable à f2208. Les paramètres AU listés sont522, les alias de validation56. Ne pas les remplacer par602 sliders normalisés VST. Voir analysis/au-parameter-contract.json.
+
+Les notes CP-011 suivantes restent utiles ; leurs mentions de test Mac en attente et de rendu silencieux sont historiques.
 
 Lire `docs/CP011.md`, `port-status.json`, `evidence/cp011-validation.json` et `analysis/au-parameter-contract.json`. Les sources `src/engine/LegacyEngine.cpp` et `LegacyImageData.cpp` fournissent maintenant un hôte C++ autonome. Les états FXP/AU, programmes sauvegardés et zones mémoire correspondent à l’original sous Linux natif et ARM64/Linux/QEMU. Le rendu non enregistré est identique mais reste sous −100 dBFS : le test sonore est en échec. Aucun AU installable n’est disponible.
 
