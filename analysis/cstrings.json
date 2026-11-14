@@ -1,0 +1,6798 @@
+[
+  {
+    "address": "0xb894c",
+    "text": "/usr/lib/libSystem.B.dylib"
+  },
+  {
+    "address": "0xb8968",
+    "text": "__cxa_atexit"
+  },
+  {
+    "address": "0xb8978",
+    "text": "__cxa_finalize"
+  },
+  {
+    "address": "0xb8988",
+    "text": "atexit"
+  },
+  {
+    "address": "0xb8990",
+    "text": "CControl"
+  },
+  {
+    "address": "0xb899c",
+    "text": "CView"
+  },
+  {
+    "address": "0xb89a8",
+    "text": "element-name"
+  },
+  {
+    "address": "0xb89b8",
+    "text": "vstdata"
+  },
+  {
+    "address": "0xb89c0",
+    "text": "data"
+  },
+  {
+    "address": "0xb89c8",
+    "text": "com.linplug.au.Sophistry"
+  },
+  {
+    "address": "0xb89e4",
+    "text": "icns"
+  },
+  {
+    "address": "0xb89ec",
+    "text": "Icon"
+  },
+  {
+    "address": "0xb89f4",
+    "text": "sendVstEvents"
+  },
+  {
+    "address": "0xb8a04",
+    "text": "sendVstMidiEvent"
+  },
+  {
+    "address": "0xb8a18",
+    "text": "sendVstTimeInfo"
+  },
+  {
+    "address": "0xb8a28",
+    "text": "receiveVstEvents"
+  },
+  {
+    "address": "0xb8a3c",
+    "text": "receiveVstMidiEvent"
+  },
+  {
+    "address": "0xb8a50",
+    "text": "receiveVstTimeInfo"
+  },
+  {
+    "address": "0xb8a64",
+    "text": "reportConnectionChanges"
+  },
+  {
+    "address": "0xb8a7c",
+    "text": "acceptIOChanges"
+  },
+  {
+    "address": "0xb8a8c",
+    "text": "sizeWindow"
+  },
+  {
+    "address": "0xb8a98",
+    "text": "asyncProcessing"
+  },
+  {
+    "address": "0xb8aa8",
+    "text": "offline"
+  },
+  {
+    "address": "0xb8ab0",
+    "text": "supplyIdle"
+  },
+  {
+    "address": "0xb8abc",
+    "text": "supportShell"
+  },
+  {
+    "address": "0xb8acc",
+    "text": "<end>"
+  },
+  {
+    "address": "0xb8ad4",
+    "text": "IO Changed!"
+  },
+  {
+    "address": "0xb8ae0",
+    "text": "Plug-in IO configuration has been changed. Please quit restart your audio host software."
+  },
+  {
+    "address": "0xb8b3c",
+    "text": "WARNING: LinPlug AU: Cannot receive get bundle FSSpec from bundle FSRef!\n"
+  },
+  {
+    "address": "0xb8b88",
+    "text": "WARNING: LinPlug AU: Cannot receive get bundle FSRef from bundle URL!\n"
+  },
+  {
+    "address": "0xb8bd0",
+    "text": "WARNING: LinPlug AU: Cannot receive get bundle URL from bundle reference!\n"
+  },
+  {
+    "address": "0xb8c1c",
+    "text": "WARNING: LinPlug AU: Cannot receive plug-in bundle reference!\n"
+  },
+  {
+    "address": "0xb8c5c",
+    "text": "com.apple.logic"
+  },
+  {
+    "address": "0xb8c6c",
+    "text": "7.0.1"
+  },
+  {
+    "address": "0xb8c74",
+    "text": "info.emagic.Logic"
+  },
+  {
+    "address": "0xb8c88",
+    "text": "de.emagic.Logic"
+  },
+  {
+    "address": "0xb8c98",
+    "text": "6.4.1"
+  },
+  {
+    "address": "0xb8ca0",
+    "text": "6.4.3"
+  },
+  {
+    "address": "0xb8ca8",
+    "text": "1.0"
+  },
+  {
+    "address": "0xb8cac",
+    "text": "com.apple.garageband"
+  },
+  {
+    "address": "0xb8cc4",
+    "text": "COptionMenu"
+  },
+  {
+    "address": "0xb8cd0",
+    "text": "CParamDisplay"
+  },
+  {
+    "address": "0xb8ce0",
+    "text": "unknown"
+  },
+  {
+    "address": "0xb8ce8",
+    "text": "-%1d:%02d"
+  },
+  {
+    "address": "0xb8cf4",
+    "text": "%1d:%02d"
+  },
+  {
+    "address": "0xb8d00",
+    "text": "%%0.%df"
+  },
+  {
+    "address": "0xb8d08",
+    "text": "CViewContainer"
+  },
+  {
+    "address": "0xb8d18",
+    "text": "%d"
+  },
+  {
+    "address": "0xb8d1c",
+    "text": "rb"
+  },
+  {
+    "address": "0xb8d20",
+    "text": "rt"
+  },
+  {
+    "address": "0xb8d24",
+    "text": "%s cannot be loaded, errno: %d\n"
+  },
+  {
+    "address": "0xb8d44",
+    "text": "wb"
+  },
+  {
+    "address": "0xb8d48",
+    "text": "LinPlug"
+  },
+  {
+    "address": "0xb8d50",
+    "text": "Warning: could not create LinPlug folder in Application Support!\n"
+  },
+  {
+    "address": "0xb8d94",
+    "text": "%s%c%s"
+  },
+  {
+    "address": "0xb8d9c",
+    "text": "%s%s"
+  },
+  {
+    "address": "0xb8da4",
+    "text": "DS3"
+  },
+  {
+    "address": "0xb8da8",
+    "text": "DS4"
+  },
+  {
+    "address": "0xb8dac",
+    "text": "DSC"
+  },
+  {
+    "address": "0xb8db0",
+    "text": "Overwrite existing file ?"
+  },
+  {
+    "address": "0xb8dcc",
+    "text": "%s%c%s.%s"
+  },
+  {
+    "address": "0xb8dd8",
+    "text": "Version"
+  },
+  {
+    "address": "0xb8de0",
+    "text": "Off Held On Bend"
+  },
+  {
+    "address": "0xb8df4",
+    "text": "Glide Mode"
+  },
+  {
+    "address": "0xb8e00",
+    "text": "semi"
+  },
+  {
+    "address": "0xb8e08",
+    "text": "Bend"
+  },
+  {
+    "address": "0xb8e10",
+    "text": "sec"
+  },
+  {
+    "address": "0xb8e14",
+    "text": "Time"
+  },
+  {
+    "address": "0xb8e1c",
+    "text": "TimeRate"
+  },
+  {
+    "address": "0xb8e28",
+    "text": "Const"
+  },
+  {
+    "address": "0xb8e30",
+    "text": "OffOn "
+  },
+  {
+    "address": "0xb8e38",
+    "text": "C%d"
+  },
+  {
+    "address": "0xb8e3c",
+    "text": "C#%d"
+  },
+  {
+    "address": "0xb8e44",
+    "text": "D%d"
+  },
+  {
+    "address": "0xb8e48",
+    "text": "D#%d"
+  },
+  {
+    "address": "0xb8e50",
+    "text": "E%d"
+  },
+  {
+    "address": "0xb8e54",
+    "text": "F%d"
+  },
+  {
+    "address": "0xb8e58",
+    "text": "F#%d"
+  },
+  {
+    "address": "0xb8e60",
+    "text": "G%d"
+  },
+  {
+    "address": "0xb8e64",
+    "text": "G#%d"
+  },
+  {
+    "address": "0xb8e6c",
+    "text": "A%d"
+  },
+  {
+    "address": "0xb8e70",
+    "text": "A#%d"
+  },
+  {
+    "address": "0xb8e78",
+    "text": "B%d"
+  },
+  {
+    "address": "0xb8e7c",
+    "text": "%s %02dc"
+  },
+  {
+    "address": "0xb8e88",
+    "text": "-%d"
+  },
+  {
+    "address": "0xb8e8c",
+    "text": "-%d.%d"
+  },
+  {
+    "address": "0xb8e94",
+    "text": "%d.%d"
+  },
+  {
+    "address": "0xb8e9c",
+    "text": "%02d"
+  },
+  {
+    "address": "0xb8ea4",
+    "text": "L %0.2f"
+  },
+  {
+    "address": "0xb8eac",
+    "text": "  %0.2f R"
+  },
+  {
+    "address": "0xb8eb8",
+    "text": "%ld"
+  },
+  {
+    "address": "0xb8ebc",
+    "text": "-%%ld.%%0%dld"
+  },
+  {
+    "address": "0xb8ecc",
+    "text": "%%ld.%%0%dld"
+  },
+  {
+    "address": "0xb8edc",
+    "text": "dB"
+  },
+  {
+    "address": "0xb8ee0",
+    "text": "On/Off"
+  },
+  {
+    "address": "0xb8ee8",
+    "text": "Frequencies"
+  },
+  {
+    "address": "0xb8ef4",
+    "text": "TUN-File Path"
+  },
+  {
+    "address": "0xb8f04",
+    "text": "Load Command "
+  },
+  {
+    "address": "0xb8f14",
+    "text": "Tonewheel"
+  },
+  {
+    "address": "0xb8f20",
+    "text": "12 Tone Equal"
+  },
+  {
+    "address": "0xb8f30",
+    "text": "Edit Ins"
+  },
+  {
+    "address": "0xb8f3c",
+    "text": "Undo/Redo"
+  },
+  {
+    "address": "0xb8f48",
+    "text": "Glo Tune"
+  },
+  {
+    "address": "0xb8f54",
+    "text": "CCAssignActive"
+  },
+  {
+    "address": "0xb8f64",
+    "text": "Dummy for Save/Load Presets notification to host"
+  },
+  {
+    "address": "0xb8f98",
+    "text": "%"
+  },
+  {
+    "address": "0xb8f9c",
+    "text": "CPU Load"
+  },
+  {
+    "address": "0xb8fa8",
+    "text": "SRFactor"
+  },
+  {
+    "address": "0xb8fb4",
+    "text": "VelCurve"
+  },
+  {
+    "address": "0xb8fc0",
+    "text": "Automatik 1"
+  },
+  {
+    "address": "0xb8fcc",
+    "text": "keyboard"
+  },
+  {
+    "address": "0xb8fd8",
+    "text": "Stereo Outs"
+  },
+  {
+    "address": "0xb8fe4",
+    "text": "Mono Outs"
+  },
+  {
+    "address": "0xb8ff0",
+    "text": "Pan  LevelTune "
+  },
+  {
+    "address": "0xb9000",
+    "text": "RM Ins MPD"
+  },
+  {
+    "address": "0xb900c",
+    "text": "Circular Linear "
+  },
+  {
+    "address": "0xb9020",
+    "text": "Generation Range"
+  },
+  {
+    "address": "0xb9034",
+    "text": "ECS Save Path"
+  },
+  {
+    "address": "0xb9044",
+    "text": "ECS Load Path"
+  },
+  {
+    "address": "0xb9054",
+    "text": "Unused, use the one in SynGloIns"
+  },
+  {
+    "address": "0xb9078",
+    "text": "System Error Code"
+  },
+  {
+    "address": "0xb908c",
+    "text": "SynthEdited"
+  },
+  {
+    "address": "0xb9098",
+    "text": "Choke"
+  },
+  {
+    "address": "0xb90a0",
+    "text": "Off Norm"
+  },
+  {
+    "address": "0xb90ac",
+    "text": "Sample Display"
+  },
+  {
+    "address": "0xb90bc",
+    "text": "Kit Name Display"
+  },
+  {
+    "address": "0xb90d0",
+    "text": "Edit Page"
+  },
+  {
+    "address": "0xb90dc",
+    "text": "Program"
+  },
+  {
+    "address": "0xb90e4",
+    "text": "Bank"
+  },
+  {
+    "address": "0xb90ec",
+    "text": "Master Vol"
+  },
+  {
+    "address": "0xb90f8",
+    "text": "Multi Save"
+  },
+  {
+    "address": "0xb9104",
+    "text": "Multi Load"
+  },
+  {
+    "address": "0xb9110",
+    "text": "semitones"
+  },
+  {
+    "address": "0xb911c",
+    "text": "Pitch Bend Up Amount"
+  },
+  {
+    "address": "0xb9134",
+    "text": "link  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24 "
+  },
+  {
+    "address": "0xb91a0",
+    "text": "Pitch Bend Down Amount"
+  },
+  {
+    "address": "0xb91b8",
+    "text": "receive onlyreceive+send"
+  },
+  {
+    "address": "0xb91d4",
+    "text": "MIDI CC Mode"
+  },
+  {
+    "address": "0xb91e4",
+    "text": "Unused"
+  },
+  {
+    "address": "0xb91ec",
+    "text": "Output"
+  },
+  {
+    "address": "0xb91f4",
+    "text": "Mute"
+  },
+  {
+    "address": "0xb91fc",
+    "text": "Solo"
+  },
+  {
+    "address": "0xb9204",
+    "text": "NotesOn"
+  },
+  {
+    "address": "0xb920c",
+    "text": "0  X  P  N  1  2  3  4  xxx"
+  },
+  {
+    "address": "0xb9228",
+    "text": " - me prvnxt 1  2  3  4  5 "
+  },
+  {
+    "address": "0xb9244",
+    "text": "InsChIdx"
+  },
+  {
+    "address": "0xb9250",
+    "text": "Edited"
+  },
+  {
+    "address": "0xb9258",
+    "text": "Legato"
+  },
+  {
+    "address": "0xb9260",
+    "text": " 1  2  3  4  5  6  7  8 all"
+  },
+  {
+    "address": "0xb927c",
+    "text": "Preset Load Path"
+  },
+  {
+    "address": "0xb9290",
+    "text": "Preset Save Path"
+  },
+  {
+    "address": "0xb92a4",
+    "text": "Global Display"
+  },
+  {
+    "address": "0xb92b4",
+    "text": "Trigger"
+  },
+  {
+    "address": "0xb92bc",
+    "text": "Note Lo"
+  },
+  {
+    "address": "0xb92c4",
+    "text": "Velo Lo"
+  },
+  {
+    "address": "0xb92cc",
+    "text": "Velo Hi"
+  },
+  {
+    "address": "0xb92d4",
+    "text": "Note Fade"
+  },
+  {
+    "address": "0xb92e0",
+    "text": "Velo Fade"
+  },
+  {
+    "address": "0xb92ec",
+    "text": "Receive Mod Wheel"
+  },
+  {
+    "address": "0xb9300",
+    "text": "Receive Pitchwheel"
+  },
+  {
+    "address": "0xb9314",
+    "text": "Receive Aftertouch"
+  },
+  {
+    "address": "0xb9328",
+    "text": "Receive SustainPed"
+  },
+  {
+    "address": "0xb933c",
+    "text": "%sLoadPresetPath%ld"
+  },
+  {
+    "address": "0xb9350",
+    "text": "Cubase"
+  },
+  {
+    "address": "0xb9358",
+    "text": "Cubasis"
+  },
+  {
+    "address": "0xb9360",
+    "text": "Nuendo"
+  },
+  {
+    "address": "0xb9368",
+    "text": "ProTools"
+  },
+  {
+    "address": "0xb9374",
+    "text": "Live"
+  },
+  {
+    "address": "0xb937c",
+    "text": "Fruity"
+  },
+  {
+    "address": "0xb9384",
+    "text": "Orion"
+  },
+  {
+    "address": "0xb938c",
+    "text": "Logic"
+  },
+  {
+    "address": "0xb9394",
+    "text": "Making Waves"
+  },
+  {
+    "address": "0xb93a4",
+    "text": "MultitrackStudio"
+  },
+  {
+    "address": "0xb93b8",
+    "text": "SingerSongWriter"
+  },
+  {
+    "address": "0xb93cc",
+    "text": "Cakewalk"
+  },
+  {
+    "address": "0xb93d8",
+    "text": "Samplitude"
+  },
+  {
+    "address": "0xb93e4",
+    "text": "Tracktion"
+  },
+  {
+    "address": "0xb93f0",
+    "text": "GarageBand"
+  },
+  {
+    "address": "0xb93fc",
+    "text": "Receptor"
+  },
+  {
+    "address": "0xb9408",
+    "text": "Muse Research"
+  },
+  {
+    "address": "0xb9418",
+    "text": "Chainer"
+  },
+  {
+    "address": "0xb9420",
+    "text": "FX Teleport Server"
+  },
+  {
+    "address": "0xb9434",
+    "text": "%c%c S%02d"
+  },
+  {
+    "address": "0xb9440",
+    "text": "%c%c M%02d"
+  },
+  {
+    "address": "0xb944c",
+    "text": "midiProgramNames"
+  },
+  {
+    "address": "0xb9460",
+    "text": "%sStereoOuts"
+  },
+  {
+    "address": "0xb9470",
+    "text": "%sMonoOuts"
+  },
+  {
+    "address": "0xb947c",
+    "text": "format mismatch %c%c%c%c Order %ld Size %ld"
+  },
+  {
+    "address": "0xb94a8",
+    "text": "Bank Load Error"
+  },
+  {
+    "address": "0xb94b8",
+    "text": "%sMod_%s"
+  },
+  {
+    "address": "0xb94c4",
+    "text": "%s%c%sMod%c%s"
+  },
+  {
+    "address": "0xb94d4",
+    "text": "%s %s %s"
+  },
+  {
+    "address": "0xb94e0",
+    "text": "%s %s"
+  },
+  {
+    "address": "0xb94e8",
+    "text": "Dummy"
+  },
+  {
+    "address": "0xb94f0",
+    "text": "format mismatch %s Order %ld"
+  },
+  {
+    "address": "0xb9510",
+    "text": "Instrument Load Error"
+  },
+  {
+    "address": "0xb9528",
+    "text": "This preset could not be loaded!"
+  },
+  {
+    "address": "0xb954c",
+    "text": "Load Error"
+  },
+  {
+    "address": "0xb9558",
+    "text": "123.4"
+  },
+  {
+    "address": "0xb9560",
+    "text": "Demo Version"
+  },
+  {
+    "address": "0xb9570",
+    "text": "Enter here"
+  },
+  {
+    "address": "0xb957c",
+    "text": "Serial Number"
+  },
+  {
+    "address": "0xb958c",
+    "text": "Cir/Lin Knob Movement"
+  },
+  {
+    "address": "0xb95a4",
+    "text": "NoteDisplayType"
+  },
+  {
+    "address": "0xb95b4",
+    "text": "Pad Velocity"
+  },
+  {
+    "address": "0xb95c4",
+    "text": "EqVolEqPow"
+  },
+  {
+    "address": "0xb95d0",
+    "text": "PanMode"
+  },
+  {
+    "address": "0xb95d8",
+    "text": "Jump To Save Dir"
+  },
+  {
+    "address": "0xb95ec",
+    "text": "Red     LightRedWhite   "
+  },
+  {
+    "address": "0xb9608",
+    "text": "Font Color"
+  },
+  {
+    "address": "0xb9614",
+    "text": "File Dialog"
+  },
+  {
+    "address": "0xb9620",
+    "text": "Any File"
+  },
+  {
+    "address": "0xb962c",
+    "text": "*.*"
+  },
+  {
+    "address": "0xb9630",
+    "text": "FileDialog"
+  },
+  {
+    "address": "0xb963c",
+    "text": "AIF"
+  },
+  {
+    "address": "0xb9640",
+    "text": "WAV"
+  },
+  {
+    "address": "0xb9644",
+    "text": "TXT"
+  },
+  {
+    "address": "0xb9648",
+    "text": "[LinPlug] Cannot get default dialog options! Error code: %ld\n"
+  },
+  {
+    "address": "0xb9688",
+    "text": "Untitled"
+  },
+  {
+    "address": "0xb9694",
+    "text": "[LinPlug] Cannot create save filepath! Error code: %ld\n"
+  },
+  {
+    "address": "0xb96cc",
+    "text": "[LinPlug] NavDialog error! Error code: %ld\n"
+  },
+  {
+    "address": "0xb96f8",
+    "text": "uninitialized"
+  },
+  {
+    "address": "0xb9708",
+    "text": "fault"
+  },
+  {
+    "address": "0xb9710",
+    "text": "z patterns arp"
+  },
+  {
+    "address": "0xb9720",
+    "text": "ADFGLMNPRSTWXYZabdefghrs23456789"
+  },
+  {
+    "address": "0xb9744",
+    "text": "6gZef8FAXFLSg9rb5GG"
+  },
+  {
+    "address": "0xb9758",
+    "text": "6hZLG3YrGMMA8faWs25"
+  },
+  {
+    "address": "0xb976c",
+    "text": "6hZMG3YrGMMA8faWh44"
+  },
+  {
+    "address": "0xb9780",
+    "text": "4eL448GFYGMT8ssd5TF"
+  },
+  {
+    "address": "0xb9794",
+    "text": "4eN448GFYDPT8ssd5TG"
+  },
+  {
+    "address": "0xb97a8",
+    "text": "4bL437GAYDPR8ssd5TG"
+  },
+  {
+    "address": "0xb97bc",
+    "text": "6haMG3YrGMMF6faWs25"
+  },
+  {
+    "address": "0xb97d0",
+    "text": "6hZLF2YrGMMF6faWh24"
+  },
+  {
+    "address": "0xb97e4",
+    "text": "8gZee9FAXANWr9rb5GF"
+  },
+  {
+    "address": "0xb97f8",
+    "text": "6AgbasW8FAWRfeNSfa9"
+  },
+  {
+    "address": "0xb980c",
+    "text": "6L6ga9N8WSFDf4ZSfZ9"
+  },
+  {
+    "address": "0xb9820",
+    "text": "62Lb9PNeaYNSferSGZ8"
+  },
+  {
+    "address": "0xb9834",
+    "text": "2AFN3sRWNNNShSa2XW9"
+  },
+  {
+    "address": "0xb9848",
+    "text": "2bLb7deRFD9299rS55r"
+  },
+  {
+    "address": "0xb985c",
+    "text": "2bN458GAYGMR6ssd5TG"
+  },
+  {
+    "address": "0xb9870",
+    "text": "2FbNWfNAGDNANWGL8f4"
+  },
+  {
+    "address": "0xb9884",
+    "text": "2gAb9seGaXr2s4rS8rr"
+  },
+  {
+    "address": "0xb9898",
+    "text": "4eLb7sLYNA439WfXZWF"
+  },
+  {
+    "address": "0xb98ac",
+    "text": "66XXPsNaGRFAf4NdTNa"
+  },
+  {
+    "address": "0xb98c0",
+    "text": "6hZLG2YrGMMA8faWs24"
+  },
+  {
+    "address": "0xb98d4",
+    "text": "6TFAW5PaFAaD9ZTX4Zf"
+  },
+  {
+    "address": "0xb98e8",
+    "text": "6X4LW9aPNAGYaNTLTF8"
+  },
+  {
+    "address": "0xb98fc",
+    "text": "7P9rs78Tee4M6WXX5h7"
+  },
+  {
+    "address": "0xb9910",
+    "text": "8FdbWsNsaFZNh6NP2Fg"
+  },
+  {
+    "address": "0xb9924",
+    "text": "b2XbMf5WAAhd928TRXG"
+  },
+  {
+    "address": "0xb9938",
+    "text": "b2XbMf5TADhd939WRXF"
+  },
+  {
+    "address": "0xb994c",
+    "text": "b8ANPhDADPDA89a39Tr"
+  },
+  {
+    "address": "0xb9960",
+    "text": "bgLAafFaGSZRGGrSGZZ"
+  },
+  {
+    "address": "0xb9974",
+    "text": "dRLsaMYGAbdYsZ6LT6s"
+  },
+  {
+    "address": "0xb9988",
+    "text": "dRLsaMYFAbdXsZ6MW7r"
+  },
+  {
+    "address": "0xb999c",
+    "text": "eTf9aMWAAdDYPa9MR68"
+  },
+  {
+    "address": "0xb99b0",
+    "text": "eX4Rff8Gfgr6sNrde45"
+  },
+  {
+    "address": "0xb99c4",
+    "text": "LF6F97YLrDf3aff74FG"
+  },
+  {
+    "address": "0xb99d8",
+    "text": "RRgbP9r9fRe2WFN3TZN"
+  },
+  {
+    "address": "0xb99ec",
+    "text": "WT9NY9Nd5grFPXrMT2L"
+  },
+  {
+    "address": "0xb9a00",
+    "text": "XD22G9f5gXhS7NAgALS"
+  },
+  {
+    "address": "0xb9a14",
+    "text": "Xege9DA3PgrRaF474FF"
+  },
+  {
+    "address": "0xb9a28",
+    "text": "22R2sfrPPATL9Z874rf"
+  },
+  {
+    "address": "0xb9a3c",
+    "text": "2bRLP5arNAGLs8TS9ss"
+  },
+  {
+    "address": "0xb9a50",
+    "text": "2bRLP5ZsPDFLs9TS9rr"
+  },
+  {
+    "address": "0xb9a64",
+    "text": "2g8L7aNDD4b8sZg72LG"
+  },
+  {
+    "address": "0xb9a78",
+    "text": "2g8L7aPDA4d9sZg62LF"
+  },
+  {
+    "address": "0xb9a8c",
+    "text": "2g8L7aNDD5d8sag63LF"
+  },
+  {
+    "address": "0xb9aa0",
+    "text": "2FAAasFGZXr3aWG64WG"
+  },
+  {
+    "address": "0xb9ab4",
+    "text": "2FAAasFGaYr2aWF75TF"
+  },
+  {
+    "address": "0xb9ac8",
+    "text": "2FAAasGFZXs2aTF75WG"
+  },
+  {
+    "address": "0xb9adc",
+    "text": "2L2Fs3rW63bG7T8RTN5"
+  },
+  {
+    "address": "0xb9af0",
+    "text": "2R6eW83bgAPTM8TD5f9"
+  },
+  {
+    "address": "0xb9b04",
+    "text": "2R8eS75bgFMRM8ZD5f5"
+  },
+  {
+    "address": "0xb9b18",
+    "text": "2TZRDfZdNAr79PfLTaF"
+  },
+  {
+    "address": "0xb9b2c",
+    "text": "3LSsf97FbrMXGTLWda5"
+  },
+  {
+    "address": "0xb9b40",
+    "text": "44Zrhd7NMDhrbGsMGFP"
+  },
+  {
+    "address": "0xb9b54",
+    "text": "44b8P9WALAGXd84SW5T"
+  },
+  {
+    "address": "0xb9b68",
+    "text": "62g6a9raGSebGWNdWNa"
+  },
+  {
+    "address": "0xb9b7c",
+    "text": "6AbAWf84eAFYNGrRs9P"
+  },
+  {
+    "address": "0xb9b90",
+    "text": "6AbAWf94eDGYPGsSr8P"
+  },
+  {
+    "address": "0xb9ba4",
+    "text": "6bRb9f9FFLs6feNS59s"
+  },
+  {
+    "address": "0xb9bb8",
+    "text": "6g6ee6efY4XRhrNSe49"
+  },
+  {
+    "address": "0xb9bcc",
+    "text": "6g6ef9bdY2ZRsrNSe49"
+  },
+  {
+    "address": "0xb9be0",
+    "text": "6r6ef9edY4ZRhrNSe49"
+  },
+  {
+    "address": "0xb9bf4",
+    "text": "6LNA5sX3PDs2GaZX98e"
+  },
+  {
+    "address": "0xb9c08",
+    "text": "82F45hTDDNAFsZTY4Ta"
+  },
+  {
+    "address": "0xb9c1c",
+    "text": "8e2basWFNAr3ZNrR854"
+  },
+  {
+    "address": "0xb9c30",
+    "text": "8gZeb6AAXFLSg9rb5GF"
+  },
+  {
+    "address": "0xb9c44",
+    "text": "8gXed7AAXANWr9rb5GG"
+  },
+  {
+    "address": "0xb9c58",
+    "text": "8R2A75sFg6fT5N87sf8"
+  },
+  {
+    "address": "0xb9c6c",
+    "text": "8rbeWdLhZA87GPP2eWT"
+  },
+  {
+    "address": "0xb9c80",
+    "text": "8rZef6AFXFLSg9rb5GF"
+  },
+  {
+    "address": "0xb9c94",
+    "text": "8SdWD9desWs4AS7YGL5"
+  },
+  {
+    "address": "0xb9ca8",
+    "text": "8SdWD9berTr5AS6XGM5"
+  },
+  {
+    "address": "0xb9cbc",
+    "text": "aLTrG3GFARs2hgLSdf4"
+  },
+  {
+    "address": "0xb9cd0",
+    "text": "AAgA9fG4FXrYeF8AT9r"
+  },
+  {
+    "address": "0xb9ce4",
+    "text": "AAgA9fG4FXsXfF8DW9s"
+  },
+  {
+    "address": "0xb9cf8",
+    "text": "ARFbhTbAY9g59XL7383"
+  },
+  {
+    "address": "0xb9d0c",
+    "text": "b2RgGfZ4WS8DaT479Z9"
+  },
+  {
+    "address": "0xb9d20",
+    "text": "b2RgGfZ5WS9AaW469Z8"
+  },
+  {
+    "address": "0xb9d34",
+    "text": "bgAFahTWMMLTDarYaNF"
+  },
+  {
+    "address": "0xb9d48",
+    "text": "DXA9Wh6TLZ4P85267MZ"
+  },
+  {
+    "address": "0xb9d5c",
+    "text": "f5MNMhLf6g253M7LXSA"
+  },
+  {
+    "address": "0xb9d70",
+    "text": "fsdrYds8gA5RY6NSS53"
+  },
+  {
+    "address": "0xb9d84",
+    "text": "FZ6TbhFbh5gDsZ8d5Tf"
+  },
+  {
+    "address": "0xb9d98",
+    "text": "FZ6TesAeh3rGsZ8d5Te"
+  },
+  {
+    "address": "0xb9dac",
+    "text": "g7WWfh2Wb58f9X48b26"
+  },
+  {
+    "address": "0xb9dc0",
+    "text": "gFbASsFeTY5R9WrSa54"
+  },
+  {
+    "address": "0xb9dd4",
+    "text": "ggLAasZWaLFXGTrSTNZ"
+  },
+  {
+    "address": "0xb9de8",
+    "text": "gFbASsFfWX4R9TrSZ45"
+  },
+  {
+    "address": "0xb9dfc",
+    "text": "gFbASsGeTX5R9TrSa55"
+  },
+  {
+    "address": "0xb9e10",
+    "text": "h5WesheWYYgT336GfeY"
+  },
+  {
+    "address": "0xb9e24",
+    "text": "LL84Dgee7d8SsN83GeG"
+  },
+  {
+    "address": "0xb9e38",
+    "text": "LR2T7SFS92rTaAgMArW"
+  },
+  {
+    "address": "0xb9e4c",
+    "text": "LT4rGf6TFa5Rf98MssT"
+  },
+  {
+    "address": "0xb9e60",
+    "text": "LT4rGf7TFZ5Rf88MssW"
+  },
+  {
+    "address": "0xb9e74",
+    "text": "LZ6GaMRMSs6F9WgYGbr"
+  },
+  {
+    "address": "0xb9e88",
+    "text": "NN6eF9b473rWsN83GeG"
+  },
+  {
+    "address": "0xb9e9c",
+    "text": "NRFFhhgTFZe56fFRGGa"
+  },
+  {
+    "address": "0xb9eb0",
+    "text": "NZr8YsNFLL27ZMXL5WM"
+  },
+  {
+    "address": "0xb9ec4",
+    "text": "r2NrddLGTaZP3ZZ28TF"
+  },
+  {
+    "address": "0xb9ed8",
+    "text": "r432YMG4ZZsRaArhsG3"
+  },
+  {
+    "address": "0xb9eec",
+    "text": "r4X295DTTRPAseZ3sGW"
+  },
+  {
+    "address": "0xb9f00",
+    "text": "r4X295DTTRNDreZ2rGT"
+  },
+  {
+    "address": "0xb9f14",
+    "text": "r4X295AWTRNDsfa2rGW"
+  },
+  {
+    "address": "0xb9f28",
+    "text": "RW5Rh72aDR2TYXbS46D"
+  },
+  {
+    "address": "0xb9f3c",
+    "text": "RX2LGsZ8sdeha84SP89"
+  },
+  {
+    "address": "0xb9f50",
+    "text": "s9D43GLY5YrR3h2D5bA"
+  },
+  {
+    "address": "0xb9f64",
+    "text": "WT9NY9Nd4grGPYsLT3l"
+  },
+  {
+    "address": "0xb9f78",
+    "text": "WT9NY9Pb4gsFPXrMW3L"
+  },
+  {
+    "address": "0xb9f8c",
+    "text": "XA4NW5g57RLT3NNhrNT"
+  },
+  {
+    "address": "0xb9fa0",
+    "text": "Xege9DA2NgrSZG465GF"
+  },
+  {
+    "address": "0xb9fb4",
+    "text": "ZaZas76YAW25PNNXTT6"
+  },
+  {
+    "address": "0xb9fc8",
+    "text": "ZTg4YsNNTRZ7ea4AGf5"
+  },
+  {
+    "address": "0xb9fdc",
+    "text": "ZTg4YsPNTRa6fZ4DGf5"
+  },
+  {
+    "address": "0xb9ff0",
+    "text": "ZZ2TsfNbFXNM8WZX55T"
+  },
+  {
+    "address": "0xba004",
+    "text": "ZZRXGsZaPRTAWZTSZTe"
+  },
+  {
+    "address": "0xba018",
+    "text": "22g2P5TNPDNLe59LT9N"
+  },
+  {
+    "address": "0xba02c",
+    "text": "22g2P5TNPDPMf49MW9N"
+  },
+  {
+    "address": "0xba040",
+    "text": "242ZfdSePYeb58ZY8GW"
+  },
+  {
+    "address": "0xba054",
+    "text": "24sfRAATDW8aGrA3GRf"
+  },
+  {
+    "address": "0xba068",
+    "text": "2a2ggNF29DNPMLAs3RS"
+  },
+  {
+    "address": "0xba07c",
+    "text": "2A6LN9NrFRedefNRWPr"
+  },
+  {
+    "address": "0xba090",
+    "text": "2A6LN9NsGRebfeNSTNr"
+  },
+  {
+    "address": "0xba0a4",
+    "text": "2A6LN9PrGRfdfeNSTPs"
+  },
+  {
+    "address": "0xba0b8",
+    "text": "2A6LN9NsGRebfeHSTNr"
+  },
+  {
+    "address": "0xba0cc",
+    "text": "2A6LP989fAeR5TZS4r9"
+  },
+  {
+    "address": "0xba0e0",
+    "text": "2bTLD5TbGMPYs8GM59e"
+  },
+  {
+    "address": "0xba0f4",
+    "text": "2FAF9hSSZMNRrFG6TG5"
+  },
+  {
+    "address": "0xba108",
+    "text": "2GXMXTFdPfXghMbPDeS"
+  },
+  {
+    "address": "0xba11c",
+    "text": "2Xg25GN4TX8S4fZRGa8"
+  },
+  {
+    "address": "0xba130",
+    "text": "37SRG4gS9DN4dMrdYT3"
+  },
+  {
+    "address": "0xba144",
+    "text": "3A7Ay6NWGfbAPS8WsT9"
+  },
+  {
+    "address": "0xba158",
+    "text": "3TDLb8TRMdr7MXbh3eS"
+  },
+  {
+    "address": "0xba16c",
+    "text": "5N6GA8gRdfRaWX67d45"
+  },
+  {
+    "address": "0xba180",
+    "text": "5rSDD4reaDZGDgNSa6S"
+  },
+  {
+    "address": "0xba194",
+    "text": "5SAThTLNYDb7fZLfYRd"
+  },
+  {
+    "address": "0xba1a8",
+    "text": "62gXNsr95Aeb54ZSFrZ"
+  },
+  {
+    "address": "0xba1bc",
+    "text": "62L68rZPGAFA5TZSeNZ"
+  },
+  {
+    "address": "0xba1d0",
+    "text": "62L6ZrNsWR4b54Z3eNZ"
+  },
+  {
+    "address": "0xba1e4",
+    "text": "62LLP98a52ebW4rdeNa"
+  },
+  {
+    "address": "0xba1f8",
+    "text": "6ALLZsZPGbFb5483FNZ"
+  },
+  {
+    "address": "0xba20c",
+    "text": "6ALgZrZPGAeb548Ser8"
+  },
+  {
+    "address": "0xba220",
+    "text": "6AXg8rNa5bFAW4Z3eNZ"
+  },
+  {
+    "address": "0xba234",
+    "text": "6AXg9rNa5bFAW4Z3eNa"
+  },
+  {
+    "address": "0xba248",
+    "text": "6bAb5fPTTDWY9GaSNZP"
+  },
+  {
+    "address": "0xba25c",
+    "text": "6bggas8sfAFA548Ser9"
+  },
+  {
+    "address": "0xba270",
+    "text": "6bgL8sZPGAeb5T83FNZ"
+  },
+  {
+    "address": "0xba284",
+    "text": "6bLg8rZPGAeb5TZSFrZ"
+  },
+  {
+    "address": "0xba298",
+    "text": "6bLg9rZPGBFb5483FNa"
+  },
+  {
+    "address": "0xba2ac",
+    "text": "6bLg9sZPGAFA5TZSFNa"
+  },
+  {
+    "address": "0xba2c0",
+    "text": "6eFb9sNTaYTX8aGXFaW"
+  },
+  {
+    "address": "0xba2d4",
+    "text": "6eFb9sNTaYWY9ZGYGaW"
+  },
+  {
+    "address": "0xba2e8",
+    "text": "6eFb9sPTaYTX9ZFYFaT"
+  },
+  {
+    "address": "0xba2fc",
+    "text": "6eFb9sPTZYWY9aGYFZT"
+  },
+  {
+    "address": "0xba310",
+    "text": "6gLb9fGZFRTSeFNR4aN"
+  },
+  {
+    "address": "0xba324",
+    "text": "6L2LW9r9sRrgWTN3TNa"
+  },
+  {
+    "address": "0xba338",
+    "text": "6L2LW9s8sSsgTWP3WNa"
+  },
+  {
+    "address": "0xba34c",
+    "text": "6L2LW9s9rRshWTN2TNZ"
+  },
+  {
+    "address": "0xba360",
+    "text": "6gLb9fFZGSWSfFPS5aN"
+  },
+  {
+    "address": "0xba374",
+    "text": "6PbhhNrRMd8ahLT73A3"
+  },
+  {
+    "address": "0xba388",
+    "text": "6R6L8ZZPGbebW48SeN8"
+  },
+  {
+    "address": "0xba39c",
+    "text": "772hDTfRR4M2sRLWs55"
+  },
+  {
+    "address": "0xba3b0",
+    "text": "85WFdg3TgL3T9AFS5d7"
+  },
+  {
+    "address": "0xba3c4",
+    "text": "99b9M46GGae6YhZY9TW"
+  },
+  {
+    "address": "0xba3d8",
+    "text": "9s2f46NNPh4GDX6D5Z5"
+  },
+  {
+    "address": "0xba3ec",
+    "text": "9F2FS6WTN85AaZbD3Gd"
+  },
+  {
+    "address": "0xba400",
+    "text": "aR2s3r766eYZsg2Dd95"
+  },
+  {
+    "address": "0xba414",
+    "text": "AS5DgTZYhF48GXFD4RD"
+  },
+  {
+    "address": "0xba428",
+    "text": "bfGGdXLsLFFa9s7A8DD"
+  },
+  {
+    "address": "0xba43c",
+    "text": "bR6breeP524RGT8d48N"
+  },
+  {
+    "address": "0xba450",
+    "text": "bXb244rssb46G4N3TNr"
+  },
+  {
+    "address": "0xba464",
+    "text": "Da222Ta2N4PL7XF93GS"
+  },
+  {
+    "address": "0xba478",
+    "text": "deNGMLA3h72TPhgSaZW"
+  },
+  {
+    "address": "0xba48c",
+    "text": "dF5sYhbTXF47T3r4W9e"
+  },
+  {
+    "address": "0xba4a0",
+    "text": "DZN9heLgYfA5fAL73T9"
+  },
+  {
+    "address": "0xba4b4",
+    "text": "eZDfGb837e6R56gd62s"
+  },
+  {
+    "address": "0xba4c8",
+    "text": "eTh524bsG5sXMaXZYe5"
+  },
+  {
+    "address": "0xba4dc",
+    "text": "f9sNDdMFAADX9RN93Dh"
+  },
+  {
+    "address": "0xba4f0",
+    "text": "f25YGrM2b4NfrR4F6Sd"
+  },
+  {
+    "address": "0xba504",
+    "text": "fbFfPegsYSRZh9Lf52D"
+  },
+  {
+    "address": "0xba518",
+    "text": "FD6R6rF2Da4aDNL75TS"
+  },
+  {
+    "address": "0xba52c",
+    "text": "fe85R8AXhfgaf6g3h4a"
+  },
+  {
+    "address": "0xba540",
+    "text": "fGYf7878r4aAMgLYaSd"
+  },
+  {
+    "address": "0xba554",
+    "text": "frY57rArGGrhMZZh7R5"
+  },
+  {
+    "address": "0xba568",
+    "text": "FXWWhrgThWFPPRXPdRd"
+  },
+  {
+    "address": "0xba57c",
+    "text": "g2gXssr95RebWT8SFra"
+  },
+  {
+    "address": "0xba590",
+    "text": "g2X6sPZ9GR4b54ZSeNa"
+  },
+  {
+    "address": "0xba5a4",
+    "text": "g44NS5X4FX4S4P4XGs4"
+  },
+  {
+    "address": "0xba5b8",
+    "text": "g44NS5Y4FY5S5P5YFr4"
+  },
+  {
+    "address": "0xba5cc",
+    "text": "GahFLFM4eT9RMrgaPf3"
+  },
+  {
+    "address": "0xba5e0",
+    "text": "gbgLZs8PGAebWTZSerZ"
+  },
+  {
+    "address": "0xba5f4",
+    "text": "gbRAF5NPaANXGZ8DTZN"
+  },
+  {
+    "address": "0xba608",
+    "text": "gR2RFsNPWRTR5FN34Z8"
+  },
+  {
+    "address": "0xba61c",
+    "text": "gRT7FFM8b2sNf8ZD7W3"
+  },
+  {
+    "address": "0xba630",
+    "text": "gX2Ar5rW56NLPZeD4N8"
+  },
+  {
+    "address": "0xba644",
+    "text": "gX2As5rW56NLPZeD4N9"
+  },
+  {
+    "address": "0xba658",
+    "text": "gZ2rdhheR3SGSY7HN4T"
+  },
+  {
+    "address": "0xba66c",
+    "text": "gZ2rdhheR3SGSY7WN4T"
+  },
+  {
+    "address": "0xba680",
+    "text": "gZ4ehd6W5Lr6sZr7eT5"
+  },
+  {
+    "address": "0xba694",
+    "text": "GZR5X8XMMTb8s2gdg4f"
+  },
+  {
+    "address": "0xba6a8",
+    "text": "ha3A3TNbYDLMPLAhdRd"
+  },
+  {
+    "address": "0xba6bc",
+    "text": "h3TTGbNRP5NDh6RG3Zd"
+  },
+  {
+    "address": "0xba6d0",
+    "text": "hG5fLba4ZThNhX493PW"
+  },
+  {
+    "address": "0xba6e4",
+    "text": "hPRDA8r39486MNTMA2G"
+  },
+  {
+    "address": "0xba6f8",
+    "text": "LL6L8sNafbTAf48S4ZZ"
+  },
+  {
+    "address": "0xba70c",
+    "text": "LR66NrN9GAeA5483eNZ"
+  },
+  {
+    "address": "0xba720",
+    "text": "LT74grF8P9rMPX2PhT3"
+  },
+  {
+    "address": "0xba734",
+    "text": "LXALfrNGWXZXfe8Se8a"
+  },
+  {
+    "address": "0xba748",
+    "text": "MT3bh842Y58MaXbadT3"
+  },
+  {
+    "address": "0xba75c",
+    "text": "MT953bg8hae9GTgY9Rf"
+  },
+  {
+    "address": "0xba770",
+    "text": "NP2eX4DFFrfXMgZaP5d"
+  },
+  {
+    "address": "0xba784",
+    "text": "NXbbDfg26TeM6aTX9G8"
+  },
+  {
+    "address": "0xba798",
+    "text": "NXbbDfh26WfM7aWY8F8"
+  },
+  {
+    "address": "0xba7ac",
+    "text": "NXbbDfh36TfM7ZTX8F9"
+  },
+  {
+    "address": "0xba7c0",
+    "text": "NXbbDfg37TeL7ZTY8F8"
+  },
+  {
+    "address": "0xba7d4",
+    "text": "NZ2L5724eMDRDGeSG9s"
+  },
+  {
+    "address": "0xba7e8",
+    "text": "re6sLFATGPr7Mgg7723"
+  },
+  {
+    "address": "0xba7fc",
+    "text": "RZ2LFrZ5f24LGZ8SN4e"
+  },
+  {
+    "address": "0xba810",
+    "text": "RZ34428fMSX4dYNSaXW"
+  },
+  {
+    "address": "0xba824",
+    "text": "RW5ag6RaSf9e9WLAPRS"
+  },
+  {
+    "address": "0xba838",
+    "text": "S6bbSeg57DPFdMXAaZS"
+  },
+  {
+    "address": "0xba84c",
+    "text": "sT4bR8FgSSgY7X6d3XG"
+  },
+  {
+    "address": "0xba860",
+    "text": "STYGMNF5hX8ZdgLWZ87"
+  },
+  {
+    "address": "0xba874",
+    "text": "sXd8N6AfMTbT3R6h4FG"
+  },
+  {
+    "address": "0xba888",
+    "text": "SX257NDRXe7rfXb3MW5"
+  },
+  {
+    "address": "0xba89c",
+    "text": "TD8DY6fXFT8SbgL663S"
+  },
+  {
+    "address": "0xba8b0",
+    "text": "TN3fW2ZTYsbYGXrP3Ah"
+  },
+  {
+    "address": "0xba8c4",
+    "text": "TRA6DdRAFArSr5ZAaW8"
+  },
+  {
+    "address": "0xba8d8",
+    "text": "TSaDhrA4s5TYfrA7aR3"
+  },
+  {
+    "address": "0xba8ec",
+    "text": "TZ24D4ZdM2rRG6rGZ47"
+  },
+  {
+    "address": "0xba900",
+    "text": "WR9496D8L8WThNrSSWW"
+  },
+  {
+    "address": "0xba914",
+    "text": "XA5fYbF2M7rGYZgP36D"
+  },
+  {
+    "address": "0xba928",
+    "text": "XAgAZsG4GSsArasDW88"
+  },
+  {
+    "address": "0xba93c",
+    "text": "XAgLaP8PfAFb5483FNa"
+  },
+  {
+    "address": "0xba950",
+    "text": "XAgLZsN9WD4A5G8SWrr"
+  },
+  {
+    "address": "0xba964",
+    "text": "XR6XrsZaf24bWT8Ser8"
+  },
+  {
+    "address": "0xba978",
+    "text": "XRg6P8r9fA4b54ZSeN9"
+  },
+  {
+    "address": "0xba98c",
+    "text": "XAgAZsG4FRrDrZrAT99"
+  },
+  {
+    "address": "0xba9a0",
+    "text": "XAgAZsG4FSsDsasDT88"
+  },
+  {
+    "address": "0xba9b4",
+    "text": "XAgLZr8PGAebWT83FNZ"
+  },
+  {
+    "address": "0xba9c8",
+    "text": "XAgLZsN9TA4D5G9RTss"
+  },
+  {
+    "address": "0xba9dc",
+    "text": "XALLZs8PGAeA5T8SFrZ"
+  },
+  {
+    "address": "0xba9f0",
+    "text": "XAXLN8ZsGAebW4ZSer8"
+  },
+  {
+    "address": "0xbaa04",
+    "text": "XD22G9f5gXhs7NAgALS"
+  },
+  {
+    "address": "0xbaa18",
+    "text": "XSWf9b4WXr839hsZT9D"
+  },
+  {
+    "address": "0xbaa2c",
+    "text": "YASsY2PAA8dNPZrS7D7"
+  },
+  {
+    "address": "0xbaa40",
+    "text": "YL5PY8NDSgrXWFgP6Xf"
+  },
+  {
+    "address": "0xbaa54",
+    "text": "YM4AP4RW6Xg3aMh8baW"
+  },
+  {
+    "address": "0xbaa68",
+    "text": "Z46egegaNrTShh9g8f3"
+  },
+  {
+    "address": "0xbaa7c",
+    "text": "ZNbNZdM8PA8XsFsYWs5"
+  },
+  {
+    "address": "0xbaa90",
+    "text": "8abf737rFbraA8rL4s3"
+  },
+  {
+    "address": "0xbaaa4",
+    "text": "DXNWb4hAbFY4fXbSD5W"
+  },
+  {
+    "address": "0xbaab8",
+    "text": "h99fs8LaSWgXd7A7sTW"
+  },
+  {
+    "address": "0xbaacc",
+    "text": "d9FGDXAeM9ZW5ZAD5RS"
+  },
+  {
+    "address": "0xbaae0",
+    "text": "49R4SFaThGZ4fL8WZWS"
+  },
+  {
+    "address": "0xbaaf4",
+    "text": "LZgA2TW28f97Y7Ga4eS"
+  },
+  {
+    "address": "0xbab08",
+    "text": "3F55hghZ6Te5FrbL4DD"
+  },
+  {
+    "address": "0xbab1c",
+    "text": "DNbDg4T36erPMs3XF5f"
+  },
+  {
+    "address": "0xbab30",
+    "text": "deTF7bM8RFPTP8L35SW"
+  },
+  {
+    "address": "0xbab44",
+    "text": "GF7FM8bfGW4XY9XYY4G"
+  },
+  {
+    "address": "0xbab58",
+    "text": "sR74Z8A5DY6R5Pg37RY"
+  },
+  {
+    "address": "0xbab6c",
+    "text": "sSg4abLhaGdNdS8rhRG"
+  },
+  {
+    "address": "0xbab80",
+    "text": "com.linplug.Sophistry"
+  },
+  {
+    "address": "0xbab98",
+    "text": "Yes"
+  },
+  {
+    "address": "0xbab9c",
+    "text": "No"
+  },
+  {
+    "address": "0xbaba0",
+    "text": "OK"
+  },
+  {
+    "address": "0xbaba4",
+    "text": "[LinPlug] Could not create Alert Dialog!\n"
+  },
+  {
+    "address": "0xbabd0",
+    "text": "Idx=%d Ins=%d (InsIdxIn=%d) State %d On=%ld Off=%ld Now=%lu"
+  },
+  {
+    "address": "0xbac0c",
+    "text": "S0 On/Off"
+  },
+  {
+    "address": "0xbac18",
+    "text": "Filter Wet"
+  },
+  {
+    "address": "0xbac24",
+    "text": "LP12HP12BP12BR12"
+  },
+  {
+    "address": "0xbac38",
+    "text": "Type "
+  },
+  {
+    "address": "0xbac40",
+    "text": "Filter Sat"
+  },
+  {
+    "address": "0xbac4c",
+    "text": "Hz"
+  },
+  {
+    "address": "0xbac50",
+    "text": "Cutoff"
+  },
+  {
+    "address": "0xbac58",
+    "text": "Resonance"
+  },
+  {
+    "address": "0xbac64",
+    "text": "Filter Mod Speed"
+  },
+  {
+    "address": "0xbac78",
+    "text": "Filter Mod Depth"
+  },
+  {
+    "address": "0xbac8c",
+    "text": "Level (D+W)"
+  },
+  {
+    "address": "0xbac98",
+    "text": " Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16"
+  },
+  {
+    "address": "0xbad64",
+    "text": "Notes"
+  },
+  {
+    "address": "0xbad6c",
+    "text": "Frequency"
+  },
+  {
+    "address": "0xbad78",
+    "text": "Triang"
+  },
+  {
+    "address": "0xbad80",
+    "text": "Wet"
+  },
+  {
+    "address": "0xbad84",
+    "text": "msec"
+  },
+  {
+    "address": "0xbad8c",
+    "text": "Roomsize"
+  },
+  {
+    "address": "0xbad98",
+    "text": "n"
+  },
+  {
+    "address": "0xbad9c",
+    "text": "Factor"
+  },
+  {
+    "address": "0xbada4",
+    "text": "Samples"
+  },
+  {
+    "address": "0xbadac",
+    "text": "Reserve00"
+  },
+  {
+    "address": "0xbadb8",
+    "text": "Distortion"
+  },
+  {
+    "address": "0xbadc4",
+    "text": ":1"
+  },
+  {
+    "address": "0xbadc8",
+    "text": "Compression"
+  },
+  {
+    "address": "0xbadd4",
+    "text": "Bit"
+  },
+  {
+    "address": "0xbadd8",
+    "text": "BitCrushing"
+  },
+  {
+    "address": "0xbade4",
+    "text": "Key Sync"
+  },
+  {
+    "address": "0xbadf0",
+    "text": "Reserve05"
+  },
+  {
+    "address": "0xbadfc",
+    "text": "Reserve06"
+  },
+  {
+    "address": "0xbae08",
+    "text": "Reserve07"
+  },
+  {
+    "address": "0xbae14",
+    "text": "Filename"
+  },
+  {
+    "address": "0xbae20",
+    "text": "Root"
+  },
+  {
+    "address": "0xbae28",
+    "text": "Zone Lo"
+  },
+  {
+    "address": "0xbae30",
+    "text": "Zone Hi"
+  },
+  {
+    "address": "0xbae38",
+    "text": "Start Frame"
+  },
+  {
+    "address": "0xbae44",
+    "text": "End Frame"
+  },
+  {
+    "address": "0xbae50",
+    "text": "Volume"
+  },
+  {
+    "address": "0xbae58",
+    "text": "Panorama"
+  },
+  {
+    "address": "0xbae64",
+    "text": "Reverse"
+  },
+  {
+    "address": "0xbae6c",
+    "text": "Loop Start Frame"
+  },
+  {
+    "address": "0xbae80",
+    "text": "Loop End Frame"
+  },
+  {
+    "address": "0xbae90",
+    "text": "Loop Counter"
+  },
+  {
+    "address": "0xbaea0",
+    "text": "Loop Mode"
+  },
+  {
+    "address": "0xbaeac",
+    "text": "Cmd Load Filename"
+  },
+  {
+    "address": "0xbaec0",
+    "text": "Loop Mod Range"
+  },
+  {
+    "address": "0xbaed0",
+    "text": "Suppress AutoXCross"
+  },
+  {
+    "address": "0xbaee4",
+    "text": "Alterne"
+  },
+  {
+    "address": "0xbaeec",
+    "text": "Reserve4"
+  },
+  {
+    "address": "0xbaef8",
+    "text": "CyclingRandom Random+"
+  },
+  {
+    "address": "0xbaf10",
+    "text": "Alt Mode"
+  },
+  {
+    "address": "0xbaf1c",
+    "text": "D4U"
+  },
+  {
+    "address": "0xbaf20",
+    "text": "D4T"
+  },
+  {
+    "address": "0xbaf24",
+    "text": "aif"
+  },
+  {
+    "address": "0xbaf28",
+    "text": "wav"
+  },
+  {
+    "address": "0xbaf2c",
+    "text": "d4t"
+  },
+  {
+    "address": "0xbaf30",
+    "text": "d4u"
+  },
+  {
+    "address": "0xbaf34",
+    "text": "File Error - Load failed"
+  },
+  {
+    "address": "0xbaf50",
+    "text": "Octave"
+  },
+  {
+    "address": "0xbaf58",
+    "text": "Semitone"
+  },
+  {
+    "address": "0xbaf64",
+    "text": "Cent"
+  },
+  {
+    "address": "0xbaf6c",
+    "text": "PitchTrack On/Off"
+  },
+  {
+    "address": "0xbaf80",
+    "text": "Smooth"
+  },
+  {
+    "address": "0xbaf88",
+    "text": "Release Loop"
+  },
+  {
+    "address": "0xbaf98",
+    "text": "WaveRide"
+  },
+  {
+    "address": "0xbafa4",
+    "text": "RideTrack"
+  },
+  {
+    "address": "0xbafb0",
+    "text": "cent"
+  },
+  {
+    "address": "0xbafb8",
+    "text": "Spread"
+  },
+  {
+    "address": "0xbafc0",
+    "text": "InsIdx"
+  },
+  {
+    "address": "0xbafc8",
+    "text": "SampleIdx"
+  },
+  {
+    "address": "0xbafd4",
+    "text": "Zone Low"
+  },
+  {
+    "address": "0xbafe0",
+    "text": "Zone High"
+  },
+  {
+    "address": "0xbafec",
+    "text": "Velo Low"
+  },
+  {
+    "address": "0xbaff8",
+    "text": "Velo High"
+  },
+  {
+    "address": "0xbb004",
+    "text": "Unus0"
+  },
+  {
+    "address": "0xbb00c",
+    "text": "MLEnable"
+  },
+  {
+    "address": "0xbb018",
+    "text": "Cmd Prev"
+  },
+  {
+    "address": "0xbb024",
+    "text": "Cmd Next"
+  },
+  {
+    "address": "0xbb030",
+    "text": "Cmd Clear"
+  },
+  {
+    "address": "0xbb03c",
+    "text": "Do you want to unload the sample ?"
+  },
+  {
+    "address": "0xbb060",
+    "text": "Clear Sample"
+  },
+  {
+    "address": "0xbb070",
+    "text": "File Error - Save failed"
+  },
+  {
+    "address": "0xbb08c",
+    "text": "1010101010101010"
+  },
+  {
+    "address": "0xbb0a0",
+    "text": "Step On/Off"
+  },
+  {
+    "address": "0xbb0ac",
+    "text": "0101010101010101"
+  },
+  {
+    "address": "0xbb0c0",
+    "text": " 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T"
+  },
+  {
+    "address": "0xbb118",
+    "text": " off link xlink"
+  },
+  {
+    "address": "0xbb128",
+    "text": "Mode"
+  },
+  {
+    "address": "0xbb130",
+    "text": "Link"
+  },
+  {
+    "address": "0xbb138",
+    "text": "A Time"
+  },
+  {
+    "address": "0xbb140",
+    "text": "D Time"
+  },
+  {
+    "address": "0xbb148",
+    "text": "S Level"
+  },
+  {
+    "address": "0xbb150",
+    "text": "F Time"
+  },
+  {
+    "address": "0xbb158",
+    "text": "R Time"
+  },
+  {
+    "address": "0xbb160",
+    "text": "Pitch Scal"
+  },
+  {
+    "address": "0xbb16c",
+    "text": "Veloc.Scal"
+  },
+  {
+    "address": "0xbb178",
+    "text": "Velocity Attack"
+  },
+  {
+    "address": "0xbb188",
+    "text": "Log Decay"
+  },
+  {
+    "address": "0xbb194",
+    "text": "A c"
+  },
+  {
+    "address": "0xbb198",
+    "text": "D c"
+  },
+  {
+    "address": "0xbb19c",
+    "text": "F c"
+  },
+  {
+    "address": "0xbb1a0",
+    "text": "R c"
+  },
+  {
+    "address": "0xbb1a4",
+    "text": "Sync"
+  },
+  {
+    "address": "0xbb1ac",
+    "text": "16th"
+  },
+  {
+    "address": "0xbb1b4",
+    "text": "ASync"
+  },
+  {
+    "address": "0xbb1bc",
+    "text": "DSync"
+  },
+  {
+    "address": "0xbb1c4",
+    "text": "FSync"
+  },
+  {
+    "address": "0xbb1cc",
+    "text": "RSync"
+  },
+  {
+    "address": "0xbb1d4",
+    "text": "Sine  TriangSawtooSquareNoise Sam&Ho"
+  },
+  {
+    "address": "0xbb1fc",
+    "text": "Waveform"
+  },
+  {
+    "address": "0xbb208",
+    "text": "Off  16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16"
+  },
+  {
+    "address": "0xbb2d4",
+    "text": "Symmetry"
+  },
+  {
+    "address": "0xbb2e0",
+    "text": "OffOn"
+  },
+  {
+    "address": "0xbb2e8",
+    "text": "TimeL"
+  },
+  {
+    "address": "0xbb2f0",
+    "text": " Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 "
+  },
+  {
+    "address": "0xbb358",
+    "text": "SyncL"
+  },
+  {
+    "address": "0xbb360",
+    "text": "TimeR"
+  },
+  {
+    "address": "0xbb368",
+    "text": "SyncR"
+  },
+  {
+    "address": "0xbb370",
+    "text": "Feed"
+  },
+  {
+    "address": "0xbb378",
+    "text": "CutLo"
+  },
+  {
+    "address": "0xbb380",
+    "text": "CutHi"
+  },
+  {
+    "address": "0xbb388",
+    "text": "Stereo"
+  },
+  {
+    "address": "0xbb390",
+    "text": "Feedback Link"
+  },
+  {
+    "address": "0xbb3a0",
+    "text": "Crossdelay"
+  },
+  {
+    "address": "0xbb3ac",
+    "text": "Filters in Feedback"
+  },
+  {
+    "address": "0xbb3c0",
+    "text": "ms"
+  },
+  {
+    "address": "0xbb3c4",
+    "text": "Chorus Time"
+  },
+  {
+    "address": "0xbb3d0",
+    "text": "Chorus TimeSpread"
+  },
+  {
+    "address": "0xbb3e4",
+    "text": "Chorus Speed"
+  },
+  {
+    "address": "0xbb3f4",
+    "text": "Chorus SpeedSpread"
+  },
+  {
+    "address": "0xbb408",
+    "text": "Chorus Wet"
+  },
+  {
+    "address": "0xbb414",
+    "text": "Chorus Mode"
+  },
+  {
+    "address": "0xbb420",
+    "text": "Invert Signal"
+  },
+  {
+    "address": "0xbb430",
+    "text": "Chorus Dry"
+  },
+  {
+    "address": "0xbb43c",
+    "text": "Chorus Stereo"
+  },
+  {
+    "address": "0xbb44c",
+    "text": "bit"
+  },
+  {
+    "address": "0xbb450",
+    "text": "Resolution"
+  },
+  {
+    "address": "0xbb45c",
+    "text": "Dither On/Off"
+  },
+  {
+    "address": "0xbb46c",
+    "text": "Divider"
+  },
+  {
+    "address": "0xbb474",
+    "text": "AVGSTPSLD"
+  },
+  {
+    "address": "0xbb480",
+    "text": "Divider Mode"
+  },
+  {
+    "address": "0xbb490",
+    "text": "Filter Type "
+  },
+  {
+    "address": "0xbb4a0",
+    "text": "FilterPostDiv On/Off"
+  },
+  {
+    "address": "0xbb4b8",
+    "text": "Auto Volume compensation"
+  },
+  {
+    "address": "0xbb4d4",
+    "text": "SophLoadPresetPath"
+  },
+  {
+    "address": "0xbb4e8",
+    "text": "SophistryBanks/Ambient - Human Dreams"
+  },
+  {
+    "address": "0xbb510",
+    "text": "XModBuf0"
+  },
+  {
+    "address": "0xbb51c",
+    "text": "XModBuf1"
+  },
+  {
+    "address": "0xbb528",
+    "text": "PanBuf0"
+  },
+  {
+    "address": "0xbb530",
+    "text": "PanBuf1"
+  },
+  {
+    "address": "0xbb538",
+    "text": "PanBuf2"
+  },
+  {
+    "address": "0xbb540",
+    "text": "PanBuf3"
+  },
+  {
+    "address": "0xbb548",
+    "text": "FilBuf0"
+  },
+  {
+    "address": "0xbb550",
+    "text": "FilBuf1"
+  },
+  {
+    "address": "0xbb558",
+    "text": "EffBuf0"
+  },
+  {
+    "address": "0xbb560",
+    "text": "EffBuf1"
+  },
+  {
+    "address": "0xbb568",
+    "text": "EffBufX"
+  },
+  {
+    "address": "0xbb570",
+    "text": "OutBuf"
+  },
+  {
+    "address": "0xbb578",
+    "text": "Osc A 0"
+  },
+  {
+    "address": "0xbb580",
+    "text": "Osc A 1"
+  },
+  {
+    "address": "0xbb588",
+    "text": "Osc A 2"
+  },
+  {
+    "address": "0xbb590",
+    "text": "Osc A 3"
+  },
+  {
+    "address": "0xbb598",
+    "text": "Tim 0"
+  },
+  {
+    "address": "0xbb5a0",
+    "text": "Tim 1"
+  },
+  {
+    "address": "0xbb5a8",
+    "text": "Tim 2"
+  },
+  {
+    "address": "0xbb5b0",
+    "text": "Tim 3"
+  },
+  {
+    "address": "0xbb5b8",
+    "text": "SamWT 0"
+  },
+  {
+    "address": "0xbb5c0",
+    "text": "SamWT 1"
+  },
+  {
+    "address": "0xbb5c8",
+    "text": "SamLoop0"
+  },
+  {
+    "address": "0xbb5d4",
+    "text": "SamLoop1"
+  },
+  {
+    "address": "0xbb5e0",
+    "text": "Panner0"
+  },
+  {
+    "address": "0xbb5e8",
+    "text": "Panner1"
+  },
+  {
+    "address": "0xbb5f0",
+    "text": "Panner2"
+  },
+  {
+    "address": "0xbb5f8",
+    "text": "Panner3"
+  },
+  {
+    "address": "0xbb600",
+    "text": "Sat Filter 0"
+  },
+  {
+    "address": "0xbb610",
+    "text": "Sat Filter 1"
+  },
+  {
+    "address": "0xbb620",
+    "text": "Filter Moog 0"
+  },
+  {
+    "address": "0xbb630",
+    "text": "Filter Moog 1"
+  },
+  {
+    "address": "0xbb640",
+    "text": "Filter Free 0"
+  },
+  {
+    "address": "0xbb650",
+    "text": "Filter Free 1"
+  },
+  {
+    "address": "0xbb660",
+    "text": "Amp 0"
+  },
+  {
+    "address": "0xbb668",
+    "text": "Amp 1"
+  },
+  {
+    "address": "0xbb670",
+    "text": "Effect 0 Delay "
+  },
+  {
+    "address": "0xbb680",
+    "text": "Effect 0 Chorus"
+  },
+  {
+    "address": "0xbb690",
+    "text": "Effect 0 Phaser"
+  },
+  {
+    "address": "0xbb6a0",
+    "text": "Effect 0 Filter"
+  },
+  {
+    "address": "0xbb6b0",
+    "text": "Effect 0 Reverb"
+  },
+  {
+    "address": "0xbb6c0",
+    "text": "Effect 0 StDely"
+  },
+  {
+    "address": "0xbb6d0",
+    "text": "Effect 0 Flangr"
+  },
+  {
+    "address": "0xbb6e0",
+    "text": "Effect 0 StEnh "
+  },
+  {
+    "address": "0xbb6f0",
+    "text": "Effect 0 EQ    "
+  },
+  {
+    "address": "0xbb700",
+    "text": "Effect 0 Gator "
+  },
+  {
+    "address": "0xbb710",
+    "text": "Effect 0 Crush "
+  },
+  {
+    "address": "0xbb720",
+    "text": "Effect 0 PingPo"
+  },
+  {
+    "address": "0xbb730",
+    "text": "Effect 1 Delay "
+  },
+  {
+    "address": "0xbb740",
+    "text": "Effect 1 Chorus"
+  },
+  {
+    "address": "0xbb750",
+    "text": "Effect 1 Phaser"
+  },
+  {
+    "address": "0xbb760",
+    "text": "Effect 1 Filter"
+  },
+  {
+    "address": "0xbb770",
+    "text": "Effect 1 Reverb"
+  },
+  {
+    "address": "0xbb780",
+    "text": "Effect 1 StDely"
+  },
+  {
+    "address": "0xbb790",
+    "text": "Effect 1 Flangr"
+  },
+  {
+    "address": "0xbb7a0",
+    "text": "Effect 1 StEnh "
+  },
+  {
+    "address": "0xbb7b0",
+    "text": "Effect 1 EQ    "
+  },
+  {
+    "address": "0xbb7c0",
+    "text": "Effect 1 Gator "
+  },
+  {
+    "address": "0xbb7d0",
+    "text": "Effect 1 Crush "
+  },
+  {
+    "address": "0xbb7e0",
+    "text": "Effect 1 PingPo"
+  },
+  {
+    "address": "0xbb7f0",
+    "text": "Effect X Delay "
+  },
+  {
+    "address": "0xbb800",
+    "text": "Effect X Chorus"
+  },
+  {
+    "address": "0xbb810",
+    "text": "Effect X Phaser"
+  },
+  {
+    "address": "0xbb820",
+    "text": "Effect X Filter"
+  },
+  {
+    "address": "0xbb830",
+    "text": "Effect X Reverb"
+  },
+  {
+    "address": "0xbb840",
+    "text": "Effect X StDely"
+  },
+  {
+    "address": "0xbb850",
+    "text": "Effect X Flangr"
+  },
+  {
+    "address": "0xbb860",
+    "text": "Effect X StEnh "
+  },
+  {
+    "address": "0xbb870",
+    "text": "Effect X EQ    "
+  },
+  {
+    "address": "0xbb880",
+    "text": "Effect X Gator "
+  },
+  {
+    "address": "0xbb890",
+    "text": "Effect X Crush "
+  },
+  {
+    "address": "0xbb8a0",
+    "text": "Effect X PingPo"
+  },
+  {
+    "address": "0xbb8b0",
+    "text": "Panner 51 G0"
+  },
+  {
+    "address": "0xbb8c0",
+    "text": "Panner 51 G1"
+  },
+  {
+    "address": "0xbb8d0",
+    "text": "Panner 51 F0"
+  },
+  {
+    "address": "0xbb8e0",
+    "text": "Panner 51 F1"
+  },
+  {
+    "address": "0xbb8f0",
+    "text": "Panner 51 FX0"
+  },
+  {
+    "address": "0xbb900",
+    "text": "Panner 51 FX3"
+  },
+  {
+    "address": "0xbb910",
+    "text": "Panner 51 FX5"
+  },
+  {
+    "address": "0xbb920",
+    "text": "Oscillator"
+  },
+  {
+    "address": "0xbb92c",
+    "text": "TimeSampler"
+  },
+  {
+    "address": "0xbb938",
+    "text": "Schrader   "
+  },
+  {
+    "address": "0xbb944",
+    "text": "LoopSampler"
+  },
+  {
+    "address": "0xbb950",
+    "text": "LFO"
+  },
+  {
+    "address": "0xbb954",
+    "text": "Envelope"
+  },
+  {
+    "address": "0xbb960",
+    "text": "Soph L"
+  },
+  {
+    "address": "0xbb968",
+    "text": "Soph R"
+  },
+  {
+    "address": "0xbb970",
+    "text": "Soph C"
+  },
+  {
+    "address": "0xbb978",
+    "text": "Soph Lfe"
+  },
+  {
+    "address": "0xbb984",
+    "text": "Soph LS"
+  },
+  {
+    "address": "0xbb98c",
+    "text": "Soph RS"
+  },
+  {
+    "address": "0xbb994",
+    "text": "fxp"
+  },
+  {
+    "address": "0xbb998",
+    "text": "Sophistry"
+  },
+  {
+    "address": "0xbb9a4",
+    "text": "3.0.8"
+  },
+  {
+    "address": "0xbb9ac",
+    "text": "LINE,LINM,LINC,Crx3,Sop3,C2x3,S2p3"
+  },
+  {
+    "address": "0xbb9d0",
+    "text": "2232"
+  },
+  {
+    "address": "0xbb9d8",
+    "text": "empty"
+  },
+  {
+    "address": "0xbb9e0",
+    "text": "Osc 1 Operation"
+  },
+  {
+    "address": "0xbb9f0",
+    "text": "Osc 2 Operation"
+  },
+  {
+    "address": "0xbba00",
+    "text": "Osc 3 Operation"
+  },
+  {
+    "address": "0xbba10",
+    "text": "Osc 4 Operation"
+  },
+  {
+    "address": "0xbba20",
+    "text": "Gen 1 Volume"
+  },
+  {
+    "address": "0xbba30",
+    "text": "Gen 2 Volume"
+  },
+  {
+    "address": "0xbba40",
+    "text": "Gen 3 Volume"
+  },
+  {
+    "address": "0xbba50",
+    "text": "Gen 4 Volume"
+  },
+  {
+    "address": "0xbba60",
+    "text": "Gen 1 Balance"
+  },
+  {
+    "address": "0xbba70",
+    "text": "Gen 2 Balance"
+  },
+  {
+    "address": "0xbba80",
+    "text": "Gen 3 Balance"
+  },
+  {
+    "address": "0xbba90",
+    "text": "Gen 4 Balance"
+  },
+  {
+    "address": "0xbbaa0",
+    "text": "Osc 1 Wave"
+  },
+  {
+    "address": "0xbbaac",
+    "text": "Osc 2 Wave"
+  },
+  {
+    "address": "0xbbab8",
+    "text": "Osc 3 Wave"
+  },
+  {
+    "address": "0xbbac4",
+    "text": "Osc 4 Wave"
+  },
+  {
+    "address": "0xbbad0",
+    "text": "Osc 1 Symm"
+  },
+  {
+    "address": "0xbbadc",
+    "text": "Osc 2 Symm"
+  },
+  {
+    "address": "0xbbae8",
+    "text": "Osc 3 Symm"
+  },
+  {
+    "address": "0xbbaf4",
+    "text": "Osc 4 Symm"
+  },
+  {
+    "address": "0xbbb00",
+    "text": "Osc 1 Oct"
+  },
+  {
+    "address": "0xbbb0c",
+    "text": "Osc 2 Oct"
+  },
+  {
+    "address": "0xbbb18",
+    "text": "Osc 3 Oct"
+  },
+  {
+    "address": "0xbbb24",
+    "text": "Osc 4 Oct"
+  },
+  {
+    "address": "0xbbb30",
+    "text": "Osc 1 Semi"
+  },
+  {
+    "address": "0xbbb3c",
+    "text": "Osc 2 Semi"
+  },
+  {
+    "address": "0xbbb48",
+    "text": "Osc 3 Semi"
+  },
+  {
+    "address": "0xbbb54",
+    "text": "Osc 4 Semi"
+  },
+  {
+    "address": "0xbbb60",
+    "text": "Osc 1 Cent"
+  },
+  {
+    "address": "0xbbb6c",
+    "text": "Osc 2 Cent"
+  },
+  {
+    "address": "0xbbb78",
+    "text": "Osc 3 Cent"
+  },
+  {
+    "address": "0xbbb84",
+    "text": "Osc 4 Cent"
+  },
+  {
+    "address": "0xbbb90",
+    "text": "Osc 1 Track"
+  },
+  {
+    "address": "0xbbb9c",
+    "text": "Osc 2 Track"
+  },
+  {
+    "address": "0xbbba8",
+    "text": "Osc 3 Track"
+  },
+  {
+    "address": "0xbbbb4",
+    "text": "Osc 4 Track"
+  },
+  {
+    "address": "0xbbbc0",
+    "text": "Osc 1 Spread"
+  },
+  {
+    "address": "0xbbbd0",
+    "text": "Osc 2 Spread"
+  },
+  {
+    "address": "0xbbbe0",
+    "text": "Osc 3 Spread"
+  },
+  {
+    "address": "0xbbbf0",
+    "text": "Osc 4 Spread"
+  },
+  {
+    "address": "0xbbc00",
+    "text": "Osc 1 Freerun"
+  },
+  {
+    "address": "0xbbc10",
+    "text": "Osc 2 Freerun"
+  },
+  {
+    "address": "0xbbc20",
+    "text": "Osc 3 Freerun"
+  },
+  {
+    "address": "0xbbc30",
+    "text": "Osc 4 Freerun"
+  },
+  {
+    "address": "0xbbc40",
+    "text": "Gen-Tim 1 Timescale"
+  },
+  {
+    "address": "0xbbc54",
+    "text": "Gen-Tim 2 Timescale"
+  },
+  {
+    "address": "0xbbc68",
+    "text": "Gen-Tim 3 Timescale"
+  },
+  {
+    "address": "0xbbc7c",
+    "text": "Gen-Tim 4 Timescale"
+  },
+  {
+    "address": "0xbbc90",
+    "text": "Gen-Tim 1 Reverse"
+  },
+  {
+    "address": "0xbbca4",
+    "text": "Gen-Tim 2 Reverse"
+  },
+  {
+    "address": "0xbbcb8",
+    "text": "Gen-Tim 3 Reverse"
+  },
+  {
+    "address": "0xbbccc",
+    "text": "Gen-Tim 4 Reverse"
+  },
+  {
+    "address": "0xbbce0",
+    "text": "Gen-Tim 1 Looprse"
+  },
+  {
+    "address": "0xbbcf4",
+    "text": "Gen-Tim 2 Looprse"
+  },
+  {
+    "address": "0xbbd08",
+    "text": "Gen-Tim 3 Looprse"
+  },
+  {
+    "address": "0xbbd1c",
+    "text": "Gen-Tim 4 Looprse"
+  },
+  {
+    "address": "0xbbd30",
+    "text": "Gen-Tim 1 Octave"
+  },
+  {
+    "address": "0xbbd44",
+    "text": "Gen-Tim 2 Octave"
+  },
+  {
+    "address": "0xbbd58",
+    "text": "Gen-Tim 3 Octave"
+  },
+  {
+    "address": "0xbbd6c",
+    "text": "Gen-Tim 4 Octave"
+  },
+  {
+    "address": "0xbbd80",
+    "text": "Gen-Tim 1 Semitone"
+  },
+  {
+    "address": "0xbbd94",
+    "text": "Gen-Tim 2 Semitone"
+  },
+  {
+    "address": "0xbbda8",
+    "text": "Gen-Tim 3 Semitone"
+  },
+  {
+    "address": "0xbbdbc",
+    "text": "Gen-Tim 4 Semitone"
+  },
+  {
+    "address": "0xbbdd0",
+    "text": "Gen-Tim 1 Cent"
+  },
+  {
+    "address": "0xbbde0",
+    "text": "Gen-Tim 2 Cent"
+  },
+  {
+    "address": "0xbbdf0",
+    "text": "Gen-Tim 3 Cent"
+  },
+  {
+    "address": "0xbbe00",
+    "text": "Gen-Tim 4 Cent"
+  },
+  {
+    "address": "0xbbe10",
+    "text": "Gen-Tim 1 Pitch-Track"
+  },
+  {
+    "address": "0xbbe28",
+    "text": "Gen-Tim 2 Pitch-Track"
+  },
+  {
+    "address": "0xbbe40",
+    "text": "Gen-Tim 3 Pitch-Track"
+  },
+  {
+    "address": "0xbbe58",
+    "text": "Gen-Tim 4 Pitch-Track"
+  },
+  {
+    "address": "0xbbe70",
+    "text": "Gen-Tim 1 Time-Track"
+  },
+  {
+    "address": "0xbbe88",
+    "text": "Gen-Tim 2 Time-Track"
+  },
+  {
+    "address": "0xbbea0",
+    "text": "Gen-Tim 3 Time-Track"
+  },
+  {
+    "address": "0xbbeb8",
+    "text": "Gen-Tim 4 Time-Track"
+  },
+  {
+    "address": "0xbbed0",
+    "text": "Gen-Tim 1 Spread"
+  },
+  {
+    "address": "0xbbee4",
+    "text": "Gen-Tim 2 Spread"
+  },
+  {
+    "address": "0xbbef8",
+    "text": "Gen-Tim 3 Spread"
+  },
+  {
+    "address": "0xbbf0c",
+    "text": "Gen-Tim 4 Spread"
+  },
+  {
+    "address": "0xbbf20",
+    "text": "Gen-WT 1 Ocatve"
+  },
+  {
+    "address": "0xbbf30",
+    "text": "Gen-WT 2 Ocatve"
+  },
+  {
+    "address": "0xbbf40",
+    "text": "Gen-WT 3 Ocatve"
+  },
+  {
+    "address": "0xbbf50",
+    "text": "Gen-WT 4 Ocatve"
+  },
+  {
+    "address": "0xbbf60",
+    "text": "Gen-WT 1 Semitone"
+  },
+  {
+    "address": "0xbbf74",
+    "text": "Gen-WT 2 Semitone"
+  },
+  {
+    "address": "0xbbf88",
+    "text": "Gen-WT 3 Semitone"
+  },
+  {
+    "address": "0xbbf9c",
+    "text": "Gen-WT 4 Semitone"
+  },
+  {
+    "address": "0xbbfb0",
+    "text": "Gen-WT 1 Cent"
+  },
+  {
+    "address": "0xbbfc0",
+    "text": "Gen-WT 2 Cent"
+  },
+  {
+    "address": "0xbbfd0",
+    "text": "Gen-WT 3 Cent"
+  },
+  {
+    "address": "0xbbfe0",
+    "text": "Gen-WT 4 Cent"
+  },
+  {
+    "address": "0xbbff0",
+    "text": "Gen-WT 1 Track"
+  },
+  {
+    "address": "0xbc000",
+    "text": "Gen-WT 2 Track"
+  },
+  {
+    "address": "0xbc010",
+    "text": "Gen-WT 3 Track"
+  },
+  {
+    "address": "0xbc020",
+    "text": "Gen-WT 4 Track"
+  },
+  {
+    "address": "0xbc030",
+    "text": "Gen-WT 1 Ride"
+  },
+  {
+    "address": "0xbc040",
+    "text": "Gen-WT 2 Ride"
+  },
+  {
+    "address": "0xbc050",
+    "text": "Gen-WT 3 Ride"
+  },
+  {
+    "address": "0xbc060",
+    "text": "Gen-WT 4 Ride"
+  },
+  {
+    "address": "0xbc070",
+    "text": "Gen-WT 1 Ride-Track"
+  },
+  {
+    "address": "0xbc084",
+    "text": "Gen-WT 2 Ride-Track"
+  },
+  {
+    "address": "0xbc098",
+    "text": "Gen-WT 3 Ride-Track"
+  },
+  {
+    "address": "0xbc0ac",
+    "text": "Gen-WT 4 Ride-Track"
+  },
+  {
+    "address": "0xbc0c0",
+    "text": "Gen-WT 1 Spread"
+  },
+  {
+    "address": "0xbc0d0",
+    "text": "Gen-WT 2 Spread"
+  },
+  {
+    "address": "0xbc0e0",
+    "text": "Gen-WT 3 Spread"
+  },
+  {
+    "address": "0xbc0f0",
+    "text": "Gen-WT 4 Spread"
+  },
+  {
+    "address": "0xbc100",
+    "text": "Osc 1 Routing"
+  },
+  {
+    "address": "0xbc110",
+    "text": "Osc 3 Routing"
+  },
+  {
+    "address": "0xbc120",
+    "text": "Saturation 1"
+  },
+  {
+    "address": "0xbc130",
+    "text": "Saturation 2"
+  },
+  {
+    "address": "0xbc140",
+    "text": "Filter 0 On/Off"
+  },
+  {
+    "address": "0xbc150",
+    "text": "Filter 1 On/Off"
+  },
+  {
+    "address": "0xbc160",
+    "text": "Filter Cutoff"
+  },
+  {
+    "address": "0xbc170",
+    "text": "Filter Resonance"
+  },
+  {
+    "address": "0xbc184",
+    "text": "Filter Type"
+  },
+  {
+    "address": "0xbc190",
+    "text": "Filter Track"
+  },
+  {
+    "address": "0xbc1a0",
+    "text": "Filter Env Inverse"
+  },
+  {
+    "address": "0xbc1b4",
+    "text": "Filter Env-Depth"
+  },
+  {
+    "address": "0xbc1c8",
+    "text": "Filter Slope"
+  },
+  {
+    "address": "0xbc1d8",
+    "text": "Filter 1 Pan"
+  },
+  {
+    "address": "0xbc1e8",
+    "text": "Filter 2 Pan"
+  },
+  {
+    "address": "0xbc1f8",
+    "text": "Main Volume"
+  },
+  {
+    "address": "0xbc204",
+    "text": "Amp Attack"
+  },
+  {
+    "address": "0xbc210",
+    "text": "Amp Decay"
+  },
+  {
+    "address": "0xbc21c",
+    "text": "Amp Sustain"
+  },
+  {
+    "address": "0xbc228",
+    "text": "Amp Fade"
+  },
+  {
+    "address": "0xbc234",
+    "text": "Amp Release"
+  },
+  {
+    "address": "0xbc240",
+    "text": "Amp Env-Log/Lin"
+  },
+  {
+    "address": "0xbc250",
+    "text": "Filter 1 Attack"
+  },
+  {
+    "address": "0xbc260",
+    "text": "Filter 1 Decay"
+  },
+  {
+    "address": "0xbc270",
+    "text": "Filter 1 Sustain"
+  },
+  {
+    "address": "0xbc284",
+    "text": "Filter 1 Fade"
+  },
+  {
+    "address": "0xbc294",
+    "text": "Filter 1 Release"
+  },
+  {
+    "address": "0xbc2a8",
+    "text": "Filter 1 Env-Log/Lin"
+  },
+  {
+    "address": "0xbc2c0",
+    "text": "Filter 2 Attack"
+  },
+  {
+    "address": "0xbc2d0",
+    "text": "Filter 2 Decay"
+  },
+  {
+    "address": "0xbc2e0",
+    "text": "Filter 2 Sustain"
+  },
+  {
+    "address": "0xbc2f4",
+    "text": "Filter 2 Fade"
+  },
+  {
+    "address": "0xbc304",
+    "text": "Filter 2 Release"
+  },
+  {
+    "address": "0xbc318",
+    "text": "Filter 2 Env-Log/Lin"
+  },
+  {
+    "address": "0xbc330",
+    "text": "Gen 1 Attack"
+  },
+  {
+    "address": "0xbc340",
+    "text": "Gen 1 Decay"
+  },
+  {
+    "address": "0xbc34c",
+    "text": "Gen 1 Sustain"
+  },
+  {
+    "address": "0xbc35c",
+    "text": "Gen 1 Fade"
+  },
+  {
+    "address": "0xbc368",
+    "text": "Gen 1 Release"
+  },
+  {
+    "address": "0xbc378",
+    "text": "Gen 1 Env-Log/Lin"
+  },
+  {
+    "address": "0xbc38c",
+    "text": "Gen 2 Attack"
+  },
+  {
+    "address": "0xbc39c",
+    "text": "Gen 2 Decay"
+  },
+  {
+    "address": "0xbc3a8",
+    "text": "Gen 2 Sustain"
+  },
+  {
+    "address": "0xbc3b8",
+    "text": "Gen 2 Fade"
+  },
+  {
+    "address": "0xbc3c4",
+    "text": "Gen 2 Release"
+  },
+  {
+    "address": "0xbc3d4",
+    "text": "Gen 2 Env-Log/Lin"
+  },
+  {
+    "address": "0xbc3e8",
+    "text": "Mod 1 Attack"
+  },
+  {
+    "address": "0xbc3f8",
+    "text": "Mod 1 Decay"
+  },
+  {
+    "address": "0xbc404",
+    "text": "Mod 1 Sustain"
+  },
+  {
+    "address": "0xbc414",
+    "text": "Mod 1 Fade"
+  },
+  {
+    "address": "0xbc420",
+    "text": "Mod 1 Release"
+  },
+  {
+    "address": "0xbc430",
+    "text": "Mod 1 Env-Log/Lin"
+  },
+  {
+    "address": "0xbc444",
+    "text": "Mod 2 Attack"
+  },
+  {
+    "address": "0xbc454",
+    "text": "Mod 2 Decay"
+  },
+  {
+    "address": "0xbc460",
+    "text": "Mod 2 Sustain"
+  },
+  {
+    "address": "0xbc470",
+    "text": "Mod 2 Fade"
+  },
+  {
+    "address": "0xbc47c",
+    "text": "Mod 2 Release"
+  },
+  {
+    "address": "0xbc48c",
+    "text": "Mod 2 Env-Log/Lin"
+  },
+  {
+    "address": "0xbc4a0",
+    "text": "LFO 1 Delay"
+  },
+  {
+    "address": "0xbc4ac",
+    "text": "LFO 2 Delay"
+  },
+  {
+    "address": "0xbc4b8",
+    "text": "LFO 3 Delay"
+  },
+  {
+    "address": "0xbc4c4",
+    "text": "LFO 4 Delay"
+  },
+  {
+    "address": "0xbc4d0",
+    "text": "LFO 1 Atack"
+  },
+  {
+    "address": "0xbc4dc",
+    "text": "LFO 2 Atack"
+  },
+  {
+    "address": "0xbc4e8",
+    "text": "LFO 3 Atack"
+  },
+  {
+    "address": "0xbc4f4",
+    "text": "LFO 4 Atack"
+  },
+  {
+    "address": "0xbc500",
+    "text": "LFO 1 Decay"
+  },
+  {
+    "address": "0xbc50c",
+    "text": "LFO 2 Decay"
+  },
+  {
+    "address": "0xbc518",
+    "text": "LFO 3 Decay"
+  },
+  {
+    "address": "0xbc524",
+    "text": "LFO 4 Decay"
+  },
+  {
+    "address": "0xbc530",
+    "text": "LFO 1 Wave"
+  },
+  {
+    "address": "0xbc53c",
+    "text": "LFO 2 Wave"
+  },
+  {
+    "address": "0xbc548",
+    "text": "LFO 3 Wave"
+  },
+  {
+    "address": "0xbc554",
+    "text": "LFO 4 Wave"
+  },
+  {
+    "address": "0xbc560",
+    "text": "LFO 1 Frequency"
+  },
+  {
+    "address": "0xbc570",
+    "text": "LFO 2 Frequency"
+  },
+  {
+    "address": "0xbc580",
+    "text": "LFO 3 Frequency"
+  },
+  {
+    "address": "0xbc590",
+    "text": "LFO 4 Frequency"
+  },
+  {
+    "address": "0xbc5a0",
+    "text": "LFO 1 Symmetry"
+  },
+  {
+    "address": "0xbc5b0",
+    "text": "LFO 2 Symmetry"
+  },
+  {
+    "address": "0xbc5c0",
+    "text": "LFO 3 Symmetry"
+  },
+  {
+    "address": "0xbc5d0",
+    "text": "LFO 4 Symmetry"
+  },
+  {
+    "address": "0xbc5e0",
+    "text": "LFO 1 Phase"
+  },
+  {
+    "address": "0xbc5ec",
+    "text": "LFO 2 Phase"
+  },
+  {
+    "address": "0xbc5f8",
+    "text": "LFO 3 Phase"
+  },
+  {
+    "address": "0xbc604",
+    "text": "LFO 4 Phase"
+  },
+  {
+    "address": "0xbc610",
+    "text": "LFO 1 Sync"
+  },
+  {
+    "address": "0xbc61c",
+    "text": "LFO 2 Sync"
+  },
+  {
+    "address": "0xbc628",
+    "text": "LFO 3 Sync"
+  },
+  {
+    "address": "0xbc634",
+    "text": "LFO 4 Sync"
+  },
+  {
+    "address": "0xbc640",
+    "text": "LFO 1 Mono"
+  },
+  {
+    "address": "0xbc64c",
+    "text": "LFO 2 Mono"
+  },
+  {
+    "address": "0xbc658",
+    "text": "LFO 3 Mono"
+  },
+  {
+    "address": "0xbc664",
+    "text": "LFO 4 Mono"
+  },
+  {
+    "address": "0xbc670",
+    "text": "Effect 1 Type"
+  },
+  {
+    "address": "0xbc680",
+    "text": "Effect 2 Type"
+  },
+  {
+    "address": "0xbc690",
+    "text": "Effect 3 Type"
+  },
+  {
+    "address": "0xbc6a0",
+    "text": "Effect 4 Type"
+  },
+  {
+    "address": "0xbc6b0",
+    "text": "Effect 5 Type"
+  },
+  {
+    "address": "0xbc6c0",
+    "text": "Effect 6 Type"
+  },
+  {
+    "address": "0xbc6d0",
+    "text": "Effect 1 Operation"
+  },
+  {
+    "address": "0xbc6e4",
+    "text": "Effect 2 Operation"
+  },
+  {
+    "address": "0xbc6f8",
+    "text": "Effect 3 Operation"
+  },
+  {
+    "address": "0xbc70c",
+    "text": "Effect 4 Operation"
+  },
+  {
+    "address": "0xbc720",
+    "text": "Effect 5 Operation"
+  },
+  {
+    "address": "0xbc734",
+    "text": "Effect 6 Operation"
+  },
+  {
+    "address": "0xbc748",
+    "text": "Delay 1 Time"
+  },
+  {
+    "address": "0xbc758",
+    "text": "Delay 2 Time"
+  },
+  {
+    "address": "0xbc768",
+    "text": "Delay X Time"
+  },
+  {
+    "address": "0xbc778",
+    "text": "Delay 1 Feedback"
+  },
+  {
+    "address": "0xbc78c",
+    "text": "Delay 2 Feedback"
+  },
+  {
+    "address": "0xbc7a0",
+    "text": "Delay X Feedback"
+  },
+  {
+    "address": "0xbc7b4",
+    "text": "Delay 1 Filter"
+  },
+  {
+    "address": "0xbc7c4",
+    "text": "Delay 2 Filter"
+  },
+  {
+    "address": "0xbc7d4",
+    "text": "Delay X Filter"
+  },
+  {
+    "address": "0xbc7e4",
+    "text": "Delay 1 Rate"
+  },
+  {
+    "address": "0xbc7f4",
+    "text": "Delay 2 Rate"
+  },
+  {
+    "address": "0xbc804",
+    "text": "Delay X Rate"
+  },
+  {
+    "address": "0xbc814",
+    "text": "Delay 1 Depth"
+  },
+  {
+    "address": "0xbc824",
+    "text": "Delay 2 Depth"
+  },
+  {
+    "address": "0xbc834",
+    "text": "Delay X Depth"
+  },
+  {
+    "address": "0xbc844",
+    "text": "Delay 1 Sync"
+  },
+  {
+    "address": "0xbc854",
+    "text": "Delay 2 Sync"
+  },
+  {
+    "address": "0xbc864",
+    "text": "Delay X Sync"
+  },
+  {
+    "address": "0xbc874",
+    "text": "Delay 1 ModSync"
+  },
+  {
+    "address": "0xbc884",
+    "text": "Delay 2 ModSync"
+  },
+  {
+    "address": "0xbc894",
+    "text": "Delay X ModSync"
+  },
+  {
+    "address": "0xbc8a4",
+    "text": "Chorus 1 Time"
+  },
+  {
+    "address": "0xbc8b4",
+    "text": "Chorus 2 Time"
+  },
+  {
+    "address": "0xbc8c4",
+    "text": "Chorus X Time"
+  },
+  {
+    "address": "0xbc8d4",
+    "text": "Chorus 1 Time Spread"
+  },
+  {
+    "address": "0xbc8ec",
+    "text": "Chorus 2 Time Spread"
+  },
+  {
+    "address": "0xbc904",
+    "text": "Chorus X Time Spread"
+  },
+  {
+    "address": "0xbc91c",
+    "text": "Chorus 1 Rate"
+  },
+  {
+    "address": "0xbc92c",
+    "text": "Chorus 2 Rate"
+  },
+  {
+    "address": "0xbc93c",
+    "text": "Chorus X Rate"
+  },
+  {
+    "address": "0xbc94c",
+    "text": "Chorus 1 Rate Spread"
+  },
+  {
+    "address": "0xbc964",
+    "text": "Chorus 2 Rate Spread"
+  },
+  {
+    "address": "0xbc97c",
+    "text": "Chorus X Rate Spread"
+  },
+  {
+    "address": "0xbc994",
+    "text": "Chorus 1 Spread On/Off"
+  },
+  {
+    "address": "0xbc9ac",
+    "text": "Chorus 2 Spread On/Off"
+  },
+  {
+    "address": "0xbc9c4",
+    "text": "Chorus X Spread On/Off"
+  },
+  {
+    "address": "0xbc9dc",
+    "text": "Chorus 1 Inverse"
+  },
+  {
+    "address": "0xbc9f0",
+    "text": "Chorus 2 Inverse"
+  },
+  {
+    "address": "0xbca04",
+    "text": "Chorus X Inverse"
+  },
+  {
+    "address": "0xbca18",
+    "text": "Chorus 1 Dry"
+  },
+  {
+    "address": "0xbca28",
+    "text": "Chorus 2 Dry"
+  },
+  {
+    "address": "0xbca38",
+    "text": "Chorus X Dry"
+  },
+  {
+    "address": "0xbca48",
+    "text": "Chorus 1 Stereo"
+  },
+  {
+    "address": "0xbca58",
+    "text": "Chorus 2 Stereo"
+  },
+  {
+    "address": "0xbca68",
+    "text": "Chorus X Stereo"
+  },
+  {
+    "address": "0xbca78",
+    "text": "Phaser 1 Rate"
+  },
+  {
+    "address": "0xbca88",
+    "text": "Phaser 2 Rate"
+  },
+  {
+    "address": "0xbca98",
+    "text": "Phaser X Rate"
+  },
+  {
+    "address": "0xbcaa8",
+    "text": "Phaser 1 Depth"
+  },
+  {
+    "address": "0xbcab8",
+    "text": "Phaser 2 Depth"
+  },
+  {
+    "address": "0xbcac8",
+    "text": "Phaser X Depth"
+  },
+  {
+    "address": "0xbcad8",
+    "text": "Phaser 1 Center"
+  },
+  {
+    "address": "0xbcae8",
+    "text": "Phaser 2 Center"
+  },
+  {
+    "address": "0xbcaf8",
+    "text": "Phaser X Center"
+  },
+  {
+    "address": "0xbcb08",
+    "text": "Phaser 1 Feedback"
+  },
+  {
+    "address": "0xbcb1c",
+    "text": "Phaser 2 Feedback"
+  },
+  {
+    "address": "0xbcb30",
+    "text": "Phaser X Feedback"
+  },
+  {
+    "address": "0xbcb44",
+    "text": "Phaser 1 Inverse"
+  },
+  {
+    "address": "0xbcb58",
+    "text": "Phaser 2 Inverse"
+  },
+  {
+    "address": "0xbcb6c",
+    "text": "Phaser X Inverse"
+  },
+  {
+    "address": "0xbcb80",
+    "text": "Phaser 1 Stages"
+  },
+  {
+    "address": "0xbcb90",
+    "text": "Phaser 2 Stages"
+  },
+  {
+    "address": "0xbcba0",
+    "text": "Phaser X Stages"
+  },
+  {
+    "address": "0xbcbb0",
+    "text": "Phaser 1 Stereo"
+  },
+  {
+    "address": "0xbcbc0",
+    "text": "Phaser 2 Stereo"
+  },
+  {
+    "address": "0xbcbd0",
+    "text": "Phaser X Stereo"
+  },
+  {
+    "address": "0xbcbe0",
+    "text": "Phaser 1 Sync"
+  },
+  {
+    "address": "0xbcbf0",
+    "text": "Phaser 2 Sync"
+  },
+  {
+    "address": "0xbcc00",
+    "text": "Phaser X Sync"
+  },
+  {
+    "address": "0xbcc10",
+    "text": "Filter 1 Saturation"
+  },
+  {
+    "address": "0xbcc24",
+    "text": "Filter 2 Saturation"
+  },
+  {
+    "address": "0xbcc38",
+    "text": "Filter X Saturation"
+  },
+  {
+    "address": "0xbcc4c",
+    "text": "Filter 1 Type"
+  },
+  {
+    "address": "0xbcc5c",
+    "text": "Filter 2 Type"
+  },
+  {
+    "address": "0xbcc6c",
+    "text": "Filter X Type"
+  },
+  {
+    "address": "0xbcc7c",
+    "text": "Filter 1 Cutoff"
+  },
+  {
+    "address": "0xbcc8c",
+    "text": "Filter 2 Cutoff"
+  },
+  {
+    "address": "0xbcc9c",
+    "text": "Filter X Cutoff"
+  },
+  {
+    "address": "0xbccac",
+    "text": "Filter 1 Resonance"
+  },
+  {
+    "address": "0xbccc0",
+    "text": "Filter 2 Resonance"
+  },
+  {
+    "address": "0xbccd4",
+    "text": "Filter X Resonance"
+  },
+  {
+    "address": "0xbcce8",
+    "text": "Filter 1 Mod Rate"
+  },
+  {
+    "address": "0xbccfc",
+    "text": "Filter 2 Mod Rate"
+  },
+  {
+    "address": "0xbcd10",
+    "text": "Filter X Mod Rate"
+  },
+  {
+    "address": "0xbcd24",
+    "text": "Filter 1 Mod Depth"
+  },
+  {
+    "address": "0xbcd38",
+    "text": "Filter 2 Mod Depth"
+  },
+  {
+    "address": "0xbcd4c",
+    "text": "Filter X Mod Depth"
+  },
+  {
+    "address": "0xbcd60",
+    "text": "Filter 1 Level"
+  },
+  {
+    "address": "0xbcd70",
+    "text": "Filter 2 Level"
+  },
+  {
+    "address": "0xbcd80",
+    "text": "Filter X Level"
+  },
+  {
+    "address": "0xbcd90",
+    "text": "Filter 1 Sync"
+  },
+  {
+    "address": "0xbcda0",
+    "text": "Filter 2 Sync"
+  },
+  {
+    "address": "0xbcdb0",
+    "text": "Filter X Sync"
+  },
+  {
+    "address": "0xbcdc0",
+    "text": "Reverb 1 Room"
+  },
+  {
+    "address": "0xbcdd0",
+    "text": "Reverb 2 Room"
+  },
+  {
+    "address": "0xbcde0",
+    "text": "Reverb X Room"
+  },
+  {
+    "address": "0xbcdf0",
+    "text": "Reverb 1 Damp"
+  },
+  {
+    "address": "0xbce00",
+    "text": "Reverb 2 Damp"
+  },
+  {
+    "address": "0xbce10",
+    "text": "Reverb X Damp"
+  },
+  {
+    "address": "0xbce20",
+    "text": "Reverb 1 Pre-Delay"
+  },
+  {
+    "address": "0xbce34",
+    "text": "Reverb 2 Pre-Delay"
+  },
+  {
+    "address": "0xbce48",
+    "text": "Reverb X Pre-Delay"
+  },
+  {
+    "address": "0xbce5c",
+    "text": "Reverb 1 Sync"
+  },
+  {
+    "address": "0xbce6c",
+    "text": "Reverb 2 Sync"
+  },
+  {
+    "address": "0xbce7c",
+    "text": "Reverb X Sync"
+  },
+  {
+    "address": "0xbce8c",
+    "text": "Reverb 1 Mod"
+  },
+  {
+    "address": "0xbce9c",
+    "text": "Reverb 2 Mod"
+  },
+  {
+    "address": "0xbceac",
+    "text": "Reverb X Mod"
+  },
+  {
+    "address": "0xbcebc",
+    "text": "Reverb 1 Mod Op"
+  },
+  {
+    "address": "0xbcecc",
+    "text": "Reverb 2 Mod Op"
+  },
+  {
+    "address": "0xbcedc",
+    "text": "Reverb X Mod Op"
+  },
+  {
+    "address": "0xbceec",
+    "text": "StDelay 1 Stereo"
+  },
+  {
+    "address": "0xbcf00",
+    "text": "StDelay 2 Stereo"
+  },
+  {
+    "address": "0xbcf14",
+    "text": "StDelay X Stereo"
+  },
+  {
+    "address": "0xbcf28",
+    "text": "StDelay 1 Time Left"
+  },
+  {
+    "address": "0xbcf3c",
+    "text": "StDelay 2 Time Left"
+  },
+  {
+    "address": "0xbcf50",
+    "text": "StDelay X Time Left"
+  },
+  {
+    "address": "0xbcf64",
+    "text": "StDelay 1 Time Right"
+  },
+  {
+    "address": "0xbcf7c",
+    "text": "StDelay 2 Time Right"
+  },
+  {
+    "address": "0xbcf94",
+    "text": "StDelay X Time Right"
+  },
+  {
+    "address": "0xbcfac",
+    "text": "StDelay 1 Feedback"
+  },
+  {
+    "address": "0xbcfc0",
+    "text": "StDelay 2 Feedback"
+  },
+  {
+    "address": "0xbcfd4",
+    "text": "StDelay X Feedback"
+  },
+  {
+    "address": "0xbcfe8",
+    "text": "StDelay 1 Filter LP"
+  },
+  {
+    "address": "0xbcffc",
+    "text": "StDelay 2 Filter LP"
+  },
+  {
+    "address": "0xbd010",
+    "text": "StDelay X Filter LP"
+  },
+  {
+    "address": "0xbd024",
+    "text": "StDelay 1 Filter HP"
+  },
+  {
+    "address": "0xbd038",
+    "text": "StDelay 2 Filter HP"
+  },
+  {
+    "address": "0xbd04c",
+    "text": "StDelay X Filter HP"
+  },
+  {
+    "address": "0xbd060",
+    "text": "StDelay 1 Sync L"
+  },
+  {
+    "address": "0xbd074",
+    "text": "StDelay 2 Sync L"
+  },
+  {
+    "address": "0xbd088",
+    "text": "StDelay X Sync L"
+  },
+  {
+    "address": "0xbd09c",
+    "text": "StDelay 1 Sync R"
+  },
+  {
+    "address": "0xbd0b0",
+    "text": "StDelay 2 Sync R"
+  },
+  {
+    "address": "0xbd0c4",
+    "text": "StDelay X Sync R"
+  },
+  {
+    "address": "0xbd0d8",
+    "text": "StDelay 1 Link"
+  },
+  {
+    "address": "0xbd0e8",
+    "text": "StDelay 2 Link"
+  },
+  {
+    "address": "0xbd0f8",
+    "text": "StDelay X Link"
+  },
+  {
+    "address": "0xbd108",
+    "text": "PingPong Time Cen 1 "
+  },
+  {
+    "address": "0xbd120",
+    "text": "PingPong Time Cen 2 "
+  },
+  {
+    "address": "0xbd138",
+    "text": "PingPong Time Cen X "
+  },
+  {
+    "address": "0xbd150",
+    "text": "PingPong Sync Cen 1 "
+  },
+  {
+    "address": "0xbd168",
+    "text": "PingPong Sync Cen 2 "
+  },
+  {
+    "address": "0xbd180",
+    "text": "PingPong Sync Cen X "
+  },
+  {
+    "address": "0xbd198",
+    "text": "PingPong Balance 1 "
+  },
+  {
+    "address": "0xbd1ac",
+    "text": "PingPong Balance 2 "
+  },
+  {
+    "address": "0xbd1c0",
+    "text": "PingPong Balance X "
+  },
+  {
+    "address": "0xbd1d4",
+    "text": "PingPong Time Left 1 "
+  },
+  {
+    "address": "0xbd1ec",
+    "text": "PingPong Time Left 2 "
+  },
+  {
+    "address": "0xbd204",
+    "text": "PingPong Time Left X "
+  },
+  {
+    "address": "0xbd21c",
+    "text": "PingPong Sync Left 1 "
+  },
+  {
+    "address": "0xbd234",
+    "text": "PingPong Sync Left 2 "
+  },
+  {
+    "address": "0xbd24c",
+    "text": "PingPong Sync Left X "
+  },
+  {
+    "address": "0xbd264",
+    "text": "PingPong Time Right 1 "
+  },
+  {
+    "address": "0xbd27c",
+    "text": "PingPong Time Right 2 "
+  },
+  {
+    "address": "0xbd294",
+    "text": "PingPong Time Right X "
+  },
+  {
+    "address": "0xbd2ac",
+    "text": "PingPong Sync Right 1 "
+  },
+  {
+    "address": "0xbd2c4",
+    "text": "PingPong Sync Right 2 "
+  },
+  {
+    "address": "0xbd2dc",
+    "text": "PingPong Sync Right X "
+  },
+  {
+    "address": "0xbd2f4",
+    "text": "PingPong Feedback 1 "
+  },
+  {
+    "address": "0xbd30c",
+    "text": "PingPong Feedback 2 "
+  },
+  {
+    "address": "0xbd324",
+    "text": "PingPong Feedback X "
+  },
+  {
+    "address": "0xbd33c",
+    "text": "PingPong Pan Left 1 "
+  },
+  {
+    "address": "0xbd354",
+    "text": "PingPong Pan Left 2 "
+  },
+  {
+    "address": "0xbd36c",
+    "text": "PingPong Pan Left X "
+  },
+  {
+    "address": "0xbd384",
+    "text": "PingPong Pan Right 1 "
+  },
+  {
+    "address": "0xbd39c",
+    "text": "PingPong Pan Right 2 "
+  },
+  {
+    "address": "0xbd3b4",
+    "text": "PingPong Pan Right X "
+  },
+  {
+    "address": "0xbd3cc",
+    "text": "St-Enhancer 1 Room"
+  },
+  {
+    "address": "0xbd3e0",
+    "text": "St-Enhancer 2 Room"
+  },
+  {
+    "address": "0xbd3f4",
+    "text": "St-Enhancer X Room"
+  },
+  {
+    "address": "0xbd408",
+    "text": "St-Enhancer 1 Width"
+  },
+  {
+    "address": "0xbd41c",
+    "text": "St-Enhancer 2 Width"
+  },
+  {
+    "address": "0xbd430",
+    "text": "St-Enhancer X Width"
+  },
+  {
+    "address": "0xbd444",
+    "text": "EQ 1 Freq 1"
+  },
+  {
+    "address": "0xbd450",
+    "text": "EQ 2 Freq 1"
+  },
+  {
+    "address": "0xbd45c",
+    "text": "EQ X Freq 1"
+  },
+  {
+    "address": "0xbd468",
+    "text": "EQ 1 Gain 1"
+  },
+  {
+    "address": "0xbd474",
+    "text": "EQ 2 Gain 1"
+  },
+  {
+    "address": "0xbd480",
+    "text": "EQ X Gain 1"
+  },
+  {
+    "address": "0xbd48c",
+    "text": "EQ 1 Q 1"
+  },
+  {
+    "address": "0xbd498",
+    "text": "EQ 2 Q 1"
+  },
+  {
+    "address": "0xbd4a4",
+    "text": "EQ X Q 1"
+  },
+  {
+    "address": "0xbd4b0",
+    "text": "EQ 1 Freq 2"
+  },
+  {
+    "address": "0xbd4bc",
+    "text": "EQ 2 Freq 2"
+  },
+  {
+    "address": "0xbd4c8",
+    "text": "EQ X Freq 2"
+  },
+  {
+    "address": "0xbd4d4",
+    "text": "EQ 1 Gain 2"
+  },
+  {
+    "address": "0xbd4e0",
+    "text": "EQ 2 Gain 2"
+  },
+  {
+    "address": "0xbd4ec",
+    "text": "EQ X Gain 2"
+  },
+  {
+    "address": "0xbd4f8",
+    "text": "EQ 1 Q 2"
+  },
+  {
+    "address": "0xbd504",
+    "text": "EQ 2 Q 2"
+  },
+  {
+    "address": "0xbd510",
+    "text": "EQ X Q 2"
+  },
+  {
+    "address": "0xbd51c",
+    "text": "Gator 1 Smooth"
+  },
+  {
+    "address": "0xbd52c",
+    "text": "Gator 2 Smooth"
+  },
+  {
+    "address": "0xbd53c",
+    "text": "Gator X Smooth"
+  },
+  {
+    "address": "0xbd54c",
+    "text": "Gator 1 Left"
+  },
+  {
+    "address": "0xbd55c",
+    "text": "Gator 2 Left"
+  },
+  {
+    "address": "0xbd56c",
+    "text": "Gator X Left"
+  },
+  {
+    "address": "0xbd57c",
+    "text": "Gator 1 Right"
+  },
+  {
+    "address": "0xbd58c",
+    "text": "Gator 2 Right"
+  },
+  {
+    "address": "0xbd59c",
+    "text": "Gator X Right"
+  },
+  {
+    "address": "0xbd5ac",
+    "text": "Gator 1 Sync"
+  },
+  {
+    "address": "0xbd5bc",
+    "text": "Gator 2 Sync"
+  },
+  {
+    "address": "0xbd5cc",
+    "text": "Gator X Sync"
+  },
+  {
+    "address": "0xbd5dc",
+    "text": "Gator 1 Link"
+  },
+  {
+    "address": "0xbd5ec",
+    "text": "Gator 2 Link"
+  },
+  {
+    "address": "0xbd5fc",
+    "text": "Gator X Link"
+  },
+  {
+    "address": "0xbd60c",
+    "text": "Crush 1 Bits"
+  },
+  {
+    "address": "0xbd61c",
+    "text": "Crush 2 Bits"
+  },
+  {
+    "address": "0xbd62c",
+    "text": "Crush X Bits"
+  },
+  {
+    "address": "0xbd63c",
+    "text": "Crush 1 Divider"
+  },
+  {
+    "address": "0xbd64c",
+    "text": "Crush 2 Divider"
+  },
+  {
+    "address": "0xbd65c",
+    "text": "Crush X Divider"
+  },
+  {
+    "address": "0xbd66c",
+    "text": "Crush 1 Mode"
+  },
+  {
+    "address": "0xbd67c",
+    "text": "Crush 2 Mode"
+  },
+  {
+    "address": "0xbd68c",
+    "text": "Crush X Mode"
+  },
+  {
+    "address": "0xbd69c",
+    "text": "Crush 1 Filter"
+  },
+  {
+    "address": "0xbd6ac",
+    "text": "Crush 2 Filter"
+  },
+  {
+    "address": "0xbd6bc",
+    "text": "Crush X Filter"
+  },
+  {
+    "address": "0xbd6cc",
+    "text": "Crush 1 Cutoff"
+  },
+  {
+    "address": "0xbd6dc",
+    "text": "Crush 2 Cutoff"
+  },
+  {
+    "address": "0xbd6ec",
+    "text": "Crush X Cutoff"
+  },
+  {
+    "address": "0xbd6fc",
+    "text": "Crush 1 Reso"
+  },
+  {
+    "address": "0xbd70c",
+    "text": "Crush 2 Reso"
+  },
+  {
+    "address": "0xbd71c",
+    "text": "Crush X Reso"
+  },
+  {
+    "address": "0xbd72c",
+    "text": "Crush 1 Fil.Post"
+  },
+  {
+    "address": "0xbd740",
+    "text": "Crush 2 Fil.Post"
+  },
+  {
+    "address": "0xbd754",
+    "text": "Crush X Fil.Post"
+  },
+  {
+    "address": "0xbd768",
+    "text": "Crush 1 Fil.Auto"
+  },
+  {
+    "address": "0xbd77c",
+    "text": "Crush 2 Fil.Auto"
+  },
+  {
+    "address": "0xbd790",
+    "text": "Crush X Fil.Auto"
+  },
+  {
+    "address": "0xbd7a4",
+    "text": "Flanger 1 Time"
+  },
+  {
+    "address": "0xbd7b4",
+    "text": "Flanger 2 Time"
+  },
+  {
+    "address": "0xbd7c4",
+    "text": "Flanger X Time"
+  },
+  {
+    "address": "0xbd7d4",
+    "text": "Flanger 1 Feedback"
+  },
+  {
+    "address": "0xbd7e8",
+    "text": "Flanger 2 Feedback"
+  },
+  {
+    "address": "0xbd7fc",
+    "text": "Flanger X Feedback"
+  },
+  {
+    "address": "0xbd810",
+    "text": "Flanger 1 Inv. FB"
+  },
+  {
+    "address": "0xbd824",
+    "text": "Flanger 2 Inv. FB"
+  },
+  {
+    "address": "0xbd838",
+    "text": "Flanger X Inv. FB"
+  },
+  {
+    "address": "0xbd84c",
+    "text": "Flanger 1 Stereo"
+  },
+  {
+    "address": "0xbd860",
+    "text": "Flanger 2 Stereo"
+  },
+  {
+    "address": "0xbd874",
+    "text": "Flanger X Stereo"
+  },
+  {
+    "address": "0xbd888",
+    "text": "Flanger 1 Rate"
+  },
+  {
+    "address": "0xbd898",
+    "text": "Flanger 2 Rate"
+  },
+  {
+    "address": "0xbd8a8",
+    "text": "Flanger X Rate"
+  },
+  {
+    "address": "0xbd8b8",
+    "text": "Flanger 1 Sync"
+  },
+  {
+    "address": "0xbd8c8",
+    "text": "Flanger 2 Sync"
+  },
+  {
+    "address": "0xbd8d8",
+    "text": "Flanger X Sync"
+  },
+  {
+    "address": "0xbd8e8",
+    "text": "Flanger 1 Depth"
+  },
+  {
+    "address": "0xbd8f8",
+    "text": "Flanger 2 Depth"
+  },
+  {
+    "address": "0xbd908",
+    "text": "Flanger X Depth"
+  },
+  {
+    "address": "0xbd918",
+    "text": "Glide Time"
+  },
+  {
+    "address": "0xbd924",
+    "text": "Glide Bend"
+  },
+  {
+    "address": "0xbd930",
+    "text": "Glide Time/Rate"
+  },
+  {
+    "address": "0xbd940",
+    "text": "Gen 1 Detune"
+  },
+  {
+    "address": "0xbd950",
+    "text": "Gen 2 Detune"
+  },
+  {
+    "address": "0xbd960",
+    "text": "Gen 3 Detune"
+  },
+  {
+    "address": "0xbd970",
+    "text": "Gen 4 Detune"
+  },
+  {
+    "address": "0xbd980",
+    "text": "Fil 1 Cutoff"
+  },
+  {
+    "address": "0xbd990",
+    "text": "Fil 2 Cutoff"
+  },
+  {
+    "address": "0xbd9a0",
+    "text": "Fil 1 Reson."
+  },
+  {
+    "address": "0xbd9b0",
+    "text": "Fil 2 Reson."
+  },
+  {
+    "address": "0xbd9c0",
+    "text": "Fx 1 Wet"
+  },
+  {
+    "address": "0xbd9cc",
+    "text": "Fx 2 Wet"
+  },
+  {
+    "address": "0xbd9d8",
+    "text": "Fx 3 Wet"
+  },
+  {
+    "address": "0xbd9e4",
+    "text": "Fx 4 Wet"
+  },
+  {
+    "address": "0xbd9f0",
+    "text": "Fx 5 Wet"
+  },
+  {
+    "address": "0xbd9fc",
+    "text": "Fx 6 Wet"
+  },
+  {
+    "address": "0xbda08",
+    "text": "Gen 1 OnOff"
+  },
+  {
+    "address": "0xbda14",
+    "text": "Gen 2 OnOff"
+  },
+  {
+    "address": "0xbda20",
+    "text": "Gen 3 OnOff"
+  },
+  {
+    "address": "0xbda2c",
+    "text": "Gen 4 OnOff"
+  },
+  {
+    "address": "0xbda38",
+    "text": "Fil 1 OnOff"
+  },
+  {
+    "address": "0xbda44",
+    "text": "Fil 2 OnOff"
+  },
+  {
+    "address": "0xbda50",
+    "text": "51 1 OnOff"
+  },
+  {
+    "address": "0xbda5c",
+    "text": "Fx 1 OnOff"
+  },
+  {
+    "address": "0xbda68",
+    "text": "Fx 2 OnOff"
+  },
+  {
+    "address": "0xbda74",
+    "text": "Fx 3 OnOff"
+  },
+  {
+    "address": "0xbda80",
+    "text": "Fx 4 OnOff"
+  },
+  {
+    "address": "0xbda8c",
+    "text": "Fx 5 OnOff"
+  },
+  {
+    "address": "0xbda98",
+    "text": "Fx 6 OnOff"
+  },
+  {
+    "address": "0xbdaa4",
+    "text": "51Vol Gen 1"
+  },
+  {
+    "address": "0xbdab0",
+    "text": "51Vol Gen 2"
+  },
+  {
+    "address": "0xbdabc",
+    "text": "51Vol Fil 1"
+  },
+  {
+    "address": "0xbdac8",
+    "text": "51Vol Fil 2"
+  },
+  {
+    "address": "0xbdad4",
+    "text": "51Vol Fx 1"
+  },
+  {
+    "address": "0xbdae0",
+    "text": "51Vol Fx 4"
+  },
+  {
+    "address": "0xbdaec",
+    "text": "51Vol Fx 6"
+  },
+  {
+    "address": "0xbdaf8",
+    "text": "51 LR Gen 1"
+  },
+  {
+    "address": "0xbdb04",
+    "text": "51 LR Gen 2"
+  },
+  {
+    "address": "0xbdb10",
+    "text": "51 LR Fil 1"
+  },
+  {
+    "address": "0xbdb1c",
+    "text": "51 LR Fil 2"
+  },
+  {
+    "address": "0xbdb28",
+    "text": "51 LR Fx 1"
+  },
+  {
+    "address": "0xbdb34",
+    "text": "51 LR Fx 4"
+  },
+  {
+    "address": "0xbdb40",
+    "text": "51 LR Fx 6"
+  },
+  {
+    "address": "0xbdb4c",
+    "text": "51 FR Gen 1"
+  },
+  {
+    "address": "0xbdb58",
+    "text": "51 FR Gen 2"
+  },
+  {
+    "address": "0xbdb64",
+    "text": "51 FR Fil 1"
+  },
+  {
+    "address": "0xbdb70",
+    "text": "51 FR Fil 2"
+  },
+  {
+    "address": "0xbdb7c",
+    "text": "51 FR Fx 1"
+  },
+  {
+    "address": "0xbdb88",
+    "text": "51 FR Fx 4"
+  },
+  {
+    "address": "0xbdb94",
+    "text": "51 FR Fx 6"
+  },
+  {
+    "address": "0xbdba0",
+    "text": "51 Cen Gen 1"
+  },
+  {
+    "address": "0xbdbb0",
+    "text": "51 Cen Gen 2"
+  },
+  {
+    "address": "0xbdbc0",
+    "text": "51 Cen Fil 1"
+  },
+  {
+    "address": "0xbdbd0",
+    "text": "51 Cen Fil 2"
+  },
+  {
+    "address": "0xbdbe0",
+    "text": "51 Cen Fx 1"
+  },
+  {
+    "address": "0xbdbec",
+    "text": "51 Cen Fx 4"
+  },
+  {
+    "address": "0xbdbf8",
+    "text": "51 Cen Fx 6"
+  },
+  {
+    "address": "0xbdc04",
+    "text": "51 LFE Gen 1"
+  },
+  {
+    "address": "0xbdc14",
+    "text": "51 LFE Gen 2"
+  },
+  {
+    "address": "0xbdc24",
+    "text": "51 LFE Fil 1"
+  },
+  {
+    "address": "0xbdc34",
+    "text": "51 LFE Fil 2"
+  },
+  {
+    "address": "0xbdc44",
+    "text": "51 LFE Fx 1"
+  },
+  {
+    "address": "0xbdc50",
+    "text": "51 LFE Fx 3"
+  },
+  {
+    "address": "0xbdc5c",
+    "text": "51 LFE Fx 6"
+  },
+  {
+    "address": "0xbdc68",
+    "text": "unused"
+  },
+  {
+    "address": "0xbdc70",
+    "text": "-"
+  },
+  {
+    "address": "0xbdc74",
+    "text": "Precision"
+  },
+  {
+    "address": "0xbdc80",
+    "text": "Mod Amount 1"
+  },
+  {
+    "address": "0xbdc90",
+    "text": "Mod Amount 2"
+  },
+  {
+    "address": "0xbdca0",
+    "text": "Mod Amount 3"
+  },
+  {
+    "address": "0xbdcb0",
+    "text": "Mod Amount 4"
+  },
+  {
+    "address": "0xbdcc0",
+    "text": "Mod Amount 5"
+  },
+  {
+    "address": "0xbdcd0",
+    "text": "Mod Amount 6"
+  },
+  {
+    "address": "0xbdce0",
+    "text": "Mod Amount 7"
+  },
+  {
+    "address": "0xbdcf0",
+    "text": "Mod Amount 8"
+  },
+  {
+    "address": "0xbdd00",
+    "text": "Mod Amount 9"
+  },
+  {
+    "address": "0xbdd10",
+    "text": "Mod Amount10"
+  },
+  {
+    "address": "0xbdd20",
+    "text": "Root Note"
+  },
+  {
+    "address": "0xbdd2c",
+    "text": "Gen 0 Type"
+  },
+  {
+    "address": "0xbdd38",
+    "text": "Gen 1 Type"
+  },
+  {
+    "address": "0xbdd44",
+    "text": "Gen 2 Type"
+  },
+  {
+    "address": "0xbdd50",
+    "text": "Gen 3 Type"
+  },
+  {
+    "address": "0xbdd5c",
+    "text": "Fil 0 Type"
+  },
+  {
+    "address": "0xbdd68",
+    "text": "Fil 1 Type"
+  },
+  {
+    "address": "0xbdd74",
+    "text": "Loop Start"
+  },
+  {
+    "address": "0xbdd80",
+    "text": "Loop End"
+  },
+  {
+    "address": "0xbdd8c",
+    "text": "Snap"
+  },
+  {
+    "address": "0xbdd94",
+    "text": "Loop 0 Oct "
+  },
+  {
+    "address": "0xbdda0",
+    "text": "Loop 1 Oct "
+  },
+  {
+    "address": "0xbddac",
+    "text": "Loop 0 Semi "
+  },
+  {
+    "address": "0xbddbc",
+    "text": "Loop 1 Semi "
+  },
+  {
+    "address": "0xbddcc",
+    "text": "Loop 0 Cent "
+  },
+  {
+    "address": "0xbdddc",
+    "text": "Loop 1 Cent "
+  },
+  {
+    "address": "0xbddec",
+    "text": "Loop 0 Track "
+  },
+  {
+    "address": "0xbddfc",
+    "text": "Loop 1 Track "
+  },
+  {
+    "address": "0xbde0c",
+    "text": "Loop Smooth"
+  },
+  {
+    "address": "0xbde18",
+    "text": "SD Zoom"
+  },
+  {
+    "address": "0xbde20",
+    "text": "SD Scroll"
+  },
+  {
+    "address": "0xbde2c",
+    "text": "Scrollbar Size"
+  },
+  {
+    "address": "0xbde3c",
+    "text": "Voices"
+  },
+  {
+    "address": "0xbde44",
+    "text": "- - -"
+  },
+  {
+    "address": "0xbde4c",
+    "text": "*.fxp"
+  },
+  {
+    "address": "0xbde54",
+    "text": "CronoXPresets"
+  },
+  {
+    "address": "0xbde64",
+    "text": "Standard FXP format"
+  },
+  {
+    "address": "0xbde78",
+    "text": "Import Sound Program"
+  },
+  {
+    "address": "0xbde90",
+    "text": "Export Sound Program"
+  },
+  {
+    "address": "0xbdea8",
+    "text": "*.TUN"
+  },
+  {
+    "address": "0xbdeb0",
+    "text": "NoteFreqTables"
+  },
+  {
+    "address": "0xbdec0",
+    "text": "TUN format"
+  },
+  {
+    "address": "0xbdecc",
+    "text": "Load Microtuning Definition"
+  },
+  {
+    "address": "0xbdee8",
+    "text": "*.WAV"
+  },
+  {
+    "address": "0xbdef0",
+    "text": "*.AIF"
+  },
+  {
+    "address": "0xbdef8",
+    "text": "*.AIFF"
+  },
+  {
+    "address": "0xbdf00",
+    "text": "*.D4T"
+  },
+  {
+    "address": "0xbdf08",
+    "text": "KajaTables"
+  },
+  {
+    "address": "0xbdf14",
+    "text": "WAV, AIF or D4T format"
+  },
+  {
+    "address": "0xbdf2c",
+    "text": "Load Sample"
+  },
+  {
+    "address": "0xbdf38",
+    "text": "CronoXExportSamples"
+  },
+  {
+    "address": "0xbdf4c",
+    "text": "Standard Sample format"
+  },
+  {
+    "address": "0xbdf64",
+    "text": "Trim Sample"
+  },
+  {
+    "address": "0xbdf70",
+    "text": "*.D4U"
+  },
+  {
+    "address": "0xbdf78",
+    "text": "KajaSamples"
+  },
+  {
+    "address": "0xbdf84",
+    "text": "WAV, AIF, D4T or D4U format"
+  },
+  {
+    "address": "0xbdfa0",
+    "text": "*.aif"
+  },
+  {
+    "address": "0xbdfa8",
+    "text": "Feedback"
+  },
+  {
+    "address": "0xbdfb4",
+    "text": "Filter"
+  },
+  {
+    "address": "0xbdfbc",
+    "text": "Mod Rate"
+  },
+  {
+    "address": "0xbdfc8",
+    "text": "Mod Depth"
+  },
+  {
+    "address": "0xbdfd4",
+    "text": "Rate"
+  },
+  {
+    "address": "0xbdfdc",
+    "text": "Time Spr"
+  },
+  {
+    "address": "0xbdfe8",
+    "text": "Rate Spr"
+  },
+  {
+    "address": "0xbdff4",
+    "text": "Dry"
+  },
+  {
+    "address": "0xbdff8",
+    "text": "Depth"
+  },
+  {
+    "address": "0xbe000",
+    "text": "Center"
+  },
+  {
+    "address": "0xbe008",
+    "text": "Stages"
+  },
+  {
+    "address": "0xbe010",
+    "text": "Drive"
+  },
+  {
+    "address": "0xbe018",
+    "text": "Level"
+  },
+  {
+    "address": "0xbe020",
+    "text": "Predelay"
+  },
+  {
+    "address": "0xbe02c",
+    "text": "Damp"
+  },
+  {
+    "address": "0xbe034",
+    "text": "Modulation"
+  },
+  {
+    "address": "0xbe040",
+    "text": "Time Left"
+  },
+  {
+    "address": "0xbe04c",
+    "text": "Time Right"
+  },
+  {
+    "address": "0xbe058",
+    "text": "Highpass"
+  },
+  {
+    "address": "0xbe064",
+    "text": "Lowpass"
+  },
+  {
+    "address": "0xbe06c",
+    "text": "Link L+R"
+  },
+  {
+    "address": "0xbe078",
+    "text": "Time Cen"
+  },
+  {
+    "address": "0xbe084",
+    "text": "Bal Cen/LR"
+  },
+  {
+    "address": "0xbe090",
+    "text": "Pan Left"
+  },
+  {
+    "address": "0xbe09c",
+    "text": "Pan Right"
+  },
+  {
+    "address": "0xbe0a8",
+    "text": "Room"
+  },
+  {
+    "address": "0xbe0b0",
+    "text": "Width"
+  },
+  {
+    "address": "0xbe0b8",
+    "text": "Freq 1"
+  },
+  {
+    "address": "0xbe0c0",
+    "text": "Gain 1"
+  },
+  {
+    "address": "0xbe0c8",
+    "text": "Q 1"
+  },
+  {
+    "address": "0xbe0cc",
+    "text": "Freq 2"
+  },
+  {
+    "address": "0xbe0d4",
+    "text": "Gain 2"
+  },
+  {
+    "address": "0xbe0dc",
+    "text": "Q 2"
+  },
+  {
+    "address": "0xbe0e0",
+    "text": "Invert"
+  },
+  {
+    "address": "0xbe0e8",
+    "text": "Pan Depth"
+  },
+  {
+    "address": "0xbe0f4",
+    "text": "L"
+  },
+  {
+    "address": "0xbe0f8",
+    "text": "R"
+  },
+  {
+    "address": "0xbe0fc",
+    "text": "Bits"
+  },
+  {
+    "address": "0xbe104",
+    "text": "Fil Post Div"
+  },
+  {
+    "address": "0xbe114",
+    "text": "Smoother"
+  },
+  {
+    "address": "0xbe120",
+    "text": "Delay     StDelay   xxxxxxxxxxChorus    Phaser    Filter    Reverb    "
+  },
+  {
+    "address": "0xbe168",
+    "text": " 1   2   3   4   5   6   7   8  xxxxxxxxxxxxxxxxall "
+  },
+  {
+    "address": "0xbe1a0",
+    "text": "Analogue    TimeSamp    Schrader    LoopSamp    "
+  },
+  {
+    "address": "0xbe1d4",
+    "text": "   --       Ampl 1      Ampl 2      Ampl 3      Ampl 4      Pitch 1     Pitch 2     Pitch 3     Pitch 4     PW Gen 1    PW Gen 2    AuxMod Osc 3AuxMod Osc 4Osc1Balance Osc2Balance Osc3Balance Osc4Balance Cutoff      Resonanc    Env-Depth 1 AuxMod Fil 1 Pan Fil 1    xxxxxxxxxxxxCutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  xxxxxxxxxxxxMast.Amp    Mast.Pit    ModAmt 1    ModAmt 2    ModAmt 3    ModAmt 4    LFO1 Frq    LFO2 Frq   "
+  },
+  {
+    "address": "0xbe390",
+    "text": "   --       Ampl 1      Ampl 2      Ampl 3      Ampl 4      Pitch 1     Pitch 2     Pitch 3     Pitch 4     PW Gen 1    Time 2      AuxMod Osc 3AuxMod Osc 4Osc1Balance Osc2Balance Osc3Balance Osc4Balance Cutoff      Resonanc    Env-Depth 1 AuxMod Fil 1 Pan Fil 1    xxxxxxxxxxxxCutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  xxxxxxxxxxxxMast.Amp    Mast.Pit    ModAmt 1    ModAmt 2    ModAmt 3    ModAmt 4   LFO1 Frq    LFO2 Frq    "
+  },
+  {
+    "address": "0xbe54c",
+    "text": "    - - -    Ampl Osc 1  Ampl Osc 2  Ampl Osc 3  Ampl Osc 4 Pitch Osc 1 Pitch Osc 2 Pitch Osc 3 Pitch Osc 4 Pulsewidth 1Time Samp 2 AuxMod Osc 3AuxMod Osc 4Osc1Balance Osc2Balance Osc3Balance Osc4Balance    Cutoff    Resonance  Env-Depth 1 AuxMod Fil 1 Pan Fil 1    xxxxxxxxxxxxCutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  xxxxxxxxxxxx Main Ampli  Main Pitch Mod Depth 1 Mod Depth 2 Mod Depth 3 Mod Depth 4LFO 1 Speed LFO 2 Speed Loop Start 1Loop Start 2 Loop End 1  Loop End 2 "
+  },
+  {
+    "address": "0xbe738",
+    "text": "    - - -    Ampl Osc 1  Ampl Osc 2  Ampl Osc 3  Ampl Osc 4 Pitch Osc 1 Pitch Osc 2 Pitch Osc 3 Pitch Osc 4 Pulsewidth 1Pulsewidth 2AuxMod Osc 3AuxMod Osc 4Osc1Balance Osc2Balance Osc3Balance Osc4Balance    Cutoff    Resonance  Env-Depth 1 AuxMod Fil 1 Pan Fil 1    xxxxxxxxxxxxCutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  xxxxxxxxxxxx Main Ampli  Main Pitch Mod Depth 1 Mod Depth 2 Mod Depth 3 Mod Depth 4LFO 1 Speed LFO 2 Speed Loop Start 1Loop Start 2 Loop End 1  Loop End 2 "
+  },
+  {
+    "address": "0xbe924",
+    "text": "    - - -    Ampl Osc 1  Ampl Osc 2  Ampl Osc 3  Ampl Osc 4 Pitch Osc 1 Pitch Osc 2 Pitch Osc 3 Pitch Osc 4 AuxMod Osc 1AuxMod Osc 2AuxMod Osc 3AuxMod Osc 4Balance Osc1Balance Osc2Balance Osc3Balance Osc4  Cutoff 1   Resonance 1Env-Depth 1 AuxMod Fil 1 Pan Fil 1    xxxxxxxxxxxxCutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  xxxxxxxxxxxx Main Ampli  Main Pitch Mod Depth 1 Mod Depth 2 Mod Depth 3 Mod Depth 4 LFO 1 Speed LFO 2 Speed Loop Start 1Loop Start 2 Loop End 1  Loop End 2 Amp-Env Att Amp-Env Dec Amp-Env Rel Fil1-Env AttFil1-Env DecFil1-Env RelFil2-Env AttFil2-Env DecFil2-Env RelMod1-Env AttMod1-Env DecMod1-Env RelMod2-Env AttMod2-Env DecMod2-Env RelSampleStart1SampleStart2"
+  },
+  {
+    "address": "0xbebe0",
+    "text": "   --       Key Log     Key Lin     Velocity    PolATch     PitchWhl    ModWhl      BreathC     FootC       ExpressC    Contrl16    Contrl17    Contrl18    Contrl19    LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2   Mod-Env  "
+  },
+  {
+    "address": "0xbece0",
+    "text": "   --       Key Log     Key Lin     Velocity    MonATch     PitchWhl    ModWhl      BreathC     FootC       ExpressC    Contrl16    Contrl17    Contrl18    Contrl19    LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2   Mod-Env  "
+  },
+  {
+    "address": "0xbede0",
+    "text": "    - - -     Note Log    Note Lin    Velocity  AfterT(poly)Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr  LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2Mod-Envelope"
+  },
+  {
+    "address": "0xbeee0",
+    "text": "    - - -     Note Log    Note Lin    Velocity  Aftert(poly)Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr  LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2Mod-Envelope"
+  },
+  {
+    "address": "0xbefe0",
+    "text": "    - - -     Note Log    Note Lin    Velocity  AfterT(mono)Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr  LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2Mod-Envelope"
+  },
+  {
+    "address": "0xbf0e0",
+    "text": "    - - -     Note Log    Note Lin    Velocity  Aftert(mono)Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr  LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2Mod-Envelope"
+  },
+  {
+    "address": "0xbf1e0",
+    "text": "LP12LP24HP12BP24"
+  },
+  {
+    "address": "0xbf1f4",
+    "text": "PrgName"
+  },
+  {
+    "address": "0xbf1fc",
+    "text": "Main Vol."
+  },
+  {
+    "address": "0xbf208",
+    "text": "Scal.Centr"
+  },
+  {
+    "address": "0xbf214",
+    "text": "Detune"
+  },
+  {
+    "address": "0xbf21c",
+    "text": "LP12LP24 BP  HP "
+  },
+  {
+    "address": "0xbf230",
+    "text": "FilterType"
+  },
+  {
+    "address": "0xbf23c",
+    "text": "EnvDepth"
+  },
+  {
+    "address": "0xbf248",
+    "text": "EnvInv"
+  },
+  {
+    "address": "0xbf250",
+    "text": "    - - -     Note Log    Note Lin    Velocity  Aftertouch  Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr     LFO 1       LFO 2       LFO 3       LFO 4    GenEnvelope1GenEnvelope2ModEnvelope1ModEnvelope2Fil1EnvelopeFil2EnvelopeAmp EnvelopeGlide Curve Arpeggiator Alternate   Constant    "
+  },
+  {
+    "address": "0xbf3b0",
+    "text": "Mod.Source"
+  },
+  {
+    "address": "0xbf3bc",
+    "text": "    - - -    Ampl Gen 1  Ampl Gen 2  Ampl Gen 3  Ampl Gen 4 Pitch Gen 1 Pitch Gen 2 Pitch Gen 3 Pitch Gen 4 AuxMod Gen 1AuxMod Gen 2AuxMod Gen 3AuxMod Gen 4Balance Gen1Balance Gen2Balance Gen3Balance Gen4  Cutoff 1   Resonance 1Env-Depth 1 AuxMod Fil 1 Pan Fil 1  Fil 1 Ampli   Cutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  Fil 2 Ampli  Main Ampli  Main Pitch Mod Depth 1 Mod Depth 2 Mod Depth 3 Mod Depth 4 LFO 1 Speed LFO 2 Speed Loop Start 1Loop Start 2 Loop End 1  Loop End 2 Amp-Env Att Amp-Env Dec Amp-Env Rel Fil1-Env AttFil1-Env DecFil1-Env RelFil2-Env AttFil2-Env DecFil2-Env RelMod1-Env AttMod1-Env DecMod1-Env RelMod2-Env AttMod2-Env DecMod2-Env RelSampleStart1SampleStart2"
+  },
+  {
+    "address": "0xbf678",
+    "text": "Mod.Dest."
+  },
+  {
+    "address": "0xbf684",
+    "text": "Mod.Amount"
+  },
+  {
+    "address": "0xbf690",
+    "text": "DMVol"
+  },
+  {
+    "address": "0xbf698",
+    "text": "DMVel"
+  },
+  {
+    "address": "0xbf6a0",
+    "text": "DMWh "
+  },
+  {
+    "address": "0xbf6a8",
+    "text": "Unusued Spread"
+  },
+  {
+    "address": "0xbf6b8",
+    "text": "% Gen2"
+  },
+  {
+    "address": "0xbf6c0",
+    "text": "Unusued GenMix"
+  },
+  {
+    "address": "0xbf6d0",
+    "text": "MixAM FM "
+  },
+  {
+    "address": "0xbf6dc",
+    "text": "Gen0 Routing"
+  },
+  {
+    "address": "0xbf6ec",
+    "text": "Oscillator  Time SamplerSchrader    Loop Sampler"
+  },
+  {
+    "address": "0xbf720",
+    "text": "Gen 0 OnOff"
+  },
+  {
+    "address": "0xbf72c",
+    "text": "SettingsLooppnts"
+  },
+  {
+    "address": "0xbf740",
+    "text": "mono  2   3   4   5   6   7   8   9  10  11  12  all"
+  },
+  {
+    "address": "0xbf778",
+    "text": "DELAY     ST-DELAY  PING PONG CHORUS    PHASER    FILTER    REVERB    FLANGER   GATOR     ST-ENHANC PARAM-EQ  CRUSHER   "
+  },
+  {
+    "address": "0xbf7f4",
+    "text": "Eff 0 Type"
+  },
+  {
+    "address": "0xbf800",
+    "text": "Eff 0 On"
+  },
+  {
+    "address": "0xbf80c",
+    "text": "Eff 1 On"
+  },
+  {
+    "address": "0xbf818",
+    "text": "Gen2 Routing"
+  },
+  {
+    "address": "0xbf828",
+    "text": "Oscillator  Time SamplerSchrader    "
+  },
+  {
+    "address": "0xbf850",
+    "text": "Classic Alltype "
+  },
+  {
+    "address": "0xbf864",
+    "text": "Var 0 Type"
+  },
+  {
+    "address": "0xbf870",
+    "text": "Var 1 Type"
+  },
+  {
+    "address": "0xbf87c",
+    "text": "Eff X0 Type"
+  },
+  {
+    "address": "0xbf888",
+    "text": "Eff X0 On"
+  },
+  {
+    "address": "0xbf894",
+    "text": "Eff X1 Type"
+  },
+  {
+    "address": "0xbf8a0",
+    "text": "Eff X1 On"
+  },
+  {
+    "address": "0xbf8ac",
+    "text": "Eff X2 Type"
+  },
+  {
+    "address": "0xbf8b8",
+    "text": "Eff X2 On"
+  },
+  {
+    "address": "0xbf8c4",
+    "text": "Eff X3 Type"
+  },
+  {
+    "address": "0xbf8d0",
+    "text": "Eff X3 On"
+  },
+  {
+    "address": "0xbf8dc",
+    "text": "Var 0 On"
+  },
+  {
+    "address": "0xbf8e8",
+    "text": "Var 1 On"
+  },
+  {
+    "address": "0xbf8f4",
+    "text": "F0 Cut KeyF "
+  },
+  {
+    "address": "0xbf904",
+    "text": "Import Sampler 0 SF2 Path"
+  },
+  {
+    "address": "0xbf920",
+    "text": "Import Sampler 1 SF2 Path"
+  },
+  {
+    "address": "0xbf93c",
+    "text": "Mod.Active"
+  },
+  {
+    "address": "0xbf948",
+    "text": "LFO0 Perm"
+  },
+  {
+    "address": "0xbf954",
+    "text": "LFO1 Perm"
+  },
+  {
+    "address": "0xbf960",
+    "text": "LFO2 Perm"
+  },
+  {
+    "address": "0xbf96c",
+    "text": "LFO3 Perm"
+  },
+  {
+    "address": "0xbf978",
+    "text": "M1M2M3M4A "
+  },
+  {
+    "address": "0xbf984",
+    "text": "Env Sel"
+  },
+  {
+    "address": "0xbf98c",
+    "text": "1234"
+  },
+  {
+    "address": "0xbf994",
+    "text": "LFO Sel"
+  },
+  {
+    "address": "0xbf99c",
+    "text": "Sample 0 Scrolling"
+  },
+  {
+    "address": "0xbf9b0",
+    "text": "Sample 0 Editing"
+  },
+  {
+    "address": "0xbf9c4",
+    "text": "Sample 0 Shown"
+  },
+  {
+    "address": "0xbf9d4",
+    "text": "Sample 1 Scrolling"
+  },
+  {
+    "address": "0xbf9e8",
+    "text": "Sample 1 Editing"
+  },
+  {
+    "address": "0xbf9fc",
+    "text": "Sample 1 Shown"
+  },
+  {
+    "address": "0xbfa0c",
+    "text": "   1   2   4   8  16  32  64 128 256 5121024204840968192"
+  },
+  {
+    "address": "0xbfa48",
+    "text": "SD Zoom 0"
+  },
+  {
+    "address": "0xbfa54",
+    "text": "SD Zoom 1"
+  },
+  {
+    "address": "0xbfa60",
+    "text": "pm"
+  },
+  {
+    "address": "0xbfa64",
+    "text": "SD Slider 0"
+  },
+  {
+    "address": "0xbfa70",
+    "text": "SD Slider 1"
+  },
+  {
+    "address": "0xbfa7c",
+    "text": "SD Slider Size 0"
+  },
+  {
+    "address": "0xbfa90",
+    "text": "SD Slider Size 1"
+  },
+  {
+    "address": "0xbfaa4",
+    "text": "ADSFR EnhEnv"
+  },
+  {
+    "address": "0xbfab4",
+    "text": "Var 0 Env"
+  },
+  {
+    "address": "0xbfac0",
+    "text": "Var 1 Env"
+  },
+  {
+    "address": "0xbfacc",
+    "text": "Mod 0 Env"
+  },
+  {
+    "address": "0xbfad8",
+    "text": "Mod 1 Env"
+  },
+  {
+    "address": "0xbfae4",
+    "text": "Mod 2 Env"
+  },
+  {
+    "address": "0xbfaf0",
+    "text": "Mod 3 Env"
+  },
+  {
+    "address": "0xbfafc",
+    "text": "Amp Env"
+  },
+  {
+    "address": "0xbfb04",
+    "text": "Vel->Vol"
+  },
+  {
+    "address": "0xbfb10",
+    "text": "Vel->F1Cut"
+  },
+  {
+    "address": "0xbfb1c",
+    "text": "Vel->F2Cut"
+  },
+  {
+    "address": "0xbfb28",
+    "text": "G3 Cent"
+  },
+  {
+    "address": "0xbfb30",
+    "text": "Gen0 Vol."
+  },
+  {
+    "address": "0xbfb3c",
+    "text": "Gen1 Vol."
+  },
+  {
+    "address": "0xbfb48",
+    "text": "Gen2 Vol."
+  },
+  {
+    "address": "0xbfb54",
+    "text": "Gen3 Vol."
+  },
+  {
+    "address": "0xbfb60",
+    "text": "Keys"
+  },
+  {
+    "address": "0xbfb68",
+    "text": "Fx0 Wet"
+  },
+  {
+    "address": "0xbfb70",
+    "text": "Fx1 Wet"
+  },
+  {
+    "address": "0xbfb78",
+    "text": "Fx2 Wet"
+  },
+  {
+    "address": "0xbfb80",
+    "text": "Fx3 Wet"
+  },
+  {
+    "address": "0xbfb88",
+    "text": "Fx4 Wet"
+  },
+  {
+    "address": "0xbfb90",
+    "text": "Fx5 Wet"
+  },
+  {
+    "address": "0xbfb98",
+    "text": "Pow 51 0 "
+  },
+  {
+    "address": "0xbfba4",
+    "text": "Pow 51 1 "
+  },
+  {
+    "address": "0xbfbb0",
+    "text": "Pow 51 2 "
+  },
+  {
+    "address": "0xbfbbc",
+    "text": "Pow 51 3 "
+  },
+  {
+    "address": "0xbfbc8",
+    "text": "Pow 51 4 "
+  },
+  {
+    "address": "0xbfbd4",
+    "text": "Pow 51 5 "
+  },
+  {
+    "address": "0xbfbe0",
+    "text": "Pow 51 6 "
+  },
+  {
+    "address": "0xbfbec",
+    "text": "Var0Pan"
+  },
+  {
+    "address": "0xbfbf4",
+    "text": "Var1Pan"
+  },
+  {
+    "address": "0xbfbfc",
+    "text": "Exactness"
+  },
+  {
+    "address": "0xbfc08",
+    "text": "Copy PasteInit "
+  },
+  {
+    "address": "0xbfc18",
+    "text": "File IO Env"
+  },
+  {
+    "address": "0xbfc24",
+    "text": "File IO EF0"
+  },
+  {
+    "address": "0xbfc30",
+    "text": "File IO EF1"
+  },
+  {
+    "address": "0xbfc3c",
+    "text": "File IO LFO"
+  },
+  {
+    "address": "0xbfc48",
+    "text": "Load Save Copy PasteInit "
+  },
+  {
+    "address": "0xbfc64",
+    "text": "File IO Gn0"
+  },
+  {
+    "address": "0xbfc70",
+    "text": "File IO Gn1"
+  },
+  {
+    "address": "0xbfc7c",
+    "text": "File IO Gn2"
+  },
+  {
+    "address": "0xbfc88",
+    "text": "File IO Gn3"
+  },
+  {
+    "address": "0xbfc94",
+    "text": "Export Sample 0"
+  },
+  {
+    "address": "0xbfca4",
+    "text": "Export Sample 1"
+  },
+  {
+    "address": "0xbfcb4",
+    "text": "Export Sample 2"
+  },
+  {
+    "address": "0xbfcc4",
+    "text": "Export Sample 3"
+  },
+  {
+    "address": "0xbfcd4",
+    "text": "ExpWTG Sample 0"
+  },
+  {
+    "address": "0xbfce4",
+    "text": "ExpWTG Sample 1"
+  },
+  {
+    "address": "0xbfcf4",
+    "text": "ExpWTG Sample 2"
+  },
+  {
+    "address": "0xbfd04",
+    "text": "ExpWTG Sample 3"
+  },
+  {
+    "address": "0xbfd14",
+    "text": "Fil "
+  },
+  {
+    "address": "0xbfd1c",
+    "text": "ModRate"
+  },
+  {
+    "address": "0xbfd24",
+    "text": "ModDept"
+  },
+  {
+    "address": "0xbfd2c",
+    "text": " Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T"
+  },
+  {
+    "address": "0xbfd78",
+    "text": "Off     Mod-OnlyUp      Down    Up/Down Up/Down+Down/Up Down/Up+Random  Chord   AsPlayed"
+  },
+  {
+    "address": "0xbfdd4",
+    "text": "Op.Mode"
+  },
+  {
+    "address": "0xbfddc",
+    "text": " 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64"
+  },
+  {
+    "address": "0xbfe38",
+    "text": "Steps"
+  },
+  {
+    "address": "0xbfe40",
+    "text": "Length"
+  },
+  {
+    "address": "0xbfe48",
+    "text": "Oct"
+  },
+  {
+    "address": "0xbfe4c",
+    "text": "Octaves"
+  },
+  {
+    "address": "0xbfe54",
+    "text": "Swing"
+  },
+  {
+    "address": "0xbfe5c",
+    "text": "Played Veloc"
+  },
+  {
+    "address": "0xbfe6c",
+    "text": "FixNote"
+  },
+  {
+    "address": "0xbfe74",
+    "text": "FixVelo"
+  },
+  {
+    "address": "0xbfe7c",
+    "text": "StepData"
+  },
+  {
+    "address": "0xbfe88",
+    "text": "Note Length"
+  },
+  {
+    "address": "0xbfe94",
+    "text": "File IO"
+  },
+  {
+    "address": "0xbfe9c",
+    "text": "Arpeggiator"
+  },
+  {
+    "address": "0xbfea8",
+    "text": "Off  LearnPlay "
+  },
+  {
+    "address": "0xbfeb8",
+    "text": "Polyphony"
+  },
+  {
+    "address": "0xbfec4",
+    "text": "Note 0"
+  },
+  {
+    "address": "0xbfecc",
+    "text": "Velo 0"
+  },
+  {
+    "address": "0xbfed4",
+    "text": "Note 1"
+  },
+  {
+    "address": "0xbfedc",
+    "text": "Velo 1"
+  },
+  {
+    "address": "0xbfee4",
+    "text": "Note 2"
+  },
+  {
+    "address": "0xbfeec",
+    "text": "Velo 2"
+  },
+  {
+    "address": "0xbfef4",
+    "text": "Note 3"
+  },
+  {
+    "address": "0xbfefc",
+    "text": "Velo 3"
+  },
+  {
+    "address": "0xbff04",
+    "text": "Note 4"
+  },
+  {
+    "address": "0xbff0c",
+    "text": "Velo 4"
+  },
+  {
+    "address": "0xbff14",
+    "text": "Note 5"
+  },
+  {
+    "address": "0xbff1c",
+    "text": "Velo 5"
+  },
+  {
+    "address": "0xbff24",
+    "text": "Note 6"
+  },
+  {
+    "address": "0xbff2c",
+    "text": "Velo 6"
+  },
+  {
+    "address": "0xbff34",
+    "text": "Note 7"
+  },
+  {
+    "address": "0xbff3c",
+    "text": "Velo 7"
+  },
+  {
+    "address": "0xbff44",
+    "text": "Intense"
+  },
+  {
+    "address": "0xbff4c",
+    "text": "Hard  Soft  Modula"
+  },
+  {
+    "address": "0xbff60",
+    "text": "Type     "
+  },
+  {
+    "address": "0xbff6c",
+    "text": "12 dB24 dB"
+  },
+  {
+    "address": "0xbff78",
+    "text": "Slope    "
+  },
+  {
+    "address": "0xbff84",
+    "text": "Cut KeyF "
+  },
+  {
+    "address": "0xbff90",
+    "text": "LP 12 LP 24 BP 24 HP 12 "
+  },
+  {
+    "address": "0xbffac",
+    "text": "RoutBal"
+  },
+  {
+    "address": "0xbffb4",
+    "text": "Cut KeyF"
+  },
+  {
+    "address": "0xbffc0",
+    "text": "PulseWidth"
+  },
+  {
+    "address": "0xbffcc",
+    "text": "XA0"
+  },
+  {
+    "address": "0xbffd0",
+    "text": "Unused Mode"
+  },
+  {
+    "address": "0xbffdc",
+    "text": "Track"
+  },
+  {
+    "address": "0xbffe4",
+    "text": "FreeRun"
+  },
+  {
+    "address": "0xbffec",
+    "text": "SubOsc Vol"
+  },
+  {
+    "address": "0xbfff8",
+    "text": "LeftRight"
+  },
+  {
+    "address": "0xc0004",
+    "text": "FrontRear"
+  },
+  {
+    "address": "0xc0010",
+    "text": "Center Vol."
+  },
+  {
+    "address": "0xc001c",
+    "text": "LFE Vol."
+  },
+  {
+    "address": "0xc0028",
+    "text": "Overall Vol."
+  },
+  {
+    "address": "0xc0038",
+    "text": "Pan"
+  },
+  {
+    "address": "0xc003c",
+    "text": "-inf"
+  },
+  {
+    "address": "0xc0044",
+    "text": "Delay"
+  },
+  {
+    "address": "0xc004c",
+    "text": "Attack"
+  },
+  {
+    "address": "0xc0054",
+    "text": "Decay"
+  },
+  {
+    "address": "0xc005c",
+    "text": "Phase"
+  },
+  {
+    "address": "0xc0064",
+    "text": "KeyTrack"
+  },
+  {
+    "address": "0xc0070",
+    "text": "H Time"
+  },
+  {
+    "address": "0xc0078",
+    "text": "unnamed"
+  },
+  {
+    "address": "0xc0080",
+    "text": "InvertFeedback"
+  },
+  {
+    "address": "0xc0090",
+    "text": "deg"
+  },
+  {
+    "address": "0xc0094",
+    "text": "Time Depth"
+  },
+  {
+    "address": "0xc00a0",
+    "text": "Time Center"
+  },
+  {
+    "address": "0xc00ac",
+    "text": "Sync Center"
+  },
+  {
+    "address": "0xc00b8",
+    "text": "Sync Left"
+  },
+  {
+    "address": "0xc00c4",
+    "text": "Sync Right"
+  },
+  {
+    "address": "0xc00d0",
+    "text": "Feedback L+R"
+  },
+  {
+    "address": "0xc00e0",
+    "text": "Balance Pre/LR"
+  },
+  {
+    "address": "0xc00f0",
+    "text": "%03ld"
+  },
+  {
+    "address": "0xc00f8",
+    "text": "Off      Learn    Clear    Clear AllLoad     Save     Rest.Fact"
+  },
+  {
+    "address": "0xc0138",
+    "text": "Glo Reserved0"
+  },
+  {
+    "address": "0xc0148",
+    "text": "Glo Reserved1"
+  },
+  {
+    "address": "0xc0158",
+    "text": "Glo Reserved Sw0"
+  },
+  {
+    "address": "0xc016c",
+    "text": "Glo Reserved Sw1"
+  },
+  {
+    "address": "0xc0180",
+    "text": "CCIdx"
+  },
+  {
+    "address": "0xc0188",
+    "text": "EditIdx"
+  },
+  {
+    "address": "0xc0190",
+    "text": "Min Par"
+  },
+  {
+    "address": "0xc0198",
+    "text": "Max Par"
+  },
+  {
+    "address": "0xc01a0",
+    "text": "Ins Idx"
+  },
+  {
+    "address": "0xc01a8",
+    "text": "MIDI Ch"
+  },
+  {
+    "address": "0xc01b0",
+    "text": "Curve"
+  },
+  {
+    "address": "0xc01b8",
+    "text": "Unused    Normal    Relative ARelative BRelative C"
+  },
+  {
+    "address": "0xc01ec",
+    "text": "Min CC"
+  },
+  {
+    "address": "0xc01f4",
+    "text": "Max CC"
+  },
+  {
+    "address": "0xc01fc",
+    "text": "Res2"
+  },
+  {
+    "address": "0xc0204",
+    "text": "Clear ECS"
+  },
+  {
+    "address": "0xc0210",
+    "text": "Do you want to clear all Controller Assigments of this instrument?"
+  },
+  {
+    "address": "0xc0254",
+    "text": "ECS"
+  },
+  {
+    "address": "0xc0258",
+    "text": "Restore Factory ECS"
+  },
+  {
+    "address": "0xc026c",
+    "text": "Do you want to restore the ECS factory settings?"
+  },
+  {
+    "address": "0xc02a0",
+    "text": "Phaser Wet"
+  },
+  {
+    "address": "0xc02ac",
+    "text": "Phaser Speed"
+  },
+  {
+    "address": "0xc02bc",
+    "text": "Phaser Center"
+  },
+  {
+    "address": "0xc02cc",
+    "text": "Phaser Depth"
+  },
+  {
+    "address": "0xc02dc",
+    "text": "Phaser Feedb"
+  },
+  {
+    "address": "0xc02ec",
+    "text": "Phaser FBInv"
+  },
+  {
+    "address": "0xc02fc",
+    "text": "Phaser Stages"
+  },
+  {
+    "address": "0xc030c",
+    "text": "Phaser Stereo"
+  },
+  {
+    "address": "0xc031c",
+    "text": " Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T"
+  },
+  {
+    "address": "0xc039c",
+    "text": "Freq"
+  },
+  {
+    "address": "0xc03a4",
+    "text": "Gain"
+  },
+  {
+    "address": "0xc03ac",
+    "text": "Q"
+  },
+  {
+    "address": "0xc03b0",
+    "text": "-oo"
+  },
+  {
+    "address": "0xc03b4",
+    "text": "Huge!"
+  },
+  {
+    "address": "0xc03bc",
+    "text": "%1d %s"
+  },
+  {
+    "address": "0xc03c4",
+    "text": "%02d %s"
+  },
+  {
+    "address": "0xc03cc",
+    "text": "%03d %s"
+  },
+  {
+    "address": "0xc03d4",
+    "text": "-T"
+  },
+  {
+    "address": "0xc03d8",
+    "text": "\u0005PopUp"
+  },
+  {
+    "address": "0xc03e0",
+    "text": "Ctrl"
+  },
+  {
+    "address": "0xc03e8",
+    "text": "Alt"
+  },
+  {
+    "address": "0xc03ec",
+    "text": "Shift"
+  },
+  {
+    "address": "0xc03f4",
+    "text": "Apple"
+  },
+  {
+    "address": "0xc03fc",
+    "text": "Del"
+  },
+  {
+    "address": "0xc0400",
+    "text": "Left"
+  },
+  {
+    "address": "0xc0408",
+    "text": "Right"
+  },
+  {
+    "address": "0xc0410",
+    "text": "Up"
+  },
+  {
+    "address": "0xc0414",
+    "text": "Down"
+  },
+  {
+    "address": "0xc041c",
+    "text": "-M"
+  },
+  {
+    "address": "0xc0420",
+    "text": "-G"
+  },
+  {
+    "address": "0xc0424",
+    "text": "%2.2f"
+  },
+  {
+    "address": "0xc042c",
+    "text": "LooseFocus"
+  },
+  {
+    "address": "0xc0438",
+    "text": "-M%1d %s"
+  },
+  {
+    "address": "0xc0444",
+    "text": "-M%02d %s"
+  },
+  {
+    "address": "0xc0450",
+    "text": "-M%03d %s"
+  },
+  {
+    "address": "0xc045c",
+    "text": "-M%s"
+  },
+  {
+    "address": "0xc0464",
+    "text": "CTextEdit"
+  },
+  {
+    "address": "0xc0470",
+    "text": "CTextLabel"
+  },
+  {
+    "address": "0xc047c",
+    "text": "CAnimKnob"
+  },
+  {
+    "address": "0xc0488",
+    "text": "CKnob"
+  },
+  {
+    "address": "0xc0490",
+    "text": "COnOffButton"
+  },
+  {
+    "address": "0xc04a0",
+    "text": "CVerticalSwitch"
+  },
+  {
+    "address": "0xc04b0",
+    "text": "CHorizontalSwitch"
+  },
+  {
+    "address": "0xc04c4",
+    "text": "CRockerSwitch"
+  },
+  {
+    "address": "0xc04d4",
+    "text": "CMovieBitmap"
+  },
+  {
+    "address": "0xc04e4",
+    "text": "CMovieButton"
+  },
+  {
+    "address": "0xc04f4",
+    "text": "CAutoAnimation"
+  },
+  {
+    "address": "0xc0504",
+    "text": "CSlider"
+  },
+  {
+    "address": "0xc050c",
+    "text": "CSpecialDigit"
+  },
+  {
+    "address": "0xc051c",
+    "text": "CKickButton"
+  },
+  {
+    "address": "0xc0528",
+    "text": "CSplashScreen"
+  },
+  {
+    "address": "0xc0538",
+    "text": "CVuMeter"
+  },
+  {
+    "address": "0xc0544",
+    "text": "kMsgCheckIfViewContainer"
+  },
+  {
+    "address": "0xc0560",
+    "text": "Helvetica"
+  },
+  {
+    "address": "0xc056c",
+    "text": "Symbol"
+  },
+  {
+    "address": "0xc0574",
+    "text": "png"
+  },
+  {
+    "address": "0xc0578",
+    "text": "bmp"
+  },
+  {
+    "address": "0xc057c",
+    "text": "jpg"
+  },
+  {
+    "address": "0xc0580",
+    "text": "pict"
+  },
+  {
+    "address": "0xc0588",
+    "text": "bmp%05d"
+  },
+  {
+    "address": "0xc0590",
+    "text": "net.sourceforge.vstgui.%d"
+  },
+  {
+    "address": "0xc05ac",
+    "text": "com.apple.CoreGraphics"
+  },
+  {
+    "address": "0xc05c4",
+    "text": "CGImageCreateWithImageInRect"
+  },
+  {
+    "address": "0xc05e4",
+    "text": "CGContextStrokeLineSegments"
+  },
+  {
+    "address": "0xc0600",
+    "text": "Could not create Control : %d\n"
+  },
+  {
+    "address": "0xc0620",
+    "text": "CFrame"
+  },
+  {
+    "address": "0xc0628",
+    "text": "CScrollContainer"
+  },
+  {
+    "address": "0xc063c",
+    "text": "UnregisterToolboxObjectClass failed : %d\n"
+  },
+  {
+    "address": "0xc0668",
+    "text": "Mouse wheel: control bounds %ld %ld\n"
+  },
+  {
+    "address": "0xc0690",
+    "text": "vector::_M_insert_aux"
+  },
+  {
+    "address": "0xc06a8",
+    "text": "vector::reserve"
+  },
+  {
+    "address": "0xc06b8",
+    "text": "version"
+  },
+  {
+    "address": "0xc06c0",
+    "text": "type"
+  },
+  {
+    "address": "0xc06c8",
+    "text": "subtype"
+  },
+  {
+    "address": "0xc06d0",
+    "text": "manufacturer"
+  },
+  {
+    "address": "0xc06e0",
+    "text": "name"
+  },
+  {
+    "address": "0xc06e8",
+    "text": "render-quality"
+  },
+  {
+    "address": "0xc06f8",
+    "text": "cpu-load"
+  },
+  {
+    "address": "0xc0704",
+    "text": "part"
+  },
+  {
+    "address": "0xc070c",
+    "text": "Factory Preset"
+  },
+  {
+    "address": "0xc071c",
+    "text": ": "
+  },
+  {
+    "address": "0xc0720",
+    "text": "CustomUI"
+  },
+  {
+    "address": "0xc072c",
+    "text": "com.apple.audio.units.Components"
+  },
+  {
+    "address": "0xc0750",
+    "text": " "
+  },
+  {
+    "address": "0xc0754",
+    "text": "FORM"
+  },
+  {
+    "address": "0xc075c",
+    "text": "AIFF"
+  },
+  {
+    "address": "0xc0764",
+    "text": "COMM"
+  },
+  {
+    "address": "0xc076c",
+    "text": "SSND"
+  },
+  {
+    "address": "0xc0774",
+    "text": "Time    "
+  },
+  {
+    "address": "0xc0780",
+    "text": "TimeTrk"
+  },
+  {
+    "address": "0xc0788",
+    "text": "FullLoop On/Off"
+  },
+  {
+    "address": "0xc0798",
+    "text": "%s_MOD_%s"
+  },
+  {
+    "address": "0xc07a4",
+    "text": "%s Module Parameters"
+  },
+  {
+    "address": "0xc07bc",
+    "text": "*.MOD"
+  },
+  {
+    "address": "0xc07c4",
+    "text": "WetOld"
+  },
+  {
+    "address": "0xc07cc",
+    "text": "s"
+  },
+  {
+    "address": "0xc07d0",
+    "text": "RevTime"
+  },
+  {
+    "address": "0xc07d8",
+    "text": "Damping "
+  },
+  {
+    "address": "0xc07e4",
+    "text": " Off  1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16"
+  },
+  {
+    "address": "0xc0840",
+    "text": "Modulation On/Off"
+  },
+  {
+    "address": "0xc0854",
+    "text": "Diffusors"
+  },
+  {
+    "address": "0xc0860",
+    "text": "Mod Freq"
+  }
+]

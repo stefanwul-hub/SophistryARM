@@ -1,0 +1,2977 @@
+[
+  {
+    "address": "0x83cf6",
+    "type": 15,
+    "section": 1,
+    "name": "_AUCronoXEntry",
+    "demangled": "_AUCronoXEntry"
+  },
+  {
+    "address": "0x5238",
+    "type": 15,
+    "section": 1,
+    "name": "_LPAUViewEntry",
+    "demangled": "_LPAUViewEntry"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AECreateDesc",
+    "demangled": "_AECreateDesc"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AEDisposeDesc",
+    "demangled": "_AEDisposeDesc"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AEGetDescData",
+    "demangled": "_AEGetDescData"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AEGetNthPtr",
+    "demangled": "_AEGetNthPtr"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_ATSUFONDtoFontID",
+    "demangled": "_ATSUFONDtoFontID"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AUEventListenerAddEventType",
+    "demangled": "_AUEventListenerAddEventType"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AUEventListenerNotify",
+    "demangled": "_AUEventListenerNotify"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AUEventListenerRemoveEventType",
+    "demangled": "_AUEventListenerRemoveEventType"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AUListenerCreate",
+    "demangled": "_AUListenerCreate"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AUListenerDispose",
+    "demangled": "_AUListenerDispose"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AUParameterListenerNotify",
+    "demangled": "_AUParameterListenerNotify"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AddEventTypesToHandler",
+    "demangled": "_AddEventTypesToHandler"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AppendMenuItemTextWithCFString",
+    "demangled": "_AppendMenuItemTextWithCFString"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AudioConverterConvertBuffer",
+    "demangled": "_AudioConverterConvertBuffer"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AudioConverterDispose",
+    "demangled": "_AudioConverterDispose"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AudioConverterFillComplexBuffer",
+    "demangled": "_AudioConverterFillComplexBuffer"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AudioConverterNew",
+    "demangled": "_AudioConverterNew"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AudioUnitAddPropertyListener",
+    "demangled": "_AudioUnitAddPropertyListener"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AudioUnitGetProperty",
+    "demangled": "_AudioUnitGetProperty"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AudioUnitRemovePropertyListener",
+    "demangled": "_AudioUnitRemovePropertyListener"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AudioUnitRender",
+    "demangled": "_AudioUnitRender"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_AudioUnitSetProperty",
+    "demangled": "_AudioUnitSetProperty"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_BackColor",
+    "demangled": "_BackColor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFArrayAppendValue",
+    "demangled": "_CFArrayAppendValue"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFArrayCreate",
+    "demangled": "_CFArrayCreate"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFArrayCreateCopy",
+    "demangled": "_CFArrayCreateCopy"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFArrayCreateMutable",
+    "demangled": "_CFArrayCreateMutable"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFArrayGetCount",
+    "demangled": "_CFArrayGetCount"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFArrayGetValueAtIndex",
+    "demangled": "_CFArrayGetValueAtIndex"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFBundleCopyBundleURL",
+    "demangled": "_CFBundleCopyBundleURL"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFBundleCopyResourceURL",
+    "demangled": "_CFBundleCopyResourceURL"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFBundleCreate",
+    "demangled": "_CFBundleCreate"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFBundleGetBundleWithIdentifier",
+    "demangled": "_CFBundleGetBundleWithIdentifier"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFBundleGetFunctionPointerForName",
+    "demangled": "_CFBundleGetFunctionPointerForName"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFBundleGetIdentifier",
+    "demangled": "_CFBundleGetIdentifier"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFBundleGetMainBundle",
+    "demangled": "_CFBundleGetMainBundle"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFBundleGetValueForInfoDictionaryKey",
+    "demangled": "_CFBundleGetValueForInfoDictionaryKey"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDataAppendBytes",
+    "demangled": "_CFDataAppendBytes"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDataCreate",
+    "demangled": "_CFDataCreate"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDataCreateMutable",
+    "demangled": "_CFDataCreateMutable"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDataGetBytePtr",
+    "demangled": "_CFDataGetBytePtr"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDataGetLength",
+    "demangled": "_CFDataGetLength"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDataGetTypeID",
+    "demangled": "_CFDataGetTypeID"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryAddValue",
+    "demangled": "_CFDictionaryAddValue"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryContainsKey",
+    "demangled": "_CFDictionaryContainsKey"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryCreateMutable",
+    "demangled": "_CFDictionaryCreateMutable"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryCreateMutableCopy",
+    "demangled": "_CFDictionaryCreateMutableCopy"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryGetCount",
+    "demangled": "_CFDictionaryGetCount"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryGetKeysAndValues",
+    "demangled": "_CFDictionaryGetKeysAndValues"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryGetTypeID",
+    "demangled": "_CFDictionaryGetTypeID"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryGetValue",
+    "demangled": "_CFDictionaryGetValue"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryGetValueIfPresent",
+    "demangled": "_CFDictionaryGetValueIfPresent"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryRemoveAllValues",
+    "demangled": "_CFDictionaryRemoveAllValues"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionaryRemoveValue",
+    "demangled": "_CFDictionaryRemoveValue"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFDictionarySetValue",
+    "demangled": "_CFDictionarySetValue"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFGetTypeID",
+    "demangled": "_CFGetTypeID"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFNumberCreate",
+    "demangled": "_CFNumberCreate"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFNumberGetValue",
+    "demangled": "_CFNumberGetValue"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFPreferencesCopyValue",
+    "demangled": "_CFPreferencesCopyValue"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFPreferencesSetValue",
+    "demangled": "_CFPreferencesSetValue"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFPreferencesSynchronize",
+    "demangled": "_CFPreferencesSynchronize"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFRelease",
+    "demangled": "_CFRelease"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFRetain",
+    "demangled": "_CFRetain"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFRunLoopGetCurrent",
+    "demangled": "_CFRunLoopGetCurrent"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFStringCompare",
+    "demangled": "_CFStringCompare"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFStringCompareWithOptions",
+    "demangled": "_CFStringCompareWithOptions"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFStringCreateWithCString",
+    "demangled": "_CFStringCreateWithCString"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFStringCreateWithFormat",
+    "demangled": "_CFStringCreateWithFormat"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFStringCreateWithSubstring",
+    "demangled": "_CFStringCreateWithSubstring"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFStringFind",
+    "demangled": "_CFStringFind"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFStringGetCString",
+    "demangled": "_CFStringGetCString"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFStringGetCharacters",
+    "demangled": "_CFStringGetCharacters"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFStringGetLength",
+    "demangled": "_CFStringGetLength"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFURLCreateCopyAppendingPathComponent",
+    "demangled": "_CFURLCreateCopyAppendingPathComponent"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFURLCreateCopyAppendingPathExtension",
+    "demangled": "_CFURLCreateCopyAppendingPathExtension"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFURLCreateCopyDeletingLastPathComponent",
+    "demangled": "_CFURLCreateCopyDeletingLastPathComponent"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFURLCreateFromFSRef",
+    "demangled": "_CFURLCreateFromFSRef"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFURLCreateFromFileSystemRepresentation",
+    "demangled": "_CFURLCreateFromFileSystemRepresentation"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFURLCreateWithString",
+    "demangled": "_CFURLCreateWithString"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFURLGetFSRef",
+    "demangled": "_CFURLGetFSRef"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFURLGetFileSystemRepresentation",
+    "demangled": "_CFURLGetFileSystemRepresentation"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CFURLGetString",
+    "demangled": "_CFURLGetString"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGBitmapContextCreate",
+    "demangled": "_CGBitmapContextCreate"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGBitmapContextCreateImage",
+    "demangled": "_CGBitmapContextCreateImage"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGBitmapContextGetAlphaInfo",
+    "demangled": "_CGBitmapContextGetAlphaInfo"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGBitmapContextGetBitsPerPixel",
+    "demangled": "_CGBitmapContextGetBitsPerPixel"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGBitmapContextGetBytesPerRow",
+    "demangled": "_CGBitmapContextGetBytesPerRow"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGBitmapContextGetData",
+    "demangled": "_CGBitmapContextGetData"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGBitmapContextGetHeight",
+    "demangled": "_CGBitmapContextGetHeight"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGBitmapContextGetWidth",
+    "demangled": "_CGBitmapContextGetWidth"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGColorSpaceCreateDeviceRGB",
+    "demangled": "_CGColorSpaceCreateDeviceRGB"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGColorSpaceCreateWithPlatformColorSpace",
+    "demangled": "_CGColorSpaceCreateWithPlatformColorSpace"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGColorSpaceRelease",
+    "demangled": "_CGColorSpaceRelease"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextAddLineToPoint",
+    "demangled": "_CGContextAddLineToPoint"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextBeginPath",
+    "demangled": "_CGContextBeginPath"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextClearRect",
+    "demangled": "_CGContextClearRect"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextClipToRect",
+    "demangled": "_CGContextClipToRect"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextClosePath",
+    "demangled": "_CGContextClosePath"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextDrawImage",
+    "demangled": "_CGContextDrawImage"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextDrawPath",
+    "demangled": "_CGContextDrawPath"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextFillRect",
+    "demangled": "_CGContextFillRect"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextGetTextPosition",
+    "demangled": "_CGContextGetTextPosition"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextMoveToPoint",
+    "demangled": "_CGContextMoveToPoint"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextRelease",
+    "demangled": "_CGContextRelease"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextRestoreGState",
+    "demangled": "_CGContextRestoreGState"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSaveGState",
+    "demangled": "_CGContextSaveGState"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextScaleCTM",
+    "demangled": "_CGContextScaleCTM"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSelectFont",
+    "demangled": "_CGContextSelectFont"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetAlpha",
+    "demangled": "_CGContextSetAlpha"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetFillColorSpace",
+    "demangled": "_CGContextSetFillColorSpace"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetLineDash",
+    "demangled": "_CGContextSetLineDash"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetLineWidth",
+    "demangled": "_CGContextSetLineWidth"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetRGBFillColor",
+    "demangled": "_CGContextSetRGBFillColor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetRGBStrokeColor",
+    "demangled": "_CGContextSetRGBStrokeColor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetShouldAntialias",
+    "demangled": "_CGContextSetShouldAntialias"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetStrokeColorSpace",
+    "demangled": "_CGContextSetStrokeColorSpace"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetTextDrawingMode",
+    "demangled": "_CGContextSetTextDrawingMode"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetTextMatrix",
+    "demangled": "_CGContextSetTextMatrix"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSetTextPosition",
+    "demangled": "_CGContextSetTextPosition"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextShowText",
+    "demangled": "_CGContextShowText"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextSynchronize",
+    "demangled": "_CGContextSynchronize"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGContextTranslateCTM",
+    "demangled": "_CGContextTranslateCTM"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGDataProviderCreate",
+    "demangled": "_CGDataProviderCreate"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGDataProviderCreateWithData",
+    "demangled": "_CGDataProviderCreateWithData"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGDataProviderCreateWithURL",
+    "demangled": "_CGDataProviderCreateWithURL"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGDataProviderRelease",
+    "demangled": "_CGDataProviderRelease"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGImageCreate",
+    "demangled": "_CGImageCreate"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGImageCreateWithPNGDataProvider",
+    "demangled": "_CGImageCreateWithPNGDataProvider"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGImageGetHeight",
+    "demangled": "_CGImageGetHeight"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGImageGetWidth",
+    "demangled": "_CGImageGetWidth"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGImageRelease",
+    "demangled": "_CGImageRelease"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGImageRetain",
+    "demangled": "_CGImageRetain"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CGRectIntersection",
+    "demangled": "_CGRectIntersection"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CMCloseProfile",
+    "demangled": "_CMCloseProfile"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CMOpenProfile",
+    "demangled": "_CMOpenProfile"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CalcMenuSize",
+    "demangled": "_CalcMenuSize"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CallNextEventHandler",
+    "demangled": "_CallNextEventHandler"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CheckMenuItem",
+    "demangled": "_CheckMenuItem"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_ClearCurrentScrap",
+    "demangled": "_ClearCurrentScrap"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_ClearKeyboardFocus",
+    "demangled": "_ClearKeyboardFocus"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CloseComponent",
+    "demangled": "_CloseComponent"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CompareAndSwap",
+    "demangled": "_CompareAndSwap"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_ConvertEventRefToEventRecord",
+    "demangled": "_ConvertEventRefToEventRecord"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CopyBits",
+    "demangled": "_CopyBits"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CopyCStringToPascal",
+    "demangled": "_CopyCStringToPascal"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CountDragItems",
+    "demangled": "_CountDragItems"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CreateCustomControl",
+    "demangled": "_CreateCustomControl"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CreateEditUnicodeTextControl",
+    "demangled": "_CreateEditUnicodeTextControl"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CreateStandardAlert",
+    "demangled": "_CreateStandardAlert"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CreateTextEncoding",
+    "demangled": "_CreateTextEncoding"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CreateUserPaneControl",
+    "demangled": "_CreateUserPaneControl"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_CurResFile",
+    "demangled": "_CurResFile"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DecrementAtomic",
+    "demangled": "_DecrementAtomic"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DeleteMenu",
+    "demangled": "_DeleteMenu"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DisposeControl",
+    "demangled": "_DisposeControl"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DisposeDragReceiveHandlerUPP",
+    "demangled": "_DisposeDragReceiveHandlerUPP"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DisposeDragTrackingHandlerUPP",
+    "demangled": "_DisposeDragTrackingHandlerUPP"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DisposeEventLoopTimerUPP",
+    "demangled": "_DisposeEventLoopTimerUPP"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DisposeGWorld",
+    "demangled": "_DisposeGWorld"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DisposeHandle",
+    "demangled": "_DisposeHandle"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DisposeMenu",
+    "demangled": "_DisposeMenu"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DisposeNavEventUPP",
+    "demangled": "_DisposeNavEventUPP"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DisposeNavObjectFilterUPP",
+    "demangled": "_DisposeNavObjectFilterUPP"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_DrawPicture",
+    "demangled": "_DrawPicture"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_EmbedControl",
+    "demangled": "_EmbedControl"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_FSCreateFileUnicode",
+    "demangled": "_FSCreateFileUnicode"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_FSFindFolder",
+    "demangled": "_FSFindFolder"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_FSGetCatalogInfo",
+    "demangled": "_FSGetCatalogInfo"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_FSMakeFSRefUnicode",
+    "demangled": "_FSMakeFSRefUnicode"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_FSPathMakeRef",
+    "demangled": "_FSPathMakeRef"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_FSRefMakePath",
+    "demangled": "_FSRefMakePath"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_ForeColor",
+    "demangled": "_ForeColor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_Gestalt",
+    "demangled": "_Gestalt"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetBackColor",
+    "demangled": "_GetBackColor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetComponentInfo",
+    "demangled": "_GetComponentInfo"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetComponentInstanceStorage",
+    "demangled": "_GetComponentInstanceStorage"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetControl32BitValue",
+    "demangled": "_GetControl32BitValue"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetControlBounds",
+    "demangled": "_GetControlBounds"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetControlData",
+    "demangled": "_GetControlData"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetControlEventTarget",
+    "demangled": "_GetControlEventTarget"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetCurrentButtonState",
+    "demangled": "_GetCurrentButtonState"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetCurrentKeyModifiers",
+    "demangled": "_GetCurrentKeyModifiers"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetDblTime",
+    "demangled": "_GetDblTime"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetEventClass",
+    "demangled": "_GetEventClass"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetEventDispatcherTarget",
+    "demangled": "_GetEventDispatcherTarget"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetEventKind",
+    "demangled": "_GetEventKind"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetEventParameter",
+    "demangled": "_GetEventParameter"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetFNum",
+    "demangled": "_GetFNum"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetForeColor",
+    "demangled": "_GetForeColor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetGWorld",
+    "demangled": "_GetGWorld"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetGWorldPixMap",
+    "demangled": "_GetGWorldPixMap"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetGrayRgn",
+    "demangled": "_GetGrayRgn"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetHandleSize",
+    "demangled": "_GetHandleSize"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetMainEventLoop",
+    "demangled": "_GetMainEventLoop"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetMenuHeight",
+    "demangled": "_GetMenuHeight"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetMouse",
+    "demangled": "_GetMouse"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetPictInfo",
+    "demangled": "_GetPictInfo"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetPixBaseAddr",
+    "demangled": "_GetPixBaseAddr"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetPixBounds",
+    "demangled": "_GetPixBounds"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetPixDepth",
+    "demangled": "_GetPixDepth"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetPixRowBytes",
+    "demangled": "_GetPixRowBytes"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetPortBitMapForCopyBits",
+    "demangled": "_GetPortBitMapForCopyBits"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetPortBounds",
+    "demangled": "_GetPortBounds"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetRegionBounds",
+    "demangled": "_GetRegionBounds"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetResource",
+    "demangled": "_GetResource"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetWindowAttributes",
+    "demangled": "_GetWindowAttributes"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetWindowBounds",
+    "demangled": "_GetWindowBounds"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetWindowEventTarget",
+    "demangled": "_GetWindowEventTarget"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_GetWindowPort",
+    "demangled": "_GetWindowPort"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewAddSubview",
+    "demangled": "_HIViewAddSubview"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewAdvanceFocus",
+    "demangled": "_HIViewAdvanceFocus"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewConvertPoint",
+    "demangled": "_HIViewConvertPoint"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewConvertRect",
+    "demangled": "_HIViewConvertRect"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewDrawCGImage",
+    "demangled": "_HIViewDrawCGImage"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewFindByID",
+    "demangled": "_HIViewFindByID"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewGetBounds",
+    "demangled": "_HIViewGetBounds"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewGetFrame",
+    "demangled": "_HIViewGetFrame"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewGetRoot",
+    "demangled": "_HIViewGetRoot"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewGetSuperview",
+    "demangled": "_HIViewGetSuperview"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewMoveBy",
+    "demangled": "_HIViewMoveBy"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewRemoveFromSuperview",
+    "demangled": "_HIViewRemoveFromSuperview"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewScrollRect",
+    "demangled": "_HIViewScrollRect"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewSetBoundsOrigin",
+    "demangled": "_HIViewSetBoundsOrigin"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewSetFirstSubViewFocus",
+    "demangled": "_HIViewSetFirstSubViewFocus"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewSetFrame",
+    "demangled": "_HIViewSetFrame"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewSetNeedsDisplay",
+    "demangled": "_HIViewSetNeedsDisplay"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HIViewSetVisible",
+    "demangled": "_HIViewSetVisible"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HLock",
+    "demangled": "_HLock"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_HUnlock",
+    "demangled": "_HUnlock"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_InsertMenu",
+    "demangled": "_InsertMenu"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_InsertMenuItemTextWithCFString",
+    "demangled": "_InsertMenuItemTextWithCFString"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_InstallEventHandler",
+    "demangled": "_InstallEventHandler"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_InstallEventLoopTimer",
+    "demangled": "_InstallEventLoopTimer"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_InstallReceiveHandler",
+    "demangled": "_InstallReceiveHandler"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_InstallTrackingHandler",
+    "demangled": "_InstallTrackingHandler"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_InvalWindowRect",
+    "demangled": "_InvalWindowRect"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_IsWindowCollapsed",
+    "demangled": "_IsWindowCollapsed"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_KLGetCurrentKeyboardLayout",
+    "demangled": "_KLGetCurrentKeyboardLayout"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_KLGetKeyboardLayoutProperty",
+    "demangled": "_KLGetKeyboardLayoutProperty"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_KeyTranslate",
+    "demangled": "_KeyTranslate"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_LSCopyItemInfoForRef",
+    "demangled": "_LSCopyItemInfoForRef"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NavCompleteSave",
+    "demangled": "_NavCompleteSave"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NavCreateChooseFileDialog",
+    "demangled": "_NavCreateChooseFileDialog"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NavCreatePutFileDialog",
+    "demangled": "_NavCreatePutFileDialog"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NavCustomControl",
+    "demangled": "_NavCustomControl"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NavDialogDispose",
+    "demangled": "_NavDialogDispose"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NavDialogGetReply",
+    "demangled": "_NavDialogGetReply"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NavDialogRun",
+    "demangled": "_NavDialogRun"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NavDisposeReply",
+    "demangled": "_NavDisposeReply"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NavGetDefaultDialogCreationOptions",
+    "demangled": "_NavGetDefaultDialogCreationOptions"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NewDragReceiveHandlerUPP",
+    "demangled": "_NewDragReceiveHandlerUPP"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NewDragTrackingHandlerUPP",
+    "demangled": "_NewDragTrackingHandlerUPP"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NewEventLoopTimerUPP",
+    "demangled": "_NewEventLoopTimerUPP"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NewGWorld",
+    "demangled": "_NewGWorld"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NewMenu",
+    "demangled": "_NewMenu"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NewNavEventUPP",
+    "demangled": "_NewNavEventUPP"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_NewNavObjectFilterUPP",
+    "demangled": "_NewNavObjectFilterUPP"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_OSAtomicAdd32Barrier",
+    "demangled": "_OSAtomicAdd32Barrier"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_PopUpMenuSelect",
+    "demangled": "_PopUpMenuSelect"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_PtInRect",
+    "demangled": "_PtInRect"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_QDBeginCGContext",
+    "demangled": "_QDBeginCGContext"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_QDEndCGContext",
+    "demangled": "_QDEndCGContext"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_QDGlobalToLocalPoint",
+    "demangled": "_QDGlobalToLocalPoint"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_QDSwapPort",
+    "demangled": "_QDSwapPort"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_RGBBackColor",
+    "demangled": "_RGBBackColor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_RGBForeColor",
+    "demangled": "_RGBForeColor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_ReceiveNextEvent",
+    "demangled": "_ReceiveNextEvent"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_RegisterToolboxObjectClass",
+    "demangled": "_RegisterToolboxObjectClass"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_ReleaseEvent",
+    "demangled": "_ReleaseEvent"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_ReleaseResource",
+    "demangled": "_ReleaseResource"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_RemoveEventHandler",
+    "demangled": "_RemoveEventHandler"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_RemoveEventLoopTimer",
+    "demangled": "_RemoveEventLoopTimer"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_RemoveReceiveHandler",
+    "demangled": "_RemoveReceiveHandler"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_RemoveTrackingHandler",
+    "demangled": "_RemoveTrackingHandler"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_RunCurrentEventLoop",
+    "demangled": "_RunCurrentEventLoop"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_RunStandardAlert",
+    "demangled": "_RunStandardAlert"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SendEventToEventTarget",
+    "demangled": "_SendEventToEventTarget"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetAutomaticControlDragTrackingEnabledForWindow",
+    "demangled": "_SetAutomaticControlDragTrackingEnabledForWindow"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetComponentInstanceStorage",
+    "demangled": "_SetComponentInstanceStorage"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetControl32BitValue",
+    "demangled": "_SetControl32BitValue"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetControlData",
+    "demangled": "_SetControlData"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetControlDragTrackingEnabled",
+    "demangled": "_SetControlDragTrackingEnabled"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetEventLoopTimerNextFireTime",
+    "demangled": "_SetEventLoopTimerNextFireTime"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetEventParameter",
+    "demangled": "_SetEventParameter"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetGWorld",
+    "demangled": "_SetGWorld"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetItemCmd",
+    "demangled": "_SetItemCmd"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetMenuItemHierarchicalID",
+    "demangled": "_SetMenuItemHierarchicalID"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetMenuItemKeyGlyph",
+    "demangled": "_SetMenuItemKeyGlyph"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetMenuItemModifiers",
+    "demangled": "_SetMenuItemModifiers"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetThemeCursor",
+    "demangled": "_SetThemeCursor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SetUserFocusWindow",
+    "demangled": "_SetUserFocusWindow"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SizeControl",
+    "demangled": "_SizeControl"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SizeWindow",
+    "demangled": "_SizeWindow"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_SyncCGContextOriginWithPort",
+    "demangled": "_SyncCGContextOriginWithPort"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNAdjustCursor",
+    "demangled": "_TXNAdjustCursor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNClick",
+    "demangled": "_TXNClick"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNCopy",
+    "demangled": "_TXNCopy"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNDeleteObject",
+    "demangled": "_TXNDeleteObject"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNDraw",
+    "demangled": "_TXNDraw"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNFocus",
+    "demangled": "_TXNFocus"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNGetDataEncoded",
+    "demangled": "_TXNGetDataEncoded"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNGetSelection",
+    "demangled": "_TXNGetSelection"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNGetViewRect",
+    "demangled": "_TXNGetViewRect"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNInitTextension",
+    "demangled": "_TXNInitTextension"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNIsScrapPastable",
+    "demangled": "_TXNIsScrapPastable"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNIsSelectionEmpty",
+    "demangled": "_TXNIsSelectionEmpty"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNKeyDown",
+    "demangled": "_TXNKeyDown"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNNewObject",
+    "demangled": "_TXNNewObject"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNPaste",
+    "demangled": "_TXNPaste"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNSelectAll",
+    "demangled": "_TXNSelectAll"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNSetBackground",
+    "demangled": "_TXNSetBackground"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNSetData",
+    "demangled": "_TXNSetData"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNSetFrameBounds",
+    "demangled": "_TXNSetFrameBounds"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNSetTXNObjectControls",
+    "demangled": "_TXNSetTXNObjectControls"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TXNSetTypeAttributes",
+    "demangled": "_TXNSetTypeAttributes"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_TickCount",
+    "demangled": "_TickCount"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_UniqueID",
+    "demangled": "_UniqueID"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_UnlockPixels",
+    "demangled": "_UnlockPixels"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_UnregisterToolboxObjectClass",
+    "demangled": "_UnregisterToolboxObjectClass"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_UseResFile",
+    "demangled": "_UseResFile"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__Unwind_Resume",
+    "demangled": "__Unwind_Resume"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZSt17__throw_bad_allocv",
+    "demangled": "std::__throw_bad_alloc()"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base",
+    "demangled": "std::_Rb_tree_decrement(std::_Rb_tree_node_base*)"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base",
+    "demangled": "std::_Rb_tree_increment(std::_Rb_tree_node_base*)"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZSt20__throw_length_errorPKc",
+    "demangled": "std::__throw_length_error(char const*)"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_",
+    "demangled": "std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZTISt9bad_alloc",
+    "demangled": "typeinfo for std::bad_alloc"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZTIl",
+    "demangled": "typeinfo for long"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZTIs",
+    "demangled": "typeinfo for short"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZTVN10__cxxabiv117__class_type_infoE",
+    "demangled": "vtable for __cxxabiv1::__class_type_info"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZTVN10__cxxabiv120__si_class_type_infoE",
+    "demangled": "vtable for __cxxabiv1::__si_class_type_info"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZTVN10__cxxabiv121__vmi_class_type_infoE",
+    "demangled": "vtable for __cxxabiv1::__vmi_class_type_info"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZdaPv",
+    "demangled": "operator delete[](void*)"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__ZdlPv",
+    "demangled": "operator delete(void*)"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__Znam",
+    "demangled": "operator new[](unsigned long)"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__Znwm",
+    "demangled": "operator new(unsigned long)"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___CFConstantStringClassReference",
+    "demangled": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___cxa_allocate_exception",
+    "demangled": "___cxa_allocate_exception"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___cxa_begin_catch",
+    "demangled": "___cxa_begin_catch"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___cxa_end_catch",
+    "demangled": "___cxa_end_catch"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___cxa_pure_virtual",
+    "demangled": "___cxa_pure_virtual"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___cxa_throw",
+    "demangled": "___cxa_throw"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___dynamic_cast",
+    "demangled": "___dynamic_cast"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___error",
+    "demangled": "___error"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___gxx_personality_v0",
+    "demangled": "___gxx_personality_v0"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___sF",
+    "demangled": "___sF"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "___toupper",
+    "demangled": "___toupper"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__dyld_get_image_header",
+    "demangled": "__dyld_get_image_header"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__dyld_get_image_name",
+    "demangled": "__dyld_get_image_name"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__dyld_image_count",
+    "demangled": "__dyld_image_count"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__keymgr_get_and_lock_processwide_ptr",
+    "demangled": "__keymgr_get_and_lock_processwide_ptr"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__keymgr_get_and_lock_processwide_ptr_2",
+    "demangled": "__keymgr_get_and_lock_processwide_ptr_2"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "__keymgr_set_and_unlock_processwide_ptr",
+    "demangled": "__keymgr_set_and_unlock_processwide_ptr"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_atan2",
+    "demangled": "_atan2"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_atol",
+    "demangled": "_atol"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_calloc",
+    "demangled": "_calloc"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_closedir",
+    "demangled": "_closedir"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_cos",
+    "demangled": "_cos"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_dlopen",
+    "demangled": "_dlopen"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_dlsym",
+    "demangled": "_dlsym"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_exp",
+    "demangled": "_exp"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_expf",
+    "demangled": "_expf"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_fclose",
+    "demangled": "_fclose"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_feof",
+    "demangled": "_feof"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_fgets",
+    "demangled": "_fgets"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_floor",
+    "demangled": "_floor"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_fmod",
+    "demangled": "_fmod"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_fopen",
+    "demangled": "_fopen"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_fprintf",
+    "demangled": "_fprintf"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_fread",
+    "demangled": "_fread"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_free",
+    "demangled": "_free"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_fseek",
+    "demangled": "_fseek"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_ftell",
+    "demangled": "_ftell"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_fwrite",
+    "demangled": "_fwrite"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_kCFAllocatorDefault",
+    "demangled": "_kCFAllocatorDefault"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_kCFBundleVersionKey",
+    "demangled": "_kCFBundleVersionKey"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_kCFPreferencesAnyHost",
+    "demangled": "_kCFPreferencesAnyHost"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_kCFPreferencesCurrentUser",
+    "demangled": "_kCFPreferencesCurrentUser"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_kCFRunLoopDefaultMode",
+    "demangled": "_kCFRunLoopDefaultMode"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_kCFTypeArrayCallBacks",
+    "demangled": "_kCFTypeArrayCallBacks"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_kCFTypeDictionaryKeyCallBacks",
+    "demangled": "_kCFTypeDictionaryKeyCallBacks"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_kCFTypeDictionaryValueCallBacks",
+    "demangled": "_kCFTypeDictionaryValueCallBacks"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_kHIViewWindowContentID",
+    "demangled": "_kHIViewWindowContentID"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_log",
+    "demangled": "_log"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_log10",
+    "demangled": "_log10"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_mach_absolute_time",
+    "demangled": "_mach_absolute_time"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_mach_timebase_info",
+    "demangled": "_mach_timebase_info"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_malloc",
+    "demangled": "_malloc"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_memcpy",
+    "demangled": "_memcpy"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_memmove",
+    "demangled": "_memmove"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_memset",
+    "demangled": "_memset"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_mkdir",
+    "demangled": "_mkdir"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_opendir",
+    "demangled": "_opendir"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_pow",
+    "demangled": "_pow"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_pthread_mutex_destroy",
+    "demangled": "_pthread_mutex_destroy"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_pthread_mutex_init",
+    "demangled": "_pthread_mutex_init"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_pthread_mutex_lock",
+    "demangled": "_pthread_mutex_lock"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_pthread_mutex_trylock",
+    "demangled": "_pthread_mutex_trylock"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_pthread_mutex_unlock",
+    "demangled": "_pthread_mutex_unlock"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_pthread_mutexattr_destroy",
+    "demangled": "_pthread_mutexattr_destroy"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_pthread_mutexattr_init",
+    "demangled": "_pthread_mutexattr_init"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_pthread_mutexattr_settype",
+    "demangled": "_pthread_mutexattr_settype"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_pthread_self",
+    "demangled": "_pthread_self"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_rand",
+    "demangled": "_rand"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_random",
+    "demangled": "_random"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_readdir",
+    "demangled": "_readdir"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_realloc",
+    "demangled": "_realloc"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_sin",
+    "demangled": "_sin"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_sprintf",
+    "demangled": "_sprintf"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_srand",
+    "demangled": "_srand"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_sscanf",
+    "demangled": "_sscanf"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_stat",
+    "demangled": "_stat"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_strcasecmp",
+    "demangled": "_strcasecmp"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_strchr",
+    "demangled": "_strchr"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_strcmp",
+    "demangled": "_strcmp"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_strcpy",
+    "demangled": "_strcpy"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_strncat",
+    "demangled": "_strncat"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_strncmp",
+    "demangled": "_strncmp"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_strncpy",
+    "demangled": "_strncpy"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_strstr",
+    "demangled": "_strstr"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_strtod",
+    "demangled": "_strtod"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_time",
+    "demangled": "_time"
+  },
+  {
+    "address": "0x0",
+    "type": 1,
+    "section": 0,
+    "name": "_usleep",
+    "demangled": "_usleep"
+  }
+]

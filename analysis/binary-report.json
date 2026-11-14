@@ -1,0 +1,111 @@
+{
+  "source_url": "https://github.com/stefanwul-hub/SophistryARM",
+  "source_commit": "d0b62115360f1f3b993ae2c7c404c2ba74bdb2ab",
+  "archive_sha256": "c6fdd914f7388210a552706c3f0d2a845134fca13aa39fe85e31c415cc5ad5f1",
+  "universal_sha256": "905569f5415aad5f713039e4064c620a77952583e0f5c42d67d76aced700b765",
+  "i386_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "architectures": [
+    {
+      "cpu_type": 18,
+      "subtype": 0,
+      "architecture": "ppc",
+      "offset": 4096,
+      "size": 1146256
+    },
+    {
+      "cpu_type": 7,
+      "subtype": 3,
+      "architecture": "i386",
+      "offset": 1150976,
+      "size": 1138372
+    }
+  ],
+  "info": {
+    "CFBundleDevelopmentRegion": "English",
+    "CFBundleExecutable": "Sophistry",
+    "CFBundleGetInfoString": "Sophistry version 3.0.8 © 2005-2007 LinPlug Virtual Instruments GmbH.",
+    "CFBundleIdentifier": "com.linplug.au.Sophistry",
+    "CFBundleInfoDictionaryVersion": "6.0",
+    "CFBundleName": "Sophistry",
+    "CFBundlePackageType": "BNDL",
+    "CFBundleShortVersionString": "3.0.8",
+    "CFBundleSignature": "????",
+    "CFBundleVersion": "62"
+  },
+  "resources": [
+    {
+      "type": "STR ",
+      "id": 1000,
+      "size": 19,
+      "hex": "124c696e506c75673a20536f70686973747279",
+      "text": "LinPlug: Sophistry"
+    },
+    {
+      "type": "STR ",
+      "id": 1001,
+      "size": 37,
+      "hex": "244c696e506c756720536f706869737472792053616d706c652053796e74686573697a6572",
+      "text": "LinPlug Sophistry Sample Synthesizer"
+    },
+    {
+      "type": "STR ",
+      "id": 2000,
+      "size": 26,
+      "hex": "194c696e506c75673a20536f7068697374727920456469746f72",
+      "text": "LinPlug: Sophistry Editor"
+    },
+    {
+      "type": "STR ",
+      "id": 2001,
+      "size": 38,
+      "hex": "254c696e506c756720536f706869737472792053796e74682056697375616c20456469746f72",
+      "text": "LinPlug Sophistry Synth Visual Editor"
+    },
+    {
+      "type": "dlle",
+      "id": 1000,
+      "size": 14,
+      "hex": "415543726f6e6f58456e74727900"
+    },
+    {
+      "type": "dlle",
+      "id": 2000,
+      "size": 14,
+      "hex": "4c50415556696577456e74727900"
+    },
+    {
+      "type": "thng",
+      "id": 1000,
+      "size": 82,
+      "hex": "61756d75536f70334c696e5000000000000000000000000000005354522003e85354522003e9000000000000000300080000000900000000000210000000646c6c6503e8000510000000646c6c6503e80006",
+      "name": "LinPlug: Sophistry",
+      "component": {
+        "type": "aumu",
+        "subtype": "Sop3",
+        "manufacturer": "LinP"
+      },
+      "flags": 0,
+      "flags_mask": 0,
+      "version": "0x30008"
+    },
+    {
+      "type": "thng",
+      "id": 2000,
+      "size": 82,
+      "hex": "61757677536f70334c696e5000000000000000000000000000005354522007d05354522007d1000000000000000300080000000900000000000210000000646c6c6507d0000510000000646c6c6507d00006",
+      "name": "LinPlug: Sophistry Editor",
+      "component": {
+        "type": "auvw",
+        "subtype": "Sop3",
+        "manufacturer": "LinP"
+      },
+      "flags": 0,
+      "flags_mask": 0,
+      "version": "0x30008"
+    }
+  ],
+  "image_count": 106,
+  "symbol_count": 425,
+  "defined_symbol_count": 2,
+  "rtti_vtable_classes": 161
+}

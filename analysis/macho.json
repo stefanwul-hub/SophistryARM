@@ -1,0 +1,2756 @@
+{
+  "segments": [
+    {
+      "name": "__TEXT",
+      "vmaddr": 0,
+      "vmsize": 925696,
+      "fileoff": 0,
+      "filesize": 925696
+    },
+    {
+      "name": "__DATA",
+      "vmaddr": 925696,
+      "vmsize": 135168,
+      "fileoff": 925696,
+      "filesize": 106496
+    },
+    {
+      "name": "__IMPORT",
+      "vmaddr": 1060864,
+      "vmsize": 4096,
+      "fileoff": 1032192,
+      "filesize": 4096
+    },
+    {
+      "name": "__LINKEDIT",
+      "vmaddr": 1064960,
+      "vmsize": 102400,
+      "fileoff": 1036288,
+      "filesize": 102084
+    }
+  ],
+  "sections": [
+    {
+      "name": "__text",
+      "segment": "__TEXT",
+      "address": 3596,
+      "size": 752446,
+      "offset": 3596
+    },
+    {
+      "name": "__cstring",
+      "segment": "__TEXT",
+      "address": 756044,
+      "size": 32544,
+      "offset": 756044
+    },
+    {
+      "name": "__textcoal_nt",
+      "segment": "__TEXT",
+      "address": 788588,
+      "size": 29360,
+      "offset": 788588
+    },
+    {
+      "name": "__const_coal",
+      "segment": "__TEXT",
+      "address": 817952,
+      "size": 2791,
+      "offset": 817952
+    },
+    {
+      "name": "__literal8",
+      "segment": "__TEXT",
+      "address": 820744,
+      "size": 1048,
+      "offset": 820744
+    },
+    {
+      "name": "__literal4",
+      "segment": "__TEXT",
+      "address": 821792,
+      "size": 908,
+      "offset": 821792
+    },
+    {
+      "name": "__StaticInit",
+      "segment": "__TEXT",
+      "address": 822700,
+      "size": 10891,
+      "offset": 822700
+    },
+    {
+      "name": "__eh_frame",
+      "segment": "__TEXT",
+      "address": 833592,
+      "size": 89864,
+      "offset": 833592
+    },
+    {
+      "name": "__constructor",
+      "segment": "__TEXT",
+      "address": 923456,
+      "size": 0,
+      "offset": 923456
+    },
+    {
+      "name": "__destructor",
+      "segment": "__TEXT",
+      "address": 923456,
+      "size": 0,
+      "offset": 923456
+    },
+    {
+      "name": "__const",
+      "segment": "__TEXT",
+      "address": 923456,
+      "size": 2192,
+      "offset": 923456
+    },
+    {
+      "name": "__data",
+      "segment": "__DATA",
+      "address": 925696,
+      "size": 580,
+      "offset": 925696
+    },
+    {
+      "name": "__dyld",
+      "segment": "__DATA",
+      "address": 926276,
+      "size": 0,
+      "offset": 926276
+    },
+    {
+      "name": "__const_coal",
+      "segment": "__DATA",
+      "address": 926304,
+      "size": 9160,
+      "offset": 926304
+    },
+    {
+      "name": "__const",
+      "segment": "__DATA",
+      "address": 935488,
+      "size": 67224,
+      "offset": 935488
+    },
+    {
+      "name": "__mod_init_func",
+      "segment": "__DATA",
+      "address": 1002712,
+      "size": 484,
+      "offset": 1002712
+    },
+    {
+      "name": "__gcc_except_tab",
+      "segment": "__DATA",
+      "address": 1003196,
+      "size": 26329,
+      "offset": 1003196
+    },
+    {
+      "name": "__cfstring",
+      "segment": "__DATA",
+      "address": 1029528,
+      "size": 848,
+      "offset": 1029528
+    },
+    {
+      "name": "__datacoal_nt",
+      "segment": "__DATA",
+      "address": 1030376,
+      "size": 8,
+      "offset": 1030376
+    },
+    {
+      "name": "__bss",
+      "segment": "__DATA",
+      "address": 1030400,
+      "size": 7568,
+      "offset": 0
+    },
+    {
+      "name": "__common",
+      "segment": "__DATA",
+      "address": 1037984,
+      "size": 20900,
+      "offset": 0
+    },
+    {
+      "name": "__jump_table",
+      "segment": "__IMPORT",
+      "address": 1060864,
+      "size": 2020,
+      "offset": 1032192
+    },
+    {
+      "name": "__pointers",
+      "segment": "__IMPORT",
+      "address": 1062884,
+      "size": 248,
+      "offset": 1034212
+    }
+  ],
+  "dylibs": [
+    "/System/Library/Frameworks/Carbon.framework/Versions/A/Carbon",
+    "/System/Library/Frameworks/AudioUnit.framework/Versions/A/AudioUnit",
+    "/System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox",
+    "/System/Library/Frameworks/vecLib.framework/Versions/A/vecLib",
+    "/usr/lib/libstdc++.6.dylib",
+    "/usr/lib/libgcc_s.1.dylib",
+    "/usr/lib/libSystem.B.dylib"
+  ],
+  "symbols": [
+    {
+      "address": 539894,
+      "type": 15,
+      "section": 1,
+      "name": "_AUCronoXEntry"
+    },
+    {
+      "address": 21048,
+      "type": 15,
+      "section": 1,
+      "name": "_LPAUViewEntry"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AECreateDesc"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AEDisposeDesc"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AEGetDescData"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AEGetNthPtr"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_ATSUFONDtoFontID"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AUEventListenerAddEventType"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AUEventListenerNotify"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AUEventListenerRemoveEventType"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AUListenerCreate"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AUListenerDispose"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AUParameterListenerNotify"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AddEventTypesToHandler"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AppendMenuItemTextWithCFString"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AudioConverterConvertBuffer"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AudioConverterDispose"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AudioConverterFillComplexBuffer"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AudioConverterNew"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AudioUnitAddPropertyListener"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AudioUnitGetProperty"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AudioUnitRemovePropertyListener"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AudioUnitRender"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_AudioUnitSetProperty"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_BackColor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFArrayAppendValue"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFArrayCreate"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFArrayCreateCopy"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFArrayCreateMutable"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFArrayGetCount"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFArrayGetValueAtIndex"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFBundleCopyBundleURL"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFBundleCopyResourceURL"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFBundleCreate"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFBundleGetBundleWithIdentifier"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFBundleGetFunctionPointerForName"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFBundleGetIdentifier"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFBundleGetMainBundle"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFBundleGetValueForInfoDictionaryKey"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDataAppendBytes"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDataCreate"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDataCreateMutable"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDataGetBytePtr"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDataGetLength"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDataGetTypeID"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryAddValue"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryContainsKey"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryCreateMutable"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryCreateMutableCopy"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryGetCount"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryGetKeysAndValues"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryGetTypeID"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryGetValue"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryGetValueIfPresent"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryRemoveAllValues"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionaryRemoveValue"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFDictionarySetValue"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFGetTypeID"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFNumberCreate"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFNumberGetValue"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFPreferencesCopyValue"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFPreferencesSetValue"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFPreferencesSynchronize"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFRelease"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFRetain"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFRunLoopGetCurrent"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFStringCompare"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFStringCompareWithOptions"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFStringCreateWithCString"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFStringCreateWithFormat"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFStringCreateWithSubstring"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFStringFind"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFStringGetCString"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFStringGetCharacters"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFStringGetLength"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFURLCreateCopyAppendingPathComponent"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFURLCreateCopyAppendingPathExtension"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFURLCreateCopyDeletingLastPathComponent"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFURLCreateFromFSRef"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFURLCreateFromFileSystemRepresentation"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFURLCreateWithString"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFURLGetFSRef"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFURLGetFileSystemRepresentation"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CFURLGetString"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGBitmapContextCreate"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGBitmapContextCreateImage"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGBitmapContextGetAlphaInfo"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGBitmapContextGetBitsPerPixel"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGBitmapContextGetBytesPerRow"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGBitmapContextGetData"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGBitmapContextGetHeight"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGBitmapContextGetWidth"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGColorSpaceCreateDeviceRGB"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGColorSpaceCreateWithPlatformColorSpace"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGColorSpaceRelease"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextAddLineToPoint"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextBeginPath"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextClearRect"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextClipToRect"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextClosePath"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextDrawImage"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextDrawPath"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextFillRect"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextGetTextPosition"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextMoveToPoint"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextRelease"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextRestoreGState"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSaveGState"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextScaleCTM"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSelectFont"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetAlpha"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetFillColorSpace"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetLineDash"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetLineWidth"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetRGBFillColor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetRGBStrokeColor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetShouldAntialias"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetStrokeColorSpace"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetTextDrawingMode"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetTextMatrix"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSetTextPosition"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextShowText"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextSynchronize"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGContextTranslateCTM"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGDataProviderCreate"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGDataProviderCreateWithData"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGDataProviderCreateWithURL"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGDataProviderRelease"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGImageCreate"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGImageCreateWithPNGDataProvider"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGImageGetHeight"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGImageGetWidth"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGImageRelease"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGImageRetain"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CGRectIntersection"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CMCloseProfile"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CMOpenProfile"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CalcMenuSize"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CallNextEventHandler"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CheckMenuItem"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_ClearCurrentScrap"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_ClearKeyboardFocus"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CloseComponent"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CompareAndSwap"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_ConvertEventRefToEventRecord"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CopyBits"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CopyCStringToPascal"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CountDragItems"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CreateCustomControl"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CreateEditUnicodeTextControl"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CreateStandardAlert"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CreateTextEncoding"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CreateUserPaneControl"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_CurResFile"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DecrementAtomic"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DeleteMenu"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DisposeControl"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DisposeDragReceiveHandlerUPP"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DisposeDragTrackingHandlerUPP"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DisposeEventLoopTimerUPP"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DisposeGWorld"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DisposeHandle"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DisposeMenu"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DisposeNavEventUPP"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DisposeNavObjectFilterUPP"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_DrawPicture"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_EmbedControl"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_FSCreateFileUnicode"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_FSFindFolder"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_FSGetCatalogInfo"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_FSMakeFSRefUnicode"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_FSPathMakeRef"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_FSRefMakePath"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_ForeColor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_Gestalt"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetBackColor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetComponentInfo"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetComponentInstanceStorage"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetControl32BitValue"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetControlBounds"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetControlData"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetControlEventTarget"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetCurrentButtonState"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetCurrentKeyModifiers"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetDblTime"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetEventClass"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetEventDispatcherTarget"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetEventKind"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetEventParameter"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetFNum"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetForeColor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetGWorld"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetGWorldPixMap"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetGrayRgn"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetHandleSize"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetMainEventLoop"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetMenuHeight"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetMouse"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetPictInfo"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetPixBaseAddr"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetPixBounds"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetPixDepth"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetPixRowBytes"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetPortBitMapForCopyBits"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetPortBounds"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetRegionBounds"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetResource"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetWindowAttributes"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetWindowBounds"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetWindowEventTarget"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_GetWindowPort"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewAddSubview"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewAdvanceFocus"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewConvertPoint"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewConvertRect"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewDrawCGImage"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewFindByID"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewGetBounds"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewGetFrame"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewGetRoot"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewGetSuperview"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewMoveBy"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewRemoveFromSuperview"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewScrollRect"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewSetBoundsOrigin"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewSetFirstSubViewFocus"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewSetFrame"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewSetNeedsDisplay"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HIViewSetVisible"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HLock"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_HUnlock"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_InsertMenu"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_InsertMenuItemTextWithCFString"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_InstallEventHandler"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_InstallEventLoopTimer"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_InstallReceiveHandler"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_InstallTrackingHandler"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_InvalWindowRect"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_IsWindowCollapsed"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_KLGetCurrentKeyboardLayout"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_KLGetKeyboardLayoutProperty"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_KeyTranslate"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_LSCopyItemInfoForRef"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NavCompleteSave"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NavCreateChooseFileDialog"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NavCreatePutFileDialog"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NavCustomControl"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NavDialogDispose"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NavDialogGetReply"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NavDialogRun"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NavDisposeReply"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NavGetDefaultDialogCreationOptions"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NewDragReceiveHandlerUPP"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NewDragTrackingHandlerUPP"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NewEventLoopTimerUPP"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NewGWorld"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NewMenu"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NewNavEventUPP"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_NewNavObjectFilterUPP"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_OSAtomicAdd32Barrier"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_PopUpMenuSelect"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_PtInRect"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_QDBeginCGContext"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_QDEndCGContext"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_QDGlobalToLocalPoint"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_QDSwapPort"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_RGBBackColor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_RGBForeColor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_ReceiveNextEvent"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_RegisterToolboxObjectClass"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_ReleaseEvent"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_ReleaseResource"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_RemoveEventHandler"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_RemoveEventLoopTimer"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_RemoveReceiveHandler"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_RemoveTrackingHandler"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_RunCurrentEventLoop"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_RunStandardAlert"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SendEventToEventTarget"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetAutomaticControlDragTrackingEnabledForWindow"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetComponentInstanceStorage"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetControl32BitValue"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetControlData"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetControlDragTrackingEnabled"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetEventLoopTimerNextFireTime"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetEventParameter"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetGWorld"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetItemCmd"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetMenuItemHierarchicalID"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetMenuItemKeyGlyph"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetMenuItemModifiers"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetThemeCursor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SetUserFocusWindow"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SizeControl"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SizeWindow"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_SyncCGContextOriginWithPort"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNAdjustCursor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNClick"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNCopy"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNDeleteObject"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNDraw"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNFocus"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNGetDataEncoded"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNGetSelection"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNGetViewRect"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNInitTextension"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNIsScrapPastable"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNIsSelectionEmpty"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNKeyDown"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNNewObject"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNPaste"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNSelectAll"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNSetBackground"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNSetData"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNSetFrameBounds"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNSetTXNObjectControls"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TXNSetTypeAttributes"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_TickCount"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_UniqueID"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_UnlockPixels"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_UnregisterToolboxObjectClass"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_UseResFile"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__Unwind_Resume"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZSt17__throw_bad_allocv"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZSt20__throw_length_errorPKc"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZTISt9bad_alloc"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZTIl"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZTIs"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZTVN10__cxxabiv117__class_type_infoE"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZTVN10__cxxabiv120__si_class_type_infoE"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZTVN10__cxxabiv121__vmi_class_type_infoE"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZdaPv"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__ZdlPv"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__Znam"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__Znwm"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___CFConstantStringClassReference"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___cxa_allocate_exception"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___cxa_begin_catch"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___cxa_end_catch"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___cxa_pure_virtual"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___cxa_throw"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___dynamic_cast"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___error"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___gxx_personality_v0"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___sF"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "___toupper"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__dyld_get_image_header"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__dyld_get_image_name"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__dyld_image_count"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__keymgr_get_and_lock_processwide_ptr"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__keymgr_get_and_lock_processwide_ptr_2"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "__keymgr_set_and_unlock_processwide_ptr"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_atan2"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_atol"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_calloc"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_closedir"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_cos"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_dlopen"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_dlsym"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_exp"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_expf"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_fclose"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_feof"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_fgets"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_floor"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_fmod"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_fopen"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_fprintf"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_fread"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_free"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_fseek"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_ftell"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_fwrite"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_kCFAllocatorDefault"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_kCFBundleVersionKey"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_kCFPreferencesAnyHost"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_kCFPreferencesCurrentUser"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_kCFRunLoopDefaultMode"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_kCFTypeArrayCallBacks"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_kCFTypeDictionaryKeyCallBacks"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_kCFTypeDictionaryValueCallBacks"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_kHIViewWindowContentID"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_log"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_log10"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_mach_absolute_time"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_mach_timebase_info"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_malloc"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_memcpy"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_memmove"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_memset"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_mkdir"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_opendir"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_pow"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_pthread_mutex_destroy"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_pthread_mutex_init"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_pthread_mutex_lock"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_pthread_mutex_trylock"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_pthread_mutex_unlock"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_pthread_mutexattr_destroy"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_pthread_mutexattr_init"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_pthread_mutexattr_settype"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_pthread_self"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_rand"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_random"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_readdir"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_realloc"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_sin"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_sprintf"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_srand"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_sscanf"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_stat"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_strcasecmp"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_strchr"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_strcmp"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_strcpy"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_strncat"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_strncmp"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_strncpy"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_strstr"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_strtod"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_time"
+    },
+    {
+      "address": 0,
+      "type": 1,
+      "section": 0,
+      "name": "_usleep"
+    }
+  ]
+}

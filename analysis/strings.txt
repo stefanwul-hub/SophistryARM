@@ -1,0 +1,4543 @@
+__TEXT
+__text
+__TEXT
+__cstring
+__TEXT
+__textcoal_nt
+__TEXT
+__const_coal
+__TEXT
+__literal8
+__TEXT
+__literal4
+__TEXT
+__StaticInit
+__TEXT
+__eh_frame
+__TEXT
+__constructor
+__TEXT
+__destructor
+__TEXT
+__const
+__TEXT
+__DATA
+__data
+__DATA
+__dyld
+__DATA
+__const_coal
+__DATA
+__const
+__DATA
+__mod_init_func
+__DATA
+__gcc_except_tab__DATA
+__cfstring
+__DATA
+__datacoal_nt
+__DATA
+__bss
+__DATA
+__common
+__DATA
+__IMPORT
+__jump_table
+__IMPORT
+__pointers
+__IMPORT
+__LINKEDIT
+/System/Library/Frameworks/Carbon.framework/Versions/A/Carbon
+/System/Library/Frameworks/AudioUnit.framework/Versions/A/AudioUnit
+/System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox
+/System/Library/Frameworks/vecLib.framework/Versions/A/vecLib
+/usr/lib/libstdc++.6.dylib
+/usr/lib/libgcc_s.1.dylib
+/usr/lib/libSystem.B.dylib
+[^_]
+[^_]
+[^_]
+@^_]
+HT[]
+[^_]
+[^_]
+ ^_]
+ ^_]
+ ^_]
+[^_]
+z6u4
+HT^_]
+L[^_]
+L[^_]
+[^_]
+[^_]
+Fxff
+<[^_]
+Fxff
+<[^_]
+[^_]
+[^_]
+[^_]
+ ^_]
+ ^_]
+,[^_]
+ [^]
+<[^_]
+tLv.=
+tU=4q&
+[^_]
+[^_]
+wvua
+3poS
+PniL]
+0^_]
+0^_]
+0^_]
+|[^_]
+LinP
+,[^_]
+,[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+Logif
+\[^_]
+Gara
+geBaf
+Logif
+\[^_]
+ ^_]
+ ^_]
+ ^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+l[^_]
+GT+GP
+[^_]
+GT+GP
+[^_]
+G<;G@
+Audi
+oUnif
+<[^_]
+,[^_]
+,[^_]
+ltnct%
+dniw
+p^_]
+trdq
+tcrp
+trdq
+tcrc
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+L[^_]
+ltnc
+<[^_]
+s"z f
+L[^_]
+L[^_]
+L[^_]
+[^_]
+,[^_]
+,[^_]
+<[^_]
+,[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+8 t=
+ ^_]
+ ^_]
+[^_]
+[^_]
+0^_]
+0^_]
+ ^_]
+ ^_]
+0^_]
+0^_]
+<[^_]
+ [^]
+ [^]
+ [^]
+ ^_]
+,[^_]
+,[^_]
+L[^_]
+<[^_]
+<[^_]
+|[^_]
+<[^_]
+L[^_]
+gfff
+L[^_]
+<[^_]
+[^_]
+|[^_]
+ [^]
+[^_]
+[^_]
+0^_]
+0^_]
+[^_]
+<[^_]
+<[^_]
+<[^_]
+<[^_]
+0^_]
+<[^_]
+|	;B
+<[^_]
+,[^_]
+,[^_]
+,[^_]
+\[^_]
+\[^_]
+[^_]
+[^_]
+[^_]
+@^_]
+[^_]
+0^_]
+0^_]
+|[^_]
+gfff
+<[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+ ^_]
+ ^_]
+pusa
+[^_]
+[^_]
+tF:Q
+[^_]
+ ^_]
+ ^_]
+t1:Q
+<[^_]
+<[^_]
+@^_]
+@^_]
+ ^_]
+[^_]
+[^_]
+[^_]
+[^_]
+- - f
+[^_]
+0[^]
+0[^]
+sFzD
+P[^]
+P[^]
+ ^_]
+ ^_]
+`^_]
+`^_]
+,[^_]
+|[^_]
+[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+ ^_]
+ ^_]
+,[^_]
+,[^_]
+,[^_]
+[^_]
+0^_]
+0^_]
+P^_]
+P^_]
+ ^_]
+ ^_]
+ ^_]
+0^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+,[^_]
+L[^_]
+L[^_]
+[^_]
+[^_]
+[^_]
+\[^_]
+L[^_]
+[^_]
+l[^_]
+l[^_]
+L[^_]
+stzr
+[^_]
+<[^_]
+L[^_]
+L[^_]
+\[^_]
+`[^]
+F\;FDt<
+`[^]
+[^_]
+[^_]
+F\;FHt%
+F\;FDt	1
+<[^_]
+<[^_]
+<[^_]
+H\;HD
+gfff
+[^_]
+gfff
+[^_]
+gfff
+[^_]
+[^_]
+ZV8f
+@[^]
+B(9B\
+;BL|	
+B\;BL}
+sFzD
+@[^]
+Q\+QD
+,[^_]
+,[^_]
+0^_]
+zT+E
+0^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+Errof
+G\;GH
+[^_]
+GD9G\}
+GH9G\~
+W\;WH
+  < 
+C > f
+,[^_]
+,[^_]
+,[^_]
+GD;E
+GH9E
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+ ^_]
+@^_]
+@^_]
+<[^_]
+<[^_]
+<[^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+ [^]
+ ^_]
+ ^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+ [^]
+[^_]
+[^_]
+\[^_]
+L[^_]
+L[^_]
+L[^_]
+[^_]
+[^_]
+[^_]
+<[^_]
+[^_]
+<	w&
+<	w#
+[^_]
+<	w#
+(knN
+L[^_]
+L[^_]
+\[^_]
+\[^_]
+[^_]
+,[^_]
+\[^_]
+ ^_]
+ ^_]
+ ^_]
+0^_]
+0^_]
+0^_]
+ ^_]
+ ^_]
+LinP
+,0<	v
+ [^]
+ [^]
+[^_]
+ ^_]
+ ^_]
+\[^_]
+P^_]
+,[^_]
+,[^_]
+,[^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+uI;u
+ ^_]
+ ^_]
+uH;u
+ ^_]
+uC;u
+t%9E
+ ^_]
+ ^_]
+uD;u
+9U }
+<[^_]
+|	9U
+}G9U 
+0^_]
+0^_]
+0^_]
+0^_]
+ ^_]
+0^_]
+ ^_]
+@^_]
+ ^_]
+ ^_]
+GORP
+0^_]
+ ^_]
+[^_]
+[^_]
+ ^_]
+,[^_]
+,[^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+\[^_]
+\[^_]
+ ^_]
+0^_]
+0^_]
+ ^_]
+ ^_]
+@^_]
+L[^_]
+L[^_]
+[^_]
+ ^_]
+ ^_]
+ ^_]
+unkn
+rese
+rved
+ ^_]
+unin
+itia
+lizef
+ ^_]
+hiddf
+<[^_]
+<[^_]
+ ^_]
+ ^_]
+@^_]
+\[^_]
+ ^_]
+ ^_]
+<[^_]
+<[^_]
+ACtst
+eehWu
+[^_]
+1SCE
+1DIM
+GORPtN
+1GYSts
+0NUT
+0GYS
+[^_]
+[^_]
+[^_]
+0^_]
+@^_]
+<[^_]
+<[^_]
+0^_]
+@^_]
+0^_]
+0^_]
+p^_]
+L[^_]
+L[^_]
+L[^_]
+L[^_]
+\[^_]
+\[^_]
+@^_]
+@^_]
+@^_]
+@^_]
+[^_]
+[^_]
+[^_]
+l[^_]
+<[^_]
+<[^_]
+Unusf
+[^_]
+    
+[^_]
+,[^_]
+,[^_]
+l[^_]
+ ^_]
+ ^_]
+P^_]
+0^_]
+l[^_]
+0^_]
+0^_]
+[^_]
+[^_]
+[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+[^_]
+ ^_]
+ ^_]
+ ^_]
+[^_]
+[^_]
+[^_]
+CcnK
+FPCh
+[^_]
+<[^_]
+[^_]
+@^_]
+@^_]
+@^_]
+[^_]
+uG9}
+|[^_]
+|[^_]
+|[^_]
+|[^_]
+l[^_]
+ ^_]
+ ^_]
+[^_]
+\[^_]
+[^_]
+[^_]
+[^_]
+|[^_]
+|[^_]
+[^_]
+[^_]
+<YtO
+@^_]
+@^_]
+@^_]
+0^_]
+0^_]
+0^_]
+;B$t
+;B(t
+0^_]
+,[^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+@^_]
+<[^_]
+,[^_]
+,[^_]
+P^_]
+@^_]
+0^_]
+P^_]
+`^_]
+P^_]
+0^_]
+@^_]
+0^_]
+[^_]
+ ^_]
+0^_]
+0^_]
+<[^_]
+<[^_]
+<[^_]
+@^_]
+@^_]
+[^_]
+L[^_]
+0^_]
+0^_]
+[^_]
+|[^_]
+|[^_]
+P^_]
+,[^_]
+,[^_]
+<[^_]
+,[^_]
+,[^_]
+,[^_]
+SysGf
+,[^_]
+L[^_]
+L[^_]
+ ^_]
+ ^_]
+,[^_]
+,[^_]
+|[^_]
+[^_]
+[^_]
+FX;FTt
+,[^_]
+FX;FTt
+,[^_]
+BX;BTt
+ ^_]
+ ^_]
+:frsft
+[^_]
+[^_]
+FFIA
+CFIA
+EVAW
+TXET
+$frsf
+****
+frsf
+[^_]
+faulf
+ ^_]
+,[^_]
+,[^_]
+[^_]
+Layef
+ ^_]
+gfff
+[^_]
+[^_]
+[^_]
+<[^_]
+[^_]
+l[^_]
+l[^_]
+,[^_]
+,[^_]
+<[^_]
+<[^_]
+,[^_]
+,[^_]
+<[^_]
+<[^_]
+<	wY
+98~_
+0^_]
+0^_]
+[^_]
+tp9p
+@^_]
+0^_]
+r 9u
+0^_]
+l[^_]
+l[^_]
+0^_]
+[^_]
+[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+\[^_]
+\[^_]
+|[^_]
+|[^_]
+[^_]
+<[^_]
+ ^_]
+ ^_]
+L[^_]
+ [^]
+0[^]
+L[^_]
+,[^_]
+,[^_]
+t[^_]
+[^_]
+,[^_]
+P^_]
+ ^_]
+L[^_]
+L[^_]
+L[^_]
+l[^_]
+l[^_]
+ ^_]
+[^_]
+[^_]
+[^_]
+ ^_]
+[^_]
+0^_]
+0^_]
+0^_]
+0^_]
+[^_]
+[^_]
+ ^_]
+<[^_]
+ ^_]
+ ^_]
+ ^_]
+40MT
+<[^_]
+,[^_]
+,[^_]
+[^_]
+gfff
+\[^_]
+L[^_]
+L[^_]
+L[^_]
+l[^_]
+<[^_]
+<[^_]
+<[^_]
+<[^_]
+[^_]
+[^_]
+l[^_]
+l[^_]
+L[^_]
+L[^_]
+|[^_]
+[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+L[^_]
+L[^_]
+[^_]
+[^_]
+ ^_]
+ ^_]
+[^_]
+9Pxt
+20MT
+,[^_]
+[^_]
+[^_]
+[^_]
+L[^_]
+L[^_]
+,[^_]
+[^_]
+t"+}
+rF9E
+L[^_]
+L[^_]
+\[^_]
+\[^_]
+ [^]
+ [^]
+ [^]
+L[^_]
+sIzG
+L[^_]
+ [^]
+ [^]
+L[^_]
+L[^_]
+[^_]
+0[^]
+,[^_]
+,[^_]
+ ^_]
+ ^_]
+;P$~
+<[^_]
+;P$~
+l[^_]
+l[^_]
+0[^]
+L[^_]
+L[^_]
+<[^_]
+z.u,
+,[^_]
+sxzv
+;P$~0
+|[^_]
+\[^_]
+\[^_]
+\[^_]
+ ^_]
+|[^_]
+<[^_]
+l[^_]
+|[^_]
+|[^_]
+[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+ [^]
+ [^]
+\[^_]
+\[^_]
+<[^_]
+l[^_]
+l[^_]
+|[^_]
+|[^_]
+l[^_]
+l[^_]
+l[^_]
+l[^_]
+|[^_]
+|[^_]
+L[^_]
+L[^_]
+<[^_]
+suzs
+0[^]
+0[^]
+,[^_]
+\[^_]
+l[^_]
+l[^_]
+l[^_]
+\[^_]
+\[^_]
+\[^_]
+[^_]
+,[^_]
+ ^_]
+gfff
+L[^_]
+,[^_]
+,[^_]
+[^_]
+sJzHf
+<[^_]
+<[^_]
+,[^_]
+,[^_]
+,[^_]
+ ^_]
+ ^_]
+ ^_]
+@^_]
+@^_]
+0[^]
+0[^]
+0[^]
+[^_]
+gfff
+<[^_]
+<[^_]
+D$  
+Ah3poS
+[^_]
+[^_]
+[^_]
+L[^_]
+[^_]
+gfff
+gfff
+gfff
+D$ &
+D$(&
+D$ ;
+D$ &
+D$(&
+\[^_]
+@^_]
+0^_]
+0^_]
+P^_]
+D$(<
+D$ _
+@^_]
+l[^_]
+,[^_]
+[^_]
+[^_]
+p^_]
+0^_]
+`^_]
+0^_]
+0^_]
+0^_]
+D$(&
+D$$u
+L[^_]
+D$ H
+[^_]
+D$ H
+[^_]
+@^_]
+ ^_]
+D$  
+0^_]
+D$ :
+[^_]
+P^_]
+0[^]
+P^_]
+P^_]
+ ^_]
+ ^_]
+D$ @
+D$ @
+D$ @
+D$ @
+D$ @
+[^_]
+<[^_]
+,[^_]
+<[^_]
+<[^_]
+<[^_]
+<[^_]
+<[^_]
+,[^_]
+<[^_]
+<[^_]
+<[^_]
+<[^_]
+D$8=
+D$4:
+D$07
+D$,4
+D$(1
+D$$.
+D$ +
+D$8>
+D$4;
+D$08
+D$,5
+D$(2
+D$$/
+D$ ,
+p^_]
+ ^_]
+ ^_]
+[^_]
+[^_]
+[^_]
+[^_]
+ ^_]
+ ^_]
+333@
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+,[^_]
+,[^_]
+<[^_]
+<[^_]
+\[^_]
+\[^_]
+[^_]
+L[^_]
+,D0<
+BT+BL
+BX+BP
+L[^_]
+@^_]
+L[^_]
+L[^_]
+[^_]
+0^_]
+=igen
+=pbag
+=pmod
+=ibag
+=imod
+`^_]
+=domp
+=gabp
+=negp
+=rdhp
+gfff
+=shdr
+=rdhs
+=inst
+=negi
+=domi
+=tsni
+=pgen
+=gabi
+=phdr
+gfff
+`=OFNI
+=INFO
+=pdta
+=atdp
+=atdst
+=sdta
+=smpltl=lpmste
+\[^_]
+,[^_]
+[^_]
+[^_]
+[^_]
+L[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+\[^_]
+\[^_]
+ ^_]
+ ^_]
+L[^_]
+@[^]
+ ^_]
+\[^_]
+L[^_]
+\[^_]
+L[^_]
+\[^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+\[^_]
+\[^_]
+,[^_]
+,[^_]
+P[^]
+P[^]
+<[^_]
+<[^_]
+,[^_]
+,[^_]
+\[^_]
+[^_]
+[^_]
+L[^_]
+L[^_]
+[^_]
+[^_]
+l[^_]
+l[^_]
+[^_]
+[^_]
+[^_]
+L[^_]
+@^_]
+ ^_]
+ ^_]
+@^_]
+L[^_]
+,[^_]
+,[^_]
+,[^_]
+L[^_]
+L[^_]
+ ^_]
+ ^_]
+L[^_]
+L[^_]
+L[^_]
+L[^_]
+L[^_]
+L[^_]
+ [^]
+L[^_]
+L[^_]
+ [^]
+,[^_]
+[^_]
+[^_]
+L[^_]
+L[^_]
+0[^]
+s/z-
+|[^_]
+|[^_]
+ ^_]
+ ^_]
+<[^_]
+L[^_]
+,[^_]
+l[^_]
+l[^_]
+|[^_]
+l[^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+\[^_]
+\[^_]
+|[^_]
+|[^_]
+,[^_]
+L[^_]
+sYzWf
+L[^_]
+L[^_]
+L[^_]
+L[^_]
+L[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+<[^_]
+[^_]
+<[^_]
+L[^_]
+[^_]
+[^_]
+L[^_]
+L[^_]
+P^_]
+\[^_]
+L[^_]
+\[^_]
+P^_]
+\[^_]
+\[^_]
+,[^_]
+L[^_]
+L[^_]
+,[^_]
+,[^_]
+,[^_]
+[^_]
+`^_]
+`^_]
+,[^_]
+L[^_]
+L[^_]
+L[^_]
+L[^_]
+\[^_]
+s}z{
+L[^_]
+,[^_]
+urzp
+[^_]
+@^_]
+0^_]
+0^_]
+0^_]
+[^_]
+[^_]
+[^_]
+[^_]
+l[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+sKzI
+l[^_]
+L[^_]
+L[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+L[^_]
+L[^_]
+0^_]
+,[^_]
+sOzM
+sTzRf
+|[^_]
+sGzE
+sNzL
+sSzQf
+sNzL
+sSzQf
+L[^_]
+L[^_]
+,[^_]
+,[^_]
+\[^_]
+0^_]
+0^_]
+0^_]
+ A$^]
+t39~
+[^_]
+[^_]
+[^_]
+[^_]
+@^_]
+@^_]
+@^_]
+P^_]
+P^_]
+P^_]
+P^_]
+[^_]
+,[^_]
+\[^_]
+\[^_]
+,[^_]
+,[^_]
+ [^]
+\[^_]
+\[^_]
+\[^_]
+\[^_]
+l[^_]
+l[^_]
+ ^_]
+,[^_]
+L[^_]
+L[^_]
+L[^_]
+\[^_]
+L[^_]
+L[^_]
+L[^_]
+,[^_]
+<[^_]
+,[^_]
+,[^_]
+\[^_]
+\[^_]
+ ^_]
+ ^_]
+l[^_]
+[^_]
+[^_]
+<[^_]
+<[^_]
+|[^_]
+ ^_]
+ ^_]
+,[^_]
+,[^_]
+ ^_]
+ ^_]
+\[^_]
+\[^_]
+\[^_]
+<[^_]
+@^_]
+\[^_]
+ECS2
+L[^_]
+l[^_]
+[^_]
+0^_]
+0^_]
+0^_]
+[^_]
+[^_]
+L[^_]
+L[^_]
+[^_]
+[^_]
+9}(tM
+9}(u
+$[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+<[^_]
+<[^_]
+[^_]
+[^_]
+L[^_]
+<[^_]
+[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+\[^_]
+\[^_]
+,[^_]
+[^_]
+<[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+@[^]
+\[^_]
+\[^_]
+\[^_]
+\[^_]
+@[^]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+,[^_]
+0^_]
+p^_]
+[^_]
+[^_]
+[^_]
+l[^_]
+0^_]
+0^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+fEvN
+,[^_]
+ ^_]
+HD ]
+u$z"
+,[^_]
+,[^_]
+<[^_]
+F PtsV
+FhfEoN
+[^_]
+<[^_]
+<[^_]
+[^_]
+[^_]
+Huge
+[^_]
+gfff
+<[^_]
+<[^_]
+0[^]
+ [^]
+ [^]
+ [^]
+ [^]
+9~|t
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+x);U
+[^_]
+[^_]
+l[^_]
+l[^_]
+l[^_]
+l[^_]
+l[^_]
+ ^_]
+$UNEM
+[^_]
+ [^]
+ [^]
+ [^]
+@^_]
+[^_]
+[^_]
+[^_]
+tsfc
+TXET
+byek
+suom
+dniw
+|[^_]
+sdmcu
+dmch
+----
+= tuc
+=aelc
+=ypoc
+TXET
+rhck
+ngam
+dock
+ngam
+domk
+dniw
+----
+dniw
+dniw
+tpih
+colm
+txtu
+=tsap
+=llas
+txtu
+txtu
+@^_]
+@^_]
+@^_]
+|i;U
+|Y9E
+\[^_]
+tT9E
+\[^_]
+[^_]
+[^_]
+RSPM
+tsuj
+ezis
+rolk
+suom
+suom
+suom
+dniw
+byek
+byek
+sdmc
+[^_]
+dniw
+byek
+byek
+clgs
+tnof
+[^_]
+TXET
+tsfc
+eles
+.@Lu
+ ^_]
+ ^_]
+P^_]
+P^_]
+P^_]
+P^_]
+,[^_]
+,[^_]
+P^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+,[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+9BHt
+9P<t
+[^_]
+ Und
+erlif
+ Ita
+ Bolf
+@[^]
+@[^]
+P^_]
+[^_]
+[^_]
+[^_]
+[^_]
+ ^_]
+ ^_]
+,[^_]
+,[^_]
+ ^_]
+ ^_]
+[^_]
+[^_]
+$TCIP
+0^_]
+0^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+<[^_]
+txet
+<[^_]
+<[^_]
+`^_]
+`^_]
+`^_]
+l[^_]
+l[^_]
+L[^_]
+|[^_]
+ ^_]
+0^_]
+0^_]
+0^_]
+,[^_]
+,[^_]
+ ^_]
+<[^_]
+|O;H
+|E;x
+<[^_]
+<[^_]
+@^_]
+@^_]
+@^_]
+@^_]
+0^_]
+0^_]
+0^_]
+0^_]
+L[^_]
+L[^_]
+L[^_]
+L[^_]
+P^_]
+P^_]
+ ^_]
+ ^_]
+ti;>t
+t^9>u
+ ^_]
+ ^_]
+ ^_]
+`^_]
+,[^_]
+,[^_]
+\[^_]
+Ap+E
+[^_]
+z:u8
+[^_]
+[^_]
+FP;E
+0^_]
+`^_]
+`^_]
+`^_]
+ ^_]
+<[^_]
+;A<t
+<[^_]
+|[^_]
+[^_]
+[^_]
+ ^_]
+ ^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+|[^_]
+<[^_]
+<[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+<[^_]
+<[^_]
+L[^_]
+L[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+,[^_]
+,[^_]
+,[^_]
+[^_]
+0^_]
+ ^_]
+ ^_]
+ ^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+$vsys
+[^_]
+,[^_]
+,[^_]
+,[^_]
+<[^_]
+<[^_]
+<[^_]
+P^_]
+P^_]
+ ^_]
+ ^_]
+ ^_]
+0^_]
+ ^_]
+ ^_]
+ ^_]
+suom
+lrcs
+txet
+[^_]
+ltnc
+byeku
+TXET
+rhck
+ngam
+dock
+ngam
+domk
+dniw
+dniw
+xawm
+xawm
+gnol
+ldwm
+tpih
+uomw
+ngam
+domk
+frve
+ekst
+ngam
+dock
+hngr
+hngr
+tpih
+ngro
+gard
+gard
+loob
+gdlc
+zsih
+zsmi
+tpih
+ngro
+zsih
+zsnl
+zsih
+zswv
+calc
+calc
+tpih
+colm
+ngam
+domk
+ntbm
+ntbm
+trpc
+trpc
+trpc
+trpc
+trpc
+trpc
+ngam
+rtfc
+ntbm
+ntbm
+crih
+nboc
+ngam
+domk
+xtnc
+xtnc
+[^_]
+[^_]
+Mbp?
+dniw
+dniw
+L[^_]
+mcplt	1
+y  u
+;7t6
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+0^_]
+0^_]
+0^_]
+[^_]
+[^_]
+[^_]
+mcplt
+y  u
+t7s&
+[^_]
+[^_]
+9F@v19
+[^_]
+9F@vE9
+[^_]
+<[^_]
+;ATs>9
+mcpl
+l[^_]
+t+;N
+,[^_]
+0^_]
+<[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+[^_]
+;G@s
+9A@vl9
+l[^_]
+l[^_]
+,[^_]
+,[^_]
+~	9E
+L[^_]
+,[^_]
+,[^_]
+[^_]
+;8rK
+V(+V$
+t ;}
+<[^_]
+ [^]
+,[^_]
+<[^_]
+|[^_]
+V(+V$
+|[^_]
+<[^_]
+<[^_]
+<[^_]
+BP9BTvJ
+;BTs
+9B@v
+FP9FTvv
+[^_]
+9FTv
+9F@v
+|[^_]
+|[^_]
+0^_]
+0^_]
+0^_]
+[^_]
+[^_]
+@^_]
+@^_]
+@^_]
+\[^_]
+\[^_]
+\[^_]
+Q(+Q$
+<[^_]
+<[^_]
+ ^_]
+ ^_]
+ ^_]
+\[^_]
+<[^_]
+mcpl
+[^_]
+[^_]
+<[^_]
+<[^_]
+L[^_]
+L[^_]
+0^_]
+0^_]
+f;F>~
+f;F<~
+ ^_]
+ ^_]
+ltnc
+lrcst
+\[^_]
+tpih
+ngro
+lrtc
+----
+B8;E
+zsih
+zsmi
+zsih
+zswv
+zsih
+zsnl
+tpih
+ngro
+ [^]
+ [^]
+L[^_]
+ltnc
+L[^_]
+lrcs
+lrcs
+;w$t
+,[^_]
+<[^_]
+;w$t
+,[^_]
+;w$t
+,[^_]
+ltnct	1
+ ^_]
+ ^_]
+@^_]
+@^_]
+0^_]
+0^_]
+0^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+<[^_]
+<[^_]
+0^_]
+0^_]
+0^_]
+ ^_]
+,[^_]
+0^_]
+0^_]
+0^_]
+<[^_]
+<[^_]
+<[^_]
+<[^_]
+<[^_]
+<[^_]
+0^_]
+0^_]
+ [^]
+ [^]
+ [^]
+ [^]
+ [^]
+tC;Q
+mcplt4
+mcplt]
+mcpl
+<[^_]
+mcpltX
+,[^_]
+%UUUU)
+%3333
+3333
+[^_]
+[^_]
+[^_]
+=mcpl
+$f68x
+$a68x
+,[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+[^_]
+mcpl
+mcpl
+[^_]
+mcpl
+mcpl
+[^_]
+[^_]
+[^_]
+ ^_]
+mcpl
+mcpl
+mcpl
+mcpl
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+[^_]
+[^_]
+ ^_]
+46lft[w6
+ENON
+23lf
+in32
+23ni
+twosti
+sowtu
+42niu
+tCv(f
+0^_]
+0^_]
+0^_]
+0^_]
+ ^_]
+ ^_]
+ ^_]
+ ^_]
+L[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+tDv+f
+RIFF
+WAVE
+>=cue 
+=fmt 
+=datatO
+=smpl
+=slnt
+=TSNI
+=MMOC
+=MROFtJ
+CFIA
+FFIA
+=KRAMt5=DNSS
+[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+L[^_]
+L[^_]
+0[^]
+0[^]
+,[^_]
+,[^_]
+0[^]
+0[^]
+,[^_]
+,[^_]
+0[^]
+0[^]
+,[^_]
+,[^_]
+<[^_]
+<[^_]
+[^_]
+[^_]
+l[^_]
+l[^_]
+[^_]
+[^_]
+[^_]
+<[^_]
+<[^_]
+Pd;E
+[^_]
+\[^_]
+\[^_]
+[^_]
+ ^_]
+ ^_]
+[^_]
+I<^]
+<[^_]
+<[^_]
+L[^_]
+<[^_]
+MbP?
+<[^_]
+t/;E
+,[^_]
+t/;E
+,[^_]
+t/;E
+,[^_]
+l[^_]
+,[^_]
+L[^_]
+t/9}
+L[^_]
+t/9}
+ [^]
+/usr/lib/libSystem.B.dylib
+__cxa_atexit
+__cxa_finalize
+atexit
+CControl
+CView
+element-name
+vstdata
+data
+com.linplug.au.Sophistry
+icns
+Icon
+sendVstEvents
+sendVstMidiEvent
+sendVstTimeInfo
+receiveVstEvents
+receiveVstMidiEvent
+receiveVstTimeInfo
+reportConnectionChanges
+acceptIOChanges
+sizeWindow
+asyncProcessing
+offline
+supplyIdle
+supportShell
+<end>
+IO Changed!
+Plug-in IO configuration has been changed. Please quit restart your audio host software.
+WARNING: LinPlug AU: Cannot receive get bundle FSSpec from bundle FSRef!
+WARNING: LinPlug AU: Cannot receive get bundle FSRef from bundle URL!
+WARNING: LinPlug AU: Cannot receive get bundle URL from bundle reference!
+WARNING: LinPlug AU: Cannot receive plug-in bundle reference!
+com.apple.logic
+7.0.1
+info.emagic.Logic
+de.emagic.Logic
+6.4.1
+6.4.3
+com.apple.garageband
+COptionMenu
+CParamDisplay
+unknown
+-%1d:%02d
+%1d:%02d
+%%0.%df
+CViewContainer
+%s cannot be loaded, errno: %d
+LinPlug
+Warning: could not create LinPlug folder in Application Support!
+%s%c%s
+%s%s
+Overwrite existing file ?
+%s%c%s.%s
+Version
+Off Held On Bend
+Glide Mode
+semi
+Bend
+Time
+TimeRate
+Const
+OffOn 
+C#%d
+D#%d
+F#%d
+G#%d
+A#%d
+%s %02dc
+-%d.%d
+%d.%d
+%02d
+L %0.2f
+  %0.2f R
+-%%ld.%%0%dld
+%%ld.%%0%dld
+On/Off
+Frequencies
+TUN-File Path
+Load Command 
+Tonewheel
+12 Tone Equal
+Edit Ins
+Undo/Redo
+Glo Tune
+CCAssignActive
+Dummy for Save/Load Presets notification to host
+CPU Load
+SRFactor
+VelCurve
+Automatik 1
+keyboard
+Stereo Outs
+Mono Outs
+Pan  LevelTune 
+RM Ins MPD
+Circular Linear 
+Generation Range
+ECS Save Path
+ECS Load Path
+Unused, use the one in SynGloIns
+System Error Code
+SynthEdited
+Choke
+Off Norm
+Sample Display
+Kit Name Display
+Edit Page
+Program
+Bank
+Master Vol
+Multi Save
+Multi Load
+semitones
+Pitch Bend Up Amount
+link  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24 
+Pitch Bend Down Amount
+receive onlyreceive+send
+MIDI CC Mode
+Unused
+Output
+Mute
+Solo
+NotesOn
+0  X  P  N  1  2  3  4  xxx
+ - me prvnxt 1  2  3  4  5 
+InsChIdx
+Edited
+Legato
+ 1  2  3  4  5  6  7  8 all
+Preset Load Path
+Preset Save Path
+Global Display
+Trigger
+Note Lo
+Velo Lo
+Velo Hi
+Note Fade
+Velo Fade
+Receive Mod Wheel
+Receive Pitchwheel
+Receive Aftertouch
+Receive SustainPed
+%sLoadPresetPath%ld
+Cubase
+Cubasis
+Nuendo
+ProTools
+Live
+Fruity
+Orion
+Logic
+Making Waves
+MultitrackStudio
+SingerSongWriter
+Cakewalk
+Samplitude
+Tracktion
+GarageBand
+Receptor
+Muse Research
+Chainer
+FX Teleport Server
+%c%c S%02d
+%c%c M%02d
+midiProgramNames
+%sStereoOuts
+%sMonoOuts
+format mismatch %c%c%c%c Order %ld Size %ld
+Bank Load Error
+%sMod_%s
+%s%c%sMod%c%s
+%s %s %s
+%s %s
+Dummy
+format mismatch %s Order %ld
+Instrument Load Error
+This preset could not be loaded!
+Load Error
+123.4
+Demo Version
+Enter here
+Serial Number
+Cir/Lin Knob Movement
+NoteDisplayType
+Pad Velocity
+EqVolEqPow
+PanMode
+Jump To Save Dir
+Red     LightRedWhite   
+Font Color
+File Dialog
+Any File
+FileDialog
+[LinPlug] Cannot get default dialog options! Error code: %ld
+Untitled
+[LinPlug] Cannot create save filepath! Error code: %ld
+[LinPlug] NavDialog error! Error code: %ld
+uninitialized
+fault
+z patterns arp
+ADFGLMNPRSTWXYZabdefghrs23456789
+6gZef8FAXFLSg9rb5GG
+6hZLG3YrGMMA8faWs25
+6hZMG3YrGMMA8faWh44
+4eL448GFYGMT8ssd5TF
+4eN448GFYDPT8ssd5TG
+4bL437GAYDPR8ssd5TG
+6haMG3YrGMMF6faWs25
+6hZLF2YrGMMF6faWh24
+8gZee9FAXANWr9rb5GF
+6AgbasW8FAWRfeNSfa9
+6L6ga9N8WSFDf4ZSfZ9
+62Lb9PNeaYNSferSGZ8
+2AFN3sRWNNNShSa2XW9
+2bLb7deRFD9299rS55r
+2bN458GAYGMR6ssd5TG
+2FbNWfNAGDNANWGL8f4
+2gAb9seGaXr2s4rS8rr
+4eLb7sLYNA439WfXZWF
+66XXPsNaGRFAf4NdTNa
+6hZLG2YrGMMA8faWs24
+6TFAW5PaFAaD9ZTX4Zf
+6X4LW9aPNAGYaNTLTF8
+7P9rs78Tee4M6WXX5h7
+8FdbWsNsaFZNh6NP2Fg
+b2XbMf5WAAhd928TRXG
+b2XbMf5TADhd939WRXF
+b8ANPhDADPDA89a39Tr
+bgLAafFaGSZRGGrSGZZ
+dRLsaMYGAbdYsZ6LT6s
+dRLsaMYFAbdXsZ6MW7r
+eTf9aMWAAdDYPa9MR68
+eX4Rff8Gfgr6sNrde45
+LF6F97YLrDf3aff74FG
+RRgbP9r9fRe2WFN3TZN
+WT9NY9Nd5grFPXrMT2L
+XD22G9f5gXhS7NAgALS
+Xege9DA3PgrRaF474FF
+22R2sfrPPATL9Z874rf
+2bRLP5arNAGLs8TS9ss
+2bRLP5ZsPDFLs9TS9rr
+2g8L7aNDD4b8sZg72LG
+2g8L7aPDA4d9sZg62LF
+2g8L7aNDD5d8sag63LF
+2FAAasFGZXr3aWG64WG
+2FAAasFGaYr2aWF75TF
+2FAAasGFZXs2aTF75WG
+2L2Fs3rW63bG7T8RTN5
+2R6eW83bgAPTM8TD5f9
+2R8eS75bgFMRM8ZD5f5
+2TZRDfZdNAr79PfLTaF
+3LSsf97FbrMXGTLWda5
+44Zrhd7NMDhrbGsMGFP
+44b8P9WALAGXd84SW5T
+62g6a9raGSebGWNdWNa
+6AbAWf84eAFYNGrRs9P
+6AbAWf94eDGYPGsSr8P
+6bRb9f9FFLs6feNS59s
+6g6ee6efY4XRhrNSe49
+6g6ef9bdY2ZRsrNSe49
+6r6ef9edY4ZRhrNSe49
+6LNA5sX3PDs2GaZX98e
+82F45hTDDNAFsZTY4Ta
+8e2basWFNAr3ZNrR854
+8gZeb6AAXFLSg9rb5GF
+8gXed7AAXANWr9rb5GG
+8R2A75sFg6fT5N87sf8
+8rbeWdLhZA87GPP2eWT
+8rZef6AFXFLSg9rb5GF
+8SdWD9desWs4AS7YGL5
+8SdWD9berTr5AS6XGM5
+aLTrG3GFARs2hgLSdf4
+AAgA9fG4FXrYeF8AT9r
+AAgA9fG4FXsXfF8DW9s
+ARFbhTbAY9g59XL7383
+b2RgGfZ4WS8DaT479Z9
+b2RgGfZ5WS9AaW469Z8
+bgAFahTWMMLTDarYaNF
+DXA9Wh6TLZ4P85267MZ
+f5MNMhLf6g253M7LXSA
+fsdrYds8gA5RY6NSS53
+FZ6TbhFbh5gDsZ8d5Tf
+FZ6TesAeh3rGsZ8d5Te
+g7WWfh2Wb58f9X48b26
+gFbASsFeTY5R9WrSa54
+ggLAasZWaLFXGTrSTNZ
+gFbASsFfWX4R9TrSZ45
+gFbASsGeTX5R9TrSa55
+h5WesheWYYgT336GfeY
+LL84Dgee7d8SsN83GeG
+LR2T7SFS92rTaAgMArW
+LT4rGf6TFa5Rf98MssT
+LT4rGf7TFZ5Rf88MssW
+LZ6GaMRMSs6F9WgYGbr
+NN6eF9b473rWsN83GeG
+NRFFhhgTFZe56fFRGGa
+NZr8YsNFLL27ZMXL5WM
+r2NrddLGTaZP3ZZ28TF
+r432YMG4ZZsRaArhsG3
+r4X295DTTRPAseZ3sGW
+r4X295DTTRNDreZ2rGT
+r4X295AWTRNDsfa2rGW
+RW5Rh72aDR2TYXbS46D
+RX2LGsZ8sdeha84SP89
+s9D43GLY5YrR3h2D5bA
+WT9NY9Nd4grGPYsLT3l
+WT9NY9Pb4gsFPXrMW3L
+XA4NW5g57RLT3NNhrNT
+Xege9DA2NgrSZG465GF
+ZaZas76YAW25PNNXTT6
+ZTg4YsNNTRZ7ea4AGf5
+ZTg4YsPNTRa6fZ4DGf5
+ZZ2TsfNbFXNM8WZX55T
+ZZRXGsZaPRTAWZTSZTe
+22g2P5TNPDNLe59LT9N
+22g2P5TNPDPMf49MW9N
+242ZfdSePYeb58ZY8GW
+24sfRAATDW8aGrA3GRf
+2a2ggNF29DNPMLAs3RS
+2A6LN9NrFRedefNRWPr
+2A6LN9NsGRebfeNSTNr
+2A6LN9PrGRfdfeNSTPs
+2A6LN9NsGRebfeHSTNr
+2A6LP989fAeR5TZS4r9
+2bTLD5TbGMPYs8GM59e
+2FAF9hSSZMNRrFG6TG5
+2GXMXTFdPfXghMbPDeS
+2Xg25GN4TX8S4fZRGa8
+37SRG4gS9DN4dMrdYT3
+3A7Ay6NWGfbAPS8WsT9
+3TDLb8TRMdr7MXbh3eS
+5N6GA8gRdfRaWX67d45
+5rSDD4reaDZGDgNSa6S
+5SAThTLNYDb7fZLfYRd
+62gXNsr95Aeb54ZSFrZ
+62L68rZPGAFA5TZSeNZ
+62L6ZrNsWR4b54Z3eNZ
+62LLP98a52ebW4rdeNa
+6ALLZsZPGbFb5483FNZ
+6ALgZrZPGAeb548Ser8
+6AXg8rNa5bFAW4Z3eNZ
+6AXg9rNa5bFAW4Z3eNa
+6bAb5fPTTDWY9GaSNZP
+6bggas8sfAFA548Ser9
+6bgL8sZPGAeb5T83FNZ
+6bLg8rZPGAeb5TZSFrZ
+6bLg9rZPGBFb5483FNa
+6bLg9sZPGAFA5TZSFNa
+6eFb9sNTaYTX8aGXFaW
+6eFb9sNTaYWY9ZGYGaW
+6eFb9sPTaYTX9ZFYFaT
+6eFb9sPTZYWY9aGYFZT
+6gLb9fGZFRTSeFNR4aN
+6L2LW9r9sRrgWTN3TNa
+6L2LW9s8sSsgTWP3WNa
+6L2LW9s9rRshWTN2TNZ
+6gLb9fFZGSWSfFPS5aN
+6PbhhNrRMd8ahLT73A3
+6R6L8ZZPGbebW48SeN8
+772hDTfRR4M2sRLWs55
+85WFdg3TgL3T9AFS5d7
+99b9M46GGae6YhZY9TW
+9s2f46NNPh4GDX6D5Z5
+9F2FS6WTN85AaZbD3Gd
+aR2s3r766eYZsg2Dd95
+AS5DgTZYhF48GXFD4RD
+bfGGdXLsLFFa9s7A8DD
+bR6breeP524RGT8d48N
+bXb244rssb46G4N3TNr
+Da222Ta2N4PL7XF93GS
+deNGMLA3h72TPhgSaZW
+dF5sYhbTXF47T3r4W9e
+DZN9heLgYfA5fAL73T9
+eZDfGb837e6R56gd62s
+eTh524bsG5sXMaXZYe5
+f9sNDdMFAADX9RN93Dh
+f25YGrM2b4NfrR4F6Sd
+fbFfPegsYSRZh9Lf52D
+FD6R6rF2Da4aDNL75TS
+fe85R8AXhfgaf6g3h4a
+fGYf7878r4aAMgLYaSd
+frY57rArGGrhMZZh7R5
+FXWWhrgThWFPPRXPdRd
+g2gXssr95RebWT8SFra
+g2X6sPZ9GR4b54ZSeNa
+g44NS5X4FX4S4P4XGs4
+g44NS5Y4FY5S5P5YFr4
+GahFLFM4eT9RMrgaPf3
+gbgLZs8PGAebWTZSerZ
+gbRAF5NPaANXGZ8DTZN
+gR2RFsNPWRTR5FN34Z8
+gRT7FFM8b2sNf8ZD7W3
+gX2Ar5rW56NLPZeD4N8
+gX2As5rW56NLPZeD4N9
+gZ2rdhheR3SGSY7HN4T
+gZ2rdhheR3SGSY7WN4T
+gZ4ehd6W5Lr6sZr7eT5
+GZR5X8XMMTb8s2gdg4f
+ha3A3TNbYDLMPLAhdRd
+h3TTGbNRP5NDh6RG3Zd
+hG5fLba4ZThNhX493PW
+hPRDA8r39486MNTMA2G
+LL6L8sNafbTAf48S4ZZ
+LR66NrN9GAeA5483eNZ
+LT74grF8P9rMPX2PhT3
+LXALfrNGWXZXfe8Se8a
+MT3bh842Y58MaXbadT3
+MT953bg8hae9GTgY9Rf
+NP2eX4DFFrfXMgZaP5d
+NXbbDfg26TeM6aTX9G8
+NXbbDfh26WfM7aWY8F8
+NXbbDfh36TfM7ZTX8F9
+NXbbDfg37TeL7ZTY8F8
+NZ2L5724eMDRDGeSG9s
+re6sLFATGPr7Mgg7723
+RZ2LFrZ5f24LGZ8SN4e
+RZ34428fMSX4dYNSaXW
+RW5ag6RaSf9e9WLAPRS
+S6bbSeg57DPFdMXAaZS
+sT4bR8FgSSgY7X6d3XG
+STYGMNF5hX8ZdgLWZ87
+sXd8N6AfMTbT3R6h4FG
+SX257NDRXe7rfXb3MW5
+TD8DY6fXFT8SbgL663S
+TN3fW2ZTYsbYGXrP3Ah
+TRA6DdRAFArSr5ZAaW8
+TSaDhrA4s5TYfrA7aR3
+TZ24D4ZdM2rRG6rGZ47
+WR9496D8L8WThNrSSWW
+XA5fYbF2M7rGYZgP36D
+XAgAZsG4GSsArasDW88
+XAgLaP8PfAFb5483FNa
+XAgLZsN9WD4A5G8SWrr
+XR6XrsZaf24bWT8Ser8
+XRg6P8r9fA4b54ZSeN9
+XAgAZsG4FRrDrZrAT99
+XAgAZsG4FSsDsasDT88
+XAgLZr8PGAebWT83FNZ
+XAgLZsN9TA4D5G9RTss
+XALLZs8PGAeA5T8SFrZ
+XAXLN8ZsGAebW4ZSer8
+XD22G9f5gXhs7NAgALS
+XSWf9b4WXr839hsZT9D
+YASsY2PAA8dNPZrS7D7
+YL5PY8NDSgrXWFgP6Xf
+YM4AP4RW6Xg3aMh8baW
+Z46egegaNrTShh9g8f3
+ZNbNZdM8PA8XsFsYWs5
+8abf737rFbraA8rL4s3
+DXNWb4hAbFY4fXbSD5W
+h99fs8LaSWgXd7A7sTW
+d9FGDXAeM9ZW5ZAD5RS
+49R4SFaThGZ4fL8WZWS
+LZgA2TW28f97Y7Ga4eS
+3F55hghZ6Te5FrbL4DD
+DNbDg4T36erPMs3XF5f
+deTF7bM8RFPTP8L35SW
+GF7FM8bfGW4XY9XYY4G
+sR74Z8A5DY6R5Pg37RY
+sSg4abLhaGdNdS8rhRG
+com.linplug.Sophistry
+[LinPlug] Could not create Alert Dialog!
+Idx=%d Ins=%d (InsIdxIn=%d) State %d On=%ld Off=%ld Now=%lu
+S0 On/Off
+Filter Wet
+LP12HP12BP12BR12
+Type 
+Filter Sat
+Cutoff
+Resonance
+Filter Mod Speed
+Filter Mod Depth
+Level (D+W)
+ Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16
+Notes
+Frequency
+Triang
+msec
+Roomsize
+Factor
+Samples
+Reserve00
+Distortion
+Compression
+BitCrushing
+Key Sync
+Reserve05
+Reserve06
+Reserve07
+Filename
+Root
+Zone Lo
+Zone Hi
+Start Frame
+End Frame
+Volume
+Panorama
+Reverse
+Loop Start Frame
+Loop End Frame
+Loop Counter
+Loop Mode
+Cmd Load Filename
+Loop Mod Range
+Suppress AutoXCross
+Alterne
+Reserve4
+CyclingRandom Random+
+Alt Mode
+File Error - Load failed
+Octave
+Semitone
+Cent
+PitchTrack On/Off
+Smooth
+Release Loop
+WaveRide
+RideTrack
+cent
+Spread
+InsIdx
+SampleIdx
+Zone Low
+Zone High
+Velo Low
+Velo High
+Unus0
+MLEnable
+Cmd Prev
+Cmd Next
+Cmd Clear
+Do you want to unload the sample ?
+Clear Sample
+File Error - Save failed
+1010101010101010
+Step On/Off
+0101010101010101
+ 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T
+ off link xlink
+Mode
+Link
+A Time
+D Time
+S Level
+F Time
+R Time
+Pitch Scal
+Veloc.Scal
+Velocity Attack
+Log Decay
+Sync
+16th
+ASync
+DSync
+FSync
+RSync
+Sine  TriangSawtooSquareNoise Sam&Ho
+Waveform
+Off  16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16
+Symmetry
+OffOn
+TimeL
+ Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 
+SyncL
+TimeR
+SyncR
+Feed
+CutLo
+CutHi
+Stereo
+Feedback Link
+Crossdelay
+Filters in Feedback
+Chorus Time
+Chorus TimeSpread
+Chorus Speed
+Chorus SpeedSpread
+Chorus Wet
+Chorus Mode
+Invert Signal
+Chorus Dry
+Chorus Stereo
+Resolution
+Dither On/Off
+Divider
+AVGSTPSLD
+Divider Mode
+Filter Type 
+FilterPostDiv On/Off
+Auto Volume compensation
+SophLoadPresetPath
+SophistryBanks/Ambient - Human Dreams
+XModBuf0
+XModBuf1
+PanBuf0
+PanBuf1
+PanBuf2
+PanBuf3
+FilBuf0
+FilBuf1
+EffBuf0
+EffBuf1
+EffBufX
+OutBuf
+Osc A 0
+Osc A 1
+Osc A 2
+Osc A 3
+Tim 0
+Tim 1
+Tim 2
+Tim 3
+SamWT 0
+SamWT 1
+SamLoop0
+SamLoop1
+Panner0
+Panner1
+Panner2
+Panner3
+Sat Filter 0
+Sat Filter 1
+Filter Moog 0
+Filter Moog 1
+Filter Free 0
+Filter Free 1
+Amp 0
+Amp 1
+Effect 0 Delay 
+Effect 0 Chorus
+Effect 0 Phaser
+Effect 0 Filter
+Effect 0 Reverb
+Effect 0 StDely
+Effect 0 Flangr
+Effect 0 StEnh 
+Effect 0 EQ    
+Effect 0 Gator 
+Effect 0 Crush 
+Effect 0 PingPo
+Effect 1 Delay 
+Effect 1 Chorus
+Effect 1 Phaser
+Effect 1 Filter
+Effect 1 Reverb
+Effect 1 StDely
+Effect 1 Flangr
+Effect 1 StEnh 
+Effect 1 EQ    
+Effect 1 Gator 
+Effect 1 Crush 
+Effect 1 PingPo
+Effect X Delay 
+Effect X Chorus
+Effect X Phaser
+Effect X Filter
+Effect X Reverb
+Effect X StDely
+Effect X Flangr
+Effect X StEnh 
+Effect X EQ    
+Effect X Gator 
+Effect X Crush 
+Effect X PingPo
+Panner 51 G0
+Panner 51 G1
+Panner 51 F0
+Panner 51 F1
+Panner 51 FX0
+Panner 51 FX3
+Panner 51 FX5
+Oscillator
+TimeSampler
+Schrader   
+LoopSampler
+Envelope
+Soph L
+Soph R
+Soph C
+Soph Lfe
+Soph LS
+Soph RS
+Sophistry
+3.0.8
+LINE,LINM,LINC,Crx3,Sop3,C2x3,S2p3
+2232
+empty
+Osc 1 Operation
+Osc 2 Operation
+Osc 3 Operation
+Osc 4 Operation
+Gen 1 Volume
+Gen 2 Volume
+Gen 3 Volume
+Gen 4 Volume
+Gen 1 Balance
+Gen 2 Balance
+Gen 3 Balance
+Gen 4 Balance
+Osc 1 Wave
+Osc 2 Wave
+Osc 3 Wave
+Osc 4 Wave
+Osc 1 Symm
+Osc 2 Symm
+Osc 3 Symm
+Osc 4 Symm
+Osc 1 Oct
+Osc 2 Oct
+Osc 3 Oct
+Osc 4 Oct
+Osc 1 Semi
+Osc 2 Semi
+Osc 3 Semi
+Osc 4 Semi
+Osc 1 Cent
+Osc 2 Cent
+Osc 3 Cent
+Osc 4 Cent
+Osc 1 Track
+Osc 2 Track
+Osc 3 Track
+Osc 4 Track
+Osc 1 Spread
+Osc 2 Spread
+Osc 3 Spread
+Osc 4 Spread
+Osc 1 Freerun
+Osc 2 Freerun
+Osc 3 Freerun
+Osc 4 Freerun
+Gen-Tim 1 Timescale
+Gen-Tim 2 Timescale
+Gen-Tim 3 Timescale
+Gen-Tim 4 Timescale
+Gen-Tim 1 Reverse
+Gen-Tim 2 Reverse
+Gen-Tim 3 Reverse
+Gen-Tim 4 Reverse
+Gen-Tim 1 Looprse
+Gen-Tim 2 Looprse
+Gen-Tim 3 Looprse
+Gen-Tim 4 Looprse
+Gen-Tim 1 Octave
+Gen-Tim 2 Octave
+Gen-Tim 3 Octave
+Gen-Tim 4 Octave
+Gen-Tim 1 Semitone
+Gen-Tim 2 Semitone
+Gen-Tim 3 Semitone
+Gen-Tim 4 Semitone
+Gen-Tim 1 Cent
+Gen-Tim 2 Cent
+Gen-Tim 3 Cent
+Gen-Tim 4 Cent
+Gen-Tim 1 Pitch-Track
+Gen-Tim 2 Pitch-Track
+Gen-Tim 3 Pitch-Track
+Gen-Tim 4 Pitch-Track
+Gen-Tim 1 Time-Track
+Gen-Tim 2 Time-Track
+Gen-Tim 3 Time-Track
+Gen-Tim 4 Time-Track
+Gen-Tim 1 Spread
+Gen-Tim 2 Spread
+Gen-Tim 3 Spread
+Gen-Tim 4 Spread
+Gen-WT 1 Ocatve
+Gen-WT 2 Ocatve
+Gen-WT 3 Ocatve
+Gen-WT 4 Ocatve
+Gen-WT 1 Semitone
+Gen-WT 2 Semitone
+Gen-WT 3 Semitone
+Gen-WT 4 Semitone
+Gen-WT 1 Cent
+Gen-WT 2 Cent
+Gen-WT 3 Cent
+Gen-WT 4 Cent
+Gen-WT 1 Track
+Gen-WT 2 Track
+Gen-WT 3 Track
+Gen-WT 4 Track
+Gen-WT 1 Ride
+Gen-WT 2 Ride
+Gen-WT 3 Ride
+Gen-WT 4 Ride
+Gen-WT 1 Ride-Track
+Gen-WT 2 Ride-Track
+Gen-WT 3 Ride-Track
+Gen-WT 4 Ride-Track
+Gen-WT 1 Spread
+Gen-WT 2 Spread
+Gen-WT 3 Spread
+Gen-WT 4 Spread
+Osc 1 Routing
+Osc 3 Routing
+Saturation 1
+Saturation 2
+Filter 0 On/Off
+Filter 1 On/Off
+Filter Cutoff
+Filter Resonance
+Filter Type
+Filter Track
+Filter Env Inverse
+Filter Env-Depth
+Filter Slope
+Filter 1 Pan
+Filter 2 Pan
+Main Volume
+Amp Attack
+Amp Decay
+Amp Sustain
+Amp Fade
+Amp Release
+Amp Env-Log/Lin
+Filter 1 Attack
+Filter 1 Decay
+Filter 1 Sustain
+Filter 1 Fade
+Filter 1 Release
+Filter 1 Env-Log/Lin
+Filter 2 Attack
+Filter 2 Decay
+Filter 2 Sustain
+Filter 2 Fade
+Filter 2 Release
+Filter 2 Env-Log/Lin
+Gen 1 Attack
+Gen 1 Decay
+Gen 1 Sustain
+Gen 1 Fade
+Gen 1 Release
+Gen 1 Env-Log/Lin
+Gen 2 Attack
+Gen 2 Decay
+Gen 2 Sustain
+Gen 2 Fade
+Gen 2 Release
+Gen 2 Env-Log/Lin
+Mod 1 Attack
+Mod 1 Decay
+Mod 1 Sustain
+Mod 1 Fade
+Mod 1 Release
+Mod 1 Env-Log/Lin
+Mod 2 Attack
+Mod 2 Decay
+Mod 2 Sustain
+Mod 2 Fade
+Mod 2 Release
+Mod 2 Env-Log/Lin
+LFO 1 Delay
+LFO 2 Delay
+LFO 3 Delay
+LFO 4 Delay
+LFO 1 Atack
+LFO 2 Atack
+LFO 3 Atack
+LFO 4 Atack
+LFO 1 Decay
+LFO 2 Decay
+LFO 3 Decay
+LFO 4 Decay
+LFO 1 Wave
+LFO 2 Wave
+LFO 3 Wave
+LFO 4 Wave
+LFO 1 Frequency
+LFO 2 Frequency
+LFO 3 Frequency
+LFO 4 Frequency
+LFO 1 Symmetry
+LFO 2 Symmetry
+LFO 3 Symmetry
+LFO 4 Symmetry
+LFO 1 Phase
+LFO 2 Phase
+LFO 3 Phase
+LFO 4 Phase
+LFO 1 Sync
+LFO 2 Sync
+LFO 3 Sync
+LFO 4 Sync
+LFO 1 Mono
+LFO 2 Mono
+LFO 3 Mono
+LFO 4 Mono
+Effect 1 Type
+Effect 2 Type
+Effect 3 Type
+Effect 4 Type
+Effect 5 Type
+Effect 6 Type
+Effect 1 Operation
+Effect 2 Operation
+Effect 3 Operation
+Effect 4 Operation
+Effect 5 Operation
+Effect 6 Operation
+Delay 1 Time
+Delay 2 Time
+Delay X Time
+Delay 1 Feedback
+Delay 2 Feedback
+Delay X Feedback
+Delay 1 Filter
+Delay 2 Filter
+Delay X Filter
+Delay 1 Rate
+Delay 2 Rate
+Delay X Rate
+Delay 1 Depth
+Delay 2 Depth
+Delay X Depth
+Delay 1 Sync
+Delay 2 Sync
+Delay X Sync
+Delay 1 ModSync
+Delay 2 ModSync
+Delay X ModSync
+Chorus 1 Time
+Chorus 2 Time
+Chorus X Time
+Chorus 1 Time Spread
+Chorus 2 Time Spread
+Chorus X Time Spread
+Chorus 1 Rate
+Chorus 2 Rate
+Chorus X Rate
+Chorus 1 Rate Spread
+Chorus 2 Rate Spread
+Chorus X Rate Spread
+Chorus 1 Spread On/Off
+Chorus 2 Spread On/Off
+Chorus X Spread On/Off
+Chorus 1 Inverse
+Chorus 2 Inverse
+Chorus X Inverse
+Chorus 1 Dry
+Chorus 2 Dry
+Chorus X Dry
+Chorus 1 Stereo
+Chorus 2 Stereo
+Chorus X Stereo
+Phaser 1 Rate
+Phaser 2 Rate
+Phaser X Rate
+Phaser 1 Depth
+Phaser 2 Depth
+Phaser X Depth
+Phaser 1 Center
+Phaser 2 Center
+Phaser X Center
+Phaser 1 Feedback
+Phaser 2 Feedback
+Phaser X Feedback
+Phaser 1 Inverse
+Phaser 2 Inverse
+Phaser X Inverse
+Phaser 1 Stages
+Phaser 2 Stages
+Phaser X Stages
+Phaser 1 Stereo
+Phaser 2 Stereo
+Phaser X Stereo
+Phaser 1 Sync
+Phaser 2 Sync
+Phaser X Sync
+Filter 1 Saturation
+Filter 2 Saturation
+Filter X Saturation
+Filter 1 Type
+Filter 2 Type
+Filter X Type
+Filter 1 Cutoff
+Filter 2 Cutoff
+Filter X Cutoff
+Filter 1 Resonance
+Filter 2 Resonance
+Filter X Resonance
+Filter 1 Mod Rate
+Filter 2 Mod Rate
+Filter X Mod Rate
+Filter 1 Mod Depth
+Filter 2 Mod Depth
+Filter X Mod Depth
+Filter 1 Level
+Filter 2 Level
+Filter X Level
+Filter 1 Sync
+Filter 2 Sync
+Filter X Sync
+Reverb 1 Room
+Reverb 2 Room
+Reverb X Room
+Reverb 1 Damp
+Reverb 2 Damp
+Reverb X Damp
+Reverb 1 Pre-Delay
+Reverb 2 Pre-Delay
+Reverb X Pre-Delay
+Reverb 1 Sync
+Reverb 2 Sync
+Reverb X Sync
+Reverb 1 Mod
+Reverb 2 Mod
+Reverb X Mod
+Reverb 1 Mod Op
+Reverb 2 Mod Op
+Reverb X Mod Op
+StDelay 1 Stereo
+StDelay 2 Stereo
+StDelay X Stereo
+StDelay 1 Time Left
+StDelay 2 Time Left
+StDelay X Time Left
+StDelay 1 Time Right
+StDelay 2 Time Right
+StDelay X Time Right
+StDelay 1 Feedback
+StDelay 2 Feedback
+StDelay X Feedback
+StDelay 1 Filter LP
+StDelay 2 Filter LP
+StDelay X Filter LP
+StDelay 1 Filter HP
+StDelay 2 Filter HP
+StDelay X Filter HP
+StDelay 1 Sync L
+StDelay 2 Sync L
+StDelay X Sync L
+StDelay 1 Sync R
+StDelay 2 Sync R
+StDelay X Sync R
+StDelay 1 Link
+StDelay 2 Link
+StDelay X Link
+PingPong Time Cen 1 
+PingPong Time Cen 2 
+PingPong Time Cen X 
+PingPong Sync Cen 1 
+PingPong Sync Cen 2 
+PingPong Sync Cen X 
+PingPong Balance 1 
+PingPong Balance 2 
+PingPong Balance X 
+PingPong Time Left 1 
+PingPong Time Left 2 
+PingPong Time Left X 
+PingPong Sync Left 1 
+PingPong Sync Left 2 
+PingPong Sync Left X 
+PingPong Time Right 1 
+PingPong Time Right 2 
+PingPong Time Right X 
+PingPong Sync Right 1 
+PingPong Sync Right 2 
+PingPong Sync Right X 
+PingPong Feedback 1 
+PingPong Feedback 2 
+PingPong Feedback X 
+PingPong Pan Left 1 
+PingPong Pan Left 2 
+PingPong Pan Left X 
+PingPong Pan Right 1 
+PingPong Pan Right 2 
+PingPong Pan Right X 
+St-Enhancer 1 Room
+St-Enhancer 2 Room
+St-Enhancer X Room
+St-Enhancer 1 Width
+St-Enhancer 2 Width
+St-Enhancer X Width
+EQ 1 Freq 1
+EQ 2 Freq 1
+EQ X Freq 1
+EQ 1 Gain 1
+EQ 2 Gain 1
+EQ X Gain 1
+EQ 1 Q 1
+EQ 2 Q 1
+EQ X Q 1
+EQ 1 Freq 2
+EQ 2 Freq 2
+EQ X Freq 2
+EQ 1 Gain 2
+EQ 2 Gain 2
+EQ X Gain 2
+EQ 1 Q 2
+EQ 2 Q 2
+EQ X Q 2
+Gator 1 Smooth
+Gator 2 Smooth
+Gator X Smooth
+Gator 1 Left
+Gator 2 Left
+Gator X Left
+Gator 1 Right
+Gator 2 Right
+Gator X Right
+Gator 1 Sync
+Gator 2 Sync
+Gator X Sync
+Gator 1 Link
+Gator 2 Link
+Gator X Link
+Crush 1 Bits
+Crush 2 Bits
+Crush X Bits
+Crush 1 Divider
+Crush 2 Divider
+Crush X Divider
+Crush 1 Mode
+Crush 2 Mode
+Crush X Mode
+Crush 1 Filter
+Crush 2 Filter
+Crush X Filter
+Crush 1 Cutoff
+Crush 2 Cutoff
+Crush X Cutoff
+Crush 1 Reso
+Crush 2 Reso
+Crush X Reso
+Crush 1 Fil.Post
+Crush 2 Fil.Post
+Crush X Fil.Post
+Crush 1 Fil.Auto
+Crush 2 Fil.Auto
+Crush X Fil.Auto
+Flanger 1 Time
+Flanger 2 Time
+Flanger X Time
+Flanger 1 Feedback
+Flanger 2 Feedback
+Flanger X Feedback
+Flanger 1 Inv. FB
+Flanger 2 Inv. FB
+Flanger X Inv. FB
+Flanger 1 Stereo
+Flanger 2 Stereo
+Flanger X Stereo
+Flanger 1 Rate
+Flanger 2 Rate
+Flanger X Rate
+Flanger 1 Sync
+Flanger 2 Sync
+Flanger X Sync
+Flanger 1 Depth
+Flanger 2 Depth
+Flanger X Depth
+Glide Time
+Glide Bend
+Glide Time/Rate
+Gen 1 Detune
+Gen 2 Detune
+Gen 3 Detune
+Gen 4 Detune
+Fil 1 Cutoff
+Fil 2 Cutoff
+Fil 1 Reson.
+Fil 2 Reson.
+Fx 1 Wet
+Fx 2 Wet
+Fx 3 Wet
+Fx 4 Wet
+Fx 5 Wet
+Fx 6 Wet
+Gen 1 OnOff
+Gen 2 OnOff
+Gen 3 OnOff
+Gen 4 OnOff
+Fil 1 OnOff
+Fil 2 OnOff
+51 1 OnOff
+Fx 1 OnOff
+Fx 2 OnOff
+Fx 3 OnOff
+Fx 4 OnOff
+Fx 5 OnOff
+Fx 6 OnOff
+51Vol Gen 1
+51Vol Gen 2
+51Vol Fil 1
+51Vol Fil 2
+51Vol Fx 1
+51Vol Fx 4
+51Vol Fx 6
+51 LR Gen 1
+51 LR Gen 2
+51 LR Fil 1
+51 LR Fil 2
+51 LR Fx 1
+51 LR Fx 4
+51 LR Fx 6
+51 FR Gen 1
+51 FR Gen 2
+51 FR Fil 1
+51 FR Fil 2
+51 FR Fx 1
+51 FR Fx 4
+51 FR Fx 6
+51 Cen Gen 1
+51 Cen Gen 2
+51 Cen Fil 1
+51 Cen Fil 2
+51 Cen Fx 1
+51 Cen Fx 4
+51 Cen Fx 6
+51 LFE Gen 1
+51 LFE Gen 2
+51 LFE Fil 1
+51 LFE Fil 2
+51 LFE Fx 1
+51 LFE Fx 3
+51 LFE Fx 6
+unused
+Precision
+Mod Amount 1
+Mod Amount 2
+Mod Amount 3
+Mod Amount 4
+Mod Amount 5
+Mod Amount 6
+Mod Amount 7
+Mod Amount 8
+Mod Amount 9
+Mod Amount10
+Root Note
+Gen 0 Type
+Gen 1 Type
+Gen 2 Type
+Gen 3 Type
+Fil 0 Type
+Fil 1 Type
+Loop Start
+Loop End
+Snap
+Loop 0 Oct 
+Loop 1 Oct 
+Loop 0 Semi 
+Loop 1 Semi 
+Loop 0 Cent 
+Loop 1 Cent 
+Loop 0 Track 
+Loop 1 Track 
+Loop Smooth
+SD Zoom
+SD Scroll
+Scrollbar Size
+Voices
+- - -
+*.fxp
+CronoXPresets
+Standard FXP format
+Import Sound Program
+Export Sound Program
+*.TUN
+NoteFreqTables
+TUN format
+Load Microtuning Definition
+*.WAV
+*.AIF
+*.AIFF
+*.D4T
+KajaTables
+WAV, AIF or D4T format
+Load Sample
+CronoXExportSamples
+Standard Sample format
+Trim Sample
+*.D4U
+KajaSamples
+WAV, AIF, D4T or D4U format
+*.aif
+Feedback
+Filter
+Mod Rate
+Mod Depth
+Rate
+Time Spr
+Rate Spr
+Depth
+Center
+Stages
+Drive
+Level
+Predelay
+Damp
+Modulation
+Time Left
+Time Right
+Highpass
+Lowpass
+Link L+R
+Time Cen
+Bal Cen/LR
+Pan Left
+Pan Right
+Room
+Width
+Freq 1
+Gain 1
+Freq 2
+Gain 2
+Invert
+Pan Depth
+Bits
+Fil Post Div
+Smoother
+Delay     StDelay   xxxxxxxxxxChorus    Phaser    Filter    Reverb    
+ 1   2   3   4   5   6   7   8  xxxxxxxxxxxxxxxxall 
+Analogue    TimeSamp    Schrader    LoopSamp    
+   --       Ampl 1      Ampl 2      Ampl 3      Ampl 4      Pitch 1     Pitch 2     Pitch 3     Pitch 4     PW Gen 1    PW Gen 2    AuxMod Osc 3AuxMod Osc 4Osc1Balance Osc2Balance Osc3Balance Osc4Balance Cutoff      Resonanc    Env-Depth 1 AuxMod Fil 1 Pan Fil 1    xxxxxxxxxxxxCutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  xxxxxxxxxxxxMast.Amp    Mast.Pit    ModAmt 1    ModAmt 2    ModAmt 3    ModAmt 4    LFO1 Frq    LFO2 Frq   
+   --       Ampl 1      Ampl 2      Ampl 3      Ampl 4      Pitch 1     Pitch 2     Pitch 3     Pitch 4     PW Gen 1    Time 2      AuxMod Osc 3AuxMod Osc 4Osc1Balance Osc2Balance Osc3Balance Osc4Balance Cutoff      Resonanc    Env-Depth 1 AuxMod Fil 1 Pan Fil 1    xxxxxxxxxxxxCutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  xxxxxxxxxxxxMast.Amp    Mast.Pit    ModAmt 1    ModAmt 2    ModAmt 3    ModAmt 4   LFO1 Frq    LFO2 Frq    
+    - - -    Ampl Osc 1  Ampl Osc 2  Ampl Osc 3  Ampl Osc 4 Pitch Osc 1 Pitch Osc 2 Pitch Osc 3 Pitch Osc 4 Pulsewidth 1Time Samp 2 AuxMod Osc 3AuxMod Osc 4Osc1Balance Osc2Balance Osc3Balance Osc4Balance    Cutoff    Resonance  Env-Depth 1 AuxMod Fil 1 Pan Fil 1    xxxxxxxxxxxxCutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  xxxxxxxxxxxx Main Ampli  Main Pitch Mod Depth 1 Mod Depth 2 Mod Depth 3 Mod Depth 4LFO 1 Speed LFO 2 Speed Loop Start 1Loop Start 2 Loop End 1  Loop End 2 
+    - - -    Ampl Osc 1  Ampl Osc 2  Ampl Osc 3  Ampl Osc 4 Pitch Osc 1 Pitch Osc 2 Pitch Osc 3 Pitch Osc 4 Pulsewidth 1Pulsewidth 2AuxMod Osc 3AuxMod Osc 4Osc1Balance Osc2Balance Osc3Balance Osc4Balance    Cutoff    Resonance  Env-Depth 1 AuxMod Fil 1 Pan Fil 1    xxxxxxxxxxxxCutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  xxxxxxxxxxxx Main Ampli  Main Pitch Mod Depth 1 Mod Depth 2 Mod Depth 3 Mod Depth 4LFO 1 Speed LFO 2 Speed Loop Start 1Loop Start 2 Loop End 1  Loop End 2 
+    - - -    Ampl Osc 1  Ampl Osc 2  Ampl Osc 3  Ampl Osc 4 Pitch Osc 1 Pitch Osc 2 Pitch Osc 3 Pitch Osc 4 AuxMod Osc 1AuxMod Osc 2AuxMod Osc 3AuxMod Osc 4Balance Osc1Balance Osc2Balance Osc3Balance Osc4  Cutoff 1   Resonance 1Env-Depth 1 AuxMod Fil 1 Pan Fil 1    xxxxxxxxxxxxCutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  xxxxxxxxxxxx Main Ampli  Main Pitch Mod Depth 1 Mod Depth 2 Mod Depth 3 Mod Depth 4 LFO 1 Speed LFO 2 Speed Loop Start 1Loop Start 2 Loop End 1  Loop End 2 Amp-Env Att Amp-Env Dec Amp-Env Rel Fil1-Env AttFil1-Env DecFil1-Env RelFil2-Env AttFil2-Env DecFil2-Env RelMod1-Env AttMod1-Env DecMod1-Env RelMod2-Env AttMod2-Env DecMod2-Env RelSampleStart1SampleStart2
+   --       Key Log     Key Lin     Velocity    PolATch     PitchWhl    ModWhl      BreathC     FootC       ExpressC    Contrl16    Contrl17    Contrl18    Contrl19    LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2   Mod-Env  
+   --       Key Log     Key Lin     Velocity    MonATch     PitchWhl    ModWhl      BreathC     FootC       ExpressC    Contrl16    Contrl17    Contrl18    Contrl19    LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2   Mod-Env  
+    - - -     Note Log    Note Lin    Velocity  AfterT(poly)Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr  LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2Mod-Envelope
+    - - -     Note Log    Note Lin    Velocity  Aftert(poly)Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr  LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2Mod-Envelope
+    - - -     Note Log    Note Lin    Velocity  AfterT(mono)Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr  LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2Mod-Envelope
+    - - -     Note Log    Note Lin    Velocity  Aftert(mono)Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr  LFO 1       LFO 2       LFO 3       LFO 4       GenEnvelope1GenEnvelope2Mod-Envelope
+LP12LP24HP12BP24
+PrgName
+Main Vol.
+Scal.Centr
+Detune
+LP12LP24 BP  HP 
+FilterType
+EnvDepth
+EnvInv
+    - - -     Note Log    Note Lin    Velocity  Aftertouch  Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr     LFO 1       LFO 2       LFO 3       LFO 4    GenEnvelope1GenEnvelope2ModEnvelope1ModEnvelope2Fil1EnvelopeFil2EnvelopeAmp EnvelopeGlide Curve Arpeggiator Alternate   Constant    
+Mod.Source
+    - - -    Ampl Gen 1  Ampl Gen 2  Ampl Gen 3  Ampl Gen 4 Pitch Gen 1 Pitch Gen 2 Pitch Gen 3 Pitch Gen 4 AuxMod Gen 1AuxMod Gen 2AuxMod Gen 3AuxMod Gen 4Balance Gen1Balance Gen2Balance Gen3Balance Gen4  Cutoff 1   Resonance 1Env-Depth 1 AuxMod Fil 1 Pan Fil 1  Fil 1 Ampli   Cutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  Fil 2 Ampli  Main Ampli  Main Pitch Mod Depth 1 Mod Depth 2 Mod Depth 3 Mod Depth 4 LFO 1 Speed LFO 2 Speed Loop Start 1Loop Start 2 Loop End 1  Loop End 2 Amp-Env Att Amp-Env Dec Amp-Env Rel Fil1-Env AttFil1-Env DecFil1-Env RelFil2-Env AttFil2-Env DecFil2-Env RelMod1-Env AttMod1-Env DecMod1-Env RelMod2-Env AttMod2-Env DecMod2-Env RelSampleStart1SampleStart2
+Mod.Dest.
+Mod.Amount
+DMVol
+DMVel
+DMWh 
+Unusued Spread
+% Gen2
+Unusued GenMix
+MixAM FM 
+Gen0 Routing
+Oscillator  Time SamplerSchrader    Loop Sampler
+Gen 0 OnOff
+SettingsLooppnts
+mono  2   3   4   5   6   7   8   9  10  11  12  all
+DELAY     ST-DELAY  PING PONG CHORUS    PHASER    FILTER    REVERB    FLANGER   GATOR     ST-ENHANC PARAM-EQ  CRUSHER   
+Eff 0 Type
+Eff 0 On
+Eff 1 On
+Gen2 Routing
+Oscillator  Time SamplerSchrader    
+Classic Alltype 
+Var 0 Type
+Var 1 Type
+Eff X0 Type
+Eff X0 On
+Eff X1 Type
+Eff X1 On
+Eff X2 Type
+Eff X2 On
+Eff X3 Type
+Eff X3 On
+Var 0 On
+Var 1 On
+F0 Cut KeyF 
+Import Sampler 0 SF2 Path
+Import Sampler 1 SF2 Path
+Mod.Active
+LFO0 Perm
+LFO1 Perm
+LFO2 Perm
+LFO3 Perm
+M1M2M3M4A 
+Env Sel
+1234
+LFO Sel
+Sample 0 Scrolling
+Sample 0 Editing
+Sample 0 Shown
+Sample 1 Scrolling
+Sample 1 Editing
+Sample 1 Shown
+   1   2   4   8  16  32  64 128 256 5121024204840968192
+SD Zoom 0
+SD Zoom 1
+SD Slider 0
+SD Slider 1
+SD Slider Size 0
+SD Slider Size 1
+ADSFR EnhEnv
+Var 0 Env
+Var 1 Env
+Mod 0 Env
+Mod 1 Env
+Mod 2 Env
+Mod 3 Env
+Amp Env
+Vel->Vol
+Vel->F1Cut
+Vel->F2Cut
+G3 Cent
+Gen0 Vol.
+Gen1 Vol.
+Gen2 Vol.
+Gen3 Vol.
+Keys
+Fx0 Wet
+Fx1 Wet
+Fx2 Wet
+Fx3 Wet
+Fx4 Wet
+Fx5 Wet
+Pow 51 0 
+Pow 51 1 
+Pow 51 2 
+Pow 51 3 
+Pow 51 4 
+Pow 51 5 
+Pow 51 6 
+Var0Pan
+Var1Pan
+Exactness
+Copy PasteInit 
+File IO Env
+File IO EF0
+File IO EF1
+File IO LFO
+Load Save Copy PasteInit 
+File IO Gn0
+File IO Gn1
+File IO Gn2
+File IO Gn3
+Export Sample 0
+Export Sample 1
+Export Sample 2
+Export Sample 3
+ExpWTG Sample 0
+ExpWTG Sample 1
+ExpWTG Sample 2
+ExpWTG Sample 3
+Fil 
+ModRate
+ModDept
+ Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T
+Off     Mod-OnlyUp      Down    Up/Down Up/Down+Down/Up Down/Up+Random  Chord   AsPlayed
+Op.Mode
+ 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64
+Steps
+Length
+Octaves
+Swing
+Played Veloc
+FixNote
+FixVelo
+StepData
+Note Length
+File IO
+Arpeggiator
+Off  LearnPlay 
+Polyphony
+Note 0
+Velo 0
+Note 1
+Velo 1
+Note 2
+Velo 2
+Note 3
+Velo 3
+Note 4
+Velo 4
+Note 5
+Velo 5
+Note 6
+Velo 6
+Note 7
+Velo 7
+Intense
+Hard  Soft  Modula
+Type     
+12 dB24 dB
+Slope    
+Cut KeyF 
+LP 12 LP 24 BP 24 HP 12 
+RoutBal
+Cut KeyF
+PulseWidth
+Unused Mode
+Track
+FreeRun
+SubOsc Vol
+LeftRight
+FrontRear
+Center Vol.
+LFE Vol.
+Overall Vol.
+-inf
+Delay
+Attack
+Decay
+Phase
+KeyTrack
+H Time
+unnamed
+InvertFeedback
+Time Depth
+Time Center
+Sync Center
+Sync Left
+Sync Right
+Feedback L+R
+Balance Pre/LR
+%03ld
+Off      Learn    Clear    Clear AllLoad     Save     Rest.Fact
+Glo Reserved0
+Glo Reserved1
+Glo Reserved Sw0
+Glo Reserved Sw1
+CCIdx
+EditIdx
+Min Par
+Max Par
+Ins Idx
+MIDI Ch
+Curve
+Unused    Normal    Relative ARelative BRelative C
+Min CC
+Max CC
+Res2
+Clear ECS
+Do you want to clear all Controller Assigments of this instrument?
+Restore Factory ECS
+Do you want to restore the ECS factory settings?
+Phaser Wet
+Phaser Speed
+Phaser Center
+Phaser Depth
+Phaser Feedb
+Phaser FBInv
+Phaser Stages
+Phaser Stereo
+ Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T
+Freq
+Gain
+Huge!
+%1d %s
+%02d %s
+%03d %s
+PopUp
+Ctrl
+Shift
+Apple
+Left
+Right
+Down
+%2.2f
+LooseFocus
+-M%1d %s
+-M%02d %s
+-M%03d %s
+-M%s
+CTextEdit
+CTextLabel
+CAnimKnob
+CKnob
+COnOffButton
+CVerticalSwitch
+CHorizontalSwitch
+CRockerSwitch
+CMovieBitmap
+CMovieButton
+CAutoAnimation
+CSlider
+CSpecialDigit
+CKickButton
+CSplashScreen
+CVuMeter
+kMsgCheckIfViewContainer
+Helvetica
+Symbol
+pict
+bmp%05d
+net.sourceforge.vstgui.%d
+com.apple.CoreGraphics
+CGImageCreateWithImageInRect
+CGContextStrokeLineSegments
+Could not create Control : %d
+CFrame
+CScrollContainer
+UnregisterToolboxObjectClass failed : %d
+Mouse wheel: control bounds %ld %ld
+vector::_M_insert_aux
+vector::reserve
+version
+type
+subtype
+manufacturer
+name
+render-quality
+cpu-load
+part
+Factory Preset
+CustomUI
+com.apple.audio.units.Components
+FORM
+AIFF
+COMM
+SSND
+Time    
+TimeTrk
+FullLoop On/Off
+%s_MOD_%s
+%s Module Parameters
+*.MOD
+WetOld
+RevTime
+Damping 
+ Off  1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16
+Modulation On/Off
+Diffusors
+Mod Freq
+[^_]
+[^_]
+HX^_]
+[^_]
+[^_]
+[^_]
+[^_]
+0GRM]
+0NUT]
+0GYS]
+1GYS]
+SPYS]
+1FGV]
+1ESV]
+40MT]
+30SG]
+0TWG]
+20MT]
+1TGV]
+30EM]
+20LM]
+1SDV]
+@[^]
+@[^]
+0HCV]
+1XCV]
+2GYS]
+20DV]
+1PDV]
+0HPV]
+1LFV]
+10RV]
+1QEV]
+\[^_]
+\[^_]
+@[^]
+@[^]
+1QES]
+1MMC]
+10DV]
+1FFV]
+10FV]
+20OG]
+15PV]
+20PV]
+[^_]
+[^_]
+10LM]
+60EM]
+0[^]
+0[^]
+P[^]
+P[^]
+10DV]
+1MAV]
+2SCE]
+0TWW]
+[^_]
+0^_]
+0^_]
+0^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+ ^_]
+P^_]
+ ^_]
+p^_]
+p^_]
+@^_]
+<[^_]
+A=UUU
+<[^_]
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+L[^_]
+L[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+ ^_]
+ ^_]
+t2;w
+,[^_]
+,[^_]
+,[^_]
+,[^_]
+L[^_]
+L[^_]
+,[^_]
+,[^_]
+[^_]
+[^_]
+[^_]
+t+9J
+,[^_]
+,[^_]
+[^_]
+[^_]
+[^_]
+[^_]
+20SG]
+10CControlPl
+14CFileDialog3Pl
+9LPAUSynth
+8LPAUView
+7CKnobPl
+8CLabelPl
+13CMenuFileList
+9CMenuBase
+10CSubMenuPl
+11CMenuSimple
+16CControlListener
+18CControlListenerPl
+12CMenuWithSub
+7CMIKnob
+13CModDepthDisp
+13CModulFramePl
+14COnOffButtonPl
+17CPlusMinusDisplay
+14CRadioButtonPl
+9CSliderPl
+12CTouchAreaPl
+6Note_c
+11CVarDisplay
+6Tool_c
+6Disk_c
+4Edit
+14GenDemoNoise_c
+8C11Generator_c
+12Instrument_c
+7NoteC_c
+10Envelope_c
+11RampGlide_c
+11Modulator_c
+11Parameter_c
+9ParaSet_c
+6Part_c
+11PartGroup_c
+15NoteFreqTable_c
+8SynGlo_c
+11SynGloIns_c
+5Synth
+12NormString_c
+13SynthEditor_c
+8SysGlo_c
+6Tone_c
+10HoldData_c
+11CmdBuffer_c
+12FileDialog_c
+10FileList_c
+7Flags_c
+10Flags128_c
+9BitCode_c
+5Key_c
+6Lock_c
+6MemC_c
+7OsLib_c
+15PolyNoteTable_c
+8GloFil_c
+14VariatorBase_c
+14VariatorInst_c
+14VariatorTone_c
+10WaveBase_c
+9COnOffBar
+12StereoEnh1_c
+10WaveRAM2_c
+9SamLoop_c
+7SamWT_c
+9WaveRAM_c
+7Gator_c
+10EnvADSFR_c
+9LFOSimp_c
+13DelayStereo_c
+9Chorus1_c
+8CrushX_c
+6Kaja_c
+12KajaEditor_c
+9KajaGlo_c
+10KajaInst_c
+16DelayPingPongR_c
+9CrushXR_c
+8GatorR_c
+6EQ2R_c
+13StereoEnh1R_c
+11Flanger2R_c
+14DelayStereoR_c
+10Reverb2R_c
+9GloFilR_c
+11Phaser1SR_c
+10Chorus1R_c
+9Delay2R_c
+10KajaTone_c
+7Inter_c
+10InterSF2_c
+19InstrumentWithSeq_c
+8Delay2_c
+9StepSeq_c
+5CXYPl
+10ChordMem_c
+7Satur_c
+12FilterFree_c
+14FilterMoogSI_c
+12OscAnalog3_c
+6C51Map
+7Pan51_c
+5Pan_c
+10CDrawbarPl
+12CScrollbarPl
+18CSampleDisplayKj_c
+8AUCronoX
+17LPAUOutputElement
+10LPAUEditor
+8AdvLFO_c
+8EnvDAD_c
+11InBuffer2_c
+10Flanger2_c
+15DelayPingPong_c
+11DistSimp2_c
+5Amp_c
+6NRPN_c
+10CStepSeqPl
+7CCAss_c
+6ECS2_c
+11WaveTable_c
+10Phaser1S_c
+5EQ2_c
+10CKeyboard2
+12Dependency_c
+13CKeyboardBase
+11AudioEffect
+12AudioEffectX
+8CControl
+13CParamDisplay
+9CTextEdit
+17CReferenceCounter
+11COptionMenu
+7CSlider
+17CSplashScreenView
+12CDrawContext
+17COffscreenContext
+7CBitmap
+5CView
+14CViewContainer
+6CFrame
+14CDragContainer
+10AEffEditor
+13AEffGUIEditor
+16AUElementCreator
+6AUBase
+14AUInputElement
+15AUOutputElement
+13ComponentBase
+9AUElement
+11AUIOElement
+16AUCarbonViewBase
+17AUPropertyControl
+10AUVPresets
+18CarbonEventHandler
+10AUMIDIBase
+15MusicDeviceBase
+18CAReferenceCounted
+N20CAAudioChannelLayout13ACLRefCounterE
+7Timer_c
+12WaveSample_c
+8SamTC3_c
+15ModuleManager_c
+9Reverb2_c
+12Crossfader_c
+@ffffff
+MbP?
+8Cffffff
+?=UUUUU
+O1@0
+NK?33
+ffffff
+Y@)\
+Z@@UUUUUU
+'o?H
+?a2U0*
+>ffffff
+.!>:
+yE>333333
+MbP?
+Cfff?
+#;)\
+(knN
+D,GG
+?333?
+7fff
+A33s?i
+'@33#@
+G!@)\
+[^_]
+[^_]
+/Sys
+tem/
+Libr
+ary/
+Colo
+rSyn
+c/Pr
+ofil
+es/G
+ener
+ic R
+GB P
+rofi
+le.if
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+zPLR
+?Zd;
+suom
+suom
+ltnc
+ltnc
+ltnc
+ltnc3
+ltnc
+byek
+byek
+suom
+ltnc
+ltnc
+ltnc
+ltnc
+ltnc
+ltnc
+ltnc
+lrcs
+lrcs
+ltnc
+ltnc
+__keymgr_get_and_lock_processwide_ptr
+__keymgr_get_and_lock_processwide_ptr_2
+__keymgr_set_and_unlock_processwide_ptr
+_calloc
+_dlopen
+_dlsym
+_free
+_malloc
+__Unwind_Resume
+__ZTVN10__cxxabiv120__si_class_type_infoE
+__ZdlPv
+___gxx_personality_v0
+_strcmp
+_strcpy
+_AUEventListenerNotify
+_AUParameterListenerNotify
+_CFBundleCopyBundleURL
+_CFBundleCopyResourceURL
+_CFBundleGetBundleWithIdentifier
+_CFBundleGetIdentifier
+_CFBundleGetMainBundle
+_CFBundleGetValueForInfoDictionaryKey
+_CFDataCreate
+_CFDataGetBytePtr
+_CFDataGetLength
+_CFDataGetTypeID
+_CFDictionaryCreateMutableCopy
+_CFDictionaryGetTypeID
+_CFDictionaryGetValue
+_CFDictionaryRemoveValue
+_CFDictionarySetValue
+_CFGetTypeID
+_CFRelease
+_CFRetain
+_CFStringCompare
+_CFStringCompareWithOptions
+_CFStringFind
+_CFStringGetLength
+_CFURLGetFSRef
+_CompareAndSwap
+_DisposeEventLoopTimerUPP
+_FSGetCatalogInfo
+_GetMainEventLoop
+_InstallEventLoopTimer
+_NewEventLoopTimerUPP
+_OSAtomicAdd32Barrier
+_RemoveEventLoopTimer
+_SetComponentInstanceStorage
+_SetEventLoopTimerNextFireTime
+__ZTISt9bad_alloc
+__ZTIl
+__ZTIs
+__ZTVN10__cxxabiv121__vmi_class_type_infoE
+__ZdaPv
+__Znam
+__Znwm
+___CFConstantStringClassReference
+___cxa_allocate_exception
+___cxa_begin_catch
+___cxa_end_catch
+___cxa_throw
+___sF
+_fwrite
+_kCFAllocatorDefault
+_kCFBundleVersionKey
+_memset
+_LPAUViewEntry
+_AudioUnitAddPropertyListener
+_AudioUnitGetProperty
+_AudioUnitRemovePropertyListener
+_GetControlBounds
+_GetControlEventTarget
+_GetEventClass
+_GetEventKind
+_GetEventParameter
+_GetWindowBounds
+_HIViewGetFrame
+_HIViewMoveBy
+_HIViewSetFrame
+_InvalWindowRect
+_SizeWindow
+_atan2
+_cos
+_sin
+_sprintf
+__ZTVN10__cxxabiv117__class_type_infoE
+___cxa_pure_virtual
+_strchr
+_strncmp
+_strncpy
+_pow
+_CFURLCreateCopyAppendingPathComponent
+_CFURLCreateFromFSRef
+_CFURLGetFileSystemRepresentation
+_FSFindFolder
+_FSPathMakeRef
+_FSRefMakePath
+___error
+_closedir
+_fclose
+_fgets
+_fopen
+_fprintf
+_fread
+_fseek
+_ftell
+_mkdir
+_opendir
+_readdir
+_stat
+_strcasecmp
+_exp
+_log
+_fmod
+_memcpy
+_strstr
+_expf
+_rand
+_srand
+_time
+_strtod
+_AECreateDesc
+_AEDisposeDesc
+_AEGetDescData
+_AEGetNthPtr
+_CFArrayAppendValue
+_CFArrayCreateMutable
+_CFArrayGetCount
+_CFArrayGetValueAtIndex
+_CFNumberCreate
+_CFNumberGetValue
+_CFStringCreateWithCString
+_CFStringGetCharacters
+_CFURLCreateCopyAppendingPathExtension
+_CFURLCreateWithString
+_CFURLGetString
+_DisposeNavEventUPP
+_DisposeNavObjectFilterUPP
+_FSCreateFileUnicode
+_FSMakeFSRefUnicode
+_LSCopyItemInfoForRef
+_NavCompleteSave
+_NavCreateChooseFileDialog
+_NavCreatePutFileDialog
+_NavCustomControl
+_NavDialogDispose
+_NavDialogGetReply
+_NavDialogRun
+_NavDisposeReply
+_NavGetDefaultDialogCreationOptions
+_NewNavEventUPP
+_NewNavObjectFilterUPP
+_kCFTypeArrayCallBacks
+_atol
+_pthread_mutex_destroy
+_pthread_mutex_init
+_pthread_mutex_lock
+_pthread_mutex_trylock
+_pthread_mutex_unlock
+_pthread_mutexattr_destroy
+_pthread_mutexattr_init
+_pthread_mutexattr_settype
+_CFPreferencesCopyValue
+_CFPreferencesSetValue
+_CFPreferencesSynchronize
+_CFStringGetCString
+_CreateStandardAlert
+_Gestalt
+_RunStandardAlert
+_kCFPreferencesAnyHost
+_kCFPreferencesCurrentUser
+_mach_absolute_time
+_mach_timebase_info
+_random
+_usleep
+_log10
+_CGBitmapContextCreate
+_CGColorSpaceCreateDeviceRGB
+_CGColorSpaceRelease
+_CGContextRelease
+_CGDataProviderCreateWithData
+_CGDataProviderRelease
+_CGImageCreate
+_CGImageGetHeight
+_CGImageGetWidth
+_CGImageRelease
+_ConvertEventRefToEventRecord
+_ReceiveNextEvent
+_ReleaseEvent
+_AUCronoXEntry
+_CFArrayCreate
+_CFArrayCreateCopy
+_CFDictionaryAddValue
+_CFDictionaryContainsKey
+_CFDictionaryCreateMutable
+_CFStringCreateWithSubstring
+_kCFTypeDictionaryKeyCallBacks
+_kCFTypeDictionaryValueCallBacks
+_floor
+_strncat
+_ATSUFONDtoFontID
+_AppendMenuItemTextWithCFString
+_CalcMenuSize
+_CallNextEventHandler
+_CheckMenuItem
+_ClearCurrentScrap
+_ClearKeyboardFocus
+_CopyCStringToPascal
+_CreateEditUnicodeTextControl
+_CreateTextEncoding
+_CurResFile
+_DeleteMenu
+_DisposeHandle
+_DisposeMenu
+_GetControlData
+_GetDblTime
+_GetFNum
+_GetGrayRgn
+_GetHandleSize
+_GetMenuHeight
+_GetRegionBounds
+_GetWindowAttributes
+_GetWindowEventTarget
+_GetWindowPort
+_HIViewAddSubview
+_HIViewAdvanceFocus
+_HIViewConvertRect
+_HIViewFindByID
+_HIViewGetRoot
+_HIViewGetSuperview
+_HIViewRemoveFromSuperview
+_HIViewSetFirstSubViewFocus
+_HIViewSetNeedsDisplay
+_HIViewSetVisible
+_InsertMenu
+_InsertMenuItemTextWithCFString
+_InstallEventHandler
+_NewMenu
+_PopUpMenuSelect
+_PtInRect
+_QDGlobalToLocalPoint
+_QDSwapPort
+_RGBBackColor
+_RGBForeColor
+_RemoveEventHandler
+_SetControlData
+_SetItemCmd
+_SetMenuItemHierarchicalID
+_SetMenuItemKeyGlyph
+_SetMenuItemModifiers
+_SetUserFocusWindow
+_TXNAdjustCursor
+_TXNClick
+_TXNCopy
+_TXNDeleteObject
+_TXNDraw
+_TXNFocus
+_TXNGetDataEncoded
+_TXNGetSelection
+_TXNGetViewRect
+_TXNInitTextension
+_TXNIsScrapPastable
+_TXNIsSelectionEmpty
+_TXNKeyDown
+_TXNNewObject
+_TXNPaste
+_TXNSelectAll
+_TXNSetBackground
+_TXNSetData
+_TXNSetFrameBounds
+_TXNSetTXNObjectControls
+_TXNSetTypeAttributes
+_UniqueID
+_UseResFile
+___toupper
+_kHIViewWindowContentID
+_realloc
+_BackColor
+_CFBundleGetFunctionPointerForName
+_CFStringCreateWithFormat
+_CGBitmapContextCreateImage
+_CGBitmapContextGetAlphaInfo
+_CGBitmapContextGetBitsPerPixel
+_CGBitmapContextGetBytesPerRow
+_CGBitmapContextGetData
+_CGBitmapContextGetHeight
+_CGBitmapContextGetWidth
+_CGColorSpaceCreateWithPlatformColorSpace
+_CGContextAddLineToPoint
+_CGContextBeginPath
+_CGContextClearRect
+_CGContextClipToRect
+_CGContextClosePath
+_CGContextDrawImage
+_CGContextDrawPath
+_CGContextFillRect
+_CGContextGetTextPosition
+_CGContextMoveToPoint
+_CGContextRestoreGState
+_CGContextSaveGState
+_CGContextScaleCTM
+_CGContextSelectFont
+_CGContextSetAlpha
+_CGContextSetFillColorSpace
+_CGContextSetLineDash
+_CGContextSetLineWidth
+_CGContextSetRGBFillColor
+_CGContextSetRGBStrokeColor
+_CGContextSetShouldAntialias
+_CGContextSetStrokeColorSpace
+_CGContextSetTextDrawingMode
+_CGContextSetTextMatrix
+_CGContextSetTextPosition
+_CGContextShowText
+_CGContextSynchronize
+_CGContextTranslateCTM
+_CGDataProviderCreate
+_CGDataProviderCreateWithURL
+_CGImageCreateWithPNGDataProvider
+_CGImageRetain
+_CGRectIntersection
+_CMCloseProfile
+_CMOpenProfile
+_CloseComponent
+_CopyBits
+_CountDragItems
+_CreateCustomControl
+_DisposeControl
+_DisposeDragReceiveHandlerUPP
+_DisposeDragTrackingHandlerUPP
+_DisposeGWorld
+_DrawPicture
+_ForeColor
+_GetBackColor
+_GetCurrentButtonState
+_GetCurrentKeyModifiers
+_GetForeColor
+_GetGWorld
+_GetGWorldPixMap
+_GetMouse
+_GetPictInfo
+_GetPixBaseAddr
+_GetPixBounds
+_GetPixDepth
+_GetPixRowBytes
+_GetPortBitMapForCopyBits
+_GetPortBounds
+_GetResource
+_HIViewConvertPoint
+_HIViewDrawCGImage
+_HIViewGetBounds
+_HIViewSetBoundsOrigin
+_HLock
+_HUnlock
+_InstallReceiveHandler
+_InstallTrackingHandler
+_IsWindowCollapsed
+_KLGetCurrentKeyboardLayout
+_KLGetKeyboardLayoutProperty
+_KeyTranslate
+_NewDragReceiveHandlerUPP
+_NewDragTrackingHandlerUPP
+_NewGWorld
+_QDBeginCGContext
+_QDEndCGContext
+_RegisterToolboxObjectClass
+_ReleaseResource
+_RemoveReceiveHandler
+_RemoveTrackingHandler
+_SetAutomaticControlDragTrackingEnabledForWindow
+_SetControlDragTrackingEnabled
+_SetEventParameter
+_SetGWorld
+_SetThemeCursor
+_SyncCGContextOriginWithPort
+_UnlockPixels
+_UnregisterToolboxObjectClass
+_CFBundleCreate
+_CFURLCreateCopyDeletingLastPathComponent
+_CFURLCreateFromFileSystemRepresentation
+_GetEventDispatcherTarget
+_RunCurrentEventLoop
+_SendEventToEventTarget
+_TickCount
+__dyld_get_image_header
+__dyld_get_image_name
+__dyld_image_count
+_CFDataAppendBytes
+_CFDataCreateMutable
+_CFDictionaryGetValueIfPresent
+_GetComponentInfo
+__ZSt17__throw_bad_allocv
+__ZSt20__throw_length_errorPKc
+___dynamic_cast
+_memmove
+_pthread_self
+_AudioUnitRender
+_GetComponentInstanceStorage
+_CFDictionaryGetCount
+_CFDictionaryGetKeysAndValues
+__ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base
+__ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base
+__ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_
+_sscanf
+_AUListenerCreate
+_AUListenerDispose
+_CFRunLoopGetCurrent
+_CreateUserPaneControl
+_EmbedControl
+_HIViewScrollRect
+_SizeControl
+_kCFRunLoopDefaultMode
+_AUEventListenerAddEventType
+_AUEventListenerRemoveEventType
+_AudioUnitSetProperty
+_GetControl32BitValue
+_SetControl32BitValue
+_AddEventTypesToHandler
+_CFDictionaryRemoveAllValues
+_DecrementAtomic
+_AudioConverterConvertBuffer
+_AudioConverterDispose
+_feof
+_AudioConverterFillComplexBuffer
+_AudioConverterNew
