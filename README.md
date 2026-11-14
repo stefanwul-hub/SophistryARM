@@ -8,6 +8,8 @@ Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x
 
 Lire [le rapport CP-011](docs/CP011.md) pour le test Mac avec saisie locale de la licence, les preuves et les limites. [CP-010](docs/CP010.md) et [CP-009](docs/CP009.md) sont conservés comme historique. Le nouvel hôte C++ n’a pas encore été compilé/exécuté sous macOS ; les résultats reçus du Mac concernent CP-008.
 
+Le [lanceur CP-011](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP011.command) télécharge une archive épinglée, contrôle son SHA-256, la décompacte et appelle `Verifier-Moteur-Mac.command`. Il conserve les sources et builds dans `~/Documents/SophistryARM-CP011`. La licence se saisit localement dans le Terminal ; ne pas l’envoyer dans le chat ou sur GitHub. Le composant installable reste à réaliser.
+
 ## Travail effectué
 
 - Archive originale épinglée, 106 images d’interface conservées, projet Ghidra enregistré et 3 249 fonctions détectées exportées en pseudo-code. Le pseudo-code comporte des avertissements et ne se compile pas directement.
