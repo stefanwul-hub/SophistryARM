@@ -25,6 +25,15 @@ printf '%s\n' 'Checkpoint incomplet : ce script compile des outils de test, pas 
   -I"$ROOT/src" "$ROOT/src/LegacyStateReader.cpp" "$ROOT/tests/LegacyStateProbeMain.cpp" -o "$RUN/LegacyStateProbe"
 /usr/bin/lipo -verify_arch arm64 "$RUN/LegacyStateProbe"
 /usr/bin/arch -arm64 "$RUN/LegacyStateProbe" "$ROOT/tests/fixtures/legacy-au-vstdata.bin" "$ROOT/tests/fixtures/legacy-fxp-chunk.bin" | tee "$RUN/legacy-state-test.jsonl"
+bash "$ROOT/scripts/build-lifter.sh" "$RUN/lifter"
+/usr/bin/lipo -verify_arch arm64 "$RUN/lifter/LiftedProbe"
+/usr/bin/arch -arm64 "$RUN/lifter/LiftedProbe" "$ROOT/reference/Sophistry.i386" "$ROOT/evidence/static-lift-comparison.fixtures" | tee "$RUN/static-lift-replay.json"
+# Compare the platform libm separately; a mismatch is recorded for investigation.
+set +e
+/usr/bin/arch -arm64 "$RUN/lifter/LiftedProbe" "$ROOT/reference/Sophistry.i386" "$ROOT/evidence/static-lift-comparison.fixtures" --native-math > "$RUN/static-lift-native-libm.json" 2> "$RUN/static-lift-native-libm-errors.log"
+MATH_STATUS=$?
+set -e
+printf '%s\n' "$MATH_STATUS" > "$RUN/static-lift-native-libm.exitcode"
 /usr/bin/xcrun clang++ -arch arm64 -mmacosx-version-min=11.0 -std=c++17 -O2 \
   "$ROOT/src/AUStateProbe.cpp" -framework AudioToolbox -framework AudioUnit \
   -framework CoreFoundation -o "$RUN/AUStateProbe"

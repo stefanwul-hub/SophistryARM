@@ -55,6 +55,7 @@ int sl_reg_write(SlCpu* c,SlU32 offset,const void* data,SlSize size);
 int sl_reg_read(SlCpu* c,SlU32 offset,void* data,SlSize size);
 int sl_hook(SlCpu* c,SlU32 address,SlCallback callback,void* user);
 void sl_set_pc(SlCpu* c,SlU32 address);
+void sl_push_double_return(SlCpu* c,double value);
 SlU32 sl_get_pc(SlCpu* c);
 SlU32 sl_get_fault(SlCpu* c);
 SlU64 sl_get_steps(SlCpu* c);

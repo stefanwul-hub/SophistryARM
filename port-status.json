@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-006",
+  "checkpoint": "CP-007",
   "original_version": "3.0.8",
   "original_architectures": [
     "ppc",
@@ -22,7 +22,7 @@
   "ableton_projects_verified": false,
   "install_allowed": false,
   "implemented_dsp_scope": "Manually translated Satur_c plus statically emitted selected saturation and FilterMoogSI processing routines; full synth graph absent",
-  "arm64_scope": "cross-compiled relocatable Mach-O object of the isolated kernel; no ARM64 execution in this Linux environment",
+  "arm64_scope": "Selected lifted DSP compiled as Mach-O ARM64 objects; same selected C++ compiled as ARM64/Linux executable and passed reference replay under QEMU, not macOS",
   "next_work": [
     "Recover and test full Synth/Kaja object graph and all DSP modules",
     "Resolve remaining fields and cross-version enum mappings, obtain referenced sample and implement semantic DSP state restore",
@@ -48,5 +48,9 @@
   "static_lifter_test_cases": 148,
   "static_lifter_bit_exact_vs_unicorn": true,
   "static_lifter_original_apple_libm_tested": false,
-  "sample_used_for_partial_filter_test": true
+  "sample_used_for_partial_filter_test": true,
+  "static_lifter_arm64_linux_executed_under_qemu": true,
+  "static_lifter_arm64_qemu_fixture_cases": 148,
+  "static_lifter_macos_objects_compiled": true,
+  "static_lifter_macos_executed": false
 }

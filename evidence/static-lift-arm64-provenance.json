@@ -1,0 +1,40 @@
+{
+  "mach_o_objects": [
+    {
+      "name": "LifterRuntime.arm64.o",
+      "bytes": 16992,
+      "sha256": "b33a0112653fe47a0d55e6459601d28494cc1aa96f58d5400045ac567ae46ba5",
+      "cpu_type": "0x100000c",
+      "file_type": 1,
+      "is_arm64": true,
+      "is_object": true
+    },
+    {
+      "name": "GeneratedDsp.arm64.o",
+      "bytes": 3577032,
+      "sha256": "e2546d84bf99d5f28d894fc4ba8b5a318850e178173d3ce86110072ecf684081",
+      "cpu_type": "0x100000c",
+      "file_type": 1,
+      "is_arm64": true,
+      "is_object": true
+    }
+  ],
+  "arm64_linux_executable_sha256": "f3e0404aa7e869a811d11bb4bed26e8abb554f4c87dd3304060a34d67bdc98eb",
+  "arm64_linux_executable_bytes": 2744992,
+  "qemu_download_url": "https://github.com/multiarch/qemu-user-static/releases/download/v7.2.0-1/qemu-aarch64-static",
+  "qemu_sha256": "dce64b2dc6b005485c7aa735a7ea39cb0006bf7e5badc28b324b2cd0c73d883f",
+  "qemu_version": "7.2.0",
+  "compiler": "Zig 0.14.1 cc/c++ drivers",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-ffp-contract=off",
+    "-fno-fast-math",
+    "-fno-exceptions",
+    "-fno-rtti"
+  ],
+  "qemu_replay_report": "static-lift-arm64-qemu.json",
+  "macos_executed": false,
+  "apple_silicon_hardware_executed": false,
+  "audio_unit_built": false
+}

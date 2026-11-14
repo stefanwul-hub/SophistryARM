@@ -57,6 +57,17 @@ Le sample est analysé : PCM16 stéréo 44100 Hz, 334664 frames, 7,588752834 s ;
 
 `scripts/ghidra/ExportPcode.java` exporte les opérations p-code brutes des instructions sélectionnées. `scripts/lift_pcode_cpp.py` émet un C++ à opérations et labels fixes, sans décodeur x86 au runtime. Export sélectionné : 2518 instructions, 12 fonctions (saturation, dispatch et huit variantes de FilterMoogSI, addition de sortie, thunk PIC). Les fonctions non sélectionnées ne sont pas portées par ce résultat. Les opérations et formats non pris en charge entraînent une erreur explicite de génération.
 
-`scripts/compare_lifted_dsp.py` n’existe pas : le test réel est `tests/compare_lifted_dsp.py`. Il compare l’exécution C++ à Unicorn sur les octets originaux et contrôle les sorties et la mémoire de l’objet. 148 cas, 14544 valeurs de buffers comparées, aucun écart, 2450 adresses d’instructions exécutées sur 2518 exportées. Les deux exécutions partagent un adaptateur Python math.log10 ; le libm Apple original n’a pas été exécuté. Ne pas déclarer la fidélité du synthétiseur entier ni la validation AU.
+Le test est `tests/compare_lifted_dsp.py`. Il compare l’exécution C++ à Unicorn sur les octets originaux et contrôle les sorties et la mémoire de l’objet. 148 cas, 14544 valeurs de buffers comparées, aucun écart, 2450 adresses d’instructions exécutées sur 2518 exportées. Les deux exécutions partagent un adaptateur Python math.log10 ; le libm Apple original n’a pas été exécuté. Ne pas déclarer la fidélité du synthétiseur entier ni la validation AU.
 
 Sources : `src/lifter/LifterRuntime.h/.cpp`, `src/lifter/GeneratedDsp.cpp`. Rapport : `evidence/static-lift-comparison.json`. Fixtures natives : `evidence/static-lift-comparison.fixtures`. Un programme de replay natif et les vérifications ARM64 sont l’étape suivante.
+
+
+## CP-007 — replay autonome et vérification ARM64 sélectionnée
+
+`tests/LiftedProbeMain.cpp` rejoue les fixtures sans Python/Unicorn. Le format actuel des fixtures est SLFT0002 ; les réponses log10 enregistrées sont vérifiées sur leurs arguments puis réinjectées, afin d’isoler le code statiquement traduit du libm de la plateforme. Le mode `--native-math` teste séparément le libm de la plateforme. Les deux modes passent sous Linux x86_64.
+
+Les objets Mach-O ARM64 du runtime et du code généré compilent avec Zig 0.14.1. Le même probe, compilé en ARM64/Linux musl statique, passe sous QEMU 7.2.0 les 148 cas et 1203328 octets comparés, sans différence. Cela ne constitue pas une exécution macOS ni un test sur du matériel Apple Silicon. Aucun Audio Unit n’est construit/validé. `Verifier-Mac.command` compile et lance les probes sur Mac ; il n’installe rien.
+
+Sources/tests et objets sont dans le checkpoint ; Zig, QEMU et l’exécutable ARM64/Linux de travail ne sont pas des dépendances nécessaires sur le Mac utilisateur. Les URL et SHA des outils sont consignés dans `evidence/static-lift-arm64-provenance.json`.
+
+Étape suivante : mode Schrader (`SamWT_c`). Le traitement original du sample est identifié : `0xaf2b2` mélange les deux canaux par moyenne, `0x32430` normalise, `0x8de6a` construit 64 tables de 128 floats en appelant le resampler/crossfade `0x8d9dc`, applique un bord progressif et normalise chaque table. `0x38f48` joue les tables. Pas encore traduit/testé à CP-007.

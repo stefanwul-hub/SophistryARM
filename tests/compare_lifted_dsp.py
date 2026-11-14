@@ -32,6 +32,7 @@ class Native:
    fn=getattr(lib,name);fn.argtypes=[ctypes.c_void_p,ctypes.c_uint32,ctypes.c_void_p,ctypes.c_size_t];fn.restype=ctypes.c_int
   lib.sl_hook.argtypes=[ctypes.c_void_p,ctypes.c_uint32,self.CB,ctypes.c_void_p];lib.sl_hook.restype=ctypes.c_int
   lib.sl_set_pc.argtypes=[ctypes.c_void_p,ctypes.c_uint32]
+  lib.sl_push_double_return.argtypes=[ctypes.c_void_p,ctypes.c_double]
   for name in ['sl_get_pc','sl_get_fault','sl_coverage_count']:
    getattr(lib,name).argtypes=[ctypes.c_void_p];getattr(lib,name).restype=ctypes.c_uint32
   lib.sl_get_steps.argtypes=[ctypes.c_void_p];lib.sl_get_steps.restype=ctypes.c_uint64
@@ -54,7 +55,7 @@ class Native:
  def setesp(self,sp):self.regwrite(0x10,struct.pack('<I',sp))
  def ret(self):
   sp=self.esp();pc=u32(self.read(sp,4));self.setesp(sp+4);self.l.sl_set_pc(self.c,pc)
- def fpreturn(self,value):self.regwrite(0x1100,ext80(value))
+ def fpreturn(self,value):self.l.sl_push_double_return(self.c,value)
  def hook(self,address,function):
   @self.CB
   def callback(user,at,cpu):
@@ -93,13 +94,13 @@ class Original:
 
 class Host:
  def __init__(self,backend):
-  self.b=backend;self.input=[0x220000,0x230000];self.output=[0x240000,0x250000];self.math_calls=0
+  self.b=backend;self.input=[0x220000,0x230000];self.output=[0x240000,0x250000];self.math_calls=0;self.math_trace=[]
   for address in [0x500000,0x500010,0x500020,0x500030,0x500040,0x103311]:backend.hook(address,self.callback)
  def put(self,a,v):self.b.write(a,struct.pack('<I',v))
  def callback(self,at):
   sp=self.b.esp()
   if at==0x103311:
-   value=struct.unpack('<d',self.b.read(sp+4,8))[0];self.b.fpreturn(math.log10(value));self.math_calls+=1
+   raw=self.b.read(sp+4,8);value=struct.unpack('<d',raw)[0];result=math.log10(value);self.math_trace.append((raw,struct.pack('<d',result)));self.b.fpreturn(result);self.math_calls+=1
   elif at in [0x500000,0x500010,0x500030,0x500040]:
    out=at in [0x500000,0x500030];self.put(u32(self.b.read(sp+8,4)),(self.output if out else self.input)[0])
    if at in [0x500030,0x500040]:self.put(u32(self.b.read(sp+12,4)),(self.output if out else self.input)[1])
@@ -129,7 +130,10 @@ def run(root,library,output):
  _,real=read_wav(root/'reference/Samples/BT_cronox18.wav')
  def check(case_id,entry,args,n,state_size,initial_segments):
   nonlocal cases,samples
+  start=len(hosts[0].math_trace);nstart=len(hosts[1].math_trace)
   for h in hosts:h.b.run(entry,args)
+  trace=hosts[0].math_trace[start:]
+  if trace!=hosts[1].math_trace[nstart:]:raise RuntimeError("Shared math adapter traces differ")
   expected=hosts[0].result(n);actual=hosts[1].result(n)
   es=original.read(0x200000,state_size);ns=native.read(0x200000,state_size)
   if expected!=actual or es!=ns:
@@ -137,7 +141,7 @@ def run(root,library,output):
    state_idx=next((i for i,(a,b) in enumerate(zip(es,ns)) if a!=b),None)
    mismatches.append({'case':case_id,'first_audio_byte':idx,'first_state_byte':state_idx,'expected_audio_hex':expected[max(0,(idx or 0)-8):(idx or 0)+16].hex(),'actual_audio_hex':actual[max(0,(idx or 0)-8):(idx or 0)+16].hex()})
    if len(mismatches)>=5:raise RuntimeError('Five differential failures: '+json.dumps(mismatches))
-  fixtures.append({'entry':entry,'args':args,'initial':initial_segments,'expected':[(hosts[0].output[0],expected[:4*n]),(hosts[0].output[1],expected[4*n:]),(0x200000,es)]})
+  fixtures.append({'entry':entry,'args':args,'initial':initial_segments,'expected':[(hosts[0].output[0],expected[:4*n]),(hosts[0].output[1],expected[4*n:]),(0x200000,es)],'math_trace':trace})
   cases+=1;samples+=2*n
  # Generated saturation is compared separately from the manually translated kernel.
  for channels in [1,2]:
@@ -163,12 +167,14 @@ def run(root,library,output):
  report={'scope':'Selected statically lifted saturation and filter routines, not full DSP engine or AU','original_sha256':SHA,'cases':cases,'compared_audio_samples':samples,'bit_exact_audio_and_object_state':not mismatches,'mismatches':mismatches,'native_executed_instruction_addresses':lib.sl_coverage_count(native.c),'exported_instructions':sum(1 for _ in (root/'analysis/lifter/instructions.jsonl').open()),'shared_log10_calls_in_original':hosts[0].math_calls,'shared_log10_calls_in_lift':hosts[1].math_calls,'sample_source':'BT_cronox18.wav','x86_runtime_decoder_in_lift':False,'host_math_note':'Both executions use Python math.log10 through explicit ABI adapters; original Apple libm has not been executed','architecture_executed':'Linux x86_64 C++ build','apple_silicon_executed':False,'project_reopening_tested':False}
  output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(report,indent=2)+'\n')
  # Binary fixture captures the actual input segments and original expected outputs.
- path=output.with_suffix('.fixtures');data=bytearray(b'SLFT0001'+struct.pack('<I',len(fixtures)))
+ path=output.with_suffix('.fixtures');data=bytearray(b'SLFT0002'+struct.pack('<I',len(fixtures)))
  for f in fixtures:
   data+=struct.pack('<III',f['entry'],len(f['args']),len(f['initial']))+struct.pack('<'+'I'*len(f['args']),*f['args'])
   for address,blob in f['initial']:data+=struct.pack('<II',address,len(blob))+blob
   data+=struct.pack('<I',len(f['expected']))
   for address,blob in f['expected']:data+=struct.pack('<II',address,len(blob))+blob
+  data+=struct.pack('<I',len(f['math_trace']))
+  for arg,result in f['math_trace']:data+=arg+result
  path.write_bytes(data);native.close();return report
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('library',type=Path);p.add_argument('--root',type=Path,default=ROOT);p.add_argument('--output',type=Path,required=True);n=p.parse_args();print(json.dumps(run(n.root,n.library,n.output),indent=2))

@@ -1,0 +1,1 @@
+{"scope":"selected statically lifted DSP","cases":148,"compared_bytes":1203328,"byte_mismatches":0,"math_calls":200,"math_mode":"recorded ABI responses","instruction_addresses_executed":2450,"fixture_valid":true,"passed":true,"full_synth_tested":false}

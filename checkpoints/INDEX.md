@@ -11,3 +11,5 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-005 — sauvegarde après interruption** : sample BT_cronox18.wav et provenance conservés ; autorisation de publication consignée ; publication non confirmée. Les résultats techniques validés restent ceux de CP-004.
 
 - **CP-006 — traduction statique sélectionnée** : export p-code, génération C++ de 2518 instructions, tests différentiels de saturation et FilterMoogSI sur 148 cas sans écart de sortie ou d’état. Aucun moteur complet ni AU natif obtenu.
+
+- **CP-007 — replay natif sélectionné** : programme autonome de replay, objets Mach-O ARM64, exécution du probe ARM64/Linux sous QEMU sans différence sur les 148 cas. Les appels math sont isolés par réponses ABI enregistrées ; aucun test macOS/AU effectué.

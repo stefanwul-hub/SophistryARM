@@ -63,3 +63,14 @@ extern "C" SlU32 sl_get_fault(SlCpu* c){return c->fault;}
 extern "C" SlU64 sl_get_steps(SlCpu* c){return c->steps;}
 extern "C" SlU32 sl_coverage_count(SlCpu* c){SlU32 n=0;for(SlSize i=0;i<sizeof(c->seen);++i)n+=c->seen[i]!=0;return n;}
 extern "C" int sl_run(SlCpu* c,SlU32 e,SlU32 s,SlU64 limit){if(!c)return 1;return sl_execute(*c,e,s,limit);}
+
+extern "C" void sl_push_double_return(SlCpu* c,double value) {
+    SlU64 bits=static_cast<SlU64>(sl_bits(value));SlU64 fraction=bits&0xfffffffffffffULL;
+    unsigned exponent=unsigned((bits>>52)&0x7ff),sign=unsigned(bits>>63),e=0;SlU64 mantissa=0;
+    if(exponent==0x7ff){e=0x7fff;mantissa=(SlU64(1)<<63)|(fraction<<11);}
+    else if(exponent){e=exponent-1023+16383;mantissa=((SlU64(1)<<52)|fraction)<<11;}
+    else if(fraction){unsigned leading=63-__builtin_clzll(fraction);e=unsigned(int(leading)-1074+16383);mantissa=fraction<<(63-leading);}
+    SlU storage=SlU(mantissa)|(SlU((sign<<15)|e)<<64);
+    for(int i=7;i>0;--i)__builtin_memcpy(c->reg+0x1100+i*16,c->reg+0x1100+(i-1)*16,10);
+    sl_put<10>(c->reg,sizeof(c->reg),0x1100,storage,*c);
+}
