@@ -1,0 +1,9 @@
+{
+  "detected_functions": 3249,
+  "decompiler_outputs": 3249,
+  "failed_decompiles": 0,
+  "functions_with_any_warning": 1847,
+  "unrecovered_jump_table_warnings": 207,
+  "bad_instruction_warnings": 0,
+  "note": "No failure to emit pseudocode does not imply semantic recovery, complete code coverage, or buildable source."
+}

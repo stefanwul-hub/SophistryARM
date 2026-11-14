@@ -1,0 +1,9 @@
+/* 00012a32 Envelope_c_vslot_46 */
+
+void Envelope_c_vslot_46(int param_1,undefined4 param_2)
+
+{
+  *(undefined4 *)(param_1 + 0x14) = param_2;
+  return;
+}
+

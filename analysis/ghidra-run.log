@@ -1,0 +1,154 @@
+Picked up JAVA_TOOL_OPTIONS: -Duser.home=/workspace/work/ghidra-home
+Picked up JAVA_TOOL_OPTIONS: -Duser.home=/workspace/work/ghidra-home
+Picked up JAVA_TOOL_OPTIONS: -Duser.home=/workspace/work/ghidra-home
+openjdk version "21.0.13" 2026-10-20 LTS
+OpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode)
+INFO  Using log config file: jar:file:/workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /workspace/work/ghidra-home/.config/ghidra/ghidra_11.3.2_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /workspace/work/ghidra-home/.config/ghidra/ghidra_11.3.2_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (786 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (SSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (ApplicationTrustManagerFactory)  
+INFO  Starting cache cleanup: /tmp/agent-ghidra/fscache2 (FileCacheMaintenanceDaemon)  
+INFO  Finished cache cleanup, estimated storage used: 0 (FileCacheMaintenanceDaemon)  
+INFO  Headless startup complete (1883 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 57 extension points (18 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /workspace/work/port/scripts/ghidra
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/Jython/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /workspace/work/tools/ghidra_11.3.2_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Creating project: /workspace/work/ghidra-project/Sophistry (HeadlessAnalyzer)  
+INFO  Creating project: /workspace/work/ghidra-project/Sophistry (DefaultProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: /workspace/work/ghidra-project/Sophistry (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///workspace/work/original/Sophistry.i386 (HeadlessAnalyzer)  
+INFO  Using Loader: Mac OS X Mach-O (AutoImporter)  
+INFO  Using Language/Compiler: x86:LE:32:default:gcc (AutoImporter)  
+INFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib64] (AutoImporter)  
+INFO  Additional info:
+Loading file:///workspace/work/original/Sophistry.i386?MD5=04354843deaa16b2bc1d60195a886f1a...
+Unable to determine entry point.
+------------------------------------------------
+
+Linking the External Programs of 'Sophistry.i386' to imported libraries...
+  [/System/Library/Frameworks/Carbon.framework/Versions/A/Carbon] -> not found in project
+  [/System/Library/Frameworks/AudioUnit.framework/Versions/A/AudioUnit] -> not found in project
+  [/System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox] -> not found in project
+  [/System/Library/Frameworks/vecLib.framework/Versions/A/vecLib] -> not found in project
+  [/usr/lib/libstdc++.6.dylib] -> not found in project
+  [/usr/lib/libgcc_s.1.dylib] -> not found in project
+  [/usr/lib/libSystem.B.dylib] -> not found in project
+------------------------------------------------
+
+ (AutoImporter)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  SCRIPT: /workspace/work/port/scripts/ghidra/ExportSophistry.java (HeadlessAnalyzer)  
+INFO  ExportSophistry.java> Exported 200 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 400 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 600 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 800 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 1000 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 1200 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 1400 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 1600 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 1800 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 2000 functions (GhidraScript)  
+INFO  ExportSophistry.java> DONE 2029 functions, 2029 decompiled, 0 failures (GhidraScript)  
+INFO  ANALYZING all memory and code: file:///workspace/work/original/Sophistry.i386 (HeadlessAnalyzer)  
+INFO  Packed database cache: /tmp/agent-ghidra/packed-db-cache (PackedDatabaseCache)  
+INFO  Applied data type archive: mac_osx (ApplyDataArchiveAnalyzer)  
+WARN  Unable to fully apply external demangled Address Table at 0011d000: std::bad_alloc::typeinfo (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table at 0011d004: long::typeinfo (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table at 0011d008: short::typeinfo (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table at 0011d00c: __cxxabiv1::__class_type_info::vtable (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table at 0011d010: __cxxabiv1::__si_class_type_info::vtable (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table at 0011d014: __cxxabiv1::__vmi_class_type_info::vtable (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table: <EXTERNAL>::std::bad_alloc::typeinfo (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table: <EXTERNAL>::long::typeinfo (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table: <EXTERNAL>::short::typeinfo (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table: <EXTERNAL>::__cxxabiv1::__class_type_info::vtable (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table: <EXTERNAL>::__cxxabiv1::__si_class_type_info::vtable (DemangledAddressTable)  
+WARN  Unable to fully apply external demangled Address Table: <EXTERNAL>::__cxxabiv1::__vmi_class_type_info::vtable (DemangledAddressTable)  
+INFO  -----------------------------------------------------
+    ASCII Strings                              0.343 secs
+    Apply Data Archives                        0.336 secs
+    CFStrings                                  0.015 secs
+    Call Convention ID                         0.019 secs
+    Call-Fixup Installer                       0.074 secs
+    Create Address Tables                      0.202 secs
+    Create Address Tables - One Time           0.437 secs
+    Create Function                            0.462 secs
+    Data Reference                             0.290 secs
+    Decompiler Switch Analysis                 6.624 secs
+    Demangler GNU                              0.189 secs
+    Disassemble                                0.154 secs
+    Disassemble Entry Points                   3.389 secs
+    Embedded Media                             0.078 secs
+    External Entry References                  0.000 secs
+    Function ID                                1.027 secs
+    Function Start Search                      0.098 secs
+    Function Start Search After Code           0.078 secs
+    Function Start Search After Data           0.037 secs
+    Function Start Search delayed - One Time   0.044 secs
+    Mach-O Function Starts                     0.007 secs
+    Non-Returning Functions - Discovered       0.617 secs
+    Non-Returning Functions - Known            0.010 secs
+    Reference                                  0.407 secs
+    Shared Return Calls                        0.355 secs
+    Stack                                      4.748 secs
+    Subroutine References                      0.196 secs
+    X86 Function Callee Purge                  0.205 secs
+    x86 Constant Reference Analyzer            8.239 secs
+-----------------------------------------------------
+     Total Time   28 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///workspace/work/original/Sophistry.i386 (HeadlessAnalyzer)  
+INFO  SCRIPT: /workspace/work/port/scripts/ghidra/ExportSophistry.java (HeadlessAnalyzer)  
+INFO  ExportSophistry.java> Exported 200 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 400 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 600 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 800 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 1000 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 1200 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 1400 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 1600 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 1800 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 2000 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 2200 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 2400 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 2600 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 2800 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 3000 functions (GhidraScript)  
+INFO  ExportSophistry.java> Exported 3200 functions (GhidraScript)  
+INFO  ExportSophistry.java> DONE 3249 functions, 3249 decompiled, 0 failures (GhidraScript)  
+INFO  ANALYZING changes made by post scripts: file:///workspace/work/original/Sophistry.i386 (HeadlessAnalyzer)  
+INFO  REPORT: Post-analysis succeeded for file: file:///workspace/work/original/Sophistry.i386 (HeadlessAnalyzer)  
+INFO  REPORT: Save succeeded for: /Sophistry.i386 (Sophistry:/Sophistry.i386) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

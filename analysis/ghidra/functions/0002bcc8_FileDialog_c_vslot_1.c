@@ -1,0 +1,26 @@
+/* 0002bcc8 FileDialog_c_vslot_1 */
+
+/* WARNING: Function: __i686.get_pc_thunk.bx replaced with injection: get_pc_thunk_bx */
+
+void FileDialog_c_vslot_1(undefined4 *param_1)
+
+{
+  void *pvVar1;
+  
+  *param_1 = &PTR_FileDialog_c_vslot_0_000e7688;
+  if (*(char *)(param_1 + 0x17) != '\0') {
+    FUN_0002e63a(param_1 + 0x1ad,param_1[0x16],param_1 + 0x17);
+  }
+  pvVar1 = (void *)param_1[0x16];
+  if (pvVar1 != (void *)param_1[0x15]) {
+    if (pvVar1 != (void *)0x0) {
+      _free(pvVar1);
+    }
+    param_1[0x16] = 0;
+  }
+  OsLib_c_vslot_0(param_1 + 0x1ad);
+  Disk_c_vslot_0(param_1 + 0x108);
+  operator_delete(param_1);
+  return;
+}
+

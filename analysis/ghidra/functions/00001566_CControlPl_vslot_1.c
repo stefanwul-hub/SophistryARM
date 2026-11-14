@@ -1,0 +1,27 @@
+/* 00001566 CControlPl_vslot_1 */
+
+/* WARNING: Function: __i686.get_pc_thunk.bx replaced with injection: get_pc_thunk_bx */
+
+void CControlPl_vslot_1(undefined4 *param_1)
+
+{
+  undefined4 *puVar1;
+  
+  *param_1 = &PTR_CControlPl_vslot_0_000e4648;
+  if ((void *)param_1[0x24] != (void *)0x0) {
+    _free((void *)param_1[0x24]);
+  }
+  param_1[0x24] = 0;
+  puVar1 = (undefined4 *)param_1[0x21];
+  if (puVar1 != param_1 + 0x26) {
+    if (puVar1 != (undefined4 *)0x0) {
+      _free(puVar1);
+    }
+    param_1[0x21] = 0;
+  }
+  OsLib_c_vslot_0(param_1 + 0x23);
+  FUN_00097280(param_1);
+  operator_delete(param_1);
+  return;
+}
+

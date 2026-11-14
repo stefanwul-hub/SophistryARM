@@ -1,0 +1,160 @@
+/* 000b7d5e FUN_000b7d5e */
+
+/* WARNING: Function: __i686.get_pc_thunk.bx replaced with injection: get_pc_thunk_bx */
+
+void FUN_000b7d5e(undefined4 *param_1)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  int iVar3;
+  
+  FUN_00031e98(param_1);
+  *param_1 = &PTR_Reverb2_c_vslot_0_000f4bc8;
+  puVar1 = param_1 + 0x79;
+  iVar2 = 8;
+  do {
+    puVar1[1] = 0;
+    puVar1[2] = 0xffffffff;
+    puVar1[4] = 0;
+    *puVar1 = 0;
+    puVar1[5] = 0x472c4400;
+    puVar1[7] = 0;
+    puVar1[6] = 0;
+    puVar1[9] = 8;
+    puVar1[8] = 7;
+    puVar1[0xb] = 7;
+    puVar1[10] = 7;
+    puVar1[0xc] = 0;
+    puVar1[0xd] = 0;
+    puVar1[0x10] = 0x10;
+    puVar1[0xe] = 0x40200000;
+    puVar1[0xf] = 0x3aedc5b8;
+    puVar1 = puVar1 + 0x11;
+    iVar2 = iVar2 + -1;
+  } while (iVar2 != 0);
+  puVar1 = param_1 + 0x101;
+  iVar2 = 8;
+  do {
+    puVar1[1] = 0;
+    puVar1[2] = 0xffffffff;
+    puVar1[4] = 0;
+    *puVar1 = 0;
+    puVar1[5] = 0x472c4400;
+    puVar1[7] = 0;
+    puVar1[6] = 0;
+    puVar1[9] = 8;
+    puVar1[8] = 7;
+    puVar1[0xb] = 7;
+    puVar1[10] = 7;
+    puVar1[0xc] = 0;
+    puVar1[0xd] = 0;
+    puVar1[0x10] = 0x10;
+    puVar1[0xe] = 0x40200000;
+    puVar1[0xf] = 0x3aedc5b8;
+    puVar1 = puVar1 + 0x11;
+    iVar2 = iVar2 + -1;
+  } while (iVar2 != 0);
+  puVar1 = param_1 + 0x189;
+  iVar2 = 6;
+  do {
+    puVar1[1] = 0;
+    puVar1[2] = 0xffffffff;
+    puVar1[4] = 0;
+    *puVar1 = 0;
+    puVar1[5] = 0x472c4400;
+    puVar1 = puVar1 + 6;
+    iVar2 = iVar2 + -1;
+  } while (iVar2 != 0);
+  puVar1 = param_1 + 0x1ad;
+  iVar2 = 6;
+  do {
+    puVar1[1] = 0;
+    puVar1[2] = 0xffffffff;
+    puVar1[4] = 0;
+    *puVar1 = 0;
+    puVar1[5] = 0x472c4400;
+    puVar1 = puVar1 + 6;
+    iVar2 = iVar2 + -1;
+  } while (iVar2 != 0);
+  param_1[0x1d2] = 0;
+  param_1[0x1d3] = 0xffffffff;
+  param_1[0x1d5] = 0;
+  param_1[0x1d1] = 0;
+  param_1[0x1d6] = 0x472c4400;
+  param_1[0x1d7] = 100;
+  *(undefined1 *)(param_1 + 0x57) = 0;
+  param_1[0x7b] = 0x45c;
+  param_1[0x7c] = 0x45c;
+  param_1[0x103] = 0x473;
+  param_1[0x104] = 0x473;
+  param_1[0x8c] = 0x4bb;
+  param_1[0x8d] = 0x4bb;
+  param_1[0x114] = 0x4a4;
+  param_1[0x115] = 0x4a4;
+  param_1[0x9d] = 0x4fd;
+  param_1[0x9e] = 0x4fd;
+  param_1[0x125] = 0x514;
+  param_1[0x126] = 0x514;
+  param_1[0xae] = 0x563;
+  param_1[0xaf] = 0x563;
+  param_1[0x136] = 0x54c;
+  param_1[0x137] = 0x54c;
+  param_1[0xbf] = 0x58e;
+  param_1[0xc0] = 0x58e;
+  param_1[0x147] = 0x5a5;
+  param_1[0x148] = 0x5a5;
+  param_1[0xd0] = 0x5ea;
+  param_1[0xd1] = 0x5ea;
+  param_1[0x158] = 0x5d3;
+  param_1[0x159] = 0x5d3;
+  param_1[0xe1] = 0x615;
+  param_1[0xe2] = 0x615;
+  param_1[0x169] = 0x62c;
+  param_1[0x16a] = 0x62c;
+  param_1[0xf2] = 0x669;
+  param_1[0xf3] = 0x669;
+  param_1[0x17a] = 0x651;
+  param_1[0x17b] = 0x651;
+  FUN_000b6382(param_1,0x3fe51eb8);
+  param_1[0x18b] = 0x22c;
+  param_1[0x18c] = 0x22c;
+  param_1[0x1af] = 0x243;
+  param_1[0x1b0] = 0x243;
+  param_1[0x191] = 0x1d3;
+  param_1[0x192] = 0x1d3;
+  param_1[0x1b5] = 0x1b9;
+  param_1[0x1b6] = 0x1b9;
+  param_1[0x197] = 0x155;
+  param_1[0x198] = 0x155;
+  param_1[0x1bb] = 0x16c;
+  param_1[0x1bc] = 0x16c;
+  param_1[0x19d] = 0xf6;
+  param_1[0x19e] = 0xf6;
+  param_1[0x1c1] = 0xe1;
+  param_1[0x1c2] = 0xe1;
+  param_1[0x1a3] = 0xc1;
+  param_1[0x1a4] = 0xc1;
+  param_1[0x1c7] = 0xd8;
+  param_1[0x1c8] = 0xd8;
+  param_1[0x1a9] = 0x13c;
+  param_1[0x1aa] = 0x13c;
+  param_1[0x1cd] = 0x125;
+  param_1[0x1ce] = 0x125;
+  param_1[0x1d3] = 0x158b;
+  param_1[0x1d4] = 0x158b;
+  Reverb2R_c_vslot_40(param_1,0x472c4400);
+  iVar3 = 0;
+  iVar2 = 0;
+  do {
+    *(undefined4 *)(iVar2 + 0x624 + (int)param_1) = 0x3f000000;
+    *(undefined4 *)(iVar2 + 0x6b4 + (int)param_1) = 0x3f000000;
+    iVar3 = iVar3 + 1;
+    iVar2 = iVar2 + 0x18;
+  } while (iVar3 != 6);
+  param_1[0x78] = 0x3f800000;
+  FUN_000b6206(param_1);
+  *(undefined1 *)(param_1 + 0x218) = 0;
+  return;
+}
+
