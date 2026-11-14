@@ -40,6 +40,9 @@ set +e
 MATH_STATUS=$?
 set -e
 printf '%s\n' "$MATH_STATUS" > "$RUN/static-lift-native-libm.exitcode"
+if [[ "$MATH_STATUS" -ne 0 ]]; then
+  echo "La comparaison avec les maths natives diffère : consultez $RUN/static-lift-native-libm-errors.log"
+fi
 /usr/bin/xcrun clang++ -arch arm64 -mmacosx-version-min=11.0 -std=c++17 -O2 \
   "$ROOT/src/AUStateProbe.cpp" -framework AudioToolbox -framework AudioUnit \
   -framework CoreFoundation -o "$RUN/AUStateProbe"

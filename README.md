@@ -60,7 +60,7 @@ Le probe autonome utilise le format de fixtures `SLFT0003`. `--native-math` test
 |---|---|
 | `REPRISE.md` | Dernière étape, faits vérifiés, suites et limites |
 | `port-status.json` | État des fonctionnalités, dont celles non réalisées |
-| `checkpoints/Sophistry-history.bundle` | Historique Git local autonome |
+| `checkpoints/Sophistry-history.bundle` (archives locales) | Historique autonome ; sur GitHub, utiliser l’historique de la branche |
 | `checkpoints/ghidra-project/` | Projet Ghidra 11.3.2 complet avec son `.rep` |
 | `analysis/ghidra/` | Décompilation initiale et graphe d’appels reconnus |
 | `analysis/lifter-all/` | P-code brut sélectionné et provenance |
@@ -74,4 +74,12 @@ Le probe autonome utilise le format de fixtures `SLFT0003`. `--native-math` test
 | `docs/PRESETS-CP004.md` | Structure commune des états CronoX/Sophistry |
 | `docs/Interface.html` | Visionneuse des images originales ; aucune commande audio |
 
-Le dossier `work/` contient les nouvelles compilations et sorties de test et n’est pas distribué. Les archives de checkpoints précédentes restent conservées dans l’environnement de travail. La publication publique des checkpoints est autorisée par l’utilisateur ; les deux tentatives d’envoi monolithique ont été interrompues et aucun téléchargement complet n’avait été confirmé avant cette étape. Ne pas recommencer ce mode d’envoi.
+Le dossier `work/` contient les nouvelles compilations et sorties de test et n’est pas distribué. Les archives de checkpoints précédentes restent conservées dans l’environnement de travail. Les sources et les huit checkpoints sont maintenant publiés sur la branche `codex/sophistry-native-checkpoints` du dépôt utilisateur. L’archive GitHub a été téléchargée et chaque fichier vérifié contre son objet Git. `main` reste inchangée. Le transfert Git classique fonctionne ; ne pas utiliser l’envoi monolithique base64 qui avait bloqué l’outil. Les archives GitHub n’incluent pas le `.bundle` ignoré : pour récupérer l’historique, cloner la branche.
+
+## Copie distante et historique
+
+```sh
+git clone --branch codex/sophistry-native-checkpoints https://github.com/stefanwul-hub/SophistryARM.git Sophistry-reprise
+```
+
+L’archive ZIP contient le projet Ghidra enregistré et tous les fichiers suivis du checkpoint ; le clone Git récupère aussi les versions précédentes.

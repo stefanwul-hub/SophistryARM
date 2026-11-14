@@ -39,7 +39,7 @@
   "parameter_descriptor_field_entries": 3437,
   "new_input_note": "User confirms Sophistry is a CronoX 3 derivative using the same file format; provided AU identity remains CrX3 and target Sophistry identity remains Sop3.",
   "publication_authorized_by_user": true,
-  "github_archive_publication_confirmed": false,
+  "github_archive_publication_confirmed": true,
   "sample_received": "BT_cronox18.wav",
   "sample_used_for_full_synth_audio_test": false,
   "sample_sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050",
@@ -65,5 +65,8 @@
     "output_buffer_byte_mismatches": 0,
     "object_state_byte_mismatches": 7,
     "strict_passed": false
-  }
+  },
+  "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
+  "github_verified_code_commit": "a1b6c7eacfcc196bc057d1e9853c2a10296e79a8",
+  "github_verified_archive_sha256": "0b7aadf2dc5a38f442dfbb04357f72d1768df606a486a524aa102fb0b5925801"
 }

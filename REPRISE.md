@@ -8,7 +8,7 @@ Objectif utilisateur : portage **complet et fidèle** de Sophistry Audio Unit ve
 2. Vérifier le SHA-256 de `reference/Sophistry.component.zip` avec celui du rapport ; l’original est figé au commit indiqué.
 3. Ouvrir `checkpoints/ghidra-project/Sophistry.gpr` avec **Ghidra 11.3.2 / JDK 21**. Le dossier `.rep` adjacent est indispensable. Copier le projet vers un dossier de travail avant de le modifier.
 4. Utiliser `analysis/vtables.json`, `analysis/ghidra/function-index.jsonl`, `analysis/ghidra/calls.tsv` et le dossier `functions/`. Les `_vslot_N` sont des annotations inférées, partagées entre classes ; ne pas leur inventer des noms sémantiques.
-5. Pour récupérer l’historique local : `git clone checkpoints/Sophistry-history.bundle work/reprise`. Le dépôt original est conservé ; la distribution du checkpoint utilise une branche dédiée, sans remplacer `main`.
+5. Pour récupérer l’historique depuis une archive locale contenant le bundle : `git clone checkpoints/Sophistry-history.bundle work/reprise`. Depuis la distribution GitHub, cloner plutôt `git clone --branch codex/sophistry-native-checkpoints https://github.com/stefanwul-hub/SophistryARM.git work/reprise`. Le dépôt original est conservé ; la distribution du checkpoint utilise une branche dédiée, sans remplacer `main`.
 6. Ajouter de vrais états `.aupreset`/`.fxp` et les samples référencés dans un dossier de travail, sans les publier automatiquement. La paire réelle est dans `reference/Presets/`, les schémas dans `analysis/parameter-schemas.json`, la comparaison dans `analysis/preset-pair/decoded/`. Les tests synthétiques ne prouvent pas le rappel sonore, et la lecture structurelle des vraies données non plus.
 
 ## Points d’entrée importants
@@ -84,3 +84,10 @@ Le format des fixtures est maintenant **SLFT0003**, avec appels math à taille v
 Le decoder de fichiers Apple AudioConverter n’est pas exécuté. Son usage et ses formats ont été relevés à 0xaef4c ; la préparation et le jeu des tables sont exécutés à partir des floats d’entrée. Aucun allocateur complet, chargement sémantique du preset, note-on du synthé complet, GUI native ou Audio Unit n’est prêt.
 
 L’autorisation de publication publique est toujours acquise. Les envois monolithiques de dizaines de Mo par create_blob ont bloqué deux fois. Ne pas les renouveler. Les archives locales antérieures restent conservées ; tester tout nouveau canal de livraison sur un petit objet, avec délai limité et vérification indépendante avant de l’annoncer.
+
+
+## Publication distante résolue
+
+La connexion Git classique est authentifiée par l’environnement et fonctionne. Le push standard vers `https://github.com/stefanwul-hub/SophistryARM.git`, branche `codex/sophistry-native-checkpoints`, a réussi pour les huit checkpoints. Ne pas repasser par github_create_blob avec un payload géant. Le dépôt `main` n’a pas été modifié.
+
+L’archive codeload du commit a1b6c7eacfcc196bc057d1e9853c2a10296e79a8 a été téléchargée : 28517842 octets, 3483 fichiers, SHA-256 0b7aadf2dc5a38f442dfbb04357f72d1768df606a486a524aa102fb0b5925801. Chaque blob de l’archive correspond au commit. Le projet Ghidra et ses données `.rep` sont présents. Le `.bundle` local ignoré n’est pas inclus dans une archive GitHub ; l’historique complet est disponible par clone de la branche. L’autorisation publique est acquise.
