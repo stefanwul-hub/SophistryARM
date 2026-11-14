@@ -1,5 +1,7 @@
 # Reprendre à CP-008, correctif Mac 1
 
+**Dernier résultat reçu :** les probes du correctif 1 ont compilé et tourné sur le Mac ARM64 de l’utilisateur : 161 cas de saturation, deux réécritures structurelles d’états et 704 cas du lifter passent. Le mode maths natives renvoie un code non nul, sans détail dans le journal principal reçu. Voir `evidence/mac-cp008-native-replay.json`, `port-status.json` et la section finale. Le synthétiseur complet et son AU restent absents.
+
 Objectif utilisateur : portage **complet et fidèle** de Sophistry Audio Unit vers Apple Silicon, à partir du code machine original, en conservant le rappel d’anciens projets AU Logic et Live. L’utilisateur possède les samples/presets externes. Son Mac est sous macOS 15.7.2, avec Xcode, Ableton Live 11.3.2 et Logic Pro 11. Pas de plugin ARM64 complet obtenu à ce checkpoint.
 
 ## Commencer ici
@@ -104,3 +106,11 @@ Les quatre appels sont corrigés en `lipo fichier -verify_arch arm64`, et les é
 La distribution corrigée est figée au commit `1f85c63cff513d0ccf9e93d12711eed910fbc056`, archive téléchargée et chaque blob vérifié, SHA-256 `1ec9e3a784d30506367c92f9a01d0255db7a59f6eed5d7988cd905c00033ae6c` (28523059 octets). Le lanceur pointe désormais vers cette source. Métadonnées : `checkpoints/CP008-correctif1-publication.json`.
 
 Travail indépendant en cours : l’export brut complet compte 186001 instructions / 2845 fonctions internes. `analysis/full-pcode-support-audit.json` recense les opérations manquantes de l’émetteur ; cet audit syntaxique n’est ni un moteur complet ni une exécution réussie. Le gros export brut est sauvegardé sous `analysis/lifter-full/instructions.jsonl.gz` (4,4 Mo compressés, 124593872 octets bruts), avec provenance et empreintes. Le décompresser vers `work/` pour reprendre, ou le régénérer avec `ExportPcode.java --all` depuis le projet Ghidra sauvegardé.
+
+## Second retour Mac — replay natif confirmé
+
+Le journal du run `20261114T161942Z`, source `1f85c63cff513d0ccf9e93d12711eed910fbc056`, confirme la fin du vérificateur avec code 0. SaturProbe : 161 cas / 133502 échantillons, sans différence. Lecteur d’états : 22192 et 20640 octets réécrits sans changement ; aucune restauration sémantique DSP n’est testée. LiftedProbe : 704 cas / 5420672 octets, 3113 adresses d’instructions exécutées, sans différence avec les réponses ABI enregistrées. AUStateProbe compile en Mach-O ARM64 ; il s’agit de l’hôte de test, pas d’un Audio Unit.
+
+Le test `--native-math` a renvoyé un code non nul. Le journal ne contient pas ses résultats détaillés : collecter `static-lift-native-libm.json`, `static-lift-native-libm-errors.log` et l’exitcode avant d’attribuer le problème à un arrondi particulier. Ne pas lui attribuer les sept octets de Linux/musl. `auval` a été exécuté sur l’identité existante et a renvoyé 2 ; son journal détaillé manque également, donc la raison précise n’est pas établie. Aucun nouveau composant, rendu du preset complet ou rappel Logic/Live n’est validé.
+
+`Recuperer-Rapports-Mac.command` rassemble les rapports existants en ZIP sans compilation et sans installation, en recherchant le dernier journal Sophistry sous son dossier et Downloads, ou en acceptant un dossier de rapports explicite. Le résultat structuré reçu est sauvegardé dans `evidence/mac-cp008-native-replay.json`. Le journal original contenant des chemins personnels reste dans les pièces jointes locales et n’est pas publié.

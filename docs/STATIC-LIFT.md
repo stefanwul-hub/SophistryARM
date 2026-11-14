@@ -28,7 +28,7 @@ Le test différentiel exécute les octets originaux sous Unicorn 2.1.4 et le C++
 
 Résultats CP-008 : 704 cas, 5 420 672 octets comparés, aucune différence avec les mêmes réponses hôtes. 3 113 adresses d’instructions ont été exécutées sur les 3 242 exportées. Ces nombres ne démontrent ni la couverture de toutes les entrées de ces routines, ni celle des fonctions non sélectionnées.
 
-Le probe autonome rejoue les entrées et sorties de référence du fichier `SLFT0003`. Pour chaque appel math enregistré, il contrôle aussi que les arguments correspondent avant d’injecter la réponse. Ce replay passe sous Linux x86_64 et dans un exécutable ARM64/Linux musl exécuté sous QEMU 7.2.0. Les objets Mach-O ARM64 compilent, mais n’ont pas été exécutés sous macOS.
+Le probe autonome rejoue les entrées et sorties de référence du fichier `SLFT0003`. Pour chaque appel math enregistré, il contrôle aussi que les arguments correspondent avant d’injecter la réponse. Ce replay passe sous Linux x86_64, dans un exécutable ARM64/Linux musl exécuté sous QEMU 7.2.0, et nativement sur le Mac ARM64 de l’utilisateur sous macOS 15.7.2. Le journal reçu confirme les 704 cas, 5 420 672 octets et zéro différence en mode réponses ABI enregistrées ; son rapport structuré sans chemin personnel est `evidence/mac-cp008-native-replay.json`.
 
 Les helpers de conversion du stockage 80 bits ont été comparés sur 20 000 cas au type étendu natif Intel : aucun écart. Ce test de référence est indisponible sur les plateformes où `long double` n’est pas le format x87 ; il renvoie alors un statut de test ignoré.
 
@@ -42,7 +42,7 @@ Le PCM16 est décodé selon la convention standard pour ces tests. Le loader ori
 
 Les adaptateurs partagés servent à séparer la traduction d’instructions de la bibliothèque mathématique. `--native-math` utilise le libm de la plateforme. Sous Linux x86_64, le résultat est identique. Sous ARM64/Linux musl/QEMU, il y a sept octets différents dans l’état interne et zéro octet différent dans les buffers de sortie vérifiés. La comparaison stricte échoue donc dans ce mode. Ce constat n’établit pas que tous les futurs rendus resteront inchangés : les états peuvent influer sur la suite d’un traitement.
 
-Le libm Apple doit encore être évalué sur Mac. L’ancien libm Intel 32 bits Apple n’est pas disponible ici. Une fidélité globale au plugin et aux projets ne peut pas être garantie par ces seules références.
+Sur le Mac ARM64 de l’utilisateur, la comparaison séparée avec les maths natives a renvoyé un code non nul. Le détail est dans les rapports séparés non encore reçus : aucune quantité d’octets différents ni cause exacte n’est confirmée sur cette plateforme. Le replay avec les réponses enregistrées est bien passé. L’ancien libm Intel 32 bits Apple n’a pas été exécuté. Une fidélité globale au plugin et aux projets ne peut pas être garantie par ces seules références.
 
 ## Travail restant
 

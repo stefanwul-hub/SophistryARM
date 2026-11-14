@@ -1,0 +1,15 @@
+{
+  "script": "Recuperer-Rapports-Mac.command",
+  "platform": "Linux / bash / Info-ZIP; Finder reveal not tested here",
+  "checks_passed": [
+    "shell syntax",
+    "automatic selection of newest Sophistry report",
+    "newer unrelated application log ignored",
+    "space-containing paths and explicit diagnostic.log argument",
+    "archive contains only the nine report names",
+    "existing output refused without modification",
+    "missing diagnostic rejected without archive"
+  ],
+  "macos_finder_reveal_executed": false,
+  "compilation_or_installation_performed": false
+}

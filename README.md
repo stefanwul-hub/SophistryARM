@@ -12,7 +12,7 @@ Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x
 - **Lifter statique expérimental** : 3 242 instructions originales de 19 fonctions sont traduites à partir du p-code brut Ghidra en opérations et branchements C++ fixes. Le runtime ne décode pas les octets x86. Il maintient explicitement les registres et adresses 32 bits de ces fonctions.
 - Périmètre traduit/testé : saturation, dispatch et huit chemins de filtre `FilterMoogSI`, mélange mono du sample, normalisation, construction des 64 tables Schrader et lecteur de ces tables. Les fonctions non sélectionnées ne sont pas portées par ce résultat.
 - **704 cas différentiels** : 5 420 672 octets de sorties et d’état interne comparés au code i386 exécuté sous Unicorn, sans différence. Les fonctions hôtes mathématiques sont partagées pour isoler les instructions DSP.
-- La même référence passe en code **ARM64/Linux sous QEMU**. Les objets **Mach-O ARM64** du runtime et du code généré compilent. Aucun code n’a été exécuté sous macOS ou sur du matériel Apple Silicon ici.
+- La même référence passe en code **ARM64/Linux sous QEMU**, puis **nativement sur le Mac ARM64 de l’utilisateur sous macOS 15.7.2** : le journal reçu confirme les 704 cas et 5 420 672 octets sans différence avec les réponses mathématiques enregistrées. Les 161 cas du saturateur et les deux tests structurels des états passent également. Preuve structurée : `evidence/mac-cp008-native-replay.json`.
 - Les conversions de stockage x87 80 bits / IEEE 32 et 64 bits ont passé 20 000 cas canoniques finis contre le type étendu natif Intel, en arrondi au plus proche pair. L’arithmétique x87 générale reste hors du périmètre du lifter.
 
 ## Sondes audio
@@ -25,11 +25,13 @@ Les fichiers `satur-*.wav` testent uniquement la saturation.
 
 Le replay principal réinjecte les réponses `log10` et `pow` enregistrées avec la référence pour tester la traduction des instructions. Le replay avec les bibliothèques mathématiques natives passe sous Linux x86_64. Avec le `libm` ARM64/Linux musl sous QEMU, **sept octets d’état interne diffèrent**, sans différence des buffers de sortie observés sur ces cas. Ce mode est donc signalé en échec strict. Le `libm` Apple d’origine et celui du Mac utilisateur restent à comparer ; ne pas déduire une fidélité globale de ces seuls tests.
 
+Le test séparé `--native-math` renvoie aussi un code non nul sur le Mac ARM64. Le journal principal ne donne ni les octets différents ni la cause exacte : les fichiers `static-lift-native-libm.json` et `static-lift-native-libm-errors.log` restent nécessaires. Ne pas attribuer au Mac les sept octets constatés sous Linux/musl. Le code de sortie global 0 signifie que le script a terminé ; la comparaison mathématique reste signalée séparément.
+
 Le PCM du WAV est décodé selon la convention PCM16 standard pour les tests. Le loader original utilise AudioConverter ; cet appel Apple n’a pas été exécuté ici. L’adaptateur `free` des tests ne libère rien, car les buffers sont possédés par l’hôte de test. Ce n’est pas encore l’allocateur d’un moteur complet.
 
 ## Exécuter les vérifications sur votre Mac
 
-**Correctif 1 du vérificateur Mac** : le premier journal reçu sous macOS 15.7.2 confirme la compilation du saturateur, puis un arrêt de `lipo` avant tout replay. Les quatre appels sont corrigés : le fichier précède `-verify_arch arm64`. Le lanceur actualisé télécharge les sources corrigées s’il se trouve dans une ancienne copie CP-008. Ce correctif ne change aucun calcul DSP ; son exécution sur le Mac reste à vérifier.
+**Correctif 1 du vérificateur Mac** : les quatre appels `lipo` sont corrigés, avec le fichier avant `-verify_arch arm64`. Le second journal reçu confirme la compilation et les replays sur Mac ARM64. Le lanceur actualisé télécharge les sources corrigées s’il se trouve dans une ancienne copie CP-008. Ce correctif ne change aucun calcul DSP.
 
 Avec Xcode installé :
 
@@ -40,6 +42,8 @@ bash "/chemin/vers/Sophistry-CP008/Verifier-Mac.command"
 Le script compile les probes **en ARM64**, vérifie les en-têtes d’architecture, rejoue les références, compare séparément les maths natives et compile l’hôte de diagnostic AU. Il lance aussi `auval -v aumu Sop3 LinP` sur l’instrument déjà enregistré. Un échec est attendu si seul l’ancien composant i386/PPC est présent. Les résultats sont conservés dans `work/mac-<date>/`.
 
 Il n’installe aucun composant. `Installer-ARM64.command` refuse explicitement le remplacement : le moteur complet, la restauration sémantique des projets et l’AU natif sont absents. Aucun test dans Logic ou Live n’a été effectué.
+
+Pour transmettre les détails d’un test déjà terminé, télécharger `Recuperer-Rapports-Mac.command` puis le lancer avec `bash`. Il sélectionne le dernier journal Sophistry sous son dossier ou `~/Downloads`, rassemble uniquement les neuf noms de rapports prévus dans une archive ZIP et affiche l’archive dans Finder. Il ne télécharge, ne recompile et n’installe rien. Un chemin vers le dossier de rapports ou vers son `diagnostic.log` peut être fourni en premier argument.
 
 Le probe natif n’exige ni Ghidra, ni Python, ni Unicorn pour rejouer les références. La tranche originale i386 est lue comme **données de référence et constantes**, pas exécutée par un émulateur sur le Mac. La génération et les nouvelles comparaisons contre i386 utilisent les outils d’analyse décrits ci-dessous.
 
