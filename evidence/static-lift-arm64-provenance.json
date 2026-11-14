@@ -2,25 +2,21 @@
   "mach_o_objects": [
     {
       "name": "LifterRuntime.arm64.o",
-      "bytes": 16992,
-      "sha256": "b33a0112653fe47a0d55e6459601d28494cc1aa96f58d5400045ac567ae46ba5",
+      "bytes": 19664,
+      "sha256": "2b387c7a8a04799d4643757be039f544889375d31da2c9956ff910ddf2d69874",
       "cpu_type": "0x100000c",
-      "file_type": 1,
-      "is_arm64": true,
-      "is_object": true
+      "file_type": 1
     },
     {
       "name": "GeneratedDsp.arm64.o",
-      "bytes": 3577032,
-      "sha256": "e2546d84bf99d5f28d894fc4ba8b5a318850e178173d3ce86110072ecf684081",
+      "bytes": 4737928,
+      "sha256": "3eabcad114e2fe0f640b095f3d5d0c18094b53b19cbd5362b1d60834376f4f13",
       "cpu_type": "0x100000c",
-      "file_type": 1,
-      "is_arm64": true,
-      "is_object": true
+      "file_type": 1
     }
   ],
-  "arm64_linux_executable_sha256": "f3e0404aa7e869a811d11bb4bed26e8abb554f4c87dd3304060a34d67bdc98eb",
-  "arm64_linux_executable_bytes": 2744992,
+  "arm64_linux_executable_sha256": "19253a0994f7637fa0e56ad3cc288876914202868c76c95544e3d886e24c061a",
+  "arm64_linux_executable_bytes": 3356480,
   "qemu_download_url": "https://github.com/multiarch/qemu-user-static/releases/download/v7.2.0-1/qemu-aarch64-static",
   "qemu_sha256": "dce64b2dc6b005485c7aa735a7ea39cb0006bf7e5badc28b324b2cd0c73d883f",
   "qemu_version": "7.2.0",
@@ -36,5 +32,10 @@
   "qemu_replay_report": "static-lift-arm64-qemu.json",
   "macos_executed": false,
   "apple_silicon_hardware_executed": false,
-  "audio_unit_built": false
+  "audio_unit_built": false,
+  "generated_cpp_sha256": "a5829c789ccc9d0c3b65a57409673f4e736f29b4ab6fb7a578d4dd24e19c5b71",
+  "runtime_cpp_sha256": "fe869a29d4b03f0dba6fdce43cd57d44dd8f96e759e7ac9311f34f6e48c55a23",
+  "fixture_sha256": "5881ee30323261e01e05f9e3aa263410e3ae35671414102f93118c0aad5f9358",
+  "replay_cases": 704,
+  "source_instruction_count": 3242
 }

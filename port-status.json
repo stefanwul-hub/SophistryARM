@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-007",
+  "checkpoint": "CP-008",
   "original_version": "3.0.8",
   "original_architectures": [
     "ppc",
@@ -21,11 +21,11 @@
   "logic_projects_verified": false,
   "ableton_projects_verified": false,
   "install_allowed": false,
-  "implemented_dsp_scope": "Manually translated Satur_c plus statically emitted selected saturation and FilterMoogSI processing routines; full synth graph absent",
+  "implemented_dsp_scope": "3242 instructions in 19 selected functions: saturation, filter, sample mono/normalize, Schrader tables and playback; full engine absent",
   "arm64_scope": "Selected lifted DSP compiled as Mach-O ARM64 objects; same selected C++ compiled as ARM64/Linux executable and passed reference replay under QEMU, not macOS",
   "next_work": [
     "Recover and test full Synth/Kaja object graph and all DSP modules",
-    "Resolve remaining fields and cross-version enum mappings, obtain referenced sample and implement semantic DSP state restore",
+    "Integrate original initialization/object graph and semantic state loader, resolve versioned enum labels and stable AU IDs",
     "Implement modern AUv2 entry point, stable parameter IDs and Cocoa UI",
     "Compile and test on Apple Silicon",
     "Validate with auval and copies of old Logic and Live projects"
@@ -44,13 +44,26 @@
   "sample_used_for_full_synth_audio_test": false,
   "sample_sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050",
   "static_lifter_implemented": true,
-  "static_lifter_scope": "2518 original i386 instructions: saturation, FilterMoogSI process dispatch and eight mono/stereo helpers, additive output and PIC thunk",
-  "static_lifter_test_cases": 148,
+  "static_lifter_scope": "3242 instructions in 19 selected functions: saturation, filter, sample mono/normalize, Schrader tables and playback; full engine absent",
+  "static_lifter_test_cases": 704,
   "static_lifter_bit_exact_vs_unicorn": true,
   "static_lifter_original_apple_libm_tested": false,
   "sample_used_for_partial_filter_test": true,
   "static_lifter_arm64_linux_executed_under_qemu": true,
-  "static_lifter_arm64_qemu_fixture_cases": 148,
+  "static_lifter_arm64_qemu_fixture_cases": 704,
   "static_lifter_macos_objects_compiled": true,
-  "static_lifter_macos_executed": false
+  "static_lifter_macos_executed": false,
+  "static_lifter_compared_bytes": 5420672,
+  "static_lifter_x87_conversion_cases": 20000,
+  "isolated_schrader_audio_seconds": 3,
+  "isolated_schrader_audio_bit_exact": true,
+  "full_preset_rendered": false,
+  "original_apple_audio_converter_executed": false,
+  "original_apple_libm_executed": false,
+  "native_arm64_linux_libm_comparison": {
+    "byte_mismatches": 7,
+    "output_buffer_byte_mismatches": 0,
+    "object_state_byte_mismatches": 7,
+    "strict_passed": false
+  }
 }

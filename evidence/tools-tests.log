@@ -10,6 +10,6 @@ test_original_architecture_and_au_resource (test_tools.Tools.test_original_archi
 test_silent_or_changed_audio_does_not_pass (test_tools.Tools.test_silent_or_changed_audio_does_not_pass) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 0.186s
+Ran 10 tests in 0.198s
 
 OK

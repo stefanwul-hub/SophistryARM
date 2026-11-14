@@ -71,3 +71,16 @@ Les objets Mach-O ARM64 du runtime et du code généré compilent avec Zig 0.14.
 Sources/tests et objets sont dans le checkpoint ; Zig, QEMU et l’exécutable ARM64/Linux de travail ne sont pas des dépendances nécessaires sur le Mac utilisateur. Les URL et SHA des outils sont consignés dans `evidence/static-lift-arm64-provenance.json`.
 
 Étape suivante : mode Schrader (`SamWT_c`). Le traitement original du sample est identifié : `0xaf2b2` mélange les deux canaux par moyenne, `0x32430` normalise, `0x8de6a` construit 64 tables de 128 floats en appelant le resampler/crossfade `0x8d9dc`, applique un bord progressif et normalise chaque table. `0x38f48` joue les tables. Pas encore traduit/testé à CP-007.
+
+
+## CP-008 — préparation du sample et lecteur Schrader traduits
+
+`analysis/lifter-all/` fusionne les exports initiaux et `lifter-sampler/` : 3242 instructions, 19 fonctions. `GeneratedDsp.cpp` est émis depuis ce dossier. Ne pas régénérer à partir du seul export initial `analysis/lifter/`, qui ne contient que les premiers blocs.
+
+La chaîne de tests utilise le sample PCM16 fourni comme entrée standard décodée, exécute la moyenne mono originale (0xaf2b2), la normalisation (0x32430), la construction des tables (0x8de6a, 0x8d9dc) et le lecteur Schrader (0x38f48). 704 cas, 5420672 octets comparés, zéro différence avec les mêmes adaptateurs hôtes. Deux sondes mono de trois secondes sont dans evidence/audio/schrader-root60-*.wav : mêmes échantillons, sans rendu du preset complet. Les contrôles sont explicites dans le test, pas importés du preset.
+
+Le format des fixtures est maintenant **SLFT0003**, avec appels math à taille variable (log10/pow). Le probe natif et les objets Mach-O ont été mis à jour. Les 704 cas passent sous Linux x86_64 et ARM64/Linux/QEMU avec les réponses ABI enregistrées. Avec le libm natif ARM64/Linux musl : sept octets d’état interne différents, aucun octet différent dans les buffers de sortie vérifiés ; échec strict conservé dans les rapports. Ne pas annoncer une fidélité globale ni un résultat macOS. Les conversions de stockage x87/IEEE ont passé 20000 cas canoniques finis contre le type étendu natif Intel.
+
+Le decoder de fichiers Apple AudioConverter n’est pas exécuté. Son usage et ses formats ont été relevés à 0xaef4c ; la préparation et le jeu des tables sont exécutés à partir des floats d’entrée. Aucun allocateur complet, chargement sémantique du preset, note-on du synthé complet, GUI native ou Audio Unit n’est prêt.
+
+L’autorisation de publication publique est toujours acquise. Les envois monolithiques de dizaines de Mo par create_blob ont bloqué deux fois. Ne pas les renouveler. Les archives locales antérieures restent conservées ; tester tout nouveau canal de livraison sur un petit objet, avec délai limité et vérification indépendante avant de l’annoncer.

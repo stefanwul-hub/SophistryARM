@@ -14,7 +14,10 @@ else
   shared=(-fPIC -shared)
   library="$DEST/liblift.so"
 fi
-sources=("$ROOT/src/lifter/LifterRuntime.cpp" "$ROOT/src/lifter/GeneratedDsp.cpp")
-"${compiler[@]}" "${flags[@]}" "${shared[@]}" "${sources[@]}" -o "$library"
-"${compiler[@]}" "${flags[@]}" -I"$ROOT/src/lifter" "${sources[@]}" "$ROOT/tests/LiftedProbeMain.cpp" -o "$DEST/LiftedProbe"
+flags+=(-fPIC)
+"${compiler[@]}" "${flags[@]}" -c "$ROOT/src/lifter/LifterRuntime.cpp" -o "$DEST/LifterRuntime.o"
+"${compiler[@]}" "${flags[@]}" -c "$ROOT/src/lifter/GeneratedDsp.cpp" -o "$DEST/GeneratedDsp.o"
+objects=("$DEST/LifterRuntime.o" "$DEST/GeneratedDsp.o")
+"${compiler[@]}" "${flags[@]}" "${shared[@]}" "${objects[@]}" -o "$library"
+"${compiler[@]}" "${flags[@]}" -I"$ROOT/src/lifter" "${objects[@]}" "$ROOT/tests/LiftedProbeMain.cpp" -o "$DEST/LiftedProbe"
 printf '%s\n' "$library" "$DEST/LiftedProbe"

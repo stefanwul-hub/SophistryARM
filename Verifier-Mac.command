@@ -15,6 +15,12 @@ printf '%s\n' 'Checkpoint incomplet : ce script compile des outils de test, pas 
 /usr/bin/uname -m
 /usr/bin/xcrun --find clang++
 /usr/bin/xcrun --show-sdk-version
+/usr/bin/xcrun clang++ --version
+SOPHISTRY_SLICE_HASH=$(/usr/bin/shasum -a 256 "$ROOT/reference/Sophistry.i386" | /usr/bin/awk '{print $1}')
+if [[ "$SOPHISTRY_SLICE_HASH" != '17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12' ]]; then
+  echo 'La tranche de référence diffère du binaire audité.' >&2
+  exit 1
+fi
 /usr/bin/xcrun clang++ -arch arm64 -mmacosx-version-min=11.0 -std=c++17 -O2 \
   -ffp-contract=off -fno-fast-math -I"$ROOT/src" \
   "$ROOT/src/SaturKernel.cpp" "$ROOT/tests/SaturProbeMain.cpp" -o "$RUN/SaturProbe"

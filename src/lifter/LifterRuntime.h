@@ -44,6 +44,8 @@ inline SlU sl_lshift(SlU x,SlU n){return n>=128?0:x<<static_cast<unsigned>(n);}
 inline SlU sl_rshift(SlU x,SlU n){return n>=128?0:x>>static_cast<unsigned>(n);}
 inline bool sl_tick(SlCpu& c){if(c.fault)return false;if(c.pc<sizeof(c.seen))c.seen[c.pc]=1;if(++c.steps>c.limit){c.fault=4;return false;}return true;}
 SlU sl_ext80_to_f64(SlU bits);
+SlU sl_ext80_to_f32(SlU bits);
+SlU sl_fp_to_ext80(SlU bits,unsigned source_bytes);
 SlU sl_trunc_fp(SlU bits,unsigned source_bytes,unsigned output_bits);
 int sl_execute(SlCpu& c,SlU32 entry,SlU32 stop,SlU64 limit);
 extern "C" {

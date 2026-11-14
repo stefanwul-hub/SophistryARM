@@ -1,3 +1,5 @@
+> Rapport initial CP-003. Pour les résultats actuels, lire README.md et STATIC-LIFT.md ; les limites ci-dessous décrivent cette étape initiale.
+
 # Audit et état technique
 
 ## Provenance contrôlée

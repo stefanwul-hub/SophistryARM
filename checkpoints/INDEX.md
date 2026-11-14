@@ -13,3 +13,5 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-006 — traduction statique sélectionnée** : export p-code, génération C++ de 2518 instructions, tests différentiels de saturation et FilterMoogSI sur 148 cas sans écart de sortie ou d’état. Aucun moteur complet ni AU natif obtenu.
 
 - **CP-007 — replay natif sélectionné** : programme autonome de replay, objets Mach-O ARM64, exécution du probe ARM64/Linux sous QEMU sans différence sur les 148 cas. Les appels math sont isolés par réponses ABI enregistrées ; aucun test macOS/AU effectué.
+
+- **CP-008 — Schrader et sonde audio** : préparation mono/normalisation/tableaux et jeu Schrader statiquement traduits, 704 cas et sonde de trois secondes identiques avec réponses hôtes partagées, replay ARM64/Linux/QEMU vérifié. Écart de sept octets d’état interne avec libm ARM64 natif consigné. Le synthétiseur et l’AU complets restent à faire.

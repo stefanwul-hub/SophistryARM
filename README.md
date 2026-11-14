@@ -1,90 +1,77 @@
-# Sophistry — checkpoint CP-004
+# Sophistry — checkpoint CP-008
 
-**Ce paquet ne contient pas de Sophistry Audio Unit ARM64 installable. Le portage complet demandé reste à réaliser.**
+**Le plugin Audio Unit ARM64 complet n’est pas encore obtenu. Ce paquet contient le travail de portage et ses preuves ; il ne doit pas remplacer l’ancien `.component`.**
 
-Il conserve le travail réellement effectué : audit du composant fourni, décompilation Ghidra des fonctions détectées, images originales, traduction C++ d’un seul noyau de saturation, tests différentiels et outils pour poursuivre sur Mac. Aucun synthétiseur de substitution n’est présenté comme l’original.
+Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x86-64. L’identité à conserver pour les anciens projets AU est `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`.
 
-## Ajout CP-004 : paire de presets réelle
+## Travail effectué
 
-La paire fournie depuis `Presets/` est conservée avec ses empreintes. L’utilisateur confirme le format partagé entre Sophistry et CronoX 3. Le `.aupreset` porte l’identité CronoX `CrX3`, qui reste distincte de l’identité cible Sophistry `Sop3`.
+- Archive originale épinglée, 106 images d’interface conservées, projet Ghidra enregistré et 3 249 fonctions détectées exportées en pseudo-code. Le pseudo-code comporte des avertissements et ne se compile pas directement.
+- Paire réelle `.fxp` / `.aupreset` analysée, schémas de 51 classes de paramètres récupérés, lecteur structurel C++ des chunks avec réécriture sans changement des octets. Le chargement sémantique complet dans un synthétiseur reste à développer.
+- Sample `BT_cronox18.wav` conservé : PCM16 stéréo, 44,1 kHz, 334 664 frames.
+- **Lifter statique expérimental** : 3 242 instructions originales de 19 fonctions sont traduites à partir du p-code brut Ghidra en opérations et branchements C++ fixes. Le runtime ne décode pas les octets x86. Il maintient explicitement les registres et adresses 32 bits de ces fonctions.
+- Périmètre traduit/testé : saturation, dispatch et huit chemins de filtre `FilterMoogSI`, mélange mono du sample, normalisation, construction des 64 tables Schrader et lecteur de ces tables. Les fonctions non sélectionnées ne sont pas portées par ce résultat.
+- **704 cas différentiels** : 5 420 672 octets de sorties et d’état interne comparés au code i386 exécuté sous Unicorn, sans différence. Les fonctions hôtes mathématiques sont partagées pour isoler les instructions DSP.
+- La même référence passe en code **ARM64/Linux sous QEMU**. Les objets **Mach-O ARM64** du runtime et du code généré compilent. Aucun code n’a été exécuté sous macOS ou sur du matériel Apple Silicon ici.
+- Les conversions de stockage x87 80 bits / IEEE 32 et 64 bits ont passé 20 000 cas canoniques finis contre le type étendu natif Intel, en arrondi au plus proche pair. L’arithmétique x87 générale reste hors du périmètre du lifter.
 
-Le lecteur de conteneur C++ reconstruit les deux chunks sans changer un octet (22 192 et 20 640 octets), en conservant les données inconnues. La récupération des descriptions de paramètres à partir du flux de contrôle i386 produit 51 schémas de classes et 3 437 entrées de champs (avec répétitions entre classes apparentées ; **ce ne sont pas des IDs AU**). Les schémas consomment intégralement 117 des 121 blocs AU et 116 des 118 blocs FXP. Les champs supplémentaires restent conservés et non interprétés.
+## Sondes audio
 
-La comparaison rapproche 115 blocs, 3 829 valeurs égales et 31 différentes. Certaines différences concernent les libellés de modulation, les états d’édition et le chemin de `BT_cronox18.wav`. La restauration sonore n’est pas prouvée par ce décodage. Voir `docs/PRESETS-CP004.md`.
+`evidence/audio/schrader-root60-original-instructions.wav` et `schrader-root60-lifted-cpp.wav` sont deux rendus mono de trois secondes à 44,1 kHz du **générateur Schrader isolé**, à partir du sample fourni. Leurs valeurs sont identiques et leur erreur maximale/RMSE sont nulles. Les contrôles sont explicitement fixés dans le test ; aucun rendu complet du preset Lightgarden n’est revendiqué.
 
-## Résultats vérifiés
+Les fichiers `satur-*.wav` testent uniquement la saturation.
 
-- Original : Sophistry 3.0.8, **PowerPC et Intel i386 32 bits**. Aucune tranche x86-64 ou ARM64.
-- Identité AU : `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`.
-- Ghidra 11.3.2 : 3 249 fonctions détectées exportées en pseudo-code ; 161 tables de classes candidates. **207 avertissements de tables de sauts non reconstruites** subsistent. Ce pseudo-code ne se compile pas directement.
-- 106 PNG de l’interface et 554 appels de construction de paramètres catalogués dans 47 classes. Les identifiants de paramètres AU et les actions de l’interface restent à reconstruire.
-- Noyau isolé `Satur_c`, adresse i386 `0x73fb0` : 160 cas, 133 500 valeurs comparées aux instructions originales exécutées dans Unicorn, sans différence binaire. Un cas désactivé supplémentaire porte les fixtures natives à 161 cas et 133 502 valeurs.
-- Deux WAV de régression du **seul noyau de saturation**, 48 kHz stéréo, une seconde : écart nul. Ils ne représentent pas un preset ni le son du synthétiseur complet.
-- Ce noyau compile en objet Mach-O ARM64 ; l’objet n’est ni un exécutable ni un `.component`. L’exécution ARM64, la compilation des outils avec Xcode, `auval`, Logic et Live n’ont pas été testés ici (environnement Linux).
+## Limites mathématiques constatées
 
-## Sur votre Mac
+Le replay principal réinjecte les réponses `log10` et `pow` enregistrées avec la référence pour tester la traduction des instructions. Le replay avec les bibliothèques mathématiques natives passe sous Linux x86_64. Avec le `libm` ARM64/Linux musl sous QEMU, **sept octets d’état interne diffèrent**, sans différence des buffers de sortie observés sur ces cas. Ce mode est donc signalé en échec strict. Le `libm` Apple d’origine et celui du Mac utilisateur restent à comparer ; ne pas déduire une fidélité globale de ces seuls tests.
 
-Lancez depuis Terminal :
+Le PCM du WAV est décodé selon la convention PCM16 standard pour les tests. Le loader original utilise AudioConverter ; cet appel Apple n’a pas été exécuté ici. L’adaptateur `free` des tests ne libère rien, car les buffers sont possédés par l’hôte de test. Ce n’est pas encore l’allocateur d’un moteur complet.
+
+## Exécuter les vérifications sur votre Mac
+
+Avec Xcode installé :
 
 ```sh
-bash "/chemin/vers/Sophistry-CP004/Verifier-Mac.command"
+bash "/chemin/vers/Sophistry-CP008/Verifier-Mac.command"
 ```
 
-Ce script compile aussi le lecteur structurel d’états et vérifie les deux chunks réels. Ce script exige Xcode ou ses outils en ligne de commande. Il compile **les outils de test** en ARM64, exécute les fixtures du noyau, compile l’hôte de diagnostic AU et lance `auval -v aumu Sop3 LinP` sur le composant déjà enregistré. Il enregistre les résultats dans `work/mac-<date>/`. Il ne copie, ne remplace et ne supprime aucun composant. L’échec de `auval` est attendu si seul l’ancien i386/PPC est présent.
+Le script compile les probes **en ARM64**, vérifie les en-têtes d’architecture, rejoue les références, compare séparément les maths natives et compile l’hôte de diagnostic AU. Il lance aussi `auval -v aumu Sop3 LinP` sur l’instrument déjà enregistré. Un échec est attendu si seul l’ancien composant i386/PPC est présent. Les résultats sont conservés dans `work/mac-<date>/`.
 
-`Installer-ARM64.command` s’arrête avec le code 78 : le moteur complet et le décodeur d’états sont absents. Un installateur qui remplacerait déjà l’ancien composant ne répondrait pas au besoin de rappel des projets. **Il n’existe pas encore de commande honnête qui compile et installe le Sophistry complet depuis ce paquet.**
+Il n’installe aucun composant. `Installer-ARM64.command` refuse explicitement le remplacement : le moteur complet, la restauration sémantique des projets et l’AU natif sont absents. Aucun test dans Logic ou Live n’a été effectué.
 
-Les scripts peuvent être lancés avec `bash` même si le Finder n’autorise pas leur ouverture directe. Aucun changement global de sécurité macOS n’est nécessaire.
+Le probe natif n’exige ni Ghidra, ni Python, ni Unicorn pour rejouer les références. La tranche originale i386 est lue comme **données de référence et constantes**, pas exécutée par un émulateur sur le Mac. La génération et les nouvelles comparaisons contre i386 utilisent les outils d’analyse décrits ci-dessous.
 
-## Où trouver le travail
-
-| Fichier ou dossier | Contenu |
-|---|---|
-| `docs/RAPPORT.md` | Audit, preuves, limites, contrat de compatibilité et étapes restantes |
-| `REPRISE.md` | Instructions pour reprendre une prochaine session sans recommencer l’analyse |
-| `port-status.json` | État explicite et lisible par machine des fonctionnalités absentes |
-| `analysis/ghidra/functions/` | Un fichier de pseudo-code par fonction détectée |
-| `analysis/ghidra/all-functions.c` | Export regroupé ; **pas des sources C compilables** |
-| `analysis/ghidra/calls.tsv` | Appels directs reconnus ; appels virtuels non résolus exclus |
-| `checkpoints/ghidra-project/` | Projet Ghidra enregistré, à ouvrir avec Ghidra 11.3.2 |
-| `checkpoints/Sophistry-history.bundle` | Historique Git local autonome des trois checkpoints |
-| `reference/` | Archive originale épinglée, tranche i386 et ressources extraites |
-| `src/SaturKernel.cpp` | Traduction C++ du noyau isolé réellement comparé |
-| `src/AUStateProbe.cpp` | Hôte Mac de diagnostic et rendu ; à compiler et vérifier sur Mac |
-| `evidence/` | Rapports, fixtures, WAV du noyau et objet ARM64 |
-| `docs/Interface.html` | Visionneuse locale des fonds graphiques originaux |
-
-Le dossier `work/` est réservé aux nouveaux résultats et n’est pas inclus dans le checkpoint distribué.
-
-## Reproduire les vérifications sous Linux
-
-Depuis la racine du paquet, avec Python 3, un compilateur C++17 et un accès réseau pour les deux dépendances d’analyse :
+## Reproduire les tests sous Linux
 
 ```sh
 python3 -m venv work/venv
 work/venv/bin/pip install -r requirements-analysis.txt
-mkdir -p work/build
-c++ -std=c++17 -O2 -ffp-contract=off -fno-fast-math -fPIC -shared src/SaturKernel.cpp -o work/build/libsatur.so
-work/venv/bin/python tests/compare_satur_original.py reference/Sophistry.i386 work/build/libsatur.so --report work/kernel-report.json --fixtures work/fixtures.bin
+bash scripts/build-lifter.sh
+work/venv/bin/python tests/compare_lifted_dsp.py work/lifter/liblift.so --output work/static-lift-comparison.json
+work/lifter/LiftedProbe reference/Sophistry.i386 evidence/static-lift-comparison.fixtures
 python3 -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-Pour analyser vos presets sans les modifier :
+Le probe autonome utilise le format de fixtures `SLFT0003`. `--native-math` teste le libm de l’hôte au lieu des réponses enregistrées et peut mettre en évidence les différences décrites ci-dessus.
 
-```sh
-python3 scripts/inspect_presets.py "/chemin/preset.aupreset" --output work/presets
-python3 scripts/inspect_presets.py "/chemin/preset.fxp" --output work/presets
-```
+## Reprendre le travail
 
-L’outil extrait le conteneur et les octets opaques. **Il ne sait pas encore charger un état Sophistry dans un moteur ARM64.** Il ne traite pas les projets `.logicx`/`.als`.
+| Chemin | Contenu |
+|---|---|
+| `REPRISE.md` | Dernière étape, faits vérifiés, suites et limites |
+| `port-status.json` | État des fonctionnalités, dont celles non réalisées |
+| `checkpoints/Sophistry-history.bundle` | Historique Git local autonome |
+| `checkpoints/ghidra-project/` | Projet Ghidra 11.3.2 complet avec son `.rep` |
+| `analysis/ghidra/` | Décompilation initiale et graphe d’appels reconnus |
+| `analysis/lifter-all/` | P-code brut sélectionné et provenance |
+| `src/lifter/` | Générateur de code déjà exécuté : C++ émis et runtime |
+| `scripts/lift_pcode_cpp.py` | Émetteur C++ à partir du p-code brut |
+| `tests/compare_lifted_dsp.py` | Oracle i386 et comparaison différentielle |
+| `tests/LiftedProbeMain.cpp` | Replay autonome pour Linux/Mac/ARM64 |
+| `reference/` | Original, presets réels et sample conservés |
+| `evidence/` | Rapports, fixtures, objets ARM64 et sondes audio |
+| `docs/STATIC-LIFT.md` | Périmètre et limites de la traduction statique |
+| `docs/PRESETS-CP004.md` | Structure commune des états CronoX/Sophistry |
+| `docs/Interface.html` | Visionneuse des images originales ; aucune commande audio |
 
-Le composant d’origine ne contient ni la banque de sons ni les presets externes. Vous avez confirmé les posséder et avoir utilisé le format AU. La paire réelle fournie est maintenant dans `reference/Presets/`. Le sample référencé et des variantes ciblées resteront nécessaires pour tester le rappel sonore et généraliser les migrations de format.
-
-Pour reproduire l’analyse des états :
-
-```sh
-work/venv/bin/python scripts/recover_parameter_schemas.py
-python3 scripts/decode_legacy_state.py "reference/Presets/Lightgarden 02 BT.aupreset" "reference/Presets/lightgarden 02 BT.FXP" --output work/preset-analysis
-```
-
-La récupération des schémas exécute uniquement le flux de contrôle d’initialisation des descriptions, en remplaçant les constructeurs de paramètres par des collecteurs. Elle ne fait pas fonctionner le synthétiseur original. Le décodeur structurel est indépendant d’Unicorn une fois les schémas obtenus.
+Le dossier `work/` contient les nouvelles compilations et sorties de test et n’est pas distribué. Les archives de checkpoints précédentes restent conservées dans l’environnement de travail. La publication publique des checkpoints est autorisée par l’utilisateur ; les deux tentatives d’envoi monolithique ont été interrompues et aucun téléchargement complet n’avait été confirmé avant cette étape. Ne pas recommencer ce mode d’envoi.

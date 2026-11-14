@@ -1,1 +1,1 @@
-{"scope":"selected statically lifted DSP","cases":148,"compared_bytes":1203328,"byte_mismatches":0,"math_calls":200,"math_mode":"host libm","instruction_addresses_executed":2450,"fixture_valid":true,"passed":true,"full_synth_tested":false}
+{"scope":"selected statically lifted DSP","cases":704,"compared_bytes":5420672,"byte_mismatches":0,"output_buffer_byte_mismatches":0,"object_state_byte_mismatches":0,"math_calls":201,"math_mode":"host libm","instruction_addresses_executed":3113,"fixture_valid":true,"passed":true,"full_synth_tested":false}

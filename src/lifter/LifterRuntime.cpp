@@ -9,30 +9,33 @@ static SlU64 round_shift(SlU64 n,unsigned shift) {
     SlU64 quotient=n>>shift,remainder=n&((SlU64(1)<<shift)-1),half=SlU64(1)<<(shift-1);
     return quotient+(remainder>half || (remainder==half && (quotient&1)));
 }
-SlU sl_ext80_to_f64(SlU bits) {
-    // Exact integer rounding of x87 80-bit storage to IEEE binary64,
-    // round-to-nearest-even. No reliance on the host long-double format.
-    SlU64 significand=static_cast<SlU64>(bits);
-    unsigned signexp=static_cast<unsigned>(bits>>64)&0xffff;
-    SlU64 sign=SlU64(signexp>>15)<<63;unsigned exponent=signexp&0x7fff;
-    if(exponent==0x7fff) {
-        if(significand==0x8000000000000000ULL)return sign|0x7ff0000000000000ULL;
-        return sign|0x7ff8000000000000ULL|((significand>>11)&0x0007ffffffffffffULL);
-    }
+static SlU ext80_to_ieee(SlU bits,unsigned fraction_bits,unsigned bias,unsigned exponent_bits) {
+    SlU64 significand=static_cast<SlU64>(bits);unsigned signexp=static_cast<unsigned>(bits>>64)&0xffff;
+    SlU64 sign=SlU64(signexp>>15)<<(fraction_bits+exponent_bits),fraction_mask=(SlU64(1)<<fraction_bits)-1;
+    SlU64 infinity=((SlU64(1)<<exponent_bits)-1)<<fraction_bits;unsigned exponent=signexp&0x7fff;
+    if(exponent==0x7fff){if(significand==0x8000000000000000ULL)return sign|infinity;return sign|infinity|(SlU64(1)<<(fraction_bits-1))|((significand>>(63-fraction_bits))&fraction_mask);}
     if(!significand)return sign;
-    int power=exponent?int(exponent)-16383:-16382;
-    unsigned leading=63-__builtin_clzll(significand);
-    int e=power+int(leading)-63;
-    if(e>1023)return sign|0x7ff0000000000000ULL;
-    if(e< -1022) {
-        int shift= -power-1011;
-        SlU64 rounded=shift>=0?round_shift(significand,static_cast<unsigned>(shift)):significand<<unsigned(-shift);
+    int power=exponent?int(exponent)-16383:-16382;unsigned leading=63-__builtin_clzll(significand);int e=power+int(leading)-63;
+    if(e>int(bias))return sign|infinity;
+    if(e<1-int(bias)){
+        int shift=64-int(bias)-int(fraction_bits)-power;
+        SlU64 rounded=shift>=0?round_shift(significand,unsigned(shift)):significand<<unsigned(-shift);
         return sign|rounded;
     }
-    SlU64 rounded=leading>=52?round_shift(significand,leading-52):significand<<(52-leading);
-    if(rounded==(SlU64(1)<<53)){rounded>>=1;++e;}
-    if(e>1023)return sign|0x7ff0000000000000ULL;
-    return sign|(SlU64(e+1023)<<52)|(rounded&0x000fffffffffffffULL);
+    SlU64 rounded=leading>=fraction_bits?round_shift(significand,leading-fraction_bits):significand<<(fraction_bits-leading);
+    if(rounded==(SlU64(1)<<(fraction_bits+1))){rounded>>=1;++e;}
+    if(e>int(bias))return sign|infinity;
+    return sign|(SlU64(e+int(bias))<<fraction_bits)|(rounded&fraction_mask);
+}
+SlU sl_ext80_to_f64(SlU bits){return ext80_to_ieee(bits,52,1023,11);}
+SlU sl_ext80_to_f32(SlU bits){return ext80_to_ieee(bits,23,127,8);}
+SlU sl_fp_to_ext80(SlU input,unsigned source_bytes) {
+    SlU64 bits=static_cast<SlU64>(input);unsigned f=source_bytes==4?23:52,bias=source_bytes==4?127:1023,ebits=source_bytes==4?8:11;
+    SlU64 fraction=bits&((SlU64(1)<<f)-1);unsigned exponent=unsigned((bits>>f)&((1u<<ebits)-1)),sign=unsigned(bits>>(source_bytes*8-1)),e=0;SlU64 mantissa=0;
+    if(exponent==((1u<<ebits)-1)){e=0x7fff;mantissa=(SlU64(1)<<63)|(fraction<<(63-f));}
+    else if(exponent){e=exponent-bias+16383;mantissa=((SlU64(1)<<f)|fraction)<<(63-f);}
+    else if(fraction){unsigned leading=63-__builtin_clzll(fraction);e=unsigned(int(leading)+1-int(bias)-int(f)+16383);mantissa=fraction<<(63-leading);}
+    return SlU(mantissa)|(SlU((sign<<15)|e)<<64);
 }
 SlU sl_trunc_fp(SlU bits,unsigned source_bytes,unsigned output_bits) {
     unsigned fraction_bits=source_bytes==4?23:52,bias=source_bytes==4?127:1023;
@@ -65,12 +68,7 @@ extern "C" SlU32 sl_coverage_count(SlCpu* c){SlU32 n=0;for(SlSize i=0;i<sizeof(c
 extern "C" int sl_run(SlCpu* c,SlU32 e,SlU32 s,SlU64 limit){if(!c)return 1;return sl_execute(*c,e,s,limit);}
 
 extern "C" void sl_push_double_return(SlCpu* c,double value) {
-    SlU64 bits=static_cast<SlU64>(sl_bits(value));SlU64 fraction=bits&0xfffffffffffffULL;
-    unsigned exponent=unsigned((bits>>52)&0x7ff),sign=unsigned(bits>>63),e=0;SlU64 mantissa=0;
-    if(exponent==0x7ff){e=0x7fff;mantissa=(SlU64(1)<<63)|(fraction<<11);}
-    else if(exponent){e=exponent-1023+16383;mantissa=((SlU64(1)<<52)|fraction)<<11;}
-    else if(fraction){unsigned leading=63-__builtin_clzll(fraction);e=unsigned(int(leading)-1074+16383);mantissa=fraction<<(63-leading);}
-    SlU storage=SlU(mantissa)|(SlU((sign<<15)|e)<<64);
+    SlU storage=sl_fp_to_ext80(sl_bits(value),8);
     for(int i=7;i>0;--i)__builtin_memcpy(c->reg+0x1100+i*16,c->reg+0x1100+(i-1)*16,10);
     sl_put<10>(c->reg,sizeof(c->reg),0x1100,storage,*c);
 }

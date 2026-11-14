@@ -59,7 +59,8 @@ def emit(ins,op,j,known):
   symbol={'FLOAT_EQUAL':'==','FLOAT_NOTEQUAL':'!=','FLOAT_LESS':'<','FLOAT_LESSEQUAL':'<='}[kind];expr='(%s %s %s)'%(fp(iv[0]),symbol,fp(iv[1]))
  elif kind=='FLOAT_NAN':expr='__builtin_isnan(%s)'%fp(iv[0])
  elif kind=='FLOAT2FLOAT':
-  if iv[0]['size']==10 and out['size']==8:expr='sl_ext80_to_f64(%s)'%a[0]
+  if iv[0]['size']==10 and out['size'] in [4,8]:expr='sl_ext80_to_f%d(%%s)'%(out['size']*8)%a[0]
+  elif iv[0]['size'] in [4,8] and out['size']==10:expr='sl_fp_to_ext80(%s,%d)'%(a[0],iv[0]['size'])
   elif iv[0]['size'] in [4,8] and out['size'] in [4,8]:expr='sl_bits(static_cast<%s>(%s))'%('float' if out['size']==4 else 'double',fp(iv[0]))
   else:raise ValueError('Unsupported FLOAT2FLOAT sizes')
  elif kind=='INT2FLOAT':
@@ -70,7 +71,7 @@ def emit(ins,op,j,known):
   expr='sl_trunc_fp(%s,%d,%d)'%(a[0],iv[0]['size'],out['size']*8)
  elif kind in ['BRANCH','CBRANCH','CALL']:
   target=iv[0]
-  if target['space']=='const':dest='goto P_%s_%d;'%(ins['address'],j+number(target))
+  if target['space']=='const':dest='goto P_%s_%d;'%(ins['address'],j+(number(target) if number(target)<1<<(target['size']*8-1) else number(target)-(1<<(target['size']*8))))
   elif target['space']=='ram':
    addr=number(target);dest='goto L_%x;'%addr if addr in known else 'c.pc=0x%x;goto dispatch;'%addr
   else:raise ValueError('Unsupported direct flow target')
@@ -96,7 +97,7 @@ def generate(source,output):
   nextaddr=addr+i['length'];lines.append('goto L_%x;'%nextaddr if nextaddr in known else 'c.pc=0x%x;goto dispatch;'%nextaddr);lines.append('}')
  lines.append('}')
  output.write_text('\n'.join(lines)+'\n')
- report={'scope':'Static C++ emission of the separately exported instruction set; not complete DSP engine','original_sha256':SHA,'instruction_count':len(data),'pcode_operation_count':sum(opcounts.values()),'operations':dict(opcounts),'generated_cpp_sha256':hashlib.sha256(output.read_bytes()).hexdigest(),'unsupported_operations':[],'x86_decoder_in_runtime':False,'uses_fixed_control_flow_labels':True,'requires_host_callbacks':True,'floating_environment':'nearest-even, no fast-math, no contraction; x87 arithmetic beyond ext80-to-double conversion unsupported'}
+ report={'scope':'Static C++ emission of the separately exported instruction set; not complete DSP engine','original_sha256':SHA,'instruction_count':len(data),'pcode_operation_count':sum(opcounts.values()),'operations':dict(opcounts),'generated_cpp_sha256':hashlib.sha256(output.read_bytes()).hexdigest(),'unsupported_operations':[],'x86_decoder_in_runtime':False,'uses_fixed_control_flow_labels':True,'requires_host_callbacks':True,'floating_environment':'nearest-even, no fast-math, no contraction; x87 arithmetic beyond exact IEEE-to-ext80 / ext80-to-IEEE storage conversions unsupported'}
  output.with_suffix('.json').write_text(json.dumps(report,indent=2)+'\n');return report
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('source',type=Path);p.add_argument('output',type=Path);n=p.parse_args();print(json.dumps(generate(n.source,n.output),indent=2))

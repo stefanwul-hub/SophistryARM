@@ -1,0 +1,18 @@
+{
+  "format": {
+    "sample_rate": 44100,
+    "channels": 1,
+    "frames": 132300
+  },
+  "reference_peak": 0.3995288014411926,
+  "reference_rms": 0.18035466596863664,
+  "max_abs_error": 0.0,
+  "rmse": 0.0,
+  "snr_db": null,
+  "bit_equal_sample_values": true,
+  "non_silent_reference": true,
+  "tolerance": 0.0,
+  "passed": true,
+  "alignment_shift": 0,
+  "normalization_applied": false
+}

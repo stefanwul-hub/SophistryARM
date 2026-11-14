@@ -95,12 +95,14 @@ class Original:
 class Host:
  def __init__(self,backend):
   self.b=backend;self.input=[0x220000,0x230000];self.output=[0x240000,0x250000];self.math_calls=0;self.math_trace=[]
-  for address in [0x500000,0x500010,0x500020,0x500030,0x500040,0x103311]:backend.hook(address,self.callback)
+  for address in [0x500000,0x500010,0x500020,0x500030,0x500040,0x103311,0x103181,0x10300a]:backend.hook(address,self.callback)
  def put(self,a,v):self.b.write(a,struct.pack('<I',v))
  def callback(self,at):
   sp=self.b.esp()
-  if at==0x103311:
-   raw=self.b.read(sp+4,8);value=struct.unpack('<d',raw)[0];result=math.log10(value);self.math_trace.append((raw,struct.pack('<d',result)));self.b.fpreturn(result);self.math_calls+=1
+  if at in [0x103311,0x103181]:
+   raw=self.b.read(sp+4,8 if at==0x103311 else 16)
+   result=math.log10(struct.unpack('<d',raw)[0]) if at==0x103311 else math.pow(*struct.unpack('<dd',raw))
+   self.math_trace.append((at,raw,struct.pack('<d',result)));self.b.fpreturn(result);self.math_calls+=1
   elif at in [0x500000,0x500010,0x500030,0x500040]:
    out=at in [0x500000,0x500030];self.put(u32(self.b.read(sp+8,4)),(self.output if out else self.input)[0])
    if at in [0x500030,0x500040]:self.put(u32(self.b.read(sp+12,4)),(self.output if out else self.input)[1])
@@ -126,22 +128,24 @@ def run(root,library,output):
  image=(root/'reference/Sophistry.i386').read_bytes()
  if hashlib.sha256(image).hexdigest()!=SHA:raise ValueError('Wrong original')
  lib=ctypes.CDLL(str(library.resolve()));native=Native(lib,image);original=Original(image);hosts=[Host(original),Host(native)]
- rng=random.Random(308);mismatches=[];cases=0;samples=0;mathcalls=0;fixtures=[]
+ rng=random.Random(308);mismatches=[];cases=0;samples=0;compared_bytes=0;fixtures=[]
+ output.parent.mkdir(parents=True,exist_ok=True)
  _,real=read_wav(root/'reference/Samples/BT_cronox18.wav')
- def check(case_id,entry,args,n,state_size,initial_segments):
-  nonlocal cases,samples
+ def check(case_id,entry,args,n,state_size,initial_segments,regions=None):
+  nonlocal cases,samples,compared_bytes
   start=len(hosts[0].math_trace);nstart=len(hosts[1].math_trace)
   for h in hosts:h.b.run(entry,args)
   trace=hosts[0].math_trace[start:]
   if trace!=hosts[1].math_trace[nstart:]:raise RuntimeError("Shared math adapter traces differ")
-  expected=hosts[0].result(n);actual=hosts[1].result(n)
-  es=original.read(0x200000,state_size);ns=native.read(0x200000,state_size)
-  if expected!=actual or es!=ns:
-   idx=next((i for i,(a,b) in enumerate(zip(expected,actual)) if a!=b),None)
-   state_idx=next((i for i,(a,b) in enumerate(zip(es,ns)) if a!=b),None)
-   mismatches.append({'case':case_id,'first_audio_byte':idx,'first_state_byte':state_idx,'expected_audio_hex':expected[max(0,(idx or 0)-8):(idx or 0)+16].hex(),'actual_audio_hex':actual[max(0,(idx or 0)-8):(idx or 0)+16].hex()})
-   if len(mismatches)>=5:raise RuntimeError('Five differential failures: '+json.dumps(mismatches))
-  fixtures.append({'entry':entry,'args':args,'initial':initial_segments,'expected':[(hosts[0].output[0],expected[:4*n]),(hosts[0].output[1],expected[4*n:]),(0x200000,es)],'math_trace':trace})
+  regions=regions or [(hosts[0].output[0],4*n),(hosts[0].output[1],4*n),(0x200000,state_size)]
+  expected_segments=[]
+  for address,size in regions:
+   expected=original.read(address,size);actual=native.read(address,size);expected_segments.append((address,expected));compared_bytes+=size
+   if expected!=actual:
+    offset=next(i for i,(a,b) in enumerate(zip(expected,actual)) if a!=b)
+    mismatches.append({'case':case_id,'region':hex(address),'byte_offset':offset,'expected_hex':expected[max(0,offset-8):offset+16].hex(),'actual_hex':actual[max(0,offset-8):offset+16].hex()})
+    if len(mismatches)>=5:raise RuntimeError('Five differential failures: '+json.dumps(mismatches))
+  fixtures.append({'entry':entry,'args':args,'initial':initial_segments,'expected':expected_segments,'math_trace':trace})
   cases+=1;samples+=2*n
  # Generated saturation is compared separately from the manually translated kernel.
  for channels in [1,2]:
@@ -164,17 +168,72 @@ def run(root,library,output):
     for h in hosts:h.init(channels,n,source,initial,controls,mode)
     seg=[(0x200000,original.read(0x200000,0xc000))]+[(p,original.read(p,n*4)) for p in hosts[0].input+hosts[0].output]+[(0x260000+i*0x1000,pf(v)) for i,v in enumerate(controls)]
     check('filter-%d-%d-%d'%(channels,mode,n),0x7a1ac,[0x200000,n],n,0x4330,seg)
- report={'scope':'Selected statically lifted saturation and filter routines, not full DSP engine or AU','original_sha256':SHA,'cases':cases,'compared_audio_samples':samples,'bit_exact_audio_and_object_state':not mismatches,'mismatches':mismatches,'native_executed_instruction_addresses':lib.sl_coverage_count(native.c),'exported_instructions':sum(1 for _ in (root/'analysis/lifter/instructions.jsonl').open()),'shared_log10_calls_in_original':hosts[0].math_calls,'shared_log10_calls_in_lift':hosts[1].math_calls,'sample_source':'BT_cronox18.wav','x86_runtime_decoder_in_lift':False,'host_math_note':'Both executions use Python math.log10 through explicit ABI adapters; original Apple libm has not been executed','architecture_executed':'Linux x86_64 C++ build','apple_silicon_executed':False,'project_reopening_tested':False}
+ # Actual sample preparation through the original selected routines.
+ sr,channels,frames=read_wav(root/'reference/Samples/BT_cronox18.wav')[0]
+ wave=0x2001d8;left=0x300000;right=0x480000;table=0x280000
+ for h in hosts:
+  h.init(2,0,[[],[]],[[],[]],[[],[],[],[]],0)
+  h.b.write(left,pf(real[0::2]));h.b.write(right,pf(real[1::2]))
+  h.put(wave+0x210,sr);h.put(wave+0x21c,left);h.put(wave+0x220,right);h.put(wave+0x22c,frames)
+ seg=[(0x200000,original.read(0x200000,0xc000)),(left,original.read(left,frames*4)),(right,original.read(right,frames*4))]
+ check('sample-stereo-to-mono',0xaf2b2,[wave],0,0x500,seg,[(left,frames*4),(0x200000,0x500)])
+ seg=[(0x200000,original.read(0x200000,0xc000)),(left,original.read(left,frames*4))]
+ check('sample-normalize',0x32430,[wave,left,frames],0,0x500,seg,[(left,frames*4),(0x200000,0x500)])
+ mono_sha=hashlib.sha256(original.read(left,frames*4)).hexdigest()
+ for h in hosts:h.put(0x2001d4,table);h.b.write(table,b'\0'*(32768+1024))
+ seg=[(0x200000,original.read(0x200000,0xc000)),(left,original.read(left,frames*4)),(table,original.read(table,32768+1024))]
+ check('schrader-prepare-64-tables',0x8de6a,[0x200000,0,60,0,frames-1],0,0x500,seg,[(table,32768+1024),(0x200000,0x500)])
+ table_sha=hashlib.sha256(original.read(table,32768)).hexdigest()
+ (output.parent/'schrader-wavetables-reference.bin').write_bytes(original.read(table,32768))
+ # Exercise the table player with explicit synthetic modulation/routing, not a full preset graph.
+ for routing in [0,1,2]:
+  for voice in [0,4]:
+   for n in [0,1,7,8,129,257]:
+    controls=[[f32(.4) for i in range((n+7)//8)],[f32(0.) for i in range((n+7)//8)],[f32(-.1+.2*rng.random()) for i in range((n+7)//8)],[]]
+    for h in hosts:
+     h.init(1,n,[[f32(.9+.2*rng.random()) for i in range(n)]],[[0.]*n,[0.]*n],controls,0)
+    # Both hosts must receive identical modulation input.
+    native.write(0x220000,original.read(0x220000,n*4))
+    for h in hosts:
+     h.put(0x2001dc,routing);h.b.write(0x2001e8,struct.pack('<f',1.));h.put(0x200218,table)
+     h.put(0x2001f8,0x260000);h.put(0x2001fc,0x261000);h.put(0x200200,0x262000)
+     h.b.write(0x20021c+voice*8,struct.pack('<d',127.5));h.b.write(0x200244+voice*8,struct.pack('<d',63.9))
+     h.b.write(0x20026c,struct.pack('<d',261.6255653005986*128/sr));h.b.write(0x20027c,struct.pack('<d',512/frames));h.put(0x200288,0x290000);h.b.write(0x290000,pf([1.]*max(n,1)))
+    seg=[(0x200000,original.read(0x200000,0xc000)),(0x220000,original.read(0x220000,n*4)),(0x240000,b'\0'*(n*4)),(0x250000,b'\0'*(n*4)),(table,original.read(table,32768+1024)),(0x290000,original.read(0x290000,4*max(n,1)))]+[(0x260000+i*0x1000,pf(v)) for i,v in enumerate(controls)]
+    check('schrader-player-%d-%d-%d'%(routing,voice,n),0x38f48,[0x200000,n,voice],n,0x300,seg)
+ # Continuous three-second isolated Schrader probe; no envelope/filter/effects chain.
+ render_ref=[];render_cpp=[];canonical=original.read(table,32768+1024);total=3*sr
+ for h in hosts:
+  h.init(1,256,[[1.]*256],[[0.]*256,[0.]*256],[[],[],[],[]],0)
+  h.put(0x2001dc,0);h.b.write(0x2001e8,struct.pack('<f',1.));h.put(0x200218,table)
+  h.put(0x2001f8,0x260000);h.put(0x2001fc,0x261000);h.put(0x200200,0x262000)
+  h.b.write(0x20021c,struct.pack('<d',0.));h.b.write(0x200244,struct.pack('<d',0.))
+  h.b.write(0x20026c,struct.pack('<d',261.6255653005986*128/sr));h.b.write(0x20027c,struct.pack('<d',512/frames));h.put(0x200288,0x290000);h.b.write(0x290000,pf([1.]*256));h.b.write(table,canonical)
+ for start in range(0,total,256):
+  n=min(256,total-start);control=[[.4]*((n+7)//8),[0.]*((n+7)//8),[0.]*((n+7)//8)]
+  for h in hosts:
+   h.b.write(0x240000,b'\0'*(n*4));h.b.write(0x250000,b'\0'*(n*4))
+   for i,v in enumerate(control):h.b.write(0x260000+i*0x1000,pf(v))
+  seg=[(0x200000,original.read(0x200000,0xc000 if start==0 else 0x300)),(0x240000,b'\0'*(n*4)),(0x250000,b'\0'*(n*4))]+[(0x260000+i*0x1000,pf(v)) for i,v in enumerate(control)]
+  if start==0:seg +=[(table,canonical),(0x290000,original.read(0x290000,1024))]
+  check('continuous-schrader-%d'%start,0x38f48,[0x200000,n,0],n,0x300,seg)
+  render_ref.extend(struct.unpack('<'+'f'*n,original.read(0x240000,n*4)));render_cpp.extend(struct.unpack('<'+'f'*n,native.read(0x240000,n*4)))
+ def write_wave(path,values):
+  data=pf(values);fmt=struct.pack('<HHIIHH',3,1,sr,sr*4,4,32);body=b'WAVE'+b'fmt '+struct.pack('<I',len(fmt))+fmt+b'fact'+struct.pack('<II',4,len(values))+b'data'+struct.pack('<I',len(data))+data;path.write_bytes(b'RIFF'+struct.pack('<I',len(body))+body)
+ audio=output.parent/'audio';audio.mkdir(exist_ok=True)
+ write_wave(audio/'schrader-root60-original-instructions.wav',render_ref);write_wave(audio/'schrader-root60-lifted-cpp.wav',render_cpp)
+ if max(abs(x) for x in render_ref)<=1e-8:raise RuntimeError('Schrader audio probe is silent')
+ report={'scope':'Selected statically lifted saturation, filter, sample preparation and Schrader routines; not full DSP engine or AU','original_sha256':SHA,'cases':cases,'compared_audio_samples':samples,'compared_bytes':compared_bytes,'continuous_schrader_frames':total,'continuous_schrader_sample_rate':sr,'bit_exact_audio_and_object_state':not mismatches,'mismatches':mismatches,'native_executed_instruction_addresses':lib.sl_coverage_count(native.c),'exported_instructions':sum(1 for _ in (root/'analysis/lifter-all/instructions.jsonl').open()),'shared_host_math_calls_in_original':hosts[0].math_calls,'shared_host_math_calls_in_lift':hosts[1].math_calls,'sample_source':'BT_cronox18.wav','normalized_mono_sample_sha256':mono_sha,'schrader_64_tables_sha256':table_sha,'x86_runtime_decoder_in_lift':False,'host_math_note':'Both executions use Python math.log10/math.pow and a no-op free for host-owned buffers through explicit ABI adapters; original Apple libm and file decoder have not been executed','architecture_executed':'Linux x86_64 C++ build','apple_silicon_executed':False,'project_reopening_tested':False}
  output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(report,indent=2)+'\n')
  # Binary fixture captures the actual input segments and original expected outputs.
- path=output.with_suffix('.fixtures');data=bytearray(b'SLFT0002'+struct.pack('<I',len(fixtures)))
+ path=output.with_suffix('.fixtures');data=bytearray(b'SLFT0003'+struct.pack('<I',len(fixtures)))
  for f in fixtures:
   data+=struct.pack('<III',f['entry'],len(f['args']),len(f['initial']))+struct.pack('<'+'I'*len(f['args']),*f['args'])
   for address,blob in f['initial']:data+=struct.pack('<II',address,len(blob))+blob
   data+=struct.pack('<I',len(f['expected']))
   for address,blob in f['expected']:data+=struct.pack('<II',address,len(blob))+blob
   data+=struct.pack('<I',len(f['math_trace']))
-  for arg,result in f['math_trace']:data+=arg+result
+  for address,arg,result in f['math_trace']:data+=struct.pack('<II',address,len(arg))+arg+result
  path.write_bytes(data);native.close();return report
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('library',type=Path);p.add_argument('--root',type=Path,default=ROOT);p.add_argument('--output',type=Path,required=True);n=p.parse_args();print(json.dumps(run(n.root,n.library,n.output),indent=2))
