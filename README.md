@@ -1,12 +1,12 @@
-# Sophistry — checkpoint CP-010
+# Sophistry — checkpoint CP-011
 
 **Le plugin Audio Unit ARM64 complet n’est pas encore obtenu. Ce paquet contient le travail de portage et ses preuves ; il ne doit pas remplacer l’ancien `.component`.**
 
 Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x86-64. L’identité à conserver pour les anciens projets AU est `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`.
 
-**Nouveau à CP-010 :** 5377 instructions supplémentaires ont été récupérées sans modifier les octets originaux, soit 191378 instructions traduites en C++ fixe. L’ouverture du moteur et le chargement des deux états fournis aboutissent dans le prototype hôte, avec des zones mémoire et sauvegardes de programme identiques à l’original. Les 704 références DSP et 11635 cas d’instructions/gardes passent sous Linux natif et ARM64/Linux/QEMU ; les 366 objets compilent en Mach-O ARM64. Le test de rendu complet reste en échec : ses sorties restent sous −100 dBFS dans l’hôte sans préférences d’enregistrement. **Aucun preset sonore complet ni AU installable n’est validé.**
+**Nouveau à CP-011 :** l’hôte d’exécution est porté en C++ autonome. Avec les 191378 instructions statiquement traduites, il charge et resauvegarde les deux états fournis, avec des régions mémoire identiques à la référence i386 sous Linux natif et ARM64/Linux/QEMU. Les méthodes de l’ancien AU exposent 522 paramètres et 56 alias de validation, sauvegardés pour l’intégration. Le rendu sans enregistrement reste sous −100 dBFS et demeure en échec. **Aucun preset sonore complet ni AU installable n’est validé.**
 
-Lire [le rapport CP-010](docs/CP010.md) pour les preuves, limites et commandes. [CP-009](docs/CP009.md) est conservé comme historique. Les éléments ci-dessous décrivent le périmètre DSP CP-008 déjà testé sur le Mac utilisateur. CP-010 n’a pas encore été exécuté sous macOS.
+Lire [le rapport CP-011](docs/CP011.md) pour le test Mac avec saisie locale de la licence, les preuves et les limites. [CP-010](docs/CP010.md) et [CP-009](docs/CP009.md) sont conservés comme historique. Le nouvel hôte C++ n’a pas encore été compilé/exécuté sous macOS ; les résultats reçus du Mac concernent CP-008.
 
 ## Travail effectué
 

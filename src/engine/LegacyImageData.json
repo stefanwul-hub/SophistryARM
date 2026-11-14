@@ -1,0 +1,20 @@
+{
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "mapped_data_sha256": "687cfc3c61e326c88ffd1b5a5177e5cc77e55ae2bd2741f1aab12798c3da9a8c",
+  "mapped_bytes": 1167360,
+  "function_imports": 404,
+  "initializers": 121,
+  "machine_bytes_executed": false,
+  "generated_files": [
+    {
+      "file": "LegacyImageData.h",
+      "bytes": 495,
+      "sha256": "dd10a072cf6de8e11298ccdb7182db0a22dcbf181e0f8e3563a7bc9e0dce1f8e"
+    },
+    {
+      "file": "LegacyImageData.cpp",
+      "bytes": 3565311,
+      "sha256": "23cdd35f234eb22672efa8a1fcfcd336f6c7a127c4b945123e054a3d8aa80f4f"
+    }
+  ]
+}

@@ -23,6 +23,7 @@ else
   library="$DEST/liblift-whole.so"
 fi
 sources=("$ROOT/src/lifter/LifterRuntime.cpp" "$SOURCE/Dispatch.cpp" "$SOURCE"/Unit*.cpp)
+compiler_version="$("${compiler[@]}" --version)"
 objects=()
 pids=()
 completed=0
@@ -35,7 +36,16 @@ wait_batch(){
 for source in "${sources[@]}"; do
   name="$(basename "$source" .cpp)"
   object="$DEST/$name.o";objects+=("$object")
-  "${compiler[@]}" "${flags[@]}" -c "$source" -o "$object" > "$DEST/$name.compile.log" 2>&1 &
+  key="$( { printf '%s\n' "${compiler[*]}" "${flags[*]}" "$compiler_version"; cat "$ROOT/src/lifter/LifterRuntime.h" "$source"; } | shasum -a 256 | awk '{print $1}')"
+  if [[ -f "$object" && -f "$object.compile.sha256" && "$(cat "$object.compile.sha256")" == "$key" ]]; then
+    completed=$((completed+1))
+    continue
+  fi
+  (
+    "${compiler[@]}" "${flags[@]}" -c "$source" -o "$object.pending"
+    mv "$object.pending" "$object"
+    printf '%s\n' "$key" > "$object.compile.sha256"
+  ) > "$DEST/$name.compile.log" 2>&1 &
   pids+=("$!")
   completed=$((completed+1))
   if [[ "${#pids[@]}" -ge "$JOBS" ]]; then

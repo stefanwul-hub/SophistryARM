@@ -40,7 +40,8 @@ class Host:
   '_CFStringCreateWithCString','_CFStringCreateCopy','_CFStringGetLength','_CFStringGetCString','_CFStringGetCStringPtr','_CFStringCompare',
   '_CFStringGetSystemEncoding','_CFStringGetTypeID','_CFGetTypeID','_CFRetain','_CFRelease',
   '_CFPreferencesCopyAppValue','_CFPreferencesCopyValue','_CFPreferencesGetAppBooleanValue','_CFPreferencesGetAppIntegerValue','_CFPreferencesAppSynchronize',
-  '_sprintf','_snprintf','_vsprintf','_vsnprintf','_opendir','___error'}
+  '_sprintf','_snprintf','_vsprintf','_vsnprintf','_opendir','___error','_atol','_atoi',
+  '_CFArrayCreateMutable','_CFArrayAppendValue','_CFArrayGetValueAtIndex','_CFArrayGetCount','_CFArrayCreateCopy'}
  SUPPORTED|={'_'+name for name in MATH32}
  def __init__(self,backend,image):
   self.b=backend;self.names={x['address']:x['name'] for x in image.stubs};self.names[0x70000000]='<vst-host>';self.names[0x70000100]='<converter-input-return>'
@@ -53,7 +54,7 @@ class Host:
   self.monotonic_ticks=0
   self.sample_rate=44100;self.block_size=512;self.sample_position=0;self.time_info=0
   self.event_loop=0;self.timer_upps={};self.timers={}
-  self.files={};self.opened_reference_files=[];self.file_requests=[];self.missing_directories=[];self.errno_pointer=0
+  self.files={};self.opened_reference_files=[];self.file_requests=[];self.missing_directories=[];self.errno_pointer=0;self.private_preferences=None
   self.converters={};self.pending_converters=[];self.conversion_records=[]
   self.libm=ctypes.CDLL(ctypes.util.find_library('m'));self.math32={}
   for name in self.MATH32:
@@ -161,6 +162,12 @@ class Host:
    self.b.write(result,bytes([value])*n)
   elif name=='_memcmp':
    a,b=self.b.read(arg(0),arg(2)),self.b.read(arg(1),arg(2));result=next((x-y for x,y in zip(a,b) if x!=y),0)
+  elif name in ['_atol','_atoi']:
+   text=self.string(arg(0)).decode('ascii');match=re.match(r'\s*([+-]?\d+)',text);value=int(match.group(1)) if match else 0
+   if value>0x7fffffff or value<-(1<<31):
+    if not self.errno_pointer:self.errno_pointer=self.alloc(4)
+    self.put(self.errno_pointer,34);value=max(-(1<<31),min(0x7fffffff,value))
+   result=value
   elif name=='_strlen':result=len(self.string(arg(0)))
   elif name=='_strcpy':result=arg(0);self.b.write(result,self.string(arg(1))+b'\0')
   elif name=='_strdup':
@@ -380,6 +387,22 @@ class Host:
    if arg(2)&1:a=a.casefold();b=b.casefold()
    result=(a>b)-(a<b)
   elif name=='_CFStringGetSystemEncoding':result=0
+  elif name=='_CFArrayCreateMutable':
+   result=self.alloc(16);self.opaque_handles[result]={'type':'CFArray','value':[],'refs':1}
+  elif name=='_CFArrayAppendValue':
+   obj=self.opaque_handles.get(arg(0))
+   if not obj or obj['type']!='CFArray':raise ValueError('Unknown CFArray token')
+   token=arg(1);obj['value'].append(token)
+   if token in self.opaque_handles:self.opaque_handles[token]['refs']+=1
+  elif name in ['_CFArrayGetValueAtIndex','_CFArrayGetCount','_CFArrayCreateCopy']:
+   obj=self.opaque_handles.get(arg(1) if name=='_CFArrayCreateCopy' else arg(0))
+   if not obj or obj['type']!='CFArray':raise ValueError('Unknown CFArray token')
+   if name=='_CFArrayGetValueAtIndex':result=obj['value'][arg(1)]
+   elif name=='_CFArrayGetCount':result=len(obj['value'])
+   else:
+    result=self.alloc(16);self.opaque_handles[result]={'type':'CFArray','value':list(obj['value']),'refs':1}
+    for token in obj['value']:
+     if token in self.opaque_handles:self.opaque_handles[token]['refs']+=1
   elif name=='_CFStringGetTypeID':result=7
   elif name=='_CFGetTypeID':
    self.cf_string(arg(0));result=7
@@ -392,7 +415,13 @@ class Host:
     obj=self.opaque_handles[token];obj['refs']=obj.get('refs',1)-1
     if obj['refs']==0:del self.opaque_handles[token]
    else:self.cf_string(token) # Constant CFStrings are immortal.
-  elif name in ['_CFPreferencesCopyAppValue','_CFPreferencesCopyValue']:result=0 # Explicit fresh preference store.
+  elif name in ['_CFPreferencesCopyAppValue','_CFPreferencesCopyValue']:
+   # Private preferences, when explicitly supplied, remain in process memory.
+   if self.private_preferences is not None and self.cf_string(arg(1))=='com.linplug.Sophistry':
+    value=self.private_preferences.get(self.cf_string(arg(0)))
+    if value is not None:
+     if not isinstance(value,str):raise ValueError('Unsupported non-string legacy preference')
+     result=self.new_cf_string(value)
   elif name in ['_CFPreferencesGetAppBooleanValue','_CFPreferencesGetAppIntegerValue']:
    if arg(2):self.b.write(arg(2),b'\0')
    result=0
@@ -448,10 +477,11 @@ class Host:
   if isinstance(self.b,Original):self.b.uc.reg_write(UC_X86_REG_EAX,result&0xffffffff)
   else:self.b.regwrite(0,struct.pack('<I',result&0xffffffff))
   self.b.ret()
-def probe(library,output,construct=False,open_effect=False,preset=None,missing_listing=None,inspect_state=False,render_seconds=0,au_callback=False):
+def probe(library,output,construct=False,open_effect=False,preset=None,missing_listing=None,inspect_state=False,render_seconds=0,au_callback=False,private_registration=None,private_preferences=None):
  image=LegacyImage((ROOT/'reference/Sophistry.i386').read_bytes())
  backend=HostedNative(ctypes.CDLL(str(library.resolve())),bytes(image.mapped()),0x4000000) if library else Original(bytes(image.mapped()),0x4000000)
- host=Host(backend,image);completed=[];error=None;stage='global initialization';constructed=False;opened=False
+ host=Host(backend,image);host.private_preferences=private_preferences;private_mode=private_registration is not None or private_preferences is not None
+ completed=[];error=None;stage='global initialization';constructed=False;opened=False
  missing=set();trace_hook=None
  if missing_listing:
   if library:raise ValueError('Missing-code tracing requires the original i386 backend')
@@ -472,12 +502,20 @@ def probe(library,output,construct=False,open_effect=False,preset=None,missing_l
    value=ctypes.create_string_buffer(4);backend.l.sl_reg_read(backend.c,0,value,4);return struct.unpack('<I',value.raw)[0]
   return backend.uc.reg_read(UC_X86_REG_EAX)
  try:
+  if private_mode and inspect_state:raise ValueError('Private input mode disables state dumps')
   for at in image.initializers:backend.run(at,[]);completed.append(hex(at))
   if construct:
    stage='Kaja constructor';backend.run(0x4e876,[0x200000,0x273c if au_callback else 0x70000000]);constructed=True;observe('constructor')
   if open_effect:
    if not constructed:raise ValueError('--open requires --construct')
    stage='VST effOpen';backend.run(host.word(0x200024),[0x200020,0,0,0,0,0]);opened=True;observe('effOpen')
+  if private_registration is not None:
+   if not opened:raise ValueError('Private registration input requires --construct --open')
+   raw=private_registration.encode('utf8')
+   if not raw or len(raw)>319:raise ValueError('Invalid registration input length')
+   if backend.read(0x200000+0xb4+0x315,1)!=b'\0':raise ValueError('Registration setter would persist preferences')
+   stage='private registration input through original SysGlo setter'
+   backend.write(0x5e0000,raw+b'\0');backend.run(0x12c66,[0x200000+0xb4,0,1,0x5e0000]);backend.write(0x5e0000,b'\0'*(len(raw)+1))
   if preset:
    if not opened:raise ValueError('--preset requires --construct --open')
    raw=preset.read_bytes();index=1
@@ -551,17 +589,19 @@ def probe(library,output,construct=False,open_effect=False,preset=None,missing_l
    render_info={'sample_rate':rate,'block_frames':block,'frames':total,'channels':channels,'peak_per_channel':peaks,'rms_per_channel':[math.sqrt(s/total) for s in sums],'pcm_float32_sha256':hashlib.sha256(interleaved).hexdigest(),'signal_above_minus_100_dbfs':any(x>1e-5 for x in peaks),'signal_check':'Peak must exceed 1e-5 (-100 dBFS); denormal-prevention offsets do not establish synthesis','note':60,'velocity':100,'note_off_frame':off,'host_callback':'original AU zero-return stub at 0x273c' if au_callback else 'synthetic VST host'}
    stage='render completed'
    if not render_info['signal_above_minus_100_dbfs']:raise RuntimeError('Rendered output stays below -100 dBFS; synthesis is not verified')
- except Exception as e:error=str(e)
+ except Exception as e:error=str(e).replace(private_registration,'<redacted>') if private_registration else str(e)
  pc=backend.l.sl_get_pc(backend.c) if isinstance(backend,Native) else backend.uc.reg_read(UC_X86_REG_EIP)
  r={'scope':'Global initialization progress with a limited explicit host; not a complete synth or native Audio Unit',
   'backend':'statically emitted C++' if library else 'original i386 / Unicorn','completed_initializers':len(completed),'total_initializers':len(image.initializers),
   'completed_entries':completed,'error':error,'stage':stage,'Kaja_constructor_returned':constructed,'effOpen_returned':opened,'preset_input':preset_info,'setChunk_returned':preset_returned,'setChunk_result':preset_result,'state_inspection':state_info,'status_observations':status_observations,'render':render_info,'stopped_pc':hex(pc),'last_import':host.last_import,
   'unhandled_import':host.names.get(pc),'host_import_calls':dict(host.calls),'heap_bytes_reserved':host.heap-0x800000,
   'allocator':'bounded deterministic guest bump allocator; freed tokens tracked, no reuse; test-only','test_time_epoch':host.clock,
-  'engine_object_sha256':hashlib.sha256(backend.read(0x200000,0x340000)).hexdigest(),
-  'guest_heap_sha256':hashlib.sha256(backend.read(0x800000,host.heap-0x800000)).hexdigest(),
+  'engine_object_sha256':None if private_mode else hashlib.sha256(backend.read(0x200000,0x340000)).hexdigest(),
+  'guest_heap_sha256':None if private_mode else hashlib.sha256(backend.read(0x800000,host.heap-0x800000)).hexdigest(),
+  'private_registration_input':private_registration is not None,
+  'private_local_preferences':private_preferences is not None,
   'effect_fields':{'magic':hex(host.word(0x200020)),'dispatcher':hex(host.word(0x200024)),'num_programs':host.word(0x200034),'num_parameters':host.word(0x200038),'num_inputs':host.word(0x20003c),'num_outputs':host.word(0x200040),'process_replacing':hex(host.word(0x200070)),'unique_id':hex(host.word(0x200068))} if constructed else None,
-  'registered_destructors':len(host.destructors),'guest_mutexes':host.mutexes,'mutex_adapter':'single-CPU state machine; no concurrent guest access; blocking operations stop the probe','math_adapter':'Python/Linux math; not original Apple i386 libm','random_adapter':'Frozen BSD degree-31 stream, initial seed 1; shared test inputs, not an original-OS random capture','graphics_adapter':'Explicit unavailable-ColorSync-profile and CoreGraphics-bundle scenario; DeviceRGB is an opaque test handle, no rendering','unavailable_framework_bundles':host.unavailable_bundles,'unavailable_dynamic_libraries':host.unavailable_libraries,'original_global_destructor_registration_complete':False,'global_memory_sha256':hashlib.sha256(backend.read(0xe2000,0x104000-0xe2000)).hexdigest(),
+  'registered_destructors':len(host.destructors),'guest_mutexes':host.mutexes,'mutex_adapter':'single-CPU state machine; no concurrent guest access; blocking operations stop the probe','math_adapter':'Python/platform math; not original Apple i386 libm','random_adapter':'Frozen BSD degree-31 stream, initial seed 1; shared test inputs, not an original-OS random capture','graphics_adapter':'Explicit unavailable-ColorSync-profile and CoreGraphics-bundle scenario; DeviceRGB is an opaque test handle, no rendering','unavailable_framework_bundles':host.unavailable_bundles,'unavailable_dynamic_libraries':host.unavailable_libraries,'original_global_destructor_registration_complete':False,'global_memory_sha256':None if private_mode else hashlib.sha256(backend.read(0xe2000,0x104000-0xe2000)).hexdigest(),
   'event_loop_adapter':'Registered timers only; no GUI events or timer callbacks pumped during initialization','registered_timers':host.timers,
   'filesystem_adapter':'Only provided reference assets, resolved by unique case-insensitive basename; read-only in-memory FILE objects; no mounted Mac directory namespace','file_requests':host.file_requests,'opened_reference_files':host.opened_reference_files,'unavailable_directory_basenames':host.missing_directories,
   'audio_conversion_adapter':'Restricted exact PCM16 stereo to float32 stereo, same rate; not original Apple AudioConverter execution','audio_conversions':host.conversion_records,
@@ -570,6 +610,14 @@ def probe(library,output,construct=False,open_effect=False,preset=None,missing_l
  output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(r,indent=2)+'\n')
  backend.close();return r
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--library',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--construct',action='store_true');p.add_argument('--open',action='store_true');p.add_argument('--preset',type=Path);p.add_argument('--missing-listing',type=Path);p.add_argument('--inspect',action='store_true');p.add_argument('--render',type=float,default=0);p.add_argument('--au-callback',action='store_true');n=p.parse_args()
- r=probe(n.library,n.output,n.construct,n.open,n.preset,n.missing_listing,n.inspect,n.render,n.au_callback);print(json.dumps({k:r[k] for k in ['backend','completed_initializers','total_initializers','stage','Kaja_constructor_returned','effOpen_returned','setChunk_returned','setChunk_result','state_inspection','render','error','stopped_pc','last_import','unhandled_import','heap_bytes_reserved','effect_fields','executed_code_missing_from_listing']},indent=2))
+ p=argparse.ArgumentParser();p.add_argument('--library',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--construct',action='store_true');p.add_argument('--open',action='store_true');p.add_argument('--preset',type=Path);p.add_argument('--missing-listing',type=Path);p.add_argument('--inspect',action='store_true');p.add_argument('--render',type=float,default=0);p.add_argument('--au-callback',action='store_true');p.add_argument('--registration-from-stdin',action='store_true');p.add_argument('--local-mac-preferences',action='store_true');n=p.parse_args()
+ private_preferences=None
+ if n.local_mac_preferences:
+  if n.registration_from_stdin:p.error('Choose local preferences or registration input')
+  if sys.platform!='darwin':p.error('Local preferences require macOS')
+  import subprocess,plistlib
+  prefs=subprocess.run(['/usr/bin/defaults','export','com.linplug.Sophistry','-'],stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=False)
+  private_preferences=plistlib.loads(prefs.stdout) if prefs.returncode==0 else {}
+ serial_input=sys.stdin.readline().rstrip('\r\n') if n.registration_from_stdin else None
+ r=probe(n.library,n.output,n.construct,n.open,n.preset,n.missing_listing,n.inspect,n.render,n.au_callback,serial_input,private_preferences);print(json.dumps({k:r[k] for k in ['backend','completed_initializers','total_initializers','stage','Kaja_constructor_returned','effOpen_returned','setChunk_returned','setChunk_result','state_inspection','render','error','stopped_pc','last_import','unhandled_import','heap_bytes_reserved','effect_fields','executed_code_missing_from_listing']},indent=2))
  sys.exit(1 if r['error'] else 0)

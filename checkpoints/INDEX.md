@@ -19,3 +19,5 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-009 — listing étendu** : 186001 instructions détectées compilées sous Linux et en objets Mach-O ARM64 ; 121 initialisateurs et constructeur comparés ; code manquant atteint à l’ouverture. Sources et analyse conservées dans l’historique Git.
 
 - **CP-010 — ouverture et états** : 191378 instructions après récupération de blocs manquants ; ouverture, import FXP/AU et sérialisation comparés à l’original dans un hôte de test. Références DSP et primitives toujours exactes sous Linux natif et ARM64/QEMU. Le rendu de trois secondes produit seulement un signal sous −100 dBFS et reste en échec. Base Ghidra enrichie et preuves sauvegardées. Aucun AU installable.
+
+- **CP-011 — hôte C++ et contrat de paramètres AU** : hôte C++ autonome, import/sérialisation et régions mémoire exacts sous Linux natif et ARM64/QEMU ; métadonnées des 522 paramètres et 56 alias de validation vérifiés sur les routines originales/traduites. Test Mac avec licence saisie localement et comparaison i386 prévue, non encore exécuté. Licence invalide refusée, captures mémoire privées désactivées. Aucun AU installable.

@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-010",
+  "checkpoint": "CP-011",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -34,14 +34,14 @@
   "logic_projects_verified": false,
   "ableton_projects_verified": false,
   "install_allowed": false,
-  "implemented_dsp_scope": "191378 detected/recovered instructions statically translated; 704 selected DSP cases and 11635 instruction/guard cases validated. Original/translated initialization, loading and program serialization match in a limited Python host. Full preset sound remains unverified.",
+  "implemented_dsp_scope": "191378 static translated instructions with native C++ diagnostic host; FXP/AU restore, serialization and memory regions match original references under native Linux and ARM64/Linux/QEMU. Full audible sound and AU integration are not validated.",
   "arm64_scope": "CP-010: all 366 runtime/generated objects compiled as Mach-O ARM64; 704 DSP and 11635 instruction/guard replays pass under ARM64/Linux/QEMU. No CP-010 execution on macOS; user Mac results concern CP-008.",
   "next_work": [
-    "Implement production native C++ host services with local private preferences and proper allocation/lifecycle",
-    "Resolve note/render activation using original registration behavior; verify full audible preset output",
-    "Verify original AU parameter IDs, metadata and bus layout, then implement modern wrapper with aumu/Sop3/LinP",
-    "Implement native UI from original controls and resources",
-    "Validate ARM64 AU on Mac, add backup/rollback installer and test copies of Logic/Live projects"
+    "Run CP-011 on the user Mac with local private registration and inspect native/original audio comparison",
+    "Resolve any remaining host imports or code coverage gaps reached by licensed rendering",
+    "Verify actual old AU subobject vtables, bus layout and parameter automation behavior",
+    "Implement modern AU wrapper, native UI and full native lifecycle/realtime host services",
+    "Validate auval and copies of old Logic/Live projects; then provide backup/rollback installer"
   ],
   "state_container_reader_implemented": true,
   "state_container_round_trip_tested": [
@@ -57,7 +57,7 @@
   "sample_used_for_full_synth_audio_test": true,
   "sample_sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050",
   "static_lifter_implemented": true,
-  "static_lifter_scope": "191378 detected/recovered instructions statically translated; 704 selected DSP cases and 11635 instruction/guard cases validated. Original/translated initialization, loading and program serialization match in a limited Python host. Full preset sound remains unverified.",
+  "static_lifter_scope": "191378 static translated instructions with native C++ diagnostic host; FXP/AU restore, serialization and memory regions match original references under native Linux and ARM64/Linux/QEMU. Full audible sound and AU integration are not validated.",
   "static_lifter_test_cases": 704,
   "static_lifter_bit_exact_vs_unicorn": true,
   "static_lifter_original_apple_libm_tested": false,
@@ -123,5 +123,20 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "Last downloaded and verified published code archive is CP-009; see CP010-publication.json when present for the newer immutable archive."
+  "github_verification_note": "Last downloaded and verified published code archive is CP-009; see CP010-publication.json when present for the newer immutable archive.",
+  "native_cpp_host_available": true,
+  "native_cpp_host_is_production_ready": false,
+  "native_cpp_host_linux_executed": true,
+  "native_cpp_host_arm64_linux_qemu_executed": true,
+  "native_cpp_host_macos_compiled_or_executed": false,
+  "original_au_parameter_list_count": 522,
+  "original_au_legacy_validation_aliases": 56,
+  "au_parameter_contract": "analysis/au-parameter-contract.json",
+  "user_license_available": true,
+  "user_license_received_in_chat": false,
+  "private_registration_input_supported": true,
+  "private_registration_tested_with_valid_user_license": false,
+  "private_memory_dumps_disabled": true,
+  "local_mac_reference_comparison_prepared": true,
+  "local_mac_reference_comparison_executed": false
 }

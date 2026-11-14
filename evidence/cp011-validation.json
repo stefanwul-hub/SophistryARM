@@ -1,0 +1,184 @@
+{
+  "checkpoint": "CP-011",
+  "scope": "Native C++ host with deterministic limited platform adapters; native AU integration remains absent",
+  "source_sha256": {
+    "src/engine/LegacyEngine.cpp": "33e3576cae536ed80b3b0d15b54c42d8a09e3681fce0fc995bb3d954b7532330",
+    "src/engine/LegacyEngine.h": "cabe6c786475aae15f9ca56923364797b16b9be20a685c57dbbff2fb1869edc6",
+    "src/engine/LegacyImageData.cpp": "23cdd35f234eb22672efa8a1fcfcd336f6c7a127c4b945123e054a3d8aa80f4f",
+    "src/engine/LegacyImageData.h": "dd10a072cf6de8e11298ccdb7182db0a22dcbf181e0f8e3563a7bc9e0dce1f8e",
+    "tests/NativeEngineProbeMain.cpp": "05c13d58f281041c9deeec96d0b9686267e809a9137d5c8d9b0e2adaa18f448f",
+    "tests/probe_au_contract.py": "eacbc0d52b6b8a2705342d1257c3cc64676b74e7f79eabee558ff30d6f6ff077",
+    "tests/probe_engine_initialization.py": "537e48a9b6343850a3034347194b9277eea8294318568c853496a3e1954b58ad",
+    "scripts/build-native-engine.sh": "b9cd0b23d6d99a79a8d349c66c797c36a83ef54277c03ae0c2c45dbd9fe41077",
+    "scripts/build-lifter-chunks.sh": "71c02b54fa7267ff840b57f114e261ddbe6c8347a29f51ed85bae9148a88ff93",
+    "scripts/generate_legacy_image_cpp.py": "c3ca7150950f239f8ba4076fd5599e2b29ca623247c58c4e832e162205d2f1b1",
+    "Verifier-Moteur-Mac.command": "65476f117270af15f928522dcfb3d2176eed1ff7ba2fd850a8d8c7dfc20a04c5"
+  },
+  "native_host_scenarios": [
+    {
+      "target": "linux-native",
+      "scenario": "fxp",
+      "memory_regions_byte_exact": {
+        "object": true,
+        "heap": true,
+        "globals": true
+      },
+      "compared_memory_bytes": 8913328,
+      "host_import_calls_exact": true,
+      "serialized_program_exact": true,
+      "audio_output_bytes_exact": false,
+      "output_bytes": 21072,
+      "output_sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+      "complete_sound_validated": false
+    },
+    {
+      "target": "linux-native",
+      "scenario": "aupreset",
+      "memory_regions_byte_exact": {
+        "object": true,
+        "heap": true,
+        "globals": true
+      },
+      "compared_memory_bytes": 8914608,
+      "host_import_calls_exact": true,
+      "serialized_program_exact": true,
+      "audio_output_bytes_exact": false,
+      "output_bytes": 21032,
+      "output_sha256": "0590b396932df720fa937ee6790802a55f9e38af7d004a656146423a287c05bf",
+      "complete_sound_validated": false
+    },
+    {
+      "target": "linux-native",
+      "scenario": "render",
+      "memory_regions_byte_exact": {
+        "object": true,
+        "heap": true,
+        "globals": true
+      },
+      "compared_memory_bytes": 26358240,
+      "host_import_calls_exact": true,
+      "serialized_program_exact": false,
+      "audio_output_bytes_exact": true,
+      "output_bytes": 3175244,
+      "output_sha256": "81292c399fb9f1e3c1915931bb1dd5779cb6df8c63a4476f74cd08de121333d4",
+      "complete_sound_validated": false
+    },
+    {
+      "target": "arm64-linux-qemu",
+      "scenario": "fxp",
+      "memory_regions_byte_exact": {
+        "object": true,
+        "heap": true,
+        "globals": true
+      },
+      "compared_memory_bytes": 8913328,
+      "host_import_calls_exact": true,
+      "serialized_program_exact": true,
+      "audio_output_bytes_exact": false,
+      "output_bytes": 21072,
+      "output_sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+      "complete_sound_validated": false
+    },
+    {
+      "target": "arm64-linux-qemu",
+      "scenario": "aupreset",
+      "memory_regions_byte_exact": {
+        "object": true,
+        "heap": true,
+        "globals": true
+      },
+      "compared_memory_bytes": 8914608,
+      "host_import_calls_exact": true,
+      "serialized_program_exact": true,
+      "audio_output_bytes_exact": false,
+      "output_bytes": 21032,
+      "output_sha256": "0590b396932df720fa937ee6790802a55f9e38af7d004a656146423a287c05bf",
+      "complete_sound_validated": false
+    },
+    {
+      "target": "arm64-linux-qemu",
+      "scenario": "render",
+      "memory_regions_byte_exact": {
+        "object": true,
+        "heap": true,
+        "globals": true
+      },
+      "compared_memory_bytes": 26358240,
+      "host_import_calls_exact": true,
+      "serialized_program_exact": false,
+      "audio_output_bytes_exact": true,
+      "output_bytes": 3175244,
+      "output_sha256": "81292c399fb9f1e3c1915931bb1dd5779cb6df8c63a4476f74cd08de121333d4",
+      "complete_sound_validated": false
+    }
+  ],
+  "original_validation_aliases": 56,
+  "listed_au_parameters": 522,
+  "au_parameter_contract": "analysis/au-parameter-contract.json",
+  "invalid_registration_rejected": true,
+  "private_input_memory_dump_refused": true,
+  "registration_input_not_in_reports": true,
+  "original_registration_instructions_patched": false,
+  "valid_user_registration_executed": false,
+  "private_mac_cfpreferences_executed": false,
+  "macos_native_host_compiled_or_executed": false,
+  "native_audio_unit_available": false,
+  "objects": [
+    {
+      "target": "linux-native",
+      "name": "LegacyEngine.o",
+      "bytes": 212776,
+      "sha256": "8c42506359d02a30609291ec5c27782180556487eb7ac8c3c68ffc1fd0c43d4f"
+    },
+    {
+      "target": "linux-native",
+      "name": "LegacyImageData.o",
+      "bytes": 1193512,
+      "sha256": "ac2baad410a57cbfdc8697e66b4e7678f104c203dbb2781311abc05645b29f23"
+    },
+    {
+      "target": "linux-native",
+      "name": "NativeEngineProbeMain.o",
+      "bytes": 61064,
+      "sha256": "353647dd0c95292586691e730598f4153e04962737dc520784d5f51d9d749ca9"
+    },
+    {
+      "target": "arm64-linux",
+      "name": "LegacyEngine.o",
+      "bytes": 222216,
+      "sha256": "4303a737e614955cdc3ee76a7b9d05c6c0972ebe2c0d3a0998bcda254cae68c8"
+    },
+    {
+      "target": "arm64-linux",
+      "name": "LegacyImageData.o",
+      "bytes": 1193384,
+      "sha256": "4e8c0ef46a8159017e743ae9c82ad709bca4349013f90ff463daf88e12771182"
+    },
+    {
+      "target": "arm64-linux",
+      "name": "NativeEngineProbeMain.o",
+      "bytes": 75936,
+      "sha256": "0710db84ca127dfa280b38826c218d82aeb0a4e6cf5690614a93acfede68b58a"
+    }
+  ],
+  "executables": [
+    {
+      "target": "linux-native",
+      "bytes": 43226568,
+      "sha256": "28568715744c7de3db85c1c9b0aea23a51eb6616fee9968abd96ad0b8cb7af79"
+    },
+    {
+      "target": "arm64-linux",
+      "bytes": 37172912,
+      "sha256": "2d281ce09ca46a8abb26311f6404594a986a02f2a30265bf39617f9881763678"
+    }
+  ],
+  "python_tool_state_tests_passed": 10,
+  "core_replay_dsp_cases": 704,
+  "core_replay_instruction_cases": 11635,
+  "invalid_input_original_vs_native_wav_exact": true,
+  "original_private_mode_memory_hashes_suppressed": true,
+  "native_host_warning_as_error_compilation_passed": true,
+  "private_mac_preferences_path_executed": false,
+  "mac_verifier_and_private_reference_path_tested_on_mac": false
+}
