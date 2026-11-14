@@ -83,3 +83,9 @@ git clone --branch codex/sophistry-native-checkpoints https://github.com/stefanw
 ```
 
 L’archive ZIP contient le projet Ghidra enregistré et tous les fichiers suivis du checkpoint ; le clone Git récupère aussi les versions précédentes.
+
+## Téléchargement automatique du checkpoint
+
+`Demarrer-Sophistry-CP008.command`, téléchargé seul, récupère l’archive de code CP-008 figée au commit vérifié, contrôle son SHA-256, la décompacte puis lance la compilation et les tests sur Mac. Dans un dossier de sources déjà extrait, il lance directement `Verifier-Mac.command`. Il ne prétend pas compiler le synthétiseur complet et n’installe aucun composant.
+
+Le fichier `checkpoints/CP008-publication.json` consigne l’URL de l’archive réellement téléchargée et vérifiée, sa taille, son empreinte et le commit source.

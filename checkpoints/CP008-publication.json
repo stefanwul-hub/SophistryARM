@@ -1,0 +1,14 @@
+{
+  "source_commit": "9b0cf0f5a35ecf85aae8dd026a3f12fd56411040",
+  "url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/9b0cf0f5a35ecf85aae8dd026a3f12fd56411040",
+  "zip_root": "SophistryARM-9b0cf0f5a35ecf85aae8dd026a3f12fd56411040",
+  "bytes": 28518644,
+  "files": 3483,
+  "sha256": "94e471095ce70d3de9634af946652aca0be8dcfc518627619d97b5a689e708d6",
+  "verified_all_blobs": true,
+  "checkpoint": "CP-008",
+  "branch": "codex/sophistry-native-checkpoints",
+  "main_modified": false,
+  "native_audio_unit_available": false,
+  "history_on_github": true
+}
