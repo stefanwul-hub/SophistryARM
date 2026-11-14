@@ -1,0 +1,59 @@
+{
+  "scope": "Explicit restricted diagnostic host, same deterministic adapters for original and translated code",
+  "comparisons": [
+    {
+      "scenario": "fxp",
+      "compared_fields_equal": {
+        "engine_object_sha256": true,
+        "guest_heap_sha256": true,
+        "global_memory_sha256": true,
+        "host_import_calls": true,
+        "effect_fields": true,
+        "state_inspection": true,
+        "audio_conversions": true,
+        "status_observations": true
+      },
+      "original_report": "evidence/fxp-original-cp010.json",
+      "translated_report": "evidence/fxp-native-cp010.json",
+      "comparison_passed": true,
+      "sound_test_passed": null
+    },
+    {
+      "scenario": "aupreset",
+      "compared_fields_equal": {
+        "engine_object_sha256": true,
+        "guest_heap_sha256": true,
+        "global_memory_sha256": true,
+        "host_import_calls": true,
+        "effect_fields": true,
+        "state_inspection": true,
+        "audio_conversions": true,
+        "status_observations": true
+      },
+      "original_report": "evidence/aupreset-original-cp010.json",
+      "translated_report": "evidence/aupreset-native-cp010.json",
+      "comparison_passed": true,
+      "sound_test_passed": null
+    },
+    {
+      "scenario": "render",
+      "compared_fields_equal": {
+        "engine_object_sha256": true,
+        "guest_heap_sha256": true,
+        "global_memory_sha256": true,
+        "host_import_calls": true,
+        "effect_fields": true,
+        "state_inspection": true,
+        "audio_conversions": true,
+        "status_observations": true
+      },
+      "original_report": "evidence/render-original-cp010.json",
+      "translated_report": "evidence/render-native-cp010.json",
+      "comparison_passed": true,
+      "sound_test_passed": false
+    }
+  ],
+  "full_preset_sound_verified": false,
+  "registration_checks_preserved": true,
+  "native_audio_unit_available": false
+}

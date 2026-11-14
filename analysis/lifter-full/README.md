@@ -1,6 +1,6 @@
-# Export p-code complet : étape de travail sauvegardée
+# Export p-code étendu — CP-010
 
-`instructions.jsonl.gz` conserve les 186001 instructions internes reconnues par Ghidra 11.3.2, associées à 2845 fonctions détectées dans la tranche i386 originale. Il exclut les stubs d’imports à partir de `0x103000`. `provenance.json` identifie le binaire et la langue ; `archive.json` donne les empreintes des octets bruts et compressés. Ces fichiers ne sont pas un moteur DSP recompilé.
+`instructions.jsonl.gz` conserve les 191378 instructions internes reconnues après récupération des blocs manquants avec Ghidra 11.3.2, associées à 2845 fonctions détectées dans la tranche i386 originale. Il exclut les stubs d’imports à partir de `0x103000`. `provenance.json` identifie le binaire et la langue ; `archive.json` donne les empreintes des octets bruts et compressés. La couverture de tout le code atteignable n’est pas établie.
 
 Pour reprendre sans refaire l’analyse Ghidra :
 
@@ -10,6 +10,8 @@ gzip -dc analysis/lifter-full/instructions.jsonl.gz > work/lifter-full/instructi
 python3 scripts/audit_pcode_support.py work/lifter-full/instructions.jsonl --output work/full-pcode-support-audit.json
 ```
 
-L’audit sauvegardé dans `analysis/full-pcode-support-audit.json` compte 732177 opérations p-code ; 566 opérations de 337 instructions ne sont pas encore émises par le générateur actuel. Les manques incluent le décalage signé, les divisions/restes, la conversion entier vers stockage x87, une racine carrée et des userops. Une opération émise syntaxiquement peut encore contenir une erreur sémantique ; seuls les 3242 instructions sélectionnées et leurs tests ont été validés.
+L’audit sauvegardé dans `analysis/full-pcode-support-audit.json` compte 758579 opérations p-code, toutes émises syntaxiquement, dont cinq opérations protégées par des erreurs terminales explicites dans quatre instructions. Ces quatre instructions sont des données de tables de sauts interprétées comme du code ; elles ne sont pas remplacées par des no-op. Une opération émise peut encore contenir une erreur sémantique.
 
-Le stockage temporaire maximal requis ici est de 1528580 octets, supérieur à celui du runtime sélectionné actuel. La prochaine étape est d’étendre les primitives avec comparaison différentielle, puis de découper le C++ généré en unités de compilation. L’initialisation du synthétiseur, les adaptateurs hôtes, le chargement complet du preset, le wrapper AU et l’interface restent à intégrer et tester. L’export complet ne prouve aucun de ces comportements.
+Le runtime réserve les 1528580 octets temporaires requis. Le C++ généré est sauvegardé dans `src/lifter/whole/` ; 704 cas DSP, 11635 cas primitifs/gardes et les comparaisons d’initialisation/chargement/sérialisation du prototype passent. Le rendu sonore complet, les adaptateurs C++ de production, le wrapper AU et l’interface restent à terminer. Voir `docs/CP010.md`.
+
+Les rapports `recovered-*.json` consignent les adresses récupérées, les trois conflits d’instructions laissés intacts et l’absence d’échec de décompilation des 2845 fonctions examinées. Le projet Ghidra enrichi est sauvegardé sous `checkpoints/ghidra-project/`.

@@ -1,0 +1,857 @@
+{
+  "scope": "Global initialization progress with a limited explicit host; not a complete synth or native Audio Unit",
+  "backend": "original i386 / Unicorn",
+  "completed_initializers": 121,
+  "total_initializers": 121,
+  "completed_entries": [
+    "0xc8dee",
+    "0xc8e44",
+    "0xc8ea4",
+    "0xc8f04",
+    "0xc8f5a",
+    "0xc8fb0",
+    "0xc9006",
+    "0xc905c",
+    "0xc90b2",
+    "0xc9108",
+    "0xc915e",
+    "0xc91b4",
+    "0xc920a",
+    "0xc9260",
+    "0xc92b6",
+    "0xc930c",
+    "0xc9362",
+    "0xc93b8",
+    "0xc940e",
+    "0xc9464",
+    "0xc94ba",
+    "0xc9510",
+    "0xc9566",
+    "0xc95bc",
+    "0xc9612",
+    "0xc9668",
+    "0xc96be",
+    "0xc9714",
+    "0xc976a",
+    "0xc97c0",
+    "0xc9816",
+    "0xc986c",
+    "0xc98c2",
+    "0xc9918",
+    "0xc996e",
+    "0xc99c4",
+    "0xc9a1a",
+    "0xc9a70",
+    "0xc9ac6",
+    "0xc9b5c",
+    "0xc9bb2",
+    "0xc9c08",
+    "0xc9c5e",
+    "0xc9cb4",
+    "0xc9d0a",
+    "0xc9d60",
+    "0xc9db6",
+    "0xc9e0c",
+    "0xc9e62",
+    "0xc9eb8",
+    "0xc9f0e",
+    "0xc9f64",
+    "0xc9fba",
+    "0xca010",
+    "0xca066",
+    "0xca0bc",
+    "0xca112",
+    "0xca168",
+    "0xca1be",
+    "0xca214",
+    "0xca26a",
+    "0xca2c0",
+    "0xca316",
+    "0xca36c",
+    "0xca3c2",
+    "0xca418",
+    "0xca46e",
+    "0xca4c4",
+    "0xca524",
+    "0xca584",
+    "0xca5da",
+    "0xca63a",
+    "0xca69a",
+    "0xca6fa",
+    "0xca750",
+    "0xca7a6",
+    "0xca7fc",
+    "0xca85c",
+    "0xca8b2",
+    "0xca908",
+    "0xca95e",
+    "0xca9b4",
+    "0xcaa0a",
+    "0xcaa60",
+    "0xcaab6",
+    "0xcab0c",
+    "0xcab62",
+    "0xcabb8",
+    "0xcac0e",
+    "0xcac64",
+    "0xcacba",
+    "0xcad10",
+    "0xcad66",
+    "0xcadbc",
+    "0xcae12",
+    "0xcae72",
+    "0xcaed2",
+    "0xcaf28",
+    "0xcaf7e",
+    "0xcafd4",
+    "0xcb02a",
+    "0xcb080",
+    "0xcb0d6",
+    "0xcb12c",
+    "0xcb182",
+    "0xcb1d8",
+    "0xcb22e",
+    "0xcb284",
+    "0xcb2e4",
+    "0xcb33a",
+    "0xcb390",
+    "0xcb3e6",
+    "0xcb43c",
+    "0xcb5e6",
+    "0xcb620",
+    "0xcb676",
+    "0xcb6cc",
+    "0xcb722",
+    "0xcb778",
+    "0xcb7ce",
+    "0xcb824"
+  ],
+  "error": null,
+  "stage": "VST getChunk",
+  "Kaja_constructor_returned": true,
+  "effOpen_returned": true,
+  "preset_input": {
+    "file": "Lightgarden 02 BT.aupreset",
+    "file_sha256": "98c0da68c974a943341410828b7a792bb0635949bb5316c8cb56c6e405b4e238",
+    "chunk_bytes": 22192,
+    "program_index_flag": 0
+  },
+  "setChunk_returned": true,
+  "setChunk_result": 22192,
+  "state_inspection": {
+    "program_name": "empty",
+    "serialized_program_bytes": 21032,
+    "serialized_program_sha256": "0590b396932df720fa937ee6790802a55f9e38af7d004a656146423a287c05bf"
+  },
+  "status_observations": [
+    {
+      "stage": "constructor",
+      "bytes_at_object_cfc4": "000000000100010000000000000000000100010000010100"
+    },
+    {
+      "stage": "effOpen",
+      "bytes_at_object_cfc4": "010000000100010000000000000000000100010000010100"
+    },
+    {
+      "stage": "setChunk",
+      "bytes_at_object_cfc4": "010000000101010000000000000000000100010000010100"
+    }
+  ],
+  "render": null,
+  "stopped_pc": "0x500100",
+  "last_import": {
+    "address": "0x103073",
+    "name": "_OSAtomicAdd32Barrier"
+  },
+  "unhandled_import": null,
+  "host_import_calls": {
+    "__Znwm": 127,
+    "_pthread_mutexattr_init": 141,
+    "_pthread_mutexattr_settype": 141,
+    "_pthread_mutex_init": 141,
+    "_pthread_mutexattr_destroy": 141,
+    "_CMOpenProfile": 1,
+    "_CGColorSpaceCreateDeviceRGB": 1,
+    "_CFBundleGetBundleWithIdentifier": 1,
+    "__keymgr_get_and_lock_processwide_ptr_2": 1,
+    "_calloc": 1,
+    "_dlopen": 1,
+    "__keymgr_set_and_unlock_processwide_ptr": 1,
+    "_memset": 18,
+    "_strcpy": 1781,
+    "_malloc": 2451,
+    "_pow": 31935,
+    "_random": 37888,
+    "__Znam": 249,
+    "_time": 1,
+    "_srand": 1,
+    "_expf": 128,
+    "_sin": 148998,
+    "_cos": 6,
+    "_OSAtomicAdd32Barrier": 780,
+    "_mach_timebase_info": 1,
+    "_mach_absolute_time": 3,
+    "_exp": 1292,
+    "_log": 1098,
+    "_memcpy": 40,
+    "_strncpy": 1077,
+    "_GetMainEventLoop": 1,
+    "_NewEventLoopTimerUPP": 1,
+    "_InstallEventLoopTimer": 1,
+    "_free": 183,
+    "_pthread_mutex_lock": 1055,
+    "_pthread_mutex_unlock": 1055,
+    "_strstr": 327,
+    "_strcasecmp": 1,
+    "_fopen": 1,
+    "_fread": 17,
+    "_ftell": 3,
+    "_fseek": 3,
+    "_AudioConverterNew": 1,
+    "_AudioConverterFillComplexBuffer": 1,
+    "<converter-input-return>": 1,
+    "_AudioConverterDispose": 1,
+    "__ZdaPv": 2,
+    "_fclose": 1,
+    "__ZdlPv": 2,
+    "_opendir": 2
+  },
+  "heap_bytes_reserved": 5367472,
+  "allocator": "bounded deterministic guest bump allocator; freed tokens tracked, no reuse; test-only",
+  "test_time_epoch": 1794675600,
+  "engine_object_sha256": "1606db1cf2e5bd5f6108883645fcb7464e86ec1a36a48a1b8f470cad39df35e1",
+  "guest_heap_sha256": "949d481f9b067ac09294f6a2a8187537b56251b60fc56348be320f691021e73b",
+  "effect_fields": {
+    "magic": "0x56737450",
+    "dispatcher": "0x94bec",
+    "num_programs": 128,
+    "num_parameters": 602,
+    "num_inputs": 0,
+    "num_outputs": 6,
+    "process_replacing": "0x94caa",
+    "unique_id": "0x536f7033"
+  },
+  "registered_destructors": 0,
+  "guest_mutexes": {
+    "8388616": {
+      "type": 2,
+      "depth": 0
+    },
+    "2136568": {
+      "type": 2,
+      "depth": 0
+    },
+    "2664000": {
+      "type": 2,
+      "depth": 0
+    },
+    "2665776": {
+      "type": 2,
+      "depth": 0
+    },
+    "2667552": {
+      "type": 2,
+      "depth": 0
+    },
+    "2669328": {
+      "type": 2,
+      "depth": 0
+    },
+    "2671092": {
+      "type": 2,
+      "depth": 0
+    },
+    "2672860": {
+      "type": 2,
+      "depth": 0
+    },
+    "2674628": {
+      "type": 2,
+      "depth": 0
+    },
+    "2676396": {
+      "type": 2,
+      "depth": 0
+    },
+    "2678172": {
+      "type": 2,
+      "depth": 0
+    },
+    "2678800": {
+      "type": 2,
+      "depth": 0
+    },
+    "2679428": {
+      "type": 2,
+      "depth": 0
+    },
+    "2680056": {
+      "type": 2,
+      "depth": 0
+    },
+    "2680684": {
+      "type": 2,
+      "depth": 0
+    },
+    "2681312": {
+      "type": 2,
+      "depth": 0
+    },
+    "2681940": {
+      "type": 2,
+      "depth": 0
+    },
+    "2682568": {
+      "type": 2,
+      "depth": 0
+    },
+    "2683196": {
+      "type": 2,
+      "depth": 0
+    },
+    "2683824": {
+      "type": 2,
+      "depth": 0
+    },
+    "2684452": {
+      "type": 2,
+      "depth": 0
+    },
+    "2685080": {
+      "type": 2,
+      "depth": 0
+    },
+    "2685708": {
+      "type": 2,
+      "depth": 0
+    },
+    "2686336": {
+      "type": 2,
+      "depth": 0
+    },
+    "2686964": {
+      "type": 2,
+      "depth": 0
+    },
+    "2687592": {
+      "type": 2,
+      "depth": 0
+    },
+    "2688220": {
+      "type": 2,
+      "depth": 0
+    },
+    "2688848": {
+      "type": 2,
+      "depth": 0
+    },
+    "2689476": {
+      "type": 2,
+      "depth": 0
+    },
+    "2690104": {
+      "type": 2,
+      "depth": 0
+    },
+    "2690732": {
+      "type": 2,
+      "depth": 0
+    },
+    "2691360": {
+      "type": 2,
+      "depth": 0
+    },
+    "2691988": {
+      "type": 2,
+      "depth": 0
+    },
+    "2692616": {
+      "type": 2,
+      "depth": 0
+    },
+    "2693244": {
+      "type": 2,
+      "depth": 0
+    },
+    "2693872": {
+      "type": 2,
+      "depth": 0
+    },
+    "2694500": {
+      "type": 2,
+      "depth": 0
+    },
+    "2695128": {
+      "type": 2,
+      "depth": 0
+    },
+    "2695756": {
+      "type": 2,
+      "depth": 0
+    },
+    "2696384": {
+      "type": 2,
+      "depth": 0
+    },
+    "2697012": {
+      "type": 2,
+      "depth": 0
+    },
+    "2697640": {
+      "type": 2,
+      "depth": 0
+    },
+    "2698268": {
+      "type": 2,
+      "depth": 0
+    },
+    "2698896": {
+      "type": 2,
+      "depth": 0
+    },
+    "2699524": {
+      "type": 2,
+      "depth": 0
+    },
+    "2700152": {
+      "type": 2,
+      "depth": 0
+    },
+    "2700780": {
+      "type": 2,
+      "depth": 0
+    },
+    "2701408": {
+      "type": 2,
+      "depth": 0
+    },
+    "2702036": {
+      "type": 2,
+      "depth": 0
+    },
+    "2702664": {
+      "type": 2,
+      "depth": 0
+    },
+    "2703292": {
+      "type": 2,
+      "depth": 0
+    },
+    "2703920": {
+      "type": 2,
+      "depth": 0
+    },
+    "2704548": {
+      "type": 2,
+      "depth": 0
+    },
+    "2705176": {
+      "type": 2,
+      "depth": 0
+    },
+    "2705804": {
+      "type": 2,
+      "depth": 0
+    },
+    "2706432": {
+      "type": 2,
+      "depth": 0
+    },
+    "2707060": {
+      "type": 2,
+      "depth": 0
+    },
+    "2707688": {
+      "type": 2,
+      "depth": 0
+    },
+    "2708316": {
+      "type": 2,
+      "depth": 0
+    },
+    "2708944": {
+      "type": 2,
+      "depth": 0
+    },
+    "2709572": {
+      "type": 2,
+      "depth": 0
+    },
+    "2710200": {
+      "type": 2,
+      "depth": 0
+    },
+    "2710828": {
+      "type": 2,
+      "depth": 0
+    },
+    "2711456": {
+      "type": 2,
+      "depth": 0
+    },
+    "2712084": {
+      "type": 2,
+      "depth": 0
+    },
+    "2712712": {
+      "type": 2,
+      "depth": 0
+    },
+    "2713340": {
+      "type": 2,
+      "depth": 0
+    },
+    "2713968": {
+      "type": 2,
+      "depth": 0
+    },
+    "2714596": {
+      "type": 2,
+      "depth": 0
+    },
+    "2715224": {
+      "type": 2,
+      "depth": 0
+    },
+    "2715852": {
+      "type": 2,
+      "depth": 0
+    },
+    "2716480": {
+      "type": 2,
+      "depth": 0
+    },
+    "2717108": {
+      "type": 2,
+      "depth": 0
+    },
+    "2717736": {
+      "type": 2,
+      "depth": 0
+    },
+    "2719572": {
+      "type": 2,
+      "depth": 0
+    },
+    "2720200": {
+      "type": 2,
+      "depth": 0
+    },
+    "2720828": {
+      "type": 2,
+      "depth": 0
+    },
+    "2721456": {
+      "type": 2,
+      "depth": 0
+    },
+    "2722084": {
+      "type": 2,
+      "depth": 0
+    },
+    "2722712": {
+      "type": 2,
+      "depth": 0
+    },
+    "2723340": {
+      "type": 2,
+      "depth": 0
+    },
+    "2723968": {
+      "type": 2,
+      "depth": 0
+    },
+    "2724596": {
+      "type": 2,
+      "depth": 0
+    },
+    "2725224": {
+      "type": 2,
+      "depth": 0
+    },
+    "2725852": {
+      "type": 2,
+      "depth": 0
+    },
+    "2726480": {
+      "type": 2,
+      "depth": 0
+    },
+    "2727108": {
+      "type": 2,
+      "depth": 0
+    },
+    "2727736": {
+      "type": 2,
+      "depth": 0
+    },
+    "2728364": {
+      "type": 2,
+      "depth": 0
+    },
+    "2728992": {
+      "type": 2,
+      "depth": 0
+    },
+    "2729620": {
+      "type": 2,
+      "depth": 0
+    },
+    "2730248": {
+      "type": 2,
+      "depth": 0
+    },
+    "2730876": {
+      "type": 2,
+      "depth": 0
+    },
+    "2731504": {
+      "type": 2,
+      "depth": 0
+    },
+    "2732132": {
+      "type": 2,
+      "depth": 0
+    },
+    "2732760": {
+      "type": 2,
+      "depth": 0
+    },
+    "2733388": {
+      "type": 2,
+      "depth": 0
+    },
+    "2734016": {
+      "type": 2,
+      "depth": 0
+    },
+    "2734644": {
+      "type": 2,
+      "depth": 0
+    },
+    "2735272": {
+      "type": 2,
+      "depth": 0
+    },
+    "2735900": {
+      "type": 2,
+      "depth": 0
+    },
+    "2736528": {
+      "type": 2,
+      "depth": 0
+    },
+    "2737156": {
+      "type": 2,
+      "depth": 0
+    },
+    "2737784": {
+      "type": 2,
+      "depth": 0
+    },
+    "2738412": {
+      "type": 2,
+      "depth": 0
+    },
+    "2739040": {
+      "type": 2,
+      "depth": 0
+    },
+    "2739668": {
+      "type": 2,
+      "depth": 0
+    },
+    "2740296": {
+      "type": 2,
+      "depth": 0
+    },
+    "2740924": {
+      "type": 2,
+      "depth": 0
+    },
+    "2741552": {
+      "type": 2,
+      "depth": 0
+    },
+    "2742180": {
+      "type": 2,
+      "depth": 0
+    },
+    "2742808": {
+      "type": 2,
+      "depth": 0
+    },
+    "2743436": {
+      "type": 2,
+      "depth": 0
+    },
+    "2744064": {
+      "type": 2,
+      "depth": 0
+    },
+    "2744692": {
+      "type": 2,
+      "depth": 0
+    },
+    "2745320": {
+      "type": 2,
+      "depth": 0
+    },
+    "2745948": {
+      "type": 2,
+      "depth": 0
+    },
+    "2746576": {
+      "type": 2,
+      "depth": 0
+    },
+    "2747204": {
+      "type": 2,
+      "depth": 0
+    },
+    "2747832": {
+      "type": 2,
+      "depth": 0
+    },
+    "2748460": {
+      "type": 2,
+      "depth": 0
+    },
+    "2749088": {
+      "type": 2,
+      "depth": 0
+    },
+    "2749716": {
+      "type": 2,
+      "depth": 0
+    },
+    "2750344": {
+      "type": 2,
+      "depth": 0
+    },
+    "2750972": {
+      "type": 2,
+      "depth": 0
+    },
+    "2751600": {
+      "type": 2,
+      "depth": 0
+    },
+    "2752228": {
+      "type": 2,
+      "depth": 0
+    },
+    "2752856": {
+      "type": 2,
+      "depth": 0
+    },
+    "2753484": {
+      "type": 2,
+      "depth": 0
+    },
+    "2754112": {
+      "type": 2,
+      "depth": 0
+    },
+    "2754740": {
+      "type": 2,
+      "depth": 0
+    },
+    "2755368": {
+      "type": 2,
+      "depth": 0
+    },
+    "2755996": {
+      "type": 2,
+      "depth": 0
+    },
+    "2756624": {
+      "type": 2,
+      "depth": 0
+    },
+    "2757252": {
+      "type": 2,
+      "depth": 0
+    },
+    "2757880": {
+      "type": 2,
+      "depth": 0
+    },
+    "2758508": {
+      "type": 2,
+      "depth": 0
+    },
+    "2759136": {
+      "type": 2,
+      "depth": 0
+    },
+    "2763636": {
+      "type": 2,
+      "depth": 0
+    },
+    "2763688": {
+      "type": 2,
+      "depth": 0
+    },
+    "2763740": {
+      "type": 2,
+      "depth": 0
+    }
+  },
+  "mutex_adapter": "single-CPU state machine; no concurrent guest access; blocking operations stop the probe",
+  "math_adapter": "Python/Linux math; not original Apple i386 libm",
+  "random_adapter": "Frozen BSD degree-31 stream, initial seed 1; shared test inputs, not an original-OS random capture",
+  "graphics_adapter": "Explicit unavailable-ColorSync-profile and CoreGraphics-bundle scenario; DeviceRGB is an opaque test handle, no rendering",
+  "unavailable_framework_bundles": [
+    "com.apple.CoreGraphics"
+  ],
+  "unavailable_dynamic_libraries": [
+    "/usr/lib/libSystem.B.dylib"
+  ],
+  "original_global_destructor_registration_complete": false,
+  "global_memory_sha256": "08481a49df361d5afdbd4a669ff0bd17eb0badde4dd5c31b3d4cea2610242f22",
+  "event_loop_adapter": "Registered timers only; no GUI events or timer callbacks pumped during initialization",
+  "registered_timers": {
+    "9456592": {
+      "delay": 1.0,
+      "interval": 0.05,
+      "callback": 715244,
+      "userdata": 2136612
+    }
+  },
+  "filesystem_adapter": "Only provided reference assets, resolved by unique case-insensitive basename; read-only in-memory FILE objects; no mounted Mac directory namespace",
+  "file_requests": [
+    {
+      "basename": "BT_cronox18.wav",
+      "mode": "rb"
+    }
+  ],
+  "opened_reference_files": [
+    {
+      "file": "BT_cronox18.wav",
+      "bytes": 1342752,
+      "sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050"
+    }
+  ],
+  "unavailable_directory_basenames": [
+    "CronoX 3 Banks",
+    "Pads 2"
+  ],
+  "audio_conversion_adapter": "Restricted exact PCM16 stereo to float32 stereo, same rate; not original Apple AudioConverter execution",
+  "audio_conversions": [
+    {
+      "callback": "0xaef2c",
+      "frames": 334664,
+      "source_bytes_sha256": "084d363758b15ac9b16af878b633f9b1bf0fe893cb3b86d991a7e3d374de0556",
+      "output_float32_channel_sha256": [
+        "6379e3022debe5764e60e81b8eb003c1cc64db05ab861e8432e8b6f4a9fdcfdd",
+        "bf2dd1697feda2e84fb74ed2b78501ab9d399d239deae1b9327c4704822fb4e9"
+      ],
+      "adapter": "Exact PCM16 / 32768; no resampling; original guest input callback executed"
+    }
+  ],
+  "executed_code_missing_from_listing": [],
+  "full_engine_initialized": false,
+  "preset_restored": false,
+  "audio_rendered": false
+}

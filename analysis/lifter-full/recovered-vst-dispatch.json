@@ -1,0 +1,35 @@
+{
+  "scope": "Recover actual instruction listing from decompiler-reachable addresses; machine bytes unchanged",
+  "functions": [
+    "00094d90"
+  ],
+  "candidate_seeds": 121,
+  "recovered_seeds": [
+    "00094e28",
+    "00094e41",
+    "00094e4d",
+    "00094e59",
+    "00094e6e",
+    "00094e7f",
+    "00094e92",
+    "00094ea5",
+    "00094ebf",
+    "00094ed9",
+    "00094ef3",
+    "00094f17",
+    "00094f2a",
+    "00094f3d",
+    "00094f54",
+    "00094f80",
+    "00094f98",
+    "00094fc4",
+    "00094fe5",
+    "00095007",
+    "00095026",
+    "00095040",
+    "0009505a",
+    "00095064",
+    "0009507e"
+  ],
+  "conflicts": []
+}

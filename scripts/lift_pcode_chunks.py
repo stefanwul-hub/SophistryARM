@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Emit a large static lift as bounded C++ compilation units, with no x86 decoder."""
-import argparse,array,collections,gzip,hashlib,json
+import argparse,array,bisect,collections,gzip,hashlib,json,re
 from pathlib import Path
 from lift_pcode_cpp import emit,SHA
 def rows(path):
@@ -8,7 +8,7 @@ def rows(path):
  with opener(path,'rb') as f:
   for line in f:
    if line.strip():yield line,json.loads(line)
-def generate(source,output,chunk_size):
+def generate(source,output,chunk_size,layout=None):
  provenance=json.loads((source.parent/'provenance.json').read_text())
  if provenance['sha256']!=SHA:raise ValueError('Wrong original binary provenance')
  if chunk_size<16 or chunk_size>2048:raise ValueError('Choose 16..2048 instructions per unit')
@@ -23,10 +23,28 @@ def generate(source,output,chunk_size):
    for v in ([op['output']] if op['output'] else [])+op['inputs']:
     if v['space'] in maxima:maxima[v['space']]=max(maxima[v['space']],int(v['offset'],16)+v['size'])
  if not addresses:raise ValueError('No instructions')
- units=(len(addresses)+chunk_size-1)//chunk_size
+ starts=None
+ if layout:
+  previous=json.loads(layout.read_text())
+  starts=previous.get('layout_starts')
+  if starts is None:
+   starts=[]
+   for i in range(previous['compilation_units']):
+    with (layout.parent/f'Unit{i:04d}.cpp').open() as f:
+     for line in f:
+      match=re.search(r'case 0x([0-9a-f]+):goto',line)
+      if match:starts.append(int(match[1],16));break
+   if len(starts)!=previous['compilation_units']:raise ValueError('Cannot recover previous unit boundaries')
+  starts[0]=0
+  unit_for=lambda address,index:max(0,bisect.bisect_right(starts,address)-1)
+  units=len(starts)
+ else:
+  units=(len(addresses)+chunk_size-1)//chunk_size
+  starts=[addresses[i*chunk_size] for i in range(units)];starts[0]=0
+  unit_for=lambda address,index:index//chunk_size
  if units>65535:raise ValueError('Unit map exceeds 16-bit index')
  pc_map=array.array('H',[0])*(addresses[-1]+1)
- for index,pc in enumerate(addresses):pc_map[pc]=index//chunk_size+1
+ for index,pc in enumerate(addresses):pc_map[pc]=unit_for(pc,index)+1
  names=[f'Unit{i:04d}.cpp' for i in range(units)];counts=collections.Counter();guards=[];sizes=[]
  def write_unit(index,instructions):
   known={int(i['address'],16) for i in instructions}
@@ -48,9 +66,11 @@ def generate(source,output,chunk_size):
   lines += ['}']
   path=output/names[index];path.write_text('\n'.join(lines)+'\n');sizes.append(len(instructions))
  group=[];unit=0
- for _,ins in rows(source):
+ for index,(_,ins) in enumerate(rows(source)):
+  key=unit_for(int(ins['address'],16),index)
+  if key!=unit:
+   write_unit(unit,group);group=[];unit=key
   group.append(ins)
-  if len(group)==chunk_size:write_unit(unit,group);unit+=1;group=[]
  if group:write_unit(unit,group)
  dispatch=output/'Dispatch.cpp'
  with dispatch.open('w') as f:
@@ -86,7 +106,7 @@ for(;;){
  result={'scope':'Statically emitted detected internal instructions; emission is not whole-engine execution proof',
   'original_sha256':SHA,'input_raw_sha256':raw_hash.hexdigest(),'instruction_count':len(addresses),
   'pcode_operation_count':sum(counts.values()),'operation_counts':dict(counts),'compilation_units':units,
-  'instructions_per_unit':sizes,'register_bytes_required':maxima['register'],'temporary_bytes_required':maxima['unique'],
+  'instructions_per_unit':sizes,'layout_starts':starts,'register_bytes_required':maxima['register'],'temporary_bytes_required':maxima['unique'],
   'pc_map_entries':len(pc_map),'x86_decoder_in_runtime':False,'terminal_guard_operations':guards,
   'full_engine_initialized':False,'full_preset_rendered':False,
   'limitations':['Host imports and initialization not implemented by code generation','Four detected instructions contain terminal trap/privileged-I/O or unsupported LOCK guards','Rounding fixed to nearest-even/default environment; full x86 exception state not modeled'],
@@ -94,5 +114,5 @@ for(;;){
  (output/'manifest.json').write_text(json.dumps(result,indent=2)+'\n')
  return result
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('source',type=Path);p.add_argument('output',type=Path);p.add_argument('--chunk-instructions',type=int,default=512);n=p.parse_args()
- r=generate(n.source,n.output,n.chunk_instructions);print(json.dumps({k:r[k] for k in ['instruction_count','pcode_operation_count','compilation_units','terminal_guard_operations']},indent=2))
+ p=argparse.ArgumentParser();p.add_argument('source',type=Path);p.add_argument('output',type=Path);p.add_argument('--chunk-instructions',type=int,default=512);p.add_argument('--reuse-layout',type=Path);n=p.parse_args()
+ r=generate(n.source,n.output,n.chunk_instructions,n.reuse_layout);print(json.dumps({k:r[k] for k in ['instruction_count','pcode_operation_count','compilation_units','terminal_guard_operations']},indent=2))

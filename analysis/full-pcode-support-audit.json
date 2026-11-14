@@ -1,253 +1,60 @@
 {
   "scope": "Static syntax/feature audit only; not a complete lift or execution test",
-  "instructions": 186001,
-  "pcode_operations": 732177,
-  "currently_emittable_operations": 731611,
-  "instructions_with_unsupported_operations": 337,
-  "unsupported_counts": {
-    "Unsupported p-code operation INT_SRIGHT": 378,
-    "Unsupported INT2FLOAT output": 34,
-    "Unsupported p-code operation INT_SDIV": 72,
-    "Unsupported p-code operation INT_SREM": 72,
-    "Unsupported p-code operation CALLOTHER": 5,
-    "Unsupported p-code operation FLOAT_SQRT": 1,
-    "Unsupported p-code operation INT_DIV": 2,
-    "Unsupported p-code operation INT_REM": 2
-  },
-  "unsupported_examples": {
-    "Unsupported p-code operation INT_SRIGHT": {
-      "address": "1f63",
-      "asm": "SAR EAX,0x1",
-      "operation": {
-        "op": "INT_SRIGHT",
-        "output": {
-          "space": "register",
-          "offset": "0",
-          "size": 4
-        },
-        "inputs": [
-          {
-            "space": "register",
-            "offset": "0",
-            "size": 4
-          },
-          {
-            "space": "const",
-            "offset": "1",
-            "size": 4
-          }
-        ]
-      }
-    },
-    "Unsupported INT2FLOAT output": {
-      "address": "6321",
-      "asm": "FLDZ",
-      "operation": {
-        "op": "INT2FLOAT",
-        "output": {
-          "space": "unique",
-          "offset": "5aa00",
-          "size": 10
-        },
-        "inputs": [
-          {
-            "space": "const",
-            "offset": "0",
-            "size": 4
-          }
-        ]
-      }
-    },
-    "Unsupported p-code operation INT_SDIV": {
-      "address": "762f",
-      "asm": "IDIV dword ptr [EBP + -0x40]",
-      "operation": {
-        "op": "INT_SDIV",
-        "output": {
-          "space": "unique",
-          "offset": "39700",
-          "size": 8
-        },
-        "inputs": [
-          {
-            "space": "unique",
-            "offset": "39600",
-            "size": 8
-          },
-          {
-            "space": "unique",
-            "offset": "39380",
-            "size": 8
-          }
-        ]
-      }
-    },
-    "Unsupported p-code operation INT_SREM": {
-      "address": "762f",
-      "asm": "IDIV dword ptr [EBP + -0x40]",
-      "operation": {
-        "op": "INT_SREM",
-        "output": {
-          "space": "unique",
-          "offset": "39880",
-          "size": 8
-        },
-        "inputs": [
-          {
-            "space": "unique",
-            "offset": "39600",
-            "size": 8
-          },
-          {
-            "space": "unique",
-            "offset": "39380",
-            "size": 8
-          }
-        ]
-      }
-    },
-    "Unsupported p-code operation CALLOTHER": {
-      "address": "12fb8",
-      "asm": "INT3",
-      "operation": {
-        "op": "CALLOTHER",
-        "output": {
-          "space": "unique",
-          "offset": "3c400",
-          "size": 4
-        },
-        "inputs": [
-          {
-            "space": "const",
-            "offset": "10",
-            "size": 4
-          },
-          {
-            "space": "const",
-            "offset": "3",
-            "size": 1
-          }
-        ],
-        "userop": "swi"
-      }
-    },
-    "Unsupported p-code operation FLOAT_SQRT": {
-      "address": "7ec24",
-      "asm": "SQRTSS XMM1,XMM1",
-      "operation": {
-        "op": "FLOAT_SQRT",
-        "output": {
-          "space": "register",
-          "offset": "1240",
-          "size": 4
-        },
-        "inputs": [
-          {
-            "space": "register",
-            "offset": "1240",
-            "size": 4
-          }
-        ]
-      }
-    },
-    "Unsupported p-code operation INT_DIV": {
-      "address": "ae22f",
-      "asm": "DIV dword ptr [EBP + -0xc]",
-      "operation": {
-        "op": "INT_DIV",
-        "output": {
-          "space": "unique",
-          "offset": "35a00",
-          "size": 8
-        },
-        "inputs": [
-          {
-            "space": "unique",
-            "offset": "35900",
-            "size": 8
-          },
-          {
-            "space": "unique",
-            "offset": "35680",
-            "size": 8
-          }
-        ]
-      }
-    },
-    "Unsupported p-code operation INT_REM": {
-      "address": "ae22f",
-      "asm": "DIV dword ptr [EBP + -0xc]",
-      "operation": {
-        "op": "INT_REM",
-        "output": {
-          "space": "unique",
-          "offset": "35b80",
-          "size": 8
-        },
-        "inputs": [
-          {
-            "space": "unique",
-            "offset": "35900",
-            "size": 8
-          },
-          {
-            "space": "unique",
-            "offset": "35680",
-            "size": 8
-          }
-        ]
-      }
-    }
-  },
+  "instructions": 191378,
+  "pcode_operations": 758579,
+  "currently_emittable_operations": 758579,
+  "instructions_with_unsupported_operations": 0,
+  "unsupported_counts": {},
+  "unsupported_examples": {},
   "operation_counts": {
-    "COPY": 169572,
-    "INT_SUB": 28948,
-    "STORE": 71427,
-    "INT_LESS": 8970,
-    "INT_SBORROW": 9023,
-    "INT_SLESS": 26749,
-    "INT_EQUAL": 52617,
-    "INT_AND": 67902,
-    "POPCOUNT": 25274,
-    "INT_ADD": 111531,
-    "LOAD": 66078,
-    "RETURN": 3089,
-    "CALL": 9656,
-    "CALLIND": 1993,
-    "CBRANCH": 12140,
-    "INT_CARRY": 8057,
-    "INT_SCARRY": 8058,
-    "BRANCH": 3798,
-    "BOOL_NEGATE": 9274,
-    "INT_ZEXT": 1976,
-    "BOOL_OR": 2706,
-    "INT_LEFT": 1404,
-    "INT_NOTEQUAL": 3833,
-    "INT_OR": 6911,
-    "INT_XOR": 2458,
-    "INT_MULT": 2940,
-    "INT_RIGHT": 398,
-    "FLOAT2FLOAT": 1663,
-    "FLOAT_SUB": 1233,
-    "FLOAT_NAN": 1740,
-    "FLOAT_EQUAL": 870,
-    "FLOAT_LESS": 1083,
-    "BRANCHIND": 235,
+    "COPY": 174719,
+    "INT_SUB": 29703,
+    "STORE": 73011,
+    "INT_LESS": 9206,
+    "INT_SBORROW": 9259,
+    "INT_SLESS": 27890,
+    "INT_EQUAL": 54398,
+    "INT_AND": 71861,
+    "POPCOUNT": 26050,
+    "INT_ADD": 114803,
+    "LOAD": 68035,
+    "RETURN": 3138,
+    "CALL": 9815,
+    "CALLIND": 2141,
+    "CBRANCH": 12421,
+    "INT_CARRY": 8183,
+    "INT_SCARRY": 8184,
+    "BRANCH": 4307,
+    "BOOL_NEGATE": 10400,
+    "INT_ZEXT": 2034,
+    "BOOL_OR": 2772,
+    "INT_LEFT": 1771,
+    "INT_NOTEQUAL": 4302,
+    "INT_OR": 7940,
+    "INT_XOR": 2702,
+    "INT_MULT": 3387,
+    "INT_RIGHT": 408,
+    "FLOAT2FLOAT": 1737,
+    "FLOAT_SUB": 1250,
+    "FLOAT_NAN": 1756,
+    "FLOAT_EQUAL": 878,
+    "FLOAT_LESS": 1091,
+    "BRANCHIND": 242,
     "INT_2COMP": 53,
-    "BOOL_AND": 597,
-    "INT_SRIGHT": 378,
-    "INT_SEXT": 746,
-    "SUBPIECE": 772,
-    "FLOAT_ADD": 1721,
-    "FLOAT_MULT": 2692,
-    "FLOAT_DIV": 251,
-    "TRUNC": 245,
+    "BOOL_AND": 609,
+    "INT_SRIGHT": 418,
+    "INT_SEXT": 776,
+    "SUBPIECE": 797,
+    "FLOAT_ADD": 1743,
+    "FLOAT_MULT": 2739,
+    "FLOAT_DIV": 260,
+    "TRUNC": 248,
     "FLOAT_LESSEQUAL": 7,
-    "INT2FLOAT": 611,
+    "INT2FLOAT": 623,
     "INT_NEGATE": 310,
     "BOOL_XOR": 33,
-    "INT_SDIV": 72,
-    "INT_SREM": 72,
+    "INT_SDIV": 79,
+    "INT_SREM": 79,
     "CALLOTHER": 5,
     "FLOAT_SQRT": 1,
     "FLOAT_NOTEQUAL": 1,
@@ -261,7 +68,7 @@
       "input_bytes": [
         4
       ],
-      "count": 774
+      "count": 789
     },
     {
       "op": "FLOAT_SUB",
@@ -278,7 +85,7 @@
       "input_bytes": [
         8
       ],
-      "count": 347
+      "count": 356
     },
     {
       "op": "FLOAT_NAN",
@@ -286,7 +93,7 @@
       "input_bytes": [
         4
       ],
-      "count": 1010
+      "count": 1026
     },
     {
       "op": "FLOAT_EQUAL",
@@ -295,7 +102,7 @@
         4,
         4
       ],
-      "count": 505
+      "count": 513
     },
     {
       "op": "FLOAT_LESS",
@@ -304,7 +111,7 @@
         4,
         4
       ],
-      "count": 626
+      "count": 634
     },
     {
       "op": "FLOAT2FLOAT",
@@ -312,7 +119,7 @@
       "input_bytes": [
         4
       ],
-      "count": 99
+      "count": 137
     },
     {
       "op": "FLOAT2FLOAT",
@@ -320,7 +127,7 @@
       "input_bytes": [
         10
       ],
-      "count": 303
+      "count": 304
     },
     {
       "op": "FLOAT_NAN",
@@ -371,7 +178,7 @@
       "input_bytes": [
         10
       ],
-      "count": 135
+      "count": 146
     },
     {
       "op": "FLOAT_MULT",
@@ -380,7 +187,7 @@
         8,
         8
       ],
-      "count": 1208
+      "count": 1217
     },
     {
       "op": "FLOAT_DIV",
@@ -397,7 +204,7 @@
       "input_bytes": [
         4
       ],
-      "count": 143
+      "count": 145
     },
     {
       "op": "FLOAT_LESSEQUAL",
@@ -414,7 +221,7 @@
       "input_bytes": [
         8
       ],
-      "count": 102
+      "count": 103
     },
     {
       "op": "INT2FLOAT",
@@ -422,7 +229,7 @@
       "input_bytes": [
         4
       ],
-      "count": 456
+      "count": 468
     },
     {
       "op": "FLOAT_ADD",
@@ -431,7 +238,7 @@
         4,
         4
       ],
-      "count": 897
+      "count": 919
     },
     {
       "op": "FLOAT_MULT",
@@ -440,7 +247,7 @@
         4,
         4
       ],
-      "count": 1484
+      "count": 1522
     },
     {
       "op": "FLOAT_DIV",
@@ -449,7 +256,7 @@
         4,
         4
       ],
-      "count": 147
+      "count": 156
     },
     {
       "op": "FLOAT_SUB",
@@ -458,7 +265,7 @@
         4,
         4
       ],
-      "count": 669
+      "count": 686
     },
     {
       "op": "INT2FLOAT",
@@ -509,11 +316,44 @@
     "UNLOCK": 1,
     "out": 2
   },
+  "terminal_guard_operations": [
+    {
+      "address": "12fb8",
+      "asm": "INT3",
+      "userop": "swi",
+      "semantics": "terminal x86 trap / privileged I/O guard"
+    },
+    {
+      "address": "23f4c",
+      "asm": "ADD.LOCK byte ptr [EAX],AL",
+      "userop": "LOCK",
+      "semantics": "terminal fault; shared-memory atomic behavior unavailable"
+    },
+    {
+      "address": "23f4c",
+      "asm": "ADD.LOCK byte ptr [EAX],AL",
+      "userop": "UNLOCK",
+      "semantics": "terminal fault; shared-memory atomic behavior unavailable"
+    },
+    {
+      "address": "4debc",
+      "asm": "OUT 0x1,AL",
+      "userop": "out",
+      "semantics": "terminal x86 trap / privileged I/O guard"
+    },
+    {
+      "address": "4dec0",
+      "asm": "OUT 0x1,AL",
+      "userop": "out",
+      "semantics": "terminal x86 trap / privileged I/O guard"
+    }
+  ],
+  "instructions_with_terminal_guards": 4,
   "spaces": {
-    "unique": 764386,
-    "register": 647080,
-    "const": 498320,
-    "ram": 25594
+    "unique": 798855,
+    "register": 666836,
+    "const": 513085,
+    "ram": 26543
   },
   "storage_bytes_required": {
     "unique": 1528580,

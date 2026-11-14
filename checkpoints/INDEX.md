@@ -15,3 +15,7 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-007 — replay natif sélectionné** : programme autonome de replay, objets Mach-O ARM64, exécution du probe ARM64/Linux sous QEMU sans différence sur les 148 cas. Les appels math sont isolés par réponses ABI enregistrées ; aucun test macOS/AU effectué.
 
 - **CP-008 — Schrader et sonde audio** : préparation mono/normalisation/tableaux et jeu Schrader statiquement traduits, 704 cas et sonde de trois secondes identiques avec réponses hôtes partagées, replay ARM64/Linux/QEMU vérifié. Écart de sept octets d’état interne avec libm ARM64 natif consigné. Le synthétiseur et l’AU complets restent à faire.
+
+- **CP-009 — listing étendu** : 186001 instructions détectées compilées sous Linux et en objets Mach-O ARM64 ; 121 initialisateurs et constructeur comparés ; code manquant atteint à l’ouverture. Sources et analyse conservées dans l’historique Git.
+
+- **CP-010 — ouverture et états** : 191378 instructions après récupération de blocs manquants ; ouverture, import FXP/AU et sérialisation comparés à l’original dans un hôte de test. Références DSP et primitives toujours exactes sous Linux natif et ARM64/QEMU. Le rendu de trois secondes produit seulement un signal sous −100 dBFS et reste en échec. Base Ghidra enrichie et preuves sauvegardées. Aucun AU installable.

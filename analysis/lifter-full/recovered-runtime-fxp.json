@@ -1,0 +1,10 @@
+{
+  "scope": "Recover actual instruction listing from decompiler-reachable addresses; machine bytes unchanged",
+  "functions": [],
+  "candidate_seeds": 2,
+  "recovered_seeds": [
+    "000629d5"
+  ],
+  "conflicts": [],
+  "decompilation_failures": []
+}

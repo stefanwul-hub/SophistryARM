@@ -1,0 +1,112 @@
+{
+  "checkpoint": "CP-010",
+  "source_sha256": {
+    "src/lifter/LifterRuntime.h": "04b3c63541d811fa447a221dfd43b499922637ed3de8439ea54c472aefdbd78f",
+    "src/lifter/LifterRuntime.cpp": "6e00b13eb9e2691e5cff0d2b22555df04f1182eec0a2e5db59a036ad812b943f",
+    "scripts/lift_pcode_cpp.py": "4810aa19a3d13702e4b97157d040729862f6dd5ff1c4843fde35fcba27ed91c1",
+    "scripts/lift_pcode_chunks.py": "c00c342fa743d732d648553fb7e00d21388e5bd280e09835baeefefe8d144dd2",
+    "tests/probe_engine_initialization.py": "b3085db757362cea16824c6abc267ce5a15c8c09123d625bbf9db61b17130a7f",
+    "scripts/ghidra/RecoverDecompilerCode.java": "a0afed637ef799c73ae86fb6767ca7728cebf97d91a146a037f7d5dc26607c56",
+    "src/lifter/whole/manifest.json": "e511cd2371f5256c26b4adcd2fe2319bb8fce72c3769169e323d9982d005ad67"
+  },
+  "instruction_count": 191378,
+  "pcode_operation_count": 758579,
+  "generated_files_verified": 365,
+  "replays": {
+    "native-dsp-replay": {
+      "scope": "selected statically lifted DSP",
+      "cases": 704,
+      "compared_bytes": 5420672,
+      "byte_mismatches": 0,
+      "output_buffer_byte_mismatches": 0,
+      "object_state_byte_mismatches": 0,
+      "math_calls": 201,
+      "math_mode": "recorded ABI responses",
+      "instruction_addresses_executed": 3113,
+      "fixture_valid": true,
+      "passed": true,
+      "full_synth_tested": false
+    },
+    "native-primitives-replay": {
+      "scope": "isolated original instruction fixtures including explicit guards",
+      "cases": 11635,
+      "compared_register_bytes": 146749,
+      "passed": true,
+      "full_engine_tested": false
+    },
+    "arm64-dsp-replay": {
+      "scope": "selected statically lifted DSP",
+      "cases": 704,
+      "compared_bytes": 5420672,
+      "byte_mismatches": 0,
+      "output_buffer_byte_mismatches": 0,
+      "object_state_byte_mismatches": 0,
+      "math_calls": 201,
+      "math_mode": "recorded ABI responses",
+      "instruction_addresses_executed": 3113,
+      "fixture_valid": true,
+      "passed": true,
+      "full_synth_tested": false
+    },
+    "arm64-primitives-replay": {
+      "scope": "isolated original instruction fixtures including explicit guards",
+      "cases": 11635,
+      "compared_register_bytes": 146749,
+      "passed": true,
+      "full_engine_tested": false
+    }
+  },
+  "python_tool_and_state_tests_passed": 10,
+  "engine_comparison": "evidence/cp010-engine-comparison.json",
+  "arm64_provenance": "evidence/cp010-arm64-provenance.json",
+  "ghidra_project_files": [
+    {
+      "file": "checkpoints/ghidra-project/Sophistry.gpr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "checkpoints/ghidra-project/Sophistry.rep/idata/00/00000000.prp",
+      "bytes": 490,
+      "sha256": "45a9b921265e6cf756f0ec60311cec4d9d713c7c78b1132ad42e92cebfa3e6b2"
+    },
+    {
+      "file": "checkpoints/ghidra-project/Sophistry.rep/idata/00/~00000000.db/db.4.gbf",
+      "bytes": 20643840,
+      "sha256": "ae306d6b32e45b0e555e32b3def67b421e2cb807bc373761847cba169f222be6"
+    },
+    {
+      "file": "checkpoints/ghidra-project/Sophistry.rep/idata/~index.bak",
+      "bytes": 110,
+      "sha256": "436a8b04e67fa781cc0b19e6d5a47462498bee2d3d843c9bcf882b08a45beb09"
+    },
+    {
+      "file": "checkpoints/ghidra-project/Sophistry.rep/idata/~index.dat",
+      "bytes": 110,
+      "sha256": "436a8b04e67fa781cc0b19e6d5a47462498bee2d3d843c9bcf882b08a45beb09"
+    },
+    {
+      "file": "checkpoints/ghidra-project/Sophistry.rep/project.prp",
+      "bytes": 158,
+      "sha256": "bc2117fe7afb1190c896db8e8fbce452d827c56659fd8a564a44a8087af3ecbf"
+    },
+    {
+      "file": "checkpoints/ghidra-project/Sophistry.rep/user/~index.dat",
+      "bytes": 59,
+      "sha256": "0a5034997e47499d758115fa580ad21d96557d2a32c89f2263bcfd3fa8a9a6e5"
+    },
+    {
+      "file": "checkpoints/ghidra-project/Sophistry.rep/versioned/~index.bak",
+      "bytes": 59,
+      "sha256": "0a5034997e47499d758115fa580ad21d96557d2a32c89f2263bcfd3fa8a9a6e5"
+    },
+    {
+      "file": "checkpoints/ghidra-project/Sophistry.rep/versioned/~index.dat",
+      "bytes": 59,
+      "sha256": "0a5034997e47499d758115fa580ad21d96557d2a32c89f2263bcfd3fa8a9a6e5"
+    }
+  ],
+  "native_audio_unit_available": false,
+  "full_preset_render_passed": false,
+  "macos_execution_of_this_version": false
+}
