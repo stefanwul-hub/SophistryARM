@@ -7,3 +7,5 @@
 L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghidra complet est dans `ghidra-project/`, avec son fichier `.gpr` et son dossier `.rep`.
 
 - **CP-004 — états réels** : paire Lightgarden conservée, 51 schémas de classes récupérés depuis les descriptions originales, lecteur C++ de conteneur et décodage structurel des valeurs, comparaison des deux états. Le moteur complet, le chargement sémantique DSP et l’AU natif restent absents.
+
+- **CP-005 — sauvegarde après interruption** : sample BT_cronox18.wav et provenance conservés ; autorisation de publication consignée ; publication non confirmée. Les résultats techniques validés restent ceux de CP-004.

@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-004",
+  "checkpoint": "CP-005",
   "original_version": "3.0.8",
   "original_architectures": [
     "ppc",
@@ -37,5 +37,10 @@
   ],
   "parameter_descriptor_schemas_recovered": 51,
   "parameter_descriptor_field_entries": 3437,
-  "new_input_note": "User confirms Sophistry is a CronoX 3 derivative using the same file format; provided AU identity remains CrX3 and target Sophistry identity remains Sop3."
+  "new_input_note": "User confirms Sophistry is a CronoX 3 derivative using the same file format; provided AU identity remains CrX3 and target Sophistry identity remains Sop3.",
+  "publication_authorized_by_user": true,
+  "github_archive_publication_confirmed": false,
+  "sample_received": "BT_cronox18.wav",
+  "sample_used_for_full_synth_audio_test": false,
+  "sample_sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050"
 }

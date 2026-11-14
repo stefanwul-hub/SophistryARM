@@ -38,3 +38,14 @@ La paire Lightgarden est analysée. L’identité AU fournie est `CrX3`, et l’
 `LegacyStateReader.cpp` lit/réécrit les enveloppes de blocs ; aucune sémantique DSP complète n’est chargée. Le lecteur Python applique les schémas issus du flux de contrôle original. Résultats et limites dans `docs/PRESETS-CP004.md`. La demande du sample `BT_cronox18.wav` est en cours ; ne pas le synthétiser artificiellement en prétendant avoir reproduit le preset.
 
 Le paquet CP-003 local est toujours intact dans l’environnement de travail. Son upload monolithique GitHub n’a pas abouti et a bloqué l’outil ; pour les sauvegardes distantes, utiliser des objets plus petits et vérifier le téléchargement. Ne pas renouveler un envoi monolithique de 43 Mo en base64.
+
+
+## CP-005 — sauvegarde après interruption de publication
+
+L’utilisateur a explicitement autorisé la publication de l’archive complète (binaire original, décompilation et projet Ghidra compris) dans le dépôt public stefanwul-hub/SophistryARM. Ne pas redemander cette autorisation pour cette publication.
+
+Le sample demandé a été récupéré depuis Presets/BT_cronox18.wav au commit 0ecf4ccfabcb154fa793d08df26d56b501df8656. Il est conservé dans reference/Samples/ ; sa provenance est dans analysis/preset-pair/sample-source.json. Il n’a pas encore été utilisé pour un rendu du synthétiseur complet.
+
+Une seconde tentative d’envoi monolithique de l’archive par github_create_blob a bloqué et a été interrompue par l’utilisateur. Aucun succès de publication n’est confirmé. Ne plus recommencer cet envoi monolithique. La branche distante créée précédemment était codex/sophistry-cp003-20261114 ; aucun lien de téléchargement du checkpoint n’a été vérifié. Le dépôt main utilisateur n’a pas été modifié par nos opérations.
+
+Les archives CP-003 et CP-004 restent conservées localement. CP-005 contient l’état actuel, le sample et l’historique Git. Le moteur DSP complet, l’Audio Unit ARM64, sa validation et le rappel des projets restent à réaliser ; ne pas les déclarer fonctionnels.
