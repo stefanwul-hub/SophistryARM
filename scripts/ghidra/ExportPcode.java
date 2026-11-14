@@ -12,18 +12,28 @@ public class ExportPcode extends GhidraScript {
  public void run() throws Exception {
   String[] args=getScriptArgs();Path output=Paths.get(args[0]);Files.createDirectories(output);
   TreeMap<Long,Instruction> instructions=new TreeMap<>();Set<Long> visited=new HashSet<>();
-  ArrayDeque<Function> queue=new ArrayDeque<>();
-  for(int i=1;i<args.length;i++){Function f=getFunctionAt(toAddr(Long.parseUnsignedLong(args[i].replace("0x",""),16)));if(f==null)throw new Exception("No function: "+args[i]);queue.add(f);}
   List<String> funcs=new ArrayList<>();
-  while(!queue.isEmpty()) {
-   Function f=queue.remove();long entry=f.getEntryPoint().getOffset();if(!visited.add(entry)||f.isExternal()||entry>=0x103000)continue;
-   funcs.add("{\"address\":\""+Long.toUnsignedString(entry,16)+"\",\"name\":\""+esc(f.getName())+"\"}");
-   InstructionIterator it=currentProgram.getListing().getInstructions(f.getBody(),true);
-   while(it.hasNext()){Instruction ins=it.next();instructions.put(ins.getAddress().getOffset(),ins);}
-   for(Function callee:f.getCalledFunctions(monitor)) if(!callee.isExternal()&&callee.getEntryPoint().getOffset()<0x103000)queue.add(callee);
+  boolean all=args.length>1 && args[1].equals("--all");
+  if(all) {
+   InstructionIterator it=currentProgram.getListing().getInstructions(true);
+   while(it.hasNext()){Instruction ins=it.next();if(ins.getAddress().getOffset()<0x103000)instructions.put(ins.getAddress().getOffset(),ins);}
+   FunctionIterator fi=currentProgram.getFunctionManager().getFunctions(true);
+   while(fi.hasNext()){Function f=fi.next();if(!f.isExternal()&&f.getEntryPoint().getOffset()<0x103000)funcs.add("{\"address\":\""+Long.toUnsignedString(f.getEntryPoint().getOffset(),16)+"\",\"name\":\""+esc(f.getName())+"\"}");}
+  } else {
+   ArrayDeque<Function> queue=new ArrayDeque<>();
+   for(int i=1;i<args.length;i++){Function f=getFunctionAt(toAddr(Long.parseUnsignedLong(args[i].replace("0x",""),16)));if(f==null)throw new Exception("No function: "+args[i]);queue.add(f);}
+   while(!queue.isEmpty()) {
+    Function f=queue.remove();long entry=f.getEntryPoint().getOffset();if(!visited.add(entry)||f.isExternal()||entry>=0x103000)continue;
+    funcs.add("{\"address\":\""+Long.toUnsignedString(entry,16)+"\",\"name\":\""+esc(f.getName())+"\"}");
+    InstructionIterator it=currentProgram.getListing().getInstructions(f.getBody(),true);
+    while(it.hasNext()){Instruction ins=it.next();instructions.put(ins.getAddress().getOffset(),ins);}
+    for(Function callee:f.getCalledFunctions(monitor))if(!callee.isExternal()&&callee.getEntryPoint().getOffset()<0x103000)queue.add(callee);
+   }
   }
   try(PrintWriter out=new PrintWriter(Files.newBufferedWriter(output.resolve("instructions.jsonl")))) {
+   int exported=0;
    for(Instruction ins:instructions.values()) {
+    if((++exported)%10000==0)println("P-code instructions exported: "+exported);
     out.print("{\"address\":\""+Long.toUnsignedString(ins.getAddress().getOffset(),16)+"\",\"length\":"+ins.getLength()+",\"asm\":\""+esc(ins.toString())+"\",\"pcode\":[");
     PcodeOp[] ops=ins.getPcode();
     for(int i=0;i<ops.length;i++) {

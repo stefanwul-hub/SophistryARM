@@ -1,0 +1,9 @@
+{
+  "compressed_file": "instructions.jsonl.gz",
+  "compressed_bytes": 4421893,
+  "compressed_sha256": "8f96af83ff1a13e4a7fa19dc55fa93406db06689dcaf5e345f20c062d0833300",
+  "uncompressed_bytes": 124593872,
+  "uncompressed_sha256": "7b7906b1985dc3f4e98fa074a027d632daeedca135a8922afdbc8624109c4bfa",
+  "scope": "Raw Ghidra p-code export of all detected internal instructions; not an emitted or tested full-engine port",
+  "recreate_uncompressed": "gzip -dc analysis/lifter-full/instructions.jsonl.gz > work/full-instructions.jsonl"
+}
