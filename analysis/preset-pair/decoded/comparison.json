@@ -1,0 +1,424 @@
+{
+  "shared_blocks": 115,
+  "equal_decoded_fields": 3829,
+  "different_decoded_fields": 31,
+  "differences": [
+    {
+      "block": [
+        "ML02",
+        20,
+        0
+      ],
+      "field": 3,
+      "name": "Frequency",
+      "first": 326,
+      "second": 100
+    },
+    {
+      "block": [
+        "SEQ1",
+        0,
+        0
+      ],
+      "field": 10,
+      "name": "StepData",
+      "first": "\u000f\u0011=Q=[=\"=e=\n=.=)=e=J=\u0004=e=x='=B=W=c=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e",
+      "second": "\u0004\u0011=Q=[=\"=e=\n=.=)=e=J=\u0004=e=x='=B=W=c=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e=e"
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 56,
+      "name": "Mod.Dest.",
+      "first": "Filter 1$Cutoff ",
+      "second": "  Cutoff 1  "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 57,
+      "name": "Mod.Dest.",
+      "first": "Filter 1$Pan    ",
+      "second": " Pan Fil 1  "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 58,
+      "name": "Mod.Dest.",
+      "first": "Gen 1   $Pitch  ",
+      "second": "Pitch Gen 1 "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 59,
+      "name": "Mod.Dest.",
+      "first": "Gen 2   $Pitch  ",
+      "second": "Pitch Gen 2 "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 60,
+      "name": "Mod.Dest.",
+      "first": "Gen 1   $Ampl   ",
+      "second": " Ampl Gen 1 "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 61,
+      "name": "Mod.Dest.",
+      "first": "Gen 3   $Pitch  ",
+      "second": "Pitch Gen 3 "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 62,
+      "name": "Mod.Dest.",
+      "first": "Main    $Ampl   ",
+      "second": " Main Ampli "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 63,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 64,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 65,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 66,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 67,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 68,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 69,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 70,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 71,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 72,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 73,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 74,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 75,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 76,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 77,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 78,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 79,
+      "name": "Mod.Dest.",
+      "first": "      - - -     ",
+      "second": "    - - -   "
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 132,
+      "name": "Mod.Active",
+      "first": 1,
+      "second": 0
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 133,
+      "name": "Mod.Active",
+      "first": 1,
+      "second": 0
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 134,
+      "name": "Mod.Active",
+      "first": 1,
+      "second": 0
+    },
+    {
+      "block": [
+        "SYG2",
+        0,
+        0
+      ],
+      "field": 165,
+      "name": "SD Slider Size 0",
+      "first": 42,
+      "second": 403
+    },
+    {
+      "block": [
+        "WWT0",
+        0,
+        0
+      ],
+      "field": 1,
+      "name": "Filename",
+      "first": "/Library/Application Support/LinPlug/CronoX 3 Banks/Samples/BT_cronox18.wav",
+      "second": "C:\\Programme\\emagic\\Logic 5.5.1\\VstPlugIns\\lin plug\\cronox 3 release candidate\\bigtone cronox set\\BT_cronox18.wav"
+    }
+  ],
+  "unmatched_blocks": [
+    {
+      "block": [
+        "ML02",
+        20,
+        1
+      ],
+      "only_in": "second"
+    },
+    {
+      "block": [
+        "ML02",
+        24,
+        0
+      ],
+      "only_in": "first"
+    },
+    {
+      "block": [
+        "SYG0",
+        0,
+        0
+      ],
+      "only_in": "first"
+    },
+    {
+      "block": [
+        "SYG1",
+        0,
+        0
+      ],
+      "only_in": "first"
+    },
+    {
+      "block": [
+        "TUN0",
+        0,
+        0
+      ],
+      "only_in": "first"
+    },
+    {
+      "block": [
+        "VD01",
+        0,
+        1
+      ],
+      "only_in": "second"
+    },
+    {
+      "block": [
+        "VD01",
+        2,
+        0
+      ],
+      "only_in": "first"
+    },
+    {
+      "block": [
+        "VP51",
+        4,
+        0
+      ],
+      "only_in": "first"
+    },
+    {
+      "block": [
+        "VP51",
+        5,
+        1
+      ],
+      "only_in": "second"
+    }
+  ],
+  "equivalent_sound_proven": false,
+  "note": "Matching serialization tags does not prove that two imported states render identically. Defaults/version migrations, enums, sample paths and host metadata can differ."
+}

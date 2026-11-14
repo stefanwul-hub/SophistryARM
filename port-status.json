@@ -1,8 +1,16 @@
 {
-  "checkpoint": "CP-003",
+  "checkpoint": "CP-004",
   "original_version": "3.0.8",
-  "original_architectures": ["ppc", "i386"],
-  "audio_unit": {"type": "aumu", "subtype": "Sop3", "manufacturer": "LinP", "bundle_id": "com.linplug.au.Sophistry"},
+  "original_architectures": [
+    "ppc",
+    "i386"
+  ],
+  "audio_unit": {
+    "type": "aumu",
+    "subtype": "Sop3",
+    "manufacturer": "LinP",
+    "bundle_id": "com.linplug.au.Sophistry"
+  },
   "ghidra_detected_functions_exported": 3249,
   "ghidra_pseudocode_is_buildable_source": false,
   "complete_dsp_engine_ported": false,
@@ -15,5 +23,19 @@
   "install_allowed": false,
   "implemented_dsp_scope": "isolated Satur_c numeric process routine from i386 address 0x73fb0",
   "arm64_scope": "cross-compiled relocatable Mach-O object of the isolated kernel; no ARM64 execution in this Linux environment",
-  "next_work": ["Recover and test full Synth/Kaja object graph and all DSP modules", "Decode real vstdata state and validate presets/sample paths", "Implement modern AUv2 entry point, stable parameter IDs and Cocoa UI", "Compile and test on Apple Silicon", "Validate with auval and copies of old Logic and Live projects"]
+  "next_work": [
+    "Recover and test full Synth/Kaja object graph and all DSP modules",
+    "Resolve remaining fields and cross-version enum mappings, obtain referenced sample and implement semantic DSP state restore",
+    "Implement modern AUv2 entry point, stable parameter IDs and Cocoa UI",
+    "Compile and test on Apple Silicon",
+    "Validate with auval and copies of old Logic and Live projects"
+  ],
+  "state_container_reader_implemented": true,
+  "state_container_round_trip_tested": [
+    "provided AU vstdata 22192 bytes",
+    "provided FXP chunk 20640 bytes"
+  ],
+  "parameter_descriptor_schemas_recovered": 51,
+  "parameter_descriptor_field_entries": 3437,
+  "new_input_note": "User confirms Sophistry is a CronoX 3 derivative using the same file format; provided AU identity remains CrX3 and target Sophistry identity remains Sop3."
 }

@@ -1,3 +1,7 @@
+test_bad_record_size_and_truncated_nested_program (test_legacy_state.RealStates.test_bad_record_size_and_truncated_nested_program) ... ok
+test_real_fxp_and_sample_reference (test_legacy_state.RealStates.test_real_fxp_and_sample_reference) ... ok
+test_recovered_descriptors_and_real_au (test_legacy_state.RealStates.test_recovered_descriptors_and_real_au) ... ok
+test_unknown_payload_remains_opaque (test_legacy_state.RealStates.test_unknown_payload_remains_opaque) ... ok
 test_arm64_evidence_is_an_object_not_a_bundle (test_tools.Tools.test_arm64_evidence_is_an_object_not_a_bundle) ... ok
 test_au_outer_state_extraction_and_identity (test_tools.Tools.test_au_outer_state_extraction_and_identity) ... ok
 test_audio_reference_is_non_silent_and_exact (test_tools.Tools.test_audio_reference_is_non_silent_and_exact) ... ok
@@ -6,6 +10,6 @@ test_original_architecture_and_au_resource (test_tools.Tools.test_original_archi
 test_silent_or_changed_audio_does_not_pass (test_tools.Tools.test_silent_or_changed_audio_does_not_pass) ... ok
 
 ----------------------------------------------------------------------
-Ran 6 tests in 0.173s
+Ran 10 tests in 0.186s
 
 OK

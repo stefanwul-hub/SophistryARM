@@ -1,0 +1,410 @@
+[
+  {
+    "class": "RampGlide_c",
+    "tag": "MRG0",
+    "tag_function": "0xc179c",
+    "config_functions": [
+      "0xf7ca"
+    ]
+  },
+  {
+    "class": "NoteFreqTable_c",
+    "tag": "TUN0",
+    "tag_function": "0xc17b4",
+    "config_functions": [
+      "0x148b2"
+    ]
+  },
+  {
+    "class": "SynGlo_c",
+    "tag": "SYG0",
+    "tag_function": "0xc17cc",
+    "config_functions": [
+      "0x153b6"
+    ]
+  },
+  {
+    "class": "SynGloIns_c",
+    "tag": "SYG1",
+    "tag_function": "0xc17d6",
+    "config_functions": [
+      "0x15d52"
+    ]
+  },
+  {
+    "class": "SysGlo_c",
+    "tag": "SYPS",
+    "tag_function": "0xc1910",
+    "config_functions": [
+      "0x29b92"
+    ]
+  },
+  {
+    "class": "GloFil_c",
+    "tag": "VGF1",
+    "tag_function": "0xc1936",
+    "config_functions": [
+      "0x301f0"
+    ]
+  },
+  {
+    "class": "StereoEnh1_c",
+    "tag": "VSE1",
+    "tag_function": "0xc1956",
+    "config_functions": [
+      "0x32ab8"
+    ]
+  },
+  {
+    "class": "WaveRAM2_c",
+    "tag": "TM04",
+    "tag_function": "0xc1960",
+    "config_functions": [
+      "0x3350a"
+    ]
+  },
+  {
+    "class": "SamLoop_c",
+    "tag": "GS03",
+    "tag_function": "0xc196a",
+    "config_functions": [
+      "0x364c8"
+    ]
+  },
+  {
+    "class": "SamWT_c",
+    "tag": "GWT0",
+    "tag_function": "0xc1974",
+    "config_functions": [
+      "0x38c18"
+    ]
+  },
+  {
+    "class": "WaveRAM_c",
+    "tag": "TM02",
+    "tag_function": "0xc197e",
+    "config_functions": [
+      "0x39906"
+    ]
+  },
+  {
+    "class": "Gator_c",
+    "tag": "VGT1",
+    "tag_function": "0xc1988",
+    "config_functions": [
+      "0x3b236"
+    ]
+  },
+  {
+    "class": "EnvADSFR_c",
+    "tag": "ME03",
+    "tag_function": "0xc1992",
+    "config_functions": [
+      "0x3be66"
+    ]
+  },
+  {
+    "class": "LFOSimp_c",
+    "tag": "ML02",
+    "tag_function": "0xc199c",
+    "config_functions": [
+      "0x3cc86"
+    ]
+  },
+  {
+    "class": "DelayStereo_c",
+    "tag": "VDS1",
+    "tag_function": "0xc19a6",
+    "config_functions": [
+      "0x3eba6"
+    ]
+  },
+  {
+    "class": "Chorus1_c",
+    "tag": "VCH0",
+    "tag_function": "0xc1b80",
+    "config_functions": [
+      "0x410f8"
+    ]
+  },
+  {
+    "class": "CrushX_c",
+    "tag": "VCX1",
+    "tag_function": "0xc1b9a",
+    "config_functions": [
+      "0x437a2"
+    ]
+  },
+  {
+    "class": "KajaGlo_c",
+    "tag": "SYG2",
+    "tag_function": "0xc1bae",
+    "config_functions": [
+      "0x604ba"
+    ]
+  },
+  {
+    "class": "DelayPingPongR_c",
+    "tag": "VDP1",
+    "tag_function": "0xc1c8a",
+    "config_functions": [
+      "0x87fba"
+    ]
+  },
+  {
+    "class": "CrushXR_c",
+    "tag": "VCX1",
+    "tag_function": "0xc1b9a",
+    "config_functions": [
+      "0x437a2"
+    ]
+  },
+  {
+    "class": "GatorR_c",
+    "tag": "VGT1",
+    "tag_function": "0xc1988",
+    "config_functions": [
+      "0x3b236"
+    ]
+  },
+  {
+    "class": "EQ2R_c",
+    "tag": "VEQ1",
+    "tag_function": "0xc1f6e",
+    "config_functions": [
+      "0x92210"
+    ]
+  },
+  {
+    "class": "StereoEnh1R_c",
+    "tag": "VSE1",
+    "tag_function": "0xc1956",
+    "config_functions": [
+      "0x32ab8"
+    ]
+  },
+  {
+    "class": "Flanger2R_c",
+    "tag": "VFL1",
+    "tag_function": "0xc1dca",
+    "config_functions": [
+      "0x86ef6"
+    ]
+  },
+  {
+    "class": "DelayStereoR_c",
+    "tag": "VDS1",
+    "tag_function": "0xc19a6",
+    "config_functions": [
+      "0x3eba6"
+    ]
+  },
+  {
+    "class": "Reverb2R_c",
+    "tag": "VR01",
+    "tag_function": "0xc1e9c",
+    "config_functions": [
+      "0xb5cae"
+    ]
+  },
+  {
+    "class": "GloFilR_c",
+    "tag": "VGF1",
+    "tag_function": "0xc1936",
+    "config_functions": [
+      "0x301f0"
+    ]
+  },
+  {
+    "class": "Phaser1SR_c",
+    "tag": "VPH0",
+    "tag_function": "0xc1d5c",
+    "config_functions": [
+      "0x8ef84"
+    ]
+  },
+  {
+    "class": "Chorus1R_c",
+    "tag": "VCH0",
+    "tag_function": "0xc1b80",
+    "config_functions": [
+      "0x410f8"
+    ]
+  },
+  {
+    "class": "Delay2R_c",
+    "tag": "VD02",
+    "tag_function": "0xc1bb8",
+    "config_functions": [
+      "0x6d06e"
+    ]
+  },
+  {
+    "class": "Delay2_c",
+    "tag": "VD02",
+    "tag_function": "0xc1bb8",
+    "config_functions": [
+      "0x6d06e"
+    ]
+  },
+  {
+    "class": "StepSeq_c",
+    "tag": "SEQ1",
+    "tag_function": "0xc2b9c",
+    "config_functions": [
+      "0x6f76e"
+    ]
+  },
+  {
+    "class": "ChordMem_c",
+    "tag": "CMM1",
+    "tag_function": "0xc2ba6",
+    "config_functions": [
+      "0x73214"
+    ]
+  },
+  {
+    "class": "Satur_c",
+    "tag": "VD01",
+    "tag_function": "0xc2bb0",
+    "config_functions": [
+      "0x73daa"
+    ]
+  },
+  {
+    "class": "FilterFree_c",
+    "tag": "VFF1",
+    "tag_function": "0xc2bba",
+    "config_functions": [
+      "0x7461c"
+    ]
+  },
+  {
+    "class": "FilterMoogSI_c",
+    "tag": "VF01",
+    "tag_function": "0xc2bc4",
+    "config_functions": [
+      "0x77082"
+    ]
+  },
+  {
+    "class": "OscAnalog3_c",
+    "tag": "GO02",
+    "tag_function": "0xc2c10",
+    "config_functions": [
+      "0x7a498"
+    ]
+  },
+  {
+    "class": "Pan51_c",
+    "tag": "VP51",
+    "tag_function": "0xc2c1a",
+    "config_functions": [
+      "0x7f166"
+    ]
+  },
+  {
+    "class": "Pan_c",
+    "tag": "VP02",
+    "tag_function": "0xc2c24",
+    "config_functions": [
+      "0x8019c"
+    ]
+  },
+  {
+    "class": "AdvLFO_c",
+    "tag": "ML01",
+    "tag_function": "0xc33da",
+    "config_functions": [
+      "0x83fc4"
+    ]
+  },
+  {
+    "class": "EnvDAD_c",
+    "tag": "ME06",
+    "tag_function": "0xc33e4",
+    "config_functions": [
+      "0x84e96"
+    ]
+  },
+  {
+    "class": "Flanger2_c",
+    "tag": "VFL1",
+    "tag_function": "0xc1dca",
+    "config_functions": [
+      "0x86ef6"
+    ]
+  },
+  {
+    "class": "DelayPingPong_c",
+    "tag": "VDP1",
+    "tag_function": "0xc1c8a",
+    "config_functions": [
+      "0x87fba"
+    ]
+  },
+  {
+    "class": "DistSimp2_c",
+    "tag": "VD01",
+    "tag_function": "0xc370e",
+    "config_functions": [
+      "0x88f2e"
+    ]
+  },
+  {
+    "class": "Amp_c",
+    "tag": "VAM1",
+    "tag_function": "0xc3718",
+    "config_functions": [
+      "0x897e8"
+    ]
+  },
+  {
+    "class": "ECS2_c",
+    "tag": "ECS2",
+    "tag_function": "0xc3722",
+    "config_functions": [
+      "0x8b6d4"
+    ]
+  },
+  {
+    "class": "WaveTable_c",
+    "tag": "WWT0",
+    "tag_function": "0xc372c",
+    "config_functions": [
+      "0x8d62e"
+    ]
+  },
+  {
+    "class": "Phaser1S_c",
+    "tag": "VPH0",
+    "tag_function": "0xc1d5c",
+    "config_functions": [
+      "0x8ef84"
+    ]
+  },
+  {
+    "class": "EQ2_c",
+    "tag": "VEQ1",
+    "tag_function": "0xc1f6e",
+    "config_functions": [
+      "0x92210"
+    ]
+  },
+  {
+    "class": "SamTC3_c",
+    "tag": "GS02",
+    "tag_function": "0xc7b12",
+    "config_functions": [
+      "0xb3292"
+    ]
+  },
+  {
+    "class": "Reverb2_c",
+    "tag": "VR01",
+    "tag_function": "0xc1e9c",
+    "config_functions": [
+      "0xb5cae"
+    ]
+  }
+]

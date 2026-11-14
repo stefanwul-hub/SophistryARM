@@ -1,0 +1,30 @@
+{
+  "path": "/workspace/work/port/reference/Presets/Lightgarden 02 BT.aupreset",
+  "size": 30950,
+  "sha256": "98c0da68c974a943341410828b7a792bb0635949bb5316c8cb56c6e405b4e238",
+  "keys": [
+    "manufacturer",
+    "name",
+    "subtype",
+    "type",
+    "version",
+    "vstdata"
+  ],
+  "identity": {
+    "type": "aumu",
+    "subtype": "CrX3",
+    "manufacturer": "LinP"
+  },
+  "name": "PAD CronoX Lightgarden 02 BT",
+  "version": 0,
+  "sophistry_identity_matches": false,
+  "has_original_vstdata": true,
+  "state_decoder_implemented": false,
+  "chunks": {
+    "vstdata": {
+      "size": 22192,
+      "sha256": "ee52bcc7c250d798879a23499c2240071e968f6cf12e851f45b0a15c04726cfb",
+      "first_32_bytes_hex": "30475953e000000000000000c800000000000000000000003011000000000000"
+    }
+  }
+}

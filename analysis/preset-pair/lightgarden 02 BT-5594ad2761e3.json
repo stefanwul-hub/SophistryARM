@@ -1,0 +1,20 @@
+{
+  "path": "/workspace/work/port/reference/Presets/lightgarden 02 BT.FXP",
+  "size": 20700,
+  "sha256": "5594ad2761e37f6944ce460b160dc66a039c710632c9b79a2f9ad2798585f01c",
+  "container": "FPCh",
+  "declared_size": 0,
+  "format_version": 1,
+  "plugin_id": "Crx3",
+  "plugin_version": 1,
+  "count": 1,
+  "declared_size_matches": false,
+  "state_decoder_implemented": false,
+  "chunks": {
+    "chunk": {
+      "size": 20640,
+      "sha256": "3e88650828693f66e0d6c3751de9018b756bb7bca299d8849e765bc2f7b0e5bf",
+      "first_32_bytes_hex": "32475953a807000000000000000000000400000000cdcdcd000000003c000000"
+    }
+  }
+}

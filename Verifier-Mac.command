@@ -22,6 +22,10 @@ printf '%s\n' 'Checkpoint incomplet : ce script compile des outils de test, pas 
 /usr/bin/file "$RUN/SaturProbe"
 /usr/bin/arch -arm64 "$RUN/SaturProbe" "$ROOT/evidence/satur-fixtures.bin" | tee "$RUN/kernel-test.json"
 /usr/bin/xcrun clang++ -arch arm64 -mmacosx-version-min=11.0 -std=c++17 -O2 \
+  -I"$ROOT/src" "$ROOT/src/LegacyStateReader.cpp" "$ROOT/tests/LegacyStateProbeMain.cpp" -o "$RUN/LegacyStateProbe"
+/usr/bin/lipo -verify_arch arm64 "$RUN/LegacyStateProbe"
+/usr/bin/arch -arm64 "$RUN/LegacyStateProbe" "$ROOT/tests/fixtures/legacy-au-vstdata.bin" "$ROOT/tests/fixtures/legacy-fxp-chunk.bin" | tee "$RUN/legacy-state-test.jsonl"
+/usr/bin/xcrun clang++ -arch arm64 -mmacosx-version-min=11.0 -std=c++17 -O2 \
   "$ROOT/src/AUStateProbe.cpp" -framework AudioToolbox -framework AudioUnit \
   -framework CoreFoundation -o "$RUN/AUStateProbe"
 /usr/bin/lipo -verify_arch arm64 "$RUN/AUStateProbe"

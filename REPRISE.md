@@ -1,4 +1,4 @@
-# Reprendre à CP-003
+# Reprendre à CP-004
 
 Objectif utilisateur : portage **complet et fidèle** de Sophistry Audio Unit vers Apple Silicon, à partir du code machine original, en conservant le rappel d’anciens projets AU Logic et Live. L’utilisateur possède les samples/presets externes. Son Mac est sous macOS 15.7.2, avec Xcode, Ableton Live 11.3.2 et Logic Pro 11. Pas de plugin ARM64 complet obtenu à ce checkpoint.
 
@@ -9,7 +9,7 @@ Objectif utilisateur : portage **complet et fidèle** de Sophistry Audio Unit ve
 3. Ouvrir `checkpoints/ghidra-project/Sophistry.gpr` avec **Ghidra 11.3.2 / JDK 21**. Le dossier `.rep` adjacent est indispensable. Copier le projet vers un dossier de travail avant de le modifier.
 4. Utiliser `analysis/vtables.json`, `analysis/ghidra/function-index.jsonl`, `analysis/ghidra/calls.tsv` et le dossier `functions/`. Les `_vslot_N` sont des annotations inférées, partagées entre classes ; ne pas leur inventer des noms sémantiques.
 5. Pour récupérer l’historique local : `git clone checkpoints/Sophistry-history.bundle work/reprise`. Le dépôt original est conservé ; la distribution du checkpoint utilise une branche dédiée, sans remplacer `main`.
-6. Ajouter de vrais états `.aupreset`/`.fxp` et les samples référencés dans un dossier de travail, sans les publier automatiquement. Les seules fixtures de preset présentes dans les tests sont synthétiques et ne prouvent pas le décodage DSP.
+6. Ajouter de vrais états `.aupreset`/`.fxp` et les samples référencés dans un dossier de travail, sans les publier automatiquement. La paire réelle est dans `reference/Presets/`, les schémas dans `analysis/parameter-schemas.json`, la comparaison dans `analysis/preset-pair/decoded/`. Les tests synthétiques ne prouvent pas le rappel sonore, et la lecture structurelle des vraies données non plus.
 
 ## Points d’entrée importants
 
@@ -21,7 +21,7 @@ Objectif utilisateur : portage **complet et fidèle** de Sophistry Audio Unit ve
 
 ## Vérifications déjà faites
 
-`evidence/` contient les résultats exacts. Six tests d’outils passent. Le noyau C++ correspond à la routine i386 émulée sur 160 cas ; les fixtures natives ajoutent un cas désactivé. Le rendu de test du noyau a une erreur nulle. L’objet Mach-O du noyau est ARM64, type objet relogeable. Aucun test natif Mac, `auval`, test du synthé complet ou réouverture de projet n’a été exécuté.
+`evidence/` contient les résultats exacts. Dix tests d’outils et d’états passent. Le noyau C++ correspond à la routine i386 émulée sur 160 cas ; les fixtures natives ajoutent un cas désactivé. Le rendu de test du noyau a une erreur nulle. L’objet Mach-O du noyau est ARM64, type objet relogeable. Aucun test natif Mac, `auval`, test du synthé complet ou réouverture de projet n’a été exécuté.
 
 ## Reproduire Ghidra seulement si nécessaire
 
@@ -30,3 +30,11 @@ L’analyse enregistrée évite de recommencer. Pour une nouvelle analyse indép
 ## Garder un nouveau checkpoint
 
 Enregistrer le projet Ghidra fermé, les sources, les tests, les preuves et les limites. Mettre à jour `port-status.json` uniquement en fonction de vérifications réelles. Créer un commit local puis un nouveau bundle hors de son propre suivi : `git bundle create checkpoints/Sophistry-history.bundle --all`. Ne pas remplacer l’ancien composant tant que le moteur, les états et les copies de projets n’ont pas été vérifiés.
+
+## Ajout CP-004
+
+La paire Lightgarden est analysée. L’identité AU fournie est `CrX3`, et l’utilisateur confirme que Sophistry/CronoX 3 partagent le format des fichiers ; ne pas demander de nouveau un `.aupreset` Sophistry qu’il ne peut pas créer avec son ancien binaire 32 bits. Conserver `Sop3` pour le futur composant.
+
+`LegacyStateReader.cpp` lit/réécrit les enveloppes de blocs ; aucune sémantique DSP complète n’est chargée. Le lecteur Python applique les schémas issus du flux de contrôle original. Résultats et limites dans `docs/PRESETS-CP004.md`. La demande du sample `BT_cronox18.wav` est en cours ; ne pas le synthétiser artificiellement en prétendant avoir reproduit le preset.
+
+Le paquet CP-003 local est toujours intact dans l’environnement de travail. Son upload monolithique GitHub n’a pas abouti et a bloqué l’outil ; pour les sauvegardes distantes, utiliser des objets plus petits et vérifier le téléchargement. Ne pas renouveler un envoi monolithique de 43 Mo en base64.
