@@ -1,0 +1,11 @@
+test_arm64_evidence_is_an_object_not_a_bundle (test_tools.Tools.test_arm64_evidence_is_an_object_not_a_bundle) ... ok
+test_au_outer_state_extraction_and_identity (test_tools.Tools.test_au_outer_state_extraction_and_identity) ... ok
+test_audio_reference_is_non_silent_and_exact (test_tools.Tools.test_audio_reference_is_non_silent_and_exact) ... ok
+test_fxp_outer_chunk_and_truncation (test_tools.Tools.test_fxp_outer_chunk_and_truncation) ... ok
+test_original_architecture_and_au_resource (test_tools.Tools.test_original_architecture_and_au_resource) ... ok
+test_silent_or_changed_audio_does_not_pass (test_tools.Tools.test_silent_or_changed_audio_does_not_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.173s
+
+OK

@@ -1,0 +1,19 @@
+{
+  "checkpoint": "CP-003",
+  "original_version": "3.0.8",
+  "original_architectures": ["ppc", "i386"],
+  "audio_unit": {"type": "aumu", "subtype": "Sop3", "manufacturer": "LinP", "bundle_id": "com.linplug.au.Sophistry"},
+  "ghidra_detected_functions_exported": 3249,
+  "ghidra_pseudocode_is_buildable_source": false,
+  "complete_dsp_engine_ported": false,
+  "state_decoder_complete": false,
+  "native_audio_unit_available": false,
+  "native_ui_available": false,
+  "macos_auval_executed": false,
+  "logic_projects_verified": false,
+  "ableton_projects_verified": false,
+  "install_allowed": false,
+  "implemented_dsp_scope": "isolated Satur_c numeric process routine from i386 address 0x73fb0",
+  "arm64_scope": "cross-compiled relocatable Mach-O object of the isolated kernel; no ARM64 execution in this Linux environment",
+  "next_work": ["Recover and test full Synth/Kaja object graph and all DSP modules", "Decode real vstdata state and validate presets/sample paths", "Implement modern AUv2 entry point, stable parameter IDs and Cocoa UI", "Compile and test on Apple Silicon", "Validate with auval and copies of old Logic and Live projects"]
+}

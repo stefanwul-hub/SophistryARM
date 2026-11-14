@@ -1,0 +1,932 @@
+[
+  {
+    "class": "RampGlide_c",
+    "method_address": "0xf7ca",
+    "evidence_file": "analysis/ghidra/functions/0000f7ca_RampGlide_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010218(iVar1 + 0x70,\"Glide Mode\",\"\",0,3,4,0,\"Off Held On Bend\",0);",
+      "FUN_00011652(iVar1 + 0xe0,\"Bend\",\"semi\",0,0xffffffd0,0x30,0,0,0);",
+      "FUN_00011652(iVar1 + 0x150,\"Time\",\"sec\",0x40800000,1,0x4b0,3,0x1e,0);",
+      "FUN_00010218(iVar1 + 0x1c0,\"Const\",\"\",0,1,4,0,\"TimeRate\",0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "SynGloIns_c",
+    "method_address": "0x15d52",
+    "evidence_file": "analysis/ghidra/functions/00015d52_SynGloIns_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar1 + 0x70,\"Program\",\"\",0,0,param_1[0x75] + -1,0,0,0);",
+      "FUN_00010290(iVar1 + 0xe0,\"Unused\",1);",
+      "FUN_00011652(iVar1 + 0x150,\"Output\",\"\",0,0,param_1[0x76] + -1,0,0,0);",
+      "FUN_00010290(iVar1 + 0x1c0,\"Mute\",0);",
+      "FUN_00010290(iVar1 + 0x230,\"Solo\",0);",
+      "FUN_00011652(iVar1 + 0x2a0,\"NotesOn\",\"\",0,0,8,0,0,0);",
+      "FUN_00010218(iVar1 + 0x310,\"Choke\",\"\",0,8,3,0,\" - me prvnxt 1  2  3  4  5 \",param_1 + 0x77);",
+      "FUN_00010290(iVar1 + 0x460,\"Edited\",0);",
+      "FUN_00010290(iVar1 + 0x4d0,\"Legato\",0);",
+      "FUN_00011652(iVar1 + 0x540,\"Pitch Bend Up Amount\",\"semitones\",0,0,0x18,0,2,0);",
+      "FUN_00010218(iVar1 + 0x5b0,\"Unused\",\"\",1,9,3,9,\" 1  2  3  4  5  6  7  8 all\",0);",
+      "FUN_00011652(iVar1 + 0x7e0,\"Bank\",\"\",0,0,0x7f,0,0,0);",
+      "FUN_00011652(iVar1 + 0x930,\"Velo Lo\",\"\",0,1,0x7f,0,1,0);",
+      "FUN_00011652(iVar1 + 0x9a0,\"Velo Hi\",\"\",0,1,0x7f,0,0x7f,0);",
+      "FUN_00011652(iVar1 + 0xa10,\"Note Fade\",\"\",0,0xffffffe8,0x18,0,0,0);",
+      "FUN_00011652(iVar1 + 0xa80,\"Velo Fade\",\"\",0,0xffffff81,0x7f,0,0,0);",
+      "FUN_00010218(iVar1 + 0xaf0,\"Pitch Bend Down Amount\",\"semitones\",0xffffffff,0x18,4,0xffffffff,\n                 \"link  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24 \"\n                 ,0);",
+      "FUN_00010290(iVar1 + 0xb60,\"Receive Mod Wheel\",1);",
+      "FUN_00010290(iVar1 + 0xbd0,\"Receive Pitchwheel\",1);",
+      "FUN_00010290(iVar1 + 0xc40,\"Receive Aftertouch\",1);",
+      "FUN_00010290(iVar1 + 0xcb0,\"Receive SustainPed\",1);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "GloFil_c",
+    "method_address": "0x301f0",
+    "evidence_file": "analysis/ghidra/functions/000301f0_GloFil_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"S0 On/Off\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"Filter Wet\",\"%\",0,0,100,2,100,0);",
+      "FUN_00010218(iVar4 + 0x150,\"Type \",\"\",0,3,4,0,\"LP12HP12BP12BR12\",0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Filter Sat\",\"%\",0,0,100,2,0x14,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Cutoff\",\"Hz\",0x40800000,0x28,20000,0,10000,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Resonance\",\"%\",0,0,100,2,0,0);",
+      "FUN_00011652(iVar4 + 0x310,\"Filter Mod Speed\",\"Hz\",0x40000000,4,400,2,100,0);",
+      "FUN_00011652(iVar4 + 0x380,\"Filter Mod Depth\",\"%\",0,0,100,2,0x32,0);",
+      "FUN_00010218(iVar4 + 0x460,\"Frequency\",\"Notes\",0xfffffff3,0x1a,5,0xfffffff3,\n                 \" Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16\"\n                 ,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "StereoEnh1_c",
+    "method_address": "0x32ab8",
+    "evidence_file": "analysis/ghidra/functions/00032ab8_StereoEnh1_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar4 + 0x70,\"Wet\",\"%\",0,0,100,2,0x32,0);",
+      "FUN_00011652(iVar4 + 0xe0,\"Roomsize\",\"msec\",0,5,100,1,0x32,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Factor\",\"n\",0,10,0x28,1,0x14,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "WaveRAM2_c",
+    "method_address": "0x3350a",
+    "evidence_file": "analysis/ghidra/functions/0003350a_WaveRAM2_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,300,0);",
+      "FUN_00010290(iVar1 + 0x70,\"Reserve00\",0);",
+      "FUN_00011652(iVar1 + 0xe0,\"Distortion\",\"%\",0,0,100,2,0,0);",
+      "FUN_00011652(iVar1 + 0x150,\"Compression\",\":1\",0,100,2000,2,100,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"BitCrushing\",\"Bit\",0,10,0xf0,1,0xf0,0);",
+      "FUN_00010290(iVar1 + 0x230,\"Key Sync\",0);",
+      "FUN_00010290(iVar1 + 0x2a0,\"Reserve05\",0);",
+      "FUN_00010290(iVar1 + 0x310,\"Reserve06\",0);",
+      "FUN_00010290(iVar1 + 0x380,\"Reserve07\",0);",
+      "FUN_00011652(iVar3 + 0x1c0,\"Velo Lo\",\"\",0,1,0x7f,0,1,0);",
+      "FUN_00011652(iVar3 + 0x230,\"Velo Hi\",\"\",0,1,0x7f,0,0x7f,0);",
+      "FUN_00011652(iVar3 + 0x2a0,\"Start Frame\",\"Samples\",0,0,9999999,0,0,0);",
+      "FUN_00011652(iVar3 + 0x310,\"End Frame\",\"Samples\",0,0,9999999,0,0,0);",
+      "FUN_00011652(iVar3 + 0x3f0,\"Panorama\",\"\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00010290(iVar3 + 0x460,\"Reverse\",0);",
+      "FUN_00011652(iVar3 + 0x4d0,\"Loop Start Frame\",\"Samples\",0,0,9999999,0,0,0);",
+      "FUN_00011652(iVar3 + 0x540,\"Loop End Frame\",\"Samples\",0,0,9999999,0,0,0);",
+      "FUN_00011652(iVar3 + 0x5b0,\"Loop Counter\",\"Samples\",0,1,9999,0,9999,0);",
+      "FUN_00011652(iVar3 + 0x620,\"Loop Mode\",\"\",0,0,3,0,0,0);",
+      "FUN_00011652(iVar3 + 0x700,\"Loop Mod Range\",\"Samples\",0,1,9999999,0,10,0);",
+      "FUN_00010290(iVar3 + 0x770,\"Suppress AutoXCross\",0);",
+      "FUN_00010290(iVar3 + 0x7e0,\"Alterne\",0);",
+      "FUN_00010290(iVar3 + 0x850,\"Reserve4\",0);",
+      "FUN_00010218(iVar1 + 0x233f0,\"Alt Mode\",\"\",1,3,7,1,\"CyclingRandom Random+\",0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "SamLoop_c",
+    "method_address": "0x364c8",
+    "evidence_file": "analysis/ghidra/functions/000364c8_SamLoop_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"On/Off\",1);",
+      "FUN_00011652(iVar1 + 0xe0,\"Octave\",\"\",0,0xfffffffd,3,0,0,0);",
+      "FUN_00011652(iVar1 + 0x150,\"Semitone\",\"\",0,0xfffffff5,0xb,0,0,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Cent\",\"\",0,0xffffff9d,99,0,0,0);",
+      "FUN_00010290(iVar1 + 0x230,\"PitchTrack On/Off\",1);",
+      "FUN_00011652(iVar1 + 0x2a0,\"Smooth\",\"%\",0,1,999,1,200,0);",
+      "FUN_00010290(iVar1 + 0x310,\"Release Loop\",0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "SamWT_c",
+    "method_address": "0x38c18",
+    "evidence_file": "analysis/ghidra/functions/00038c18_SamWT_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"On/Off\",1);",
+      "FUN_00011652(iVar1 + 0xe0,\"Octave\",\"\",0,0xfffffffd,3,0,0,0);",
+      "FUN_00011652(iVar1 + 0x150,\"Semitone\",\"\",0,0xfffffff5,0xb,0,0,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Cent\",\"\",0,0xffffff9d,99,0,0,0);",
+      "FUN_00010290(iVar1 + 0x230,\"PitchTrack On/Off\",1);",
+      "FUN_00011652(iVar1 + 0x2a0,\"WaveRide\",\"\",0x40800000,0,0xc80,2,100,0);",
+      "FUN_00011652(iVar1 + 0x310,\"RideTrack\",\"\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00011652(iVar1 + 0x380,\"Spread\",\"cent\",0x40800000,0,5000,2,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "WaveRAM_c",
+    "method_address": "0x39906",
+    "evidence_file": "analysis/ghidra/functions/00039906_WaveRAM_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,300,0);",
+      "FUN_00011652(iVar1 + 0x70,\"InsIdx\",\"\",0,0,1,0,0,0);",
+      "FUN_00011652(iVar1 + 0xe0,\"SampleIdx\",\"\",0,0,1,0,0,0);",
+      "FUN_00011652(iVar1 + 0x310,\"Zone Low\",\"\",0,0,0x7f,0,0,0);",
+      "FUN_00011652(iVar1 + 0x380,\"Zone High\",\"\",0,0,0x7f,0,0x7f,0);",
+      "FUN_00011652(iVar1 + 0x3f0,\"Velo Low\",\"\",0,1,0x7f,0,1,0);",
+      "FUN_00011652(iVar1 + 0x460,\"Velo High\",\"\",0,1,0x7f,0,0x7f,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Unus0\",\"\",0,0,999,0,0,0);",
+      "FUN_00010290(iVar1 + 0x4d0,\"Reverse\",0);",
+      "FUN_00010290(iVar1 + 0x540,\"MLEnable\",0);",
+      "FUN_00010290(iVar1 + 0x5b0,\"Cmd Prev\",0);",
+      "FUN_00010290(iVar1 + 0x690,\"Cmd Next\",0);",
+      "FUN_00010290(iVar1 + 0x700,\"Cmd Clear\",0);",
+      "FUN_00011652(iVar1 + 0x770,\"Start Frame\",\"%\",0,0,0x3de,1,0,0);",
+      "FUN_00011652(iVar1 + 0x7e0,\"End Frame\",\"%\",0,10,1000,1,1000,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Gator_c",
+    "method_address": "0x3b236",
+    "evidence_file": "analysis/ghidra/functions/0003b236_Gator_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar1 + 0x2a0,\"Wet\",\"%\",0,0,100,2,100,0);",
+      "FUN_00010218(iVar1 + 0x150,\"Frequency\",\"Notes\",1,0x11,5,0xd,\n                 \" 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T\"\n                 ,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Smooth\",\"%\",0,0,100,2,5,0);",
+      "FUN_00010218(iVar1 + 0x230,\"Link\",\"Mode\",0,2,5,0,\" off link xlink\",0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "EnvADSFR_c",
+    "method_address": "0x3be66",
+    "evidence_file": "analysis/ghidra/functions/0003be66_EnvADSFR_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar1 + 0x70,\"A Time\",\"sec\",0x40800000,1,10000,3,1,0);",
+      "FUN_00011652(iVar1 + 0xe0,\"D Time\",\"sec\",0x40800000,1,10000,3,1,0);",
+      "FUN_00011652(iVar1 + 0x150,\"S Level\",\"\",0x40000000,0,1000,3,1000,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"F Time\",\"\",0,0xfffffc18,1000,2,0,0);",
+      "FUN_00011652(iVar1 + 0x230,\"R Time\",\"sec\",0x40800000,1,10000,3,4,0);",
+      "FUN_00011652(iVar1 + 0x2a0,\"Pitch Scal\",\"%\",0,0xffffff9c,100,0,0,0);",
+      "FUN_00011652(iVar1 + 0x310,\"Veloc.Scal\",\"%\",0,0xffffff9c,100,0,0,0);",
+      "FUN_00010290(iVar1 + 0x380,\"Velocity Attack\",1);",
+      "FUN_00010290(iVar1 + 0x3f0,\"Log Decay\",0);",
+      "FUN_00011652(iVar1 + 0x460,\"A c\",\"\",0,0xf,0xb9,2,0x47,0);",
+      "FUN_00011652(iVar1 + 0x4d0,\"D c\",\"\",0,0xf,0xb9,2,0x21,0);",
+      "FUN_00011652(iVar1 + 0x540,\"F c\",\"\",0,0xf,0xb9,2,0x5a,0);",
+      "FUN_00011652(iVar1 + 0x5b0,\"R c\",\"\",0,0xf,0xb9,2,0x21,0);",
+      "FUN_00010290(iVar1 + 0x620,\"Sync\",0);",
+      "FUN_00011652(iVar1 + 0x690,\"ASync\",\"16th\",0,0,&DAT_00002580,2,100,0);",
+      "FUN_00011652(iVar1 + 0x700,\"DSync\",\"16th\",0,0,&DAT_00002580,2,100,0);",
+      "FUN_00011652(iVar1 + 0x770,\"FSync\",\"16th\",0,0xffffda80,&DAT_00002580,2,0,0);",
+      "FUN_00011652(iVar1 + 0x7e0,\"RSync\",\"16th\",0,0,&DAT_00002580,2,100,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "LFOSimp_c",
+    "method_address": "0x3cc86",
+    "evidence_file": "analysis/ghidra/functions/0003cc86_LFOSimp_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"S0 On/Off\",1);",
+      "FUN_00010218(iVar1 + 0xe0,\"Waveform\",\"\",0,5,6,1,\"Sine  TriangSawtooSquareNoise Sam&Ho\",0);",
+      "FUN_00011652(iVar1 + 0x150,\"Frequency\",\"Hz\",0x40800000,1,0xc80,2,100,0);",
+      "FUN_00010290(iVar1 + 0x1c0,\"Sync\",1);",
+      "FUN_00010218(iVar1 + 0x230,\"Frequency\",\"Notes\",0xfffffff3,0x1a,5,0xfffffff3,\n                 \"Off  16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16\"\n                 ,0);",
+      "FUN_00011652(iVar1 + 0x460,\"Symmetry\",\"%\",0,4,0x60,2,0x32,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "DelayStereo_c",
+    "method_address": "0x3eba6",
+    "evidence_file": "analysis/ghidra/functions/0003eba6_DelayStereo_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"TimeL\",\"msec\",0x40800000,1,0x514,0,0x7d,0);",
+      "FUN_00010218(iVar4 + 0x150,\"SyncL\",\"Notes\",3,0x16,5,0xd,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 \"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"TimeR\",\"msec\",0x40800000,1,0x514,0,0xfa,0);",
+      "FUN_00010218(iVar4 + 0x230,\"SyncR\",\"Notes\",3,0x16,5,10,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 \"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Feed\",\"%\",0,0,99,2,0x28,0);",
+      "FUN_00011652(iVar4 + 0x310,\"CutLo\",\"Hz\",0x40800000,0x28,22000,0,22000,0);",
+      "FUN_00011652(iVar4 + 0x380,\"CutHi\",\"Hz\",0x40800000,8,11000,0,8,0);",
+      "FUN_00011652(iVar4 + 0x3f0,\"Wet\",\"%\",0,0,100,2,0xf,0);",
+      "FUN_00011652(iVar4 + 0x460,\"Stereo\",\"%\",0,0xffffff9c,100,2,100,0);",
+      "FUN_00010290(iVar4 + 0x4d0,\"Feedback Link\",1);",
+      "FUN_00010290(iVar4 + 0x540,\"Crossdelay\",0);",
+      "FUN_00010290(iVar4 + 0x5b0,\"Filters in Feedback\",0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Chorus1_c",
+    "method_address": "0x410f8",
+    "evidence_file": "analysis/ghidra/functions/000410f8_Chorus1_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"Chorus Time\",\"ms\",0x40800000,1,600,2,200,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Chorus TimeSpread\",\"%\",0,0,0x5a,2,0x1e,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Chorus Speed\",\"Hz\",0x40800000,0x14,4000,3,500,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Chorus SpeedSpread\",\"%\",0,0,0x5a,2,0x1e,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Chorus Wet\",\"%\",0,0,100,2,0x3c,0);",
+      "FUN_00011652(iVar4 + 0x310,\"Chorus Mode\",\"\",0,0,1,0,0,0);",
+      "FUN_00010290(iVar4 + 0x380,\"Invert Signal\",0);",
+      "FUN_00011652(iVar4 + 0x3f0,\"Chorus Dry\",\"%\",0,0,100,2,100,0);",
+      "FUN_00011652(iVar4 + 0x460,\"Chorus Stereo\",\"%\",0,0,100,2,100,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "CrushX_c",
+    "method_address": "0x437a2",
+    "evidence_file": "analysis/ghidra/functions/000437a2_CrushX_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"On/Off\",1);",
+      "FUN_00011652(iVar1 + 0xe0,\"Resolution\",\"bit\",0x40000000,100,0x641,2,400,0);",
+      "FUN_00010290(iVar1 + 0x150,\"Dither On/Off\",0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Divider\",\"Samples\",0x40000000,1,0x20,0,1,0);",
+      "FUN_00010218(iVar1 + 0x230,\"Divider Mode\",\"\",1,3,3,3,\"AVGSTPSLD\",0);",
+      "FUN_00010218(iVar1 + 0x2a0,\"Filter Type \",\"\",1,4,4,1,\"LP12HP12BP12BR12\",0);",
+      "FUN_00011652(iVar1 + 0x310,\"Cutoff\",\"\",0x40800000,0x28,20000,0,20000,0);",
+      "FUN_00011652(iVar1 + 0x380,\"Resonance\",\"\",0,0,100,0,0,0);",
+      "FUN_00010290(iVar1 + 0x3f0,\"FilterPostDiv On/Off\",0);",
+      "FUN_00010290(iVar1 + 0x460,\"Auto Volume compensation\",1);",
+      "FUN_00011652(iVar1 + 0x4d0,\"Wet\",\"%\",0,0,100,2,100,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "KajaGlo_c",
+    "method_address": "0x604ba",
+    "evidence_file": "analysis/ghidra/functions/000604ba_KajaGlo_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1 + 0x1c0,\"Detune\",\"cent\",0x40800000,0xffffffff,500,1,0xffffffff,0);",
+      "FUN_00010218(iVar1 + 0x230,\"FilterType\",\"\",0xffffffff,2,4,0,\"LP12LP24 BP  HP \",\n                 &PTR_s_LP12LP24HP12BP24_000e208c);",
+      "FUN_00011652(iVar1 + 0x2a0,\"EnvDepth\",\"\",0,0,100,2,100,0);",
+      "FUN_00010290(iVar1 + 0x310,\"EnvInv\",0);",
+      "FUN_00010218(iVar5,\"Mod.Source\",\"\",0xffffffff,0x1b,0xc,0xffffffff,\n                   \"    - - -     Note Log    Note Lin    Velocity  Aftertouch  Pitch Wheel ModulatWheelBreathContr  FootContr  ExpressContrCC16 Contr  CC17 Contr  CC18 Contr  CC19 Contr     LFO 1       LFO 2       LFO 3       LFO 4    GenEnvelope1GenEnvelope2ModEnvelope1ModEnvelope2Fil1EnvelopeFil2EnvelopeAmp EnvelopeGlide Curve Arpeggiator Alternate   Constant    \"\n                   ,&PTR_s____Key_Log_Key_Lin_Velocity_PolA_000e2070);",
+      "FUN_00010218(iVar5 + 0x1500,\"Mod.Dest.\",\"\",0xffffffff,0x38,0xc,0xffffffff,\n                   \"    - - -    Ampl Gen 1  Ampl Gen 2  Ampl Gen 3  Ampl Gen 4 Pitch Gen 1 Pitch Gen 2 Pitch Gen 3 Pitch Gen 4 AuxMod Gen 1AuxMod Gen 2AuxMod Gen 3AuxMod Gen 4Balance Gen1Balance Gen2Balance Gen3Balance Gen4  Cutoff 1   Resonance 1Env-Depth 1 AuxMod Fil 1 Pan Fil 1  Fil 1 Ampli   Cutoff 2   Resonance 2Env-Depth 2 AuxMod Fil 2 Pan Fil 2  Fil 2 Ampli  Main Ampli  Main Pitch Mod Depth 1 Mod Depth 2 Mod Depth 3 Mod Depth 4 LFO 1 Speed LFO 2 Speed Loop Start 1Loop Start 2 Loop End 1  Loop End 2 Amp-Env Att Amp-Env Dec Amp-Env Rel Fil1-Env AttFil1-Env DecFil1-Env RelFil2-Env AttFil2-Env DecFil2-Env RelMod1-Env AttMod1-Env DecMod1-Env RelMod2-Env AttMod2-Env DecMod2-Env RelSampleStart1SampleStart2\"\n                   ,&PTR_s____Ampl_1_Ampl_2_Ampl_3_Ampl_4_P_000e2058);",
+      "FUN_00011652(iVar5 + 0xa80,\"Mod.Amount\",\"\",0,0xffffd8f0,10000,4,0,5);",
+      "FUN_00010290(iVar1 + 0x2300,\"DMVol\",1);",
+      "FUN_00010290(iVar1 + 0x2370,\"DMVel\",1);",
+      "FUN_00010290(iVar1 + 0x23e0,\"DMWh \",1);",
+      "FUN_00011652(iVar1 + 0x2450,\"Unusued Spread\",\"cent\",0x40800000,0,2000,2,0,0);",
+      "FUN_00011652(iVar1 + 0x24c0,\"Unusued GenMix\",\"% Gen2\",0,0,1000,3,500,0);",
+      "FUN_00010218(iVar1 + 0x2610,\"Gen0 Routing\",\"\",0,2,3,0,\"MixAM FM \",0);",
+      "FUN_00010290(iVar1 + 0x2680,\"Unused\",0);",
+      "FUN_00010290(iVar1 + 0x26f0,\"Unused\",0);",
+      "FUN_00010218(iVar1 + 0x2760,\"Gen 0 Type\",\"\",0,3,0xc,0,\n                 \"Oscillator  Time SamplerSchrader    Loop Sampler\",\n                 &PTR_s_Analogue_TimeSamp_Schrader_LoopS_000e2050);",
+      "FUN_00010218(iVar1 + 0x27d0,\"Gen 1 Type\",\"\",0,3,0xc,1,\n                 \"Oscillator  Time SamplerSchrader    Loop Sampler\",\n                 &PTR_s_Analogue_TimeSamp_Schrader_LoopS_000e2050);",
+      "FUN_00010290(iVar1 + 0x2840,\"Gen 0 OnOff\",1);",
+      "FUN_00010290(&UNK_000028b0 + iVar1,\"Gen 1 OnOff\",1);",
+      "FUN_00010218(iVar1 + 0x2920,\"Unused\",\"\",0,1,8,0,\"SettingsLooppnts\",0);",
+      "FUN_00010218(iVar1 + 0x2990,\"Unused\",\"\",0,1,8,0,\"SettingsLooppnts\",0);",
+      "FUN_00010218(iVar1 + 0x2a00,\"Voices\",\"\",1,0xd,4,0xd,\n                 \"mono  2   3   4   5   6   7   8   9  10  11  12  all\",\n                 &PTR_s_1_2_3_4_5_6_7_8_xxxxxxxxxxxxxxxx_000e2048);",
+      "FUN_00010218(iVar1 + 0x2a70,\"Eff 0 Type\",\"\",0,0xb,10,0,\n                 \"DELAY     ST-DELAY  PING PONG CHORUS    PHASER    FILTER    REVERB    FLANGER   GATOR     ST-ENHANC PARAM-EQ  CRUSHER   \"\n                 ,&PTR_s_Delay_StDelay_xxxxxxxxxxChorus_P_000e2040);",
+      "FUN_00010290(iVar1 + 0x2ae0,\"Eff 0 On\",1);",
+      "FUN_00010218(iVar1 + 0x2b50,\"Eff 0 Type\",\"\",0,0xb,10,0,\n                 \"DELAY     ST-DELAY  PING PONG CHORUS    PHASER    FILTER    REVERB    FLANGER   GATOR     ST-ENHANC PARAM-EQ  CRUSHER   \"\n                 ,&PTR_s_Delay_StDelay_xxxxxxxxxxChorus_P_000e2040);",
+      "FUN_00010290(iVar1 + 0x2bc0,\"Eff 1 On\",1);",
+      "FUN_00010218(iVar1 + 0x2c30,\"Gen2 Routing\",\"\",0,2,3,0,\"MixAM FM \",0);",
+      "FUN_00010218(iVar1 + 0x2ca0,\"Gen 2 Type\",\"\",0,2,0xc,0,\"Oscillator  Time SamplerSchrader    \",\n                 &PTR_s_Analogue_TimeSamp_Schrader_LoopS_000e2050);",
+      "FUN_00010218(iVar1 + 0x2d10,\"Gen 3 Type\",\"\",0,2,0xc,0,\"Oscillator  Time SamplerSchrader    \",\n                 &PTR_s_Analogue_TimeSamp_Schrader_LoopS_000e2050);",
+      "FUN_00010290(iVar1 + 0x2d80,\"Gen 2 OnOff\",0);",
+      "FUN_00010290(iVar1 + 0x2df0,\"Gen 3 OnOff\",0);",
+      "FUN_00010218(iVar1 + 0x2e60,\"Var 0 Type\",\"\",0,1,8,0,\"Classic Alltype \",0);",
+      "FUN_00010218(iVar1 + 0x2ed0,\"Var 1 Type\",\"\",0,1,8,0,\"Classic Alltype \",0);",
+      "FUN_00010218(iVar1 + 0x2f40,\"Eff X0 Type\",\"\",0,0xb,10,0,\n                 \"DELAY     ST-DELAY  PING PONG CHORUS    PHASER    FILTER    REVERB    FLANGER   GATOR     ST-ENHANC PARAM-EQ  CRUSHER   \"\n                 ,&PTR_s_Delay_StDelay_xxxxxxxxxxChorus_P_000e2040);",
+      "FUN_00010290(iVar1 + 0x2fb0,\"Eff X0 On\",0);",
+      "FUN_00010218(iVar1 + 0x3020,\"Eff X1 Type\",\"\",0,0xb,10,0,\n                 \"DELAY     ST-DELAY  PING PONG CHORUS    PHASER    FILTER    REVERB    FLANGER   GATOR     ST-ENHANC PARAM-EQ  CRUSHER   \"\n                 ,&PTR_s_Delay_StDelay_xxxxxxxxxxChorus_P_000e2040);",
+      "FUN_00010290(iVar1 + 0x3090,\"Eff X1 On\",0);",
+      "FUN_00010218(iVar1 + 0x3100,\"Eff X2 Type\",\"\",0,0xb,10,0,\n                 \"DELAY     ST-DELAY  PING PONG CHORUS    PHASER    FILTER    REVERB    FLANGER   GATOR     ST-ENHANC PARAM-EQ  CRUSHER   \"\n                 ,&PTR_s_Delay_StDelay_xxxxxxxxxxChorus_P_000e2040);",
+      "FUN_00010290(iVar1 + 0x3170,\"Eff X2 On\",0);",
+      "FUN_00010218(iVar1 + 0x31e0,\"Eff X3 Type\",\"\",0,0xb,10,0,\n                 \"DELAY     ST-DELAY  PING PONG CHORUS    PHASER    FILTER    REVERB    FLANGER   GATOR     ST-ENHANC PARAM-EQ  CRUSHER   \"\n                 ,&PTR_s_Delay_StDelay_xxxxxxxxxxChorus_P_000e2040);",
+      "FUN_00010290(iVar1 + 0x3250,\"Eff X3 On\",0);",
+      "FUN_00010290(iVar1 + 0x32c0,\"Var 0 On\",1);",
+      "FUN_00010290(iVar1 + 0x3330,\"Var 1 On\",1);",
+      "FUN_00011652(iVar1 + 0x33a0,\"F0 Cut KeyF \",\"\",0,0,100,2,0,0);",
+      "FUN_00011652(iVar1 + 0x3410,\"F0 Cut KeyF \",\"\",0,0,100,2,0,0);",
+      "FUN_00010218(iVar1 + 0x3480,\"FilterType\",\"\",0xffffffff,2,4,0,\"LP12LP24 BP  HP \",\n                 &PTR_s_LP12LP24HP12BP24_000e208c);",
+      "FUN_00011652(iVar1 + 0x34f0,\"EnvDepth\",\"\",0,0,100,2,100,0);",
+      "FUN_00010290(iVar1 + 0x3560,\"EnvInv\",0);",
+      "FUN_00010290(iVar5,\"Mod.Active\",1);",
+      "FUN_00010290(iVar1 + 0x4130,\"LFO0 Perm\",0);",
+      "FUN_00010290(iVar1 + 0x41a0,\"LFO1 Perm\",0);",
+      "FUN_00010290(iVar1 + 0x4210,\"LFO2 Perm\",0);",
+      "FUN_00010290(iVar1 + 0x4280,\"LFO3 Perm\",0);",
+      "FUN_00010218(iVar1 + 0x42f0,\"Env Sel\",\"\",0,4,2,4,\"M1M2M3M4A \",0);",
+      "FUN_00010218(iVar1 + 0x4360,\"LFO Sel\",\"\",0,3,1,0,\"1234\",0);",
+      "FUN_00011652(iVar1 + 0x43d0,\"Sample 0 Scrolling\",\"\",0,0,7,0,0,0);",
+      "FUN_00011652(iVar1 + 0x4440,\"Sample 0 Editing\",\"\",0,0,7,0,0,0);",
+      "FUN_00011652(iVar1 + 0x44b0,\"Sample 0 Shown\",\"\",0,0,0x3f,0,0,0);",
+      "FUN_00011652(iVar1 + 0x4520,\"Sample 1 Scrolling\",\"\",0,0,7,0,0,0);",
+      "FUN_00011652(iVar1 + 0x4590,\"Sample 1 Editing\",\"\",0,0,7,0,0,0);",
+      "FUN_00011652(iVar1 + 0x4600,\"Sample 1 Shown\",\"\",0,0,0x3f,0,0,0);",
+      "FUN_00010218(iVar1 + 0x4670,\"SD Zoom 0\",\"\",0,0xd,4,6,\n                 \"   1   2   4   8  16  32  64 128 256 5121024204840968192\",0);",
+      "FUN_00010218(iVar1 + 0x46e0,\"SD Zoom 1\",\"\",0,0xd,4,6,\n                 \"   1   2   4   8  16  32  64 128 256 5121024204840968192\",0);",
+      "FUN_00011652(iVar1 + 0x4750,\"SD Slider 0\",\"pm\",0,0,1000,3,0,0);",
+      "FUN_00011652(iVar1 + 0x47c0,\"SD Slider 1\",\"pm\",0,0,1000,3,0,0);",
+      "FUN_00011652(iVar1 + 0x4830,\"SD Slider Size 0\",\"pm\",0,10,1000,3,1000,0);",
+      "FUN_00011652(iVar1 + 0x48a0,\"SD Slider Size 1\",\"pm\",0,10,1000,3,1000,0);",
+      "FUN_00010218(iVar1 + 0x4910,\"Var 0 Env\",\"\",0,1,6,0,\"ADSFR EnhEnv\",0);",
+      "FUN_00010218(iVar1 + 0x4980,\"Var 1 Env\",\"\",0,1,6,0,\"ADSFR EnhEnv\",0);",
+      "FUN_00010218(iVar1 + 0x49f0,\"Mod 0 Env\",\"\",0,1,6,0,\"ADSFR EnhEnv\",0);",
+      "FUN_00010218(iVar1 + 0x4a60,\"Mod 1 Env\",\"\",0,1,6,0,\"ADSFR EnhEnv\",0);",
+      "FUN_00010218(iVar1 + 0x4ad0,\"Mod 2 Env\",\"\",0,1,6,0,\"ADSFR EnhEnv\",0);",
+      "FUN_00010218(iVar1 + 0x4b40,\"Mod 3 Env\",\"\",0,1,6,0,\"ADSFR EnhEnv\",0);",
+      "FUN_00010218(iVar1 + 0x4bb0,\"Amp Env\",\"\",0,1,6,0,\"ADSFR EnhEnv\",0);",
+      "FUN_00011652(&UNK_00004c20 + iVar1,\"Vel->Vol\",\"%\",0,0,100,2,0x42,0);",
+      "FUN_00011652(iVar1 + 0x4c90,\"Vel->F1Cut\",\"%\",0,0,100,2,0xf,0);",
+      "FUN_00011652(iVar1 + 0x4d00,\"Vel->F2Cut\",\"%\",0,0,100,2,0xf,0);",
+      "FUN_00011652(iVar1 + 0x4d70,\"G3 Cent\",\"cent\",0,0xffffff9c,100,0,0,0);",
+      "FUN_00011652(&UNK_00004de0 + iVar1,\"G3 Cent\",\"cent\",0,0xffffff9c,100,0,0,0);",
+      "FUN_00011652(iVar1 + 0x4e50,\"G3 Cent\",\"cent\",0,0xffffff9c,100,0,0,0);",
+      "FUN_00011652(iVar1 + 0x4ec0,\"G3 Cent\",\"cent\",0,0xffffff9c,100,0,0,0);",
+      "FUN_00010290(iVar1 + 0x50f0,\"Keys\",1);",
+      "FUN_00011652(iVar1 + 0x5160,\"Fx0 Wet\",\"%\",0x40800000,0,1000,3,100,0);",
+      "FUN_00011652(iVar1 + 0x51d0,\"Fx1 Wet\",\"%\",0x40800000,0,1000,3,100,0);",
+      "FUN_00011652(iVar1 + 0x5240,\"Fx2 Wet\",\"%\",0x40800000,0,1000,3,100,0);",
+      "FUN_00011652(iVar1 + 0x52b0,\"Fx3 Wet\",\"%\",0x40800000,0,1000,3,100,0);",
+      "FUN_00011652(&UNK_00005320 + iVar1,\"Fx4 Wet\",\"%\",0x40800000,0,1000,3,100,0);",
+      "FUN_00011652(iVar1 + 0x5390,\"Fx5 Wet\",\"%\",0x40800000,0,1000,3,100,0);",
+      "FUN_00010290(iVar1 + 0x5400,\"Pow 51 0 \",0);",
+      "FUN_00010290(iVar1 + 0x5470,\"Pow 51 1 \",0);",
+      "FUN_00010290(iVar1 + 0x54e0,\"Pow 51 2 \",0);",
+      "FUN_00010290(iVar1 + 0x5550,\"Pow 51 3 \",0);",
+      "FUN_00010290(iVar1 + 0x55c0,\"Pow 51 4 \",0);",
+      "FUN_00010290(iVar1 + 0x5630,\"Pow 51 5 \",0);",
+      "FUN_00010290(iVar1 + 0x56a0,\"Pow 51 6 \",1);",
+      "FUN_00011652(iVar1 + 0x5710,\"Var0Pan\",\"\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00011652(iVar1 + 0x5780,\"Var1Pan\",\"\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00011652(iVar1 + 0x57f0,\"Exactness\",\"%\",0,0x55,100,2,100,0);",
+      "FUN_00010218(iVar1 + 0x5860,\"File IO Env\",\"\",2,4,5,2,\"Copy PasteInit \",0);",
+      "FUN_00010218(iVar1 + 0x58d0,\"File IO EF0\",\"\",2,4,5,2,\"Copy PasteInit \",0);",
+      "FUN_00010218(iVar1 + 0x5940,\"File IO EF1\",\"\",2,4,5,2,\"Copy PasteInit \",0);",
+      "FUN_00010218(iVar1 + 0x59b0,\"File IO LFO\",\"\",2,4,5,2,\"Copy PasteInit \",0);",
+      "FUN_00010218(iVar1 + 0x5b00,\"File IO Gn0\",\"\",0,4,5,2,\"Load Save Copy PasteInit \",0);",
+      "FUN_00010218(iVar1 + 0x5b70,\"File IO Gn1\",\"\",0,4,5,2,\"Load Save Copy PasteInit \",0);",
+      "FUN_00010218(iVar1 + 0x5be0,\"File IO Gn2\",\"\",0,4,5,2,\"Load Save Copy PasteInit \",0);",
+      "FUN_00010218(iVar1 + 0x5c50,\"File IO Gn3\",\"\",0,4,5,2,\"Load Save Copy PasteInit \",0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "DelayPingPongR_c",
+    "method_address": "0x87fba",
+    "evidence_file": "analysis/ghidra/functions/00087fba_DelayPingPongR_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar4 + 0x70,\"Time Center\",\"msec\",0x40800000,1,0x514,0,0x7d,0);",
+      "FUN_00010218(iVar4 + 0xe0,\"Sync Center\",\"Notes\",3,0x16,5,0xd,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 \"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Time Left\",\"msec\",0x40800000,1,0x514,0,0x7d,0);",
+      "FUN_00010218(iVar4 + 0x1c0,\"Sync Left\",\"Notes\",3,0x16,5,7,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 \"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Pan Left\",\"\",0,0xffffff9c,100,2,0xffffff9c,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Time Right\",\"msec\",0x40800000,1,0x514,0,0x7d,0);",
+      "FUN_00010218(iVar4 + 0x310,\"Sync Right\",\"Notes\",3,0x16,5,10,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 \"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x380,\"Pan Right\",\"\",0,0xffffff9c,100,2,100,0);",
+      "FUN_00011652(iVar4 + 0x3f0,\"Feedback L+R\",\"%\",0,0,99,2,0x28,0);",
+      "FUN_00011652(iVar4 + 0x460,\"Balance Pre/LR\",\"%\",0,0,100,2,0x32,0);",
+      "FUN_00011652(iVar4 + 0x4d0,\"Wet\",\"%\",0,0,100,2,0xf,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "CrushXR_c",
+    "method_address": "0x437a2",
+    "evidence_file": "analysis/ghidra/functions/000437a2_CrushX_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"On/Off\",1);",
+      "FUN_00011652(iVar1 + 0xe0,\"Resolution\",\"bit\",0x40000000,100,0x641,2,400,0);",
+      "FUN_00010290(iVar1 + 0x150,\"Dither On/Off\",0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Divider\",\"Samples\",0x40000000,1,0x20,0,1,0);",
+      "FUN_00010218(iVar1 + 0x230,\"Divider Mode\",\"\",1,3,3,3,\"AVGSTPSLD\",0);",
+      "FUN_00010218(iVar1 + 0x2a0,\"Filter Type \",\"\",1,4,4,1,\"LP12HP12BP12BR12\",0);",
+      "FUN_00011652(iVar1 + 0x310,\"Cutoff\",\"\",0x40800000,0x28,20000,0,20000,0);",
+      "FUN_00011652(iVar1 + 0x380,\"Resonance\",\"\",0,0,100,0,0,0);",
+      "FUN_00010290(iVar1 + 0x3f0,\"FilterPostDiv On/Off\",0);",
+      "FUN_00010290(iVar1 + 0x460,\"Auto Volume compensation\",1);",
+      "FUN_00011652(iVar1 + 0x4d0,\"Wet\",\"%\",0,0,100,2,100,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "GatorR_c",
+    "method_address": "0x3b236",
+    "evidence_file": "analysis/ghidra/functions/0003b236_Gator_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar1 + 0x2a0,\"Wet\",\"%\",0,0,100,2,100,0);",
+      "FUN_00010218(iVar1 + 0x150,\"Frequency\",\"Notes\",1,0x11,5,0xd,\n                 \" 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T\"\n                 ,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Smooth\",\"%\",0,0,100,2,5,0);",
+      "FUN_00010218(iVar1 + 0x230,\"Link\",\"Mode\",0,2,5,0,\" off link xlink\",0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "EQ2R_c",
+    "method_address": "0x92210",
+    "evidence_file": "analysis/ghidra/functions/00092210_EQ2R_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar4 + 0x70,\"Freq\",\"Hz\",0x40800000,0x14,11000,0,0x1b8,0);",
+      "FUN_00011652(iVar4 + 0xe0,\"Gain\",\"dB\",0,param_1[0xc9] * -10,param_1[0xc9] * 10,1,0,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Q\",\"Q\",0x40800000,0x21,0x4b0,2,100,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Freq\",\"Hz\",0x40800000,0x14,11000,0,0x1b8,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Gain\",\"dB\",0,param_1[0xc9] * -10,param_1[0xc9] * 10,1,0,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Q\",\"Q\",0x40800000,0x21,0x4b0,2,100,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "StereoEnh1R_c",
+    "method_address": "0x32ab8",
+    "evidence_file": "analysis/ghidra/functions/00032ab8_StereoEnh1_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar4 + 0x70,\"Wet\",\"%\",0,0,100,2,0x32,0);",
+      "FUN_00011652(iVar4 + 0xe0,\"Roomsize\",\"msec\",0,5,100,1,0x32,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Factor\",\"n\",0,10,0x28,1,0x14,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Flanger2R_c",
+    "method_address": "0x86ef6",
+    "evidence_file": "analysis/ghidra/functions/00086ef6_Flanger2R_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"Wet\",\"%\",0,0,100,2,0,0);",
+      "FUN_00010290(iVar4 + 0x150,\"InvertFeedback\",0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Time\",\"msec\",0x40800000,1,0x2134,2,200,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Feed\",\"%\",0,0,999,3,100,0);",
+      "FUN_00010290(iVar4 + 0x2a0,\"InvertFeedback\",0);",
+      "FUN_00011652(iVar4 + 0x310,\"Phase\",\"deg\",0x40800000,0,0xb4,0,5,0);",
+      "FUN_00011652(iVar4 + 0x380,\"ModRate\",\"Hz\",0x40800000,1,5000,3,400,0);",
+      "FUN_00010218(iVar4 + 0x3f0,\"Frequency\",\"Notes\",0xfffffff3,0x1a,5,7,\n                 \" Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16\"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x460,\"Time Depth\",\"\",0x40800000,0,999,3,0xfa,0);",
+      "FUN_00011652(iVar4 + 0x4d0,\"Pan Depth\",\"\",0x40800000,0,999,3,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "DelayStereoR_c",
+    "method_address": "0x3eba6",
+    "evidence_file": "analysis/ghidra/functions/0003eba6_DelayStereo_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"TimeL\",\"msec\",0x40800000,1,0x514,0,0x7d,0);",
+      "FUN_00010218(iVar4 + 0x150,\"SyncL\",\"Notes\",3,0x16,5,0xd,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 \"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"TimeR\",\"msec\",0x40800000,1,0x514,0,0xfa,0);",
+      "FUN_00010218(iVar4 + 0x230,\"SyncR\",\"Notes\",3,0x16,5,10,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 \"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Feed\",\"%\",0,0,99,2,0x28,0);",
+      "FUN_00011652(iVar4 + 0x310,\"CutLo\",\"Hz\",0x40800000,0x28,22000,0,22000,0);",
+      "FUN_00011652(iVar4 + 0x380,\"CutHi\",\"Hz\",0x40800000,8,11000,0,8,0);",
+      "FUN_00011652(iVar4 + 0x3f0,\"Wet\",\"%\",0,0,100,2,0xf,0);",
+      "FUN_00011652(iVar4 + 0x460,\"Stereo\",\"%\",0,0xffffff9c,100,2,100,0);",
+      "FUN_00010290(iVar4 + 0x4d0,\"Feedback Link\",1);",
+      "FUN_00010290(iVar4 + 0x540,\"Crossdelay\",0);",
+      "FUN_00010290(iVar4 + 0x5b0,\"Filters in Feedback\",0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Reverb2R_c",
+    "method_address": "0xb5cae",
+    "evidence_file": "analysis/ghidra/functions/000b5cae_Reverb2R_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"WetOld\",\"%\",0,0xffffffff,100,2,0xffffffff,0);",
+      "FUN_00011652(iVar4 + 0x150,\"RevTime\",\"s\",0,1,100,1,0x14,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Damping \",\"%\",0,0,0x5a,2,0x14,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Predelay\",\"ms\",0,0,0x7d,0,0x19,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Wet\",\"%\",0x40800000,0,1000,3,0x50,0);",
+      "FUN_00010218(iVar4 + 0x310,\"Frequency\",\"Notes\",9,0x1a,5,9,\n                 \" Off  1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16\"\n                 ,0);",
+      "FUN_00010290(iVar4 + 0x380,\"Modulation On/Off\",0);",
+      "FUN_00011652(iVar4 + 0x3f0,\"Diffusors\",\"\",0,2,6,0,4,0);",
+      "FUN_00011652(iVar4 + 0x460,\"Mod Freq\",\"Hz\",0,3,0x14,0,10,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "GloFilR_c",
+    "method_address": "0x301f0",
+    "evidence_file": "analysis/ghidra/functions/000301f0_GloFil_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"S0 On/Off\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"Filter Wet\",\"%\",0,0,100,2,100,0);",
+      "FUN_00010218(iVar4 + 0x150,\"Type \",\"\",0,3,4,0,\"LP12HP12BP12BR12\",0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Filter Sat\",\"%\",0,0,100,2,0x14,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Cutoff\",\"Hz\",0x40800000,0x28,20000,0,10000,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Resonance\",\"%\",0,0,100,2,0,0);",
+      "FUN_00011652(iVar4 + 0x310,\"Filter Mod Speed\",\"Hz\",0x40000000,4,400,2,100,0);",
+      "FUN_00011652(iVar4 + 0x380,\"Filter Mod Depth\",\"%\",0,0,100,2,0x32,0);",
+      "FUN_00010218(iVar4 + 0x460,\"Frequency\",\"Notes\",0xfffffff3,0x1a,5,0xfffffff3,\n                 \" Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16\"\n                 ,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Phaser1SR_c",
+    "method_address": "0x8ef84",
+    "evidence_file": "analysis/ghidra/functions/0008ef84_Phaser1SR_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"Phaser Wet\",\"%\",0,0,100,2,0x3c,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Phaser Speed\",\"Hz\",0x40000000,0x28,1000,3,400,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Phaser Center\",\"Hz\",0,100,10000,0,0x6e0,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Phaser Depth\",\"%\",0,1,99,2,0x3c,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Phaser Feedb\",\"%\",0,0,99,2,0x32,0);",
+      "FUN_00010290(iVar4 + 0x310,\"Phaser FBInv\",1);",
+      "FUN_00011652(iVar4 + 0x380,\"Phaser Stages\",\"\",0,1,9,0,5,0);",
+      "FUN_00011652(iVar4 + 0x3f0,\"Phaser Stereo\",\"%\",0,0,100,2,0,0);",
+      "FUN_00010218(iVar4 + 0x460,\"Frequency\",\"Notes\",0xfffffff3,0xb,5,0xfffffff3,\n                 \" Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T\"\n                 ,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Chorus1R_c",
+    "method_address": "0x410f8",
+    "evidence_file": "analysis/ghidra/functions/000410f8_Chorus1_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"Chorus Time\",\"ms\",0x40800000,1,600,2,200,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Chorus TimeSpread\",\"%\",0,0,0x5a,2,0x1e,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Chorus Speed\",\"Hz\",0x40800000,0x14,4000,3,500,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Chorus SpeedSpread\",\"%\",0,0,0x5a,2,0x1e,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Chorus Wet\",\"%\",0,0,100,2,0x3c,0);",
+      "FUN_00011652(iVar4 + 0x310,\"Chorus Mode\",\"\",0,0,1,0,0,0);",
+      "FUN_00010290(iVar4 + 0x380,\"Invert Signal\",0);",
+      "FUN_00011652(iVar4 + 0x3f0,\"Chorus Dry\",\"%\",0,0,100,2,100,0);",
+      "FUN_00011652(iVar4 + 0x460,\"Chorus Stereo\",\"%\",0,0,100,2,100,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Delay2R_c",
+    "method_address": "0x6d06e",
+    "evidence_file": "analysis/ghidra/functions/0006d06e_Delay2R_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"Time\",\"msec\",0x40800000,10,0x1a90,1,1000,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Feed\",\"%\",0,0,99,2,0x28,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Fil \",\"\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Wet\",\"%\",0,0,100,2,0x28,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"ModRate\",\"Hz\",0x40800000,1,200,2,100,0);",
+      "FUN_00011652(iVar4 + 0x310,\"ModDept\",\"\",0x40800000,0,0x3de,3,0,0);",
+      "FUN_00010290(iVar4 + 0x380,\"Sync\",0);",
+      "FUN_00010218(iVar4 + 0x3f0,\"Frequency\",\"Notes\",3,0x11,5,0xd,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T\",0);",
+      "FUN_00011652(iVar4 + 0x460,\"Fil \",\"\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00010218(iVar4 + 0x4d0,\"Frequency\",\"Notes\",0xfffffff3,0x1a,5,0xfffffff3,\n                 \" Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16\"\n                 ,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Delay2_c",
+    "method_address": "0x6d06e",
+    "evidence_file": "analysis/ghidra/functions/0006d06e_Delay2R_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"Time\",\"msec\",0x40800000,10,0x1a90,1,1000,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Feed\",\"%\",0,0,99,2,0x28,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Fil \",\"\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Wet\",\"%\",0,0,100,2,0x28,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"ModRate\",\"Hz\",0x40800000,1,200,2,100,0);",
+      "FUN_00011652(iVar4 + 0x310,\"ModDept\",\"\",0x40800000,0,0x3de,3,0,0);",
+      "FUN_00010290(iVar4 + 0x380,\"Sync\",0);",
+      "FUN_00010218(iVar4 + 0x3f0,\"Frequency\",\"Notes\",3,0x11,5,0xd,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T\",0);",
+      "FUN_00011652(iVar4 + 0x460,\"Fil \",\"\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00010218(iVar4 + 0x4d0,\"Frequency\",\"Notes\",0xfffffff3,0x1a,5,0xfffffff3,\n                 \" Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16\"\n                 ,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "StepSeq_c",
+    "method_address": "0x6f76e",
+    "evidence_file": "analysis/ghidra/functions/0006f76e_StepSeq_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"On/Off\",1);",
+      "FUN_00010218(iVar1 + 0xe0,\"Op.Mode\",\"\",0,10,8,0,\n                 \"Off     Mod-OnlyUp      Down    Up/Down Up/Down+Down/Up Down/Up+Random  Chord   AsPlayed\"\n                 ,0);",
+      "FUN_00010218(iVar1 + 0x150,\"Resolution\",\"Notes\",1,0x12,5,0xd,\n                 \" 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64\"\n                 ,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Length\",\"Steps\",0,2,param_1[0x77],0,0x10,0);",
+      "FUN_00011652(iVar1 + 0x230,\"Octaves\",\"Oct\",0,1,4,0,1,0);",
+      "FUN_00011652(iVar1 + 0x2a0,\"Swing\",\"%\",0,0,100,0,0,0);",
+      "FUN_00011652(iVar1 + 0x310,\"Played Veloc\",\"%\",0,0,100,0,0x32,0);",
+      "FUN_00011652(iVar1 + 0x3f0,\"FixVelo\",\"\",0,0,0x7f,0,100,0);",
+      "FUN_00011652(iVar1 + 0x4d0,\"Note Length\",\"%\",0,0,100,0,0x32,0);",
+      "FUN_00010218(iVar1 + 0x540,\"File IO\",\"\",0,4,5,0,\"Load Save Copy PasteInit \",0);",
+      "FUN_00010290(iVar1 + 0x5b0,\"On/Off\",1);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "ChordMem_c",
+    "method_address": "0x73214",
+    "evidence_file": "analysis/ghidra/functions/00073214_ChordMem_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"On/Off\",0);",
+      "FUN_00010218(iVar1 + 0xe0,\"Op.Mode\",\"\",0,2,5,0,\"Off  LearnPlay \",0);",
+      "FUN_00011652(iVar1 + 0x150,\"Polyphony\",\"\",0,0,8,0,1,0);",
+      "FUN_00011652(iVar1 + 0x230,\"Velo 0\",\"\",0,0,0x7f,0,100,0);",
+      "FUN_00011652(iVar1 + 0x310,\"Velo 1\",\"\",0,0,0x7f,0,100,0);",
+      "FUN_00011652(iVar1 + 0x3f0,\"Velo 2\",\"\",0,0,0x7f,0,100,0);",
+      "FUN_00011652(iVar1 + 0x4d0,\"Velo 3\",\"\",0,0,0x7f,0,100,0);",
+      "FUN_00011652(iVar1 + 0x5b0,\"Velo 4\",\"\",0,0,0x7f,0,100,0);",
+      "FUN_00011652(iVar1 + 0x690,\"Velo 5\",\"\",0,0,0x7f,0,100,0);",
+      "FUN_00011652(iVar1 + 0x770,\"Velo 6\",\"\",0,0,0x7f,0,100,0);",
+      "FUN_00011652(iVar1 + 0x850,\"Velo 7\",\"\",0,0,0x7f,0,100,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Satur_c",
+    "method_address": "0x73daa",
+    "evidence_file": "analysis/ghidra/functions/00073daa_Satur_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"S0 On/Off\",1);",
+      "FUN_00011652(iVar1 + 0xe0,\"Intense\",\"%\",0,0,100,2,0,0);",
+      "FUN_00010218(iVar1 + 0x150,\"Unused\",\"\",0,2,6,0,\"Hard  Soft  Modula\",0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "FilterFree_c",
+    "method_address": "0x7461c",
+    "evidence_file": "analysis/ghidra/functions/0007461c_FilterFree_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar1 + 0xe0,\"Cutoff\",\"\",0x40800000,0x28,20000,0,20000,0);",
+      "FUN_00011652(iVar1 + 0x150,\"Resonance\",\"\",0,0,100,0,0,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Type     \",\"\",0,0,100,2,0,0);",
+      "FUN_00010218(iVar1 + 0x230,\"Slope    \",\"\",1,2,5,1,\"12 dB24 dB\",0);",
+      "FUN_00011652(iVar1 + 0x2a0,\"Cut KeyF \",\"\",0,0,100,2,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "FilterMoogSI_c",
+    "method_address": "0x77082",
+    "evidence_file": "analysis/ghidra/functions/00077082_FilterMoogSI_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"OffOn\",1);",
+      "FUN_00010218(iVar1 + 0xe0,\"Type \",\"\",0xffffffff,2,6,1,\"LP 12 LP 24 BP 24 HP 12 \",0);",
+      "FUN_00011652(iVar1 + 0x150,\"Cutoff\",\"Hz\",0x40800000,0x28,20000,0,20000,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Resonance\",\"%\",0,0,100,0,0,0);",
+      "FUN_00011652(iVar1 + 0x230,\"RoutBal\",\"%\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00011652(iVar1 + 0x2a0,\"Cut KeyF\",\"%\",0,0,100,2,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "OscAnalog3_c",
+    "method_address": "0x7a498",
+    "evidence_file": "analysis/ghidra/functions/0007a498_OscAnalog3_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar1 + 0xe0,\"Waveform\",\"%\",0,0,100,2,0x32,0);",
+      "FUN_00011652(iVar1 + 0x150,\"PulseWidth\",\"%\",0,5,100,2,100,0);",
+      "FUN_00010218(iVar1 + 0x1c0,\"Unused Mode\",\"\",0,2,1,2,\"XA0\",0);",
+      "FUN_00011652(iVar1 + 0x230,\"Octave\",\"\",0,0xfffffffe,7,0,0,0);",
+      "FUN_00011652(iVar1 + 0x2a0,\"Semitone\",\"\",0,0xfffffff5,0xb,0,0,0);",
+      "FUN_00010290(iVar1 + 0x310,\"Track\",1);",
+      "FUN_00011652(iVar1 + 0x380,\"Cent\",\"cent\",0,0xffffff9d,99,0,0,0);",
+      "FUN_00011652(iVar1 + 0x460,\"\",\"%\",0,0x32,0x96,2,100,0);",
+      "FUN_00011652(iVar1 + 0x4d0,\"\",\"%\",0,1,3,0,2,0);",
+      "FUN_00011652(iVar1 + 0x540,\"Spread\",\"cent\",0x40800000,0,5000,2,0,0);",
+      "FUN_00010290(iVar1 + 0x5b0,\"FreeRun\",0);",
+      "FUN_00011652(iVar1 + 0x620,\"SubOsc Vol\",\"%\",0,0,100,2,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Pan51_c",
+    "method_address": "0x7f166",
+    "evidence_file": "analysis/ghidra/functions/0007f166_Pan51_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar1 + 0x70,\"LeftRight\",\"\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00011652(iVar1 + 0xe0,\"FrontRear\",\"\",0,0xffffff9c,100,2,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Pan_c",
+    "method_address": "0x8019c",
+    "evidence_file": "analysis/ghidra/functions/0008019c_Pan_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"S0 On/Off\",1);",
+      "FUN_00011652(iVar1 + 0xe0,\"Pan\",\"\",0,0xffffff9c,100,2,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "AdvLFO_c",
+    "method_address": "0x83fc4",
+    "evidence_file": "analysis/ghidra/functions/00083fc4_AdvLFO_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"S0 On/Off\",1);",
+      "FUN_00010218(iVar1 + 0xe0,\"Waveform\",\"\",0,5,6,1,\"Sine  TriangSawtooSquareNoise Sam&Ho\",0);",
+      "FUN_00011652(iVar1 + 0x150,\"Frequency\",\"Hz\",0x40800000,1,0xc80,2,100,0);",
+      "FUN_00010290(iVar1 + 0x1c0,\"Sync\",1);",
+      "FUN_00010218(iVar1 + 0x230,\"Frequency\",\"Notes\",0xfffffff3,0x1a,5,7,\n                 \" Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16\"\n                 ,0);",
+      "FUN_00011652(iVar1 + 0x2a0,\"Delay\",\"sec\",0x40800000,0,10000,3,0,4);",
+      "FUN_00011652(iVar1 + 0x310,\"Attack\",\"sec\",0x40800000,0,10000,3,0,4);",
+      "FUN_00011652(iVar1 + 0x380,\"Decay\",\"sec\",0x40800000,0,0x2711,3,0x2711,4);",
+      "FUN_00011652(iVar1 + 0x460,\"Symmetry\",\"%\",0,4,0x60,2,0x32,0);",
+      "FUN_00011652(iVar1 + 0x4d0,\"Phase\",\"%\",0,0,99,2,0,0);",
+      "FUN_00011652(iVar1 + 0x540,\"KeyTrack\",\"%\",0,0xffffff9c,100,0,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "EnvDAD_c",
+    "method_address": "0x84e96",
+    "evidence_file": "analysis/ghidra/functions/00084e96_EnvDAD_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar1 + 0x70,\"A Time\",\"sec\",0x40800000,0,10000,3,0,0);",
+      "FUN_00011652(iVar1 + 0xe0,\"H Time\",\"sec\",0x40800000,0,10000,3,0,0);",
+      "FUN_00011652(iVar1 + 0x150,\"D Time\",\"sec\",0x40800000,1,0x2711,3,0x2711,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Pitch Scal\",\"%\",0,0xffffff9c,100,0,0,0);",
+      "FUN_00011652(iVar1 + 0x230,\"Veloc.Scal\",\"%\",0,0xffffff9c,100,0,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Flanger2_c",
+    "method_address": "0x86ef6",
+    "evidence_file": "analysis/ghidra/functions/00086ef6_Flanger2R_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"Wet\",\"%\",0,0,100,2,0,0);",
+      "FUN_00010290(iVar4 + 0x150,\"InvertFeedback\",0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Time\",\"msec\",0x40800000,1,0x2134,2,200,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Feed\",\"%\",0,0,999,3,100,0);",
+      "FUN_00010290(iVar4 + 0x2a0,\"InvertFeedback\",0);",
+      "FUN_00011652(iVar4 + 0x310,\"Phase\",\"deg\",0x40800000,0,0xb4,0,5,0);",
+      "FUN_00011652(iVar4 + 0x380,\"ModRate\",\"Hz\",0x40800000,1,5000,3,400,0);",
+      "FUN_00010218(iVar4 + 0x3f0,\"Frequency\",\"Notes\",0xfffffff3,0x1a,5,7,\n                 \" Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16\"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x460,\"Time Depth\",\"\",0x40800000,0,999,3,0xfa,0);",
+      "FUN_00011652(iVar4 + 0x4d0,\"Pan Depth\",\"\",0x40800000,0,999,3,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "DelayPingPong_c",
+    "method_address": "0x87fba",
+    "evidence_file": "analysis/ghidra/functions/00087fba_DelayPingPongR_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar4 + 0x70,\"Time Center\",\"msec\",0x40800000,1,0x514,0,0x7d,0);",
+      "FUN_00010218(iVar4 + 0xe0,\"Sync Center\",\"Notes\",3,0x16,5,0xd,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 \"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Time Left\",\"msec\",0x40800000,1,0x514,0,0x7d,0);",
+      "FUN_00010218(iVar4 + 0x1c0,\"Sync Left\",\"Notes\",3,0x16,5,7,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 \"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Pan Left\",\"\",0,0xffffff9c,100,2,0xffffff9c,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Time Right\",\"msec\",0x40800000,1,0x514,0,0x7d,0);",
+      "FUN_00010218(iVar4 + 0x310,\"Sync Right\",\"Notes\",3,0x16,5,10,\n                 \" Off  1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 \"\n                 ,0);",
+      "FUN_00011652(iVar4 + 0x380,\"Pan Right\",\"\",0,0xffffff9c,100,2,100,0);",
+      "FUN_00011652(iVar4 + 0x3f0,\"Feedback L+R\",\"%\",0,0,99,2,0x28,0);",
+      "FUN_00011652(iVar4 + 0x460,\"Balance Pre/LR\",\"%\",0,0,100,2,0x32,0);",
+      "FUN_00011652(iVar4 + 0x4d0,\"Wet\",\"%\",0,0,100,2,0xf,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "DistSimp2_c",
+    "method_address": "0x88f2e",
+    "evidence_file": "analysis/ghidra/functions/00088f2e_DistSimp2_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"S0 On/Off\",1);",
+      "FUN_00011652(iVar1 + 0xe0,\"Intense\",\"%\",0,0,100,2,0,0);",
+      "FUN_00010218(iVar1 + 0x150,\"Type \",\"\",0,2,6,0,\"Hard  Soft  Modula\",0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Amp_c",
+    "method_address": "0x897e8",
+    "evidence_file": "analysis/ghidra/functions/000897e8_Amp_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(*(undefined4 *)(param_1[0x48] + 4),\"Version\",\"\",0,200,0x26ac,2,200,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "WaveTable_c",
+    "method_address": "0x8d62e",
+    "evidence_file": "analysis/ghidra/functions/0008d62e_WaveTable_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar1 + 0x150,\"Start Frame\",\"%\",0,0,0x3de,1,0,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"End Frame\",\"%\",0,10,1000,1,1000,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Phaser1S_c",
+    "method_address": "0x8ef84",
+    "evidence_file": "analysis/ghidra/functions/0008ef84_Phaser1SR_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"Phaser Wet\",\"%\",0,0,100,2,0x3c,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Phaser Speed\",\"Hz\",0x40000000,0x28,1000,3,400,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Phaser Center\",\"Hz\",0,100,10000,0,0x6e0,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Phaser Depth\",\"%\",0,1,99,2,0x3c,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Phaser Feedb\",\"%\",0,0,99,2,0x32,0);",
+      "FUN_00010290(iVar4 + 0x310,\"Phaser FBInv\",1);",
+      "FUN_00011652(iVar4 + 0x380,\"Phaser Stages\",\"\",0,1,9,0,5,0);",
+      "FUN_00011652(iVar4 + 0x3f0,\"Phaser Stereo\",\"%\",0,0,100,2,0,0);",
+      "FUN_00010218(iVar4 + 0x460,\"Frequency\",\"Notes\",0xfffffff3,0xb,5,0xfffffff3,\n                 \" Off 16/1*16/1 16/1T 8/1* 8/1  8/1T 4/1* 4/1  4/1T 2/1* 2/1  2/1T 1/1* 1/1  1/1T 1/2* 1/2  1/2T 1/4* 1/4  1/4T 1/8* 1/8  1/8T\"\n                 ,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "EQ2_c",
+    "method_address": "0x92210",
+    "evidence_file": "analysis/ghidra/functions/00092210_EQ2R_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00011652(iVar4 + 0x70,\"Freq\",\"Hz\",0x40800000,0x14,11000,0,0x1b8,0);",
+      "FUN_00011652(iVar4 + 0xe0,\"Gain\",\"dB\",0,param_1[0xc9] * -10,param_1[0xc9] * 10,1,0,0);",
+      "FUN_00011652(iVar4 + 0x150,\"Q\",\"Q\",0x40800000,0x21,0x4b0,2,100,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Freq\",\"Hz\",0x40800000,0x14,11000,0,0x1b8,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Gain\",\"dB\",0,param_1[0xc9] * -10,param_1[0xc9] * 10,1,0,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Q\",\"Q\",0x40800000,0x21,0x4b0,2,100,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "SamTC3_c",
+    "method_address": "0xb3292",
+    "evidence_file": "analysis/ghidra/functions/000b3292_SamTC3_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar1,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar1 + 0x70,\"On/Off\",1);",
+      "FUN_00011652(iVar1 + 0xe0,\"Octave\",\"\",0,0xfffffffd,3,0,0,0);",
+      "FUN_00011652(iVar1 + 0x150,\"Semitone\",\"\",0,0xfffffff5,0xb,0,0,0);",
+      "FUN_00011652(iVar1 + 0x1c0,\"Cent\",\"\",0,0xffffff9d,99,0,0,0);",
+      "FUN_00011652(iVar1 + 0x230,\"Time    \",\"%\",0x40800000,0x19,0xc80,2,100,4);",
+      "FUN_00010290(iVar1 + 0x2a0,\"PitchTrack On/Off\",1);",
+      "FUN_00011652(iVar1 + 0x310,\"TimeTrk\",\"\",0,0xffffff9c,100,2,0,0);",
+      "FUN_00010290(iVar1 + 0x380,\"FullLoop On/Off\",0);",
+      "FUN_00011652(iVar1 + 0x3f0,\"Spread\",\"cent\",0x40800000,0,5000,2,0,0);"
+    ],
+    "au_parameter_ids_verified": false
+  },
+  {
+    "class": "Reverb2_c",
+    "method_address": "0xb5cae",
+    "evidence_file": "analysis/ghidra/functions/000b5cae_Reverb2R_c_vslot_6.c",
+    "calls": [
+      "FUN_00011652(iVar4,\"Version\",\"\",0,200,0x26ac,2,200,0);",
+      "FUN_00010290(iVar4 + 0x70,\"OffOn\",1);",
+      "FUN_00011652(iVar4 + 0xe0,\"WetOld\",\"%\",0,0xffffffff,100,2,0xffffffff,0);",
+      "FUN_00011652(iVar4 + 0x150,\"RevTime\",\"s\",0,1,100,1,0x14,0);",
+      "FUN_00011652(iVar4 + 0x1c0,\"Damping \",\"%\",0,0,0x5a,2,0x14,0);",
+      "FUN_00011652(iVar4 + 0x230,\"Predelay\",\"ms\",0,0,0x7d,0,0x19,0);",
+      "FUN_00011652(iVar4 + 0x2a0,\"Wet\",\"%\",0x40800000,0,1000,3,0x50,0);",
+      "FUN_00010218(iVar4 + 0x310,\"Frequency\",\"Notes\",9,0x1a,5,9,\n                 \" Off  1/8  1/8T1/16*1/16 1/16T1/32*1/32 1/32T 1/64 5/16 7/16 9/16 5/8 11/1613/16 7/8 15/16\"\n                 ,0);",
+      "FUN_00010290(iVar4 + 0x380,\"Modulation On/Off\",0);",
+      "FUN_00011652(iVar4 + 0x3f0,\"Diffusors\",\"\",0,2,6,0,4,0);",
+      "FUN_00011652(iVar4 + 0x460,\"Mod Freq\",\"Hz\",0,3,0x14,0,10,0);"
+    ],
+    "au_parameter_ids_verified": false
+  }
+]

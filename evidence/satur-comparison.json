@@ -1,0 +1,22 @@
+{
+  "scope": "Isolated Satur_c process 0x73fb0, synthetic buffer callbacks; NOT full synth",
+  "original_i386_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "test_cases": 160,
+  "compared_samples": 133500,
+  "bit_exact": true,
+  "max_abs_error": 0.0,
+  "mismatches": [],
+  "disabled_path_unchanged": true,
+  "test_backend": "Unicorn 2.1.4 x86-32 SSE, MXCSR=0x1f80, finite inputs, five coefficient pairs",
+  "excluded": [
+    "full synth",
+    "coefficient generation",
+    "AU host",
+    "state restoration",
+    "DAW projects",
+    "real Intel hardware comparison",
+    "ARM64 execution",
+    "NaN/Inf",
+    "alternate rounding modes and FTZ/DAZ"
+  ]
+}

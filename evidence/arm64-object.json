@@ -1,0 +1,19 @@
+{
+  "artifact": "SaturKernel.arm64.o",
+  "sha256": "5f603d7d054fb4ee7ef4e7eb178b721b3d17ef2326ec78c72671938bfaa00e85",
+  "mach_o_magic": "0xfeedfacf",
+  "cpu_type": "0x100000c",
+  "file_type": 1,
+  "is_arm64": true,
+  "is_relocatable_object": true,
+  "is_audio_unit": false,
+  "executed_on_arm64": false,
+  "compiler": "Zig 0.14.1 C++ driver, target aarch64-macos",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-ffp-contract=off",
+    "-fno-fast-math",
+    "-c"
+  ]
+}
