@@ -457,11 +457,88 @@ case 0xd4b5:goto L_d4b5;
 case 0xd4bb:goto L_d4bb;
 case 0xd4c2:goto L_d4c2;
 case 0xd4c4:goto L_d4c4;
+case 0xd660:goto L_d660;
+case 0xd667:goto L_d667;
+case 0xd66d:goto L_d66d;
+case 0xd670:goto L_d670;
+case 0xd676:goto L_d676;
 case 0xd67d:goto L_d67d;
 case 0xd680:goto L_d680;
 case 0xd681:goto L_d681;
 case 0xd682:goto L_d682;
 case 0xd683:goto L_d683;
+case 0xd684:goto L_d684;
+case 0xd68b:goto L_d68b;
+case 0xd68d:goto L_d68d;
+case 0xd695:goto L_d695;
+case 0xd697:goto L_d697;
+case 0xd69f:goto L_d69f;
+case 0xd6a1:goto L_d6a1;
+case 0xd6a9:goto L_d6a9;
+case 0xd6ab:goto L_d6ab;
+case 0xd6b2:goto L_d6b2;
+case 0xd6b4:goto L_d6b4;
+case 0xd6ba:goto L_d6ba;
+case 0xd6bc:goto L_d6bc;
+case 0xd6be:goto L_d6be;
+case 0xd6c2:goto L_d6c2;
+case 0xd6ca:goto L_d6ca;
+case 0xd6d2:goto L_d6d2;
+case 0xd6d5:goto L_d6d5;
+case 0xd6da:goto L_d6da;
+case 0xd6dd:goto L_d6dd;
+case 0xd6e2:goto L_d6e2;
+case 0xd6e9:goto L_d6e9;
+case 0xd6f0:goto L_d6f0;
+case 0xd6f7:goto L_d6f7;
+case 0xd6fa:goto L_d6fa;
+case 0xd6ff:goto L_d6ff;
+case 0xd702:goto L_d702;
+case 0xd705:goto L_d705;
+case 0xd706:goto L_d706;
+case 0xd707:goto L_d707;
+case 0xd708:goto L_d708;
+case 0xd70d:goto L_d70d;
+case 0xd711:goto L_d711;
+case 0xd719:goto L_d719;
+case 0xd71e:goto L_d71e;
+case 0xd721:goto L_d721;
+case 0xd727:goto L_d727;
+case 0xd72f:goto L_d72f;
+case 0xd734:goto L_d734;
+case 0xd73c:goto L_d73c;
+case 0xd741:goto L_d741;
+case 0xd749:goto L_d749;
+case 0xd74e:goto L_d74e;
+case 0xd755:goto L_d755;
+case 0xd75b:goto L_d75b;
+case 0xd75d:goto L_d75d;
+case 0xd760:goto L_d760;
+case 0xd763:goto L_d763;
+case 0xd766:goto L_d766;
+case 0xd769:goto L_d769;
+case 0xd76c:goto L_d76c;
+case 0xd76f:goto L_d76f;
+case 0xd772:goto L_d772;
+case 0xd775:goto L_d775;
+case 0xd776:goto L_d776;
+case 0xd777:goto L_d777;
+case 0xd778:goto L_d778;
+case 0xd77a:goto L_d77a;
+case 0xd781:goto L_d781;
+case 0xd787:goto L_d787;
+case 0xd78d:goto L_d78d;
+case 0xd794:goto L_d794;
+case 0xd799:goto L_d799;
+case 0xd7a1:goto L_d7a1;
+case 0xd7a6:goto L_d7a6;
+case 0xd7ae:goto L_d7ae;
+case 0xd7b3:goto L_d7b3;
+case 0xd7bb:goto L_d7bb;
+case 0xd7c0:goto L_d7c0;
+case 0xd7c3:goto L_d7c3;
+case 0xd7c5:goto L_d7c5;
+case 0xd7cf:goto L_d7cf;
 case 0xd7d4:goto L_d7d4;
 case 0xd7d5:goto L_d7d5;
 case 0xd7d7:goto L_d7d7;
@@ -6862,6 +6939,143 @@ c.pc=SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x0,c));goto dispatch;
 P_d4c4_1:;
 c.pc=0xd4c6;goto dispatch;
 }
+L_d660:{ // CMP byte ptr [ESI + 0x1b54],0x0
+c.pc=0xd660;if(!sl_tick(c))return int(c.fault);
+P_d660_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1b54ULL)),c);
+P_d660_1:;
+sl_put<1>(c.temp,sizeof(c.temp),0x9500,sl_get<1>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d660_2:;
+sl_put<1>(c.temp,sizeof(c.temp),0x30780,sl_get<1>(c.temp,sizeof(c.temp),0x9500,c),c);
+P_d660_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c) < SlU(0x0ULL)),c);
+P_d660_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)^SlU(0x0ULL))&(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)^(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)-SlU(0x0ULL)))&(SlU(1)<<7))!=0),c);
+P_d660_5:;
+sl_put<1>(c.temp,sizeof(c.temp),0x30880,(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c) - SlU(0x0ULL)),c);
+P_d660_6:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c),8) < sl_signed(SlU(0x0ULL),8)),c);
+P_d660_7:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c) == SlU(0x0ULL)),c);
+P_d660_8:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22900,(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c) & SlU(0xffULL)),c);
+P_d660_9:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<1>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d660_10:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d660_11:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d660_12:;
+goto L_d667;
+}
+L_d667:{ // JZ 0x0000d7c0
+c.pc=0xd667;if(!sl_tick(c))return int(c.fault);
+P_d667_0:;
+if(sl_get<1>(c.reg,sizeof(c.reg),0x206,c)){goto L_d7c0;}
+P_d667_1:;
+goto L_d66d;
+}
+L_d66d:{ // SHL EDX,0x7
+c.pc=0xd66d;if(!sl_tick(c))return int(c.fault);
+P_d66d_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x50e00,(SlU(0x7ULL) & SlU(0x1fULL)),c);
+P_d66d_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x50e80,sl_get<4>(c.reg,sizeof(c.reg),0x8,c),c);
+P_d66d_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x8,sl_lshift(sl_get<4>(c.reg,sizeof(c.reg),0x8,c),sl_get<4>(c.temp,sizeof(c.temp),0x50e00,c)),c);
+P_d66d_3:;
+sl_put<1>(c.temp,sizeof(c.temp),0x24d00,(sl_get<4>(c.temp,sizeof(c.temp),0x50e00,c) != SlU(0x0ULL)),c);
+P_d66d_4:;
+sl_put<4>(c.temp,sizeof(c.temp),0x24d80,(sl_get<4>(c.temp,sizeof(c.temp),0x50e00,c) - SlU(0x1ULL)),c);
+P_d66d_5:;
+sl_put<4>(c.temp,sizeof(c.temp),0x24e00,sl_lshift(sl_get<4>(c.temp,sizeof(c.temp),0x50e80,c),sl_get<4>(c.temp,sizeof(c.temp),0x24d80,c)),c);
+P_d66d_6:;
+sl_put<1>(c.temp,sizeof(c.temp),0x24f00,(sl_signed(sl_get<4>(c.temp,sizeof(c.temp),0x24e00,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d66d_7:;
+sl_put<1>(c.temp,sizeof(c.temp),0x24f80,(!sl_get<1>(c.temp,sizeof(c.temp),0x24d00,c)),c);
+P_d66d_8:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25000,(sl_get<1>(c.temp,sizeof(c.temp),0x24f80,c) & sl_get<1>(c.reg,sizeof(c.reg),0x200,c)),c);
+P_d66d_9:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25080,(sl_get<1>(c.temp,sizeof(c.temp),0x24d00,c) & sl_get<1>(c.temp,sizeof(c.temp),0x24f00,c)),c);
+P_d66d_10:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(sl_get<1>(c.temp,sizeof(c.temp),0x25000,c) | sl_get<1>(c.temp,sizeof(c.temp),0x25080,c)),c);
+P_d66d_11:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25200,(sl_get<4>(c.temp,sizeof(c.temp),0x50e00,c) == SlU(0x1ULL)),c);
+P_d66d_12:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25280,(sl_signed(sl_get<4>(c.reg,sizeof(c.reg),0x8,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d66d_13:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25380,(sl_get<1>(c.reg,sizeof(c.reg),0x200,c) ^ sl_get<1>(c.temp,sizeof(c.temp),0x25280,c)),c);
+P_d66d_14:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25400,(!sl_get<1>(c.temp,sizeof(c.temp),0x25200,c)),c);
+P_d66d_15:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25480,(sl_get<1>(c.temp,sizeof(c.temp),0x25400,c) & sl_get<1>(c.reg,sizeof(c.reg),0x20b,c)),c);
+P_d66d_16:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25500,(sl_get<1>(c.temp,sizeof(c.temp),0x25200,c) & sl_get<1>(c.temp,sizeof(c.temp),0x25380,c)),c);
+P_d66d_17:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(sl_get<1>(c.temp,sizeof(c.temp),0x25480,c) | sl_get<1>(c.temp,sizeof(c.temp),0x25500,c)),c);
+P_d66d_18:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22b80,(sl_get<4>(c.temp,sizeof(c.temp),0x50e00,c) != SlU(0x0ULL)),c);
+P_d66d_19:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22c80,(sl_signed(sl_get<4>(c.reg,sizeof(c.reg),0x8,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d66d_20:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22d00,(!sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c)),c);
+P_d66d_21:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22d80,(sl_get<1>(c.temp,sizeof(c.temp),0x22d00,c) & sl_get<1>(c.reg,sizeof(c.reg),0x207,c)),c);
+P_d66d_22:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22e00,(sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c) & sl_get<1>(c.temp,sizeof(c.temp),0x22c80,c)),c);
+P_d66d_23:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_get<1>(c.temp,sizeof(c.temp),0x22d80,c) | sl_get<1>(c.temp,sizeof(c.temp),0x22e00,c)),c);
+P_d66d_24:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22f80,(sl_get<4>(c.reg,sizeof(c.reg),0x8,c) == SlU(0x0ULL)),c);
+P_d66d_25:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23000,(!sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c)),c);
+P_d66d_26:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23080,(sl_get<1>(c.temp,sizeof(c.temp),0x23000,c) & sl_get<1>(c.reg,sizeof(c.reg),0x206,c)),c);
+P_d66d_27:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23100,(sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c) & sl_get<1>(c.temp,sizeof(c.temp),0x22f80,c)),c);
+P_d66d_28:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<1>(c.temp,sizeof(c.temp),0x23080,c) | sl_get<1>(c.temp,sizeof(c.temp),0x23100,c)),c);
+P_d66d_29:;
+sl_put<4>(c.temp,sizeof(c.temp),0x23200,(sl_get<4>(c.reg,sizeof(c.reg),0x8,c) & SlU(0xffULL)),c);
+P_d66d_30:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23280,sl_popcount(sl_get<4>(c.temp,sizeof(c.temp),0x23200,c)),c);
+P_d66d_31:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23300,(sl_get<1>(c.temp,sizeof(c.temp),0x23280,c) & SlU(0x1ULL)),c);
+P_d66d_32:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23400,(sl_get<1>(c.temp,sizeof(c.temp),0x23300,c) == SlU(0x0ULL)),c);
+P_d66d_33:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23480,(!sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c)),c);
+P_d66d_34:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23500,(sl_get<1>(c.temp,sizeof(c.temp),0x23480,c) & sl_get<1>(c.reg,sizeof(c.reg),0x202,c)),c);
+P_d66d_35:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23580,(sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c) & sl_get<1>(c.temp,sizeof(c.temp),0x23400,c)),c);
+P_d66d_36:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x23500,c) | sl_get<1>(c.temp,sizeof(c.temp),0x23580,c)),c);
+P_d66d_37:;
+goto L_d670;
+}
+L_d670:{ // MOV dword ptr [ESI + 0x1b58],EDX
+c.pc=0xd670;if(!sl_tick(c))return int(c.fault);
+P_d670_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1b58ULL)),c);
+P_d670_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x8,c),c);
+P_d670_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d670_3:;
+goto L_d676;
+}
+L_d676:{ // MOV byte ptr [ESI + 0x1b54],0x0
+c.pc=0xd676;if(!sl_tick(c))return int(c.fault);
+P_d676_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1b54ULL)),c);
+P_d676_1:;
+sl_put<1>(c.temp,sizeof(c.temp),0x5480,SlU(0x0ULL),c);
+P_d676_2:;
+sl_put<1>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<1>(c.temp,sizeof(c.temp),0x5480,c),c);
+P_d676_3:;
+goto L_d67d;
+}
 L_d67d:{ // ADD ESP,0x10
 c.pc=0xd67d;if(!sl_tick(c))return int(c.fault);
 P_d67d_0:;
@@ -6933,7 +7147,977 @@ sl_put<4>(c.reg,sizeof(c.reg),0x10,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) + SlU(
 P_d683_2:;
 c.pc=SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x284,c));goto dispatch;
 P_d683_3:;
-c.pc=0xd684;goto dispatch;
+goto L_d684;
+}
+L_d684:{ // CMP byte ptr [ESI + 0xec0],0x0
+c.pc=0xd684;if(!sl_tick(c))return int(c.fault);
+P_d684_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0xec0ULL)),c);
+P_d684_1:;
+sl_put<1>(c.temp,sizeof(c.temp),0x9500,sl_get<1>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d684_2:;
+sl_put<1>(c.temp,sizeof(c.temp),0x30780,sl_get<1>(c.temp,sizeof(c.temp),0x9500,c),c);
+P_d684_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c) < SlU(0x0ULL)),c);
+P_d684_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)^SlU(0x0ULL))&(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)^(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)-SlU(0x0ULL)))&(SlU(1)<<7))!=0),c);
+P_d684_5:;
+sl_put<1>(c.temp,sizeof(c.temp),0x30880,(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c) - SlU(0x0ULL)),c);
+P_d684_6:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c),8) < sl_signed(SlU(0x0ULL),8)),c);
+P_d684_7:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c) == SlU(0x0ULL)),c);
+P_d684_8:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22900,(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c) & SlU(0xffULL)),c);
+P_d684_9:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<1>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d684_10:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d684_11:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d684_12:;
+goto L_d68b;
+}
+L_d68b:{ // JZ 0x0000d67d
+c.pc=0xd68b;if(!sl_tick(c))return int(c.fault);
+P_d68b_0:;
+if(sl_get<1>(c.reg,sizeof(c.reg),0x206,c)){goto L_d67d;}
+P_d68b_1:;
+goto L_d68d;
+}
+L_d68d:{ // MOVSS dword ptr [ESI + 0x1adc],XMM0
+c.pc=0xd68d;if(!sl_tick(c))return int(c.fault);
+P_d68d_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1adcULL)),c);
+P_d68d_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x1200,c),c);
+P_d68d_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d68d_3:;
+goto L_d695;
+}
+L_d695:{ // JMP 0x0000d67d
+c.pc=0xd695;if(!sl_tick(c))return int(c.fault);
+P_d695_0:;
+goto L_d67d;
+P_d695_1:;
+goto L_d697;
+}
+L_d697:{ // MOVSS dword ptr [ESI + 0x1ae0],XMM0
+c.pc=0xd697;if(!sl_tick(c))return int(c.fault);
+P_d697_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1ae0ULL)),c);
+P_d697_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x1200,c),c);
+P_d697_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d697_3:;
+goto L_d69f;
+}
+L_d69f:{ // JMP 0x0000d67d
+c.pc=0xd69f;if(!sl_tick(c))return int(c.fault);
+P_d69f_0:;
+goto L_d67d;
+P_d69f_1:;
+goto L_d6a1;
+}
+L_d6a1:{ // MOVSS dword ptr [ESI + 0x1ae4],XMM0
+c.pc=0xd6a1;if(!sl_tick(c))return int(c.fault);
+P_d6a1_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1ae4ULL)),c);
+P_d6a1_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x1200,c),c);
+P_d6a1_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d6a1_3:;
+goto L_d6a9;
+}
+L_d6a9:{ // JMP 0x0000d67d
+c.pc=0xd6a9;if(!sl_tick(c))return int(c.fault);
+P_d6a9_0:;
+goto L_d67d;
+P_d6a9_1:;
+goto L_d6ab;
+}
+L_d6ab:{ // CMP byte ptr [ESI + 0x1b54],0x0
+c.pc=0xd6ab;if(!sl_tick(c))return int(c.fault);
+P_d6ab_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1b54ULL)),c);
+P_d6ab_1:;
+sl_put<1>(c.temp,sizeof(c.temp),0x9500,sl_get<1>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d6ab_2:;
+sl_put<1>(c.temp,sizeof(c.temp),0x30780,sl_get<1>(c.temp,sizeof(c.temp),0x9500,c),c);
+P_d6ab_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c) < SlU(0x0ULL)),c);
+P_d6ab_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)^SlU(0x0ULL))&(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)^(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)-SlU(0x0ULL)))&(SlU(1)<<7))!=0),c);
+P_d6ab_5:;
+sl_put<1>(c.temp,sizeof(c.temp),0x30880,(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c) - SlU(0x0ULL)),c);
+P_d6ab_6:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c),8) < sl_signed(SlU(0x0ULL),8)),c);
+P_d6ab_7:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c) == SlU(0x0ULL)),c);
+P_d6ab_8:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22900,(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c) & SlU(0xffULL)),c);
+P_d6ab_9:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<1>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d6ab_10:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d6ab_11:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d6ab_12:;
+goto L_d6b2;
+}
+L_d6b2:{ // JZ 0x0000d67d
+c.pc=0xd6b2;if(!sl_tick(c))return int(c.fault);
+P_d6b2_0:;
+if(sl_get<1>(c.reg,sizeof(c.reg),0x206,c)){goto L_d67d;}
+P_d6b2_1:;
+goto L_d6b4;
+}
+L_d6b4:{ // MOV EAX,dword ptr [ESI + 0x1b58]
+c.pc=0xd6b4;if(!sl_tick(c))return int(c.fault);
+P_d6b4_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1b58ULL)),c);
+P_d6b4_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x9680,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d6b4_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x0,sl_get<4>(c.temp,sizeof(c.temp),0x9680,c),c);
+P_d6b4_3:;
+goto L_d6ba;
+}
+L_d6ba:{ // TEST EAX,EAX
+c.pc=0xd6ba;if(!sl_tick(c))return int(c.fault);
+P_d6ba_0:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,SlU(0x0ULL),c);
+P_d6ba_1:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,SlU(0x0ULL),c);
+P_d6ba_2:;
+sl_put<4>(c.temp,sizeof(c.temp),0x54f80,(sl_get<4>(c.reg,sizeof(c.reg),0x0,c) & sl_get<4>(c.reg,sizeof(c.reg),0x0,c)),c);
+P_d6ba_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<4>(c.temp,sizeof(c.temp),0x54f80,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d6ba_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<4>(c.temp,sizeof(c.temp),0x54f80,c) == SlU(0x0ULL)),c);
+P_d6ba_5:;
+sl_put<4>(c.temp,sizeof(c.temp),0x22900,(sl_get<4>(c.temp,sizeof(c.temp),0x54f80,c) & SlU(0xffULL)),c);
+P_d6ba_6:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<4>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d6ba_7:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d6ba_8:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d6ba_9:;
+goto L_d6bc;
+}
+L_d6bc:{ // JNZ 0x0000d67d
+c.pc=0xd6bc;if(!sl_tick(c))return int(c.fault);
+P_d6bc_0:;
+sl_put<1>(c.temp,sizeof(c.temp),0x9c00,(!sl_get<1>(c.reg,sizeof(c.reg),0x206,c)),c);
+P_d6bc_1:;
+if(sl_get<1>(c.temp,sizeof(c.temp),0x9c00,c)){goto L_d67d;}
+P_d6bc_2:;
+goto L_d6be;
+}
+L_d6be:{ // MOV dword ptr [ESP + 0xc],EDX
+c.pc=0xd6be;if(!sl_tick(c))return int(c.fault);
+P_d6be_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3a80,(SlU(0xcULL) + sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c);
+P_d6be_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x8,c),c);
+P_d6be_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3a80,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d6be_3:;
+goto L_d6c2;
+}
+L_d6c2:{ // MOV dword ptr [ESP + 0x8],0xc
+c.pc=0xd6c2;if(!sl_tick(c))return int(c.fault);
+P_d6c2_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3a80,(SlU(0x8ULL) + sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c);
+P_d6c2_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5580,SlU(0xcULL),c);
+P_d6c2_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3a80,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5580,c),c);
+P_d6c2_3:;
+goto L_d6ca;
+}
+L_d6ca:{ // MOV dword ptr [ESP + 0x4],0x0
+c.pc=0xd6ca;if(!sl_tick(c))return int(c.fault);
+P_d6ca_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3a80,(SlU(0x4ULL) + sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c);
+P_d6ca_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5580,SlU(0x0ULL),c);
+P_d6ca_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3a80,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5580,c),c);
+P_d6ca_3:;
+goto L_d6d2;
+}
+L_d6d2:{ // MOV EAX,dword ptr [ESI + 0x4]
+c.pc=0xd6d2;if(!sl_tick(c))return int(c.fault);
+P_d6d2_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x4ULL)),c);
+P_d6d2_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x9680,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),c),c);
+P_d6d2_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x0,sl_get<4>(c.temp,sizeof(c.temp),0x9680,c),c);
+P_d6d2_3:;
+goto L_d6d5;
+}
+L_d6d5:{ // ADD EAX,0x5a4
+c.pc=0xd6d5;if(!sl_tick(c))return int(c.fault);
+P_d6d5_0:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(((sl_get<4>(c.reg,sizeof(c.reg),0x0,c)+SlU(0x5a4ULL))&sl_mask(32))<sl_get<4>(c.reg,sizeof(c.reg),0x0,c)),c);
+P_d6d5_1:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<4>(c.reg,sizeof(c.reg),0x0,c)^(sl_get<4>(c.reg,sizeof(c.reg),0x0,c)+SlU(0x5a4ULL)))&(SlU(0x5a4ULL)^(sl_get<4>(c.reg,sizeof(c.reg),0x0,c)+SlU(0x5a4ULL)))&(SlU(1)<<31))!=0),c);
+P_d6d5_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x0,(sl_get<4>(c.reg,sizeof(c.reg),0x0,c) + SlU(0x5a4ULL)),c);
+P_d6d5_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<4>(c.reg,sizeof(c.reg),0x0,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d6d5_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<4>(c.reg,sizeof(c.reg),0x0,c) == SlU(0x0ULL)),c);
+P_d6d5_5:;
+sl_put<4>(c.temp,sizeof(c.temp),0x22900,(sl_get<4>(c.reg,sizeof(c.reg),0x0,c) & SlU(0xffULL)),c);
+P_d6d5_6:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<4>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d6d5_7:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d6d5_8:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d6d5_9:;
+goto L_d6da;
+}
+L_d6da:{ // MOV dword ptr [ESP],EAX
+c.pc=0xd6da;if(!sl_tick(c))return int(c.fault);
+P_d6da_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x0,c),c);
+P_d6da_1:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d6da_2:;
+goto L_d6dd;
+}
+L_d6dd:{ // CALL 0x00012b64
+c.pc=0xd6dd;if(!sl_tick(c))return int(c.fault);
+P_d6dd_0:;
+sl_put<4>(c.reg,sizeof(c.reg),0x10,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) - SlU(0x4ULL)),c);
+P_d6dd_1:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),SlU(0xd6e2ULL),c);
+P_d6dd_2:;
+c.pc=0x12b64;goto dispatch;
+P_d6dd_3:;
+goto L_d6e2;
+}
+L_d6e2:{ // MOV dword ptr [EBP + 0x14],0xffffffff
+c.pc=0xd6e2;if(!sl_tick(c))return int(c.fault);
+P_d6e2_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x14,c) + SlU(0x14ULL)),c);
+P_d6e2_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5580,SlU(0xffffffffULL),c);
+P_d6e2_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5580,c),c);
+P_d6e2_3:;
+goto L_d6e9;
+}
+L_d6e9:{ // MOV dword ptr [EBP + 0x10],0x19
+c.pc=0xd6e9;if(!sl_tick(c))return int(c.fault);
+P_d6e9_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x14,c) + SlU(0x10ULL)),c);
+P_d6e9_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5580,SlU(0x19ULL),c);
+P_d6e9_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5580,c),c);
+P_d6e9_3:;
+goto L_d6f0;
+}
+L_d6f0:{ // MOV dword ptr [EBP + 0xc],0x0
+c.pc=0xd6f0;if(!sl_tick(c))return int(c.fault);
+P_d6f0_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x14,c) + SlU(0xcULL)),c);
+P_d6f0_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5580,SlU(0x0ULL),c);
+P_d6f0_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5580,c),c);
+P_d6f0_3:;
+goto L_d6f7;
+}
+L_d6f7:{ // MOV EAX,dword ptr [ESI + 0x4]
+c.pc=0xd6f7;if(!sl_tick(c))return int(c.fault);
+P_d6f7_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x4ULL)),c);
+P_d6f7_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x9680,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),c),c);
+P_d6f7_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x0,sl_get<4>(c.temp,sizeof(c.temp),0x9680,c),c);
+P_d6f7_3:;
+goto L_d6fa;
+}
+L_d6fa:{ // ADD EAX,0x5a4
+c.pc=0xd6fa;if(!sl_tick(c))return int(c.fault);
+P_d6fa_0:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(((sl_get<4>(c.reg,sizeof(c.reg),0x0,c)+SlU(0x5a4ULL))&sl_mask(32))<sl_get<4>(c.reg,sizeof(c.reg),0x0,c)),c);
+P_d6fa_1:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<4>(c.reg,sizeof(c.reg),0x0,c)^(sl_get<4>(c.reg,sizeof(c.reg),0x0,c)+SlU(0x5a4ULL)))&(SlU(0x5a4ULL)^(sl_get<4>(c.reg,sizeof(c.reg),0x0,c)+SlU(0x5a4ULL)))&(SlU(1)<<31))!=0),c);
+P_d6fa_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x0,(sl_get<4>(c.reg,sizeof(c.reg),0x0,c) + SlU(0x5a4ULL)),c);
+P_d6fa_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<4>(c.reg,sizeof(c.reg),0x0,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d6fa_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<4>(c.reg,sizeof(c.reg),0x0,c) == SlU(0x0ULL)),c);
+P_d6fa_5:;
+sl_put<4>(c.temp,sizeof(c.temp),0x22900,(sl_get<4>(c.reg,sizeof(c.reg),0x0,c) & SlU(0xffULL)),c);
+P_d6fa_6:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<4>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d6fa_7:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d6fa_8:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d6fa_9:;
+goto L_d6ff;
+}
+L_d6ff:{ // MOV dword ptr [EBP + 0x8],EAX
+c.pc=0xd6ff;if(!sl_tick(c))return int(c.fault);
+P_d6ff_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x14,c) + SlU(0x8ULL)),c);
+P_d6ff_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x0,c),c);
+P_d6ff_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d6ff_3:;
+goto L_d702;
+}
+L_d702:{ // ADD ESP,0x10
+c.pc=0xd702;if(!sl_tick(c))return int(c.fault);
+P_d702_0:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(((sl_get<4>(c.reg,sizeof(c.reg),0x10,c)+SlU(0x10ULL))&sl_mask(32))<sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c);
+P_d702_1:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<4>(c.reg,sizeof(c.reg),0x10,c)^(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)+SlU(0x10ULL)))&(SlU(0x10ULL)^(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)+SlU(0x10ULL)))&(SlU(1)<<31))!=0),c);
+P_d702_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x10,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) + SlU(0x10ULL)),c);
+P_d702_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<4>(c.reg,sizeof(c.reg),0x10,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d702_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) == SlU(0x0ULL)),c);
+P_d702_5:;
+sl_put<4>(c.temp,sizeof(c.temp),0x22900,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) & SlU(0xffULL)),c);
+P_d702_6:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<4>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d702_7:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d702_8:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d702_9:;
+goto L_d705;
+}
+L_d705:{ // POP EBX
+c.pc=0xd705;if(!sl_tick(c))return int(c.fault);
+P_d705_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,SlU(0x0ULL),c);
+P_d705_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c),c);
+P_d705_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x10,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) + SlU(0x4ULL)),c);
+P_d705_3:;
+sl_put<4>(c.reg,sizeof(c.reg),0xc,sl_get<4>(c.temp,sizeof(c.temp),0x41780,c),c);
+P_d705_4:;
+goto L_d706;
+}
+L_d706:{ // POP ESI
+c.pc=0xd706;if(!sl_tick(c))return int(c.fault);
+P_d706_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,SlU(0x0ULL),c);
+P_d706_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c),c);
+P_d706_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x10,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) + SlU(0x4ULL)),c);
+P_d706_3:;
+sl_put<4>(c.reg,sizeof(c.reg),0x18,sl_get<4>(c.temp,sizeof(c.temp),0x41780,c),c);
+P_d706_4:;
+goto L_d707;
+}
+L_d707:{ // POP EBP
+c.pc=0xd707;if(!sl_tick(c))return int(c.fault);
+P_d707_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,SlU(0x0ULL),c);
+P_d707_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c),c);
+P_d707_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x10,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) + SlU(0x4ULL)),c);
+P_d707_3:;
+sl_put<4>(c.reg,sizeof(c.reg),0x14,sl_get<4>(c.temp,sizeof(c.temp),0x41780,c),c);
+P_d707_4:;
+goto L_d708;
+}
+L_d708:{ // JMP 0x00012b64
+c.pc=0xd708;if(!sl_tick(c))return int(c.fault);
+P_d708_0:;
+c.pc=0x12b64;goto dispatch;
+P_d708_1:;
+goto L_d70d;
+}
+L_d70d:{ // SUBSS XMM0,XMM2
+c.pc=0xd70d;if(!sl_tick(c))return int(c.fault);
+P_d70d_0:;
+sl_put<4>(c.reg,sizeof(c.reg),0x1200,sl_bits(sl_float<float>(sl_get<4>(c.reg,sizeof(c.reg),0x1200,c)) - sl_float<float>(sl_get<4>(c.reg,sizeof(c.reg),0x1280,c))),c);
+P_d70d_1:;
+goto L_d711;
+}
+L_d711:{ // MOVSS dword ptr [ESI + 0x130],XMM0
+c.pc=0xd711;if(!sl_tick(c))return int(c.fault);
+P_d711_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x130ULL)),c);
+P_d711_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x1200,c),c);
+P_d711_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d711_3:;
+goto L_d719;
+}
+L_d719:{ // JMP 0x0000d67d
+c.pc=0xd719;if(!sl_tick(c))return int(c.fault);
+P_d719_0:;
+goto L_d67d;
+P_d719_1:;
+goto L_d71e;
+}
+L_d71e:{ // CMP EDX,0x40
+c.pc=0xd71e;if(!sl_tick(c))return int(c.fault);
+P_d71e_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x30d80,sl_get<4>(c.reg,sizeof(c.reg),0x8,c),c);
+P_d71e_1:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(sl_get<4>(c.temp,sizeof(c.temp),0x30d80,c) < SlU(0x40ULL)),c);
+P_d71e_2:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<4>(c.temp,sizeof(c.temp),0x30d80,c)^SlU(0x40ULL))&(sl_get<4>(c.temp,sizeof(c.temp),0x30d80,c)^(sl_get<4>(c.temp,sizeof(c.temp),0x30d80,c)-SlU(0x40ULL)))&(SlU(1)<<31))!=0),c);
+P_d71e_3:;
+sl_put<4>(c.temp,sizeof(c.temp),0x30e80,(sl_get<4>(c.temp,sizeof(c.temp),0x30d80,c) - SlU(0x40ULL)),c);
+P_d71e_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<4>(c.temp,sizeof(c.temp),0x30e80,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d71e_5:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<4>(c.temp,sizeof(c.temp),0x30e80,c) == SlU(0x0ULL)),c);
+P_d71e_6:;
+sl_put<4>(c.temp,sizeof(c.temp),0x22900,(sl_get<4>(c.temp,sizeof(c.temp),0x30e80,c) & SlU(0xffULL)),c);
+P_d71e_7:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<4>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d71e_8:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d71e_9:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d71e_10:;
+goto L_d721;
+}
+L_d721:{ // JZ 0x0000d7c5
+c.pc=0xd721;if(!sl_tick(c))return int(c.fault);
+P_d721_0:;
+if(sl_get<1>(c.reg,sizeof(c.reg),0x206,c)){goto L_d7c5;}
+P_d721_1:;
+goto L_d727;
+}
+L_d727:{ // MOVSS dword ptr [ESI + 0x134],XMM1
+c.pc=0xd727;if(!sl_tick(c))return int(c.fault);
+P_d727_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x134ULL)),c);
+P_d727_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x1240,c),c);
+P_d727_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d727_3:;
+goto L_d72f;
+}
+L_d72f:{ // JMP 0x0000d67d
+c.pc=0xd72f;if(!sl_tick(c))return int(c.fault);
+P_d72f_0:;
+goto L_d67d;
+P_d72f_1:;
+goto L_d734;
+}
+L_d734:{ // MOVSS dword ptr [ESI + 0x1ae8],XMM0
+c.pc=0xd734;if(!sl_tick(c))return int(c.fault);
+P_d734_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1ae8ULL)),c);
+P_d734_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x1200,c),c);
+P_d734_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d734_3:;
+goto L_d73c;
+}
+L_d73c:{ // JMP 0x0000d67d
+c.pc=0xd73c;if(!sl_tick(c))return int(c.fault);
+P_d73c_0:;
+goto L_d67d;
+P_d73c_1:;
+goto L_d741;
+}
+L_d741:{ // MOVSS dword ptr [ESI + 0x144],XMM1
+c.pc=0xd741;if(!sl_tick(c))return int(c.fault);
+P_d741_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x144ULL)),c);
+P_d741_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x1240,c),c);
+P_d741_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d741_3:;
+goto L_d749;
+}
+L_d749:{ // JMP 0x0000d67d
+c.pc=0xd749;if(!sl_tick(c))return int(c.fault);
+P_d749_0:;
+goto L_d67d;
+P_d749_1:;
+goto L_d74e;
+}
+L_d74e:{ // CMP byte ptr [ESI + 0xec3],0x0
+c.pc=0xd74e;if(!sl_tick(c))return int(c.fault);
+P_d74e_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0xec3ULL)),c);
+P_d74e_1:;
+sl_put<1>(c.temp,sizeof(c.temp),0x9500,sl_get<1>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d74e_2:;
+sl_put<1>(c.temp,sizeof(c.temp),0x30780,sl_get<1>(c.temp,sizeof(c.temp),0x9500,c),c);
+P_d74e_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c) < SlU(0x0ULL)),c);
+P_d74e_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)^SlU(0x0ULL))&(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)^(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)-SlU(0x0ULL)))&(SlU(1)<<7))!=0),c);
+P_d74e_5:;
+sl_put<1>(c.temp,sizeof(c.temp),0x30880,(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c) - SlU(0x0ULL)),c);
+P_d74e_6:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c),8) < sl_signed(SlU(0x0ULL),8)),c);
+P_d74e_7:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c) == SlU(0x0ULL)),c);
+P_d74e_8:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22900,(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c) & SlU(0xffULL)),c);
+P_d74e_9:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<1>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d74e_10:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d74e_11:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d74e_12:;
+goto L_d755;
+}
+L_d755:{ // JZ 0x0000d67d
+c.pc=0xd755;if(!sl_tick(c))return int(c.fault);
+P_d755_0:;
+if(sl_get<1>(c.reg,sizeof(c.reg),0x206,c)){goto L_d67d;}
+P_d755_1:;
+goto L_d75b;
+}
+L_d75b:{ // MOV EAX,dword ptr [ESI]
+c.pc=0xd75b;if(!sl_tick(c))return int(c.fault);
+P_d75b_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x9680,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x18,c)),c),c);
+P_d75b_1:;
+sl_put<4>(c.reg,sizeof(c.reg),0x0,sl_get<4>(c.temp,sizeof(c.temp),0x9680,c),c);
+P_d75b_2:;
+goto L_d75d;
+}
+L_d75d:{ // CMP EDX,0x1f
+c.pc=0xd75d;if(!sl_tick(c))return int(c.fault);
+P_d75d_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x30d80,sl_get<4>(c.reg,sizeof(c.reg),0x8,c),c);
+P_d75d_1:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(sl_get<4>(c.temp,sizeof(c.temp),0x30d80,c) < SlU(0x1fULL)),c);
+P_d75d_2:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<4>(c.temp,sizeof(c.temp),0x30d80,c)^SlU(0x1fULL))&(sl_get<4>(c.temp,sizeof(c.temp),0x30d80,c)^(sl_get<4>(c.temp,sizeof(c.temp),0x30d80,c)-SlU(0x1fULL)))&(SlU(1)<<31))!=0),c);
+P_d75d_3:;
+sl_put<4>(c.temp,sizeof(c.temp),0x30e80,(sl_get<4>(c.temp,sizeof(c.temp),0x30d80,c) - SlU(0x1fULL)),c);
+P_d75d_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<4>(c.temp,sizeof(c.temp),0x30e80,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d75d_5:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<4>(c.temp,sizeof(c.temp),0x30e80,c) == SlU(0x0ULL)),c);
+P_d75d_6:;
+sl_put<4>(c.temp,sizeof(c.temp),0x22900,(sl_get<4>(c.temp,sizeof(c.temp),0x30e80,c) & SlU(0xffULL)),c);
+P_d75d_7:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<4>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d75d_8:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d75d_9:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d75d_10:;
+goto L_d760;
+}
+L_d760:{ // SETG DL
+c.pc=0xd760;if(!sl_tick(c))return int(c.fault);
+P_d760_0:;
+sl_put<1>(c.temp,sizeof(c.temp),0xa480,(!sl_get<1>(c.reg,sizeof(c.reg),0x206,c)),c);
+P_d760_1:;
+sl_put<1>(c.temp,sizeof(c.temp),0xa500,(sl_get<1>(c.reg,sizeof(c.reg),0x20b,c) == sl_get<1>(c.reg,sizeof(c.reg),0x207,c)),c);
+P_d760_2:;
+sl_put<1>(c.temp,sizeof(c.temp),0xa600,(bool(sl_get<1>(c.temp,sizeof(c.temp),0xa480,c)) && bool(sl_get<1>(c.temp,sizeof(c.temp),0xa500,c))),c);
+P_d760_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x8,sl_get<1>(c.temp,sizeof(c.temp),0xa600,c),c);
+P_d760_4:;
+goto L_d763;
+}
+L_d763:{ // MOVZX EDX,DL
+c.pc=0xd763;if(!sl_tick(c))return int(c.fault);
+P_d763_0:;
+sl_put<4>(c.reg,sizeof(c.reg),0x8,sl_get<1>(c.reg,sizeof(c.reg),0x8,c),c);
+P_d763_1:;
+goto L_d766;
+}
+L_d766:{ // MOV dword ptr [EBP + 0x10],EDX
+c.pc=0xd766;if(!sl_tick(c))return int(c.fault);
+P_d766_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x14,c) + SlU(0x10ULL)),c);
+P_d766_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x8,c),c);
+P_d766_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d766_3:;
+goto L_d769;
+}
+L_d769:{ // MOV dword ptr [EBP + 0xc],ECX
+c.pc=0xd769;if(!sl_tick(c))return int(c.fault);
+P_d769_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x14,c) + SlU(0xcULL)),c);
+P_d769_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x4,c),c);
+P_d769_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d769_3:;
+goto L_d76c;
+}
+L_d76c:{ // MOV dword ptr [EBP + 0x8],ESI
+c.pc=0xd76c;if(!sl_tick(c))return int(c.fault);
+P_d76c_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x14,c) + SlU(0x8ULL)),c);
+P_d76c_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x18,c),c);
+P_d76c_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d76c_3:;
+goto L_d76f;
+}
+L_d76f:{ // MOV ECX,dword ptr [EAX + 0x58]
+c.pc=0xd76f;if(!sl_tick(c))return int(c.fault);
+P_d76f_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x0,c) + SlU(0x58ULL)),c);
+P_d76f_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x9680,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),c),c);
+P_d76f_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x4,sl_get<4>(c.temp,sizeof(c.temp),0x9680,c),c);
+P_d76f_3:;
+goto L_d772;
+}
+L_d772:{ // ADD ESP,0x10
+c.pc=0xd772;if(!sl_tick(c))return int(c.fault);
+P_d772_0:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(((sl_get<4>(c.reg,sizeof(c.reg),0x10,c)+SlU(0x10ULL))&sl_mask(32))<sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c);
+P_d772_1:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<4>(c.reg,sizeof(c.reg),0x10,c)^(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)+SlU(0x10ULL)))&(SlU(0x10ULL)^(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)+SlU(0x10ULL)))&(SlU(1)<<31))!=0),c);
+P_d772_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x10,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) + SlU(0x10ULL)),c);
+P_d772_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<4>(c.reg,sizeof(c.reg),0x10,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d772_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) == SlU(0x0ULL)),c);
+P_d772_5:;
+sl_put<4>(c.temp,sizeof(c.temp),0x22900,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) & SlU(0xffULL)),c);
+P_d772_6:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<4>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d772_7:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d772_8:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d772_9:;
+goto L_d775;
+}
+L_d775:{ // POP EBX
+c.pc=0xd775;if(!sl_tick(c))return int(c.fault);
+P_d775_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,SlU(0x0ULL),c);
+P_d775_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c),c);
+P_d775_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x10,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) + SlU(0x4ULL)),c);
+P_d775_3:;
+sl_put<4>(c.reg,sizeof(c.reg),0xc,sl_get<4>(c.temp,sizeof(c.temp),0x41780,c),c);
+P_d775_4:;
+goto L_d776;
+}
+L_d776:{ // POP ESI
+c.pc=0xd776;if(!sl_tick(c))return int(c.fault);
+P_d776_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,SlU(0x0ULL),c);
+P_d776_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c),c);
+P_d776_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x10,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) + SlU(0x4ULL)),c);
+P_d776_3:;
+sl_put<4>(c.reg,sizeof(c.reg),0x18,sl_get<4>(c.temp,sizeof(c.temp),0x41780,c),c);
+P_d776_4:;
+goto L_d777;
+}
+L_d777:{ // POP EBP
+c.pc=0xd777;if(!sl_tick(c))return int(c.fault);
+P_d777_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,SlU(0x0ULL),c);
+P_d777_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x41780,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x10,c)),c),c);
+P_d777_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x10,(sl_get<4>(c.reg,sizeof(c.reg),0x10,c) + SlU(0x4ULL)),c);
+P_d777_3:;
+sl_put<4>(c.reg,sizeof(c.reg),0x14,sl_get<4>(c.temp,sizeof(c.temp),0x41780,c),c);
+P_d777_4:;
+goto L_d778;
+}
+L_d778:{ // JMP ECX
+c.pc=0xd778;if(!sl_tick(c))return int(c.fault);
+P_d778_0:;
+c.pc=SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x4,c));goto dispatch;
+P_d778_1:;
+goto L_d77a;
+}
+L_d77a:{ // CMP byte ptr [ESI + 0x1b54],0x0
+c.pc=0xd77a;if(!sl_tick(c))return int(c.fault);
+P_d77a_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1b54ULL)),c);
+P_d77a_1:;
+sl_put<1>(c.temp,sizeof(c.temp),0x9500,sl_get<1>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d77a_2:;
+sl_put<1>(c.temp,sizeof(c.temp),0x30780,sl_get<1>(c.temp,sizeof(c.temp),0x9500,c),c);
+P_d77a_3:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c) < SlU(0x0ULL)),c);
+P_d77a_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)^SlU(0x0ULL))&(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)^(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c)-SlU(0x0ULL)))&(SlU(1)<<7))!=0),c);
+P_d77a_5:;
+sl_put<1>(c.temp,sizeof(c.temp),0x30880,(sl_get<1>(c.temp,sizeof(c.temp),0x30780,c) - SlU(0x0ULL)),c);
+P_d77a_6:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c),8) < sl_signed(SlU(0x0ULL),8)),c);
+P_d77a_7:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c) == SlU(0x0ULL)),c);
+P_d77a_8:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22900,(sl_get<1>(c.temp,sizeof(c.temp),0x30880,c) & SlU(0xffULL)),c);
+P_d77a_9:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<1>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d77a_10:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d77a_11:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d77a_12:;
+goto L_d781;
+}
+L_d781:{ // JNZ 0x0000d670
+c.pc=0xd781;if(!sl_tick(c))return int(c.fault);
+P_d781_0:;
+sl_put<1>(c.temp,sizeof(c.temp),0x9c00,(!sl_get<1>(c.reg,sizeof(c.reg),0x206,c)),c);
+P_d781_1:;
+if(sl_get<1>(c.temp,sizeof(c.temp),0x9c00,c)){goto L_d670;}
+P_d781_2:;
+goto L_d787;
+}
+L_d787:{ // ADD dword ptr [ESI + 0x1b58],EDX
+c.pc=0xd787;if(!sl_tick(c))return int(c.fault);
+P_d787_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1b58ULL)),c);
+P_d787_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d787_2:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(((sl_get<4>(c.temp,sizeof(c.temp),0x5200,c)+sl_get<4>(c.reg,sizeof(c.reg),0x8,c))&sl_mask(32))<sl_get<4>(c.temp,sizeof(c.temp),0x5200,c)),c);
+P_d787_3:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d787_4:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(((sl_get<4>(c.temp,sizeof(c.temp),0x5200,c)^(sl_get<4>(c.temp,sizeof(c.temp),0x5200,c)+sl_get<4>(c.reg,sizeof(c.reg),0x8,c)))&(sl_get<4>(c.reg,sizeof(c.reg),0x8,c)^(sl_get<4>(c.temp,sizeof(c.temp),0x5200,c)+sl_get<4>(c.reg,sizeof(c.reg),0x8,c)))&(SlU(1)<<31))!=0),c);
+P_d787_5:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d787_6:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,(sl_get<4>(c.temp,sizeof(c.temp),0x5200,c) + sl_get<4>(c.reg,sizeof(c.reg),0x8,c)),c);
+P_d787_7:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d787_8:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d787_9:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_signed(sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d787_10:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d787_11:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<4>(c.temp,sizeof(c.temp),0x5200,c) == SlU(0x0ULL)),c);
+P_d787_12:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),c),c);
+P_d787_13:;
+sl_put<4>(c.temp,sizeof(c.temp),0x22900,(sl_get<4>(c.temp,sizeof(c.temp),0x5200,c) & SlU(0xffULL)),c);
+P_d787_14:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22980,sl_popcount(sl_get<4>(c.temp,sizeof(c.temp),0x22900,c)),c);
+P_d787_15:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22a00,(sl_get<1>(c.temp,sizeof(c.temp),0x22980,c) & SlU(0x1ULL)),c);
+P_d787_16:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x22a00,c) == SlU(0x0ULL)),c);
+P_d787_17:;
+goto L_d78d;
+}
+L_d78d:{ // MOV byte ptr [ESI + 0x1b54],0x1
+c.pc=0xd78d;if(!sl_tick(c))return int(c.fault);
+P_d78d_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x1b54ULL)),c);
+P_d78d_1:;
+sl_put<1>(c.temp,sizeof(c.temp),0x5480,SlU(0x1ULL),c);
+P_d78d_2:;
+sl_put<1>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<1>(c.temp,sizeof(c.temp),0x5480,c),c);
+P_d78d_3:;
+goto L_d794;
+}
+L_d794:{ // JMP 0x0000d67d
+c.pc=0xd794;if(!sl_tick(c))return int(c.fault);
+P_d794_0:;
+goto L_d67d;
+P_d794_1:;
+goto L_d799;
+}
+L_d799:{ // MOVSS dword ptr [ESI + 0x13c],XMM1
+c.pc=0xd799;if(!sl_tick(c))return int(c.fault);
+P_d799_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x13cULL)),c);
+P_d799_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x1240,c),c);
+P_d799_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d799_3:;
+goto L_d7a1;
+}
+L_d7a1:{ // JMP 0x0000d67d
+c.pc=0xd7a1;if(!sl_tick(c))return int(c.fault);
+P_d7a1_0:;
+goto L_d67d;
+P_d7a1_1:;
+goto L_d7a6;
+}
+L_d7a6:{ // MOVSS dword ptr [ESI + 0x140],XMM1
+c.pc=0xd7a6;if(!sl_tick(c))return int(c.fault);
+P_d7a6_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x140ULL)),c);
+P_d7a6_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x1240,c),c);
+P_d7a6_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d7a6_3:;
+goto L_d7ae;
+}
+L_d7ae:{ // JMP 0x0000d67d
+c.pc=0xd7ae;if(!sl_tick(c))return int(c.fault);
+P_d7ae_0:;
+goto L_d67d;
+P_d7ae_1:;
+goto L_d7b3;
+}
+L_d7b3:{ // MOVSS dword ptr [ESI + 0x138],XMM1
+c.pc=0xd7b3;if(!sl_tick(c))return int(c.fault);
+P_d7b3_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x138ULL)),c);
+P_d7b3_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5200,sl_get<4>(c.reg,sizeof(c.reg),0x1240,c),c);
+P_d7b3_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5200,c),c);
+P_d7b3_3:;
+goto L_d7bb;
+}
+L_d7bb:{ // JMP 0x0000d67d
+c.pc=0xd7bb;if(!sl_tick(c))return int(c.fault);
+P_d7bb_0:;
+goto L_d67d;
+P_d7bb_1:;
+goto L_d7c0;
+}
+L_d7c0:{ // SHL EDX,0x7
+c.pc=0xd7c0;if(!sl_tick(c))return int(c.fault);
+P_d7c0_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x50e00,(SlU(0x7ULL) & SlU(0x1fULL)),c);
+P_d7c0_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x50e80,sl_get<4>(c.reg,sizeof(c.reg),0x8,c),c);
+P_d7c0_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x8,sl_lshift(sl_get<4>(c.reg,sizeof(c.reg),0x8,c),sl_get<4>(c.temp,sizeof(c.temp),0x50e00,c)),c);
+P_d7c0_3:;
+sl_put<1>(c.temp,sizeof(c.temp),0x24d00,(sl_get<4>(c.temp,sizeof(c.temp),0x50e00,c) != SlU(0x0ULL)),c);
+P_d7c0_4:;
+sl_put<4>(c.temp,sizeof(c.temp),0x24d80,(sl_get<4>(c.temp,sizeof(c.temp),0x50e00,c) - SlU(0x1ULL)),c);
+P_d7c0_5:;
+sl_put<4>(c.temp,sizeof(c.temp),0x24e00,sl_lshift(sl_get<4>(c.temp,sizeof(c.temp),0x50e80,c),sl_get<4>(c.temp,sizeof(c.temp),0x24d80,c)),c);
+P_d7c0_6:;
+sl_put<1>(c.temp,sizeof(c.temp),0x24f00,(sl_signed(sl_get<4>(c.temp,sizeof(c.temp),0x24e00,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d7c0_7:;
+sl_put<1>(c.temp,sizeof(c.temp),0x24f80,(!sl_get<1>(c.temp,sizeof(c.temp),0x24d00,c)),c);
+P_d7c0_8:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25000,(sl_get<1>(c.temp,sizeof(c.temp),0x24f80,c) & sl_get<1>(c.reg,sizeof(c.reg),0x200,c)),c);
+P_d7c0_9:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25080,(sl_get<1>(c.temp,sizeof(c.temp),0x24d00,c) & sl_get<1>(c.temp,sizeof(c.temp),0x24f00,c)),c);
+P_d7c0_10:;
+sl_put<1>(c.reg,sizeof(c.reg),0x200,(sl_get<1>(c.temp,sizeof(c.temp),0x25000,c) | sl_get<1>(c.temp,sizeof(c.temp),0x25080,c)),c);
+P_d7c0_11:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25200,(sl_get<4>(c.temp,sizeof(c.temp),0x50e00,c) == SlU(0x1ULL)),c);
+P_d7c0_12:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25280,(sl_signed(sl_get<4>(c.reg,sizeof(c.reg),0x8,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d7c0_13:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25380,(sl_get<1>(c.reg,sizeof(c.reg),0x200,c) ^ sl_get<1>(c.temp,sizeof(c.temp),0x25280,c)),c);
+P_d7c0_14:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25400,(!sl_get<1>(c.temp,sizeof(c.temp),0x25200,c)),c);
+P_d7c0_15:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25480,(sl_get<1>(c.temp,sizeof(c.temp),0x25400,c) & sl_get<1>(c.reg,sizeof(c.reg),0x20b,c)),c);
+P_d7c0_16:;
+sl_put<1>(c.temp,sizeof(c.temp),0x25500,(sl_get<1>(c.temp,sizeof(c.temp),0x25200,c) & sl_get<1>(c.temp,sizeof(c.temp),0x25380,c)),c);
+P_d7c0_17:;
+sl_put<1>(c.reg,sizeof(c.reg),0x20b,(sl_get<1>(c.temp,sizeof(c.temp),0x25480,c) | sl_get<1>(c.temp,sizeof(c.temp),0x25500,c)),c);
+P_d7c0_18:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22b80,(sl_get<4>(c.temp,sizeof(c.temp),0x50e00,c) != SlU(0x0ULL)),c);
+P_d7c0_19:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22c80,(sl_signed(sl_get<4>(c.reg,sizeof(c.reg),0x8,c),32) < sl_signed(SlU(0x0ULL),32)),c);
+P_d7c0_20:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22d00,(!sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c)),c);
+P_d7c0_21:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22d80,(sl_get<1>(c.temp,sizeof(c.temp),0x22d00,c) & sl_get<1>(c.reg,sizeof(c.reg),0x207,c)),c);
+P_d7c0_22:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22e00,(sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c) & sl_get<1>(c.temp,sizeof(c.temp),0x22c80,c)),c);
+P_d7c0_23:;
+sl_put<1>(c.reg,sizeof(c.reg),0x207,(sl_get<1>(c.temp,sizeof(c.temp),0x22d80,c) | sl_get<1>(c.temp,sizeof(c.temp),0x22e00,c)),c);
+P_d7c0_24:;
+sl_put<1>(c.temp,sizeof(c.temp),0x22f80,(sl_get<4>(c.reg,sizeof(c.reg),0x8,c) == SlU(0x0ULL)),c);
+P_d7c0_25:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23000,(!sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c)),c);
+P_d7c0_26:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23080,(sl_get<1>(c.temp,sizeof(c.temp),0x23000,c) & sl_get<1>(c.reg,sizeof(c.reg),0x206,c)),c);
+P_d7c0_27:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23100,(sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c) & sl_get<1>(c.temp,sizeof(c.temp),0x22f80,c)),c);
+P_d7c0_28:;
+sl_put<1>(c.reg,sizeof(c.reg),0x206,(sl_get<1>(c.temp,sizeof(c.temp),0x23080,c) | sl_get<1>(c.temp,sizeof(c.temp),0x23100,c)),c);
+P_d7c0_29:;
+sl_put<4>(c.temp,sizeof(c.temp),0x23200,(sl_get<4>(c.reg,sizeof(c.reg),0x8,c) & SlU(0xffULL)),c);
+P_d7c0_30:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23280,sl_popcount(sl_get<4>(c.temp,sizeof(c.temp),0x23200,c)),c);
+P_d7c0_31:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23300,(sl_get<1>(c.temp,sizeof(c.temp),0x23280,c) & SlU(0x1ULL)),c);
+P_d7c0_32:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23400,(sl_get<1>(c.temp,sizeof(c.temp),0x23300,c) == SlU(0x0ULL)),c);
+P_d7c0_33:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23480,(!sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c)),c);
+P_d7c0_34:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23500,(sl_get<1>(c.temp,sizeof(c.temp),0x23480,c) & sl_get<1>(c.reg,sizeof(c.reg),0x202,c)),c);
+P_d7c0_35:;
+sl_put<1>(c.temp,sizeof(c.temp),0x23580,(sl_get<1>(c.temp,sizeof(c.temp),0x22b80,c) & sl_get<1>(c.temp,sizeof(c.temp),0x23400,c)),c);
+P_d7c0_36:;
+sl_put<1>(c.reg,sizeof(c.reg),0x202,(sl_get<1>(c.temp,sizeof(c.temp),0x23500,c) | sl_get<1>(c.temp,sizeof(c.temp),0x23580,c)),c);
+P_d7c0_37:;
+goto L_d7c3;
+}
+L_d7c3:{ // JMP 0x0000d787
+c.pc=0xd7c3;if(!sl_tick(c))return int(c.fault);
+P_d7c3_0:;
+goto L_d787;
+P_d7c3_1:;
+goto L_d7c5;
+}
+L_d7c5:{ // MOV dword ptr [ESI + 0x134],0x0
+c.pc=0xd7c5;if(!sl_tick(c))return int(c.fault);
+P_d7c5_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3380,(sl_get<4>(c.reg,sizeof(c.reg),0x18,c) + SlU(0x134ULL)),c);
+P_d7c5_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x5580,SlU(0x0ULL),c);
+P_d7c5_2:;
+sl_put<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3380,c)),sl_get<4>(c.temp,sizeof(c.temp),0x5580,c),c);
+P_d7c5_3:;
+goto L_d7cf;
+}
+L_d7cf:{ // JMP 0x0000d67d
+c.pc=0xd7cf;if(!sl_tick(c))return int(c.fault);
+P_d7cf_0:;
+goto L_d67d;
+P_d7cf_1:;
+goto L_d7d4;
 }
 L_d7d4:{ // PUSH EBP
 c.pc=0xd7d4;if(!sl_tick(c))return int(c.fault);
