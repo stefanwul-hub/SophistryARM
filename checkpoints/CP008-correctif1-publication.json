@@ -1,0 +1,15 @@
+{
+  "checkpoint": "CP-008",
+  "mac_verifier_revision": 1,
+  "source_commit": "1f85c63cff513d0ccf9e93d12711eed910fbc056",
+  "url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/1f85c63cff513d0ccf9e93d12711eed910fbc056",
+  "zip_root": "SophistryARM-1f85c63cff513d0ccf9e93d12711eed910fbc056",
+  "bytes": 28523059,
+  "files": 3486,
+  "sha256": "1ec9e3a784d30506367c92f9a01d0255db7a59f6eed5d7988cd905c00033ae6c",
+  "verified_all_blobs": true,
+  "branch": "codex/sophistry-native-checkpoints",
+  "main_modified": false,
+  "native_audio_unit_available": false,
+  "corrected_verifier_macos_execution_confirmed": false
+}

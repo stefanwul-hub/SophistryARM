@@ -13,12 +13,12 @@ trap 'printf "%s\n" "Fichiers et rapports conservés dans : $SOPHISTRY_WORK_DIR"
 SOPHISTRY_ARCHIVE="$SOPHISTRY_WORK_DIR/Sophistry-CP008-sources.zip"
 printf '%s\n' 'Téléchargement du checkpoint CP-008, correctif Mac 1. Le plugin Audio Unit complet reste à développer.'
 /usr/bin/curl --fail --location --retry 2 --connect-timeout 15 --max-time 600 \
-  'https://codeload.github.com/stefanwul-hub/SophistryARM/zip/9b0cf0f5a35ecf85aae8dd026a3f12fd56411040' -o "$SOPHISTRY_ARCHIVE"
+  'https://codeload.github.com/stefanwul-hub/SophistryARM/zip/1f85c63cff513d0ccf9e93d12711eed910fbc056' -o "$SOPHISTRY_ARCHIVE"
 SOPHISTRY_DOWNLOADED_SHA=$(/usr/bin/shasum -a 256 "$SOPHISTRY_ARCHIVE" | /usr/bin/awk '{print $1}')
-if [[ "$SOPHISTRY_DOWNLOADED_SHA" != '94e471095ce70d3de9634af946652aca0be8dcfc518627619d97b5a689e708d6' ]]; then
+if [[ "$SOPHISTRY_DOWNLOADED_SHA" != '1ec9e3a784d30506367c92f9a01d0255db7a59f6eed5d7988cd905c00033ae6c' ]]; then
   echo 'L’empreinte de l’archive diffère de celle vérifiée. Arrêt.' >&2
   exit 1
 fi
 /usr/bin/ditto -x -k "$SOPHISTRY_ARCHIVE" "$SOPHISTRY_WORK_DIR"
-SOPHISTRY_SOURCE_DIR="$SOPHISTRY_WORK_DIR/SophistryARM-9b0cf0f5a35ecf85aae8dd026a3f12fd56411040"
+SOPHISTRY_SOURCE_DIR="$SOPHISTRY_WORK_DIR/SophistryARM-1f85c63cff513d0ccf9e93d12711eed910fbc056"
 /bin/bash "$SOPHISTRY_SOURCE_DIR/Verifier-Mac.command" "$@"

@@ -90,4 +90,4 @@ L’archive ZIP contient le projet Ghidra enregistré et tous les fichiers suivi
 
 `Demarrer-Sophistry-CP008.command`, téléchargé seul, récupère l’archive de code CP-008 figée au commit vérifié, contrôle son SHA-256, la décompacte puis lance la compilation et les tests sur Mac. Dans un dossier de sources déjà extrait, il lance directement `Verifier-Mac.command`. Il ne prétend pas compiler le synthétiseur complet et n’installe aucun composant.
 
-Le fichier `checkpoints/CP008-publication.json` consigne l’URL de l’archive réellement téléchargée et vérifiée, sa taille, son empreinte et le commit source.
+Le fichier `checkpoints/CP008-correctif1-publication.json` consigne l’URL de l’archive corrigée réellement téléchargée et vérifiée, sa taille, son empreinte et le commit source. `CP008-publication.json` conserve la provenance de la distribution précédente.
