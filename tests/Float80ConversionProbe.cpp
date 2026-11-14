@@ -21,7 +21,14 @@ int main() {
         if(__builtin_isfinite(a)){long double x=static_cast<long double>(a);SlU bits=0;memcpy(&bits,&x,10);if(bits!=sl_fp_to_ext80(aa,4))++failures;}
         if(__builtin_isfinite(b)){long double x=static_cast<long double>(b);SlU bits=0;memcpy(&bits,&x,10);if(bits!=sl_fp_to_ext80(bb,8))++failures;}
     }
-    printf("{\"scope\":\"finite canonical ext80 storage conversions\",\"cases\":20000,\"mismatches\":%u,\"native_x87_type_oracle\":true,\"rounding\":\"nearest-even\",\"passed\":%s}\n",failures,failures?"false":"true");return failures?1:0;
+    for(unsigned i=0;i<20000;++i){
+        SlU64 bits=i==0?0x8000000000000000ULL:i==1?0x7fffffffffffffffULL:i==2?0:i==3?~SlU64(0):next();
+        __INT64_TYPE__ v64;__INT32_TYPE__ v32;memcpy(&v64,&bits,8);memcpy(&v32,&bits,4);
+        long double a=static_cast<long double>(v64),b=static_cast<long double>(v32);
+        SlU aa=0,bb=0;memcpy(&aa,&a,10);memcpy(&bb,&b,10);
+        if(aa!=sl_integer_to_ext80(bits,64)||bb!=sl_integer_to_ext80(bits,32))++failures;
+    }
+    printf("{\"scope\":\"finite canonical ext80 storage and integer conversions\",\"float_cases\":20000,\"integer_cases\":40000,\"mismatches\":%u,\"native_x87_type_oracle\":true,\"rounding\":\"nearest-even\",\"passed\":%s}\n",failures,failures?"false":"true");return failures?1:0;
 #else
     puts("{\"native_x87_type_oracle\":false,\"skipped\":true}");return 77;
 #endif

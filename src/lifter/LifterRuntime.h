@@ -16,7 +16,7 @@ struct SlHook {SlU32 address;SlCallback function;void* user;};
 struct SlCpu {
     SlU8* memory;SlSize memory_size;
     alignas(16) SlU8 reg[0x2000];
-    alignas(16) SlU8 temp[0x80000];
+    alignas(16) SlU8 temp[0x200000];
     SlU8 seen[0x104000];
     SlU32 pc,stop,fault,hook_count;
     SlU64 steps,limit;
@@ -42,11 +42,21 @@ template<class T> inline SlU sl_bits(T value){SlU bits=0;__builtin_memcpy(&bits,
 inline SlU sl_popcount(SlU x){return __builtin_popcountll(static_cast<SlU64>(x))+__builtin_popcountll(static_cast<SlU64>(x>>64));}
 inline SlU sl_lshift(SlU x,SlU n){return n>=128?0:x<<static_cast<unsigned>(n);}
 inline SlU sl_rshift(SlU x,SlU n){return n>=128?0:x>>static_cast<unsigned>(n);}
-inline bool sl_tick(SlCpu& c){if(c.fault)return false;if(c.pc<sizeof(c.seen))c.seen[c.pc]=1;if(++c.steps>c.limit){c.fault=4;return false;}return true;}
+inline SlU sl_sright(SlU x,SlU n,unsigned bits){
+    const SlU mask=sl_mask(bits);x&=mask;const bool negative=(x>>(bits-1))&1;
+    if(n>=bits)return negative?mask:0;
+    if(!n)return x;
+    const unsigned shift=static_cast<unsigned>(n);
+    return (x>>shift)|(negative?(mask^sl_mask(bits-shift)):0);
+}
+inline bool sl_tick(SlCpu& c){if(c.fault||c.pc==c.stop)return false;if(c.pc<sizeof(c.seen))c.seen[c.pc]=1;if(++c.steps>c.limit){c.fault=4;return false;}return true;}
 SlU sl_ext80_to_f64(SlU bits);
 SlU sl_ext80_to_f32(SlU bits);
 SlU sl_fp_to_ext80(SlU bits,unsigned source_bytes);
 SlU sl_trunc_fp(SlU bits,unsigned source_bytes,unsigned output_bits);
+SlU sl_integer_to_ext80(SlU value,unsigned input_bits);
+SlU sl_divide(SlCpu& c,SlU numerator,SlU denominator,unsigned input_bits,unsigned quotient_bits,bool is_signed,bool remainder);
+SlU sl_sqrt_f32(SlU bits);
 int sl_execute(SlCpu& c,SlU32 entry,SlU32 stop,SlU64 limit);
 extern "C" {
 SlCpu* sl_create(SlSize memory_size);

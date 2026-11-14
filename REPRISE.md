@@ -1,4 +1,10 @@
-# Reprendre à CP-008, correctif Mac 1
+# Reprendre à CP-009
+
+Lire `docs/CP009.md`, `port-status.json`, `src/lifter/whole/manifest.json` et `evidence/constructor-comparison-cp009.json`. Les 186001 instructions reconnues compilent en C++ natif/Linux et ARM64/Linux/Mach-O ; 704 références DSP et 11635 cas primitifs/gardes passent. Les 121 initialisateurs et le constructeur Kaja ont des zones globales/objet/tas identiques à l’original dans le même hôte synthétique. Les services hôtes sont encore un prototype Python, avec entrées figées et anciens services Apple indisponibles.
+
+**Prochaine action :** récupérer le code absent à `0x94e41`, atteint par le dispatch VST de base lors de `effOpen`. L’original poursuit jusqu’à `_GetMainEventLoop` ; le C++ s’arrête sur le PC non émis. Copier le projet Ghidra vers work avant de compléter le désassemblage et réexporter. Préférer un découpage stable par pages d’adresses pour ne pas recompiler tous les blocs après chaque découverte. Ne pas présenter tout le listing détecté émis comme un moteur entièrement récupéré.
+
+Commande disponible : `bash scripts/build-lifter-chunks.sh`. Sources, fixtures et projet Ghidra sont sauvegardés. La construction ARM64/Linux/Mach-O de travail est sous `work/whole-arm64-cp009/` et ses preuves sous `evidence/whole-lift-arm64-provenance.json`. Les rapports du Mac utilisateur restent ceux de CP-008.
 
 **Dernier résultat reçu :** les probes du correctif 1 ont compilé et tourné sur le Mac ARM64 de l’utilisateur : 161 cas de saturation, deux réécritures structurelles d’états et 704 cas du lifter passent. Les détails mathématiques sont maintenant reçus : sept octets d’état interne diffèrent, aucun octet des buffers audio comparés ; détail identique à ARM64/Linux musl, test strict conservé en échec. Voir `evidence/mac-cp008-native-math-details.json`, `port-status.json` et la section finale. Le synthétiseur complet et son AU restent absents.
 

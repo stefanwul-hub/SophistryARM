@@ -1,0 +1,70 @@
+{
+  "scope": "Decode the differing aligned eight-byte fields from the reference fixtures; not full audio fidelity",
+  "fields": [
+    {
+      "case": 117,
+      "entry": "0x7a1ac",
+      "address": "0x2002d8",
+      "expected_double": 4.040892657716388,
+      "actual_double": 4.040892657716389,
+      "ulp_distance_if_ieee_double": 1,
+      "absolute_difference": 8.881784197001252e-16
+    },
+    {
+      "case": 117,
+      "entry": "0x7a1ac",
+      "address": "0x2002e0",
+      "expected_double": 3.0422014363438032,
+      "actual_double": 3.042201436343804,
+      "ulp_distance_if_ieee_double": 2,
+      "absolute_difference": 8.881784197001252e-16
+    },
+    {
+      "case": 123,
+      "entry": "0x7a1ac",
+      "address": "0x200248",
+      "expected_double": 0.010865294386732031,
+      "actual_double": 0.01086529438673203,
+      "ulp_distance_if_ieee_double": 1,
+      "absolute_difference": 1.734723475976807e-18
+    },
+    {
+      "case": 123,
+      "entry": "0x7a1ac",
+      "address": "0x200268",
+      "expected_double": 0.009483708637304838,
+      "actual_double": 0.009483708637304836,
+      "ulp_distance_if_ieee_double": 1,
+      "absolute_difference": 1.734723475976807e-18
+    },
+    {
+      "case": 123,
+      "entry": "0x7a1ac",
+      "address": "0x200270",
+      "expected_double": 0.010865294386732031,
+      "actual_double": 0.01086529438673203,
+      "ulp_distance_if_ieee_double": 1,
+      "absolute_difference": 1.734723475976807e-18
+    },
+    {
+      "case": 123,
+      "entry": "0x7a1ac",
+      "address": "0x2002d8",
+      "expected_double": 1.7916633360874958,
+      "actual_double": 1.7916633360874956,
+      "ulp_distance_if_ieee_double": 1,
+      "absolute_difference": 2.220446049250313e-16
+    },
+    {
+      "case": 123,
+      "entry": "0x7a1ac",
+      "address": "0x2002e0",
+      "expected_double": 0.2731636825594258,
+      "actual_double": 0.27316368255942575,
+      "ulp_distance_if_ieee_double": 1,
+      "absolute_difference": 5.551115123125783e-17
+    }
+  ],
+  "maximum_ulp_distance": 2,
+  "maximum_absolute_difference": 8.881784197001252e-16
+}

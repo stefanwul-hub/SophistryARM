@@ -1,0 +1,9 @@
+{
+  "scope": "External C library algorithm consulted for a test-host adapter; not original Apple OS execution",
+  "source": "https://raw.githubusercontent.com/apple-oss-distributions/Libc/main/stdlib/FreeBSD/rand.c",
+  "bytes": 4295,
+  "sha256": "3572dea225037705e18eb42e06edf4bca365ffcfe41f75b73fd8e66ebaeef045",
+  "copyright_and_license": "Retained in full in the source file",
+  "adapter": "Park-Miller 16807 modulo 2147483647; zero seed becomes 123459876",
+  "original_sophistry_dsp_code_modified": false
+}

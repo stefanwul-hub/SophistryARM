@@ -1,0 +1,364 @@
+{
+  "scope": "Static syntax/feature audit only; not a complete lift or execution test",
+  "instructions": 186001,
+  "pcode_operations": 732177,
+  "currently_emittable_operations": 732177,
+  "instructions_with_unsupported_operations": 0,
+  "unsupported_counts": {},
+  "unsupported_examples": {},
+  "operation_counts": {
+    "COPY": 169572,
+    "INT_SUB": 28948,
+    "STORE": 71427,
+    "INT_LESS": 8970,
+    "INT_SBORROW": 9023,
+    "INT_SLESS": 26749,
+    "INT_EQUAL": 52617,
+    "INT_AND": 67902,
+    "POPCOUNT": 25274,
+    "INT_ADD": 111531,
+    "LOAD": 66078,
+    "RETURN": 3089,
+    "CALL": 9656,
+    "CALLIND": 1993,
+    "CBRANCH": 12140,
+    "INT_CARRY": 8057,
+    "INT_SCARRY": 8058,
+    "BRANCH": 3798,
+    "BOOL_NEGATE": 9274,
+    "INT_ZEXT": 1976,
+    "BOOL_OR": 2706,
+    "INT_LEFT": 1404,
+    "INT_NOTEQUAL": 3833,
+    "INT_OR": 6911,
+    "INT_XOR": 2458,
+    "INT_MULT": 2940,
+    "INT_RIGHT": 398,
+    "FLOAT2FLOAT": 1663,
+    "FLOAT_SUB": 1233,
+    "FLOAT_NAN": 1740,
+    "FLOAT_EQUAL": 870,
+    "FLOAT_LESS": 1083,
+    "BRANCHIND": 235,
+    "INT_2COMP": 53,
+    "BOOL_AND": 597,
+    "INT_SRIGHT": 378,
+    "INT_SEXT": 746,
+    "SUBPIECE": 772,
+    "FLOAT_ADD": 1721,
+    "FLOAT_MULT": 2692,
+    "FLOAT_DIV": 251,
+    "TRUNC": 245,
+    "FLOAT_LESSEQUAL": 7,
+    "INT2FLOAT": 611,
+    "INT_NEGATE": 310,
+    "BOOL_XOR": 33,
+    "INT_SDIV": 72,
+    "INT_SREM": 72,
+    "CALLOTHER": 5,
+    "FLOAT_SQRT": 1,
+    "FLOAT_NOTEQUAL": 1,
+    "INT_DIV": 2,
+    "INT_REM": 2
+  },
+  "float_variants": [
+    {
+      "op": "FLOAT2FLOAT",
+      "output_bytes": 8,
+      "input_bytes": [
+        4
+      ],
+      "count": 774
+    },
+    {
+      "op": "FLOAT_SUB",
+      "output_bytes": 8,
+      "input_bytes": [
+        8,
+        8
+      ],
+      "count": 564
+    },
+    {
+      "op": "FLOAT2FLOAT",
+      "output_bytes": 4,
+      "input_bytes": [
+        8
+      ],
+      "count": 347
+    },
+    {
+      "op": "FLOAT_NAN",
+      "output_bytes": 1,
+      "input_bytes": [
+        4
+      ],
+      "count": 1010
+    },
+    {
+      "op": "FLOAT_EQUAL",
+      "output_bytes": 1,
+      "input_bytes": [
+        4,
+        4
+      ],
+      "count": 505
+    },
+    {
+      "op": "FLOAT_LESS",
+      "output_bytes": 1,
+      "input_bytes": [
+        4,
+        4
+      ],
+      "count": 626
+    },
+    {
+      "op": "FLOAT2FLOAT",
+      "output_bytes": 10,
+      "input_bytes": [
+        4
+      ],
+      "count": 99
+    },
+    {
+      "op": "FLOAT2FLOAT",
+      "output_bytes": 4,
+      "input_bytes": [
+        10
+      ],
+      "count": 303
+    },
+    {
+      "op": "FLOAT_NAN",
+      "output_bytes": 1,
+      "input_bytes": [
+        8
+      ],
+      "count": 730
+    },
+    {
+      "op": "FLOAT_EQUAL",
+      "output_bytes": 1,
+      "input_bytes": [
+        8,
+        8
+      ],
+      "count": 365
+    },
+    {
+      "op": "FLOAT_LESS",
+      "output_bytes": 1,
+      "input_bytes": [
+        8,
+        8
+      ],
+      "count": 457
+    },
+    {
+      "op": "FLOAT_ADD",
+      "output_bytes": 8,
+      "input_bytes": [
+        8,
+        8
+      ],
+      "count": 824
+    },
+    {
+      "op": "FLOAT2FLOAT",
+      "output_bytes": 10,
+      "input_bytes": [
+        8
+      ],
+      "count": 5
+    },
+    {
+      "op": "FLOAT2FLOAT",
+      "output_bytes": 8,
+      "input_bytes": [
+        10
+      ],
+      "count": 135
+    },
+    {
+      "op": "FLOAT_MULT",
+      "output_bytes": 8,
+      "input_bytes": [
+        8,
+        8
+      ],
+      "count": 1208
+    },
+    {
+      "op": "FLOAT_DIV",
+      "output_bytes": 8,
+      "input_bytes": [
+        8,
+        8
+      ],
+      "count": 104
+    },
+    {
+      "op": "TRUNC",
+      "output_bytes": 4,
+      "input_bytes": [
+        4
+      ],
+      "count": 143
+    },
+    {
+      "op": "FLOAT_LESSEQUAL",
+      "output_bytes": 1,
+      "input_bytes": [
+        8,
+        8
+      ],
+      "count": 2
+    },
+    {
+      "op": "TRUNC",
+      "output_bytes": 4,
+      "input_bytes": [
+        8
+      ],
+      "count": 102
+    },
+    {
+      "op": "INT2FLOAT",
+      "output_bytes": 4,
+      "input_bytes": [
+        4
+      ],
+      "count": 456
+    },
+    {
+      "op": "FLOAT_ADD",
+      "output_bytes": 4,
+      "input_bytes": [
+        4,
+        4
+      ],
+      "count": 897
+    },
+    {
+      "op": "FLOAT_MULT",
+      "output_bytes": 4,
+      "input_bytes": [
+        4,
+        4
+      ],
+      "count": 1484
+    },
+    {
+      "op": "FLOAT_DIV",
+      "output_bytes": 4,
+      "input_bytes": [
+        4,
+        4
+      ],
+      "count": 147
+    },
+    {
+      "op": "FLOAT_SUB",
+      "output_bytes": 4,
+      "input_bytes": [
+        4,
+        4
+      ],
+      "count": 669
+    },
+    {
+      "op": "INT2FLOAT",
+      "output_bytes": 8,
+      "input_bytes": [
+        4
+      ],
+      "count": 121
+    },
+    {
+      "op": "INT2FLOAT",
+      "output_bytes": 10,
+      "input_bytes": [
+        4
+      ],
+      "count": 34
+    },
+    {
+      "op": "FLOAT_LESSEQUAL",
+      "output_bytes": 1,
+      "input_bytes": [
+        4,
+        4
+      ],
+      "count": 5
+    },
+    {
+      "op": "FLOAT_SQRT",
+      "output_bytes": 4,
+      "input_bytes": [
+        4
+      ],
+      "count": 1
+    },
+    {
+      "op": "FLOAT_NOTEQUAL",
+      "output_bytes": 1,
+      "input_bytes": [
+        4,
+        4
+      ],
+      "count": 1
+    }
+  ],
+  "userops": {
+    "swi": 1,
+    "LOCK": 1,
+    "UNLOCK": 1,
+    "out": 2
+  },
+  "terminal_guard_operations": [
+    {
+      "address": "12fb8",
+      "asm": "INT3",
+      "userop": "swi",
+      "semantics": "terminal x86 trap / privileged I/O guard"
+    },
+    {
+      "address": "23f4c",
+      "asm": "ADD.LOCK byte ptr [EAX],AL",
+      "userop": "LOCK",
+      "semantics": "terminal fault; shared-memory atomic behavior unavailable"
+    },
+    {
+      "address": "23f4c",
+      "asm": "ADD.LOCK byte ptr [EAX],AL",
+      "userop": "UNLOCK",
+      "semantics": "terminal fault; shared-memory atomic behavior unavailable"
+    },
+    {
+      "address": "4debc",
+      "asm": "OUT 0x1,AL",
+      "userop": "out",
+      "semantics": "terminal x86 trap / privileged I/O guard"
+    },
+    {
+      "address": "4dec0",
+      "asm": "OUT 0x1,AL",
+      "userop": "out",
+      "semantics": "terminal x86 trap / privileged I/O guard"
+    }
+  ],
+  "instructions_with_terminal_guards": 4,
+  "spaces": {
+    "unique": 764386,
+    "register": 647080,
+    "const": 498320,
+    "ram": 25594
+  },
+  "storage_bytes_required": {
+    "unique": 1528580,
+    "register": 5072
+  },
+  "full_engine_lifted": false,
+  "full_engine_executed": false
+}

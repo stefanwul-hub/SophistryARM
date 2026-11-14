@@ -1,0 +1,44 @@
+{
+  "scope": "Isolated original instructions; not full-engine DSP",
+  "differential_cases": 11631,
+  "groups": {
+    "sar-immediate": 1031,
+    "sar-cl": 2048,
+    "signed-divide": 2111,
+    "unsigned-divide": 2073,
+    "sqrtss": 4112,
+    "fldz": 128,
+    "fld1": 128
+  },
+  "original_divide_exception_cases": 2552,
+  "division_hardware_oracle_cases": 4184,
+  "unicorn_host_sigfpe_corner_cases_checked_with_hardware_only": 1,
+  "mismatches": 0,
+  "explicit_terminal_guard_cases": [
+    {
+      "address": "0x12fb8",
+      "asm": "INT3",
+      "terminal_fault": 8
+    },
+    {
+      "address": "0x23f4c",
+      "asm": "ADD.LOCK byte ptr [EAX],AL",
+      "terminal_fault": 10
+    },
+    {
+      "address": "0x4debc",
+      "asm": "OUT 0x1,AL",
+      "terminal_fault": 8
+    },
+    {
+      "address": "0x4dec0",
+      "asm": "OUT 0x1,AL",
+      "terminal_fault": 8
+    }
+  ],
+  "fixture_cases": 11635,
+  "fixture_sha256": "5225360b421be456f12e55f5888c2f779ef762579675ed87531c81cac44426a9",
+  "fixture_bytes": 1248543,
+  "rounding_mode": "nearest-even/default MXCSR; exception flags not modeled",
+  "full_engine_tested": false
+}

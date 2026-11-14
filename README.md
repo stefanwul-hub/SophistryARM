@@ -1,8 +1,12 @@
-# Sophistry — checkpoint CP-008
+# Sophistry — checkpoint CP-009
 
 **Le plugin Audio Unit ARM64 complet n’est pas encore obtenu. Ce paquet contient le travail de portage et ses preuves ; il ne doit pas remplacer l’ancien `.component`.**
 
 Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x86-64. L’identité à conserver pour les anciens projets AU est `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`.
+
+**Nouveau à CP-009 :** les 186001 instructions reconnues par Ghidra sont émises en C++ fixe sous `src/lifter/whole/` et compilent sous Linux et en objets Mach-O ARM64. Les 704 références DSP et 11635 cas d’instructions/gardes passent avec cette bibliothèque complète sous Linux natif et ARM64/Linux/QEMU. Le constructeur et les 121 initialisateurs sont comparés à l’original dans un hôte synthétique, avec des zones mémoire identiques. L’ouverture révèle toutefois du code non découvert par Ghidra à `0x94e41` et des services Carbon encore absents. **Le moteur complet, le preset rendu et l’AU installable ne sont pas obtenus.**
+
+Lire [le rapport CP-009](docs/CP009.md) pour les preuves, limites et commandes. Les éléments ci-dessous décrivent le périmètre DSP CP-008 déjà testé sur le Mac utilisateur. CP-009 n’a pas encore été exécuté sous macOS.
 
 ## Travail effectué
 

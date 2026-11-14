@@ -24,6 +24,14 @@ def fp(v):
  if v['size'] not in [4,8]:raise ValueError('Unsupported arithmetic float format: '+str(v['size']))
  return 'sl_float<%s>(%s)'%('float' if v['size']==4 else 'double',value(v))
 
+def quotient_width(ins,op):
+ # The x86 p-code divides at twice the destination width, then truncates.
+ # Recover the architectural width from that SUBPIECE rather than dropping #DE.
+ for later in ins['pcode']:
+  if later['op']=='SUBPIECE' and later['inputs'][0]==op['output'] and number(later['inputs'][1])==0:
+   return later['output']['size']*8
+ return op['output']['size']*8
+
 def emit(ins,op,j,known):
  kind=op['op'];iv=op['inputs'];out=op['output'];a=[value(v) for v in iv];expr=None
  if kind in ['COPY','INT_ZEXT']:expr=a[0]
@@ -47,6 +55,11 @@ def emit(ins,op,j,known):
  elif kind=='PIECE':expr='(sl_lshift(%s,%d)|%s)'%(a[0],iv[1]['size']*8,a[1])
  elif kind=='INT_LEFT':expr='sl_lshift(%s,%s)'%(a[0],a[1])
  elif kind=='INT_RIGHT':expr='sl_rshift(%s,%s)'%(a[0],a[1])
+ elif kind=='INT_SRIGHT':expr='sl_sright(%s,%s,%d)'%(a[0],a[1],iv[0]['size']*8)
+ elif kind in ['INT_DIV','INT_REM','INT_SDIV','INT_SREM']:
+  if iv[0]['size']>8 or iv[1]['size']>8:raise ValueError('Unsupported division input wider than 64 bits')
+  expression='sl_divide(c,%s,%s,%d,%d,%s,%s)'%(a[0],a[1],iv[0]['size']*8,quotient_width(ins,op),'true' if kind in ['INT_SDIV','INT_SREM'] else 'false','true' if kind in ['INT_REM','INT_SREM'] else 'false')
+  return '{const SlU result=%s;if(c.fault)return int(c.fault);%s}'%(expression,assign(out,'result'))
  elif kind=='LOAD':
   if number(iv[0])!=0x1a1:raise ValueError('Non-RAM LOAD')
   expr='sl_get<%d>(c.memory,c.memory_size,SlU32(%s),c)'%(out['size'],a[1])
@@ -64,8 +77,19 @@ def emit(ins,op,j,known):
   elif iv[0]['size'] in [4,8] and out['size'] in [4,8]:expr='sl_bits(static_cast<%s>(%s))'%('float' if out['size']==4 else 'double',fp(iv[0]))
   else:raise ValueError('Unsupported FLOAT2FLOAT sizes')
  elif kind=='INT2FLOAT':
-  if out['size'] not in [4,8]:raise ValueError('Unsupported INT2FLOAT output')
-  expr='sl_bits(static_cast<%s>(sl_signed(%s,%d)))'%('float' if out['size']==4 else 'double',a[0],iv[0]['size']*8)
+  if out['size']==10 and iv[0]['size']<=8:expr='sl_integer_to_ext80(%s,%d)'%(a[0],iv[0]['size']*8)
+  elif out['size'] in [4,8]:expr='sl_bits(static_cast<%s>(sl_signed(%s,%d)))'%('float' if out['size']==4 else 'double',a[0],iv[0]['size']*8)
+  else:raise ValueError('Unsupported INT2FLOAT output')
+ elif kind=='FLOAT_SQRT':
+  if out['size']!=4 or iv[0]['size']!=4:raise ValueError('Unsupported FLOAT_SQRT format')
+  expr='sl_sqrt_f32(%s)'%a[0]
+ elif kind=='CALLOTHER':
+  # Preserve traps / unsupported platform semantics explicitly. In particular,
+  # LOCK is not silently discarded in a VM that has no shared-memory protocol.
+  userop=op.get('userop')
+  if userop in ['swi','out']:return 'c.fault=8;return 8; // explicit x86 trap / privileged I/O'
+  if userop in ['LOCK','UNLOCK']:return 'c.fault=10;return 10; // unsupported shared-memory atomic instruction'
+  raise ValueError('Unsupported userop '+str(userop))
  elif kind=='TRUNC':
   if iv[0]['size'] not in [4,8] or out['size'] not in [4,8]:raise ValueError('Unsupported float truncation')
   expr='sl_trunc_fp(%s,%d,%d)'%(a[0],iv[0]['size'],out['size']*8)
@@ -98,6 +122,7 @@ def generate(source,output):
  lines.append('}')
  output.write_text('\n'.join(lines)+'\n')
  report={'scope':'Static C++ emission of the separately exported instruction set; not complete DSP engine','original_sha256':SHA,'instruction_count':len(data),'pcode_operation_count':sum(opcounts.values()),'operations':dict(opcounts),'generated_cpp_sha256':hashlib.sha256(output.read_bytes()).hexdigest(),'unsupported_operations':[],'x86_decoder_in_runtime':False,'uses_fixed_control_flow_labels':True,'requires_host_callbacks':True,'floating_environment':'nearest-even, no fast-math, no contraction; x87 arithmetic beyond exact IEEE-to-ext80 / ext80-to-IEEE storage conversions unsupported'}
+ report['terminal_guard_operations']=[{'address':ins['address'],'asm':ins['asm'],'userop':op.get('userop')} for ins in data for op in ins['pcode'] if op['op']=='CALLOTHER']
  output.with_suffix('.json').write_text(json.dumps(report,indent=2)+'\n');return report
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('source',type=Path);p.add_argument('output',type=Path);n=p.parse_args();print(json.dumps(generate(n.source,n.output),indent=2))

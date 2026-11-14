@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-008",
+  "checkpoint": "CP-009",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -34,15 +34,15 @@
   "logic_projects_verified": false,
   "ableton_projects_verified": false,
   "install_allowed": false,
-  "implemented_dsp_scope": "3242 instructions in 19 selected functions: saturation, filter, sample mono/normalize, Schrader tables and playback; full engine absent",
-  "arm64_scope": "Selected lifted DSP compiled and executed natively on the user's macOS 15.7.2 ARM64 system: 704 reference replay cases passed; recorded host math responses. The separate native-math comparison returned nonzero; details pending.",
+  "implemented_dsp_scope": "Validated DSP reference scope remains 19 selected functions; additional primitive and constructor tests. The complete detected instruction listing is emitted/compiled but not a completed working engine.",
+  "arm64_scope": "CP-009: all 366 generated/runtime objects compile as Mach-O ARM64; full listing also compiled to ARM64/Linux, with 704 DSP and 11635 instruction/guard fixtures passed under QEMU. CP-009 has not executed on the user Mac; CP-008 did pass 704 reference cases natively there.",
   "next_work": [
-    "Analyze/freeze cross-platform host math without treating a Linux reference as the original Apple i386 libm",
-    "Extend and differentially test missing p-code operations, then split full generated C++ into compilation units",
-    "Recover full Synth/Kaja initialization and object graph, host adapters and all remaining DSP modules",
-    "Integrate semantic state restoration, versioned enum labels and stable AU parameter IDs",
-    "Implement modern AUv2 entry point and Cocoa UI",
-    "Build and validate the complete AU on Apple Silicon, then test copies of old Logic and Live projects"
+    "Recover missing Ghidra dispatch blocks starting at 0x94e41; do not confuse all detected instructions with all reachable code",
+    "Finish original effOpen and semantic FXP/AU state restoration with explicit host services",
+    "Replace prototype host services with native C++ bindings, including allocation, clock, files, conversion and lifecycle",
+    "Complete all DSP module audio references and full preset rendering",
+    "Implement modern AUv2 with original identity/parameter IDs and a Cocoa UI",
+    "Validate final ARM64 AU on Mac and copies of old Logic/Live projects"
   ],
   "state_container_reader_implemented": true,
   "state_container_round_trip_tested": [
@@ -58,7 +58,7 @@
   "sample_used_for_full_synth_audio_test": false,
   "sample_sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050",
   "static_lifter_implemented": true,
-  "static_lifter_scope": "3242 instructions in 19 selected functions: saturation, filter, sample mono/normalize, Schrader tables and playback; full engine absent",
+  "static_lifter_scope": "Validated DSP reference scope remains 19 selected functions; additional primitive and constructor tests. The complete detected instruction listing is emitted/compiled but not a completed working engine.",
   "static_lifter_test_cases": 704,
   "static_lifter_bit_exact_vs_unicorn": true,
   "static_lifter_original_apple_libm_tested": false,
@@ -66,7 +66,7 @@
   "static_lifter_arm64_linux_executed_under_qemu": true,
   "static_lifter_arm64_qemu_fixture_cases": 704,
   "static_lifter_macos_objects_compiled": true,
-  "static_lifter_macos_executed": true,
+  "static_lifter_macos_executed": false,
   "static_lifter_compared_bytes": 5420672,
   "static_lifter_x87_conversion_cases": 20000,
   "isolated_schrader_audio_seconds": 3,
@@ -102,5 +102,23 @@
     "exitcode": 1,
     "detailed_result_received": true,
     "same_mismatch_bytes_as_arm64_linux_musl": true
-  }
+  },
+  "native_macos_execution_evidence_checkpoint": "CP-008 / verifier revision 1 / source 1f85c63cff513d0ccf9e93d12711eed910fbc056",
+  "full_detected_listing_emitted_instructions": 186001,
+  "full_detected_listing_emitted_pcode_operations": 732177,
+  "full_detected_listing_compilation_units": 364,
+  "full_detected_listing_linux_native_compiled": true,
+  "full_detected_listing_macho_arm64_objects_compiled": 366,
+  "primitive_instruction_differential_cases": 11631,
+  "primitive_instruction_fixture_cases_including_guards": 11635,
+  "primitive_instruction_arm64_qemu_replay_passed": true,
+  "constructor_differential_test_passed": true,
+  "constructor_compared_region_bytes": 4400240,
+  "constructor_global_initializers_returned": 121,
+  "constructor_test_host_is_production_ready": false,
+  "synth_effOpen_completed": false,
+  "synth_effOpen_blockers": [
+    "Ghidra instruction coverage gap at 0x94e41 in the base VST dispatcher",
+    "Legacy Carbon main event loop host service not implemented in the initialization prototype"
+  ]
 }

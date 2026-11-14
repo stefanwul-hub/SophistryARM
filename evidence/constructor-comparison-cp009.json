@@ -1,0 +1,41 @@
+{
+  "scope": "Original i386 vs statically emitted C++, initialized in the same explicitly limited synthetic host",
+  "checks": {
+    "global_memory_sha256": true,
+    "engine_object_sha256": true,
+    "guest_heap_sha256": true,
+    "host_import_calls": true,
+    "heap_bytes_reserved": true,
+    "effect_fields": true
+  },
+  "compared_memory_regions": [
+    {
+      "name": "global data/imports",
+      "address": "0xe2000",
+      "bytes": 139264,
+      "sha256": "ffa6eb8b20d2e47279af23e9a1071821ef875417fa481fcd09f7cf800c691dbc"
+    },
+    {
+      "name": "Kaja object area",
+      "address": "0x200000",
+      "bytes": 3407872,
+      "sha256": "989a00e5602d2d548888dcc7faa7747ce7aaa1123eb0c8590238d2804046dc79"
+    },
+    {
+      "name": "reserved guest heap",
+      "address": "0x800000",
+      "bytes": 853104,
+      "sha256": "d1022ecc5ce4bebc9dea90a47cd714102f3430b0197b42c202e2993380b13948"
+    }
+  ],
+  "total_region_bytes": 4400240,
+  "initializers_returned": 121,
+  "constructor_returned": true,
+  "strict_comparison_passed": true,
+  "platform_inputs": "bounded guest allocator, single-CPU mutex model, fixed current task clock, fixed BSD random streams, shared Linux math; Apple graphics/library-unavailable error paths",
+  "original_global_destructor_registration_complete": false,
+  "effOpen_completed": false,
+  "preset_restored": false,
+  "full_audio_rendered": false,
+  "native_audio_unit_available": false
+}

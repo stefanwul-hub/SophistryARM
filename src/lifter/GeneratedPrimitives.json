@@ -1,0 +1,71 @@
+{
+  "scope": "Static C++ emission of the separately exported instruction set; not complete DSP engine",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "instruction_count": 12,
+  "pcode_operation_count": 120,
+  "operations": {
+    "INT_AND": 20,
+    "INT_NOTEQUAL": 4,
+    "COPY": 19,
+    "INT_SRIGHT": 3,
+    "INT_SLESS": 4,
+    "INT_EQUAL": 9,
+    "POPCOUNT": 4,
+    "INT_ADD": 4,
+    "LOAD": 9,
+    "INT_LESS": 1,
+    "INT_SBORROW": 1,
+    "INT_SUB": 2,
+    "INT2FLOAT": 2,
+    "INT_SEXT": 1,
+    "INT_ZEXT": 5,
+    "INT_LEFT": 2,
+    "INT_OR": 6,
+    "INT_SDIV": 1,
+    "SUBPIECE": 4,
+    "INT_SREM": 1,
+    "CALLOTHER": 5,
+    "CALLIND": 1,
+    "RETURN": 1,
+    "INT_CARRY": 1,
+    "INT_SCARRY": 1,
+    "STORE": 1,
+    "BOOL_NEGATE": 5,
+    "FLOAT_SQRT": 1,
+    "INT_DIV": 1,
+    "INT_REM": 1
+  },
+  "generated_cpp_sha256": "d33c4e682eba4597a7c69a09312216368309a5f024f50dcb019f25afd7c8eb89",
+  "unsupported_operations": [],
+  "x86_decoder_in_runtime": false,
+  "uses_fixed_control_flow_labels": true,
+  "requires_host_callbacks": true,
+  "floating_environment": "nearest-even, no fast-math, no contraction; x87 arithmetic beyond exact IEEE-to-ext80 / ext80-to-IEEE storage conversions unsupported",
+  "terminal_guard_operations": [
+    {
+      "address": "12fb8",
+      "asm": "INT3",
+      "userop": "swi"
+    },
+    {
+      "address": "23f4c",
+      "asm": "ADD.LOCK byte ptr [EAX],AL",
+      "userop": "LOCK"
+    },
+    {
+      "address": "23f4c",
+      "asm": "ADD.LOCK byte ptr [EAX],AL",
+      "userop": "UNLOCK"
+    },
+    {
+      "address": "4debc",
+      "asm": "OUT 0x1,AL",
+      "userop": "out"
+    },
+    {
+      "address": "4dec0",
+      "asm": "OUT 0x1,AL",
+      "userop": "out"
+    }
+  ]
+}

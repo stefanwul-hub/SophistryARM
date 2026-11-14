@@ -1,0 +1,10 @@
+{
+  "scope": "Pinned original Mach-O mapped as guest data",
+  "segment_bytes_match": true,
+  "bss_and_common_zero": true,
+  "log10_and_pow_stub_bindings_confirmed": true,
+  "external_data_relocation_addends_preserved": true,
+  "rebinding_is_idempotent": true,
+  "oversized_native_pointer_rejected": true,
+  "engine_initialized": false
+}

@@ -1,0 +1,48 @@
+{
+  "checkpoint": "CP-009",
+  "source_sha256": {
+    "src/lifter/LifterRuntime.h": "04b3c63541d811fa447a221dfd43b499922637ed3de8439ea54c472aefdbd78f",
+    "src/lifter/LifterRuntime.cpp": "6e00b13eb9e2691e5cff0d2b22555df04f1182eec0a2e5db59a036ad812b943f",
+    "scripts/lift_pcode_cpp.py": "4810aa19a3d13702e4b97157d040729862f6dd5ff1c4843fde35fcba27ed91c1",
+    "scripts/lift_pcode_chunks.py": "837942a78dafb60394bf326e9fd9572e1530dc313d99d1122392507123fd275e",
+    "src/lifter/whole/manifest.json": "826b1d37dfd8aec931090951517c8bdbe1acd336f9c5fca6095fc63f3b4ee45a"
+  },
+  "generated_files_verified": 365,
+  "native_compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+  "native_dsp_replay": {
+    "scope": "selected statically lifted DSP",
+    "cases": 704,
+    "compared_bytes": 5420672,
+    "byte_mismatches": 0,
+    "output_buffer_byte_mismatches": 0,
+    "object_state_byte_mismatches": 0,
+    "math_calls": 201,
+    "math_mode": "recorded ABI responses",
+    "instruction_addresses_executed": 3113,
+    "fixture_valid": true,
+    "passed": true,
+    "full_synth_tested": false
+  },
+  "native_instruction_replay": {
+    "scope": "isolated original instruction fixtures including explicit guards",
+    "cases": 11635,
+    "compared_register_bytes": 146749,
+    "passed": true,
+    "full_engine_tested": false
+  },
+  "float80_native_oracle": {
+    "scope": "finite canonical ext80 storage and integer conversions",
+    "float_cases": 20000,
+    "integer_cases": 40000,
+    "mismatches": 0,
+    "native_x87_type_oracle": true,
+    "rounding": "nearest-even",
+    "passed": true
+  },
+  "python_tool_and_state_tests_passed": 10,
+  "constructor_evidence": "evidence/constructor-comparison-cp009.json",
+  "arm64_evidence": "evidence/whole-lift-arm64-provenance.json",
+  "effOpen_completed": false,
+  "known_missing_code_pc": "0x94e41",
+  "native_audio_unit_available": false
+}

@@ -24,7 +24,7 @@ def ext80(value):
 
 class Native:
  CB=ctypes.CFUNCTYPE(None,ctypes.c_void_p,ctypes.c_uint32,ctypes.c_void_p)
- def __init__(self,lib,image):
+ def __init__(self,lib,image,memory_size=0x800000):
   self.l=lib;self.hooks=[];self.callback_error=None
   lib.sl_create.argtypes=[ctypes.c_size_t];lib.sl_create.restype=ctypes.c_void_p
   lib.sl_destroy.argtypes=[ctypes.c_void_p]
@@ -37,7 +37,7 @@ class Native:
    getattr(lib,name).argtypes=[ctypes.c_void_p];getattr(lib,name).restype=ctypes.c_uint32
   lib.sl_get_steps.argtypes=[ctypes.c_void_p];lib.sl_get_steps.restype=ctypes.c_uint64
   lib.sl_run.argtypes=[ctypes.c_void_p,ctypes.c_uint32,ctypes.c_uint32,ctypes.c_uint64];lib.sl_run.restype=ctypes.c_int
-  self.c=lib.sl_create(0x800000)
+  self.c=lib.sl_create(memory_size)
   if not self.c:raise MemoryError()
   self.write(0,image)
  def close(self):
@@ -70,8 +70,8 @@ class Native:
   if result:raise RuntimeError('Native fault %d at 0x%x after %d steps'%(result,self.l.sl_get_pc(self.c),self.l.sl_get_steps(self.c)))
 
 class Original:
- def __init__(self,image):
-  self.uc=u=Uc(UC_ARCH_X86,UC_MODE_32);u.mem_map(0,0x800000);u.mem_write(0,image);self.hooks=[]
+ def __init__(self,image,memory_size=0x800000):
+  self.uc=u=Uc(UC_ARCH_X86,UC_MODE_32);u.mem_map(0,memory_size);u.mem_write(0,image);self.hooks=[]
   u.reg_write(UC_X86_REG_MXCSR,0x1f80);u.reg_write(UC_X86_REG_FPSW,0);u.reg_write(UC_X86_REG_FPTAG,0xffff)
  def close(self):pass
  def write(self,a,b):self.uc.mem_write(a,b)
