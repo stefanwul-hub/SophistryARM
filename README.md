@@ -29,6 +29,8 @@ Le PCM du WAV est décodé selon la convention PCM16 standard pour les tests. Le
 
 ## Exécuter les vérifications sur votre Mac
 
+**Correctif 1 du vérificateur Mac** : le premier journal reçu sous macOS 15.7.2 confirme la compilation du saturateur, puis un arrêt de `lipo` avant tout replay. Les quatre appels sont corrigés : le fichier précède `-verify_arch arm64`. Le lanceur actualisé télécharge les sources corrigées s’il se trouve dans une ancienne copie CP-008. Ce correctif ne change aucun calcul DSP ; son exécution sur le Mac reste à vérifier.
+
 Avec Xcode installé :
 
 ```sh

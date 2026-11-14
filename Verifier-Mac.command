@@ -9,8 +9,10 @@ RUN_ID="$(date -u +%Y%m%dT%H%M%SZ)"
 RUN="$ROOT/work/mac-$RUN_ID"
 mkdir -p "$RUN"
 exec > >(tee "$RUN/diagnostic.log") 2>&1
-trap 'code=$?; echo "Code de sortie : $code. Rapports : $RUN"' EXIT
+STAGE='préparation'
+trap 'code=$?; echo "Code de sortie : $code. Étape : $STAGE. Rapports : $RUN"' EXIT
 printf '%s\n' 'Checkpoint incomplet : ce script compile des outils de test, pas le synthétiseur complet.'
+printf '%s\n' 'Vérificateur Mac CP-008, correctif 1 (ordre des arguments lipo).'
 /usr/bin/sw_vers
 /usr/bin/uname -m
 /usr/bin/xcrun --find clang++
@@ -21,20 +23,28 @@ if [[ "$SOPHISTRY_SLICE_HASH" != '17239b5c4055557877635cabd0a37668016ca2a61f90c1
   echo 'La tranche de référence diffère du binaire audité.' >&2
   exit 1
 fi
+STAGE='compilation et replay du saturateur'
+printf '\n%s\n' "$STAGE"
 /usr/bin/xcrun clang++ -arch arm64 -mmacosx-version-min=11.0 -std=c++17 -O2 \
   -ffp-contract=off -fno-fast-math -I"$ROOT/src" \
   "$ROOT/src/SaturKernel.cpp" "$ROOT/tests/SaturProbeMain.cpp" -o "$RUN/SaturProbe"
-/usr/bin/lipo -verify_arch arm64 "$RUN/SaturProbe"
+/usr/bin/lipo "$RUN/SaturProbe" -verify_arch arm64
 /usr/bin/file "$RUN/SaturProbe"
 /usr/bin/arch -arm64 "$RUN/SaturProbe" "$ROOT/evidence/satur-fixtures.bin" | tee "$RUN/kernel-test.json"
+STAGE='compilation et replay du lecteur d’états'
+printf '\n%s\n' "$STAGE"
 /usr/bin/xcrun clang++ -arch arm64 -mmacosx-version-min=11.0 -std=c++17 -O2 \
   -I"$ROOT/src" "$ROOT/src/LegacyStateReader.cpp" "$ROOT/tests/LegacyStateProbeMain.cpp" -o "$RUN/LegacyStateProbe"
-/usr/bin/lipo -verify_arch arm64 "$RUN/LegacyStateProbe"
+/usr/bin/lipo "$RUN/LegacyStateProbe" -verify_arch arm64
 /usr/bin/arch -arm64 "$RUN/LegacyStateProbe" "$ROOT/tests/fixtures/legacy-au-vstdata.bin" "$ROOT/tests/fixtures/legacy-fxp-chunk.bin" | tee "$RUN/legacy-state-test.jsonl"
+STAGE='compilation et replay des 704 cas DSP traduits'
+printf '\n%s\n' "$STAGE"
 bash "$ROOT/scripts/build-lifter.sh" "$RUN/lifter"
-/usr/bin/lipo -verify_arch arm64 "$RUN/lifter/LiftedProbe"
+/usr/bin/lipo "$RUN/lifter/LiftedProbe" -verify_arch arm64
 /usr/bin/arch -arm64 "$RUN/lifter/LiftedProbe" "$ROOT/reference/Sophistry.i386" "$ROOT/evidence/static-lift-comparison.fixtures" | tee "$RUN/static-lift-replay.json"
 # Compare the platform libm separately; a mismatch is recorded for investigation.
+STAGE='comparaison avec les fonctions mathématiques natives'
+printf '\n%s\n' "$STAGE"
 set +e
 /usr/bin/arch -arm64 "$RUN/lifter/LiftedProbe" "$ROOT/reference/Sophistry.i386" "$ROOT/evidence/static-lift-comparison.fixtures" --native-math > "$RUN/static-lift-native-libm.json" 2> "$RUN/static-lift-native-libm-errors.log"
 MATH_STATUS=$?
@@ -43,11 +53,15 @@ printf '%s\n' "$MATH_STATUS" > "$RUN/static-lift-native-libm.exitcode"
 if [[ "$MATH_STATUS" -ne 0 ]]; then
   echo "La comparaison avec les maths natives diffère : consultez $RUN/static-lift-native-libm-errors.log"
 fi
+STAGE='compilation de l’hôte de diagnostic Audio Unit'
+printf '\n%s\n' "$STAGE"
 /usr/bin/xcrun clang++ -arch arm64 -mmacosx-version-min=11.0 -std=c++17 -O2 \
   "$ROOT/src/AUStateProbe.cpp" -framework AudioToolbox -framework AudioUnit \
   -framework CoreFoundation -o "$RUN/AUStateProbe"
-/usr/bin/lipo -verify_arch arm64 "$RUN/AUStateProbe"
+/usr/bin/lipo "$RUN/AUStateProbe" -verify_arch arm64
 /usr/bin/file "$RUN/AUStateProbe"
+STAGE='inventaire et auval du composant existant'
+printf '\n%s\n' "$STAGE"
 COMPONENT='/Library/Audio/Plug-Ins/Components/Sophistry.component'
 USER_COMPONENT="$HOME/Library/Audio/Plug-Ins/Components/Sophistry.component"
 printf '%s\n' 'Inventaire des composants existants :'
@@ -67,6 +81,7 @@ if [[ "$AUVAL_STATUS" -ne 0 ]]; then
   echo "auval n'a pas validé l'AU enregistré (code $AUVAL_STATUS). C'est attendu pour l'original i386/PPC sur macOS 15."
 fi
 if [[ "${1:-}" == '--render' ]]; then
+  STAGE='rendu du composant existant demandé avec --render'
   PRESET="${2:--}"
   for rate in 44100 48000 96000; do
     for block in 64 512; do
@@ -74,5 +89,6 @@ if [[ "${1:-}" == '--render' ]]; then
     done
   done
 fi
+STAGE='terminé'
 printf '%s\n' 'Tests du noyau isolé terminés. Aucun .component ARM64 complet n’est fourni ou installé.'
 printf '%s\n' "Rapports : $RUN"

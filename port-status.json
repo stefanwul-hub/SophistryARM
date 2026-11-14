@@ -1,5 +1,13 @@
 {
   "checkpoint": "CP-008",
+  "mac_verifier_revision": 1,
+  "mac_user_diagnostic": {
+    "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
+    "first_probe_compiled": true,
+    "replay_reached": false,
+    "failure": "lipo consumed the input path as an architecture after -verify_arch; argument ordering corrected in verifier revision 1",
+    "corrected_verifier_executed_on_mac": false
+  },
   "original_version": "3.0.8",
   "original_architectures": [
     "ppc",

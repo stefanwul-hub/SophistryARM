@@ -5,13 +5,13 @@ if [[ "$(uname -s)" != Darwin ]]; then
   exit 2
 fi
 SOPHISTRY_BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
-if [[ -f "$SOPHISTRY_BASE_DIR/Verifier-Mac.command" && -f "$SOPHISTRY_BASE_DIR/port-status.json" ]] && /usr/bin/grep -Fq '"checkpoint": "CP-008"' "$SOPHISTRY_BASE_DIR/port-status.json"; then
+if [[ -f "$SOPHISTRY_BASE_DIR/Verifier-Mac.command" && -f "$SOPHISTRY_BASE_DIR/port-status.json" ]] && /usr/bin/grep -Fq '"checkpoint": "CP-008"' "$SOPHISTRY_BASE_DIR/port-status.json" && /usr/bin/grep -Eq '"mac_verifier_revision"[[:space:]]*:[[:space:]]*1[[:space:]]*[,}]' "$SOPHISTRY_BASE_DIR/port-status.json"; then
   exec /bin/bash "$SOPHISTRY_BASE_DIR/Verifier-Mac.command" "$@"
 fi
-SOPHISTRY_WORK_DIR="$(mktemp -d "$SOPHISTRY_BASE_DIR/Sophistry-CP008.XXXXXX")"
+SOPHISTRY_WORK_DIR="$(mktemp -d "$SOPHISTRY_BASE_DIR/Sophistry-CP008-correctif1.XXXXXX")"
 trap 'printf "%s\n" "Fichiers et rapports conservés dans : $SOPHISTRY_WORK_DIR"' EXIT
 SOPHISTRY_ARCHIVE="$SOPHISTRY_WORK_DIR/Sophistry-CP008-sources.zip"
-printf '%s\n' 'Téléchargement du checkpoint CP-008. Le plugin Audio Unit complet reste à développer.'
+printf '%s\n' 'Téléchargement du checkpoint CP-008, correctif Mac 1. Le plugin Audio Unit complet reste à développer.'
 /usr/bin/curl --fail --location --retry 2 --connect-timeout 15 --max-time 600 \
   'https://codeload.github.com/stefanwul-hub/SophistryARM/zip/9b0cf0f5a35ecf85aae8dd026a3f12fd56411040' -o "$SOPHISTRY_ARCHIVE"
 SOPHISTRY_DOWNLOADED_SHA=$(/usr/bin/shasum -a 256 "$SOPHISTRY_ARCHIVE" | /usr/bin/awk '{print $1}')

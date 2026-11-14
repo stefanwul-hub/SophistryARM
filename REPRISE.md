@@ -1,4 +1,4 @@
-# Reprendre à CP-004
+# Reprendre à CP-008, correctif Mac 1
 
 Objectif utilisateur : portage **complet et fidèle** de Sophistry Audio Unit vers Apple Silicon, à partir du code machine original, en conservant le rappel d’anciens projets AU Logic et Live. L’utilisateur possède les samples/presets externes. Son Mac est sous macOS 15.7.2, avec Xcode, Ableton Live 11.3.2 et Logic Pro 11. Pas de plugin ARM64 complet obtenu à ce checkpoint.
 
@@ -94,3 +94,11 @@ L’archive codeload du commit a1b6c7eacfcc196bc057d1e9853c2a10296e79a8 a été 
 
 
 Le lanceur `Demarrer-Sophistry-CP008.command` automatise le téléchargement de l’archive source vérifiée, son empreinte, son extraction et les probes Mac. Il pointe vers le commit source 9b0cf0f5a35ecf85aae8dd026a3f12fd56411040 ; les sources DSP sont identiques au checkpoint CP-008 testé, avec une clarification de l’historique distant et de la sortie de diagnostic math. Les données de publication sont dans checkpoints/CP008-publication.json. Les tests sous macOS et la compilation de AUStateProbe avec un SDK Mac n’ont pas été exécutés ici.
+
+## CP-008, correctif Mac 1 — premier retour du Mac utilisateur
+
+Le journal reçu confirme macOS 15.7.2 ARM64, Apple clang 17.0.0 et SDK 15.5. La compilation de SaturProbe termine sans erreur, puis `lipo -verify_arch arm64 fichier` échoue : Apple lipo interprète tous les arguments restants comme des architectures. Aucun replay, compilation du lifter ou auval n’a été atteint. Le journal ne constitue donc pas un résultat DSP négatif.
+
+Les quatre appels sont corrigés en `lipo fichier -verify_arch arm64`, et les étapes sont annoncées dans le journal. `port-status.json` porte `mac_verifier_revision: 1` ; le lanceur ne doit pas réutiliser silencieusement une ancienne copie locale de CP-008. Les calculs DSP et les fixtures sont inchangés. Les 704 cas repassent localement. La syntaxe shell et les contrôles d’objets Mach-O ARM64 avec llvm-lipo 19.1.7 sont vérifiés ; ce n’est pas une exécution du script sur macOS. Le rapport de diagnostic sans chemin personnel est `evidence/mac-cp008-verifier-fix.json`. Attendre le nouveau retour Mac pour déclarer les probes exécutés sur Apple Silicon.
+
+Travail indépendant en cours : l’export brut complet compte 186001 instructions / 2845 fonctions internes. `analysis/full-pcode-support-audit.json` recense les opérations manquantes de l’émetteur ; cet audit syntaxique n’est ni un moteur complet ni une exécution réussie. Le gros export brut est conservé sous `work/lifter-full/` et peut être régénéré avec `ExportPcode.java --all` depuis le projet Ghidra sauvegardé.

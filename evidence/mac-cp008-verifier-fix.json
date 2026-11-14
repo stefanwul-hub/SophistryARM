@@ -1,0 +1,53 @@
+{
+  "checkpoint": "CP-008",
+  "verifier_revision": 1,
+  "source": "User-supplied diagnostic.log; personal paths omitted from this report",
+  "diagnostic_sha256": "f255d4293c7c34edbd8bc5f02e766c1cdbb59b17d0049dd486a26772691382c7",
+  "macos": "15.7.2",
+  "architecture": "arm64",
+  "apple_clang": "17.0.0 (clang-1700.0.13.5)",
+  "sdk": "15.5",
+  "observed": {
+    "saturation_probe_compiler_exited_successfully": true,
+    "architecture_verification_failed": true,
+    "saturation_probe_replay_reached": false,
+    "static_lift_compilation_reached": false,
+    "auval_reached": false
+  },
+  "cause": "Apple lipo consumes every token after -verify_arch as an architecture, so the trailing input file was parsed as an architecture.",
+  "correction": "Pass the input file before -verify_arch arm64 for all four probes.",
+  "dsp_code_changed": false,
+  "corrected_verifier_macos_execution_confirmed": false,
+  "verification": {
+    "shell_syntax_passed": true,
+    "llvm_lipo_version": "19.1.7",
+    "llvm_lipo_platform": "Linux; compatible command check, not Apple macOS execution",
+    "architecture_checks": [
+      {
+        "file": "evidence/SaturKernel.arm64.o",
+        "expected_arch": "arm64",
+        "exitcode": 0
+      },
+      {
+        "file": "evidence/LifterRuntime.arm64.o",
+        "expected_arch": "arm64",
+        "exitcode": 0
+      },
+      {
+        "file": "evidence/GeneratedDsp.arm64.o",
+        "expected_arch": "arm64",
+        "exitcode": 0
+      },
+      {
+        "file": "evidence/SaturKernel.arm64.o",
+        "expected_arch": "x86_64",
+        "exitcode": 1,
+        "rejection_expected": true
+      }
+    ],
+    "static_lift_replay_cases": 704,
+    "static_lift_replay_byte_mismatches": 0,
+    "apple_lipo_parser_source": "https://github.com/apple-oss-distributions/cctools/blob/main/misc/lipo.c",
+    "apple_lipo_source_sha256": "bfbfc3e03c6efb1551df39aaccba5b035aa7592f24813fa35e436cb6b9c0883f"
+  }
+}
