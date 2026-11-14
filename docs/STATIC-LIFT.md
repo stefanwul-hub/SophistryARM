@@ -42,7 +42,7 @@ Le PCM16 est décodé selon la convention standard pour ces tests. Le loader ori
 
 Les adaptateurs partagés servent à séparer la traduction d’instructions de la bibliothèque mathématique. `--native-math` utilise le libm de la plateforme. Sous Linux x86_64, le résultat est identique. Sous ARM64/Linux musl/QEMU, il y a sept octets différents dans l’état interne et zéro octet différent dans les buffers de sortie vérifiés. La comparaison stricte échoue donc dans ce mode. Ce constat n’établit pas que tous les futurs rendus resteront inchangés : les états peuvent influer sur la suite d’un traitement.
 
-Sur le Mac ARM64 de l’utilisateur, la comparaison séparée avec les maths natives a renvoyé un code non nul. Le détail est dans les rapports séparés non encore reçus : aucune quantité d’octets différents ni cause exacte n’est confirmée sur cette plateforme. Le replay avec les réponses enregistrées est bien passé. L’ancien libm Intel 32 bits Apple n’a pas été exécuté. Une fidélité globale au plugin et aux projets ne peut pas être garantie par ces seules références.
+Sur le Mac ARM64 de l’utilisateur, les rapports détaillés confirment sept octets d’état interne différents dans les cas de filtre stéréo 117 et 123, sans différence des buffers audio comparés. Le détail des sept adresses et valeurs est identique à ARM64/Linux musl. Le replay avec les réponses enregistrées est bien passé. La comparaison stricte avec les maths natives reste en échec ; les états différents ne sont pas ignorés. L’ancien libm Intel 32 bits Apple n’a pas été exécuté, et les réponses de référence sont celles de l’adaptateur Linux partagé. Une fidélité globale au plugin et aux projets ne peut pas être garantie par ces seules références.
 
 ## Travail restant
 

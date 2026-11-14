@@ -9,7 +9,9 @@
     "corrected_verifier_executed_on_mac": true,
     "previous_failure": "lipo consumed the input path as an architecture after -verify_arch; argument ordering corrected in verifier revision 1",
     "current_evidence": "evidence/mac-cp008-native-replay.json",
-    "script_exitcode": 0
+    "script_exitcode": 0,
+    "detailed_reports_received": true,
+    "native_math_evidence": "evidence/mac-cp008-native-math-details.json"
   },
   "original_version": "3.0.8",
   "original_architectures": [
@@ -35,7 +37,7 @@
   "implemented_dsp_scope": "3242 instructions in 19 selected functions: saturation, filter, sample mono/normalize, Schrader tables and playback; full engine absent",
   "arm64_scope": "Selected lifted DSP compiled and executed natively on the user's macOS 15.7.2 ARM64 system: 704 reference replay cases passed; recorded host math responses. The separate native-math comparison returned nonzero; details pending.",
   "next_work": [
-    "Collect detailed native-math and existing auval reports from the completed Mac run",
+    "Analyze/freeze cross-platform host math without treating a Linux reference as the original Apple i386 libm",
     "Extend and differentially test missing p-code operations, then split full generated C++ into compilation units",
     "Recover full Synth/Kaja initialization and object graph, host adapters and all remaining DSP modules",
     "Integrate semantic state restoration, versioned enum labels and stable AU parameter IDs",
@@ -81,19 +83,24 @@
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
   "github_verified_code_commit": "a1b6c7eacfcc196bc057d1e9853c2a10296e79a8",
   "github_verified_archive_sha256": "0b7aadf2dc5a38f442dfbb04357f72d1768df606a486a524aa102fb0b5925801",
-  "macos_auval_scope": "Only the existing registered aumu/Sop3/LinP was probed; exitcode 2, no new native component built or validated",
+  "macos_auval_scope": "The registered identity aumu/Sop3/LinP was not found (exitcode 2); no new native component was built or validated",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
   "native_arm64_macos_libm_comparison": {
-    "nonzero_exit_reported": true,
-    "detailed_result_received": false,
-    "byte_mismatches": null,
-    "output_buffer_byte_mismatches": null,
-    "object_state_byte_mismatches": null,
-    "cause_confirmed": false,
-    "needed_files": [
-      "static-lift-native-libm.json",
-      "static-lift-native-libm-errors.log"
-    ]
+    "scope": "selected statically lifted DSP",
+    "cases": 704,
+    "compared_bytes": 5420672,
+    "byte_mismatches": 7,
+    "output_buffer_byte_mismatches": 0,
+    "object_state_byte_mismatches": 7,
+    "math_calls": 201,
+    "math_mode": "host libm",
+    "instruction_addresses_executed": 3113,
+    "fixture_valid": true,
+    "passed": false,
+    "full_synth_tested": false,
+    "exitcode": 1,
+    "detailed_result_received": true,
+    "same_mismatch_bytes_as_arm64_linux_musl": true
   }
 }

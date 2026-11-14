@@ -1,0 +1,88 @@
+{
+  "checkpoint": "CP-008",
+  "source": "User-provided reports ZIP; raw personal diagnostic paths omitted",
+  "archive_sha256": "9afeb85aa124dd3272d3bb32a15095e70ddccf2545ab505d584c923c259c7fcf",
+  "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
+  "static_lift_replay": {
+    "scope": "selected statically lifted DSP",
+    "cases": 704,
+    "compared_bytes": 5420672,
+    "byte_mismatches": 0,
+    "output_buffer_byte_mismatches": 0,
+    "object_state_byte_mismatches": 0,
+    "math_calls": 201,
+    "math_mode": "recorded ABI responses",
+    "instruction_addresses_executed": 3113,
+    "fixture_valid": true,
+    "passed": true,
+    "full_synth_tested": false
+  },
+  "native_math": {
+    "scope": "selected statically lifted DSP",
+    "cases": 704,
+    "compared_bytes": 5420672,
+    "byte_mismatches": 7,
+    "output_buffer_byte_mismatches": 0,
+    "object_state_byte_mismatches": 7,
+    "math_calls": 201,
+    "math_mode": "host libm",
+    "instruction_addresses_executed": 3113,
+    "fixture_valid": true,
+    "passed": false,
+    "full_synth_tested": false
+  },
+  "native_math_exitcode": 1,
+  "mismatches": [
+    {
+      "case": 117,
+      "address": "0x2002d8",
+      "actual_byte": "56",
+      "expected_byte": "55"
+    },
+    {
+      "case": 117,
+      "address": "0x2002e0",
+      "actual_byte": "e4",
+      "expected_byte": "e2"
+    },
+    {
+      "case": 123,
+      "address": "0x200248",
+      "actual_byte": "8e",
+      "expected_byte": "8f"
+    },
+    {
+      "case": 123,
+      "address": "0x200268",
+      "actual_byte": "35",
+      "expected_byte": "36"
+    },
+    {
+      "case": 123,
+      "address": "0x200270",
+      "actual_byte": "8e",
+      "expected_byte": "8f"
+    },
+    {
+      "case": 123,
+      "address": "0x2002d8",
+      "actual_byte": "41",
+      "expected_byte": "42"
+    },
+    {
+      "case": 123,
+      "address": "0x2002e0",
+      "actual_byte": "d9",
+      "expected_byte": "da"
+    }
+  ],
+  "same_mismatch_bytes_as_arm64_linux_musl": true,
+  "auval": {
+    "exitcode": 2,
+    "reason": "FATAL ERROR: didn't find the component",
+    "existing_identity": "aumu/Sop3/LinP",
+    "new_native_component_available": false
+  },
+  "legacy_apple_i386_libm_executed": false,
+  "full_synth_or_project_recall_verified": false
+}
