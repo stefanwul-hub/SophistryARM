@@ -263,5 +263,7 @@
   "github_cp020_archive_sha256": "79538a2dc7b4430100b9a69f73eff32cd0f4ae5f9dc68e3230ef2b4fe3506b77",
   "github_cp020_verified_tracked_blobs": 4069,
   "github_cp020_launcher": "Demarrer-Sophistry-CP020.command",
-  "cp020_source_archive_verification_pending": false
+  "cp020_source_archive_verification_pending": false,
+  "github_cp020_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/56808aa7e542eb0dc204362d2134d0a1ceaa83f8/Demarrer-Sophistry-CP020.command",
+  "github_cp020_launcher_verified": true
 }
