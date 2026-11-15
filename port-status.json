@@ -79,8 +79,8 @@
     "strict_passed": false
   },
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
-  "github_verified_code_commit": "f12e7869c1b1731df191f7d763376f8cd5d6d0cc",
-  "github_verified_archive_sha256": "d5567f0736b8867bf8fa91b5124725fbf5f295fc3bbde9ed72453bafc2d4c3be",
+  "github_verified_code_commit": "442226d278bc2c9346ee069cfc88b462774a413c",
+  "github_verified_archive_sha256": "79538a2dc7b4430100b9a69f73eff32cd0f4ae5f9dc68e3230ef2b4fe3506b77",
   "macos_auval_scope": "CP019 system auval passed(exit0); CP020 pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
@@ -122,7 +122,7 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "CP019 immutable archive independently downloaded; all 4061 tracked blobs verified. See checkpoints/CP019-publication.json.",
+  "github_verification_note": "CP020 archive independently downloaded; all 4069 tracked blobs verified. See checkpoints/CP020-publication.json.",
   "native_cpp_host_available": true,
   "native_cpp_host_is_production_ready": false,
   "native_cpp_host_linux_executed": true,
@@ -257,5 +257,11 @@
   "cp020_development_evidence": "evidence/cp020-development-checks.json",
   "cp020_remote_test_uses_private_au_properties": false,
   "cp020_remote_test_scope": "Public AU host APIs: confirm property62, restore preset before Initialize, original522 IDs, single advertised Cocoa or public view-controller creation, exact stereo audio, standard ClassInfo roundtrip and build marker.",
-  "cp020_standard_state_metadata": "SophistryARMVersion string only; original vstdata unchanged, no runtime/private settings/bookmarks"
+  "cp020_standard_state_metadata": "SophistryARMVersion string only; original vstdata unchanged, no runtime/private settings/bookmarks",
+  "github_cp020_source_commit": "442226d278bc2c9346ee069cfc88b462774a413c",
+  "github_cp020_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/442226d278bc2c9346ee069cfc88b462774a413c",
+  "github_cp020_archive_sha256": "79538a2dc7b4430100b9a69f73eff32cd0f4ae5f9dc68e3230ef2b4fe3506b77",
+  "github_cp020_verified_tracked_blobs": 4069,
+  "github_cp020_launcher": "Demarrer-Sophistry-CP020.command",
+  "cp020_source_archive_verification_pending": false
 }
