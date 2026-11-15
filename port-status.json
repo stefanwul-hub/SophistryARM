@@ -78,8 +78,8 @@
     "strict_passed": false
   },
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
-  "github_verified_code_commit": "452c29a90a95628a56437b10b30fbf1ea0c69b97",
-  "github_verified_archive_sha256": "7457a9d4eba3bd64fabb2aa2e20257b0d8046d8eb486e76afb51acea4e45823e",
+  "github_verified_code_commit": "15bdfcb8b1da2818395ecd66365005630aeabe07",
+  "github_verified_archive_sha256": "4d3635844d4bcdd71566b77eb4848ae7fa1eb295e57c1d09a25c232f8d6d2465",
   "macos_auval_scope": "CP016 system auval passed (exit 0, 522 parameter tests); CP018 auval and Mac execution pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
@@ -121,7 +121,7 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "CP-011 source archive independently downloaded; all 3950 tracked blobs verified. See checkpoints/CP011-publication.json.",
+  "github_verification_note": "CP018 source archive independently downloaded; all 4052 tracked blobs verified. See checkpoints/CP018-publication.json.",
   "native_cpp_host_available": true,
   "native_cpp_host_is_production_ready": false,
   "native_cpp_host_linux_executed": true,
@@ -181,7 +181,7 @@
   "recursive_sample_bank_search_implemented": true,
   "system_installation_script_available": true,
   "system_installation_script_mac_executed": true,
-  "new_native_candidate_auval_passed": true,
+  "new_native_candidate_auval_passed": null,
   "cp015_mac_execution_pending": false,
   "github_cp015_source_commit": "5ad00df0defaf97d5090114bfedbcdfa130876ab",
   "github_cp015_archive_sha256": "57918aebf451bb674a249e6f4ce08f3ffd201913a020f149aeb9fbda87812394",
@@ -211,5 +211,11 @@
   "cp018_bank_bookmark_mac_executed": false,
   "cp018_missing_sample_recovery_differential_passed": true,
   "cp018_development_evidence": "evidence/cp018-development-checks.json",
-  "cp018_source_archive_verification_pending": true
+  "cp018_source_archive_verification_pending": false,
+  "github_cp018_source_commit": "15bdfcb8b1da2818395ecd66365005630aeabe07",
+  "github_cp018_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/15bdfcb8b1da2818395ecd66365005630aeabe07",
+  "github_cp018_archive_sha256": "4d3635844d4bcdd71566b77eb4848ae7fa1eb295e57c1d09a25c232f8d6d2465",
+  "github_cp018_verified_tracked_blobs": 4052,
+  "github_cp018_launcher": "Demarrer-Sophistry-CP018.command",
+  "installed_component_checkpoint_last_confirmed": "CP-016"
 }

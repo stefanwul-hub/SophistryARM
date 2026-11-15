@@ -4,7 +4,7 @@
 
 Les tests Linux et ARM64/Linux/QEMU passent ; les quatre binaires Mac sont compilés et liés en ARM64. **CP-018 doit encore être exécuté et validé sur le Mac.** Le nouveau test vérifie aussi le rendu après restauration du preset avant l’initialisation, puis l’éditeur dans un processus AU séparé. Voir [CP-018](docs/CP018.md), [les vérifications](evidence/cp018-development-checks.json) et [la preuve Mac CP-016](evidence/mac-cp016-installed-au.json).
 
-Le lanceur CP-018 sera épinglé à cette archive vérifiée dans la publication suivante. Pour imposer le choix du dossier : `bash "$HOME/Downloads/Demarrer-Sophistry-CP018.command" --choose-bank`. La licence valide enregistrée est réutilisée. Après installation, ouvrir une copie du projet, afficher l’Éditeur puis copier le diagnostic avant de modifier le son.
+[Télécharger le lanceur CP-018](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP018.command). Il extrait automatiquement [l’archive source vérifiée](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/15bdfcb8b1da2818395ecd66365005630aeabe07), compile, teste puis installe avec sauvegarde et restauration en cas d’échec. Pour imposer le choix du dossier : `bash "$HOME/Downloads/Demarrer-Sophistry-CP018.command" --choose-bank`. La licence valide enregistrée est réutilisée. Après installation, ouvrir une copie du projet, afficher l’Éditeur puis copier le diagnostic avant de modifier le son.
 
 ## Historique des checkpoints précédents
 
