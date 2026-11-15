@@ -1,5 +1,6 @@
 // Exercise the compiled AU factory in this process, without system
 // installation.
+#include "../src/au/SophistryProperties.h"
 #include <AudioToolbox/AudioToolbox.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <algorithm>
@@ -253,9 +254,9 @@ int main(int argc, char **argv) {
     stage = "create instance";
     check(AudioComponentInstanceNew(component, &unit.value),
           "Create AU instance");
-    if (diagnostic(unit.value, 0x53705672) != "SophistryARM CP-018")
+    if (diagnostic(unit.value, 0x53705672) != sophistry::wrapperVersion)
       throw std::runtime_error(
-          "Loaded component is not the expected CP-018 candidate");
+          "Loaded component is not the expected CP-019 candidate");
     if (discoverOnly) {
       const std::string result = "{\"system_registry_used\":true,\"expected_"
                                  "native_candidate_loaded\":true}\n";

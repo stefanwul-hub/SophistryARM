@@ -161,8 +161,8 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
   }
   std::string runtimeStatus() {
     std::ostringstream out;
-    out << "{\"wrapper_version\":\"SophistryARM CP-018\",\"preset_name\":"
-        << jsonText(lastKnownPresetName_)
+    out << "{\"wrapper_version\":" << jsonText(sophistry::wrapperVersion)
+        << ",\"preset_name\":" << jsonText(lastKnownPresetName_)
         << ",\"state_loaded\":" << (stateLoaded_ ? "true" : "false")
         << ",\"restore_attempts\":" << restoreAttempts_
         << ",\"restore_status\":" << lastRestoreStatus_
@@ -478,7 +478,7 @@ public:
       return guarded([&]() -> OSStatus {
         std::string value =
             id == wrapperVersionProperty
-                ? "SophistryARM CP-018"
+                ? sophistry::wrapperVersion
                 : (id == errorProperty ? lastError_ : engine_.diagnosticJson());
         CFStringRef s = CFStringCreateWithCString(nullptr, value.c_str(),
                                                   kCFStringEncodingUTF8);
@@ -714,9 +714,19 @@ public:
       CFRelease(copy);
       lastRestoreStatus_ = status;
       stateLoaded_ = status == noErr;
-      if (!status)
+      if (!status) {
         syncParameters();
-      else
+        // Some legacy AU banks report the engine name "empty" while their
+        // host dictionary carries the real preset label. Display that label
+        // without changing the guest state or its serialization.
+        CFTypeRef name = CFDictionaryGetValue(dict, CFSTR("name"));
+        if ((lastKnownPresetName_.empty() || lastKnownPresetName_ == "empty") &&
+            name && CFGetTypeID(name) == CFStringGetTypeID()) {
+          const auto label = text(static_cast<CFStringRef>(name));
+          if (!label.empty())
+            lastKnownPresetName_ = label;
+        }
+      } else
         lastError_ = "The host AU metadata could not be restored";
       return status;
     });

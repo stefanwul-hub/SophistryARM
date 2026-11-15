@@ -1,18 +1,32 @@
 #!/bin/bash
-# CP-018: test installation with original registration, verified backup and rollback.
+# CP-019: test installation with original registration, verified backup and rollback.
 set +x
 set -euo pipefail
 umask 077
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
 choose_bank=0
+diagnose_only=0
+recenter_windows=0
 for argument in "$@"; do
   if [[ "$argument" == --choose-bank ]]; then choose_bank=1;
-  else echo 'Usage : Installer-ARM64.command [--choose-bank]' >&2;exit 2;fi
+  elif [[ "$argument" == --diagnose-only ]]; then diagnose_only=1;
+  elif [[ "$argument" == --recenter-windows ]]; then recenter_windows=1;
+  else echo 'Usage : Installer-ARM64.command [--choose-bank | --diagnose-only | --recenter-windows]' >&2;exit 2;fi
 done
 if [[ "$(uname -s)" != Darwin || "$(uname -m)" != arm64 || "$EUID" -eq 0 ]]; then
   echo 'Lancez ce script dans un Terminal natif Apple Silicon, sans sudo.' >&2
   exit 2
+fi
+if [[ "$((choose_bank + diagnose_only + recenter_windows))" -gt 1 ]]; then
+  echo 'Utilisez une seule option à la fois.' >&2
+  exit 2
+fi
+if [[ "$recenter_windows" -eq 1 ]]; then
+  exec /bin/bash "$ROOT/Recentrer-Fenetre-Sophistry.command"
+fi
+if [[ "$diagnose_only" -eq 1 ]]; then
+  exec /bin/bash "$ROOT/Diagnostiquer-Sophistry.command"
 fi
 closed_daws(){
   for app in 'Logic Pro' 'Logic' 'Live' 'Ableton Live'; do
@@ -61,6 +75,10 @@ stage='début'
 installation_started=0
 committed=0
 settings_confirmed=0
+auval_passed=0
+registered_audio_passed=0
+editor_local_passed=0
+editor_remote_passed=0
 collect(){
   result=$?
   trap - EXIT INT TERM
@@ -84,11 +102,22 @@ collect(){
   done
   printf '%s\n' "$result" > "$REPORT/script-exitcode.txt"
   printf '%s\n' "$stage" > "$REPORT/last-stage.txt"
-  printf '{"checkpoint":"CP-018","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"original_ui_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
+  printf '{"checkpoint":"CP-019","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"local_editor_and_audio_passed":%s,"remote_editor_protocol_and_audio_passed":%s,"script_exitcode":%s,"original_ui_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
     "$(if [[ "$committed" -eq 1 ]]; then echo true;else echo false;fi)" "$rollback_ok" \
     "$(if [[ "$settings_confirmed" -eq 1 ]]; then echo true;else echo false;fi)" \
-    "$(if [[ "$committed" -eq 1 ]]; then echo true;else echo false;fi)" > "$REPORT/result.json"
-  archive="$ROOT/Sophistry-rapports-CP018-$STAMP.zip"
+    "$(if [[ "${auval_passed:-0}" -eq 1 && "${registered_audio_passed:-0}" -eq 1 ]]; then echo true;else echo false;fi)" \
+    "$(if [[ "${editor_local_passed:-0}" -eq 1 ]]; then echo true;else echo false;fi)" \
+    "$(if [[ "${editor_remote_passed:-0}" -eq 1 ]]; then echo true;else echo false;fi)" \
+    "$result" > "$REPORT/result.json"
+  if [[ "$result" -ne 0 ]]; then
+    printf '%s\n' "Installation CP019 non confirmée : $stage (code $result)."
+    if [[ "$installation_started" -eq 1 && "$committed" -eq 0 && "$rollback_ok" == true ]]; then
+      echo 'Le composant précédent a été restauré : la nouvelle interface CP019 n’est donc pas installée.'
+    elif [[ "$installation_started" -eq 0 ]]; then
+      echo 'Le composant installé auparavant a été conservé.'
+    fi
+  fi
+  archive="$ROOT/Sophistry-rapports-CP019-$STAMP.zip"
   (cd "$REPORT"; /usr/bin/zip -q "$archive" ./*.json ./*.txt ./*.log ./*.wav ./*.png 2>/dev/null || true)
   printf '\n%s\n' "Rapports : $archive"
   printf '%s\n' "Restauration autonome : $PRIVATE/Restaurer-Sophistry.command"
@@ -101,7 +130,7 @@ collect(){
 trap collect EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
-echo 'Sophistry CP-018 — installation de test ARM64 avec sauvegarde et validation AU'
+echo 'Sophistry CP-019 — installation de test ARM64 avec sauvegarde et validation AU'
 echo 'Cette version ajoute une première vue Cocoa avec état du son et choix de banque. Testez des copies de vos projets.'
 /usr/bin/sw_vers
 /usr/bin/uname -m
@@ -165,6 +194,7 @@ except subprocess.TimeoutExpired:
 raise SystemExit(result.returncode)
 PY
 /usr/bin/cmp "$REPORT/editor.wav" "$REPORT/original-2.wav" > "$REPORT/editor-audio-comparison.txt" 2>&1
+editor_local_passed=1
 stage='sauvegarde et remplacement du composant système'
 closed_daws
 echo 'Les prévalidations passent. macOS demande maintenant les droits pour sauvegarder et remplacer Sophistry.component.'
@@ -183,13 +213,15 @@ if [[ "$registered" != true ]]; then echo 'Le registre AU ne charge pas le candi
 stage='validation auval'
 echo 'Validation auval en cours (limite de trois minutes)…'
 "$SYSTEM_PYTHON" "$ROOT/scripts/run_auval.py" --log "$REPORT/auval.log" --timeout 180 > "$REPORT/auval-result.json"
+auval_passed=1
 for channels in 2 6; do
   stage="rendu du composant installé $channels canaux"
   "$BUILD/AudioUnitFactoryProbe" --registered --state "$state" --contract "$contract" --channels "$channels" --output-prefix "$REPORT/registered-$channels" > "$REPORT/registered-$channels.log" 2>&1
   /usr/bin/cmp "$REPORT/registered-$channels.wav" "$REPORT/original-$channels.wav" > "$REPORT/registered-comparison-$channels.txt" 2>&1
   printf '{"channels":%s,"preflight_vs_original_byte_exact":true,"registered_vs_original_byte_exact":true}\n' "$channels" > "$REPORT/audio-comparison-$channels.json"
 done
-stage='vue Cocoa et diagnostic dans un hôte AU séparé'
+registered_audio_passed=1
+stage='éditeur du composant pilotant un moteur AU dans un processus séparé'
 "$SYSTEM_PYTHON" - "$BUILD/AudioUnitEditorProbe" '/Library/Audio/Plug-Ins/Components/Sophistry.component' "$state" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$REPORT/editor-remote" --remote > "$REPORT/editor-remote.log" 2>&1 <<'PY'
 import subprocess,sys
 try:
@@ -199,10 +231,24 @@ except subprocess.TimeoutExpired:
 raise SystemExit(result.returncode)
 PY
 /usr/bin/cmp "$REPORT/editor-remote.wav" "$REPORT/original-2.wav" > "$REPORT/editor-remote-audio-comparison.txt" 2>&1
+editor_remote_passed=1
+stage='inspection finale du composant enregistré'
+"$SYSTEM_PYTHON" - "$BUILD/InstalledAUInspector" "$REPORT/installed-inspection.json" > "$REPORT/installed-inspection.log" 2>&1 <<'PY'
+import json,subprocess,sys
+try:
+    result=subprocess.run(sys.argv[1:],timeout=60)
+except subprocess.TimeoutExpired:
+    raise SystemExit('L’inspection finale a dépassé une minute.')
+if result.returncode: raise SystemExit(result.returncode)
+r=json.load(open(sys.argv[2]))
+if not (r['current_checkpoint_loaded'] and r['cocoa_property_available'] and r['registered_matches']==1):
+    raise SystemExit('L’inspection finale ne confirme pas la version CP019 et sa propriété Cocoa.')
+PY
 stage='confirmation de l’installation vérifiée'
 /usr/bin/sudo -- "$SYSTEM_PYTHON" "$PRIVATE/ComponentTransaction.py" commit --transaction "$TRANSACTION" > "$REPORT/component-commit.json" 2>&1
 committed=1
 stage='installation de test terminée'
 echo 'Le candidat ARM64 est installé dans /Library/Audio/Plug-Ins/Components/Sophistry.component.'
-echo 'auval et les comparaisons audio passent. La réouverture des projets Logic/Live et l’interface d’origine restent à valider.'
+echo 'Installation CP019 confirmée : auval, éditeur local, protocole avec moteur séparé et comparaisons audio passent.'
+echo 'Le rappel sonore des projets et la fenêtre relayée par Logic/Live restent à vérifier sur des copies.'
 exit 0

@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 namespace sophistry {
+constexpr char wrapperVersion[] = "SophistryARM CP-019";
 // Private properties use flat bytes, never process-local CF pointers: Logic
 // can host the audio unit and its Cocoa view in separate processes.
 // Runtime status contains no licence or raw state; sample names are basenames.

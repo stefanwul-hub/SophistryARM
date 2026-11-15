@@ -64,6 +64,10 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
   "$ROOT/tests/AudioUnitEditorProbe.mm" -lobjc -framework AppKit -framework Foundation -framework AudioToolbox -framework CoreFoundation \
   -o "$DEST/AudioUnitEditorProbe" > "$DEST/editor-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/AudioUnitEditorProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fobjc-arc \
+  "$ROOT/tests/InstalledAUInspector.mm" -framework Foundation -framework AudioToolbox \
+  -o "$DEST/InstalledAUInspector" > "$DEST/inspector.compile.log" 2>&1
+/usr/bin/lipo "$DEST/InstalledAUInspector" -verify_arch arm64
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fno-fast-math -ffp-contract=off \
   "$ROOT/tests/NativeAUBridgeProbe.cpp" "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" \
   "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \

@@ -1,5 +1,7 @@
-// Exercise the actual published Cocoa factory and snapshot its initial view.
-// No installed component or private project is opened by this probe.
+// Exercise our actual Cocoa factory, locally or driving an installed remote AU.
+// A system-remoted host view has its own lifecycle and cannot be tested using
+// our internal Objective-C selectors or a requirement for two simultaneous
+// views.
 #include "../src/au/SophistryProperties.h"
 #import <AppKit/AppKit.h>
 #import <AudioToolbox/AUCocoaUIView.h>
@@ -18,6 +20,23 @@ struct RemoteCompletion {
   AudioComponentInstance instance = nullptr;
   OSStatus status = 0;
 };
+
+static NSDictionary *runtimeStatus(AudioUnit unit, OSStatus &result) {
+  std::vector<char> bytes(sophistry::runtimeStatusBytes);
+  UInt32 size = UInt32(bytes.size());
+  result = AudioUnitGetProperty(unit, sophistry::runtimeStatusProperty,
+                                kAudioUnitScope_Global, 0, bytes.data(), &size);
+  if (result)
+    return @{};
+  NSData *data = [NSData dataWithBytes:bytes.data()
+                                length:strnlen(bytes.data(), bytes.size())];
+  id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+  if (![json isKindOfClass:NSDictionary.class]) {
+    result = kAudioUnitErr_InvalidPropertyValue;
+    return @{};
+  }
+  return json;
+}
 
 static void put16(std::ofstream &out, UInt32 v) {
   char b[] = {char(v), char(v >> 8)};
@@ -114,6 +133,10 @@ int main(int argc, const char **argv) {
     AudioUnit unit = nullptr;
     NSString *failure = nil;
     NSDictionary *viewReport = @{};
+    NSDictionary *renderStatus = @{};
+    NSString *advertisedClass = @"";
+    NSString *componentViewClass = @"";
+    OSStatus runtimePropertyStatus = noErr;
     UInt32 renderedFrames = 0;
     double peak = 0;
     BOOL screenshot = NO, unique = NO, aupreset = NO, fxp = NO, controls = NO,
@@ -190,6 +213,17 @@ int main(int argc, const char **argv) {
         CFRelease(cf);
     }
     if (!failure) {
+      NSDictionary *initial = runtimeStatus(unit, runtimePropertyStatus);
+      if (runtimePropertyStatus ||
+          ![initial[@"wrapper_version"]
+              isEqualToString:
+                  [NSString stringWithUTF8String:sophistry::wrapperVersion]])
+        failure = [NSString
+            stringWithFormat:@"The AU runtime property is unavailable or "
+                             @"belongs to a different checkpoint (%d)",
+                             int(runtimePropertyStatus)];
+    }
+    if (!failure) {
       AudioUnitCocoaViewInfo info{};
       UInt32 size = sizeof(info);
       OSStatus s =
@@ -201,8 +235,14 @@ int main(int argc, const char **argv) {
         NSBundle *viewBundle = [NSBundle
             bundleWithURL:(__bridge NSURL *)info.mCocoaAUViewBundleLocation];
         [viewBundle loadAndReturnError:nil];
-        Class cls = [viewBundle
-            classNamed:(__bridge NSString *)info.mCocoaAUViewClass[0]];
+        advertisedClass = [(__bridge NSString *)info.mCocoaAUViewClass[0] copy];
+        // macOS may publish its own relay factory for a remote AU. Exercise
+        // our view against the actual remote AudioUnit to verify the flat
+        // property protocol, imports and parameter changes. This does not
+        // certify the host-managed remote window, which needs Logic/Live.
+        Class cls = remote ? [bundle classNamed:@"SophistryCocoaFactory"]
+                           : [viewBundle classNamed:advertisedClass];
+        componentViewClass = cls ? NSStringFromClass(cls) : @"";
         id<AUCocoaUIBase> maker = cls ? [[cls alloc] init] : nil;
         if (!maker || [maker interfaceVersion] != 0)
           failure = @"Invalid Cocoa factory";
@@ -212,9 +252,11 @@ int main(int argc, const char **argv) {
           NSView *second = [maker uiViewForAudioUnit:unit
                                             withSize:NSMakeSize(762, 477)];
           unique = view && second && view != second;
-          if (!unique ||
-              ![view respondsToSelector:@selector(sophistryEditorReport)])
-            failure = @"Cocoa factory did not return unique controllable views";
+          if (!unique)
+            failure = @"The component's own factory did not return two views";
+          else if (![view respondsToSelector:@selector(sophistryEditorReport)])
+            failure =
+                @"The component view does not implement its test interface";
           else {
             aupreset = [view loadPresetURL:[NSURL fileURLWithPath:statePath]];
 
@@ -242,6 +284,7 @@ int main(int argc, const char **argv) {
             if (!failure)
               peak = renderAudio(unit, [prefix stringByAppendingString:@".wav"],
                                  renderedFrames, rendered);
+            renderStatus = runtimeStatus(unit, runtimePropertyStatus);
             // Check import only after the independent before-init render.
             fxp = [view loadPresetURL:[NSURL fileURLWithPath:fxpPath]];
             aupreset = aupreset &&
@@ -274,17 +317,25 @@ int main(int argc, const char **argv) {
               [view parameterChanged:slider];
             }
             viewReport = [view sophistryEditorReport];
-            if (!fxp || !aupreset || !controls || !tabs || rendered ||
-                peak <= 0.00001 || renderedFrames != 132300 ||
-                [viewReport[@"parameter_count"] unsignedIntValue] != 522 ||
-                [viewReport[@"main_dial_count"] unsignedIntValue] != 15 ||
-                ![viewReport[@"background_images_loaded"] boolValue] ||
-                [viewReport[@"sprite_images_loaded"] unsignedIntValue] != 15 ||
-                ![viewReport[@"status"][@"state_loaded"] boolValue] ||
-                ![viewReport[@"status"][@"engine"][@"registration_accepted"]
-                    boolValue] ||
-                ![viewReport[@"status"][@"wrapper_version"]
-                    isEqualToString:@"SophistryARM CP-018"])
+            if (!failure &&
+                (!fxp || !aupreset || !controls || !tabs || rendered ||
+                 runtimePropertyStatus ||
+                 [renderStatus[@"notes_received"] unsignedLongLongValue] != 1 ||
+                 [renderStatus[@"render_calls"] unsignedLongLongValue] == 0 ||
+                 peak <= 0.00001 || renderedFrames != 132300 ||
+                 [viewReport[@"parameter_count"] unsignedIntValue] != 522 ||
+                 [viewReport[@"main_dial_count"] unsignedIntValue] != 15 ||
+                 ![viewReport[@"background_images_loaded"] boolValue] ||
+                 [viewReport[@"sprite_images_loaded"] unsignedIntValue] != 15 ||
+                 ![viewReport[@"status"][@"state_loaded"] boolValue] ||
+                 ![viewReport[@"status"][@"engine"][@"registration_accepted"]
+                     boolValue] ||
+                 ![viewReport[@"status"][@"preset_name"] length] ||
+                 [viewReport[@"status"][@"preset_name"]
+                     isEqualToString:@"empty"] ||
+                 ![viewReport[@"status"][@"wrapper_version"]
+                     isEqualToString:[NSString stringWithUTF8String:
+                                                   sophistry::wrapperVersion]]))
               failure = @"Cocoa preset loading or parameter contract failed";
             if (!failure) {
               NSBitmapImageRep *rep =
@@ -313,7 +364,15 @@ int main(int argc, const char **argv) {
       @"scope" : @"actual native Cocoa view factory; public presets only, no "
                  @"private project",
       @"out_of_process_requested" : @(remote),
-      @"state_restored_before_initialize" : @YES,
+      @"view_factory_route" : remote
+          ? @"component Cocoa factory driving remote AU"
+          : @"published local Cocoa factory",
+      @"advertised_cocoa_factory" : advertisedClass,
+      @"tested_component_cocoa_factory" : componentViewClass,
+      @"host_managed_remote_window_verified" : @NO,
+      @"runtime_property_status" : @(runtimePropertyStatus),
+      @"state_restored_before_initialize" : @(renderedFrames > 0),
+      @"status_immediately_after_render" : renderStatus,
       @"render_frames" : @(renderedFrames),
       @"render_peak" : @(peak),
       @"passed" : @(!failure),

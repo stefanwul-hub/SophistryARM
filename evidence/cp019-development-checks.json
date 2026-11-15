@@ -1,0 +1,77 @@
+{
+  "checkpoint": "CP-019",
+  "scope": "Linux development and macOS cross-compilation only; CP019 not executed on Mac",
+  "received_cp018_evidence": "evidence/mac-cp018-editor-rollback.json",
+  "source_sha256": {
+    "src/au/SophistryAU.cpp": "ac1258e719bd417e0b49b7b6f39daef4d680cc996b2c516e6ed5ce5f030f8950",
+    "src/au/SophistryProperties.h": "c9d76efe5587a9a7750bb55689ef5d396e04618332d61af48deb647d206abf84",
+    "src/au/Info.plist": "20b88c136d352111fbaf24370fbbdec1b6be9d07aa0d6f6a31913d0c8e1b226a",
+    "tests/AudioUnitEditorProbe.mm": "6e138cbf75386ebc470a6d90d8b81f991bdb14b3c452398e352da3ae7bbe72bb",
+    "tests/AudioUnitFactoryProbe.cpp": "13a5227ab29893b45438b035d907887cdc366733a245a906dd94507ba90d779c",
+    "tests/InstalledAUInspector.mm": "14ebe8d0fcfd044d17cba960d79f7ba87c3b73193535d3b101cc38cd7c13ef5f",
+    "tests/test_settings_retention.py": "2f21f2f9c411b9c46c0bdd247bd671e559ae73334bb56e3d8add614a03f1394c",
+    "Installer-ARM64.command": "42734c560b3c7ec23c550f60426cbf32642ebfa6423e5210f2021e978dc964ad",
+    "Diagnostiquer-Sophistry.command": "7d0e601222ccefe8b7ca49913a490a434f5b1a81ad2041abe98e829c250e1d64",
+    "Recentrer-Fenetre-Sophistry.command": "e699caba9ab426300c9189d2294466e4454ee8e4665d81575c219093a40c2958",
+    "scripts/build-audio-unit.sh": "29abf34012e9801029f7cff6b505c20c17bf58a54c76d3b73084464ad0540e54"
+  },
+  "python_unit_tests_passed": 30,
+  "settings_retention_and_stage_reporting_tests_passed": 5,
+  "replacement_and_recovery_tests_passed": 12,
+  "auval_runner_tests_passed": 3,
+  "binaries": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 30595728,
+      "sha256": "aab4bea7380e2c25998b4a971f7e673f1590cc9074c17b38bf18363f884b0899",
+      "linked_with_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitFactoryProbe",
+      "architecture": "arm64",
+      "bytes": 1364464,
+      "sha256": "a0b821a31f74ebeeb6fd5ec3a7c8697a12ab4561658a2ae149cb0e2dec828647",
+      "linked_with_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1268640,
+      "sha256": "cc6cace511dd9342a643bbc7ee851298b810cae20e5968cd0b3670e7387e64ed",
+      "linked_with_undefined_symbols_rejected": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "e65a9b3148b78ea1a4faeafa83bb47bf7ea9eb02e65756756909d327675f1f23",
+      "linked_with_undefined_symbols_rejected": true
+    }
+  ],
+  "cross_toolchain": "Zig/Clang19 + LLD19 + SDK11.3, arm64 Mach-O strict links with deployment13; user rebuilds using Xcode with deployment11",
+  "audio_and_cocoa_factory_exports_verified": true,
+  "bash_syntax_passed": [
+    "Installer-ARM64.command",
+    "Diagnostiquer-Sophistry.command",
+    "Recentrer-Fenetre-Sophistry.command",
+    "scripts/build-audio-unit.sh"
+  ],
+  "jxa_syntax_passed_under_v8": true,
+  "jxa_accessibility_and_window_repositioning_mac_executed": false,
+  "engine_and_static_lifter_sources_unchanged": true,
+  "new_mac_tests_prepared": [
+    "in-process Cocoa factory and independent before-initialize audio",
+    "own Cocoa factory driving a genuinely remote AudioUnit; flat status/import protocol and parameter controls",
+    "capture actual advertised remote Cocoa class without treating an OS proxy as our private NSView",
+    "reference-exact in-process and remote audio, auval and registered 2/6-channel audio",
+    "fresh installed AU inspector: version, Cocoa property, duplicate registration and safe engine status"
+  ],
+  "host_managed_remote_window_not_certified_by_probe": true,
+  "inspector_does_not_read_running_daw_project": true,
+  "cp019_mac_execution_pending": true,
+  "cp019_auval_passed": null,
+  "silent_logic_project_audio_fixed": false,
+  "original_interface_complete": false,
+  "production_ready": false
+}

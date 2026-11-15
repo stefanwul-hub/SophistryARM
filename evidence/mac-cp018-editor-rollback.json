@@ -1,0 +1,93 @@
+{
+  "checkpoint": "CP-018 received Mac report",
+  "source_commit": "15bdfcb8b1da2818395ecd66365005630aeabe07",
+  "system": "macOS15.7.2 / arm64 / Apple clang17 / SDK15.5",
+  "native_build_and_sign_passed": true,
+  "original_registration_and_fresh_process_settings_passed": true,
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  "audio_independently_verified": {
+    "2": {
+      "files_compared": [
+        "original-2",
+        "preflight-2",
+        "registered-2",
+        "editor"
+      ],
+      "all_byte_exact": true,
+      "wav_bytes": 1058444,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39",
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "frames": 132300,
+      "sample_rate": 44100,
+      "all_samples_finite": true,
+      "peak": 0.10761502385139465
+    },
+    "6": {
+      "files_compared": [
+        "original-6",
+        "preflight-6",
+        "registered-6"
+      ],
+      "all_byte_exact": true,
+      "wav_bytes": 3175244,
+      "wav_sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134",
+      "pcm_sha256": "7d65849399b6ce47896a63b732eaad749254366ea044173e5e64fa75b1ea1315",
+      "frames": 132300,
+      "sample_rate": 44100,
+      "all_samples_finite": true,
+      "peak": 0.05377645418047905
+    }
+  },
+  "local_cocoa_editor": {
+    "passed": true,
+    "unique_views": true,
+    "seven_tabs_filter_parameters": true,
+    "editor_control_changes_original_au_parameter": true,
+    "fxp_imported": true,
+    "aupreset_imported": true,
+    "native_view_snapshot_saved": true,
+    "render_frames": 132300,
+    "render_peak": 0.10761502385139465,
+    "state_restored_before_initialize": true
+  },
+  "local_view_contract": {
+    "parameter_count": 522,
+    "main_dial_count": 15,
+    "background_images_loaded": true,
+    "sprite_images_loaded": 15,
+    "visible_parameter_count": 27,
+    "size": [
+      1120,
+      477
+    ]
+  },
+  "out_of_process_test": {
+    "render_peak": 0,
+    "state_restored_before_initialize": true,
+    "passed": false,
+    "error": "Cocoa factory did not return unique controllable views",
+    "scope": "actual native Cocoa view factory; public presets only, no private project",
+    "out_of_process_requested": true,
+    "unique_views": false,
+    "fxp_imported": false,
+    "render_frames": 0,
+    "aupreset_imported": false,
+    "native_view_snapshot_saved": false,
+    "view": {},
+    "editor_control_changes_original_au_parameter": false,
+    "seven_tabs_filter_parameters": false
+  },
+  "installation_committed": false,
+  "previous_component_restored": true,
+  "validated_settings_retained": true,
+  "installer_result_flag_underreported_successful_auval_and_audio": true,
+  "user_reports": "Logic project remains silent; both Logic and Live show generic controls after CP018 rollback. Logic plugin window top is outside screen.",
+  "silent_project_diagnosed": false,
+  "no_private_paths_or_preferences_in_this_evidence": true
+}
