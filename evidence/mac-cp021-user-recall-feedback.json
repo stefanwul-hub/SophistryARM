@@ -1,0 +1,27 @@
+{
+  "checkpoint": "CP-021",
+  "date": "2026-11-15",
+  "source": "Direct user feedback in conversation after CP021 delivery; no CP021 report ZIP supplied with this feedback",
+  "user_quote": "Très bien. Les projets ne sont plus silencieux et le plugin charge les sons. Quelle est la suite ?",
+  "checkpoint_attribution": "CP021 inferred from the immediately preceding delivery; installed version has not been independently inspected in a new report",
+  "reported_results": {
+    "old_projects_produce_audio": true,
+    "plugin_loads_sounds": true
+  },
+  "host_for_this_latest_test": null,
+  "cp021_install_logs_reviewed": false,
+  "cp021_auval_result_independently_reviewed": false,
+  "cp021_native_converter_oracle_result_independently_reviewed": false,
+  "cp021_d4u_reference_render_result_independently_reviewed": false,
+  "project_save_close_reopen_round_trip_confirmed": false,
+  "complete_banks_or_all_presets_verified": false,
+  "sound_fidelity_to_all_original_presets_proven": false,
+  "full_original_interface_complete": false,
+  "next_work": [
+    "Review existing CP021 Mac report when supplied; do not require reinstall only to create evidence",
+    "Verify project save/close/reopen and automation in Logic and Live",
+    "Complete original graphical controls using recovered assets and original parameter semantics",
+    "Expand representative licensed musical comparisons and real-time/polyphony checks"
+  ],
+  "contains_license_or_private_files": false
+}

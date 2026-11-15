@@ -1,3 +1,15 @@
+# Reprendre après le retour positif CP-021 — sons chargés et projets audibles
+
+Le 15 novembre 2026, l’utilisateur confirme : « Les projets ne sont plus silencieux et le plugin charge les sons. » Il demande la suite. Retour enregistré dans `evidence/mac-cp021-user-recall-feedback.json`. CP021 est la base fonctionnelle rapportée ; aucun ZIP CP021 n’a encore été reçu avec ce message. Ne pas affirmer que les nouveaux résultats détaillés auval/oracle/rendus ont été examinés, ni que toutes les banques ou les deux hôtes ont été testés. L’hôte de ce dernier essai n’est pas explicitement donné. Les anciens tests CP020 restent indépendamment vérifiés.
+
+Conserver l’installation CP021 ; pas de nouvelle installation requise pour ce retour. Demander le ZIP CP021 déjà créé et préciser Logic, Live ou les deux. Le cycle sauvegarder une copie / fermer l’hôte / rouvrir / jouer et les automations sont la prochaine validation du rappel. Licence et banque déjà présentes, ne pas demander de clé ni supprimer les préférences. Aucun nouveau preset demandé à ce stade.
+
+Feuille de route dans `docs/SUITE.md`. Prochain développement prévu CP022 : compléter l’interface native fidèle, à partir des 106 PNG et de la construction originale des commandes. Actuellement sept fonds/onglets, 15 molettes Main, volume et navigateur de 522 paramètres ; les panneaux générateurs, filtres, effets et modulation ont encore des commandes de liste. Auditer positions, sprites, types, plages, choix, courbes et gestes AU ; ne pas confondre index de widget et identifiant AU. Préserver identité, chunks et DSP pendant ce travail. Prévoir tests de sauvegarde et automatisation, puis étendre les rendus musicaux et la polyphonie. Ne pas promettre la fidélité de toutes les banques sur ce seul retour. Aucun code DSP ou AU modifié dans cette mise à jour de documentation.
+
+Les sources et le lanceur CP021 restent épinglés aux commits et empreintes décrits ci-dessous. Le nouveau commit enregistre seulement le retour utilisateur, le statut et la suite ; l’archive du candidat fonctionnel reste inchangée. Régénérer le bundle complet local après publication.
+
+Les notes suivantes décrivent l’état avant ce retour positif.
+
 # Reprendre à CP-021 — publication vérifiée, rapport Mac attendu
 
 Dernier retour : CP020 compilé et installé, interface présente, mais anciens sons silencieux et « Son: empty ». Les deux pièces jointes CP020 et Diagnostic.txt sont analysées. Ne pas redemander la licence ni les banques : la licence est acceptée et le fichier D4U est trouvé. Les rapports bruts restent privés sous `work/mac-report-cp020` et dans les pièces jointes ; ne pas publier de chemins /Users, clés, préférences ou bookmarks.
