@@ -1,0 +1,95 @@
+{
+  "checkpoint": "CP-019 Mac report",
+  "source_commit": "f12e7869c1b1731df191f7d763376f8cd5d6d0cc",
+  "system": "macOS15.7.2 / arm64 / Apple clang17",
+  "native_build_sign_and_local_cocoa_passed": true,
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  "audio_independently_verified": {
+    "2": {
+      "files": [
+        "original-2",
+        "preflight-2",
+        "registered-2",
+        "editor"
+      ],
+      "all_byte_exact": true,
+      "frames": 132300,
+      "sample_rate": 44100,
+      "all_samples_finite": true,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39",
+      "peak": 0.10761502385139465
+    },
+    "6": {
+      "files": [
+        "original-6",
+        "preflight-6",
+        "registered-6"
+      ],
+      "all_byte_exact": true,
+      "frames": 132300,
+      "sample_rate": 44100,
+      "all_samples_finite": true,
+      "wav_sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134",
+      "peak": 0.05377645418047905
+    }
+  },
+  "local_render": {
+    "wrapper_version": "SophistryARM CP-019",
+    "preset_name": "PAD CronoX Lightgarden 02 BT",
+    "notes_received": 1,
+    "render_calls": 259,
+    "maximum_output": 0.107615,
+    "state_loaded": true,
+    "restore_status": 0,
+    "nonfinite_samples": 0
+  },
+  "local_ui_images_controls_and_imports_passed": true,
+  "remote_probe": {
+    "seven_tabs_filter_parameters": false,
+    "fxp_imported": false,
+    "status_immediately_after_render": {},
+    "render_peak": 0,
+    "runtime_property_status": -10879,
+    "host_managed_remote_window_verified": false,
+    "render_frames": 0,
+    "state_restored_before_initialize": false,
+    "tested_component_cocoa_factory": "",
+    "scope": "actual native Cocoa view factory; public presets only, no private project",
+    "editor_control_changes_original_au_parameter": false,
+    "aupreset_imported": false,
+    "native_view_snapshot_saved": false,
+    "error": "The AU runtime property is unavailable or belongs to a different checkpoint (-10879)",
+    "view_factory_route": "component Cocoa factory driving remote AU",
+    "view": {},
+    "advertised_cocoa_factory": "",
+    "out_of_process_requested": true,
+    "passed": false,
+    "unique_views": false
+  },
+  "installer_result": {
+    "checkpoint": "CP-019",
+    "system_installation_committed": false,
+    "rollback_completed_if_needed": true,
+    "validated_settings_retained": true,
+    "auval_and_registered_audio_passed": true,
+    "local_editor_and_audio_passed": true,
+    "remote_editor_protocol_and_audio_passed": false,
+    "script_exitcode": 1,
+    "original_ui_complete": false,
+    "project_recall_verified": false,
+    "private_preferences_in_report": false
+  },
+  "previous_component_restored": true,
+  "validated_settings_retained": true,
+  "remote_failure_before_any_render_or_editor_creation": true,
+  "remote_custom_property_rejected_with_invalid_property": true,
+  "actual_remote_checkpoint_identity_not_established_by_cp019_probe": true,
+  "project_audio_recall_not_diagnosed": true,
+  "no_private_preferences_paths_or_chunks_exported": true
+}

@@ -1,0 +1,82 @@
+{
+  "checkpoint": "CP-020",
+  "scope": "Linux development and ARM64 Mach-O cross-compilation; CP020 runtime not executed on Mac",
+  "received_cp019_evidence": "evidence/mac-cp019-remote-property-rollback.json",
+  "source_sha256": {
+    "src/au/SophistryAU.cpp": "58d3ae91fc0d64cc6cce661e53c0faed7e443c58de6862aee37ab5fa825acabe",
+    "src/au/SophistryProperties.h": "9a283f155d43d8f8b416e7410d508bcdb6b3af5d906c28a4e588974cd30dec63",
+    "src/au/Info.plist": "23bd306adf1c5a605581e3ea0aaed5d04e45cfde93093b4148dfd66354837f6c",
+    "tests/AudioUnitFactoryProbe.cpp": "f9fb99a05b2df59f604815817be6cde8a1294c85352c3caea6171e0c28f48ea5",
+    "tests/AudioUnitEditorProbe.mm": "4553478b74f7dd14b6834b368baaf7643607cdc4dd170a96de6217e427382fa8",
+    "tests/AudioUnitRemoteHostProbe.mm": "30a2a412519214bf818b663d0f0d3ba4bf4c9eaa988932a9d887696e311bf286",
+    "tests/AudioUnitProbeAudio.h": "448935c4f440a4eec252f13ba65e311937ed6bf4339d97952751b13a06741299",
+    "tests/InstalledAUInspector.mm": "14ebe8d0fcfd044d17cba960d79f7ba87c3b73193535d3b101cc38cd7c13ef5f",
+    "tests/test_settings_retention.py": "6813abed0598f33ec4adaf915cd0d142506babb3134b0d3f756569f9eb3e01da",
+    "scripts/build-audio-unit.sh": "03dcf1f8b75ac30c24adf042fdd4602ada81abee927ec88b73f1432410387771",
+    "Installer-ARM64.command": "da159224412716ca2671d6e15dd5d51933bb4250ff98e9f586fce877a090aa3f",
+    "Diagnostiquer-Sophistry.command": "04ea0a64d7651af5f6becf53aafd6977eeef718640ebd4e43a6bb1b3c67ce2d7"
+  },
+  "python_unit_tests_passed": 30,
+  "replacement_and_recovery_tests_passed": 12,
+  "settings_and_stage_reporting_tests_passed": 5,
+  "auval_runner_tests_passed": 3,
+  "binaries": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 30595728,
+      "sha256": "df3ce561a7690c2eadf467d9b329ceb235d049ce2b238f9edeaad95aa15deaab",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1230000,
+      "sha256": "41fc08323231ca768eaf17e6f5135ff62f09248e1f50981c7b88bb26eab2a322",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "76236109ceab140c4dd895cfa7e53e5a74ef374e53133008fad8bf40f6b300c1",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitFactoryProbe",
+      "architecture": "arm64",
+      "bytes": 1364544,
+      "sha256": "faff531e9b71cfe115b19122f8b22cc05850176c7a1b18efde2d13c0c4b63851",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "a03a24096f2cec88d7f4317e62274e3bf366a45a053140697c71ce3e1525d223",
+      "strict_link_undefined_symbols_rejected": true
+    }
+  ],
+  "cross_toolchain": "Zig/Clang19 + LLD19 + SDK11.3, deployment13 for cross-link; user builds with Xcode and deployment11",
+  "au_and_cocoa_factory_exports_verified": true,
+  "engine_and_lifter_sources_unchanged": true,
+  "shared_audio_renderer_all_non_whitespace_characters_match_cp019": true,
+  "new_remote_test_uses_private_au_properties": false,
+  "new_mac_test_requirements": [
+    "actual out-of-process loading confirmed with public property62",
+    "original 522 parameter IDs and public master-volume change",
+    "legacy preset restored before Initialize",
+    "one custom view via advertised Cocoa factory or public RequestViewController, no generic view constructed by probe",
+    "independent 3s stereo reference WAV comparison",
+    "exact legacy bank roundtrip through standard ClassInfo",
+    "loaded checkpoint verified via vendor version string in standard ClassInfo",
+    "local editor, registered 2/6 audio, auval and final installed-version inspection still mandatory"
+  ],
+  "new_state_metadata_contains_private_prefs_or_runtime_status": false,
+  "cp020_mac_execution_pending": true,
+  "cp020_auval_passed": null,
+  "host_managed_view_mac_verified": false,
+  "silent_projects_fixed": false,
+  "original_interface_complete": false,
+  "production_ready": false
+}

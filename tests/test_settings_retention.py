@@ -33,7 +33,7 @@ class SettingsRetentionTests(unittest.TestCase):
                 ['bash', '-c',
                  f'settings_confirmed={confirmed};committed={committed};'
                  f'auval_passed={auval};registered_audio_passed={audio};'
-                 f'editor_local_passed={local_editor};editor_remote_passed={remote_editor};'
+                 f'editor_local_passed={local_editor};remote_host_passed={remote_editor};'
                  'installation_started=0;stage=test;STAMP=test;TRANSACTION=test;\n'
                  + handler + '\nfalse\ncollect\n'],
                 env=env, capture_output=True, text=True)
@@ -64,7 +64,7 @@ class SettingsRetentionTests(unittest.TestCase):
         self.assertFalse(result['system_installation_committed'])
         self.assertTrue(result['auval_and_registered_audio_passed'])
         self.assertTrue(result['local_editor_and_audio_passed'])
-        self.assertFalse(result['remote_editor_protocol_and_audio_passed'])
+        self.assertFalse(result['remote_host_view_and_audio_passed'])
         self.assertEqual(result['script_exitcode'], 1)
 
     def test_preflight_failure_cannot_report_registered_audio_success(self):

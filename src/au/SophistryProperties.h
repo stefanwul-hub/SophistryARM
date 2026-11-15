@@ -1,9 +1,10 @@
 #pragma once
 #include <cstdint>
 namespace sophistry {
-constexpr char wrapperVersion[] = "SophistryARM CP-019";
-// Private properties use flat bytes, never process-local CF pointers: Logic
-// can host the audio unit and its Cocoa view in separate processes.
+constexpr char wrapperVersion[] = "SophistryARM CP-020";
+// Private editor properties are for a view with a local AU handle.
+// Flat bytes avoid sharing object pointers, but the macOS remote proxy may
+// reject these IDs. Host-side remote tests must use public AU properties.
 // Runtime status contains no licence or raw state; sample names are basenames.
 constexpr std::uint32_t runtimeStatusBytes = 128u * 1024u;
 constexpr std::uint32_t runtimeStatusProperty =

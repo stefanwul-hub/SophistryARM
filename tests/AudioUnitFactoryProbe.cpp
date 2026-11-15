@@ -256,7 +256,7 @@ int main(int argc, char **argv) {
           "Create AU instance");
     if (diagnostic(unit.value, 0x53705672) != sophistry::wrapperVersion)
       throw std::runtime_error(
-          "Loaded component is not the expected CP-019 candidate");
+          "Loaded component is not the expected CP-020 candidate");
     if (discoverOnly) {
       const std::string result = "{\"system_registry_used\":true,\"expected_"
                                  "native_candidate_loaded\":true}\n";
@@ -388,6 +388,15 @@ int main(int argc, char **argv) {
     state = readPlist(statePath);
     restore(unit.value, state);
     CFPropertyListRef saved = save(unit.value);
+    auto savedDictionary = static_cast<CFDictionaryRef>(saved);
+    CFTypeRef build =
+        CFDictionaryGetValue(savedDictionary, CFSTR("SophistryARMVersion"));
+    if (!build || CFGetTypeID(build) != CFStringGetTypeID() ||
+        text(static_cast<CFStringRef>(build)) != sophistry::wrapperVersion) {
+      CFRelease(saved);
+      throw std::runtime_error(
+          "Standard AU state checkpoint marker is missing");
+    }
     restore(unit.value, saved);
     CFPropertyListRef again = save(unit.value);
     bool same = CFEqual(bank(saved), bank(again));

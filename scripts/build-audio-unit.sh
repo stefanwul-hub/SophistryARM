@@ -65,6 +65,10 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
   -o "$DEST/AudioUnitEditorProbe" > "$DEST/editor-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/AudioUnitEditorProbe" -verify_arch arm64
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fobjc-arc \
+  "$ROOT/tests/AudioUnitRemoteHostProbe.mm" -lobjc -framework AppKit -framework Foundation -framework AudioToolbox \
+  -o "$DEST/AudioUnitRemoteHostProbe" > "$DEST/remote-host-probe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/AudioUnitRemoteHostProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fobjc-arc \
   "$ROOT/tests/InstalledAUInspector.mm" -framework Foundation -framework AudioToolbox \
   -o "$DEST/InstalledAUInspector" > "$DEST/inspector.compile.log" 2>&1
 /usr/bin/lipo "$DEST/InstalledAUInspector" -verify_arch arm64

@@ -652,6 +652,15 @@ public:
       CFDictionaryRemoveValue(dict, CFSTR("data"));
       CFDictionarySetValue(dict, CFSTR("vstdata"), data);
       CFRelease(data);
+      // A small vendor metadata field in the standard AU state identifies the
+      // code loaded by a remote host without relying on a private property.
+      // No runtime status, private settings or bookmark is serialized here.
+      CFStringRef build = CFStringCreateWithCString(
+          nullptr, sophistry::wrapperVersion, kCFStringEncodingUTF8);
+      if (!build)
+        return OSStatus(-108);
+      CFDictionarySetValue(dict, CFSTR("SophistryARMVersion"), build);
+      CFRelease(build);
       *out = owned.release();
       return noErr;
     });

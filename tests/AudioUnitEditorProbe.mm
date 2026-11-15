@@ -1,7 +1,5 @@
-// Exercise our actual Cocoa factory, locally or driving an installed remote AU.
-// A system-remoted host view has its own lifecycle and cannot be tested using
-// our internal Objective-C selectors or a requirement for two simultaneous
-// views.
+// Exercise the actual component Cocoa factory inside this process.
+// Remote host validation uses only public APIs in AudioUnitRemoteHostProbe.mm.
 #include "../src/au/SophistryProperties.h"
 #import <AppKit/AppKit.h>
 #import <AudioToolbox/AUCocoaUIView.h>
@@ -13,13 +11,6 @@
 #include <memory>
 #include <mutex>
 #include <vector>
-
-struct RemoteCompletion {
-  std::mutex mutex;
-  bool done = false, abandoned = false;
-  AudioComponentInstance instance = nullptr;
-  OSStatus status = 0;
-};
 
 static NSDictionary *runtimeStatus(AudioUnit unit, OSStatus &result) {
   std::vector<char> bytes(sophistry::runtimeStatusBytes);
@@ -38,79 +29,7 @@ static NSDictionary *runtimeStatus(AudioUnit unit, OSStatus &result) {
   return json;
 }
 
-static void put16(std::ofstream &out, UInt32 v) {
-  char b[] = {char(v), char(v >> 8)};
-  out.write(b, 2);
-}
-static void put32(std::ofstream &out, UInt32 v) {
-  char b[] = {char(v), char(v >> 8), char(v >> 16), char(v >> 24)};
-  out.write(b, 4);
-}
-static double renderAudio(AudioUnit unit, NSString *path, UInt32 &completed,
-                          OSStatus &result) {
-  constexpr UInt32 total = 132300;
-  float left[512]{}, right[512]{};
-  struct {
-    UInt32 count;
-    AudioBuffer buffers[2];
-  } storage{};
-  auto *abl = reinterpret_cast<AudioBufferList *>(&storage);
-  abl->mNumberBuffers = 2;
-  std::vector<float> pcm(total * 2);
-  double peak = 0;
-  result = MusicDeviceMIDIEvent(unit, 0x90, 60, 100, 0);
-  for (UInt32 at = 0; at < total && !result; at += 512) {
-    UInt32 n = std::min(UInt32(512), total - at);
-    if (at <= 88200 && 88200 < at + n)
-      result = MusicDeviceMIDIEvent(unit, 0x80, 60, 0, 88200 - at);
-    abl->mBuffers[0] = {1, n * 4, left};
-    abl->mBuffers[1] = {1, n * 4, right};
-    AudioTimeStamp timestamp{};
-    timestamp.mSampleTime = at;
-    timestamp.mFlags = kAudioTimeStampSampleTimeValid;
-    AudioUnitRenderActionFlags flags = 0;
-    if (!result)
-      result = AudioUnitRender(unit, &flags, &timestamp, 0, n, abl);
-    if (result)
-      break;
-    for (UInt32 c = 0; c < 2; ++c) {
-      const auto *values = static_cast<const float *>(abl->mBuffers[c].mData);
-      if (!values || abl->mBuffers[c].mDataByteSize < n * 4) {
-        result = -50;
-        break;
-      }
-      for (UInt32 i = 0; i < n; ++i) {
-        if (!std::isfinite(values[i])) {
-          result = -50;
-          break;
-        }
-        pcm[(at + i) * 2 + c] = values[i];
-        peak = std::max(peak, std::fabs(double(values[i])));
-      }
-    }
-    if (!result)
-      completed += n;
-  }
-  if (!result) {
-    std::ofstream out(path.fileSystemRepresentation, std::ios::binary);
-    out.write("RIFF", 4);
-    put32(out, 36 + total * 8);
-    out.write("WAVEfmt ", 8);
-    put32(out, 16);
-    put16(out, 3);
-    put16(out, 2);
-    put32(out, 44100);
-    put32(out, 44100 * 8);
-    put16(out, 8);
-    put16(out, 32);
-    out.write("data", 4);
-    put32(out, total * 8);
-    out.write(reinterpret_cast<const char *>(pcm.data()), pcm.size() * 4);
-    if (!out)
-      result = -50;
-  }
-  return peak;
-}
+#include "AudioUnitProbeAudio.h"
 
 @interface NSView (SophistryEditorTesting)
 - (BOOL)loadPresetURL:(NSURL *)url;
@@ -121,10 +40,7 @@ static double renderAudio(AudioUnit unit, NSString *path, UInt32 &completed,
 
 int main(int argc, const char **argv) {
   @autoreleasepool {
-    if (argc != 5 && argc != 6)
-      return 2;
-    const bool remote = argc == 6 && !strcmp(argv[5], "--remote");
-    if (argc == 6 && !remote)
+    if (argc != 5)
       return 2;
     NSString *bundlePath = [NSString stringWithUTF8String:argv[1]];
     NSString *statePath = [NSString stringWithUTF8String:argv[2]];
@@ -153,55 +69,7 @@ int main(int argc, const char **argv) {
           CFBundleGetFunctionPointerForName(cf, CFSTR("SophistryAUFactory")));
       if (!factory)
         failure = @"Missing component factory";
-      else if (remote) {
-        AudioComponentDescription desc{0x61756d75, 0x536f7033, 0x4c696e50, 0,
-                                       0};
-        AudioComponent component = AudioComponentFindNext(nullptr, &desc);
-        if (!component)
-          failure = @"No installed component for remote view test";
-        else {
-          auto completion = std::make_shared<RemoteCompletion>();
-          AudioComponentInstantiate(
-              component, kAudioComponentInstantiation_LoadOutOfProcess,
-              ^(AudioComponentInstance instance, OSStatus result) {
-                bool abandoned;
-                {
-                  std::lock_guard<std::mutex> lock(completion->mutex);
-                  abandoned = completion->abandoned;
-                  if (!abandoned) {
-                    completion->instance = instance;
-                    completion->status = result;
-                    completion->done = true;
-                  }
-                }
-                if (abandoned && instance)
-                  AudioComponentInstanceDispose(instance);
-              });
-          const CFAbsoluteTime deadline = CFAbsoluteTimeGetCurrent() + 30;
-          for (;;) {
-            {
-              std::lock_guard<std::mutex> lock(completion->mutex);
-              if (completion->done)
-                break;
-            }
-            if (CFAbsoluteTimeGetCurrent() >= deadline)
-              break;
-            CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.05, true);
-          }
-          {
-            std::lock_guard<std::mutex> lock(completion->mutex);
-            if (!completion->done) {
-              completion->abandoned = true;
-              failure = @"Remote component creation exceeded 30 seconds";
-            } else if (completion->status || !completion->instance)
-              failure = [NSString
-                  stringWithFormat:@"Remote component creation failed: %d",
-                                   int(completion->status)];
-            else
-              unit = completion->instance;
-          }
-        }
-      } else {
+      else {
         AudioComponentDescription desc{0x61756d75, 0x536f7033, 0x4c696e50, 0,
                                        0};
         AudioComponent component = AudioComponentRegister(
@@ -236,12 +104,7 @@ int main(int argc, const char **argv) {
             bundleWithURL:(__bridge NSURL *)info.mCocoaAUViewBundleLocation];
         [viewBundle loadAndReturnError:nil];
         advertisedClass = [(__bridge NSString *)info.mCocoaAUViewClass[0] copy];
-        // macOS may publish its own relay factory for a remote AU. Exercise
-        // our view against the actual remote AudioUnit to verify the flat
-        // property protocol, imports and parameter changes. This does not
-        // certify the host-managed remote window, which needs Logic/Live.
-        Class cls = remote ? [bundle classNamed:@"SophistryCocoaFactory"]
-                           : [viewBundle classNamed:advertisedClass];
+        Class cls = [viewBundle classNamed:advertisedClass];
         componentViewClass = cls ? NSStringFromClass(cls) : @"";
         id<AUCocoaUIBase> maker = cls ? [[cls alloc] init] : nil;
         if (!maker || [maker interfaceVersion] != 0)
@@ -363,10 +226,8 @@ int main(int argc, const char **argv) {
     NSDictionary *report = @{
       @"scope" : @"actual native Cocoa view factory; public presets only, no "
                  @"private project",
-      @"out_of_process_requested" : @(remote),
-      @"view_factory_route" : remote
-          ? @"component Cocoa factory driving remote AU"
-          : @"published local Cocoa factory",
+      @"out_of_process_requested" : @NO,
+      @"view_factory_route" : @"published local Cocoa factory",
       @"advertised_cocoa_factory" : advertisedClass,
       @"tested_component_cocoa_factory" : componentViewClass,
       @"host_managed_remote_window_verified" : @NO,
