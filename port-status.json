@@ -240,5 +240,7 @@
   "github_cp019_archive_sha256": "d5567f0736b8867bf8fa91b5124725fbf5f295fc3bbde9ed72453bafc2d4c3be",
   "github_cp019_verified_tracked_blobs": 4061,
   "github_cp019_launcher": "Demarrer-Sophistry-CP019.command",
-  "cp019_source_archive_verification_pending": false
+  "cp019_source_archive_verification_pending": false,
+  "github_cp019_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/706057e86043ea91ce8c1b74407da7a9d85b0db3/Demarrer-Sophistry-CP019.command",
+  "github_cp019_launcher_verified": true
 }

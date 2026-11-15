@@ -1,0 +1,12 @@
+{
+  "checkpoint": "CP-019",
+  "launcher_commit": "706057e86043ea91ce8c1b74407da7a9d85b0db3",
+  "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/706057e86043ea91ce8c1b74407da7a9d85b0db3/Demarrer-Sophistry-CP019.command",
+  "bytes": 2149,
+  "sha256": "6f28a9255d3351016db2cc02ed504302184abecb88d98c79fb8c5194bb102673",
+  "download_matches_local_exactly": true,
+  "download_provider": "GitHub connector raw-file fetch, UTF-8 content checked exactly",
+  "bash_syntax_valid": true,
+  "forwards_choose_bank_diagnose_and_recenter_options": true,
+  "mac_execution_pending": true
+}
