@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-013",
+  "checkpoint": "CP-014",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -28,7 +28,7 @@
   "ghidra_pseudocode_is_buildable_source": false,
   "complete_dsp_engine_ported": false,
   "state_decoder_complete": false,
-  "native_audio_unit_available": false,
+  "native_audio_unit_available": true,
   "native_ui_available": false,
   "macos_auval_executed": true,
   "logic_projects_verified": false,
@@ -37,10 +37,10 @@
   "implemented_dsp_scope": "191378 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
   "arm64_scope": "CP-011 user Mac: core and host executables compiled/executed ARM64, 704 DSP and 11635 primitive/guard replays passed; licensed FXP render byte-exact for one scenario. CP-013 AU bridge awaits Mac execution.",
   "next_work": [
-    "Compile and execute the uninstalled candidate AU factory on the user Mac",
-    "Compare licensed native AU audio with both direct C++ AU mode and original AU instruction reference",
-    "Complete GUI, local registration persistence, sample paths/formats, production lifecycle and real-time suitability",
-    "Run auval on a backed-up installation and test copies of old Logic/Live projects"
+    "Persist registration locally using original SysGlo serializer only after original licence check succeeds",
+    "Allow local sample bank folder selection and recursive asset discovery",
+    "Implement backed-up test installation with automatic rollback if auval or registered-instance probes fail",
+    "Reproduce original Cocoa editor and exercise copies of old Logic/Live projects"
   ],
   "state_container_reader_implemented": true,
   "state_container_round_trip_tested": [
@@ -155,7 +155,7 @@
       "outputs": 6
     }
   ],
-  "au_bridge_macos_executed": false,
+  "au_bridge_macos_executed": true,
   "au_framework_linux_differential_evidence": "evidence/au-render-comparison-cp013.json",
   "au_factory_probe_available": true,
   "au_candidate_macho_arm64_crosslinked": true,
@@ -170,5 +170,10 @@
   "github_cp013_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
   "github_cp013_archive_sha256": "a689527bb1d8b1d4c612d6444c7ee27bed97dda1b100d154962aa3209e64769c",
   "github_cp013_verified_tracked_blobs": 4007,
-  "github_cp013_launcher": "Demarrer-Sophistry-CP013.command"
+  "github_cp013_launcher": "Demarrer-Sophistry-CP013.command",
+  "native_audio_unit_scope": "CP-013 experimental AU candidate compiled, signed and exercised via process-local factory on user ARM64 Mac. System installation, auval, original GUI and DAW recall remain unverified.",
+  "au_diagnostic_factory_macos_passed": true,
+  "au_candidate_native_macos_evidence": "evidence/mac-cp013-au-factory.json",
+  "one_au_preset_audio_reference_cases_passed": 2,
+  "native_audio_unit_production_ready": false
 }

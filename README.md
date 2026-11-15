@@ -1,8 +1,10 @@
-# Sophistry — checkpoint CP-013
+# Sophistry — checkpoint CP-014
 
-**Un premier candidat Audio Unit ARM64 est maintenant construit et lié. Son exécution AU sur Mac, son interface Sophistry et le rappel des projets restent à valider. Ce checkpoint teste le candidat sans remplacer l’ancien `.component`.**
+**Le premier candidat Audio Unit ARM64 a maintenant été compilé, signé et exécuté sur le Mac utilisateur.** Le rapport CP-013 confirme le chargement de la factory, les 522 métadonnées et deux rendus AU musicaux byte-exact contre les instructions originales. L’interface Sophistry, auval et la réouverture des projets restent à terminer.
 
 Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x86-64. L’identité à conserver pour les anciens projets AU est `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`.
+
+**CP-014 : rapport Mac CP-013 vérifié.** Les WAV du candidat, du moteur AU direct et de la référence i386 sont identiques pour chaque configuration 2/6 canaux : 264600 et 793800 échantillons float32, tous finis. La licence est acceptée localement. Trois secondes de son sont calculées en environ 0,60 s ; ce test hors temps réel ne certifie pas une charge de projet. Voir [la preuve anonymisée](evidence/mac-cp013-au-factory.json). Aucun composant n’a encore été installé par le script CP-013.
 
 **CP-013 : premier candidat AU.** Le constructeur et le contrat AU originaux sont récupérés (un bus 2/6 canaux, 522 paramètres). Les chemins MIDI, rendu, reset et réinitialisation sont intégrés. Les tests du pont passent sous Linux natif et ARM64/Linux/QEMU ; le candidat Mach-O ARM64 et sa factory sont liés. Le [test Mac CP-013](docs/CP013.md) compile localement le `.component`, teste sa factory sans installation et compare ses WAV au moteur direct et aux instructions AU originales, avec la licence saisie uniquement sur le Mac. Le [lanceur CP-013](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/480349830f8c5ab65e4d169bde6a05780ff67caa/Demarrer-Sophistry-CP013.command) télécharge l’archive épinglée dont les 4007 fichiers ont été vérifiés.
 

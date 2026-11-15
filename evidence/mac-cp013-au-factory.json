@@ -1,0 +1,126 @@
+{
+  "checkpoint": "CP-014",
+  "evidence_from_mac_checkpoint": "CP-013",
+  "tested_source_commit": "92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
+  "system": "macOS 15.7.2 / arm64 / Apple clang 17 / SDK 15.5",
+  "script_exitcode": 0,
+  "case": "Lightgarden 02 BT.aupreset, note60 velocity100, note off at2s, 3s at44100Hz / max512 frames",
+  "cases": [
+    {
+      "channels": 2,
+      "frames": 132300,
+      "float32_samples": 264600,
+      "wav_bytes": 1058444,
+      "all_three_wavs_byte_exact": true,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39",
+      "pcm_float32_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "all_audio_finite": true,
+      "registration_accepted": true,
+      "private_registration_input": true,
+      "checks_passed": [
+        "candidate factory loads without installation",
+        "522 parameter IDs, names, units, ranges and defaults match original",
+        "old vstdata restores and serialized AU state round-trips in memory",
+        "3 seconds of finite audible audio through AudioUnitRender",
+        "initialize, uninitialize and change between 2 and 6 channels"
+      ],
+      "peak_per_channel": [
+        0.1028563380241394,
+        0.10761502385139465
+      ],
+      "rms_per_channel": [
+        0.023027967635333074,
+        0.028600082248687063
+      ],
+      "render_wall_seconds": 0.607134917,
+      "maximum_render_call_seconds": 0.00496475,
+      "nominal_512_frame_deadline_seconds": 0.011609977324263039
+    },
+    {
+      "channels": 6,
+      "frames": 132300,
+      "float32_samples": 793800,
+      "wav_bytes": 3175244,
+      "all_three_wavs_byte_exact": true,
+      "wav_sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134",
+      "pcm_float32_sha256": "7d65849399b6ce47896a63b732eaad749254366ea044173e5e64fa75b1ea1315",
+      "all_audio_finite": true,
+      "registration_accepted": true,
+      "private_registration_input": true,
+      "checks_passed": [
+        "candidate factory loads without installation",
+        "522 parameter IDs, names, units, ranges and defaults match original",
+        "old vstdata restores and serialized AU state round-trips in memory",
+        "3 seconds of finite audible audio through AudioUnitRender",
+        "initialize, uninitialize and change between 2 and 6 channels"
+      ],
+      "peak_per_channel": [
+        0.051394861191511154,
+        0.05377645418047905,
+        0.000199110247194767,
+        0.000199110247194767,
+        0.051394861191511154,
+        0.05377645418047905
+      ],
+      "rms_per_channel": [
+        0.011506629150297367,
+        0.014291539151417532,
+        4.0957421636078124e-05,
+        4.0957421636078124e-05,
+        0.011506629150297367,
+        0.014291539151417532
+      ],
+      "render_wall_seconds": 0.601924167,
+      "maximum_render_call_seconds": 0.003212416,
+      "nominal_512_frame_deadline_seconds": 0.011609977324263039
+    }
+  ],
+  "bridge_regression": {
+    "passed": true,
+    "parameter_records": 522,
+    "reinitialization_cycles": 4,
+    "channels": [
+      2,
+      6
+    ],
+    "sample_rates": [
+      44100,
+      48000,
+      96000
+    ],
+    "licensed_musical_audio_tested": false
+  },
+  "dsp_replay": {
+    "scope": "selected statically lifted DSP",
+    "cases": 704,
+    "compared_bytes": 5420672,
+    "byte_mismatches": 0,
+    "output_buffer_byte_mismatches": 0,
+    "object_state_byte_mismatches": 0,
+    "math_calls": 201,
+    "math_mode": "recorded ABI responses",
+    "instruction_addresses_executed": 3113,
+    "fixture_valid": true,
+    "passed": true,
+    "full_synth_tested": false
+  },
+  "instruction_replay": {
+    "scope": "isolated original instruction fixtures including explicit guards",
+    "cases": 11635,
+    "compared_register_bytes": 146749,
+    "passed": true,
+    "full_engine_tested": false
+  },
+  "private_license_included": false,
+  "raw_user_paths_included": false,
+  "system_installed": false,
+  "auval_executed": false,
+  "native_sophistry_ui_implemented": false,
+  "logic_project_recall_verified": false,
+  "live_project_recall_verified": false,
+  "limitations": [
+    "Only one provided AU state and prescribed three-second MIDI sequence tested",
+    "Offline timings do not establish real-time safety or polyphonic performance",
+    "Original i386 instructions share modern platform/math services with the native engine; original Apple i386 libm and AudioConverter are not executed"
+  ]
+}

@@ -1,3 +1,15 @@
+# Reprendre à CP-014 — Audio Unit testé sur le Mac utilisateur
+
+Rapport reçu : Sophistry-rapports-CP013-20261115T083620Z.zip, source testée 92d1d60d44e8cfa89d570721bfdbd9d52ad12adf. Tout passe (exitcode0) sur macOS15.7.2 ARM64 / Apple clang17 : construction/signature du component, chargement par sa factory, métadonnées522, replays704DSP/11635instructions, quatre réinitialisations et rendus musicaux AU 2/6 canaux.
+
+Lire evidence/mac-cp013-au-factory.json. Vérification indépendante des six WAV reçus : factory/direct/original identiques pour chaque configuration. 2 canaux : SHA WAV 5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39 ; 6 canaux : da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134. 132300 frames à44100Hz / 3s / note60vel100off2s / ancien .aupreset Lightgarden CrX3. Le contrôle original accepte la licence, saisie uniquement sur Mac. Aucun secret ou chemin utilisateur n’est dans la preuve publique.
+
+Le rendu dure ~0,60s pour3s de son, max appel4,96ms (stéréo) /3,21ms (six canaux) ; ne pas en déduire une garantie temps réel/polyphonie. Pas d’installation système, auval, interface Sophistry Cocoa ou rappel Logic/Live validés. Les rapports bruts et WAV sont dans work/mac-report-cp013, à ne pas publier tels quels.
+
+Travail suivant autorisé : configuration locale de la licence par les routines SysGlo originales, choix local de la banque, puis installation de test avec sauvegarde et rollback automatique si auval échoue. Le remplacement est déjà autorisé par l’utilisateur ; le blocage de l’ancien script était technique. Ne jamais demander la clé dans le chat. L’interface fidèle reste à développer avec les images et le constructeur SynthEditor d’origine ; ne pas présenter les contrôles génériques comme cette interface.
+
+---
+
 # Reprendre à CP-013 (prototype AU, validation Mac en attente)
 
 Lire docs/CP013.md et evidence/au-render-comparison-cp013.json. Sources CP-013 publiées et vérifiées : 92d1d60d44e8cfa89d570721bfdbd9d52ad12adf ; SHA ZIP a689527bb1d8b1d4c612d6444c7ee27bed97dda1b100d154962aa3209e64769c. Demarrer-Sophistry-CP013.command lance Verifier-AU-Mac.command. Lanceur immuable vérifié : https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/480349830f8c5ab65e4d169bde6a05780ff67caa/Demarrer-Sophistry-CP013.command. Le ZIP de résultats attendu s’appelle Sophistry-rapports-CP013-<date>.zip. Ne pas repartir de CP-008. Le rendu musical CP-011/CP-012 sur le Mac utilisateur est validé pour un scénario FXP, pas encore par le nouveau wrapper AU.
