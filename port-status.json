@@ -183,5 +183,9 @@
   "system_installation_script_available": true,
   "system_installation_script_mac_executed": false,
   "new_native_candidate_auval_passed": null,
-  "cp015_mac_execution_pending": true
+  "cp015_mac_execution_pending": true,
+  "github_cp015_source_commit": "5ad00df0defaf97d5090114bfedbcdfa130876ab",
+  "github_cp015_archive_sha256": "57918aebf451bb674a249e6f4ce08f3ffd201913a020f149aeb9fbda87812394",
+  "github_cp015_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/5ad00df0defaf97d5090114bfedbcdfa130876ab",
+  "github_cp015_launcher": "Demarrer-Sophistry-CP015.command"
 }
