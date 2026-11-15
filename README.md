@@ -6,7 +6,7 @@ Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x
 
 **CP-015 : installation de test préparée.** Le nouveau lanceur compile le candidat, configure localement la licence et la banque, compare l’audio, sauvegarde l’ancien composant, installe dans `/Library/Audio/Plug-Ins/Components`, lance auval et teste le composant enregistré. Un échec déclenche la restauration. La procédure attend encore son premier retour Mac ; voir [CP-015](docs/CP015.md). L’interface reste générique, le rappel Logic/Live reste à vérifier.
 
-[Télécharger le lanceur CP-015](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP015.command) puis lancer `bash "$HOME/Downloads/Demarrer-Sophistry-CP015.command"`. Les 4025 fichiers de l’archive ont été téléchargés et vérifiés.
+[Télécharger le lanceur CP-015](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/a1a2fcf2f4d8240583dc23e5f48e13aa4277d5e9/Demarrer-Sophistry-CP015.command) puis lancer `bash "$HOME/Downloads/Demarrer-Sophistry-CP015.command"`. Les 4025 fichiers de l’archive ont été téléchargés et vérifiés.
 
 **CP-014 : rapport Mac CP-013 vérifié.** Les WAV du candidat, du moteur AU direct et de la référence i386 sont identiques pour chaque configuration 2/6 canaux : 264600 et 793800 échantillons float32, tous finis. La licence est acceptée localement. Trois secondes de son sont calculées en environ 0,60 s ; ce test hors temps réel ne certifie pas une charge de projet. Voir [la preuve anonymisée](evidence/mac-cp013-au-factory.json). Aucun composant n’a encore été installé par le script CP-013.
 

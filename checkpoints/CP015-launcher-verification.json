@@ -1,0 +1,9 @@
+{
+  "checkpoint": "CP-015",
+  "launcher_commit": "a1a2fcf2f4d8240583dc23e5f48e13aa4277d5e9",
+  "launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/a1a2fcf2f4d8240583dc23e5f48e13aa4277d5e9/Demarrer-Sophistry-CP015.command",
+  "downloaded_bytes": 2144,
+  "sha256": "cda1ec16deeb2986f5f0c8312360d6564f66ffba565d89945ce3f177c43d7298",
+  "byte_exact_to_published_file": true,
+  "mac_execution_pending": true
+}
