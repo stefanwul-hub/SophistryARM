@@ -6,7 +6,7 @@
     "src/engine/LegacyEngine.cpp": "d0a312724f098cf61680612eb54ec51e6701a08e0871e548318af26943c8499d",
     "src/engine/LegacyEngine.h": "a76d0e8b8bc29cae9e860aa2ed1148c7a2eda25913fb0c69201c90b792becbc3",
     "src/lifter/LifterRuntime.cpp": "f7a83df4c836481fe8b5ad6276ca7323fe5f85c52d8299f98e0c4781368e5d2e",
-    "src/au/SophistryAU.cpp": "261bb5fcb22090a4f69a218137cff094cbf733464365ea92d13ccf5c5e075a86",
+    "src/au/SophistryAU.cpp": "1eeba373c44e79a9613792cc444a71e3a3fb8de52b48f95653bfa9657e21ec6f",
     "src/au/ConfigureSophistry.mm": "7fc7e95b7600ff34786190ca7f208cb0efea237a05e602550c2425e5198585e8",
     "src/au/SophistryProperties.h": "b8a029c637a1df7f222dceacf17528347d191ee9d46da2519122b6f706c46dc3",
     "src/au/Info.plist": "5141eb4952be9b1109adeade968f20c97431290ae37f8b93fcc3c03df014e4cd",
@@ -89,7 +89,7 @@
       "name": "Sophistry",
       "architecture": "arm64",
       "bytes": 30632640,
-      "sha256": "eccf426658c2cc4ce30d6b0361596de49bf1d5d3a60a188bb22180154ac21951",
+      "sha256": "3626aaaecf21773c7ea7a0f87ff4fae7fe189b4a32ff55f5627f7ade4f7e903c",
       "strict_link_undefined_symbols_rejected": true
     },
     {

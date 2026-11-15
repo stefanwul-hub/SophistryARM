@@ -153,7 +153,13 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
     CFStringRef name = CFStringCreateWithCString(
         nullptr, lastKnownPresetName_.c_str(), kCFStringEncodingUTF8);
     if (!name)
+      name = CFStringCreateWithBytes(
+          nullptr, reinterpret_cast<const UInt8 *>(lastKnownPresetName_.data()),
+          CFIndex(lastKnownPresetName_.size()), kCFStringEncodingMacRoman,
+          false);
+    if (!name)
       throw std::runtime_error("Cannot encode AU preset name");
+    lastKnownPresetName_ = text(name);
     const OSStatus status = Base::NewCustomPresetSet(AUPreset{-1, name});
     CFRelease(name);
     if (status)
@@ -269,6 +275,7 @@ public:
     for (UInt32 id : parameters_)
       Globals()->SetParameter(id, engine_.auParameter(id));
     lastKnownPresetName_ = engine_.presetName();
+    syncPresetLabel();
   }
   ~SophistryAU() override {
     for (auto &item : metadata_) {
