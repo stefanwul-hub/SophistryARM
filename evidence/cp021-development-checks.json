@@ -1,0 +1,121 @@
+{
+  "checkpoint": "CP-021",
+  "scope": "Linux and ARM64/Linux/QEMU tests, strict macOS ARM64 cross-linking; CP021 Mac execution still pending",
+  "source_sha256": {
+    "src/engine/PcmConversion.h": "df36f25f4fd2f9eb6eb2b23ae7699964590733b8a84110a3206feeaa56eab710",
+    "src/engine/LegacyEngine.cpp": "a75bb720c975e579a32987b42b8f0f07cd39b51eb3dc3e976f9206b939ca4e6f",
+    "src/au/SophistryAU.cpp": "4942df4c2f3a68bacc60661c73036fe7ba3b2ecd317690568bc9f386ddc9e579",
+    "src/au/SophistryEditor.mm": "214abd2513828ed19e11805cee6dff71957aeace7f31c8ecbd73111c188383de",
+    "src/au/SophistryProperties.h": "e092c1089d80fea96497bdeee84fd39c602897417d28acd7f79ca845fa106728",
+    "tests/PcmConversionProbe.cpp": "8e42b9b4e110380826347703d9f07d2156df326b2de6640f7713ba2d1a639779",
+    "tests/pcm_reference.py": "82606bc8cb9bb9ad3433c8f6e3484d02e8f93f803f38fc574b3965ab51adff24",
+    "tests/generate_sample_formats.py": "ebedcf1f54fa3df9756eb3faed2cca15a2ee980e5b34119e436c5843134b7c9d",
+    "tests/probe_sample_formats.py": "9df96897aefd0b92f501a26f844223a62305dca99e5462a325b431e5807aa6f2",
+    "tests/probe_engine_initialization.py": "c4d8e1cecec68fab4abb0b5f9c24fd20a4373be1d7fa062635564e867eeb897a",
+    "tests/probe_au_render.py": "77a43e692eb58d19b22e5e3f511664208069a1991bb40b1e28bacc27832cf443",
+    "tests/AudioUnitEditorProbe.mm": "9c0c1ee93ed643615f64df2f8a28bef6a97489bfd37eedea3d73d1e7ee78264b",
+    "tests/AudioUnitRemoteHostProbe.mm": "2188dfe4d96d354c6cf3c3aa49a8a00dc880fc0074c1eb5b8ef09e4fc40c0543",
+    "Installer-ARM64.command": "f216a022f28dcf7b872fe3e3824114132d3d02b5bd5f072e9b04307e8371f308",
+    "scripts/build-native-engine.sh": "d2223e9c55a8f6e090b1eddf7abf9a32ba94550fc4c63f33dbbd592be91fb137",
+    "scripts/build-audio-unit.sh": "797cc0079d585ec848619dbc472f034b38481ea2ecb17418fbedbad45e82bfe9"
+  },
+  "binaries": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 30614864,
+      "sha256": "5b5a4c3f677c3f611c43a9b560e32905b9875b86a887e9e7dd1b4fa0668f9930",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "ConfigureSophistry",
+      "architecture": "arm64",
+      "bytes": 30368976,
+      "sha256": "2296a5c19c58c881b1d0b44c960e1501f82833ed62d7383609ade3b3d8fbbdbc",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "NativeEngineProbe",
+      "architecture": "arm64",
+      "bytes": 30366512,
+      "sha256": "eb5287819b3f76fe7ed6f646dcb8b5e93ace19d354fbbfce0c6bddb3f3bd3317",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "PcmConversionProbe",
+      "architecture": "arm64",
+      "bytes": 1234208,
+      "sha256": "33cea86efa99bbcafe8d72d13c4d7f5c10434cc490fa4660f54957ed867b6e02",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1230000,
+      "sha256": "65b2e14d1eab241b3059096f596366c14e59cd557ddd64dbe968ad5e87db1997",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "ce23ee0cf7de4767b432f6f613faacd919c4fda058a0a6ea540fb0ace0ba9deb",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitFactoryProbe",
+      "architecture": "arm64",
+      "bytes": 1364544,
+      "sha256": "0a9143fa539671c2f0b8c2dd912970b10036244b0b4f69a297fae0307706f1de",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "bbbd86f6ea71fb0e692fe107130496708024af745ffcaf8a7676b9afca4632a3",
+      "strict_link_undefined_symbols_rejected": true
+    }
+  ],
+  "cross_toolchain": "Zig/Clang19 + LLD19 + SDK11.3, cross-link deployment13; user builds with Xcode deployment11",
+  "au_and_cocoa_factory_exports_verified": true,
+  "python_unit_tests_passed": 30,
+  "pcm_known_ieee_native_and_arm64_cases": 256,
+  "pcm_invalid_formats_and_buffer_rejections": 516,
+  "pcm_address_and_undefined_sanitizers_passed": true,
+  "sanitizer_error_log_empty": true,
+  "sample_loader_original_i386_cases": 12,
+  "sample_loader_original_i386_regions_byte_exact": 48,
+  "previous_cp011_snapshot_regions_byte_exact": 8,
+  "au_bridge_regression": {
+    "passed": true,
+    "parameter_records": 522,
+    "reinitialization_cycles": 8,
+    "channels": [
+      2,
+      6
+    ],
+    "sample_rates": [
+      22050,
+      44100,
+      48000,
+      96000,
+      192000
+    ],
+    "licensed_musical_audio_tested": false
+  },
+  "static_lifter_and_machine_instruction_sources_unchanged": true,
+  "new_mac_checks_prepared": [
+    "32 producer-layout cases compared with modern native Apple AudioConverter, equal rates normalized to44100 for oracle",
+    "three-second D4U mono and stereo renders through AU engine compared byte-for-byte to original i386 instructions",
+    "FXP header name retained as standard AU preset metadata",
+    "existing2/6 component audio,auval,local editor,remote host and final inspection remain mandatory"
+  ],
+  "new_native_apple_converter_oracle_executed": false,
+  "cp021_mac_execution_pending": true,
+  "cp021_auval_passed": null,
+  "real_user_d4u_file_not_provided": true,
+  "silent_user_project_sound_fixed_on_mac_verified": false,
+  "original_interface_complete": false,
+  "production_ready": false
+}
