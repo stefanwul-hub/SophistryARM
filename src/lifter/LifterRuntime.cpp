@@ -1,5 +1,6 @@
 #include "LifterRuntime.h"
 extern "C" void* malloc(SlSize);
+extern "C" void* calloc(SlSize, SlSize);
 extern "C" void free(void*);
 
 static SlU64 round_shift(SlU64 n,unsigned shift) {
@@ -89,8 +90,8 @@ SlU sl_trunc_fp(SlU bits,unsigned source_bytes,unsigned output_bits) {
 }
 extern "C" SlCpu* sl_create(SlSize size) {
     auto* c=static_cast<SlCpu*>(malloc(sizeof(SlCpu)));if(!c)return nullptr;
-    __builtin_memset(c,0,sizeof(*c));c->memory=static_cast<SlU8*>(malloc(size));
-    if(!c->memory){free(c);return nullptr;}c->memory_size=size;__builtin_memset(c->memory,0,size);return c;
+    __builtin_memset(c,0,sizeof(*c));c->memory=static_cast<SlU8*>(calloc(1,size));
+    if(!c->memory){free(c);return nullptr;}c->memory_size=size;return c;
 }
 extern "C" void sl_destroy(SlCpu* c){if(c){free(c->memory);free(c);}}
 extern "C" int sl_mem_write(SlCpu* c,SlU32 a,const void* p,SlSize n){if(!c||a>c->memory_size||n>c->memory_size-a)return 1;__builtin_memcpy(c->memory+a,p,n);return 0;}

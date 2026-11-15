@@ -1,0 +1,110 @@
+{
+  "checkpoint": "CP-021",
+  "source": "Received Mac report Sophistry-rapports-CP021-20261115T210733Z.zip; independently inspected JSON, logs and all twelve WAVs",
+  "script_exitcode": 0,
+  "system_installation_committed": true,
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  "pcm_conversion": {
+    "passed": true,
+    "known_ieee_cases": 256,
+    "rejected_invalid_buffers_or_formats": 516,
+    "native_core_audio_cases": 32,
+    "native_float_signed_flags_normalized": 0,
+    "error": ""
+  },
+  "fxp_header_name_preserved": true,
+  "local_editor_passed": true,
+  "remote_host": {
+    "passed": true,
+    "loaded_out_of_process": true,
+    "loaded_out_of_process_status": 0,
+    "reported_checkpoint": "SophistryARM CP-021",
+    "checkpoint_matches": true,
+    "custom_view_created": true,
+    "advertised_cocoa_factory": "_RemoteAUv2ViewFactory",
+    "host_view_class": "AUv2ContainerView",
+    "state_bank_roundtrip_exact": true
+  },
+  "audio_comparisons": [
+    {
+      "files": [
+        "original-2.wav",
+        "preflight-2.wav",
+        "registered-2.wav",
+        "editor.wav",
+        "remote-host.wav"
+      ],
+      "all_files_byte_exact": true,
+      "frames": 132300,
+      "channels": 2,
+      "sample_rate": 44100,
+      "format": "float32",
+      "all_values_finite": true,
+      "peak": 0.10761502385139465,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    },
+    {
+      "files": [
+        "original-6.wav",
+        "preflight-6.wav",
+        "registered-6.wav"
+      ],
+      "all_files_byte_exact": true,
+      "frames": 132300,
+      "channels": 6,
+      "sample_rate": 44100,
+      "format": "float32",
+      "all_values_finite": true,
+      "peak": 0.05377645418047905,
+      "wav_sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134"
+    },
+    {
+      "files": [
+        "format-d4u-32-1-original.wav",
+        "format-d4u-32-1-native.wav"
+      ],
+      "all_files_byte_exact": true,
+      "frames": 132300,
+      "channels": 2,
+      "sample_rate": 44100,
+      "format": "float32",
+      "all_values_finite": true,
+      "peak": 0.11708078533411026,
+      "wav_sha256": "48209ab5de65a716a22d4538c99c7bfbaeb20550b0774ffc38de3d37bdb07cac"
+    },
+    {
+      "files": [
+        "format-d4u-32-2-original.wav",
+        "format-d4u-32-2-native.wav"
+      ],
+      "all_files_byte_exact": true,
+      "frames": 132300,
+      "channels": 2,
+      "sample_rate": 44100,
+      "format": "float32",
+      "all_values_finite": true,
+      "peak": 0.10761502385139465,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    }
+  ],
+  "original_registration_accepted": true,
+  "user_hosts_reported": [
+    "Logic Pro 11",
+    "Ableton Live 11.3.2"
+  ],
+  "user_live_saved_sound_reload_reported": true,
+  "user_live_preset_name_loss_reported": true,
+  "user_repeated_or_large_preset_load_failure_reported": true,
+  "private_project_roundtrip_independently_inspected": false,
+  "full_interface_complete": false,
+  "private_paths_preferences_or_key_published": false,
+  "installed_build_verified": "21001",
+  "loaded_checkpoint_verified": "SophistryARM CP-021",
+  "duplicate_user_component_found": false
+}

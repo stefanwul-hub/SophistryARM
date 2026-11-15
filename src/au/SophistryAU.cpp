@@ -26,6 +26,17 @@ constexpr AudioUnitPropertyID diagnosticsProperty =
 constexpr AudioUnitPropertyID wrapperVersionProperty = 0x53705672; // SpVr.
 constexpr UInt32 sophistrySubtype = 0x536f7033, cronoSubtype = 0x43725833,
                  linplug = 0x4c696e50;
+bool usablePresetName(std::string name) {
+  const auto begin = name.find_first_not_of(" \t\r\n");
+  if (begin == std::string::npos)
+    return false;
+  name = name.substr(begin, name.find_last_not_of(" \t\r\n") - begin + 1);
+  for (char &c : name)
+    if (c >= 'A' && c <= 'Z')
+      c += 32;
+  return name != "empty" && name != "default" && name != "defaut" &&
+         name != "défaut";
+}
 std::string jsonText(const std::string &text) {
   std::string result = "\"";
   for (unsigned char c : text) {
@@ -76,7 +87,7 @@ HostedConfiguration configuration() {
   c.recycleFreedBlocks = true;
   c.collectDiagnostics = false;
   c.recursiveAssetSearch = true;
-  c.guestMemoryBytes = 256u * 1024u * 1024u;
+  c.guestMemoryBytes = sophistry::productionGuestMemoryBytes;
   // Keep deterministic platform inputs until the AU comparison is verified;
   // tempo, sample positions and transport are supplied by actual host
   // callbacks.
@@ -136,6 +147,20 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
   UInt32 lastMidiChannel_ = 0, lastMidiNote_ = 0, lastMidiOffset_ = 0;
   OSStatus lastRestoreStatus_ = noErr;
   double maximumOutput_ = 0;
+  void syncPresetLabel() {
+    if (!usablePresetName(lastKnownPresetName_))
+      return;
+    CFStringRef name = CFStringCreateWithCString(
+        nullptr, lastKnownPresetName_.c_str(), kCFStringEncodingUTF8);
+    if (!name)
+      throw std::runtime_error("Cannot encode AU preset name");
+    const OSStatus status = Base::NewCustomPresetSet(AUPreset{-1, name});
+    CFRelease(name);
+    if (status)
+      throw std::runtime_error("Cannot update AU preset name");
+    PropertyChanged(kAudioUnitProperty_PresentPreset, kAudioUnitScope_Global,
+                    0);
+  }
   void syncParameters() {
     for (UInt32 id : parameters_)
       Globals()->SetParameter(id, engine_.auParameter(id));
@@ -159,6 +184,7 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
     if ((lastKnownPresetName_.empty() || lastKnownPresetName_ == "empty") &&
         !previousLabel.empty())
       lastKnownPresetName_ = previousLabel;
+    syncPresetLabel();
     stateLoaded_ = true;
     lastRestoreStatus_ = noErr;
     notesReceived_ = renderCalls_ = 0;
@@ -216,10 +242,22 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
 public:
   OSStatus NewCustomPresetSet(const AUPreset &preset) override {
     return guarded([&]() -> OSStatus {
-      const auto status = Base::NewCustomPresetSet(preset);
-      if (!status && preset.presetName)
-        lastKnownPresetName_ = text(preset.presetName);
-      return status;
+      if (!preset.presetName)
+        return kAudioUnitErr_InvalidPropertyValue;
+      const auto incoming = text(preset.presetName);
+      if (usablePresetName(incoming)) {
+        const auto status = Base::NewCustomPresetSet(preset);
+        if (!status)
+          lastKnownPresetName_ = incoming;
+        return status;
+      }
+      // Some hosts assign a generic custom-preset label after restoring the
+      // bank. Keep the original label in both the view and standard AU API.
+      if (usablePresetName(lastKnownPresetName_)) {
+        syncPresetLabel();
+        return noErr;
+      }
+      return Base::NewCustomPresetSet(preset);
     });
   }
   explicit SophistryAU(AudioComponentInstance instance)
@@ -667,6 +705,15 @@ public:
       CFDictionaryRemoveValue(dict, CFSTR("data"));
       CFDictionarySetValue(dict, CFSTR("vstdata"), data);
       CFRelease(data);
+      if (usablePresetName(lastKnownPresetName_)) {
+        CFStringRef label = CFStringCreateWithCString(
+            nullptr, lastKnownPresetName_.c_str(), kCFStringEncodingUTF8);
+        if (!label)
+          return OSStatus(-108);
+        CFDictionarySetValue(dict, CFSTR("name"), label);
+        CFDictionarySetValue(dict, CFSTR("SophistryARMPresetName"), label);
+        CFRelease(label);
+      }
       // A small vendor metadata field in the standard AU state identifies the
       // code loaded by a remote host without relying on a private property.
       // No runtime status, private settings or bookmark is serialized here.
@@ -723,6 +770,19 @@ public:
       std::vector<std::uint8_t> chunk(CFDataGetBytePtr(data),
                                       CFDataGetBytePtr(data) + n);
       loadChunk(chunk, false, false);
+      auto savedName = [&](CFStringRef key) {
+        CFTypeRef name = CFDictionaryGetValue(dict, key);
+        return name && CFGetTypeID(name) == CFStringGetTypeID()
+                   ? text(static_cast<CFStringRef>(name))
+                   : std::string();
+      };
+      const auto originalLabel = savedName(CFSTR("SophistryARMPresetName"));
+      const auto hostLabel = savedName(CFSTR("name"));
+      if (usablePresetName(originalLabel))
+        lastKnownPresetName_ = originalLabel;
+      else if (!usablePresetName(lastKnownPresetName_) &&
+               usablePresetName(hostLabel))
+        lastKnownPresetName_ = hostLabel;
       CFMutableDictionaryRef copy =
           CFDictionaryCreateMutableCopy(nullptr, 0, dict);
       if (!copy)
@@ -734,22 +794,23 @@ public:
       CFRelease(targetNumber);
       CFDictionaryRemoveValue(copy, CFSTR("data"));
       CFDictionaryRemoveValue(copy, CFSTR("element_name"));
+      if (usablePresetName(lastKnownPresetName_)) {
+        CFStringRef label = CFStringCreateWithCString(
+            nullptr, lastKnownPresetName_.c_str(), kCFStringEncodingUTF8);
+        if (!label) {
+          CFRelease(copy);
+          return OSStatus(-108);
+        }
+        CFDictionarySetValue(copy, CFSTR("name"), label);
+        CFRelease(label);
+      }
       OSStatus status = Base::RestoreState(copy);
       CFRelease(copy);
       lastRestoreStatus_ = status;
       stateLoaded_ = status == noErr;
       if (!status) {
         syncParameters();
-        // Some legacy AU banks report the engine name "empty" while their
-        // host dictionary carries the real preset label. Display that label
-        // without changing the guest state or its serialization.
-        CFTypeRef name = CFDictionaryGetValue(dict, CFSTR("name"));
-        if ((lastKnownPresetName_.empty() || lastKnownPresetName_ == "empty") &&
-            name && CFGetTypeID(name) == CFStringGetTypeID()) {
-          const auto label = text(static_cast<CFStringRef>(name));
-          if (!label.empty())
-            lastKnownPresetName_ = label;
-        }
+        syncPresetLabel();
       } else
         lastError_ = "The host AU metadata could not be restored";
       return status;

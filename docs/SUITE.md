@@ -1,6 +1,6 @@
 # Suite après CP021
 
-Le 15 novembre 2026, l’utilisateur confirme que les anciens projets produisent de nouveau du son et que les sons se chargent. CP021 reste la base fonctionnelle à conserver. Ce retour est une observation d’usage ; les résultats automatiques CP021 attendent encore l’examen du ZIP déjà créé. Aucun nouveau composant n’est livré par cette feuille de route.
+Le 15 novembre 2026, l’utilisateur confirme que les anciens projets produisent de nouveau du son et que les sons se chargent. CP021 reste la base fonctionnelle à conserver. Ce retour est une observation d’usage ; les résultats automatiques CP021 attendent encore l’examen du ZIP déjà créé. Le retour suivant a identifié des refus de chargement et une perte de nom dans Live ; [CP022](CP022.md) traite ces points avant la suite graphique.
 
 ## Consolider le rappel des projets
 
@@ -8,7 +8,7 @@ Examiner le rapport CP021 existant : version réellement installée, architectur
 
 Sur une copie d’un projet, vérifier le cycle complet : jouer, enregistrer sous un autre nom, fermer l’hôte, rouvrir et rejouer. Vérifier aussi la conservation d’un réglage modifié et la lecture d’une automation existante. Répéter dans l’autre hôte disponible, sans convertir le projet d’origine. Un son audible ne suffit pas à certifier que tous les réglages du projet sont rappelés.
 
-## Prochain développement prévu : CP022, interface
+## Prochain développement d’interface, après les correctifs CP022
 
 Les 106 images originales sont conservées dans `reference/Resources` ; la planche `analysis/interface-contact-sheet.jpg` aide à les repérer. La vue actuelle comporte sept panneaux, 15 molettes Main et un volume. Elle donne accès aux 522 paramètres, mais plusieurs panneaux utilisent encore le navigateur de paramètres.
 

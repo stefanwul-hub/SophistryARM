@@ -1,0 +1,191 @@
+{
+  "checkpoint": "CP-022",
+  "scope": "Linux and ARM64/Linux/QEMU memory, loader and AU bridge checks; strict macOS ARM64 cross-linking. CP022 Mac execution pending.",
+  "source_sha256": {
+    "src/engine/GuestAllocator.h": "dead851605425fb32de4c6108b701eec4678d532106ead9627638e99ee6d5bcc",
+    "src/engine/LegacyEngine.cpp": "d0a312724f098cf61680612eb54ec51e6701a08e0871e548318af26943c8499d",
+    "src/engine/LegacyEngine.h": "a76d0e8b8bc29cae9e860aa2ed1148c7a2eda25913fb0c69201c90b792becbc3",
+    "src/lifter/LifterRuntime.cpp": "f7a83df4c836481fe8b5ad6276ca7323fe5f85c52d8299f98e0c4781368e5d2e",
+    "src/au/SophistryAU.cpp": "261bb5fcb22090a4f69a218137cff094cbf733464365ea92d13ccf5c5e075a86",
+    "src/au/ConfigureSophistry.mm": "7fc7e95b7600ff34786190ca7f208cb0efea237a05e602550c2425e5198585e8",
+    "src/au/SophistryProperties.h": "b8a029c637a1df7f222dceacf17528347d191ee9d46da2519122b6f706c46dc3",
+    "src/au/Info.plist": "5141eb4952be9b1109adeade968f20c97431290ae37f8b93fcc3c03df014e4cd",
+    "tests/GuestAllocatorProbe.cpp": "628121eba3b32874dfe73a3a0c09b40c9d667815d38e7cb6b3248f36e7560575",
+    "tests/NativePresetCycleProbe.cpp": "3d335099e441a6fa34948a34c24cbed472dba7585440c0a5e5614fdb89df236b",
+    "tests/NativeAUBridgeProbe.cpp": "32c488606acdc6dc5ee60a61585a71aa73d949c4bc274772daf081dcca2b45aa",
+    "tests/NativeBankDiagnosticsProbe.cpp": "f71c0ca3cbf59edeaf04f0f059c99f322defadf4bb8e06449d16942c54196f3e",
+    "tests/AudioUnitEditorProbe.mm": "0ec4634e70cce747fc5d68ed24d3deb4fd924646a590b2eee45cf66dfa7bd27f",
+    "tests/AudioUnitRemoteHostProbe.mm": "46083db688bbd346e3163dbfc6de15a89e74b3fd94805750cd5b793eeb079664",
+    "scripts/build-native-engine.sh": "342ce95de172e87717addc5a47187699ed37cd1a7526904799cd92cfbcbdeb19",
+    "scripts/build-audio-unit.sh": "825ccfd85fd1e6d75859105bc73cfb987a6dc60091586c03e6464964f5eed1a1",
+    "Installer-ARM64.command": "146582e7607b5976e3e60ac06b3b76a7a89ca85a1cc4649ff498cc68d90ba3f5",
+    "Diagnostiquer-Sophistry.command": "9ea53bc8644343b146d89e293460dbf66dc81daf7f07bec80ac846aa0afcb00e"
+  },
+  "guest_allocator_native_sanitized_and_arm64": {
+    "passed": true,
+    "variable_size_rounds": 512,
+    "variable_size_allocations": 16384,
+    "live_payload_bytes_checked": true,
+    "coalescing_and_splitting": true,
+    "reference_layout_retained": true,
+    "exhaustion_recovery": true,
+    "invalid_releases_rejected": true,
+    "extended_arena_live_bytes": 301989888
+  },
+  "sanitizer_error_log_empty": true,
+  "native_preset_cycles": {
+    "passed": true,
+    "sample_formats": 12,
+    "rounds": 8,
+    "preset_loads": 96,
+    "serialized_programs_unchanged": true,
+    "live_allocations_stable": true,
+    "test_guest_memory_bytes": 67108864,
+    "peak_reserved_bytes": 6712896,
+    "final_live_bytes": 2670168,
+    "final_live_blocks": 2632,
+    "production_virtual_bytes": 1073741824,
+    "zero_filled_sparse_storage_checked": true,
+    "licensed_audio_tested": false
+  },
+  "arm64_qemu_preset_cycles": {
+    "passed": true,
+    "sample_formats": 12,
+    "rounds": 8,
+    "preset_loads": 96,
+    "serialized_programs_unchanged": true,
+    "live_allocations_stable": true,
+    "test_guest_memory_bytes": 67108864,
+    "peak_reserved_bytes": 6712896,
+    "final_live_bytes": 2670168,
+    "final_live_blocks": 2632,
+    "production_virtual_bytes": 1073741824,
+    "zero_filled_sparse_storage_checked": true,
+    "licensed_audio_tested": false
+  },
+  "au_bridge_regression": {
+    "passed": true,
+    "parameter_records": 522,
+    "reinitialization_cycles": 8,
+    "channels": [
+      2,
+      6
+    ],
+    "sample_rates": [
+      22050,
+      44100,
+      48000,
+      96000,
+      192000
+    ],
+    "licensed_musical_audio_tested": false
+  },
+  "original_i386_golden_loader_regions_size_and_sha256_unchanged": 48,
+  "original_i386_goldens_provenance": "evidence/sample-formats-cp021.json, independently byte-compared in CP021; current deterministic native host matches all 48 sizes/digests",
+  "previous_snapshot_regions_byte_exact": 8,
+  "python_unit_tests_passed": 30,
+  "binaries": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 30632640,
+      "sha256": "eccf426658c2cc4ce30d6b0361596de49bf1d5d3a60a188bb22180154ac21951",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "ConfigureSophistry",
+      "architecture": "arm64",
+      "bytes": 30369776,
+      "sha256": "469c773b1b7e60417e9a4f1a2d0bf88e64966d94c1dcf7180191ac4a19253016",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "NativeEngineProbe",
+      "architecture": "arm64",
+      "bytes": 30367296,
+      "sha256": "b77ee0348cc4d7740503d947dcd36375bad01ec92a7d95efb43a8b15306cc224",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "PcmConversionProbe",
+      "architecture": "arm64",
+      "bytes": 1234208,
+      "sha256": "33cea86efa99bbcafe8d72d13c4d7f5c10434cc490fa4660f54957ed867b6e02",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "GuestAllocatorProbe",
+      "architecture": "arm64",
+      "bytes": 1233408,
+      "sha256": "95f52e9ccf16aab3686cbc83ec61e48d051156d741c74c161a235817075ae3d8",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "NativePresetCycleProbe",
+      "architecture": "arm64",
+      "bytes": 30349936,
+      "sha256": "d305ddd80a8113ad580483738a6583c987da8e4dd3cb19da073578397e558f78",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "NativeAUBridgeProbe",
+      "architecture": "arm64",
+      "bytes": 30349856,
+      "sha256": "71277fe529dae45f49cba0edc11426d851d28821477efeefd928a826073773e7",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "NativeBankDiagnosticsProbe",
+      "architecture": "arm64",
+      "bytes": 30350336,
+      "sha256": "c9022035bab98f4a3457cbaaaef6210b33645ff5e771a78e0be41f5248b1e69e",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitFactoryProbe",
+      "architecture": "arm64",
+      "bytes": 1364544,
+      "sha256": "56ab8cf7a36a61a47fdf8e850979359e7c90f9fc61c3303816503742de6b41b7",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1230560,
+      "sha256": "adba199f4d77ead0e7c3c3ad8f85930ad8faf742f03a9e744331fc66b3198d8e",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "51921690e97fe0a5f4eaa4b883200beb9c107fc63be28e258267e155025bc818",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "a1dcbc506f5fd8a121feabca1f3d27f17196c54542054e1d0753931ae4f0803f",
+      "strict_link_undefined_symbols_rejected": true
+    }
+  ],
+  "au_and_cocoa_factory_exports_verified": true,
+  "runtime_memory_initialization_changed_to_calloc": true,
+  "original_machine_instruction_units_unchanged": true,
+  "runtime_math_and_instruction_functions_unchanged": true,
+  "reused_guest_spans_zeroed_for_serializer_stability": true,
+  "new_mac_checks_prepared": [
+    "GuestAllocatorProbe variable allocations, exhaustion recovery and 288 MiB live capacity",
+    "NativePresetCycleProbe 96 public sample loads, stable live blocks and real zero-filled sparse arena",
+    "fresh component instance preserves serialized FXP name when host supplies Default and exposes PresentPreset name",
+    "name assignment leaves vstdata unchanged; existing licensed component/reference audio, auval and remote view gates remain mandatory"
+  ],
+  "fresh_au_instance_name_test_executed_on_mac": false,
+  "cp022_mac_execution_pending": true,
+  "cp022_auval_passed": null,
+  "user_large_preset_failure_fixed_on_mac_verified": false,
+  "live_original_preset_name_fixed_in_actual_host_verified": false,
+  "full_interface_complete": false,
+  "production_ready": false
+}

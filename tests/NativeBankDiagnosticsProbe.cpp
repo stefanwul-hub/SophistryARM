@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
     c.audioUnitMode = true;
     c.recycleFreedBlocks = true;
     c.recursiveAssetSearch = true;
-    c.guestMemoryBytes = 256u * 1024u * 1024u;
+    c.guestMemoryBytes = sophistry::productionGuestMemoryBytes;
     c.assetDirectories = {argv[3]};
     sophistry::LegacyEngine engine(c);
     engine.initialize();

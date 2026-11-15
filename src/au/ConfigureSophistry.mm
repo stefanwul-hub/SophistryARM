@@ -266,7 +266,7 @@ int main(int argc, char **argv) {
       config.recycleFreedBlocks = true;
       config.collectDiagnostics = false;
       config.recursiveAssetSearch = true;
-      config.guestMemoryBytes = 256u * 1024u * 1024u;
+      config.guestMemoryBytes = sophistry::productionGuestMemoryBytes;
       config.assetDirectories.push_back(root.string());
       config.assetDirectories.insert(config.assetDirectories.end(),
                                      assets.begin(), assets.end());

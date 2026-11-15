@@ -314,7 +314,7 @@ int main(int argc, const char **argv) {
           reportedVersion = marker;
         versionMatches = [reportedVersion isEqualToString:expected];
         if (!versionMatches)
-          throw std::runtime_error("Standard AU state does not identify CP021; "
+          throw std::runtime_error("Standard AU state does not identify CP022; "
                                    "cached or unexpected remote code");
         NSData *bank = savedState[@"vstdata"];
         if (![bank isKindOfClass:NSData.class])

@@ -19,7 +19,7 @@ sources=("$ROOT/src/engine/LegacyEngine.cpp" "$ROOT/src/engine/LegacyImageData.c
 objects=()
 for source in "${sources[@]}"; do
   object="$DEST/$(basename "$source" .cpp).o";objects+=("$object")
-  key="$( { printf '%s\n' "${compiler[*]}" "${flags[*]}" "$compiler_version"; cat "$ROOT/src/engine/PcmConversion.h" "$ROOT/src/engine/LegacyEngine.h" "$ROOT/src/engine/LegacyImageData.h" "$ROOT/src/lifter/LifterRuntime.h" "$source"; } | shasum -a 256 | awk '{print $1}')"
+  key="$( { printf '%s\n' "${compiler[*]}" "${flags[*]}" "$compiler_version"; cat "$ROOT/src/engine/GuestAllocator.h" "$ROOT/src/engine/PcmConversion.h" "$ROOT/src/engine/LegacyEngine.h" "$ROOT/src/engine/LegacyImageData.h" "$ROOT/src/lifter/LifterRuntime.h" "$source"; } | shasum -a 256 | awk '{print $1}')"
   if [[ ! -f "$object" || ! -f "$object.compile.sha256" || "$(cat "$object.compile.sha256")" != "$key" ]]; then
     "${compiler[@]}" "${flags[@]}" -c "$source" -o "$object.pending" > "$object.compile.log" 2>&1
     mv "$object.pending" "$object"

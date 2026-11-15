@@ -1,5 +1,6 @@
 #include "LegacyEngine.h"
 #include "../lifter/LifterRuntime.h"
+#include "GuestAllocator.h"
 #include "LegacyImageData.h"
 #include "PcmConversion.h"
 #include <algorithm>
@@ -83,10 +84,7 @@ std::vector<std::uint8_t> readFile(const std::filesystem::path &path) {
 struct LegacyEngine::Impl {
   LegacyEngineConfig config;
   SlCpu *cpu = nullptr;
-  U32 heap = 0x800000;
-  std::map<U32, U32> allocations;
-  std::set<U32> freed;
-  std::multimap<U32, U32> reusable;
+  GuestAllocator arena;
   std::map<U32, std::string> imports;
   std::map<std::string, U64> calls;
   std::string lastImport;
@@ -161,7 +159,10 @@ struct LegacyEngine::Impl {
   U32 inputTable = 0, outputTable = 0, event = 0, events = 0;
   std::vector<U32> outputBuffers;
 
-  explicit Impl(LegacyEngineConfig c) : config(std::move(c)) {
+  explicit Impl(LegacyEngineConfig c)
+      : config(std::move(c)),
+        arena(0x800000, U32(config.guestMemoryBytes - 0x200000),
+              config.recycleFreedBlocks) {
     if (config.guestMemoryBytes < 64u * 1024u * 1024u ||
         config.guestMemoryBytes > 0x70000000u)
       throw std::runtime_error("Invalid guest memory size");
@@ -319,37 +320,15 @@ struct LegacyEngine::Impl {
   }
   void reg(U32 at, U32 v) { std::memcpy(cpu->reg + at, &v, 4); }
   U32 allocate(U32 n) {
-    if (n > 0x2000000)
-      throw std::runtime_error("Guest allocation exceeds limit");
-    const U32 rounded = (std::max(n, U32(1)) + 15) & ~U32(15);
-    U32 p = 0;
-    if (config.recycleFreedBlocks) {
-      auto found = reusable.lower_bound(rounded);
-      if (found != reusable.end() && found->first == rounded) {
-        p = found->second;
-        reusable.erase(found);
-        freed.erase(p);
-      }
-    }
-    if (!p) {
-      if (U64(heap) + rounded + 16 > cpu->memory_size - 0x200000)
-        throw std::bad_alloc();
-      p = heap;
-      heap += rounded;
-    }
-    allocations[p] = n;
+    const U32 p = arena.allocate(n);
+    // The reference address arena starts zero-filled. A newly reused span
+    // must have the same contents, including padding read by legacy serializers,
+    // rather than exposing a previous sample as an object's initial fields.
+    if (config.recycleFreedBlocks)
+      zero(p, (std::max(n, U32(1)) + 15) & ~U32(15));
     return p;
   }
-  void release(U32 p) {
-    if (!p)
-      return;
-    auto found = allocations.find(p);
-    if (found == allocations.end() || freed.count(p))
-      throw std::runtime_error("Invalid guest allocation release");
-    freed.insert(p);
-    if (config.recycleFreedBlocks)
-      reusable.emplace((std::max(found->second, U32(1)) + 15) & ~U32(15), p);
-  }
+  void release(U32 p) { arena.release(p); }
   std::string string(U32 at, std::size_t limit = 65536) const {
     for (std::size_t n = 0; n < limit; ++n)
       if (!*data(at + U32(n), 1))
@@ -423,6 +402,7 @@ struct LegacyEngine::Impl {
         children.push_back(entry.second);
       }
       values.erase(f);
+      release(p);
       for (U32 child : children)
         releaseValue(child);
     }
@@ -830,12 +810,10 @@ void LegacyEngine::Impl::service(U32 pc) {
     zero(result, U32(n));
   } else if (name == "_realloc") {
     U32 p = arg(0), n = arg(1);
+    const U32 old = p ? arena.requestedBytes(p) : 0;
     result = allocate(n);
     if (p) {
-      if (!allocations.count(p) || freed.count(p))
-        throw std::runtime_error("Invalid guest realloc");
-      write(result, data(p, std::min(n, allocations.at(p))),
-            std::min(n, allocations.at(p)));
+      write(result, data(p, std::min(n, old)), std::min(n, old));
       release(p);
     }
   } else if (name == "__ZdlPv" || name == "__ZdaPv" || name == "_free")
@@ -1366,6 +1344,7 @@ void LegacyEngine::Impl::service(U32 pc) {
   } else if (name == "_AudioConverterDispose") {
     if (!converters.erase(arg(0)))
       throw std::runtime_error("Unknown converter");
+    release(arg(0));
   } else if (name == "_AudioConverterConvertBuffer") {
     auto found = converters.find(arg(0));
     if (found == converters.end())
@@ -1406,19 +1385,26 @@ void LegacyEngine::Impl::service(U32 pc) {
     auto c = pendingConversions.back();
     pendingConversions.pop_back();
     result = reg(0);
-    if (!result) {
-      auto &converter = converters.at(c.converter);
-      const auto &source = converter.conversion.input();
-      const auto &target = converter.conversion.output();
-      U32 count = std::min(c.frames, word(c.request));
-      const auto input = pcmInput(c.request + 4, source, count);
-      const auto output = pcmOutput(c.output, target, count);
-      converter.conversion.convert(input, output, count);
-      for (std::size_t i = 0; i < target.buffers(); ++i)
-        put(c.output + 8 + U32(i) * 12, count * target.bytesPerFrame);
-      put(c.outCount, count);
-      recordConversion(converter, count);
+    try {
+      if (!result) {
+        auto &converter = converters.at(c.converter);
+        const auto &source = converter.conversion.input();
+        const auto &target = converter.conversion.output();
+        U32 count = std::min(c.frames, word(c.request));
+        const auto input = pcmInput(c.request + 4, source, count);
+        const auto output = pcmOutput(c.output, target, count);
+        converter.conversion.convert(input, output, count);
+        for (std::size_t i = 0; i < target.buffers(); ++i)
+          put(c.output + 8 + U32(i) * 12, count * target.bytesPerFrame);
+        put(c.outCount, count);
+        recordConversion(converter, count);
+      }
+    } catch (...) {
+      release(c.request);
+      reg(0x10, c.parentSp);
+      throw;
     }
+    release(c.request);
     reg(0x10, c.parentSp);
   } else {
     const bool f32 = name.size() > 2 && name.back() == 'f';
@@ -1935,8 +1921,8 @@ std::vector<std::uint8_t> LegacyEngine::heapSnapshot() const {
   if (impl_->config.useLocalMacPreferences ||
       !impl_->config.privateRegistration.empty())
     throw std::runtime_error("Private input mode disables memory snapshots");
-  auto p = impl_->data(0x800000, impl_->heap - 0x800000);
-  return {p, p + impl_->heap - 0x800000};
+  auto p = impl_->data(0x800000, impl_->arena.reservedBytes());
+  return {p, p + impl_->arena.reservedBytes()};
 }
 std::vector<std::uint8_t> LegacyEngine::globalSnapshot() const {
   if (impl_->config.useLocalMacPreferences ||
@@ -1949,7 +1935,15 @@ std::string LegacyEngine::diagnosticJson() const {
   std::ostringstream o;
   o << "{\"scope\":\"Static translated DSP with explicit platform "
        "adapters\",\"heap_bytes_reserved\":"
-    << impl_->heap - 0x800000
+    << impl_->arena.reservedBytes()
+    << ",\"heap_capacity_bytes\":" << impl_->arena.capacityBytes()
+    << ",\"heap_high_water_bytes\":" << impl_->arena.highWaterBytes()
+    << ",\"heap_live_bytes\":" << impl_->arena.liveBytes()
+    << ",\"heap_live_capacity_bytes\":" << impl_->arena.liveCapacityBytes()
+    << ",\"heap_live_blocks\":" << impl_->arena.liveBlocks()
+    << ",\"heap_free_bytes\":" << impl_->arena.freeBytes()
+    << ",\"heap_largest_free_bytes\":" << impl_->arena.largestFreeBytes()
+    << ",\"heap_reused_blocks\":" << impl_->arena.reusedBlocks()
     << ",\"initialized\":" << (impl_->initialized ? "true" : "false")
     << ",\"active\":" << (impl_->active ? "true" : "false")
     << ",\"registration_check_exercised\":"

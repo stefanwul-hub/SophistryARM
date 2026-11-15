@@ -76,6 +76,14 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
   "$ROOT/tests/PcmConversionProbe.cpp" -framework AudioToolbox \
   -o "$DEST/PcmConversionProbe" > "$DEST/pcm-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/PcmConversionProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 \
+  "$ROOT/tests/GuestAllocatorProbe.cpp" -o "$DEST/GuestAllocatorProbe" > "$DEST/allocator-probe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/GuestAllocatorProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fno-fast-math -ffp-contract=off \
+  "$ROOT/tests/NativePresetCycleProbe.cpp" "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" \
+  "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \
+  -o "$DEST/NativePresetCycleProbe" > "$DEST/preset-cycle-probe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/NativePresetCycleProbe" -verify_arch arm64
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fno-fast-math -ffp-contract=off \
   "$ROOT/tests/NativeAUBridgeProbe.cpp" "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" \
   "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \

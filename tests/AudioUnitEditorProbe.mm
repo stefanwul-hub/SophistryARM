@@ -31,6 +31,101 @@ static NSDictionary *runtimeStatus(AudioUnit unit, OSStatus &result) {
 
 #include "AudioUnitProbeAudio.h"
 
+// Use a genuinely fresh instance: a same-instance round trip can hide a lost
+// name in a native member variable. Simulate a host replacing the standard
+// label with Default and assigning that placeholder again after restoration.
+static NSDictionary *presetLabelRoundTrip(AudioComponent component,
+                                          AudioUnit source) {
+  CFPropertyListRef saved = nullptr, before = nullptr, after = nullptr;
+  CFMutableDictionaryRef edited = nullptr;
+  AudioUnit fresh = nullptr;
+  UInt32 size = sizeof(saved);
+  OSStatus status =
+      AudioUnitGetProperty(source, kAudioUnitProperty_ClassInfo,
+                           kAudioUnitScope_Global, 0, &saved, &size);
+  bool stored = false, restored = false, exposed = false, retained = false,
+       bankExact = false;
+  if (!status && saved && CFGetTypeID(saved) == CFDictionaryGetTypeID()) {
+    auto dict = static_cast<CFDictionaryRef>(saved);
+    const auto name =
+        CFDictionaryGetValue(dict, CFSTR("SophistryARMPresetName"));
+    stored = name && CFEqual(name, CFSTR("BT_lightgarden_02"));
+    edited = CFDictionaryCreateMutableCopy(nullptr, 0, dict);
+    if (edited) {
+      CFDictionarySetValue(edited, CFSTR("name"), CFSTR("Default"));
+      status = AudioComponentInstanceNew(component, &fresh);
+    } else
+      status = -108;
+  } else
+    status = status ? status : kAudioUnitErr_InvalidPropertyValue;
+  if (!status) {
+    CFPropertyListRef state = edited;
+    status =
+        AudioUnitSetProperty(fresh, kAudioUnitProperty_ClassInfo,
+                             kAudioUnitScope_Global, 0, &state, sizeof(state));
+  }
+  OSStatus runtime = noErr;
+  if (!status) {
+    NSDictionary *info = runtimeStatus(fresh, runtime);
+    restored = !runtime && [info[@"state_loaded"] boolValue] &&
+               [info[@"preset_name"] isEqualToString:@"BT_lightgarden_02"];
+    size = sizeof(before);
+    status = AudioUnitGetProperty(fresh, kAudioUnitProperty_ClassInfo,
+                                  kAudioUnitScope_Global, 0, &before, &size);
+  }
+  if (!status) {
+    AUPreset placeholder{-1, CFSTR("Default")};
+    status = AudioUnitSetProperty(fresh, kAudioUnitProperty_PresentPreset,
+                                  kAudioUnitScope_Global, 0, &placeholder,
+                                  sizeof(placeholder));
+  }
+  if (!status) {
+    AUPreset current{};
+    size = sizeof(current);
+    status = AudioUnitGetProperty(fresh, kAudioUnitProperty_PresentPreset,
+                                  kAudioUnitScope_Global, 0, &current, &size);
+    exposed = !status && current.presetName &&
+              CFEqual(current.presetName, CFSTR("BT_lightgarden_02"));
+    if (current.presetName)
+      CFRelease(current.presetName);
+    NSDictionary *info = runtimeStatus(fresh, runtime);
+    retained =
+        !runtime && [info[@"preset_name"] isEqualToString:@"BT_lightgarden_02"];
+  }
+  if (!status) {
+    size = sizeof(after);
+    status = AudioUnitGetProperty(fresh, kAudioUnitProperty_ClassInfo,
+                                  kAudioUnitScope_Global, 0, &after, &size);
+    if (!status && before && after) {
+      auto a = CFDictionaryGetValue(static_cast<CFDictionaryRef>(before),
+                                    CFSTR("vstdata"));
+      auto b = CFDictionaryGetValue(static_cast<CFDictionaryRef>(after),
+                                    CFSTR("vstdata"));
+      bankExact = a && b && CFEqual(a, b);
+    }
+  }
+  if (fresh)
+    AudioComponentInstanceDispose(fresh);
+  if (edited)
+    CFRelease(edited);
+  if (saved)
+    CFRelease(saved);
+  if (before)
+    CFRelease(before);
+  if (after)
+    CFRelease(after);
+  return @{
+    @"passed" :
+        @(!status && stored && restored && exposed && retained && bankExact),
+    @"status" : @(status),
+    @"name_serialized" : @(stored),
+    @"name_restored_in_fresh_instance" : @(restored),
+    @"present_preset_name_preserved" : @(exposed),
+    @"generic_host_name_does_not_replace_original" : @(retained),
+    @"bank_unchanged_by_name_assignment" : @(bankExact)
+  };
+}
+
 @interface NSView (SophistryEditorTesting)
 - (BOOL)loadPresetURL:(NSURL *)url;
 - (NSDictionary *)sophistryEditorReport;
@@ -47,9 +142,11 @@ int main(int argc, const char **argv) {
     NSString *fxpPath = [NSString stringWithUTF8String:argv[3]];
     NSString *prefix = [NSString stringWithUTF8String:argv[4]];
     AudioUnit unit = nullptr;
+    AudioComponent component = nullptr;
     NSString *failure = nil;
     NSDictionary *viewReport = @{};
     NSDictionary *renderStatus = @{};
+    NSDictionary *labelRoundTrip = @{};
     NSString *advertisedClass = @"";
     NSString *componentViewClass = @"";
     OSStatus runtimePropertyStatus = noErr;
@@ -73,7 +170,7 @@ int main(int argc, const char **argv) {
       else {
         AudioComponentDescription desc{0x61756d75, 0x536f7033, 0x4c696e50, 0,
                                        0};
-        AudioComponent component = AudioComponentRegister(
+        component = AudioComponentRegister(
             &desc, CFSTR("Sophistry editor test"), 0x30008, factory);
         if (!component || AudioComponentInstanceNew(component, &unit))
           failure = @"Cannot create candidate AU";
@@ -154,6 +251,8 @@ int main(int argc, const char **argv) {
             fxpNamePreserved =
                 [[view sophistryEditorReport][@"status"][@"preset_name"]
                     isEqualToString:@"BT_lightgarden_02"];
+            if (fxp && fxpNamePreserved)
+              labelRoundTrip = presetLabelRoundTrip(component, unit);
             aupreset = aupreset &&
                        [view loadPresetURL:[NSURL fileURLWithPath:statePath]];
             tabs = YES;
@@ -185,8 +284,9 @@ int main(int argc, const char **argv) {
             }
             viewReport = [view sophistryEditorReport];
             if (!failure &&
-                (!fxp || !fxpNamePreserved || !aupreset || !controls || !tabs ||
-                 rendered || runtimePropertyStatus ||
+                (!fxp || !fxpNamePreserved ||
+                 ![labelRoundTrip[@"passed"] boolValue] || !aupreset ||
+                 !controls || !tabs || rendered || runtimePropertyStatus ||
                  [renderStatus[@"notes_received"] unsignedLongLongValue] != 1 ||
                  [renderStatus[@"render_calls"] unsignedLongLongValue] == 0 ||
                  peak <= 0.00001 || renderedFrames != 132300 ||
@@ -247,6 +347,7 @@ int main(int argc, const char **argv) {
       @"editor_control_changes_original_au_parameter" : @(controls),
       @"fxp_imported" : @(fxp),
       @"fxp_header_name_preserved" : @(fxpNamePreserved),
+      @"preset_name_fresh_instance_roundtrip" : labelRoundTrip,
       @"aupreset_imported" : @(aupreset),
       @"native_view_snapshot_saved" : @(screenshot),
       @"view" : viewReport

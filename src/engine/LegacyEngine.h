@@ -8,6 +8,9 @@
 #include <vector>
 namespace sophistry {
 
+// A lazily backed address arena. Physical pages are used as samples load.
+constexpr std::size_t productionGuestMemoryBytes = 1024u * 1024u * 1024u;
+
 // Integration in progress: this host does not by itself implement an Audio
 // Unit.
 struct LegacyEngineConfig {
