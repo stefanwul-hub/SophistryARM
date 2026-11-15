@@ -1,10 +1,15 @@
 #!/bin/bash
-# CP-016: test installation with original registration, verified backup and rollback.
+# CP-018: test installation with original registration, verified backup and rollback.
 set +x
 set -euo pipefail
 umask 077
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
+choose_bank=0
+for argument in "$@"; do
+  if [[ "$argument" == --choose-bank ]]; then choose_bank=1;
+  else echo 'Usage : Installer-ARM64.command [--choose-bank]' >&2;exit 2;fi
+done
 if [[ "$(uname -s)" != Darwin || "$(uname -m)" != arm64 || "$EUID" -eq 0 ]]; then
   echo 'Lancez ce script dans un Terminal natif Apple Silicon, sans sudo.' >&2
   exit 2
@@ -79,12 +84,12 @@ collect(){
   done
   printf '%s\n' "$result" > "$REPORT/script-exitcode.txt"
   printf '%s\n' "$stage" > "$REPORT/last-stage.txt"
-  printf '{"checkpoint":"CP-016","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"original_ui_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
+  printf '{"checkpoint":"CP-018","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"original_ui_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
     "$(if [[ "$committed" -eq 1 ]]; then echo true;else echo false;fi)" "$rollback_ok" \
     "$(if [[ "$settings_confirmed" -eq 1 ]]; then echo true;else echo false;fi)" \
     "$(if [[ "$committed" -eq 1 ]]; then echo true;else echo false;fi)" > "$REPORT/result.json"
-  archive="$ROOT/Sophistry-rapports-CP016-$STAMP.zip"
-  (cd "$REPORT"; /usr/bin/zip -q "$archive" ./*.json ./*.txt ./*.log ./*.wav 2>/dev/null || true)
+  archive="$ROOT/Sophistry-rapports-CP018-$STAMP.zip"
+  (cd "$REPORT"; /usr/bin/zip -q "$archive" ./*.json ./*.txt ./*.log ./*.wav ./*.png 2>/dev/null || true)
   printf '\n%s\n' "Rapports : $archive"
   printf '%s\n' "Restauration autonome : $PRIVATE/Restaurer-Sophistry.command"
   if [[ "$rollback_ok" != true ]]; then
@@ -96,8 +101,8 @@ collect(){
 trap collect EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
-echo 'Sophistry CP-016 — installation de test ARM64 avec sauvegarde et validation AU'
-echo 'Cette version utilise encore les contrôles génériques AU. Testez ensuite des copies de vos projets.'
+echo 'Sophistry CP-018 — installation de test ARM64 avec sauvegarde et validation AU'
+echo 'Cette version ajoute une première vue Cocoa avec état du son et choix de banque. Testez des copies de vos projets.'
 /usr/bin/sw_vers
 /usr/bin/uname -m
 /usr/bin/xcrun clang++ --version
@@ -111,9 +116,14 @@ stage='replays et régression du moteur AU'
 "$CORE/LiftedProbe" "$ROOT/reference/Sophistry.i386" "$ROOT/evidence/static-lift-comparison.fixtures" > "$REPORT/dsp-replay.json"
 "$CORE/InstructionProbe" "$ROOT/reference/Sophistry.i386" "$ROOT/evidence/primitive-instructions.fixtures" > "$REPORT/instruction-replay.json"
 "$BUILD/NativeAUBridgeProbe" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$ROOT/reference/Samples" > "$REPORT/bridge-regression.json" 2> "$REPORT/bridge-errors.log"
+"$BUILD/NativeBankDiagnosticsProbe" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$ROOT/reference/Samples" "$ROOT/work/unavailable-bank-fixture" > "$REPORT/bank-diagnostics.json" 2> "$REPORT/bank-diagnostics.log"
 stage='configuration locale de la banque et de la licence'
+bank_options=()
+if [[ "$choose_bank" -eq 1 ]]; then bank_options+=(--choose-bank);fi
 if "$BUILD/ConfigureSophistry" --check --no-folder-panel --asset-directory "$ROOT/reference/Samples" > "$REPORT/settings-existing.json" 2>&1; then
-  echo 'La banque et l’enregistrement local sont réutilisés.'
+  if [[ "$choose_bank" -eq 1 ]]; then
+    "$BUILD/ConfigureSophistry" --choose-bank --backup-directory "$PRIVATE" --asset-directory "$ROOT/reference/Samples" > "$REPORT/settings-configured.json" 2>&1
+  else echo 'La banque et l’enregistrement local sont réutilisés.';fi
 else
   echo 'Choisissez ensuite votre dossier de sons dans la fenêtre qui va s’ouvrir.'
   echo 'La clé sera enregistrée localement au format LinPlug d’origine après son contrôle original.'
@@ -123,9 +133,9 @@ else
   IFS= read -r -s serial_input < /dev/tty
   printf '\n'
   if [[ -n "$serial_input" ]]; then
-    printf '%s\n' "$serial_input" | "$BUILD/ConfigureSophistry" --registration-from-stdin --backup-directory "$PRIVATE" --asset-directory "$ROOT/reference/Samples" > "$REPORT/settings-configured.json" 2>&1
+    printf '%s\n' "$serial_input" | "$BUILD/ConfigureSophistry" --registration-from-stdin "${bank_options[@]}" --backup-directory "$PRIVATE" --asset-directory "$ROOT/reference/Samples" > "$REPORT/settings-configured.json" 2>&1
   else
-    "$BUILD/ConfigureSophistry" --backup-directory "$PRIVATE" --asset-directory "$ROOT/reference/Samples" > "$REPORT/settings-configured.json" 2>&1
+    "$BUILD/ConfigureSophistry" "${bank_options[@]}" --backup-directory "$PRIVATE" --asset-directory "$ROOT/reference/Samples" > "$REPORT/settings-configured.json" 2>&1
   fi
   unset serial_input
 fi
@@ -145,6 +155,16 @@ for channels in 2 6; do
   "$REFERENCE_PYTHON" "$ROOT/tests/probe_au_render.py" --state "$state" --channels "$channels" --seconds 3 --local-mac-preferences --output "$REPORT/original-$channels.json" > "$REPORT/original-$channels.log" 2>&1
   /usr/bin/cmp "$REPORT/preflight-$channels.wav" "$REPORT/original-$channels.wav" > "$REPORT/preflight-comparison-$channels.txt" 2>&1
 done
+stage='prévalidation de la vue Cocoa et des commandes de presets'
+"$SYSTEM_PYTHON" - "$BUILD/AudioUnitEditorProbe" "$BUILD/Sophistry.component" "$state" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$REPORT/editor" > "$REPORT/editor.log" 2>&1 <<'PY'
+import subprocess,sys
+try:
+    result=subprocess.run(sys.argv[1:],timeout=60)
+except subprocess.TimeoutExpired:
+    raise SystemExit('Le test de la vue Cocoa a dépassé une minute ; le composant installé reste conservé.')
+raise SystemExit(result.returncode)
+PY
+/usr/bin/cmp "$REPORT/editor.wav" "$REPORT/original-2.wav" > "$REPORT/editor-audio-comparison.txt" 2>&1
 stage='sauvegarde et remplacement du composant système'
 closed_daws
 echo 'Les prévalidations passent. macOS demande maintenant les droits pour sauvegarder et remplacer Sophistry.component.'
@@ -169,6 +189,16 @@ for channels in 2 6; do
   /usr/bin/cmp "$REPORT/registered-$channels.wav" "$REPORT/original-$channels.wav" > "$REPORT/registered-comparison-$channels.txt" 2>&1
   printf '{"channels":%s,"preflight_vs_original_byte_exact":true,"registered_vs_original_byte_exact":true}\n' "$channels" > "$REPORT/audio-comparison-$channels.json"
 done
+stage='vue Cocoa et diagnostic dans un hôte AU séparé'
+"$SYSTEM_PYTHON" - "$BUILD/AudioUnitEditorProbe" '/Library/Audio/Plug-Ins/Components/Sophistry.component' "$state" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$REPORT/editor-remote" --remote > "$REPORT/editor-remote.log" 2>&1 <<'PY'
+import subprocess,sys
+try:
+    result=subprocess.run(sys.argv[1:],timeout=60)
+except subprocess.TimeoutExpired:
+    raise SystemExit('Le test de l’hôte AU séparé a dépassé une minute.')
+raise SystemExit(result.returncode)
+PY
+/usr/bin/cmp "$REPORT/editor-remote.wav" "$REPORT/original-2.wav" > "$REPORT/editor-remote-audio-comparison.txt" 2>&1
 stage='confirmation de l’installation vérifiée'
 /usr/bin/sudo -- "$SYSTEM_PYTHON" "$PRIVATE/ComponentTransaction.py" commit --transaction "$TRANSACTION" > "$REPORT/component-commit.json" 2>&1
 committed=1

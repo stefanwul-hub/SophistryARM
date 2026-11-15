@@ -1,14 +1,18 @@
 #include "../engine/LegacyEngine.h"
+#include "BankAccess.h"
+#include "SophistryProperties.h"
 #include <AudioUnitSDK/AUPlugInDispatch.h>
 #include <AudioUnitSDK/MusicDeviceBase.h>
 #include <algorithm>
 #include <array>
+#include <cmath>
 #include <cstring>
 #include <dlfcn.h>
 #include <filesystem>
 #include <map>
 #include <memory>
 #include <mutex>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -22,6 +26,31 @@ constexpr AudioUnitPropertyID diagnosticsProperty =
 constexpr AudioUnitPropertyID wrapperVersionProperty = 0x53705672; // SpVr.
 constexpr UInt32 sophistrySubtype = 0x536f7033, cronoSubtype = 0x43725833,
                  linplug = 0x4c696e50;
+std::string jsonText(const std::string &text) {
+  std::string result = "\"";
+  for (unsigned char c : text) {
+    if (c == '"' || c == '\\')
+      result += '\\';
+    if (c < 32)
+      result += ' ';
+    else
+      result += char(c);
+  }
+  return result + '"';
+}
+CFURLRef editorBundleURL() {
+  Dl_info info{};
+  if (!dladdr(reinterpret_cast<const void *>(&editorBundleURL), &info) ||
+      !info.dli_fname)
+    return nullptr;
+  const auto path = std::filesystem::path(info.dli_fname)
+                        .parent_path()
+                        .parent_path()
+                        .parent_path()
+                        .string();
+  return CFURLCreateFromFileSystemRepresentation(
+      nullptr, reinterpret_cast<const UInt8 *>(path.data()), path.size(), true);
+}
 std::string text(CFStringRef s) {
   if (!s)
     return {};
@@ -35,8 +64,13 @@ std::string text(CFStringRef s) {
     throw std::runtime_error("Invalid UTF-8 string");
   return b.data();
 }
-sophistry::LegacyEngineConfig configuration() {
-  sophistry::LegacyEngineConfig c;
+struct HostedConfiguration {
+  sophistry::LegacyEngineConfig engine;
+  std::shared_ptr<sophistryMac::BankAccess> bankAccess;
+};
+HostedConfiguration configuration() {
+  HostedConfiguration result;
+  auto &c = result.engine;
   c.audioUnitMode = true;
   c.useLocalMacPreferences = true;
   c.recycleFreedBlocks = true;
@@ -71,18 +105,22 @@ sophistry::LegacyEngineConfig configuration() {
       CFSTR("SophistryARMSampleRoot"), CFSTR("com.linplug.Sophistry"),
       kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
   if (root) {
-    if (CFGetTypeID(root) == CFStringGetTypeID())
+    if (CFGetTypeID(root) == CFStringGetTypeID()) {
+      result.bankAccess =
+          sophistryMac::storedBankAccess(text(static_cast<CFStringRef>(root)));
       c.assetDirectories.insert(c.assetDirectories.begin(),
                                 text(static_cast<CFStringRef>(root)));
+    }
     CFRelease(root);
   }
-  return c;
+  return result;
 }
 } // namespace
 
 class SophistryAU final : public ausdk::MusicDeviceBase {
   using Base = ausdk::MusicDeviceBase;
   std::recursive_mutex mutex_;
+  HostedConfiguration config_;
   sophistry::LegacyEngine engine_;
   std::vector<UInt32> parameters_;
   std::map<UInt32, AudioUnitParameterInfo> metadata_;
@@ -90,30 +128,94 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
   double previousSample_ = 0;
   bool rendered_ = false;
   std::string lastError_;
+  std::string lastKnownPresetName_;
+  std::vector<std::uint8_t> lastRestoredChunk_;
+  bool lastRestoredProgram_ = false, stateLoaded_ = false;
+  std::uint64_t restoreAttempts_ = 0, notesReceived_ = 0, renderCalls_ = 0;
+  std::uint64_t nonfiniteSamples_ = 0;
+  UInt32 lastMidiChannel_ = 0, lastMidiNote_ = 0, lastMidiOffset_ = 0;
+  OSStatus lastRestoreStatus_ = noErr;
+  double maximumOutput_ = 0;
+  void syncParameters() {
+    for (UInt32 id : parameters_)
+      Globals()->SetParameter(id, engine_.auParameter(id));
+  }
+  void loadChunk(const std::vector<std::uint8_t> &bytes, bool program,
+                 bool countAttempt = true) {
+    lastRestoredChunk_ = bytes;
+    lastRestoredProgram_ = program;
+    if (countAttempt)
+      ++restoreAttempts_;
+    lastError_.clear();
+    stateLoaded_ = false;
+    lastRestoreStatus_ = kAudioUnitErr_InvalidPropertyValue;
+    engine_.restoreChunk(bytes, program);
+    syncParameters();
+    lastKnownPresetName_ = engine_.presetName();
+    stateLoaded_ = true;
+    lastRestoreStatus_ = noErr;
+    notesReceived_ = renderCalls_ = 0;
+    maximumOutput_ = 0;
+    nonfiniteSamples_ = 0;
+    lastError_.clear();
+  }
+  std::string runtimeStatus() {
+    std::ostringstream out;
+    out << "{\"wrapper_version\":\"SophistryARM CP-018\",\"preset_name\":"
+        << jsonText(lastKnownPresetName_)
+        << ",\"state_loaded\":" << (stateLoaded_ ? "true" : "false")
+        << ",\"restore_attempts\":" << restoreAttempts_
+        << ",\"restore_status\":" << lastRestoreStatus_
+        << ",\"restored_bytes\":" << lastRestoredChunk_.size()
+        << ",\"notes_received\":" << notesReceived_ << ",\"last_midi_channel\":"
+        << (notesReceived_ ? std::to_string(lastMidiChannel_ + 1) : "null")
+        << ",\"last_midi_note\":"
+        << (notesReceived_ ? std::to_string(lastMidiNote_) : "null")
+        << ",\"last_midi_offset\":"
+        << (notesReceived_ ? std::to_string(lastMidiOffset_) : "null")
+        << ",\"sample_rate\":" << Output(0).GetStreamFormat().mSampleRate
+        << ",\"maximum_frames\":" << GetMaxFramesPerSlice()
+        << ",\"render_calls\":" << renderCalls_
+        << ",\"maximum_output\":" << maximumOutput_
+        << ",\"nonfinite_samples\":" << nonfiniteSamples_
+        << ",\"bank_bookmark_available\":"
+        << (config_.bankAccess ? "true" : "false")
+        << ",\"bank_security_scope_started\":"
+        << (config_.bankAccess && config_.bankAccess->granted ? "true"
+                                                              : "false")
+        << ",\"error\":" << jsonText(lastError_)
+        << ",\"engine\":" << engine_.diagnosticJson() << '}';
+    return out.str();
+  }
   template <class F> OSStatus guarded(F &&f) {
     std::lock_guard<std::recursive_mutex> lock(mutex_);
     try {
       return f();
     } catch (const std::out_of_range &e) {
-      lastError_ = e.what();
+      if (lastError_.empty())
+        lastError_ = e.what();
       return kAudioUnitErr_InvalidParameter;
     } catch (const std::exception &e) {
-      lastError_ = e.what();
+      if (lastError_.empty())
+        lastError_ = e.what();
       return kAudioUnitErr_FailedInitialization;
     } catch (...) {
-      lastError_ = "Unknown native exception";
+      if (lastError_.empty())
+        lastError_ = "Unknown native exception";
       return kAudioUnitErr_FailedInitialization;
     }
   }
 
 public:
   explicit SophistryAU(AudioComponentInstance instance)
-      : Base(instance, 0, 1), engine_(configuration()) {
+      : Base(instance, 0, 1), config_(configuration()),
+        engine_(config_.engine) {
     CreateElements();
     engine_.initialize();
     parameters_ = engine_.auParameterIds();
     for (UInt32 id : parameters_)
       Globals()->SetParameter(id, engine_.auParameter(id));
+    lastKnownPresetName_ = engine_.presetName();
   }
   ~SophistryAU() override {
     for (auto &item : metadata_) {
@@ -276,6 +378,23 @@ public:
   OSStatus GetPropertyInfo(AudioUnitPropertyID id, AudioUnitScope scope,
                            AudioUnitElement element, UInt32 &bytes,
                            bool &writable) override {
+    if (id == kAudioUnitProperty_CocoaUI ||
+        id == sophistry::runtimeStatusProperty ||
+        id == sophistry::importProgramProperty ||
+        id == sophistry::sampleRootProperty ||
+        id == sophistry::reloadStateProperty) {
+      if (scope != kAudioUnitScope_Global || element)
+        return kAudioUnitErr_InvalidScope;
+      bytes = id == kAudioUnitProperty_CocoaUI ? sizeof(AudioUnitCocoaViewInfo)
+              : id == sophistry::reloadStateProperty ? sizeof(UInt32)
+              : id == sophistry::runtimeStatusProperty
+                  ? sophistry::runtimeStatusBytes
+                  : 1;
+      writable = id == sophistry::importProgramProperty ||
+                 id == sophistry::sampleRootProperty ||
+                 id == sophistry::reloadStateProperty;
+      return noErr;
+    }
     if (id == kAudioUnitProperty_ParameterStringFromValue) {
       if (scope != kAudioUnitScope_Global)
         return kAudioUnitErr_InvalidScope;
@@ -304,6 +423,29 @@ public:
   }
   OSStatus GetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, void *data) override {
+    if (id == kAudioUnitProperty_CocoaUI) {
+      if (scope != kAudioUnitScope_Global || element || !data)
+        return kAudioUnitErr_InvalidPropertyValue;
+      auto &info = *static_cast<AudioUnitCocoaViewInfo *>(data);
+      info.mCocoaAUViewBundleLocation = editorBundleURL();
+      if (!info.mCocoaAUViewBundleLocation)
+        return kAudioUnitErr_InvalidPropertyValue;
+      info.mCocoaAUViewClass[0] = CFSTR("SophistryCocoaFactory");
+      CFRetain(info.mCocoaAUViewClass[0]);
+      return noErr;
+    }
+    if (id == sophistry::runtimeStatusProperty) {
+      if (scope != kAudioUnitScope_Global || element || !data)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        const auto json = runtimeStatus();
+        if (json.size() >= sophistry::runtimeStatusBytes)
+          return kAudioUnitErr_InvalidPropertyValue;
+        std::memset(data, 0, sophistry::runtimeStatusBytes);
+        std::memcpy(data, json.data(), json.size());
+        return noErr;
+      });
+    }
     if (id == kAudioUnitProperty_ParameterStringFromValue) {
       if (scope != kAudioUnitScope_Global)
         return kAudioUnitErr_InvalidScope;
@@ -336,7 +478,7 @@ public:
       return guarded([&]() -> OSStatus {
         std::string value =
             id == wrapperVersionProperty
-                ? "SophistryARM CP-016"
+                ? "SophistryARM CP-018"
                 : (id == errorProperty ? lastError_ : engine_.diagnosticJson());
         CFStringRef s = CFStringCreateWithCString(nullptr, value.c_str(),
                                                   kCFStringEncodingUTF8);
@@ -351,6 +493,126 @@ public:
   OSStatus SetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, const void *data,
                        UInt32 bytes) override {
+    if (id == sophistry::importProgramProperty ||
+        id == sophistry::sampleRootProperty ||
+        id == sophistry::reloadStateProperty) {
+      if (scope != kAudioUnitScope_Global || element || !data)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        if (id == sophistry::reloadStateProperty) {
+          if (bytes != sizeof(UInt32) ||
+              *static_cast<const UInt32 *>(data) != 1 ||
+              lastRestoredChunk_.empty())
+            return kAudioUnitErr_InvalidPropertyValue;
+          const auto chunk = lastRestoredChunk_;
+          loadChunk(chunk, lastRestoredProgram_);
+          return noErr;
+        }
+        if (id == sophistry::importProgramProperty) {
+          if (bytes == 0 || bytes > 1048576)
+            return kAudioUnitErr_InvalidPropertyValue;
+          const auto *raw = static_cast<const std::uint8_t *>(data);
+          loadChunk({raw, raw + bytes}, true);
+          PropertyChanged(kAudioUnitProperty_ClassInfo, kAudioUnitScope_Global,
+                          0);
+          return noErr;
+        }
+        if (bytes < sizeof(sophistry::BankLocationHeader) || bytes > 131072)
+          return kAudioUnitErr_InvalidPropertyValue;
+        sophistry::BankLocationHeader header;
+        std::memcpy(&header, data, sizeof(header));
+        if (header.version != 1 || header.pathBytes < 2 ||
+            header.pathBytes > 4096 ||
+            std::uint64_t(sizeof(header)) + header.pathBytes +
+                    header.bookmarkBytes !=
+                bytes)
+          return kAudioUnitErr_InvalidPropertyValue;
+        const auto *path = static_cast<const char *>(data) + sizeof(header);
+        if (path[header.pathBytes - 1] ||
+            std::memchr(path, 0, header.pathBytes - 1))
+          return kAudioUnitErr_InvalidPropertyValue;
+        std::unique_ptr<const void, decltype(&CFRelease)> value(
+            CFStringCreateWithBytes(
+                nullptr, reinterpret_cast<const UInt8 *>(path),
+                header.pathBytes - 1, kCFStringEncodingUTF8, false),
+            &CFRelease);
+        if (!value)
+          return kAudioUnitErr_InvalidPropertyValue;
+        const std::string directory(path, header.pathBytes - 1);
+        std::unique_ptr<const void, decltype(&CFRelease)> bookmark(
+            header.bookmarkBytes ? CFDataCreate(nullptr,
+                                                reinterpret_cast<const UInt8 *>(
+                                                    path + header.pathBytes),
+                                                header.bookmarkBytes)
+                                 : nullptr,
+            &CFRelease);
+        auto access = sophistryMac::openBankBookmark(
+            static_cast<CFDataRef>(bookmark.get()), directory);
+        std::error_code ec;
+        if (!std::filesystem::is_directory(directory, ec)) {
+          lastError_ = "Selected sample bank is not an accessible directory";
+          return kAudioUnitErr_InvalidPropertyValue;
+        }
+        auto directories = config_.engine.assetDirectories;
+        auto previous = CFPreferencesCopyValue(
+            CFSTR("SophistryARMSampleRoot"), CFSTR("com.linplug.Sophistry"),
+            kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+        if (previous && CFGetTypeID(previous) == CFStringGetTypeID() &&
+            !directories.empty() &&
+            directories.front() == text(static_cast<CFStringRef>(previous)))
+          directories.erase(directories.begin());
+        directories.insert(directories.begin(), directory);
+        try {
+          engine_.setAssetDirectories(directories);
+        } catch (...) {
+          if (previous)
+            CFRelease(previous);
+          throw;
+        }
+        CFPreferencesSetValue(CFSTR("SophistryARMSampleRoot"), value.get(),
+                              CFSTR("com.linplug.Sophistry"),
+                              kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+        CFPropertyListRef previousBookmark = CFPreferencesCopyValue(
+            CFSTR("SophistryARMSampleBookmark"), CFSTR("com.linplug.Sophistry"),
+            kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+        CFPreferencesSetValue(CFSTR("SophistryARMSampleBookmark"),
+                              bookmark.get(), CFSTR("com.linplug.Sophistry"),
+                              kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+        bool saved = CFPreferencesSynchronize(CFSTR("com.linplug.Sophistry"),
+                                              kCFPreferencesCurrentUser,
+                                              kCFPreferencesAnyHost);
+        if (!saved) {
+          CFPreferencesSetValue(CFSTR("SophistryARMSampleRoot"), previous,
+                                CFSTR("com.linplug.Sophistry"),
+                                kCFPreferencesCurrentUser,
+                                kCFPreferencesAnyHost);
+          CFPreferencesSetValue(
+              CFSTR("SophistryARMSampleBookmark"), previousBookmark,
+              CFSTR("com.linplug.Sophistry"), kCFPreferencesCurrentUser,
+              kCFPreferencesAnyHost);
+          CFPreferencesSynchronize(CFSTR("com.linplug.Sophistry"),
+                                   kCFPreferencesCurrentUser,
+                                   kCFPreferencesAnyHost);
+          engine_.setAssetDirectories(config_.engine.assetDirectories);
+          if (previousBookmark)
+            CFRelease(previousBookmark);
+          if (previous)
+            CFRelease(previous);
+          throw std::runtime_error("Cannot save the selected bank location");
+        }
+        if (previous)
+          CFRelease(previous);
+        if (previousBookmark)
+          CFRelease(previousBookmark);
+        config_.engine.assetDirectories = std::move(directories);
+        config_.bankAccess = std::move(access);
+        if (!lastRestoredChunk_.empty()) {
+          const auto chunk = lastRestoredChunk_;
+          loadChunk(chunk, lastRestoredProgram_);
+        }
+        return noErr;
+      });
+    }
     if (id == registrationProperty) {
       if (scope != kAudioUnitScope_Global || element ||
           bytes != sizeof(CFStringRef) || !data)
@@ -389,13 +651,22 @@ public:
     });
   }
   OSStatus RestoreState(CFPropertyListRef state) override {
-    if (!state || CFGetTypeID(state) != CFDictionaryGetTypeID())
-      return kAudioUnitErr_InvalidPropertyValue;
     return guarded([&]() -> OSStatus {
+      ++restoreAttempts_;
+      stateLoaded_ = false;
+      lastRestoreStatus_ = kAudioUnitErr_InvalidPropertyValue;
+      if (!state || CFGetTypeID(state) != CFDictionaryGetTypeID()) {
+        lastError_ = "The project did not provide an AU state dictionary";
+        lastRestoreStatus_ = kAudioUnitErr_InvalidPropertyValue;
+        return lastRestoreStatus_;
+      }
       auto dict = static_cast<CFDictionaryRef>(state);
       CFTypeRef value = CFDictionaryGetValue(dict, CFSTR("vstdata"));
-      if (!value || CFGetTypeID(value) != CFDataGetTypeID())
-        return OSStatus(kAudioUnitErr_InvalidPropertyValue);
+      if (!value || CFGetTypeID(value) != CFDataGetTypeID()) {
+        lastError_ = "The project state contains no legacy vstdata bank";
+        lastRestoreStatus_ = kAudioUnitErr_InvalidPropertyValue;
+        return lastRestoreStatus_;
+      }
       auto number = [&](CFStringRef key, SInt32 &v) {
         CFTypeRef n = CFDictionaryGetValue(dict, key);
         return n && CFGetTypeID(n) == CFNumberGetTypeID() &&
@@ -407,15 +678,21 @@ public:
           !number(CFSTR("manufacturer"), mfr) ||
           !number(CFSTR("version"), version) || UInt32(mfr) != linplug ||
           (UInt32(sub) != sophistrySubtype && UInt32(sub) != cronoSubtype) ||
-          version != 0)
-        return OSStatus(kAudioUnitErr_InvalidPropertyValue);
+          version != 0) {
+        lastError_ =
+            "The project's AU identity or state version is incompatible";
+        lastRestoreStatus_ = kAudioUnitErr_InvalidPropertyValue;
+        return lastRestoreStatus_;
+      }
       CFDataRef data = static_cast<CFDataRef>(value);
       CFIndex n = CFDataGetLength(data);
-      if (n <= 0 || n > 1048576)
+      if (n <= 0 || n > 1048576) {
+        lastError_ = "The project bank has an invalid size";
         return OSStatus(kAudioUnitErr_InvalidPropertyValue);
+      }
       std::vector<std::uint8_t> chunk(CFDataGetBytePtr(data),
                                       CFDataGetBytePtr(data) + n);
-      engine_.restoreChunk(chunk, false);
+      loadChunk(chunk, false, false);
       CFMutableDictionaryRef copy =
           CFDictionaryCreateMutableCopy(nullptr, 0, dict);
       if (!copy)
@@ -429,9 +706,12 @@ public:
       CFDictionaryRemoveValue(copy, CFSTR("element_name"));
       OSStatus status = Base::RestoreState(copy);
       CFRelease(copy);
+      lastRestoreStatus_ = status;
+      stateLoaded_ = status == noErr;
       if (!status)
-        for (UInt32 id : parameters_)
-          Globals()->SetParameter(id, engine_.auParameter(id));
+        syncParameters();
+      else
+        lastError_ = "The host AU metadata could not be restored";
       return status;
     });
   }
@@ -442,6 +722,12 @@ public:
         return OSStatus(kAudioUnitErr_Uninitialized);
       engine_.midi(UInt8(status), UInt8(data1 & 127), UInt8(data2 & 127),
                    offset);
+      if ((status & 0xf0) == 0x90 && (data2 & 127)) {
+        ++notesReceived_;
+        lastMidiChannel_ = status & 15;
+        lastMidiNote_ = data1 & 127;
+        lastMidiOffset_ = offset;
+      }
       return noErr;
     });
   }
@@ -489,6 +775,15 @@ public:
         output[c] = static_cast<float *>(buffers.mBuffers[c].mData);
       }
       engine_.process(output.data(), buffers.mNumberBuffers, frames);
+      ++renderCalls_;
+      for (UInt32 c = 0; c < buffers.mNumberBuffers; ++c)
+        for (UInt32 i = 0; i < frames; ++i) {
+          const double sample = output[c][i];
+          if (std::isfinite(sample))
+            maximumOutput_ = std::max(maximumOutput_, std::fabs(sample));
+          else
+            ++nonfiniteSamples_;
+        }
       flags &= ~kAudioUnitRenderAction_OutputIsSilence;
       previousSample_ = t.samplePosition + frames;
       rendered_ = true;

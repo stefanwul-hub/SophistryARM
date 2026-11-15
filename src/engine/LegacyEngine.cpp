@@ -117,6 +117,15 @@ struct LegacyEngine::Impl {
   std::map<U32, File> files;
   std::map<std::string, std::vector<std::filesystem::path>> assets;
   std::vector<std::filesystem::path> assetRoots;
+  struct AssetRootStatus {
+    std::string name;
+    bool exists = false, readable = false;
+    U32 indexedFiles = 0;
+  };
+  std::vector<AssetRootStatus> assetRootStatus;
+  std::map<std::string, bool> assetOpenResults;
+  std::set<U32> informationalAlerts;
+  std::vector<std::string> loadAlerts;
   struct Timer {
     double delay = 0, interval = 0;
     U32 callback = 0, data = 0;
@@ -161,46 +170,68 @@ struct LegacyEngine::Impl {
       if (!config.deterministicTestHost)
         epoch = U32(std::chrono::system_clock::to_time_t(
             std::chrono::system_clock::now()));
-      for (const auto &directory : config.assetDirectories) {
-        const std::filesystem::path path(directory);
-        std::error_code ec;
-        if (!std::filesystem::is_directory(path, ec))
-          continue;
-        if (!config.recursiveAssetSearch) {
-          for (const auto &entry : std::filesystem::directory_iterator(path))
-            if (entry.is_regular_file())
-              assets[lower(entry.path().filename().string())].push_back(
-                  entry.path());
-          continue;
-        }
-        const auto root = std::filesystem::weakly_canonical(path);
-        assetRoots.push_back(root);
-        std::filesystem::recursive_directory_iterator iterator(
-            root, std::filesystem::directory_options::skip_permission_denied,
-            ec),
-            end;
-        for (; iterator != end; iterator.increment(ec)) {
-          if (ec)
-            throw std::runtime_error("Cannot enumerate selected sample bank");
-          if (!iterator->is_regular_file(ec) || ec)
-            continue;
-          auto candidate =
-              std::filesystem::weakly_canonical(iterator->path(), ec);
-          if (ec)
-            continue;
-          auto &list = assets[lower(iterator->path().filename().string())];
-          if (std::find(list.begin(), list.end(), candidate) == list.end())
-            list.push_back(std::move(candidate));
-          if (assets.size() > 200000)
-            throw std::runtime_error(
-                "Selected sample bank contains too many files");
-        }
-      }
+      indexAssets(config.assetDirectories);
     } catch (...) {
       sl_destroy(cpu);
       cpu = nullptr;
       throw;
     }
+  }
+  void indexAssets(const std::vector<std::string> &directories) {
+    decltype(assets) indexed;
+    decltype(assetRoots) roots;
+    decltype(assetRootStatus) statuses;
+    for (const auto &directory : directories) {
+      const std::filesystem::path path(directory);
+      AssetRootStatus status;
+      status.name = path.filename().string();
+      std::error_code ec;
+      status.exists = std::filesystem::is_directory(path, ec);
+      statuses.push_back(status);
+      auto &record = statuses.back();
+      if (!record.exists)
+        continue;
+      std::filesystem::directory_iterator access(path, ec);
+      if (ec)
+        continue;
+      record.readable = true;
+      if (!config.recursiveAssetSearch) {
+        for (const auto &entry : std::filesystem::directory_iterator(path))
+          if (entry.is_regular_file()) {
+            indexed[lower(entry.path().filename().string())].push_back(
+                entry.path());
+            ++record.indexedFiles;
+          }
+        continue;
+      }
+      const auto root = std::filesystem::weakly_canonical(path);
+      roots.push_back(root);
+      std::filesystem::recursive_directory_iterator iterator(
+          root, std::filesystem::directory_options::skip_permission_denied, ec),
+          end;
+      for (; iterator != end; iterator.increment(ec)) {
+        if (ec)
+          throw std::runtime_error("Cannot enumerate selected sample bank");
+        if (!iterator->is_regular_file(ec) || ec)
+          continue;
+        auto candidate =
+            std::filesystem::weakly_canonical(iterator->path(), ec);
+        if (ec)
+          continue;
+        auto &list = indexed[lower(iterator->path().filename().string())];
+        if (std::find(list.begin(), list.end(), candidate) == list.end())
+          list.push_back(std::move(candidate));
+        ++record.indexedFiles;
+        if (indexed.size() > 200000)
+          throw std::runtime_error(
+              "Selected sample bank contains too many files");
+      }
+    }
+    assets.swap(indexed);
+    assetRoots.swap(roots);
+    assetRootStatus.swap(statuses);
+    config.assetDirectories = directories;
+    assetOpenResults.clear();
   }
   ~Impl() { sl_destroy(cpu); }
   void bounds(U32 at, std::size_t n) const {
@@ -835,6 +866,12 @@ void LegacyEngine::Impl::service(U32 pc) {
     a += '\0';
     auto n = name == "_strchr" ? a.find(char(arg(1))) : a.rfind(char(arg(1)));
     result = n == std::string::npos ? 0 : arg(0) + U32(n);
+  } else if (name == "_fprintf") {
+    // The original missing-sample branch writes to legacy __iob[2] (stderr).
+    // Model its return value without forwarding private guest text to logs.
+    if (arg(0) != word(0x1037f8) + 0xb0)
+      throw std::runtime_error("Unsupported guest fprintf stream");
+    result = U32(format(string(arg(1)), sp + 12).size());
   } else if (name == "_sprintf" || name == "_snprintf" || name == "_vsprintf" ||
              name == "_vsnprintf") {
     bool bounded = name == "_snprintf" || name == "_vsnprintf",
@@ -1121,14 +1158,37 @@ void LegacyEngine::Impl::service(U32 pc) {
     result = 0;
   } else if (name == "_CFPreferencesAppSynchronize")
     result = 1;
-  else if (name == "_fopen" || name == "_fclose" || name == "_fread" ||
-           name == "_fseek" || name == "_ftell" || name == "_rewind" ||
-           name == "_feof" || name == "_ferror" || name == "_clearerr" ||
-           name == "_fflush" || name == "_fgetc" || name == "_getc" ||
-           name == "_fgets" || name == "_fgetpos" || name == "_fsetpos") {
+  else if (name == "_CreateStandardAlert") {
+    // Carbon is unavailable to the native editor. These exact one-button
+    // load-error notifications are retained in status and acknowledged;
+    // question/confirmation dialogs remain unsupported and never accepted.
+    const auto title = cfString(arg(1));
+    if (arg(0) != 1 ||
+        (title != "File Error - Load failed" && title != "Load Error" &&
+         title != "Instrument Load Error" && title != "Bank Load Error"))
+      throw std::runtime_error("Unsupported original dialog request");
+    if (loadAlerts.size() < 16)
+      loadAlerts.push_back(title);
+    const U32 token = allocate(16);
+    informationalAlerts.insert(token);
+    put(arg(4), token);
+  } else if (name == "_RunStandardAlert") {
+    if (arg(1) || !informationalAlerts.erase(arg(0)))
+      throw std::runtime_error("Unsupported original alert token");
+    if (arg(2))
+      put(arg(2), std::uint16_t(1));
+    release(arg(0));
+  } else if (name == "_fopen" || name == "_fclose" || name == "_fread" ||
+             name == "_fseek" || name == "_ftell" || name == "_rewind" ||
+             name == "_feof" || name == "_ferror" || name == "_clearerr" ||
+             name == "_fflush" || name == "_fgetc" || name == "_getc" ||
+             name == "_fgets" || name == "_fgetpos" || name == "_fsetpos") {
     // Native FILE pointers are never narrowed into the guest address space.
     if (name == "_fopen") {
       auto path = string(arg(0)), mode = string(arg(1));
+      const std::string basename = baseName(path);
+      if (assetOpenResults.size() < 256 || assetOpenResults.count(basename))
+        assetOpenResults[basename] = false;
       if (mode != "r" && mode != "rb")
         throw std::runtime_error("Host exposes read-only assets");
       std::filesystem::path resolved;
@@ -1141,8 +1201,14 @@ void LegacyEngine::Impl::service(U32 pc) {
       if (!resolved.empty()) {
         File f;
         f.data = readFile(resolved);
+        if (assetOpenResults.count(basename))
+          assetOpenResults[basename] = true;
         result = allocate(256);
         files.emplace(result, std::move(f));
+      } else {
+        if (!errnoPointer)
+          errnoPointer = allocate(4);
+        put(errnoPointer, U32(2));
       }
     } else if (name == "_fclose") {
       if (!files.erase(arg(0)))
@@ -1439,6 +1505,8 @@ void LegacyEngine::restoreChunk(const std::vector<std::uint8_t> &chunk,
   impl_->initialize();
   if (chunk.empty() || chunk.size() > 0x100000)
     throw std::runtime_error("Invalid legacy state size");
+  impl_->assetOpenResults.clear();
+  impl_->loadAlerts.clear();
   impl_->write(0x600000, chunk.data(), chunk.size());
   // Exact guard used by the original LPAUSynth::RestoreState (0x3e30).
   // Suppress AU feedback while the original bank loader restores parameters.
@@ -1458,6 +1526,17 @@ void LegacyEngine::restoreChunk(const std::vector<std::uint8_t> &chunk,
   if (n != chunk.size())
     throw std::runtime_error(
         "Original engine did not accept the complete state");
+}
+std::string LegacyEngine::presetName() {
+  impl_->initialize();
+  const U32 p = 0x5dc000;
+  impl_->zero(p, 512);
+  impl_->dispatch(5, 0, 0, p);
+  return impl_->string(p, 512);
+}
+void LegacyEngine::setAssetDirectories(
+    const std::vector<std::string> &directories) {
+  impl_->indexAssets(directories);
 }
 std::vector<std::uint8_t> LegacyEngine::saveProgram() {
   impl_->initialize();
@@ -1806,7 +1885,35 @@ std::string LegacyEngine::diagnosticJson() const {
     << ",\"private_registration_input\":"
     << (!impl_->config.privateRegistration.empty() ? "true" : "false")
     << ",\"last_import\":" << jsonQuoted(impl_->lastImport)
-    << ",\"stopped_pc\":" << impl_->cpu->pc << ",\"host_import_calls\":{";
+    << ",\"stopped_pc\":" << impl_->cpu->pc
+    << ",\"asset_index_unique_names\":" << impl_->assets.size()
+    << ",\"asset_roots\":[";
+  bool rootFirst = true;
+  for (const auto &root : impl_->assetRootStatus) {
+    if (!rootFirst)
+      o << ',';
+    rootFirst = false;
+    o << "{\"name\":" << jsonQuoted(root.name)
+      << ",\"exists\":" << (root.exists ? "true" : "false")
+      << ",\"readable\":" << (root.readable ? "true" : "false")
+      << ",\"indexed_files\":" << root.indexedFiles << '}';
+  }
+  o << "],\"asset_open_results\":[";
+  bool assetFirst = true;
+  for (const auto &asset : impl_->assetOpenResults) {
+    if (!assetFirst)
+      o << ',';
+    assetFirst = false;
+    o << "{\"name\":" << jsonQuoted(asset.first)
+      << ",\"opened\":" << (asset.second ? "true" : "false") << '}';
+  }
+  o << "],\"load_alerts\":[";
+  for (std::size_t i = 0; i < impl_->loadAlerts.size(); ++i) {
+    if (i)
+      o << ',';
+    o << jsonQuoted(impl_->loadAlerts[i]);
+  }
+  o << "],\"host_import_calls\":{";
   bool first = true;
   for (const auto &call : impl_->calls) {
     if (!first)

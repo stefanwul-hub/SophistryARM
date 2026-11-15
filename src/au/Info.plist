@@ -8,11 +8,11 @@
   <key>CFBundleName</key><string>Sophistry</string>
   <key>CFBundlePackageType</key><string>BNDL</string>
   <key>CFBundleShortVersionString</key><string>3.0.8</string>
-  <key>CFBundleVersion</key><string>16001</string>
+  <key>CFBundleVersion</key><string>18001</string>
   <key>LSMinimumSystemVersion</key><string>11.0</string>
   <key>AudioComponents</key><array><dict>
     <key>name</key><string>LinPlug: Sophistry</string>
-    <key>description</key><string>Sophistry CP-015 experimental native port</string>
+    <key>description</key><string>Sophistry native Audio Unit</string>
     <key>manufacturer</key><string>LinP</string>
     <key>type</key><string>aumu</string>
     <key>subtype</key><string>Sop3</string>

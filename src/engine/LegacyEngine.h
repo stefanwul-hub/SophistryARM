@@ -56,6 +56,10 @@ public:
   LegacyEngine &operator=(const LegacyEngine &) = delete;
   void initialize();
   void restoreChunk(const std::vector<std::uint8_t> &chunk, bool program);
+  std::string presetName();
+  // Rebuild the read-only asset index after a local bank selection. The
+  // translated engine and current program are retained.
+  void setAssetDirectories(const std::vector<std::string> &directories);
   std::vector<std::uint8_t> saveProgram();
   std::vector<std::uint8_t> saveBank();
   std::vector<std::uint32_t> auParameterIds();

@@ -1,6 +1,7 @@
 // Local-only setup. No serial is accepted in argv, logged, or sent over a
 // network.
 #include "../engine/LegacyEngine.h"
+#include "BankAccess.h"
 #import <AppKit/AppKit.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <algorithm>
@@ -67,7 +68,8 @@ void privateBackup(const std::filesystem::path &directory) {
   if (!dict)
     throw std::bad_alloc();
   for (CFStringRef key :
-       {CFSTR("SophistrySysGlo"), CFSTR("SophistryARMSampleRoot")}) {
+       {CFSTR("SophistrySysGlo"), CFSTR("SophistryARMSampleRoot"),
+        CFSTR("SophistryARMSampleBookmark")}) {
     CFPropertyListRef value = copyPreference(key);
     CFDictionarySetValue(dict, key, value ? value : kCFBooleanFalse);
     if (value)
@@ -124,19 +126,25 @@ void restorePrivateBackup(const std::filesystem::path &file) {
     throw std::runtime_error("Invalid private preference backup");
   }
   auto dict = static_cast<CFDictionaryRef>(plist);
-  // Validate both fields before changing either; all other legacy preferences
+  // Validate known fields before changing any; all other legacy preferences
   // stay intact.
   for (CFStringRef key :
-       {CFSTR("SophistrySysGlo"), CFSTR("SophistryARMSampleRoot")}) {
+       {CFSTR("SophistrySysGlo"), CFSTR("SophistryARMSampleRoot"),
+        CFSTR("SophistryARMSampleBookmark")}) {
     CFTypeRef value = CFDictionaryGetValue(dict, key);
+    const bool bookmark = CFEqual(key, CFSTR("SophistryARMSampleBookmark"));
+    if (bookmark && !value)
+      continue; // Backups made by CP015/16 have two keys.
     if (!value || (value != kCFBooleanFalse &&
-                   CFGetTypeID(value) != CFStringGetTypeID())) {
+                   CFGetTypeID(value) !=
+                       (bookmark ? CFDataGetTypeID() : CFStringGetTypeID()))) {
       CFRelease(plist);
       throw std::runtime_error("Invalid private preference backup fields");
     }
   }
   for (CFStringRef key :
-       {CFSTR("SophistrySysGlo"), CFSTR("SophistryARMSampleRoot")}) {
+       {CFSTR("SophistrySysGlo"), CFSTR("SophistryARMSampleRoot"),
+        CFSTR("SophistryARMSampleBookmark")}) {
     CFTypeRef value = CFDictionaryGetValue(dict, key);
     CFPreferencesSetValue(key, value == kCFBooleanFalse ? nullptr : value,
                           domain, kCFPreferencesCurrentUser,
@@ -147,7 +155,7 @@ void restorePrivateBackup(const std::filesystem::path &file) {
                                 kCFPreferencesAnyHost))
     throw std::runtime_error("Cannot restore local preference backup");
 }
-std::filesystem::path chooseRoot() {
+std::filesystem::path chooseRoot(CFDataRef *bookmark) {
   [NSApplication sharedApplication];
   [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
   [NSApp activateIgnoringOtherApps:YES];
@@ -162,6 +170,8 @@ std::filesystem::path chooseRoot() {
   panel.prompt = @"Choisir ce dossier";
   if ([panel runModal] != NSModalResponseOK || !panel.URL)
     throw std::runtime_error("Configuration cancelled before installation");
+  if (bookmark)
+    *bookmark = sophistryMac::createBankBookmark((__bridge CFURLRef)panel.URL);
   return panel.URL.fileSystemRepresentation;
 }
 } // namespace
@@ -169,11 +179,19 @@ std::filesystem::path chooseRoot() {
 int main(int argc, char **argv) {
   @autoreleasepool {
     bool fromStdin = false, checkOnly = false, noPanel = false,
-         accepted = false, persisted = false, backupSaved = false,
-         rootConfigured = false;
+         chooseBank = false, accepted = false, persisted = false,
+         backupSaved = false, rootConfigured = false;
     std::string stage = "arguments", error;
     std::filesystem::path root, backup, restore;
     std::vector<std::string> assets;
+    std::unique_ptr<const void, decltype(&CFRelease)> bookmark(nullptr,
+                                                               &CFRelease);
+    auto selectRoot = [&]() {
+      CFDataRef selected = nullptr;
+      auto path = chooseRoot(&selected);
+      bookmark.reset(selected);
+      return path;
+    };
     try {
       for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
@@ -188,6 +206,8 @@ int main(int argc, char **argv) {
           checkOnly = true;
         else if (arg == "--no-folder-panel")
           noPanel = true;
+        else if (arg == "--choose-bank")
+          chooseBank = true;
         else if (arg == "--bank-root")
           root = next();
         else if (arg == "--backup-directory")
@@ -200,7 +220,8 @@ int main(int argc, char **argv) {
           throw std::runtime_error("Unknown setup argument");
       }
       if (!restore.empty()) {
-        if (fromStdin || checkOnly || !root.empty() || !backup.empty())
+        if (fromStdin || checkOnly || chooseBank || !root.empty() ||
+            !backup.empty())
           throw std::runtime_error(
               "Preference restore is a separate local operation");
         restorePrivateBackup(restore);
@@ -208,6 +229,9 @@ int main(int argc, char **argv) {
                      "report\":false}\n";
         return 0;
       }
+      if ((checkOnly && chooseBank) || (chooseBank && noPanel))
+        throw std::runtime_error(
+            "Folder selection is incompatible with read-only or no-panel mode");
       if (checkOnly && fromStdin)
         throw std::runtime_error(
             "Read-only check does not accept private input");
@@ -215,18 +239,26 @@ int main(int argc, char **argv) {
         throw std::runtime_error("A private backup directory is required");
       if (root.empty())
         root = currentRoot();
+      if (chooseBank) {
+        stage = "sample bank folder";
+        root = selectRoot();
+      }
       std::error_code ec;
       if (root.empty() || !std::filesystem::is_directory(root, ec)) {
         if (checkOnly || noPanel)
           throw std::runtime_error(
               "Select the local Sophistry sample bank first");
         stage = "sample bank folder";
-        root = chooseRoot();
+        root = selectRoot();
       }
       if (!std::filesystem::is_directory(root, ec) || ec)
         throw std::runtime_error("Selected bank folder is unavailable");
       root = std::filesystem::weakly_canonical(root);
       rootConfigured = true;
+      auto access =
+          bookmark ? sophistryMac::openBankBookmark(
+                         static_cast<CFDataRef>(bookmark.get()), root.string())
+                   : sophistryMac::storedBankAccess(root.string());
       stage = "original registration check";
       sophistry::LegacyEngineConfig config;
       config.audioUnitMode = true;
@@ -280,6 +312,10 @@ int main(int argc, char **argv) {
           throw std::bad_alloc();
         CFPreferencesSetValue(CFSTR("SophistryARMSampleRoot"), value, domain,
                               kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+        if (bookmark || chooseBank)
+          CFPreferencesSetValue(
+              CFSTR("SophistryARMSampleBookmark"), bookmark.get(), domain,
+              kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
         CFRelease(value);
         if (!CFPreferencesSynchronize(domain, kCFPreferencesCurrentUser,
                                       kCFPreferencesAnyHost))

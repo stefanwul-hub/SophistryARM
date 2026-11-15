@@ -1,0 +1,30 @@
+{
+  "checkpoint": "CP-018 development",
+  "scope": "Public fixture, original i386 vs translated instructions, standalone host and ARM64/Linux/QEMU; no private inputs",
+  "original_and_translated_one_button_notifications": [
+    "File Error - Load failed"
+  ],
+  "missing_and_reloaded_programs_byte_exact_across_four_backends": true,
+  "program_bytes": 21072,
+  "program_sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+  "missing_sample_reference_preserved_by_original_serializer": true,
+  "bank_reindex_test": {
+    "passed": true,
+    "missing_sample_reported": true,
+    "sample_reopened_after_reindex": true,
+    "preset_restored_before_initialization_retained": true,
+    "preset_name_available": true,
+    "private_absolute_paths_in_diagnostics": false,
+    "unlicensed_fixture_only": true
+  },
+  "arm64_linux_qemu_test": {
+    "passed": true,
+    "missing_sample_reported": true,
+    "sample_reopened_after_reindex": true,
+    "preset_restored_before_initialization_retained": true,
+    "preset_name_available": true,
+    "private_absolute_paths_in_diagnostics": false,
+    "unlicensed_fixture_only": true
+  },
+  "mac_cocoa_and_private_bookmarks_execution_pending": true
+}

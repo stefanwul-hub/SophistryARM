@@ -20,13 +20,21 @@ sources=("$ROOT/third_party/AudioUnitSDK/src/AudioUnitSDK"/*.cpp "$ROOT/src/au/S
 objects=()
 for source in "${sources[@]}"; do
   object="$DEST/sdk/$(basename "$source" .cpp).o";objects+=("$object")
-  key="$( { printf '%s\n' "${flags[*]}" "$compiler_version" "$sdk_header_key"; cat "$ROOT/src/engine/LegacyEngine.h" "$source"; } | shasum -a 256 | awk '{print $1}')"
+  key="$( { printf '%s\n' "${flags[*]}" "$compiler_version" "$sdk_header_key"; cat "$ROOT/src/engine/LegacyEngine.h" "$ROOT/src/au/SophistryProperties.h" "$ROOT/src/au/BankAccess.h" "$source"; } | shasum -a 256 | awk '{print $1}')"
   if [[ ! -s "$object" || ! -f "$object.compile.sha256" || "$(cat "$object.compile.sha256")" != "$key" ]]; then
     "${compiler[@]}" "${flags[@]}" -c "$source" -o "$object.pending" > "$object.compile.log" 2>&1
     mv "$object.pending" "$object"
     printf '%s\n' "$key" > "$object.compile.sha256"
   fi
 done
+editor="$DEST/sdk/SophistryEditor.o"
+key="$( { printf '%s\n' "${flags[*]} -fobjc-arc" "$compiler_version"; cat "$ROOT/src/au/SophistryProperties.h" "$ROOT/src/au/BankAccess.h" "$ROOT/src/au/SophistryEditor.mm"; } | shasum -a 256 | awk '{print $1}')"
+if [[ ! -s "$editor" || ! -f "$editor.compile.sha256" || "$(cat "$editor.compile.sha256")" != "$key" ]]; then
+  "${compiler[@]}" "${flags[@]}" -fobjc-arc -c "$ROOT/src/au/SophistryEditor.mm" -o "$editor.pending" > "$editor.compile.log" 2>&1
+  mv "$editor.pending" "$editor"
+  printf '%s\n' "$key" > "$editor.compile.sha256"
+fi
+objects+=("$editor")
 bundle="$DEST/Sophistry.component"
 mkdir -p "$bundle/Contents/MacOS" "$bundle/Contents/Resources"
 cp "$ROOT/src/au/Info.plist" "$bundle/Contents/Info.plist"
@@ -37,7 +45,7 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
 "${compiler[@]}" -arch arm64 -mmacosx-version-min=11.0 -bundle \
   "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" "${objects[@]}" \
   "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o \
-  -framework AudioToolbox -framework CoreAudio -framework CoreFoundation -framework CoreMIDI \
+  -lobjc -framework AppKit -framework Foundation -framework AudioToolbox -framework CoreAudio -framework CoreFoundation -framework CoreMIDI \
   -o "$bundle/Contents/MacOS/Sophistry"
 /usr/bin/plutil -lint "$bundle/Contents/Info.plist"
 /usr/bin/lipo "$bundle/Contents/MacOS/Sophistry" -verify_arch arm64
@@ -52,11 +60,20 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
   "$ROOT/tests/AudioUnitFactoryProbe.cpp" -framework AudioToolbox -framework CoreFoundation \
   -o "$DEST/AudioUnitFactoryProbe" > "$DEST/factory-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/AudioUnitFactoryProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fobjc-arc \
+  "$ROOT/tests/AudioUnitEditorProbe.mm" -lobjc -framework AppKit -framework Foundation -framework AudioToolbox -framework CoreFoundation \
+  -o "$DEST/AudioUnitEditorProbe" > "$DEST/editor-probe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/AudioUnitEditorProbe" -verify_arch arm64
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fno-fast-math -ffp-contract=off \
   "$ROOT/tests/NativeAUBridgeProbe.cpp" "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" \
   "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \
   -o "$DEST/NativeAUBridgeProbe" > "$DEST/bridge-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/NativeAUBridgeProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fno-fast-math -ffp-contract=off \
+  "$ROOT/tests/NativeBankDiagnosticsProbe.cpp" "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" \
+  "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \
+  -o "$DEST/NativeBankDiagnosticsProbe" > "$DEST/bank-probe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/NativeBankDiagnosticsProbe" -verify_arch arm64
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fno-fast-math -ffp-contract=off -fobjc-arc \
   "$ROOT/src/au/ConfigureSophistry.mm" "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" \
   "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o \

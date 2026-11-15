@@ -245,7 +245,7 @@ int main(int argc, char **argv) {
       if (!factory)
         throw std::runtime_error("Missing SophistryAUFactory");
       component = AudioComponentRegister(
-          &desc, CFSTR("LinPlug: Sophistry CP016 candidate"), 0x00030008,
+          &desc, CFSTR("LinPlug: Sophistry CP018 candidate"), 0x00030008,
           factory);
       if (!component)
         throw std::runtime_error("Process-local component registration failed");
@@ -253,9 +253,9 @@ int main(int argc, char **argv) {
     stage = "create instance";
     check(AudioComponentInstanceNew(component, &unit.value),
           "Create AU instance");
-    if (diagnostic(unit.value, 0x53705672) != "SophistryARM CP-016")
+    if (diagnostic(unit.value, 0x53705672) != "SophistryARM CP-018")
       throw std::runtime_error(
-          "Loaded component is not the expected CP-016 candidate");
+          "Loaded component is not the expected CP-018 candidate");
     if (discoverOnly) {
       const std::string result = "{\"system_registry_used\":true,\"expected_"
                                  "native_candidate_loaded\":true}\n";
