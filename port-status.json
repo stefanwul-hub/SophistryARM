@@ -325,5 +325,7 @@
   "github_cp022_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/aa5a4cd15a7b4753b8f4c8e08b06578c6ff491d8",
   "github_cp022_archive_sha256": "09e9638d9e02747da6af9114d49ccb7a29824a901d928532c814729f8f4b4767",
   "github_cp022_verified_tracked_blobs": 4094,
-  "github_cp022_launcher": "Demarrer-Sophistry-CP022.command"
+  "github_cp022_launcher": "Demarrer-Sophistry-CP022.command",
+  "github_cp022_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/b97843cff875ed80e17ef5c93d78ce8d685b71f6/Demarrer-Sophistry-CP022.command",
+  "github_cp022_launcher_verified": true
 }
