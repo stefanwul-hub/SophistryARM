@@ -1,3 +1,15 @@
+# Reprendre à CP-015 — installation de test en attente de son premier rapport Mac
+
+Lire docs/CP015.md et evidence/cp015-development-checks.json. CP-014 a confirmé le rapport CP-013 (détails ci-dessous) : vrais rendus AU natifs ARM64 sur le Mac, licence acceptée, six WAV factory/direct/original byte-exact pour 2/6 canaux, source 92d1d60d44e8cfa89d570721bfdbd9d52ad12adf. Ne pas le confondre avec le nouveau code CP-015, compilé/cross-lié mais pas encore exécuté sur Mac.
+
+CP-015 ajoute ConfigureSophistry.mm (choix local du dossier, validation de licence intacte, sérialisation SysGlo originale puis CFPreferences utilisateur ; sauvegarde privée et restauration), recherche récursive de samples avec suffixes/priorités et refus des ambiguïtés, découverte AU enregistrée et marque SpVr=CP-015. Installer-ARM64.command devient une transaction d’essai autorisée : préflight strict avant sudo, copie/backup vérifiés, rename, auval limité180s, nouvelle comparaison des WAV enregistrés, commit uniquement si tout passe, rollback sinon. scripts/component_transaction.py cible uniquement /Library/Audio/Plug-Ins/Components/Sophistry.component. Copies anciennes et candidats rejetés restent sous /Library/Audio/Plug-Ins/SophistryARM-Rollback ; préférences privées et outil autonome sous ~/Library/Application Support/SophistryARM/Backups/<UUID>, jamais dans le ZIP.
+
+Vérifications : 25 tests Python (dont12 transaction/3 auval), pont AU Linux natif et ARM64/QEMU avec refus d’écriture non enregistrée, 5 cas de chemins (objet/heap/globals/programme strictement identiques ou ambiguïté refusée), 8 régions CP-011 inchangées. Le sérialiseur SYPS original et traduit correspond sur défauts80octets et entrée publique volontairement invalide96octets. Plugin, helper Cocoa et factory probe sont liés en Mach-O ARM64 sans symboles non résolus. Les actions CFPreferences, panneau de dossiers, sudo/copie/xattrs Mac, auval et processus AU enregistrés nécessitent le prochain rapport Mac. Ne jamais annoncer auval ou réouverture de projets réussis avant ce retour.
+
+L’utilisateur a déjà autorisé installation/remplacement et publication ; ne pas redemander cette autorisation. Sa clé reste strictement sur son Mac. Les logs reçus CP-013 et les six WAV sont dans work/mac-report-cp013, pas dans Git. Interface Sophistry Cocoa toujours absente : seuls les contrôles génériques AU sont disponibles. Les 106 images et le code SynthEditor sont conservés pour cette suite. Horloge/timers et services hôtes restent partiellement modélisés ; pas de garantie complète sur tous presets/formats/chemins exécutables.
+
+---
+
 # Reprendre à CP-014 — Audio Unit testé sur le Mac utilisateur
 
 Rapport reçu : Sophistry-rapports-CP013-20261115T083620Z.zip, source testée 92d1d60d44e8cfa89d570721bfdbd9d52ad12adf. Tout passe (exitcode0) sur macOS15.7.2 ARM64 / Apple clang17 : construction/signature du component, chargement par sa factory, métadonnées522, replays704DSP/11635instructions, quatre réinitialisations et rendus musicaux AU 2/6 canaux.

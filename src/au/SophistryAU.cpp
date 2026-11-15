@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <array>
 #include <cstring>
+#include <dlfcn.h>
+#include <filesystem>
 #include <map>
 #include <memory>
 #include <mutex>
@@ -17,6 +19,7 @@ constexpr AudioUnitPropertyID errorProperty =
     0x53704572; // SpEr, retained CFStringRef.
 constexpr AudioUnitPropertyID diagnosticsProperty =
     0x53704469; // SpDi, retained CFStringRef.
+constexpr AudioUnitPropertyID wrapperVersionProperty = 0x53705672; // SpVr.
 constexpr UInt32 sophistrySubtype = 0x536f7033, cronoSubtype = 0x43725833,
                  linplug = 0x4c696e50;
 std::string text(CFStringRef s) {
@@ -38,13 +41,22 @@ sophistry::LegacyEngineConfig configuration() {
   c.useLocalMacPreferences = true;
   c.recycleFreedBlocks = true;
   c.collectDiagnostics = false;
+  c.recursiveAssetSearch = true;
   c.guestMemoryBytes = 256u * 1024u * 1024u;
   // Keep deterministic platform inputs until the AU comparison is verified;
   // tempo, sample positions and transport are supplied by actual host
   // callbacks.
   c.deterministicTestHost = true;
-  if (CFBundleRef bundle =
-          CFBundleGetBundleWithIdentifier(CFSTR("com.linplug.au.Sophistry"))) {
+  Dl_info location{};
+  if (dladdr(reinterpret_cast<const void *>(&configuration), &location) &&
+      location.dli_fname) {
+    const auto root =
+        std::filesystem::path(location.dli_fname).parent_path().parent_path() /
+        "Resources";
+    c.assetDirectories.push_back((root / "Samples").string());
+    c.assetDirectories.push_back((root / "Presets").string());
+  } else if (CFBundleRef bundle = CFBundleGetBundleWithIdentifier(
+                 CFSTR("com.linplug.au.Sophistry"))) {
     if (CFURLRef url = CFBundleCopyResourcesDirectoryURL(bundle)) {
       std::array<UInt8, 4096> p{};
       if (CFURLGetFileSystemRepresentation(url, true, p.data(), p.size())) {
@@ -55,11 +67,13 @@ sophistry::LegacyEngineConfig configuration() {
       CFRelease(url);
     }
   }
-  CFPropertyListRef root = CFPreferencesCopyAppValue(
-      CFSTR("SophistryARMSampleRoot"), CFSTR("com.linplug.Sophistry"));
+  CFPropertyListRef root = CFPreferencesCopyValue(
+      CFSTR("SophistryARMSampleRoot"), CFSTR("com.linplug.Sophistry"),
+      kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
   if (root) {
     if (CFGetTypeID(root) == CFStringGetTypeID())
-      c.assetDirectories.push_back(text(static_cast<CFStringRef>(root)));
+      c.assetDirectories.insert(c.assetDirectories.begin(),
+                                text(static_cast<CFStringRef>(root)));
     CFRelease(root);
   }
   return c;
@@ -262,7 +276,8 @@ public:
   OSStatus GetPropertyInfo(AudioUnitPropertyID id, AudioUnitScope scope,
                            AudioUnitElement element, UInt32 &bytes,
                            bool &writable) override {
-    if (id == errorProperty || id == diagnosticsProperty) {
+    if (id == errorProperty || id == diagnosticsProperty ||
+        id == wrapperVersionProperty) {
       if (scope != kAudioUnitScope_Global || element)
         return kAudioUnitErr_InvalidScope;
       bytes = sizeof(CFStringRef);
@@ -280,12 +295,15 @@ public:
   }
   OSStatus GetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, void *data) override {
-    if (id == errorProperty || id == diagnosticsProperty) {
+    if (id == errorProperty || id == diagnosticsProperty ||
+        id == wrapperVersionProperty) {
       if (scope != kAudioUnitScope_Global || element || !data)
         return kAudioUnitErr_InvalidPropertyValue;
       return guarded([&]() -> OSStatus {
         std::string value =
-            id == errorProperty ? lastError_ : engine_.diagnosticJson();
+            id == wrapperVersionProperty
+                ? "SophistryARM CP-015"
+                : (id == errorProperty ? lastError_ : engine_.diagnosticJson());
         CFStringRef s = CFStringCreateWithCString(nullptr, value.c_str(),
                                                   kCFStringEncodingUTF8);
         if (!s)

@@ -114,6 +114,7 @@ struct LegacyEngine::Impl {
   };
   std::map<U32, File> files;
   std::map<std::string, std::vector<std::filesystem::path>> assets;
+  std::vector<std::filesystem::path> assetRoots;
   struct Timer {
     double delay = 0, interval = 0;
     U32 callback = 0, data = 0;
@@ -163,10 +164,35 @@ struct LegacyEngine::Impl {
         std::error_code ec;
         if (!std::filesystem::is_directory(path, ec))
           continue;
-        for (const auto &entry : std::filesystem::directory_iterator(path))
-          if (entry.is_regular_file())
-            assets[lower(entry.path().filename().string())].push_back(
-                entry.path());
+        if (!config.recursiveAssetSearch) {
+          for (const auto &entry : std::filesystem::directory_iterator(path))
+            if (entry.is_regular_file())
+              assets[lower(entry.path().filename().string())].push_back(
+                  entry.path());
+          continue;
+        }
+        const auto root = std::filesystem::weakly_canonical(path);
+        assetRoots.push_back(root);
+        std::filesystem::recursive_directory_iterator iterator(
+            root, std::filesystem::directory_options::skip_permission_denied,
+            ec),
+            end;
+        for (; iterator != end; iterator.increment(ec)) {
+          if (ec)
+            throw std::runtime_error("Cannot enumerate selected sample bank");
+          if (!iterator->is_regular_file(ec) || ec)
+            continue;
+          auto candidate =
+              std::filesystem::weakly_canonical(iterator->path(), ec);
+          if (ec)
+            continue;
+          auto &list = assets[lower(iterator->path().filename().string())];
+          if (std::find(list.begin(), list.end(), candidate) == list.end())
+            list.push_back(std::move(candidate));
+          if (assets.size() > 200000)
+            throw std::runtime_error(
+                "Selected sample bank contains too many files");
+        }
       }
     } catch (...) {
       sl_destroy(cpu);
@@ -346,6 +372,62 @@ struct LegacyEngine::Impl {
   void prepareBuffers();
   void prepareAUParameterContext();
   void setAUFormat();
+  std::filesystem::path resolveAsset(const std::string &path) const {
+    auto found = assets.find(lower(baseName(path)));
+    if (found == assets.end())
+      return {};
+    if (found->second.size() == 1)
+      return found->second.front();
+    if (!config.recursiveAssetSearch)
+      return {};
+    auto pieces = [](std::string text) {
+      for (char &c : text)
+        if (c == '\\' || c == ':')
+          c = '/';
+      std::vector<std::string> result;
+      std::size_t start = 0;
+      while (start < text.size()) {
+        auto end = text.find('/', start);
+        if (end == std::string::npos)
+          end = text.size();
+        if (end > start)
+          result.push_back(lower(text.substr(start, end - start)));
+        start = end + 1;
+      }
+      return result;
+    };
+    const auto requested = pieces(path);
+    // Root order is explicit: the selected bank precedes bundled fallbacks.
+    for (const auto &root : assetRoots) {
+      std::filesystem::path best;
+      std::size_t bestScore = 0;
+      bool tied = false;
+      for (const auto &candidate : found->second) {
+        const auto relative = candidate.lexically_relative(root);
+        if (relative.empty() || *relative.begin() == "..")
+          continue;
+        const auto actual = pieces(relative.generic_string());
+        std::size_t score = 0;
+        while (score < actual.size() && score < requested.size() &&
+               actual[actual.size() - score - 1] ==
+                   requested[requested.size() - score - 1])
+          ++score;
+        if (score > bestScore) {
+          best = candidate;
+          bestScore = score;
+          tied = false;
+        } else if (score && score == bestScore)
+          tied = true;
+      }
+      if (bestScore) {
+        if (tied)
+          throw std::runtime_error("Several samples share this name; select a "
+                                   "more specific bank folder");
+        return best;
+      }
+    }
+    return {};
+  }
 };
 
 U32 LegacyEngine::Impl::preference(const std::string &key,
@@ -972,9 +1054,7 @@ void LegacyEngine::Impl::service(U32 pc) {
           std::filesystem::is_regular_file(path))
         resolved = path;
       else {
-        auto found = assets.find(lower(baseName(path)));
-        if (found != assets.end() && found->second.size() == 1)
-          resolved = found->second.front();
+        resolved = resolveAsset(path);
       }
       if (!resolved.empty()) {
         File f;
@@ -1473,6 +1553,57 @@ void LegacyEngine::setPrivateRegistration(const std::string &registration) {
   impl_->run(0x12c66, {object + 0xb4, 0, 1, 0x5e0000});
   impl_->zero(0x5e0000, registration.size() + 1);
 }
+void LegacyEngine::persistValidatedRegistration() {
+  // Acceptance is set exclusively by the unchanged original registration code.
+  if (!registrationAccepted())
+    throw std::runtime_error(
+        "Original registration rejected; no preference written");
+#ifdef __APPLE__
+  const U32 sys = object + 0xb4, descriptor = impl_->word(sys + 0x120);
+  if (!descriptor || impl_->string(sys + 0x1d4) != "SophistrySysGlo")
+    throw std::runtime_error(
+        "Unexpected original registration preference layout");
+  const U32 vtable = impl_->word(descriptor),
+            size = impl_->run(impl_->word(vtable + 8), {descriptor, 0});
+  if (size < 12 || size > 4096)
+    throw std::runtime_error("Invalid original SysGlo serialization size");
+  const U32 buffer = impl_->allocate(size + 1);
+  try {
+    impl_->run(impl_->word(vtable + 12), {descriptor, buffer, 0});
+    if (impl_->word(buffer) != 0x53595053 || impl_->word(buffer + 4) != size)
+      throw std::runtime_error("Original SysGlo serialization header differs");
+    static constexpr char digits[] = "0123456789ABCDEF";
+    std::string hex(size * 2, '0');
+    const auto *bytes = impl_->data(buffer, size);
+    for (U32 i = 0; i < size; ++i) {
+      hex[i * 2] = digits[bytes[i] >> 4];
+      hex[i * 2 + 1] = digits[bytes[i] & 15];
+    }
+    CFStringRef value =
+        CFStringCreateWithCString(nullptr, hex.c_str(), kCFStringEncodingUTF8);
+    std::fill(hex.begin(), hex.end(), '\0');
+    if (!value)
+      throw std::runtime_error("Cannot encode local registration preference");
+    CFPreferencesSetValue(CFSTR("SophistrySysGlo"), value,
+                          CFSTR("com.linplug.Sophistry"),
+                          kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+    CFRelease(value);
+    if (!CFPreferencesSynchronize(CFSTR("com.linplug.Sophistry"),
+                                  kCFPreferencesCurrentUser,
+                                  kCFPreferencesAnyHost))
+      throw std::runtime_error(
+          "Cannot synchronize local registration preference");
+    impl_->zero(buffer, size + 1);
+    impl_->release(buffer);
+  } catch (...) {
+    impl_->zero(buffer, size + 1);
+    impl_->release(buffer);
+    throw;
+  }
+#else
+  throw std::runtime_error("Local registration preferences require macOS");
+#endif
+}
 void LegacyEngine::midi(std::uint8_t status, std::uint8_t data1,
                         std::uint8_t data2, U32 delta) {
   if (impl_->config.audioUnitMode) {
@@ -1559,8 +1690,8 @@ std::vector<std::uint8_t> LegacyEngine::globalSnapshot() const {
 }
 std::string LegacyEngine::diagnosticJson() const {
   std::ostringstream o;
-  o << "{\"scope\":\"Native C++ host integration in progress; no Audio "
-       "Unit\",\"heap_bytes_reserved\":"
+  o << "{\"scope\":\"Static translated DSP with explicit platform "
+       "adapters\",\"heap_bytes_reserved\":"
     << impl_->heap - 0x800000
     << ",\"initialized\":" << (impl_->initialized ? "true" : "false")
     << ",\"active\":" << (impl_->active ? "true" : "false")

@@ -1,0 +1,22 @@
+{
+  "scope": "Original SysGlo parameter serializer only; default and public invalid test string, no licence validation or persistence",
+  "original_and_native_cases_equal": true,
+  "cases": [
+    {
+      "case": "default",
+      "bytes": 80,
+      "sha256": "e3805d1c30d3a9875bff9163889ceb227f5afa7fc0ed2a35db144b1e3c6414ca",
+      "original_tag": "SYPS",
+      "declared_size_matches": true
+    },
+    {
+      "case": "deliberately-invalid-test-input",
+      "bytes": 96,
+      "sha256": "81bd375cb1c81ba51156952cf90ed636ddf948c530ae0b458bd7ee26723bea0b",
+      "original_tag": "SYPS",
+      "declared_size_matches": true
+    }
+  ],
+  "real_license_used": false,
+  "preferences_written": false
+}

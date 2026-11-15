@@ -170,7 +170,7 @@ struct Unit {
 
 int main(int argc, char **argv) {
   std::filesystem::path bundlePath, statePath, contractPath, prefix;
-  bool privateInput = false;
+  bool privateInput = false, registered = false, discoverOnly = false;
   UInt32 channels = 2;
   std::string stage = "arguments", error;
   std::vector<std::string> passed;
@@ -192,6 +192,10 @@ int main(int argc, char **argv) {
       };
       if (a == "--bundle")
         bundlePath = next();
+      else if (a == "--registered")
+        registered = true;
+      else if (a == "--discover-only")
+        discoverOnly = true;
       else if (a == "--state")
         statePath = next();
       else if (a == "--contract")
@@ -205,36 +209,63 @@ int main(int argc, char **argv) {
       else
         throw std::runtime_error("Unknown argument");
     }
-    if (bundlePath.empty() || statePath.empty() || contractPath.empty() ||
-        prefix.empty() || (channels != 2 && channels != 6))
+    if ((!registered && bundlePath.empty()) ||
+        (registered && !bundlePath.empty()) || (registered && privateInput) ||
+        (discoverOnly && !registered) || statePath.empty() ||
+        contractPath.empty() || prefix.empty() ||
+        (channels != 2 && channels != 6))
       throw std::runtime_error(
           "Required: --bundle --state --contract --output-prefix [--channels "
           "2|6] [--registration-from-stdin]");
     if (prefix.has_parent_path())
       std::filesystem::create_directories(prefix.parent_path());
-    stage = "load candidate bundle";
-    std::string absolute = std::filesystem::absolute(bundlePath).string();
-    CFURLRef url = CFURLCreateFromFileSystemRepresentation(
-        nullptr, reinterpret_cast<const UInt8 *>(absolute.data()),
-        absolute.size(), true);
-    bundle = CFBundleCreate(nullptr, url);
-    CFRelease(url);
-    if (!bundle || !CFBundleLoadExecutable(bundle))
-      throw std::runtime_error("Cannot load candidate executable");
-    auto factory = reinterpret_cast<AudioComponentFactoryFunction>(
-        CFBundleGetFunctionPointerForName(bundle, CFSTR("SophistryAUFactory")));
-    if (!factory)
-      throw std::runtime_error("Missing SophistryAUFactory");
     AudioComponentDescription desc{0x61756d75, 0x536f7033, 0x4c696e50, 0, 0};
-    AudioComponent component = AudioComponentRegister(
-        &desc, CFSTR("LinPlug: Sophistry CP013 candidate"), 0x00030008,
-        factory);
-    if (!component)
-      throw std::runtime_error("Process-local component registration failed");
+    AudioComponent component = nullptr;
+    if (registered) {
+      stage = "find system-registered candidate";
+      component = AudioComponentFindNext(nullptr, &desc);
+      if (!component)
+        throw std::runtime_error("No registered Sophistry AU found");
+      if (AudioComponentFindNext(component, &desc))
+        throw std::runtime_error(
+            "Multiple Sophistry AUs match the original identity");
+    } else {
+      stage = "load candidate bundle";
+      std::string absolute = std::filesystem::absolute(bundlePath).string();
+      CFURLRef url = CFURLCreateFromFileSystemRepresentation(
+          nullptr, reinterpret_cast<const UInt8 *>(absolute.data()),
+          absolute.size(), true);
+      bundle = CFBundleCreate(nullptr, url);
+      CFRelease(url);
+      if (!bundle || !CFBundleLoadExecutable(bundle))
+        throw std::runtime_error("Cannot load candidate executable");
+      auto factory = reinterpret_cast<AudioComponentFactoryFunction>(
+          CFBundleGetFunctionPointerForName(bundle,
+                                            CFSTR("SophistryAUFactory")));
+      if (!factory)
+        throw std::runtime_error("Missing SophistryAUFactory");
+      component = AudioComponentRegister(
+          &desc, CFSTR("LinPlug: Sophistry CP015 candidate"), 0x00030008,
+          factory);
+      if (!component)
+        throw std::runtime_error("Process-local component registration failed");
+    }
     stage = "create instance";
     check(AudioComponentInstanceNew(component, &unit.value),
           "Create AU instance");
-    passed.push_back("candidate factory loads without installation");
+    if (diagnostic(unit.value, 0x53705672) != "SophistryARM CP-015")
+      throw std::runtime_error(
+          "Loaded component is not the expected CP-015 candidate");
+    if (discoverOnly) {
+      const std::string result = "{\"system_registry_used\":true,\"expected_"
+                                 "native_candidate_loaded\":true}\n";
+      std::cout << result;
+      std::ofstream(prefix.string() + ".json") << result;
+      return 0;
+    }
+    passed.push_back(registered
+                         ? "expected candidate loads through system AU registry"
+                         : "candidate factory loads without installation");
     if (privateInput) {
       std::string key;
       if (!std::getline(std::cin, key) || key.empty() || key.size() > 319)
@@ -407,9 +438,9 @@ int main(int argc, char **argv) {
   }
   std::ostringstream report;
   report << std::setprecision(17)
-         << "{\"scope\":\"uninstalled candidate AU factory; not auval or DAW "
-            "project recall\",\"stage\":"
-         << quote(stage)
+         << "{\"scope\":\"candidate AU instance tests; not auval or DAW "
+            "project recall\",\"system_registry_used\":"
+         << (registered ? "true" : "false") << ",\"stage\":" << quote(stage)
          << ",\"error\":" << (error.empty() ? "null" : quote(error))
          << ",\"engine_error\":" << quote(engineError)
          << ",\"engine_diagnostics_json\":" << quote(engineDiagnostics)

@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-014",
+  "checkpoint": "CP-015",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -33,14 +33,14 @@
   "macos_auval_executed": true,
   "logic_projects_verified": false,
   "ableton_projects_verified": false,
-  "install_allowed": false,
+  "install_allowed": true,
   "implemented_dsp_scope": "191378 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
   "arm64_scope": "CP-011 user Mac: core and host executables compiled/executed ARM64, 704 DSP and 11635 primitive/guard replays passed; licensed FXP render byte-exact for one scenario. CP-013 AU bridge awaits Mac execution.",
   "next_work": [
-    "Persist registration locally using original SysGlo serializer only after original licence check succeeds",
-    "Allow local sample bank folder selection and recursive asset discovery",
-    "Implement backed-up test installation with automatic rollback if auval or registered-instance probes fail",
-    "Reproduce original Cocoa editor and exercise copies of old Logic/Live projects"
+    "Execute CP-015 installation on Mac and inspect preferences/registration discovery/auval/registered audio reports",
+    "Fix concrete macOS integration failures and preserve rollback until validation passes",
+    "Reproduce original editor and commands from resources and SynthEditor code",
+    "Exercise copies of old Logic/Live projects and a wider sample/preset/audio matrix"
   ],
   "state_container_reader_implemented": true,
   "state_container_round_trip_tested": [
@@ -164,7 +164,7 @@
   "au_bridge_parameter_records_tested": 522,
   "au_bridge_reinitialization_cycles_tested": 4,
   "au_native_gui_status": "Generic AU controls only; faithful Sophistry Cocoa interface remains unimplemented",
-  "install_block_reason": "Candidate has not executed through Apple AU APIs; GUI, auval and DAW project recall remain incomplete",
+  "install_block_reason": null,
   "installation_authorized_by_user": true,
   "github_cp013_source_commit": "92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
   "github_cp013_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
@@ -175,5 +175,13 @@
   "au_diagnostic_factory_macos_passed": true,
   "au_candidate_native_macos_evidence": "evidence/mac-cp013-au-factory.json",
   "one_au_preset_audio_reference_cases_passed": 2,
-  "native_audio_unit_production_ready": false
+  "native_audio_unit_production_ready": false,
+  "install_scope": "Experimental backed-up transaction only after strict preflight; auto rollback on auval/registered audio failure. Not a production release.",
+  "local_registration_persistence_implemented": true,
+  "local_registration_persistence_mac_executed": false,
+  "recursive_sample_bank_search_implemented": true,
+  "system_installation_script_available": true,
+  "system_installation_script_mac_executed": false,
+  "new_native_candidate_auval_passed": null,
+  "cp015_mac_execution_pending": true
 }

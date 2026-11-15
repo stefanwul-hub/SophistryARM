@@ -42,6 +42,11 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
 /usr/bin/plutil -lint "$bundle/Contents/Info.plist"
 /usr/bin/lipo "$bundle/Contents/MacOS/Sophistry" -verify_arch arm64
 /usr/bin/codesign --force --sign - --timestamp=none "$bundle"
+# The installer uses a private umask for reports/preferences. The shared AU
+# contains public code/resources and must remain readable by every Mac user.
+/usr/bin/find "$bundle" -type d -exec /bin/chmod 755 {} +
+/usr/bin/find "$bundle" -type f -exec /bin/chmod 644 {} +
+/bin/chmod 755 "$bundle/Contents/MacOS/Sophistry"
 /usr/bin/codesign --verify --strict "$bundle"
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 \
   "$ROOT/tests/AudioUnitFactoryProbe.cpp" -framework AudioToolbox -framework CoreFoundation \
@@ -52,4 +57,11 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
   "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \
   -o "$DEST/NativeAUBridgeProbe" > "$DEST/bridge-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/NativeAUBridgeProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fno-fast-math -ffp-contract=off -fobjc-arc \
+  "$ROOT/src/au/ConfigureSophistry.mm" "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" \
+  "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o \
+  -lobjc -framework AppKit -framework Foundation -framework CoreFoundation \
+  -o "$DEST/ConfigureSophistry" > "$DEST/configure.compile.log" 2>&1
+/usr/bin/lipo "$DEST/ConfigureSophistry" -verify_arch arm64
+/usr/bin/codesign --force --sign - --timestamp=none "$DEST/ConfigureSophistry"
 printf '%s\n' "$bundle" "$DEST/AudioUnitFactoryProbe"

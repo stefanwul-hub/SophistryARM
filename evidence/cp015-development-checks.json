@@ -1,0 +1,57 @@
+{
+  "checkpoint": "CP-015",
+  "scope": "Development checks on Linux, not execution of CP-015 on macOS",
+  "source_sha256": {
+    "src/engine/LegacyEngine.cpp": "023569ebd029d13be5de309e5e426caa0e51ae9a414975eb9a10398eee1a0579",
+    "src/engine/LegacyEngine.h": "f2e7d708da79e31c7e6d57fd11fde673d15f1f0d16f3160c02e564aa8f79c085",
+    "src/au/SophistryAU.cpp": "c96f7b5ef4df14b98263c00f66e4ac0bae631b9c475c544ae1a9247581722a18",
+    "src/au/ConfigureSophistry.mm": "401454b1efa5dd15a644e0a57959b7e372bed118938ba17d955ec5ae52074d1d",
+    "tests/AudioUnitFactoryProbe.cpp": "8ea8971f527180b969a7a54b12e73c320a0561f29e0e061f36a60d69fb859d4d",
+    "tests/NativeAUBridgeProbe.cpp": "e4a7f84a41876f117706d9b646cf901a6dff6ffae657a0e353b952c74c63149b",
+    "Installer-ARM64.command": "5db8da18d6bdd62badb1577f580a9effd67625653fcda07ff078fc59bf4e8e7f",
+    "scripts/build-audio-unit.sh": "8077da29cf633173a2f13263bdf2a9e624054ac3e0004dd0741c1313ac49bde4",
+    "scripts/component_transaction.py": "182f6ef1e58bc01deb9db9d3ac194bf7b4cfc71598fd5d5d3040f3d977815cc2",
+    "scripts/Restaurer-Sophistry.command": "6b18df8332704ff107a25ca0f8b28afd631a0ca1f45bfd75d5d6696ae6c2bfa3",
+    "scripts/run_auval.py": "04ad068e55608264708a546d697ee830e0ffb2732d9eda959c321777ab8524de"
+  },
+  "cross_compilation": "Zig/Clang 19.1.7 and LLD19; development SDK11.3; Mac build uses installed Xcode",
+  "binaries": [
+    {
+      "name": "Sophistry",
+      "kind": "bundle",
+      "architecture": "arm64",
+      "bytes": 30478592,
+      "sha256": "6ec48484eed1831400af3c3af7bd6a096a0287b81dad5bb4cea38aedb30d4f97",
+      "no_unresolved_symbols": true
+    },
+    {
+      "name": "ConfigureSophistry",
+      "kind": "executable",
+      "architecture": "arm64",
+      "bytes": 30328352,
+      "sha256": "8d8850c1fc6a2f9d4dabf173fc12e8489b00b1ed1323506e49130ace4355f860",
+      "no_unresolved_symbols": true
+    },
+    {
+      "name": "AudioUnitFactoryProbe",
+      "kind": "executable",
+      "architecture": "arm64",
+      "bytes": 1348192,
+      "sha256": "1750c76e05bfb77e896b08aa00c2e5c67fe219f5d0d6b2966d285c4a5e63cdbb",
+      "no_unresolved_symbols": true
+    }
+  ],
+  "python_tests_passed": 25,
+  "replacement_and_recovery_tests_passed": 12,
+  "auval_runner_tests_passed": 3,
+  "cpu_bridge_linux_and_arm64_qemu_passed": true,
+  "unregistered_preference_write_refused_in_bridge_tests": true,
+  "original_sysglo_serialization_byte_exact_on_two_public_cases": true,
+  "asset_path_scenarios_passed": 5,
+  "cp011_default_host_state_regions_byte_exact": 8,
+  "cp015_native_mac_executed": false,
+  "cp015_real_preferences_written": false,
+  "cp015_system_installed": false,
+  "cp015_auval_executed": false,
+  "production_ready": false
+}

@@ -17,6 +17,7 @@ struct LegacyEngineConfig {
   bool audioUnitMode = false;
   std::uint32_t audioUnitOutputChannels = 2;
   bool collectDiagnostics = true;
+  bool recursiveAssetSearch = false;
   std::function<void(std::uint32_t, std::uint32_t)> parameterEvent;
   // Optional private input. Passed to the original SysGlo string setter;
   // the original registration check decides whether it is accepted.
@@ -63,6 +64,9 @@ public:
   void setAudioUnitOutputChannels(std::uint32_t channels);
   void setTransport(const LegacyTransport &transport);
   void setPrivateRegistration(const std::string &registration);
+  // Uses the original SysGlo serializer and refuses to write unless the
+  // original registration check has accepted this active instance.
+  void persistValidatedRegistration();
   void midi(std::uint8_t status, std::uint8_t data1, std::uint8_t data2,
             std::uint32_t delta = 0);
   void process(float *const *outputs, std::uint32_t channels,

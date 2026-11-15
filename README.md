@@ -1,8 +1,10 @@
-# Sophistry — checkpoint CP-014
+# Sophistry — checkpoint CP-015
 
 **Le premier candidat Audio Unit ARM64 a maintenant été compilé, signé et exécuté sur le Mac utilisateur.** Le rapport CP-013 confirme le chargement de la factory, les 522 métadonnées et deux rendus AU musicaux byte-exact contre les instructions originales. L’interface Sophistry, auval et la réouverture des projets restent à terminer.
 
 Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x86-64. L’identité à conserver pour les anciens projets AU est `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`.
+
+**CP-015 : installation de test préparée.** Le nouveau lanceur compile le candidat, configure localement la licence et la banque, compare l’audio, sauvegarde l’ancien composant, installe dans `/Library/Audio/Plug-Ins/Components`, lance auval et teste le composant enregistré. Un échec déclenche la restauration. La procédure attend encore son premier retour Mac ; voir [CP-015](docs/CP015.md). L’interface reste générique, le rappel Logic/Live reste à vérifier.
 
 **CP-014 : rapport Mac CP-013 vérifié.** Les WAV du candidat, du moteur AU direct et de la référence i386 sont identiques pour chaque configuration 2/6 canaux : 264600 et 793800 échantillons float32, tous finis. La licence est acceptée localement. Trois secondes de son sont calculées en environ 0,60 s ; ce test hors temps réel ne certifie pas une charge de projet. Voir [la preuve anonymisée](evidence/mac-cp013-au-factory.json). Aucun composant n’a encore été installé par le script CP-013.
 

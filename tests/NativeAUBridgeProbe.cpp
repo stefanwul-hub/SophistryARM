@@ -26,6 +26,7 @@ int main(int argc, char **argv) {
     sophistry::LegacyEngineConfig config;
     config.audioUnitMode = true;
     config.recycleFreedBlocks = true;
+    config.recursiveAssetSearch = true;
     config.guestMemoryBytes = 256u * 1024u * 1024u;
     config.assetDirectories = {argv[2]};
     sophistry::LegacyEngine engine(config);
@@ -67,6 +68,16 @@ int main(int argc, char **argv) {
       engine.setSampleRate(float(spec[1]));
       engine.setBlockSize(spec[2]);
       engine.activate();
+      bool refused = false;
+      try {
+        engine.persistValidatedRegistration();
+      } catch (const std::runtime_error &e) {
+        refused = std::string(e.what()).find(
+                      "Original registration rejected") != std::string::npos;
+      }
+      if (!refused)
+        throw std::runtime_error(
+            "Unregistered preference write was not refused");
       engine.restoreChunk(chunk, true);
       std::vector<std::vector<float>> buffers(spec[0],
                                               std::vector<float>(spec[2]));

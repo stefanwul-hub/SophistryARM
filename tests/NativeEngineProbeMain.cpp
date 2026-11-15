@@ -189,6 +189,8 @@ int main(int argc, char **argv) {
         seconds = std::stod(argument());
       else if (a == "--snapshots")
         snapshots = true;
+      else if (a == "--recursive-assets")
+        config.recursiveAssetSearch = true;
       else if (a == "--au-channels") {
         config.audioUnitMode = true;
         config.audioUnitOutputChannels = std::uint32_t(std::stoul(argument()));
