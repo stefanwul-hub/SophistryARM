@@ -1,0 +1,14 @@
+{
+  "checkpoint": "CP-013",
+  "source_commit": "92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
+  "archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
+  "archive_bytes": 44006944,
+  "archive_sha256": "a689527bb1d8b1d4c612d6444c7ee27bed97dda1b100d154962aa3209e64769c",
+  "tracked_blobs_verified": 4007,
+  "all_tracked_blobs_exact": true,
+  "includes_private_logs_or_license": false,
+  "launcher": "Demarrer-Sophistry-CP013.command",
+  "launcher_sha256": "6cac3c9e80e7fdab309154ceeab4706bbd63c6aa992e7560986de5bc036eb71d",
+  "mac_au_candidate_executed": false,
+  "system_installed": false
+}

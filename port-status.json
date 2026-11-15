@@ -165,5 +165,10 @@
   "au_bridge_reinitialization_cycles_tested": 4,
   "au_native_gui_status": "Generic AU controls only; faithful Sophistry Cocoa interface remains unimplemented",
   "install_block_reason": "Candidate has not executed through Apple AU APIs; GUI, auval and DAW project recall remain incomplete",
-  "installation_authorized_by_user": true
+  "installation_authorized_by_user": true,
+  "github_cp013_source_commit": "92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
+  "github_cp013_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
+  "github_cp013_archive_sha256": "a689527bb1d8b1d4c612d6444c7ee27bed97dda1b100d154962aa3209e64769c",
+  "github_cp013_verified_tracked_blobs": 4007,
+  "github_cp013_launcher": "Demarrer-Sophistry-CP013.command"
 }
