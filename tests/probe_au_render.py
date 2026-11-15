@@ -42,10 +42,10 @@ class RenderHost(AUPlatformHost):
   else:self.b.regwrite(0,struct.pack('<I',result&0xffffffff))
   self.b.ret()
 
-def run(library,state,channels,seconds,output,registration=None,preferences=None):
+def run(library,state,channels,seconds,output,registration=None,preferences=None,asset_directories=None):
  image=LegacyImage((ROOT/'reference/Sophistry.i386').read_bytes())
  backend=HostedNative(ctypes.CDLL(str(library.resolve())),bytes(image.mapped()),0x4000000) if library else Original(bytes(image.mapped()),0x4000000)
- h=RenderHost(backend,image);h.private_preferences=preferences;outer=0x200000-0xec;obj=0x200000;stage='initializers';error=None;rendered=0;peaks=[];sums=[];wav=None;accepted=False
+ h=RenderHost(backend,image);h.private_preferences=preferences;h.asset_directories=asset_directories or [];outer=0x200000-0xec;obj=0x200000;stage='initializers';error=None;rendered=0;peaks=[];sums=[];wav=None;accepted=False
  def call(pc,*args):backend.run(pc,list(args));return h.eax()
  def checked(pc,*args):
   status=call(pc,*args)
@@ -103,7 +103,7 @@ def run(library,state,channels,seconds,output,registration=None,preferences=None
  output.write_text(json.dumps(result,indent=2)+'\n');backend.close();return result
 
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--library',type=Path);p.add_argument('--state',type=Path,required=True);p.add_argument('--channels',type=int,choices=[2,6],default=2);p.add_argument('--seconds',type=float,default=3);p.add_argument('--output',type=Path,required=True);p.add_argument('--registration-from-stdin',action='store_true');p.add_argument('--local-mac-preferences',action='store_true');a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--library',type=Path);p.add_argument('--state',type=Path,required=True);p.add_argument('--channels',type=int,choices=[2,6],default=2);p.add_argument('--seconds',type=float,default=3);p.add_argument('--output',type=Path,required=True);p.add_argument('--asset-directory',type=Path,action='append',default=[]);p.add_argument('--registration-from-stdin',action='store_true');p.add_argument('--local-mac-preferences',action='store_true');a=p.parse_args()
  if not 0<a.seconds<=30:p.error('seconds must be in (0,30]')
  key=None
  if a.registration_from_stdin:
@@ -115,4 +115,4 @@ if __name__=='__main__':
   import subprocess
   exported=subprocess.run(['/usr/bin/defaults','export','com.linplug.Sophistry','-'],stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=False)
   prefs=plistlib.loads(exported.stdout) if exported.returncode==0 else {}
- result=run(a.library,a.state,a.channels,a.seconds,a.output,key,prefs);print(json.dumps(result,indent=2));sys.exit(1 if result['error'] else 0)
+ result=run(a.library,a.state,a.channels,a.seconds,a.output,key,prefs,a.asset_directory);print(json.dumps(result,indent=2));sys.exit(1 if result['error'] else 0)

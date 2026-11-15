@@ -599,8 +599,11 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     return;
   }
   NSString *name = s[@"preset_name"];
-  if (!name.length)
-    name = @"Sans nom";
+  if (!name.length || [name isEqualToString:@"empty"])
+    name = [s[@"state_loaded"] boolValue]
+               ? @"État chargé — nom non enregistré"
+               : ([s[@"error"] length] ? @"Chargement interrompu"
+                                       : @"Aucun son chargé");
   preset_.stringValue = [@"Son : " stringByAppendingString:name];
   lcd_.stringValue = name;
   NSArray *roots = engine[@"asset_roots"];
@@ -690,6 +693,24 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
       result = AudioUnitSetProperty(unit_, sophistry::importProgramProperty,
                                     kAudioUnitScope_Global, 0, chunk.bytes,
                                     UInt32(chunk.length));
+      if (!result) {
+        // FPCh stores the program label outside the opaque engine chunk.
+        // Preserve it as standard AU preset metadata without altering DSP.
+        const auto n = strnlen(reinterpret_cast<const char *>(b + 28), 28);
+        NSString *name = [[NSString alloc] initWithBytes:b + 28
+                                                  length:n
+                                                encoding:NSUTF8StringEncoding];
+        if (!name)
+          name = [[NSString alloc] initWithBytes:b + 28
+                                          length:n
+                                        encoding:NSMacOSRomanStringEncoding];
+        if (!name.length)
+          name = url.lastPathComponent.stringByDeletingPathExtension;
+        AUPreset preset{-1, (__bridge CFStringRef)name};
+        result = AudioUnitSetProperty(unit_, kAudioUnitProperty_PresentPreset,
+                                      kAudioUnitScope_Global, 0, &preset,
+                                      sizeof(preset));
+      }
     }
   }
   [self refresh:nil];

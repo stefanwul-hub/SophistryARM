@@ -55,6 +55,7 @@ int main(int argc, const char **argv) {
     OSStatus runtimePropertyStatus = noErr;
     UInt32 renderedFrames = 0;
     double peak = 0;
+    BOOL fxpNamePreserved = NO;
     BOOL screenshot = NO, unique = NO, aupreset = NO, fxp = NO, controls = NO,
          tabs = NO;
     [NSApplication sharedApplication];
@@ -150,6 +151,9 @@ int main(int argc, const char **argv) {
             renderStatus = runtimeStatus(unit, runtimePropertyStatus);
             // Check import only after the independent before-init render.
             fxp = [view loadPresetURL:[NSURL fileURLWithPath:fxpPath]];
+            fxpNamePreserved =
+                [[view sophistryEditorReport][@"status"][@"preset_name"]
+                    isEqualToString:@"BT_lightgarden_02"];
             aupreset = aupreset &&
                        [view loadPresetURL:[NSURL fileURLWithPath:statePath]];
             tabs = YES;
@@ -181,8 +185,8 @@ int main(int argc, const char **argv) {
             }
             viewReport = [view sophistryEditorReport];
             if (!failure &&
-                (!fxp || !aupreset || !controls || !tabs || rendered ||
-                 runtimePropertyStatus ||
+                (!fxp || !fxpNamePreserved || !aupreset || !controls || !tabs ||
+                 rendered || runtimePropertyStatus ||
                  [renderStatus[@"notes_received"] unsignedLongLongValue] != 1 ||
                  [renderStatus[@"render_calls"] unsignedLongLongValue] == 0 ||
                  peak <= 0.00001 || renderedFrames != 132300 ||
@@ -242,6 +246,7 @@ int main(int argc, const char **argv) {
       @"seven_tabs_filter_parameters" : @(tabs),
       @"editor_control_changes_original_au_parameter" : @(controls),
       @"fxp_imported" : @(fxp),
+      @"fxp_header_name_preserved" : @(fxpNamePreserved),
       @"aupreset_imported" : @(aupreset),
       @"native_view_snapshot_saved" : @(screenshot),
       @"view" : viewReport

@@ -1,6 +1,7 @@
 #include "LegacyEngine.h"
 #include "../lifter/LifterRuntime.h"
 #include "LegacyImageData.h"
+#include "PcmConversion.h"
 #include <algorithm>
 #include <array>
 #include <cctype>
@@ -124,6 +125,7 @@ struct LegacyEngine::Impl {
   };
   std::vector<AssetRootStatus> assetRootStatus;
   std::map<std::string, bool> assetOpenResults;
+  std::string lastOpenedAsset;
   std::set<U32> informationalAlerts;
   std::vector<std::string> loadAlerts;
   struct Timer {
@@ -133,8 +135,16 @@ struct LegacyEngine::Impl {
   U32 eventLoop = 0;
   std::map<U32, U32> upps;
   std::map<U32, Timer> timers;
+  struct PcmRecord {
+    PcmFormat source, destination;
+    std::string sample, error;
+    bool supported = false;
+    U64 frames = 0;
+  };
+  std::vector<PcmRecord> pcmRecords;
   struct Converter {
-    bool bigEndian = false;
+    PcmConversion conversion;
+    std::size_t record;
   };
   std::map<U32, Converter> converters;
   struct Conversion {
@@ -258,6 +268,50 @@ struct LegacyEngine::Impl {
   }
   template <class T> void put(U32 at, T v) { write(at, &v, sizeof(v)); }
   U32 word(U32 at) const { return read<U32>(at); }
+  PcmFormat pcmFormat(U32 at) const {
+    return {read<double>(at), word(at + 8),  word(at + 12),
+            word(at + 16),    word(at + 20), word(at + 24),
+            word(at + 28),    word(at + 32), word(at + 36)};
+  }
+  std::vector<PcmReadBuffer> pcmInput(U32 list, const PcmFormat &f,
+                                      U32 &frames) const {
+    if (word(list) != f.buffers())
+      throw std::runtime_error("PCM converter: unexpected input buffer count");
+    std::vector<PcmReadBuffer> result;
+    for (std::size_t i = 0; i < f.buffers(); ++i) {
+      const U32 b = list + 4 + U32(i) * 12;
+      // The original callback at 0xaef2c reports one channel even for its
+      // interleaved stereo buffer. The ASBD and frame stride are authoritative.
+      if (word(b) != f.bufferChannels() && word(b) != 1)
+        throw std::runtime_error("PCM converter: unexpected input channels");
+      frames = std::min(frames, word(b + 4) / f.bytesPerFrame);
+    }
+    for (std::size_t i = 0; i < f.buffers(); ++i) {
+      const U32 b = list + 4 + U32(i) * 12;
+      result.push_back(
+          {data(word(b + 8), U64(frames) * f.bytesPerFrame), word(b + 4)});
+    }
+    return result;
+  }
+  std::vector<PcmWriteBuffer> pcmOutput(U32 list, const PcmFormat &f,
+                                        U32 frames) {
+    if (word(list) != f.buffers())
+      throw std::runtime_error("PCM converter: unexpected output buffer count");
+    std::vector<PcmWriteBuffer> result;
+    for (std::size_t i = 0; i < f.buffers(); ++i) {
+      const U32 b = list + 4 + U32(i) * 12, p = word(b + 8);
+      if (word(b) != f.bufferChannels() ||
+          U64(frames) * f.bytesPerFrame > word(b + 4))
+        throw std::runtime_error("PCM converter: invalid output buffer");
+      bounds(p, U64(frames) * f.bytesPerFrame);
+      result.push_back({cpu->memory + p, word(b + 4)});
+    }
+    return result;
+  }
+  void recordConversion(const Converter &converter, U32 frames) {
+    if (converter.record < pcmRecords.size())
+      pcmRecords[converter.record].frames += frames;
+  }
   U32 reg(U32 at) const {
     U32 v;
     std::memcpy(&v, cpu->reg + at, 4);
@@ -1203,6 +1257,7 @@ void LegacyEngine::Impl::service(U32 pc) {
         f.data = readFile(resolved);
         if (assetOpenResults.count(basename))
           assetOpenResults[basename] = true;
+        lastOpenedAsset = basename;
         result = allocate(256);
         files.emplace(result, std::move(f));
       } else {
@@ -1290,30 +1345,57 @@ void LegacyEngine::Impl::service(U32 pc) {
   }
   // Conversion and floating ABI services follow in the final branches.
   else if (name == "_AudioConverterNew") {
-    U32 a = arg(0), b = arg(1);
-    if (word(a + 8) != 0x6c70636d || word(b + 8) != 0x6c70636d ||
-        read<double>(a) != read<double>(b) || word(a + 28) != 2 ||
-        word(b + 28) != 2 || word(a + 32) != 16 || !(word(a + 12) & 4) ||
-        (word(a + 12) & 1) || word(a + 16) != 4 || word(a + 24) != 4 ||
-        word(a + 20) != 1 || word(b + 12) != 0x29 || word(b + 32) != 32 ||
-        word(b + 16) != 4 || word(b + 24) != 4 || word(b + 20) != 1)
-      throw std::runtime_error("Unsupported PCM converter format");
-    const U32 token = allocate(32);
-    converters[token] = {bool(word(a + 12) & 2)};
-    put(arg(2), token);
+    const auto source = pcmFormat(arg(0)), destination = pcmFormat(arg(1));
+    const std::size_t record =
+        pcmRecords.size() < 64 ? pcmRecords.size() : std::size_t(-1);
+    if (record != std::size_t(-1))
+      pcmRecords.push_back(
+          {source, destination, lastOpenedAsset, {}, false, 0});
+    try {
+      PcmConversion conversion(source, destination);
+      const U32 token = allocate(32);
+      converters.emplace(token, Converter{conversion, record});
+      if (record != std::size_t(-1))
+        pcmRecords[record].supported = true;
+      put(arg(2), token);
+    } catch (const std::exception &e) {
+      if (record != std::size_t(-1))
+        pcmRecords[record].error = e.what();
+      throw;
+    }
   } else if (name == "_AudioConverterDispose") {
     if (!converters.erase(arg(0)))
       throw std::runtime_error("Unknown converter");
+  } else if (name == "_AudioConverterConvertBuffer") {
+    auto found = converters.find(arg(0));
+    if (found == converters.end())
+      throw std::runtime_error("Unknown PCM converter");
+    auto &c = found->second;
+    const auto &input = c.conversion.input(), &output = c.conversion.output();
+    if (input.buffers() != 1 || output.buffers() != 1 ||
+        arg(1) % input.bytesPerFrame)
+      throw std::runtime_error("PCM converter: invalid contiguous conversion");
+    const U32 frames = arg(1) / input.bytesPerFrame;
+    const U64 bytes = U64(frames) * output.bytesPerFrame;
+    if (bytes > word(arg(3)))
+      throw std::runtime_error("PCM converter: output buffer is too small");
+    bounds(arg(4), bytes);
+    c.conversion.convert({{data(arg(2), arg(1)), arg(1)}},
+                         {{cpu->memory + arg(4), word(arg(3))}}, frames);
+    put(arg(3), U32(bytes));
+    recordConversion(c, frames);
   } else if (name == "_AudioConverterFillComplexBuffer") {
     if (!pendingConversions.empty() || !converters.count(arg(0)))
       throw std::runtime_error("Invalid converter operation");
     U32 request = allocate(64), count = word(arg(3));
     put(request, count);
-    put(request + 4, U32(1));
-    put(request + 20, U32(0));
+    const U32 buffers = U32(converters.at(arg(0)).conversion.input().buffers());
+    const U32 description = request + 8 + buffers * 12;
+    put(request + 4, buffers);
+    put(description, U32(0));
     pendingConversions.push_back({sp, arg(0), request, arg(3), arg(4), count});
-    const std::array<U32, 6> args = {0x70000100,  arg(0),       request,
-                                     request + 4, request + 20, arg(2)};
+    const std::array<U32, 6> args = {0x70000100,  arg(0),      request,
+                                     request + 4, description, arg(2)};
     write(sp - 0x1000, args.data(), 24);
     reg(0x10, sp - 0x1000);
     cpu->pc = arg(1);
@@ -1325,28 +1407,17 @@ void LegacyEngine::Impl::service(U32 pc) {
     pendingConversions.pop_back();
     result = reg(0);
     if (!result) {
-      U32 count =
-              std::min({c.frames, word(c.request), word(c.request + 12) / 4}),
-          p = word(c.request + 16);
-      if (word(c.output) != 2)
-        throw std::runtime_error("Invalid converter output count");
-      const bool big = converters.at(c.converter).bigEndian;
-      bounds(p, std::size_t(count) * 4);
-      for (U32 channel = 0; channel < 2; ++channel) {
-        U32 entry = c.output + 4 + channel * 12, dst = word(entry + 8);
-        if (word(entry) != 1 || word(entry + 4) < U64(count) * 4)
-          throw std::runtime_error("Invalid converter output buffer");
-        bounds(dst, std::size_t(count) * 4);
-        for (U32 i = 0; i < count; ++i) {
-          U32 at = p + 4 * i + 2 * channel;
-          std::uint16_t v =
-              big ? (U32(cpu->memory[at]) << 8) | cpu->memory[at + 1]
-                  : U32(cpu->memory[at]) | (U32(cpu->memory[at + 1]) << 8);
-          put(dst + 4 * i, float(std::int16_t(v)) / 32768.0f);
-        }
-        put(entry + 4, count * 4);
-      }
+      auto &converter = converters.at(c.converter);
+      const auto &source = converter.conversion.input();
+      const auto &target = converter.conversion.output();
+      U32 count = std::min(c.frames, word(c.request));
+      const auto input = pcmInput(c.request + 4, source, count);
+      const auto output = pcmOutput(c.output, target, count);
+      converter.conversion.convert(input, output, count);
+      for (std::size_t i = 0; i < target.buffers(); ++i)
+        put(c.output + 8 + U32(i) * 12, count * target.bytesPerFrame);
       put(c.outCount, count);
+      recordConversion(converter, count);
     }
     reg(0x10, c.parentSp);
   } else {
@@ -1507,6 +1578,10 @@ void LegacyEngine::restoreChunk(const std::vector<std::uint8_t> &chunk,
     throw std::runtime_error("Invalid legacy state size");
   impl_->assetOpenResults.clear();
   impl_->loadAlerts.clear();
+  impl_->lastOpenedAsset.clear();
+  impl_->pcmRecords.clear();
+  for (auto &entry : impl_->converters)
+    entry.second.record = std::size_t(-1);
   impl_->write(0x600000, chunk.data(), chunk.size());
   // Exact guard used by the original LPAUSynth::RestoreState (0x3e30).
   // Suppress AU feedback while the original bank loader restores parameters.
@@ -1912,6 +1987,31 @@ std::string LegacyEngine::diagnosticJson() const {
     if (i)
       o << ',';
     o << jsonQuoted(impl_->loadAlerts[i]);
+  }
+  o << "],\"audio_conversions\":[";
+  auto format = [&](const PcmFormat &f) {
+    o << "{\"format\":" << f.format << ",\"flags\":" << f.flags
+      << ",\"sample_rate\":";
+    if (std::isfinite(f.sampleRate))
+      o << f.sampleRate;
+    else
+      o << "null";
+    o << ",\"channels\":" << f.channels << ",\"bits\":" << f.bits
+      << ",\"bytes_per_frame\":" << f.bytesPerFrame
+      << ",\"frames_per_packet\":" << f.framesPerPacket << '}';
+  };
+  for (std::size_t i = 0; i < impl_->pcmRecords.size(); ++i) {
+    if (i)
+      o << ',';
+    const auto &r = impl_->pcmRecords[i];
+    o << "{\"sample\":" << jsonQuoted(r.sample)
+      << ",\"supported\":" << (r.supported ? "true" : "false")
+      << ",\"frames_converted\":" << r.frames
+      << ",\"error\":" << jsonQuoted(r.error) << ",\"source\":";
+    format(r.source);
+    o << ",\"destination\":";
+    format(r.destination);
+    o << '}';
   }
   o << "],\"host_import_calls\":{";
   bool first = true;

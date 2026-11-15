@@ -9,6 +9,7 @@ from unicorn.x86_const import UC_X86_REG_EAX,UC_X86_REG_EDX,UC_X86_REG_EIP
 from compare_lifted_dsp import Native,Original
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
 from legacy_image import LegacyImage
+from pcm_reference import validate as validate_pcm, convert as convert_pcm
 class HostedNative(Native):
  # Yield at an unbound import and service it through an explicit host adapter.
  # The guest CPU and stack are retained; no original x86 bytes are decoded.
@@ -36,7 +37,7 @@ class Host:
   '__keymgr_get_and_lock_processwide_ptr_2','__keymgr_set_and_unlock_processwide_ptr','_dlopen','_random','_srandom','_srand','_rand','_time','_gettimeofday','_mach_timebase_info','_mach_absolute_time',
   '_GetMainEventLoop','_NewEventLoopTimerUPP','_InstallEventLoopTimer','_RemoveEventLoopTimer','_DisposeEventLoopTimerUPP','_SetEventLoopTimerNextFireTime',
   '_fopen','_fclose','_fread','_fseek','_ftell','_rewind','_feof','_ferror','_clearerr','_fflush','_fgetc','_getc','_fgets','_fgetpos','_fsetpos',
-  '_AudioConverterNew','_AudioConverterFillComplexBuffer','_AudioConverterDispose','<converter-input-return>','_FSFindFolder',
+  '_AudioConverterConvertBuffer','_AudioConverterNew','_AudioConverterFillComplexBuffer','_AudioConverterDispose','<converter-input-return>','_FSFindFolder',
   '_CFStringCreateWithCString','_CFStringCreateCopy','_CFStringGetLength','_CFStringGetCString','_CFStringGetCStringPtr','_CFStringCompare',
   '_CFStringGetSystemEncoding','_CFStringGetTypeID','_CFGetTypeID','_CFRetain','_CFRelease',
   '_CFPreferencesCopyAppValue','_CFPreferencesCopyValue','_CFPreferencesGetAppBooleanValue','_CFPreferencesGetAppIntegerValue','_CFPreferencesAppSynchronize',
@@ -55,7 +56,7 @@ class Host:
   self.sample_rate=44100;self.block_size=512;self.sample_position=0;self.time_info=0
   self.event_loop=0;self.timer_upps={};self.timers={}
   self.files={};self.opened_reference_files=[];self.file_requests=[];self.missing_directories=[];self.errno_pointer=0;self.private_preferences=None
-  self.converters={};self.pending_converters=[];self.conversion_records=[]
+  self.converters={};self.pending_converters=[];self.conversion_records=[];self.asset_directories=[]
   self.libm=ctypes.CDLL(ctypes.util.find_library('m'));self.math32={}
   for name in self.MATH32:
    fn=getattr(self.libm,name);fn.argtypes=[ctypes.c_float]*(2 if name in ['powf','atan2f','fmodf'] else 1);fn.restype=ctypes.c_float;self.math32[name]=fn
@@ -314,7 +315,8 @@ class Host:
    self.file_requests.append({'basename':basename,'mode':mode})
    if mode not in ['r','rb']:raise RuntimeError('Only read-only reference files are available in this host')
    choices=list((ROOT/'reference/Samples').glob('*'))+list((ROOT/'reference/Presets').glob('*'))
-   candidates=[p for p in choices if p.name.casefold()==basename.casefold()]
+   explicit=[p for folder in self.asset_directories for p in Path(folder).glob('*') if p.name.casefold()==basename.casefold()]
+   candidates=explicit or [p for p in choices if p.name.casefold()==basename.casefold()]
    if len(candidates)==1:
     data=candidates[0].read_bytes();result=self.alloc(256)
     self.files[result]={'data':data,'position':0,'eof':False,'error':False,'name':candidates[0].name}
@@ -366,10 +368,7 @@ class Host:
       self.b.write(arg(0),raw+b'\0');f['position']+=len(raw);result=arg(0)
   elif name=='_AudioConverterNew':
    source=struct.unpack('<d8I',self.b.read(arg(0),40));destination=struct.unpack('<d8I',self.b.read(arg(1),40))
-   # This fixture needs PCM16 packed stereo -> float32 noninterleaved stereo,
-   # at equal rates (the original passes zero for both rate fields).
-   if not (source[1]==destination[1]==0x6c70636d and source[0]==destination[0] and source[6]==destination[6]==2 and source[7]==16 and source[2]&4 and not source[2]&1 and source[3]==source[5]==4 and source[4]==1 and destination[2]==0x29 and destination[7]==32 and destination[3]==destination[5]==4 and destination[4]==1):
-    raise RuntimeError('Unsupported converter formats in the limited PCM reference adapter: '+repr((source,destination)))
+   validate_pcm(source,destination)
    token=self.alloc(32);self.converters[token]={'source':source,'destination':destination};self.put(arg(2),token)
   elif name=='_FSFindFolder':
    # Explicit limited test filesystem: no macOS support/preferences folders.
@@ -438,15 +437,27 @@ class Host:
   elif name=='_AudioConverterDispose':
    if arg(0) not in self.converters:raise ValueError('Unknown converter')
    del self.converters[arg(0)]
+  elif name=='_AudioConverterConvertBuffer':
+   if arg(0) not in self.converters:raise ValueError('Unknown converter')
+   context=self.converters[arg(0)];source=context['source'];destination=context['destination']
+   if source[6]>1 and source[2]&32 or destination[6]>1 and destination[2]&32:raise ValueError('Invalid contiguous conversion')
+   if arg(1)%source[5]:raise ValueError('Partial PCM frame')
+   frames=arg(1)//source[5];raw=self.b.read(arg(2),arg(1))
+   output=convert_pcm(source,destination,[raw],frames)[0]
+   if len(output)>self.word(arg(3)):raise ValueError('Small PCM output buffer')
+   self.b.write(arg(4),output);self.put(arg(3),len(output))
+   self.conversion_records.append({'frames':frames,'source':source,'destination':destination,'source_bytes_sha256':hashlib.sha256(raw).hexdigest(),'output_float32_channel_sha256':[hashlib.sha256(output).hexdigest()],'adapter':'Independent Python PCM; original mono converter call executed'})
   elif name=='_AudioConverterFillComplexBuffer':
    if self.pending_converters:raise RuntimeError('Nested converter operation')
    if arg(0) not in self.converters:raise ValueError('Unknown converter')
    count=self.word(arg(3));request=self.alloc(64)
-   self.put(request,count);self.put(request+4,1);self.put(request+20,0)
+   buffers=self.converters[arg(0)]['source'][6] if self.converters[arg(0)]['source'][2]&32 else 1
+   description=request+8+buffers*12
+   self.put(request,count);self.put(request+4,buffers);self.put(description,0)
    context={'parent_sp':sp,'converter':arg(0),'callback':arg(1),'userdata':arg(2),'out_count':arg(3),'output':arg(4),'request':request,'frames':count}
    self.pending_converters.append(context)
    child_sp=sp-0x1000
-   self.b.write(child_sp,struct.pack('<6I',0x70000100,arg(0),request,request+4,request+20,arg(2)))
+   self.b.write(child_sp,struct.pack('<6I',0x70000100,arg(0),request,request+4,description,arg(2)))
    self.b.setesp(child_sp);self.setpc(arg(1));return # Guest callback executes as normal lifted/original code.
   elif name=='<converter-input-return>':
    if not self.pending_converters:raise RuntimeError('Unexpected converter continuation')
@@ -454,20 +465,23 @@ class Host:
    if not status:
     request=context['request'];input_list=request+4
     count=min(context['frames'],self.word(request))
-    raw_size=self.word(input_list+8);raw_pointer=self.word(input_list+12)
-    count=min(count,raw_size//4);raw=self.b.read(raw_pointer,count*4)
-    samples=array.array('h');samples.frombytes(raw)
-    source=self.converters[context['converter']]['source']
-    if (bool(source[2]&2))!=(sys.byteorder=='big'):samples.byteswap()
+    source=self.converters[context['converter']]['source'];destination=self.converters[context['converter']]['destination']
+    buffers=source[6] if source[2]&32 else 1
+    if self.word(input_list)!=buffers:raise ValueError('Invalid PCM input buffer count')
+    for channel in range(buffers):
+     entry=input_list+4+12*channel
+     if self.word(entry) not in [1,1 if source[2]&32 else source[6]]:raise ValueError('Invalid PCM input channels')
+     count=min(count,self.word(entry+4)//source[5])
+    raw=[self.b.read(self.word(input_list+12+12*channel),count*source[5]) for channel in range(buffers)]
+    outputs=convert_pcm(source,destination,raw,count)
     output=context['output']
-    if self.word(output)!=2:raise ValueError('Unexpected converter output buffer count')
-    outputs=[]
-    for channel in range(2):
-     if self.word(output+4+12*channel)!=1 or self.word(output+8+12*channel)<count*4:raise ValueError('Invalid converter output buffer')
-     data=array.array('f',(v/32768.0 for v in samples[channel::2])).tobytes()
-     self.b.write(self.word(output+12+12*channel),data);self.put(output+8+12*channel,len(data));outputs.append(hashlib.sha256(data).hexdigest())
+    if self.word(output)!=len(outputs):raise ValueError('Invalid PCM output count')
+    for channel,data in enumerate(outputs):
+     entry=output+4+12*channel
+     if self.word(entry)!=(1 if destination[2]&32 else destination[6]) or self.word(entry+4)<len(data):raise ValueError('Invalid converter output buffer')
+     self.b.write(self.word(entry+8),data);self.put(entry+4,len(data))
     self.put(context['out_count'],count)
-    self.conversion_records.append({'callback':hex(context['callback']),'frames':count,'source_bytes_sha256':hashlib.sha256(raw).hexdigest(),'output_float32_channel_sha256':outputs,'adapter':'Exact PCM16 / 32768; no resampling; original guest input callback executed'})
+    self.conversion_records.append({'frames':count,'source':source,'destination':destination,'source_bytes_sha256':[hashlib.sha256(data).hexdigest() for data in raw],'output_float32_channel_sha256':[hashlib.sha256(data).hexdigest() for data in outputs],'adapter':'Independent Python PCM; original input callback executed'})
    self.b.setesp(context['parent_sp']);result=status
   if integer64 is not None:
    high=integer64>>32
@@ -604,7 +618,7 @@ def probe(library,output,construct=False,open_effect=False,preset=None,missing_l
   'registered_destructors':len(host.destructors),'guest_mutexes':host.mutexes,'mutex_adapter':'single-CPU state machine; no concurrent guest access; blocking operations stop the probe','math_adapter':'Python/platform math; not original Apple i386 libm','random_adapter':'Frozen BSD degree-31 stream, initial seed 1; shared test inputs, not an original-OS random capture','graphics_adapter':'Explicit unavailable-ColorSync-profile and CoreGraphics-bundle scenario; DeviceRGB is an opaque test handle, no rendering','unavailable_framework_bundles':host.unavailable_bundles,'unavailable_dynamic_libraries':host.unavailable_libraries,'original_global_destructor_registration_complete':False,'global_memory_sha256':None if private_mode else hashlib.sha256(backend.read(0xe2000,0x104000-0xe2000)).hexdigest(),
   'event_loop_adapter':'Registered timers only; no GUI events or timer callbacks pumped during initialization','registered_timers':host.timers,
   'filesystem_adapter':'Only provided reference assets, resolved by unique case-insensitive basename; read-only in-memory FILE objects; no mounted Mac directory namespace','file_requests':host.file_requests,'opened_reference_files':host.opened_reference_files,'unavailable_directory_basenames':host.missing_directories,
-  'audio_conversion_adapter':'Restricted exact PCM16 stereo to float32 stereo, same rate; not original Apple AudioConverter execution','audio_conversions':host.conversion_records,
+  'audio_conversion_adapter':'Equal-rate mono/stereo integer8/16/24/32 or float32/64 PCM to float32; independent Python codec, not original Apple AudioConverter','audio_conversions':host.conversion_records,
   'executed_code_missing_from_listing':[hex(pc) for pc in sorted(missing)],
   'full_engine_initialized':False,'preset_restored':False,'audio_rendered':False}
  output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(r,indent=2)+'\n')

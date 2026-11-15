@@ -1,0 +1,332 @@
+{
+  "scope": "public synthetic sample formats; original i386 vs standalone translated host; no licence or private inputs",
+  "passed": true,
+  "cases": [
+    {
+      "case": "wav-16-1",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 1,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "256a49b9e1f5c7d8ac2b688f35ac663d3e40426a76e6a8bd3c89a5e459efe18c"
+        },
+        {
+          "region": "heap",
+          "bytes": 3391824,
+          "sha256": "987c8d19be1382ae3d34d913750e3602641504328b5bfafb47851b6fe367a989"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "wav-24-1",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 1,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "862d372675f9e2f655f1fbcf21dc52996849ddd2ab7cd47d9b6bacac1fe00094"
+        },
+        {
+          "region": "heap",
+          "bytes": 3726480,
+          "sha256": "c49d0727f0dff1df447dadb786d5d03cf1d004c2dd0a69972f1359df9ab687ac"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "wav-24-2",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 1,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "5f13f4ee78aec23031888a2949e1a8711f3f422a95d04a926ff2ea376597b02a"
+        },
+        {
+          "region": "heap",
+          "bytes": 6069312,
+          "sha256": "e478eb0efa03c7b1b32fd8cdf9eaf6997705390d247fc28e2abd532e1f95da6d"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "wav-32-2",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 1,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "42a13c8b56bcf735e5ed9cb248025110c9a6abdef5634b5a4896fc8442f2167f"
+        },
+        {
+          "region": "heap",
+          "bytes": 6738624,
+          "sha256": "e6e5c244e18b2401445ac713b080c32b2464fbfb3aa4724e32ed55b287da9d50"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "wav-float-32-1",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 1,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "87428ccfaddc60dfca22e513b436d246cf11fa5796f4d961c88e7e19c2021779"
+        },
+        {
+          "region": "heap",
+          "bytes": 4061136,
+          "sha256": "be1176835e39e4c37171c792b1c6e5677da8e488b03e4f8f3bf1a8a0f37aedbf"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "wav-float-32-2",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 1,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "852e80bfbae7f7b771327d4724414513fe17d876f23225de259fc0e097a41664"
+        },
+        {
+          "region": "heap",
+          "bytes": 6738624,
+          "sha256": "ca74ae5cfbe0cb4e0ed0cb581150cd65c4046c94610ef4d3abe15dc2ddd4fe00"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "aiff-16-1",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 1,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "0849c44ceb2851233e45b4a3a2328cdf4320ca9f7888e636e2c7f7068aa01900"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "fe2232928cd6158ca58bb234bcb386d8671f9e0c990cef67a2ea93422154ce51"
+        },
+        {
+          "region": "heap",
+          "bytes": 3391776,
+          "sha256": "4bfb01bff0d4c75b6a8903fbcfadde7bf51717ed4f8a826a0377c5db3e8259b5"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "aiff-24-2",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 1,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "0849c44ceb2851233e45b4a3a2328cdf4320ca9f7888e636e2c7f7068aa01900"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "01bc774812733c310f466208dbddd9fca673c3700178976404eb374e38f9cd86"
+        },
+        {
+          "region": "heap",
+          "bytes": 6069264,
+          "sha256": "7cb82312ad8cdc8aea97ba745b1c8b01e0697cee7bf82435aedc42318cabfabf"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "d4u-32-1",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 1,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "e2a6d7fedd74e13bc16d8987d4968705af7dccef6d68583470f85f46a9782cfb"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "72bf42b2cc48964be554b7dde94bd1ed17234c23870209c96848f80503ccd208"
+        },
+        {
+          "region": "heap",
+          "bytes": 4061088,
+          "sha256": "4e1c2923b1ba51f4bdbe059fcb3b50153b4c8845cb5ef0c271188e0c067f6664"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "d4u-32-2",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 2,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "e2a6d7fedd74e13bc16d8987d4968705af7dccef6d68583470f85f46a9782cfb"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "72bf42b2cc48964be554b7dde94bd1ed17234c23870209c96848f80503ccd208"
+        },
+        {
+          "region": "heap",
+          "bytes": 6738592,
+          "sha256": "e4dd579a19125a3208ca6ed17737b7bb23c079de4a604a97841c93121aade066"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "d4t-32-1",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 1,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "124d4f79325b908f4c6c59608a5338336c080cd5e62120428fefae214f9e3ddb"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "f86a855f89be67908d960ddfd871b89cca30a895575d678851553017e2cdc34f"
+        },
+        {
+          "region": "heap",
+          "bytes": 4061088,
+          "sha256": "913fb0b6072d4bf8a4a9beec993f4fa8de71cb0ad874b49965edf8728e0544b9"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    },
+    {
+      "case": "d4t-32-2",
+      "all_regions_byte_exact": true,
+      "original_conversion_calls": 2,
+      "regions": [
+        {
+          "region": "chunk",
+          "bytes": 21072,
+          "sha256": "124d4f79325b908f4c6c59608a5338336c080cd5e62120428fefae214f9e3ddb"
+        },
+        {
+          "region": "object",
+          "bytes": 3407872,
+          "sha256": "f86a855f89be67908d960ddfd871b89cca30a895575d678851553017e2cdc34f"
+        },
+        {
+          "region": "heap",
+          "bytes": 6738592,
+          "sha256": "d335f481c3002df6e3757bd823fd070566d91d22cc74a43e8000023ac16ac498"
+        },
+        {
+          "region": "globals",
+          "bytes": 139264,
+          "sha256": "b8a60d52a1566361859695a4ece4579e7829c4bbbdbfaedeaded9996990aa10d"
+        }
+      ]
+    }
+  ],
+  "compared_regions": 48,
+  "native_apple_converter_test": "separate Mac primitive oracle, not executed here"
+}

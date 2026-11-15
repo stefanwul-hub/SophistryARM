@@ -1,0 +1,24 @@
+{
+  "checkpoint": "CP-020 user silent-project diagnostic",
+  "notes_received": 15,
+  "state_loaded": false,
+  "restore_status": -10851,
+  "restored_bytes": 21036,
+  "maximum_output": 1.37338e-07,
+  "registration_accepted": true,
+  "sample_found_and_opened": [
+    {
+      "name": "072_Sample2_cronox3.D4U",
+      "opened": true
+    }
+  ],
+  "error": "Unsupported PCM converter format",
+  "original_loader_analysis": {
+    "function": "0xb2a2a",
+    "D4U_D4T_channel_layout": "each channel read separately as little-endian float32",
+    "per_channel_converter": "0xaedb0 calls AudioConverterConvertBuffer",
+    "source_asbd_flags": 13,
+    "destination_asbd_flags": 9
+  },
+  "private_key_or_raw_project_state_included": false
+}

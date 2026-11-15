@@ -142,6 +142,10 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
   }
   void loadChunk(const std::vector<std::uint8_t> &bytes, bool program,
                  bool countAttempt = true) {
+    const auto previousLabel =
+        bytes == lastRestoredChunk_ && program == lastRestoredProgram_
+            ? lastKnownPresetName_
+            : std::string();
     lastRestoredChunk_ = bytes;
     lastRestoredProgram_ = program;
     if (countAttempt)
@@ -152,6 +156,9 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
     engine_.restoreChunk(bytes, program);
     syncParameters();
     lastKnownPresetName_ = engine_.presetName();
+    if ((lastKnownPresetName_.empty() || lastKnownPresetName_ == "empty") &&
+        !previousLabel.empty())
+      lastKnownPresetName_ = previousLabel;
     stateLoaded_ = true;
     lastRestoreStatus_ = noErr;
     notesReceived_ = renderCalls_ = 0;
@@ -207,6 +214,14 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
   }
 
 public:
+  OSStatus NewCustomPresetSet(const AUPreset &preset) override {
+    return guarded([&]() -> OSStatus {
+      const auto status = Base::NewCustomPresetSet(preset);
+      if (!status && preset.presetName)
+        lastKnownPresetName_ = text(preset.presetName);
+      return status;
+    });
+  }
   explicit SophistryAU(AudioComponentInstance instance)
       : Base(instance, 0, 1), config_(configuration()),
         engine_(config_.engine) {

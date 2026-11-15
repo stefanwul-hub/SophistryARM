@@ -1,5 +1,5 @@
 #!/bin/bash
-# CP-020: test installation with original registration, verified backup and rollback.
+# CP-021: test installation with original registration, verified backup and rollback.
 set +x
 set -euo pipefail
 umask 077
@@ -102,7 +102,7 @@ collect(){
   done
   printf '%s\n' "$result" > "$REPORT/script-exitcode.txt"
   printf '%s\n' "$stage" > "$REPORT/last-stage.txt"
-  printf '{"checkpoint":"CP-020","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"local_editor_and_audio_passed":%s,"remote_host_view_and_audio_passed":%s,"script_exitcode":%s,"original_ui_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
+  printf '{"checkpoint":"CP-021","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"local_editor_and_audio_passed":%s,"remote_host_view_and_audio_passed":%s,"script_exitcode":%s,"original_ui_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
     "$(if [[ "$committed" -eq 1 ]]; then echo true;else echo false;fi)" "$rollback_ok" \
     "$(if [[ "$settings_confirmed" -eq 1 ]]; then echo true;else echo false;fi)" \
     "$(if [[ "${auval_passed:-0}" -eq 1 && "${registered_audio_passed:-0}" -eq 1 ]]; then echo true;else echo false;fi)" \
@@ -110,14 +110,14 @@ collect(){
     "$(if [[ "${remote_host_passed:-0}" -eq 1 ]]; then echo true;else echo false;fi)" \
     "$result" > "$REPORT/result.json"
   if [[ "$result" -ne 0 ]]; then
-    printf '%s\n' "Installation CP020 non confirmée : $stage (code $result)."
+    printf '%s\n' "Installation CP021 non confirmée : $stage (code $result)."
     if [[ "$installation_started" -eq 1 && "$committed" -eq 0 && "$rollback_ok" == true ]]; then
-      echo 'Le composant précédent a été restauré : la nouvelle interface CP020 n’est donc pas installée.'
+      echo 'Le composant précédent a été restauré : la nouvelle interface CP021 n’est donc pas installée.'
     elif [[ "$installation_started" -eq 0 ]]; then
       echo 'Le composant installé auparavant a été conservé.'
     fi
   fi
-  archive="$ROOT/Sophistry-rapports-CP020-$STAMP.zip"
+  archive="$ROOT/Sophistry-rapports-CP021-$STAMP.zip"
   (cd "$REPORT"; /usr/bin/zip -q "$archive" ./*.json ./*.txt ./*.log ./*.wav ./*.png 2>/dev/null || true)
   printf '\n%s\n' "Rapports : $archive"
   printf '%s\n' "Restauration autonome : $PRIVATE/Restaurer-Sophistry.command"
@@ -130,7 +130,7 @@ collect(){
 trap collect EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
-echo 'Sophistry CP-020 — installation de test ARM64 avec sauvegarde et validation AU'
+echo 'Sophistry CP-021 — installation de test ARM64 avec sauvegarde et validation AU'
 echo 'Cette version ajoute une première vue Cocoa avec état du son et choix de banque. Testez des copies de vos projets.'
 /usr/bin/sw_vers
 /usr/bin/uname -m
@@ -146,6 +146,8 @@ stage='replays et régression du moteur AU'
 "$CORE/InstructionProbe" "$ROOT/reference/Sophistry.i386" "$ROOT/evidence/primitive-instructions.fixtures" > "$REPORT/instruction-replay.json"
 "$BUILD/NativeAUBridgeProbe" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$ROOT/reference/Samples" > "$REPORT/bridge-regression.json" 2> "$REPORT/bridge-errors.log"
 "$BUILD/NativeBankDiagnosticsProbe" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$ROOT/reference/Samples" "$ROOT/work/unavailable-bank-fixture" > "$REPORT/bank-diagnostics.json" 2> "$REPORT/bank-diagnostics.log"
+stage='validation PCM avec la référence Core Audio native'
+"$BUILD/PcmConversionProbe" > "$REPORT/pcm-conversion.json" 2> "$REPORT/pcm-conversion.log"
 stage='configuration locale de la banque et de la licence'
 bank_options=(--backup-directory "$PRIVATE" --asset-directory "$ROOT/reference/Samples")
 if [[ "$choose_bank" -eq 1 ]]; then bank_options+=(--choose-bank);fi
@@ -183,6 +185,15 @@ for channels in 2 6; do
   "$BUILD/AudioUnitFactoryProbe" --bundle "$BUILD/Sophistry.component" --state "$state" --contract "$contract" --channels "$channels" --output-prefix "$REPORT/preflight-$channels" > "$REPORT/preflight-$channels.log" 2>&1
   "$REFERENCE_PYTHON" "$ROOT/tests/probe_au_render.py" --state "$state" --channels "$channels" --seconds 3 --local-mac-preferences --output "$REPORT/original-$channels.json" > "$REPORT/original-$channels.log" 2>&1
   /usr/bin/cmp "$REPORT/preflight-$channels.wav" "$REPORT/original-$channels.wav" > "$REPORT/preflight-comparison-$channels.txt" 2>&1
+done
+stage='génération des fixtures publiques de formats de samples'
+FORMATS="$ROOT/work/sample-formats"
+"$SYSTEM_PYTHON" "$ROOT/tests/generate_sample_formats.py" "$FORMATS" > "$REPORT/sample-formats-generation.json" 2>&1
+for format in d4u-32-1 d4u-32-2; do
+  stage="rendu D4U par moteur AU et référence originale : $format"
+  "$BUILD/host/NativeEngineProbe" --state "$FORMATS/$format/program.aupreset" --asset-directory "$FORMATS/$format" --au-channels 2 --render 3 --local-mac-preferences --output-prefix "$REPORT/format-$format-native" > "$REPORT/format-$format-native.log" 2>&1
+  "$REFERENCE_PYTHON" "$ROOT/tests/probe_au_render.py" --state "$FORMATS/$format/program.aupreset" --asset-directory "$FORMATS/$format" --channels 2 --seconds 3 --local-mac-preferences --output "$REPORT/format-$format-original.json" > "$REPORT/format-$format-original.log" 2>&1
+  /usr/bin/cmp "$REPORT/format-$format-native.wav" "$REPORT/format-$format-original.wav" > "$REPORT/format-$format-comparison.txt" 2>&1
 done
 stage='prévalidation de la vue Cocoa et des commandes de presets'
 "$SYSTEM_PYTHON" - "$BUILD/AudioUnitEditorProbe" "$BUILD/Sophistry.component" "$state" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$REPORT/editor" > "$REPORT/editor.log" 2>&1 <<'PY'
@@ -242,13 +253,13 @@ except subprocess.TimeoutExpired:
 if result.returncode: raise SystemExit(result.returncode)
 r=json.load(open(sys.argv[2]))
 if not (r['current_checkpoint_loaded'] and r['cocoa_property_available'] and r['registered_matches']==1):
-    raise SystemExit('L’inspection finale ne confirme pas la version CP020 et sa propriété Cocoa.')
+    raise SystemExit('L’inspection finale ne confirme pas la version CP021 et sa propriété Cocoa.')
 PY
 stage='confirmation de l’installation vérifiée'
 /usr/bin/sudo -- "$SYSTEM_PYTHON" "$PRIVATE/ComponentTransaction.py" commit --transaction "$TRANSACTION" > "$REPORT/component-commit.json" 2>&1
 committed=1
 stage='installation de test terminée'
 echo 'Le candidat ARM64 est installé dans /Library/Audio/Plug-Ins/Components/Sophistry.component.'
-echo 'Installation CP020 confirmée : auval, éditeur local, hôte séparé avec vue système et comparaisons audio passent.'
+echo 'Installation CP021 confirmée : auval, éditeur local, hôte séparé avec vue système et comparaisons audio passent.'
 echo 'Le rappel sonore des projets et la fenêtre relayée par Logic/Live restent à vérifier sur des copies.'
 exit 0

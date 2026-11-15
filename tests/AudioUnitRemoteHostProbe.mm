@@ -103,6 +103,7 @@ int main(int argc, const char **argv) {
         if (!unit)
           throw std::runtime_error("Remote instantiation returned no instance");
         UInt32 bytes = sizeof(remote);
+        remoteQueried = true;
         remoteStatus =
             AudioUnitGetProperty(unit, kAudioUnitProperty_LoadedOutOfProcess,
                                  kAudioUnitScope_Global, 0, &remote, &bytes);
@@ -313,7 +314,7 @@ int main(int argc, const char **argv) {
           reportedVersion = marker;
         versionMatches = [reportedVersion isEqualToString:expected];
         if (!versionMatches)
-          throw std::runtime_error("Standard AU state does not identify CP020; "
+          throw std::runtime_error("Standard AU state does not identify CP021; "
                                    "cached or unexpected remote code");
         NSData *bank = savedState[@"vstdata"];
         if (![bank isKindOfClass:NSData.class])
