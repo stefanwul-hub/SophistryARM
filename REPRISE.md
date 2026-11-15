@@ -1,3 +1,9 @@
+# Reprendre à CP-017 — auval et installation CP-016 confirmés sur le Mac
+
+Rapport Sophistry-rapports-CP016-20261115T124240Z.zip reçu. Lire evidence/mac-cp016-installed-au.json. Code testé f582f492ea3f26854e33d738ec0c19ff12ac7eb1. Compilation/signature/install système, auval(exit0,522paramètres), licence persistée/relecture fraîche et six WAV original/préflight/enregistré 2/6canaux exacts. Empreintes identiques aux CP013/15. L’installation est conservée et la clé reste enregistrée. Warning non bloquant : pas de channel layout pour6canaux. Le composant est fonctionnel sur le scénario fourni, couverture moteur/banque entière non démontrée.
+
+L’utilisateur teste des anciens projets dans Logic pendant que nous poursuivons l’interface. Ne pas marquer le rappel Logic réussi avant son retour, ne pas lui demander de remplacer le composant pendant ses essais. Continuer depuis les ressources graphiques originales et les constructeurs KajaEditor (55064,5efe2,5cce8 et sous-panneaux). Interface générique uniquement dans CP016 installé ; ne pas prétendre que l’interface fidèle existe déjà. Les anciennes notes d’attente CP016 ci-dessous sont historiques.
+
 # Reprendre à CP-016 — corrections du rapport CP-015, nouveau test Mac à effectuer
 
 Lanceur immuable téléchargé et vérifié : https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/3b81d8b39548536d1f8511e473fae3f8ee7dc141/Demarrer-Sophistry-CP016.command ; SHA256 8ca10a9dc3cd9678d1a22ecfe71c8419b48a20a5c9facc057d8976ea7203130e.

@@ -23,3 +23,5 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-011 — hôte C++ et contrat de paramètres AU** : hôte C++ autonome, import/sérialisation et régions mémoire exacts sous Linux natif et ARM64/QEMU ; métadonnées des 522 paramètres et 56 alias de validation vérifiés sur les routines originales/traduites. Test Mac avec licence saisie localement et comparaison i386 prévue, non encore exécuté. Licence invalide refusée, captures mémoire privées désactivées. Aucun AU installable.
 
 - **CP-016 — retour CP-015 et corrections auval** : compilation/persistance de licence et audio préflight confirmés sur Mac, auval échoué et rollback confirmé. Propriété33 raccordée à l’original (596cas), initialisation192k/4096 débloquée et réglages validés conservés après échec. Prochain auval Mac et rappel de projets à vérifier.
+
+- **CP-017 — Mac CP-016 confirmé** : auval et installation ARM64 réussis, 522 paramètres validés, six WAV originaux/prévalidation/enregistrés exacts. Licence persistée puis réutilisée. L’utilisateur teste ses projets Logic ; interface fidèle en développement.

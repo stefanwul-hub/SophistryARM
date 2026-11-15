@@ -1,0 +1,77 @@
+{
+  "checkpoint": "CP-017 verification of CP-016 Mac report",
+  "tested_source_commit": "f582f492ea3f26854e33d738ec0c19ff12ac7eb1",
+  "report_zip_sha256": "62ad65f8436eb4c2420edf8e6e84ceaa9944cdbcae0efc413f3e01658cd2a3b5",
+  "platform": "macOS 15.7.2 ARM64; Apple clang17",
+  "native_component_compiled_signed_and_installed": true,
+  "system_component_path": "/Library/Audio/Plug-Ins/Components/Sophistry.component",
+  "identity": "aumu/Sop3/LinP",
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  "auval_parameter_passes": 522,
+  "auval_nonfatal_warning": "Multi-channel output has no declared channel layout",
+  "private_registration_accepted_and_persisted": true,
+  "private_registration_reloaded_fresh_process": true,
+  "registered_renders_use_existing_preferences_without_private_stdin": true,
+  "validated_settings_retained": true,
+  "au_factory_checks": [
+    "expected candidate loads through system AU registry",
+    "522 parameter IDs, names, units, ranges and defaults match original",
+    "596 original property-33 cases match, including clamping, current values and null strings",
+    "old vstdata restores and serialized AU state round-trips in memory",
+    "3 seconds of finite audible audio through AudioUnitRender",
+    "initialize, uninitialize and change between 2 and 6 channels",
+    "initialize/render at 22050/64, 96000/137, 48000/4096, 192000/4096"
+  ],
+  "audio": {
+    "2": {
+      "preflight_original_registered_byte_exact": true,
+      "frames": 132300,
+      "finite_float32_samples": 264600,
+      "sample_rate": 44100,
+      "wav_bytes": 1058444,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39",
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "performance": {
+        "preflight": {
+          "render_wall_seconds": 0.601755167,
+          "maximum_render_call_seconds": 0.004680917
+        },
+        "registered": {
+          "render_wall_seconds": 0.59959075,
+          "maximum_render_call_seconds": 0.003606667
+        }
+      }
+    },
+    "6": {
+      "preflight_original_registered_byte_exact": true,
+      "frames": 132300,
+      "finite_float32_samples": 793800,
+      "sample_rate": 44100,
+      "wav_bytes": 3175244,
+      "wav_sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134",
+      "pcm_sha256": "7d65849399b6ce47896a63b732eaad749254366ea044173e5e64fa75b1ea1315",
+      "performance": {
+        "preflight": {
+          "render_wall_seconds": 0.60653325,
+          "maximum_render_call_seconds": 0.003371708
+        },
+        "registered": {
+          "render_wall_seconds": 0.603162042,
+          "maximum_render_call_seconds": 0.003222542
+        }
+      }
+    }
+  },
+  "private_keys_preferences_paths_in_evidence": false,
+  "original_gui_complete": false,
+  "logic_project_recall_verified": false,
+  "logic_project_recall_user_testing_in_progress": true,
+  "ableton_project_recall_verified": false,
+  "all_presets_and_engine_paths_verified": false
+}

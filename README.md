@@ -1,10 +1,12 @@
-# Sophistry — checkpoint CP-016
+# Sophistry — checkpoint CP-017
+
+**CP-017 : le rapport Mac CP-016 confirme la réussite d’auval et l’installation système ARM64.** Les six WAV reçus ont été revérifiés : prévalidation, référence originale et composant enregistré sont identiques pour chaque configuration stéréo/six canaux. La licence enregistrée est relue sans saisie par les processus de rendu. Voir [la preuve anonymisée](evidence/mac-cp016-installed-au.json). L’utilisateur teste actuellement ses anciens projets dans Logic ; leur rappel reste en attente de son résultat. Le développement de l’interface d’origine continue.
 
 **Le premier candidat Audio Unit ARM64 a maintenant été compilé, signé et exécuté sur le Mac utilisateur.** Le rapport CP-013 confirme le chargement de la factory, les 522 métadonnées et deux rendus AU musicaux byte-exact contre les instructions originales. L’interface Sophistry, auval et la réouverture des projets restent à terminer.
 
 Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x86-64. L’identité à conserver pour les anciens projets AU est `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`.
 
-**CP-016 : correctifs du rapport Mac CP-015.** La licence a bien été enregistrée et relue ; CP-015 l’a ensuite annulée en restaurant les préférences après l’échec d’auval. CP-016 conserve les réglages dès leur validation dans un nouveau processus. Il corrige aussi la propriété valeur/texte de 99 paramètres et la limite interrompant l’initialisation à 192 kHz. Les 596 cas de texte correspondent aux routines originales. Voir [CP-016](docs/CP016.md) et [le rapport Mac CP-015 anonymisé](evidence/mac-cp015-installation.json). Le nouvel auval Mac reste à effectuer ; interface générique et rappel Logic/Live non validé.
+**CP-016 : correctifs du rapport Mac CP-015.** La licence a bien été enregistrée et relue ; CP-015 l’a ensuite annulée en restaurant les préférences après l’échec d’auval. CP-016 conserve les réglages dès leur validation dans un nouveau processus. Il corrige aussi la propriété valeur/texte de 99 paramètres et la limite interrompant l’initialisation à 192 kHz. Les 596 cas de texte correspondent aux routines originales. Voir [CP-016](docs/CP016.md) et [le rapport Mac CP-015 anonymisé](evidence/mac-cp015-installation.json). Ces correctifs ont passé auval sur le Mac dans le rapport CP-016 ; interface générique et rappel Logic/Live non validé.
 
 [Télécharger le lanceur CP-016](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/3b81d8b39548536d1f8511e473fae3f8ee7dc141/Demarrer-Sophistry-CP016.command), puis lancer `bash "$HOME/Downloads/Demarrer-Sophistry-CP016.command"`, sans sudo. Le lanceur vérifie l’archive épinglée ; les droits sont demandés au remplacement du composant.
 
