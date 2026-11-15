@@ -3,8 +3,7 @@
 # with a stub carrying the same AudioComponent identity: it could damage recall.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
-echo 'Checkpoint CP-009 : code interne détecté émis en C++, intégration complète du moteur et de vstdata encore absente.' >&2
-echo 'Aucun Sophistry.component ARM64 installable ne peut être construit depuis ce checkpoint.' >&2
-echo 'L’installation et le remplacement du composant existant sont donc désactivés.' >&2
-echo "Utilisez : $ROOT/Verifier-Mac.command pour compiler les tests et collecter les diagnostics." >&2
+echo 'CP-013 construit un premier candidat Sophistry.component ARM64, encore sans validation AU sur Mac.' >&2
+echo 'Le rappel Logic/Live et l’interface Sophistry ne sont pas validés ; le remplacement système reste bloqué.' >&2
+echo "Utilisez : bash \"$ROOT/Verifier-AU-Mac.command\" pour compiler et tester le candidat sans installation." >&2
 exit 78

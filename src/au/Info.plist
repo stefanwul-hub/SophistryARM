@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>CFBundleDevelopmentRegion</key><string>English</string>
+  <key>CFBundleExecutable</key><string>Sophistry</string>
+  <key>CFBundleIdentifier</key><string>com.linplug.au.Sophistry</string>
+  <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+  <key>CFBundleName</key><string>Sophistry</string>
+  <key>CFBundlePackageType</key><string>BNDL</string>
+  <key>CFBundleShortVersionString</key><string>3.0.8</string>
+  <key>CFBundleVersion</key><string>13001</string>
+  <key>LSMinimumSystemVersion</key><string>11.0</string>
+  <key>AudioComponents</key><array><dict>
+    <key>name</key><string>LinPlug: Sophistry</string>
+    <key>description</key><string>Sophistry CP-013 experimental native port</string>
+    <key>manufacturer</key><string>LinP</string>
+    <key>type</key><string>aumu</string>
+    <key>subtype</key><string>Sop3</string>
+    <key>version</key><integer>196616</integer>
+    <key>factoryFunction</key><string>SophistryAUFactory</string>
+  </dict></array>
+</dict></plist>

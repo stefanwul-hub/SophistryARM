@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-012",
+  "checkpoint": "CP-013",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -34,14 +34,13 @@
   "logic_projects_verified": false,
   "ableton_projects_verified": false,
   "install_allowed": false,
-  "implemented_dsp_scope": "191378 static translated instructions with native C++ diagnostic host; FXP/AU restore, serialization and memory regions match original references under native Linux and ARM64/Linux/QEMU. Full audible sound and AU integration are not validated.",
-  "arm64_scope": "CP-010: all 366 runtime/generated objects compiled as Mach-O ARM64; 704 DSP and 11635 instruction/guard replays pass under ARM64/Linux/QEMU. No CP-010 execution on macOS; user Mac results concern CP-008.",
+  "implemented_dsp_scope": "191378 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
+  "arm64_scope": "CP-011 user Mac: core and host executables compiled/executed ARM64, 704 DSP and 11635 primitive/guard replays passed; licensed FXP render byte-exact for one scenario. CP-013 AU bridge awaits Mac execution.",
   "next_work": [
-    "Implement and test native AU bridge using the original AU bus and parameter contract",
-    "Finish production host lifecycle, sample paths/formats and local registration persistence",
-    "Implement native interface with original resources and commands",
-    "Validate candidate AU on Mac with auval and state/audio probes before system replacement",
-    "Test copies of old Logic/Live projects"
+    "Compile and execute the uninstalled candidate AU factory on the user Mac",
+    "Compare licensed native AU audio with both direct C++ AU mode and original AU instruction reference",
+    "Complete GUI, local registration persistence, sample paths/formats, production lifecycle and real-time suitability",
+    "Run auval on a backed-up installation and test copies of old Logic/Live projects"
   ],
   "state_container_reader_implemented": true,
   "state_container_round_trip_tested": [
@@ -57,7 +56,7 @@
   "sample_used_for_full_synth_audio_test": true,
   "sample_sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050",
   "static_lifter_implemented": true,
-  "static_lifter_scope": "191378 static translated instructions with native C++ diagnostic host; FXP/AU restore, serialization and memory regions match original references under native Linux and ARM64/Linux/QEMU. Full audible sound and AU integration are not validated.",
+  "static_lifter_scope": "191378 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
   "static_lifter_test_cases": 704,
   "static_lifter_bit_exact_vs_unicorn": true,
   "static_lifter_original_apple_libm_tested": false,
@@ -65,7 +64,7 @@
   "static_lifter_arm64_linux_executed_under_qemu": true,
   "static_lifter_arm64_qemu_fixture_cases": 704,
   "static_lifter_macos_objects_compiled": true,
-  "static_lifter_macos_executed": false,
+  "static_lifter_macos_executed": true,
   "static_lifter_compared_bytes": 5420672,
   "static_lifter_x87_conversion_cases": 20000,
   "isolated_schrader_audio_seconds": 3,
@@ -143,5 +142,27 @@
   "native_cpp_host_macos_execution_confirmed": true,
   "one_full_preset_audio_reference_case_passed": true,
   "full_preset_sound_scope": "Lightgarden 02 BT FXP, note 60 velocity 100, 3 s, six VST output channels at 44100 Hz / blocks 512; native ARM64 and original i386 instructions share modern platform services",
-  "mac_licensed_audio_evidence": "evidence/mac-cp011-licensed-render.json"
+  "mac_licensed_audio_evidence": "evidence/mac-cp011-licensed-render.json",
+  "audio_unit_bridge_source_available": true,
+  "au_bus_layout_original_constructed_and_compared": true,
+  "au_supported_configurations": [
+    {
+      "inputs": 0,
+      "outputs": 2
+    },
+    {
+      "inputs": 0,
+      "outputs": 6
+    }
+  ],
+  "au_bridge_macos_executed": false,
+  "au_framework_linux_differential_evidence": "evidence/au-render-comparison-cp013.json",
+  "au_factory_probe_available": true,
+  "au_candidate_macho_arm64_crosslinked": true,
+  "au_candidate_factory_export_verified": true,
+  "au_bridge_arm64_linux_qemu_regression_passed": true,
+  "au_bridge_parameter_records_tested": 522,
+  "au_bridge_reinitialization_cycles_tested": 4,
+  "au_native_gui_status": "Generic AU controls only; faithful Sophistry Cocoa interface remains unimplemented",
+  "install_block_reason": "Candidate has not executed through Apple AU APIs; GUI, auval and DAW project recall remain incomplete"
 }

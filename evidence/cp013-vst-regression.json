@@ -1,0 +1,53 @@
+{
+  "scope": "Default CP-011 C++ host behavior unchanged by new optional AU mode",
+  "regions": [
+    {
+      "scenario": "fxp",
+      "region": "object",
+      "bytes": 3407872,
+      "byte_exact": true
+    },
+    {
+      "scenario": "fxp",
+      "region": "heap",
+      "bytes": 5366192,
+      "byte_exact": true
+    },
+    {
+      "scenario": "fxp",
+      "region": "globals",
+      "bytes": 139264,
+      "byte_exact": true
+    },
+    {
+      "scenario": "fxp",
+      "region": "chunk",
+      "bytes": 21072,
+      "byte_exact": true
+    },
+    {
+      "scenario": "aupreset",
+      "region": "object",
+      "bytes": 3407872,
+      "byte_exact": true
+    },
+    {
+      "scenario": "aupreset",
+      "region": "heap",
+      "bytes": 5367472,
+      "byte_exact": true
+    },
+    {
+      "scenario": "aupreset",
+      "region": "globals",
+      "bytes": 139264,
+      "byte_exact": true
+    },
+    {
+      "scenario": "aupreset",
+      "region": "chunk",
+      "bytes": 21032,
+      "byte_exact": true
+    }
+  ]
+}

@@ -1,14 +1,16 @@
-# Sophistry — checkpoint CP-012
+# Sophistry — checkpoint CP-013
 
-**Le plugin Audio Unit ARM64 complet n’est pas encore obtenu. Ce paquet contient le travail de portage et ses preuves ; il ne doit pas remplacer l’ancien `.component`.**
+**Un premier candidat Audio Unit ARM64 est maintenant construit et lié. Son exécution AU sur Mac, son interface Sophistry et le rappel des projets restent à valider. Ce checkpoint teste le candidat sans remplacer l’ancien `.component`.**
 
 Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x86-64. L’identité à conserver pour les anciens projets AU est `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`.
+
+**CP-013 : premier candidat AU.** Le constructeur et le contrat AU originaux sont récupérés (un bus 2/6 canaux, 522 paramètres). Les chemins MIDI, rendu, reset et réinitialisation sont intégrés. Les tests du pont passent sous Linux natif et ARM64/Linux/QEMU ; le candidat Mach-O ARM64 et sa factory sont liés. Le [test Mac CP-013](docs/CP013.md) compile localement le `.component`, teste sa factory sans installation et compare ses WAV au moteur direct et aux instructions AU originales, avec la licence saisie uniquement sur le Mac. Le lanceur sera épinglé à l’archive publiée de ce checkpoint.
 
 **CP-012 : premier rendu du preset complet vérifié sur le Mac utilisateur.** Le code C++ statiquement traduit compile et s’exécute en ARM64 sur macOS 15.7.2 avec la licence saisie localement. Le FXP Lightgarden fourni produit un WAV de trois secondes identique aux instructions i386 originales exécutées dans l’hôte de référence : 793800 valeurs float32, aucun octet différent. Les 704 cas DSP, 11635 cas d’instructions/gardes et les deux sérialisations passent aussi. Ce résultat valide ce scénario ; l’Audio Unit installable et le rappel des anciens projets restent à terminer.
 
 Lire [le rapport CP-011](docs/CP011.md) pour le test Mac avec saisie locale de la licence, les preuves et les limites. [CP-010](docs/CP010.md) et [CP-009](docs/CP009.md) sont conservés comme historique. Le nouvel hôte C++ est maintenant compilé et exécuté sur le Mac ; voir [la preuve CP-012](evidence/mac-cp011-licensed-render.json). Les autres résultats historiques restent datés.
 
-Le [lanceur CP-011](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP011.command) télécharge une archive épinglée, contrôle son SHA-256, la décompacte et appelle `Verifier-Moteur-Mac.command`. Il conserve les sources et builds dans `~/Documents/SophistryARM-CP011`. La licence se saisit localement dans le Terminal ; ne pas l’envoyer dans le chat ou sur GitHub. Le composant installable reste à réaliser.
+Le [lanceur CP-011](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP011.command) télécharge une archive épinglée, contrôle son SHA-256, la décompacte et appelle `Verifier-Moteur-Mac.command`. Il conserve les sources et builds dans `~/Documents/SophistryARM-CP011`. La licence se saisit localement dans le Terminal ; ne pas l’envoyer dans le chat ou sur GitHub. Le candidat CP-013 se teste maintenant avec `Verifier-AU-Mac.command` ; l’installation système reste bloquée.
 
 ## Travail effectué
 
@@ -33,7 +35,7 @@ Le replay principal réinjecte les réponses `log10` et `pow` enregistrées avec
 
 Les rapports détaillés reçus confirment aussi **sept octets d’état interne différents et zéro octet différent dans les buffers audio comparés** sur le Mac ARM64, avec le même détail d’adresses et de valeurs que sous Linux/musl. Ils concernent les cas de filtre stéréo 117 et 123. Le replay avec les réponses mathématiques enregistrées passe ; la variation apparaît dans le mode séparé utilisant les fonctions mathématiques de la plateforme. La comparaison stricte reste en échec, car les états différents peuvent influer sur la suite. L’ancien libm Apple i386 n’est pas exécuté : les fixtures mathématiques Linux ne sont pas présentées comme une preuve de ses résultats. Voir `evidence/mac-cp008-native-math-details.json`.
 
-`auval` a renvoyé 2 avec « didn't find the component » pour `aumu/Sop3/LinP`. Aucun nouveau composant n’a été construit ou validé.
+`auval` a renvoyé 2 avec « didn't find the component » pour `aumu/Sop3/LinP`. Ce résultat historique CP-008 ne concerne pas le candidat CP-013, qui n’a pas encore été exécuté dans les API AU de macOS.
 
 Le PCM du WAV est décodé selon la convention PCM16 standard pour les tests. Le loader original utilise AudioConverter ; cet appel Apple n’a pas été exécuté ici. L’adaptateur `free` des tests ne libère rien, car les buffers sont possédés par l’hôte de test. Ce n’est pas encore l’allocateur d’un moteur complet.
 
@@ -49,7 +51,7 @@ bash "/chemin/vers/Sophistry-CP008/Verifier-Mac.command"
 
 Le script compile les probes **en ARM64**, vérifie les en-têtes d’architecture, rejoue les références, compare séparément les maths natives et compile l’hôte de diagnostic AU. Il lance aussi `auval -v aumu Sop3 LinP` sur l’instrument déjà enregistré. Un échec est attendu si seul l’ancien composant i386/PPC est présent. Les résultats sont conservés dans `work/mac-<date>/`.
 
-Il n’installe aucun composant. `Installer-ARM64.command` refuse explicitement le remplacement : le moteur complet, la restauration sémantique des projets et l’AU natif sont absents. Aucun test dans Logic ou Live n’a été effectué.
+Les anciens vérificateurs n’installent aucun composant. Pour le candidat CP-013, utiliser `Verifier-AU-Mac.command`. `Installer-ARM64.command` bloque encore le remplacement en attendant les validations du nouveau candidat et des projets Logic/Live.
 
 Pour transmettre les détails d’un test déjà terminé, télécharger `Recuperer-Rapports-Mac.command` puis le lancer avec `bash`. Il sélectionne le dernier journal Sophistry sous son dossier ou `~/Downloads`, rassemble uniquement les neuf noms de rapports prévus dans une archive ZIP et affiche l’archive dans Finder. Il ne télécharge, ne recompile et n’installe rien. Un chemin vers le dossier de rapports ou vers son `diagnostic.log` peut être fourni en premier argument.
 

@@ -1,3 +1,15 @@
+# Reprendre à CP-013 (prototype AU, validation Mac en attente)
+
+Lire docs/CP013.md et evidence/au-render-comparison-cp013.json. Ne pas repartir de CP-008. Le rendu musical CP-011/CP-012 sur le Mac utilisateur est validé pour un scénario FXP, pas encore par le nouveau wrapper AU.
+
+Travail CP-013 : constructeur AU original, un bus 2/6 canaux et 522 paramètres confirmés. src/engine/LegacyEngine.cpp possède un mode AU qui exécute les méthodes originales de construction, stream format, initialisation, MIDI et DoRender ; tests/probe_au_render.py compare le même chemin i386/Unicorn. Comparaison Linux byte-exact sur 3 s pour 2 et 6 canaux, mais sans licence et sans son musical. Ne pas transformer cette preuve de chemin d’exécution en preuve audio.
+
+Le wrapper src/au/SophistryAU.cpp utilise le SDK Apple officiel vendored third_party/AudioUnitSDK, version 1.3.0 / e789bc83ddc07cbf80e7bfaf84f1ade975287400 / Apache-2.0. C++20, mapping MIDI/XML/MIDI2 désactivés. scripts/build-audio-unit.sh construit un candidat ARM64 non installé. tests/AudioUnitFactoryProbe.cpp charge sa factory dans son propre processus, teste métadonnées, ancien vstdata, rendu et réinitialisation ; ce test doit encore être exécuté sur Mac. Interface générique provisoire uniquement ; pas d’interface Sophistry Cocoa reproduite.
+
+Les modifications sont dans le dépôt partagé, la publication est déjà autorisée. Les outils de cross-compilation/SDK Mac téléchargés sont dans /workspace/work/tools et ne sont pas distribués. Ne pas inclure les logs Mac privés ou la clé dans un commit. Le test de licence doit rester local et utiliser le contrôle original intact. Installer-ARM64.command doit rester bloqué jusqu’aux validations nécessaires, sans nouvelle demande d’autorisation pour les sauvegardes/push déjà autorisés.
+
+---
+
 # Reprendre à CP-012
 
 **Le rapport Mac CP-011 reçu confirme un premier rendu musical complet réussi.** Lire evidence/mac-cp011-licensed-render.json. Le code source testé est 452c29a90a95628a56437b10b30fbf1ea0c69b97. macOS 15.7.2 ARM64 / Apple clang17 : tous les builds et tests passent. Licence privée acceptée ; ne jamais demander ou récupérer la clé. Le WAV natif de 3s, six canaux VST, 132300 frames / 793800 floats, est byte-exact avec le WAV original i386/Unicorn. SHA-256 WAV ac22cf3fb678d935629ca4454bd61c6db1215be0f79d6226d628744132ddaec7 ; PCM 8087271859e6f18cc09c9d286d5a389e9368a4186c73acd7dda734b8dadaf39c. Cas : FXP Lightgarden, note60/vélocité100/off à2s, 44100Hz/bloc512. Pics L/R 0.0863 / 0.0631 ; ce ne sont plus les offsets quasi silencieux de CP-010. Les appels hôtes correspondent aussi. Le libm Apple i386 n’est pas exécuté.

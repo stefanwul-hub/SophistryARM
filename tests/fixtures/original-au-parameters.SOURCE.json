@@ -1,0 +1,6 @@
+{
+  "source": "analysis/au-parameter-contract.json",
+  "source_sha256": "6f1d6ceadc4acc8084489b6b0347bcdeded33cc6a2500a808c891e54f2a5ce5c",
+  "method": "Metadata executed from original i386 AU methods; CF display name preferred over legacy name buffer; no normalization of units or physical ranges",
+  "records": 522
+}

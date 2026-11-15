@@ -1,0 +1,22 @@
+{
+  "scope": "Original i386 AU-variant bank save/restore in explicit platform fixture, unregistered public FXP only",
+  "first_restore_changes": [
+    {
+      "block": [
+        "SYG0",
+        0,
+        0
+      ],
+      "field": 21,
+      "name": "SynthEdited",
+      "first": 1,
+      "second": 0
+    }
+  ],
+  "first_restore_different_bytes": 1,
+  "subsequent_roundtrip_byte_exact": true,
+  "first_bank_bytes": 22040,
+  "first_bank_sha256": "b54a63e23c53e270eb16b7d46a5e9d36d7d6305800e81b4127688aec6b1f2890",
+  "restored_bank_sha256": "0b6c74b0ffcfb7f60c4743e09cb1d196f0ea7e74f770b81a04486fd0e1659c13",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12"
+}

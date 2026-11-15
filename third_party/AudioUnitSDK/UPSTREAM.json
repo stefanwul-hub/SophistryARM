@@ -1,0 +1,13 @@
+{
+  "url": "https://github.com/apple/AudioUnitSDK",
+  "tag": "AudioUnitSDK-1.3.0",
+  "commit": "e789bc83ddc07cbf80e7bfaf84f1ade975287400",
+  "license": "Apache-2.0",
+  "source_modifications": false,
+  "build_options": {
+    "AUSDK_HAVE_MIDI_MAPPING": 0,
+    "AUSDK_HAVE_XML_NAMES": 0,
+    "AUSDK_HAVE_MIDI2": 0
+  },
+  "note": "MIDI events route directly to the original synth; SDK parameter-mapping deserialization is disabled."
+}

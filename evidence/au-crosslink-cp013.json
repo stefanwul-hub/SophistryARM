@@ -1,0 +1,44 @@
+{
+  "checkpoint": "CP-013",
+  "scope": "Cross compilation and link checks on Linux only; no macOS execution, signing or auval",
+  "compiler": "Zig 0.14.1 / Clang 19.1.7; Debian LLD 19.1.7",
+  "macos_sdk": "11.3 (development tool only, not distributed)",
+  "cross_link_deployment_target": "13.0 (Zig object default); Mac build script separately requests 11.0 and uses installed Xcode",
+  "core_objects": 366,
+  "apple_sdk_objects": 12,
+  "wrapper_and_host_objects": 3,
+  "factory_export": "SophistryAUFactory",
+  "factory_export_verified": true,
+  "binaries": [
+    {
+      "name": "Sophistry",
+      "kind": "MH_BUNDLE",
+      "architecture": "arm64",
+      "bytes": 30487280,
+      "sha256": "3fb0aa1ed13c24c5ae0e95bac7fa83b8e95fdf0fc5f5d9bb171c7d4fb4123b47",
+      "no_unresolved_symbols": true
+    },
+    {
+      "name": "AudioUnitFactoryProbe",
+      "kind": "MH_EXECUTE",
+      "architecture": "arm64",
+      "bytes": 1352320,
+      "sha256": "2376af19857f8660f86b21c11f8f4429d8a11051ff643eb3b02a9ff916f1daaf",
+      "no_unresolved_symbols": true
+    }
+  ],
+  "source_sha256": {
+    "src/au/SophistryAU.cpp": "c212e02e95ee8d2c7bc7cc994e36f4d45291bd206027ac415d7fb6afb5c4d3fa",
+    "src/au/Info.plist": "6806fc6630795fd2b101511e113baa80780a5d35aa2ca56646ddac85e0147397",
+    "src/engine/LegacyEngine.cpp": "9861e29a1f6fe5f8a7db9739fea600ef8dc62a3b222e68f0099729552ec4df64",
+    "src/engine/LegacyEngine.h": "127612c636b7323b2a10f8700f214a8397fa925221f63748af44593ad7f44890",
+    "tests/AudioUnitFactoryProbe.cpp": "9083730f6e5d85018affe503f914bf7bf8643538089ac47b5ed845656704d65e",
+    "tests/NativeAUBridgeProbe.cpp": "a7a829a7f303e9a5454555562a84c1932a18ac344679b389f6c0681c7c3c3f50",
+    "scripts/build-audio-unit.sh": "98f6ca8fcafedc8bb162cacf3917fcd381e1ab6b2baba102a0dd3b7a98812002",
+    "Verifier-AU-Mac.command": "93d506dcc46a2f960713e84489c0ee69c72790a34c6334e9189db8c78766b02d"
+  },
+  "limitations": [
+    "Cross linker uses Zig static libc++/libc++abi; actual Mac build uses Apple libc++",
+    "The candidate is not validated for installation or old DAW project recall"
+  ]
+}

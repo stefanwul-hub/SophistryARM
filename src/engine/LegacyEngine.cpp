@@ -130,6 +130,9 @@ struct LegacyEngine::Impl {
   };
   std::vector<Conversion> pendingConversions;
   U32 errnoPointer = 0;
+  LegacyTransport transport;
+  bool explicitTransport = false;
+  double auNextSample = 0;
   bool initialized = false, active = false;
   float sampleRate = 44100;
   U32 blockSize = 512;
@@ -148,6 +151,9 @@ struct LegacyEngine::Impl {
       for (std::size_t i = 0; i < legacy_import_count; ++i)
         imports.emplace(legacy_imports[i].address, legacy_imports[i].name);
       imports.emplace(0x70000100, "<converter-input-return>");
+      imports.emplace(0x70000200, "<au-beat-tempo>");
+      imports.emplace(0x70000210, "<au-musical-location>");
+      imports.emplace(0x70000220, "<au-transport>");
       seedRandom(1);
       if (!config.deterministicTestHost)
         epoch = U32(std::chrono::system_clock::to_time_t(
@@ -338,6 +344,8 @@ struct LegacyEngine::Impl {
   U32 preference(const std::string &key, const std::string &application);
   void initialize();
   void prepareBuffers();
+  void prepareAUParameterContext();
+  void setAUFormat();
 };
 
 U32 LegacyEngine::Impl::preference(const std::string &key,
@@ -484,9 +492,10 @@ std::string LegacyEngine::Impl::format(const std::string &fmt, U32 arguments) {
 }
 
 void LegacyEngine::Impl::service(U32 pc) {
-  const std::string name = imports.at(pc);
+  const std::string &name = imports.at(pc);
   lastImport = name;
-  ++calls[name];
+  if (config.collectDiagnostics)
+    ++calls[name];
   const U32 sp = reg(0x10);
   auto arg = [&](unsigned i) { return word(sp + 4 + 4 * i); };
   U32 result = 0;
@@ -494,7 +503,121 @@ void LegacyEngine::Impl::service(U32 pc) {
   double fp = 0;
   bool has64 = false;
   U64 integer64 = 0;
-  if (name == "__Znwm" || name == "__Znam" || name == "_malloc")
+  if (name == "___dynamic_cast") {
+    if (!arg(0))
+      result = 0;
+    else {
+      const auto source = string(word(arg(1) + 4)),
+                 target = string(word(arg(2) + 4));
+      const U32 vtable = word(arg(0));
+      const I32 offset = read<I32>(vtable - 8);
+      const U32 info = word(vtable - 4);
+      const auto dynamicType = string(word(info + 4));
+      // The original AU framework uses this public, zero-offset downcast.
+      // Validate the complete known hierarchy instead of treating arbitrary
+      // native/guest pointers as interchangeable.
+      if (source != "9AUElement" || target != "11AUIOElement" || offset != 0 ||
+          (arg(3) != 0 && arg(3) != U32(-1)))
+        throw std::runtime_error("Unsupported guest RTTI cast " + source +
+                                 " to " + target + " in " + dynamicType);
+      if (dynamicType == "17LPAUOutputElement" ||
+          dynamicType == "16LPAUInputElement" ||
+          dynamicType == "15AUOutputElement" ||
+          dynamicType == "14AUInputElement" || dynamicType == "11AUIOElement") {
+        U32 current = info;
+        std::string type = dynamicType;
+        while (type != "9AUElement") {
+          const std::map<std::string, std::string> parents = {
+              {"17LPAUOutputElement", "15AUOutputElement"},
+              {"16LPAUInputElement", "14AUInputElement"},
+              {"15AUOutputElement", "11AUIOElement"},
+              {"14AUInputElement", "11AUIOElement"},
+              {"11AUIOElement", "9AUElement"}};
+          auto parent = parents.find(type);
+          if (parent == parents.end())
+            throw std::runtime_error("Unsupported AU RTTI inheritance");
+          current = word(current + 8);
+          type = string(word(current + 4));
+          if (type != parent->second)
+            throw std::runtime_error("Unexpected original AU RTTI base");
+        }
+        result = arg(0);
+      } else if (dynamicType == "9AUElement")
+        result = 0;
+      else
+        throw std::runtime_error("Unsupported guest AU element RTTI type " +
+                                 dynamicType);
+    }
+  } else if (name == "_pthread_self") {
+    // A guest CPU executes on one serialized logical thread. The token is
+    // opaque; original AU render ownership compares it for equality only.
+    result = 0x70003000;
+  } else if (name == "_pthread_equal")
+    result = arg(0) == arg(1);
+  else if (name == "_Gestalt") {
+    if (arg(0) == 0x78383666)
+      put(arg(1), U32(1) << 26);
+    else if (arg(0) == 0x78383661)
+      put(arg(1), U32(1));
+    else
+      result = U32(-5551);
+  } else if (name == "_DecrementAtomic" || name == "_IncrementAtomic") {
+    result = word(arg(0));
+    put(arg(0), result + (name == "_DecrementAtomic" ? U32(-1) : U32(1)));
+  } else if (name == "_CompareAndSwap") {
+    result = word(arg(2)) == arg(0);
+    if (result)
+      put(arg(2), arg(1));
+  } else if (name == "_CFBundleGetMainBundle")
+    result = 0; // Generic-host scenario; use explicit callbacks below.
+  else if (name == "_AUEventListenerNotify" ||
+           name == "_AUParameterListenerNotify") {
+    if (config.parameterEvent && arg(2)) {
+      const U32 p = arg(2);
+      config.parameterEvent(
+          name == "_AUEventListenerNotify" ? word(p) : 0,
+          word(p + (name == "_AUEventListenerNotify" ? 8 : 4)));
+    }
+  } else if (name == "<au-beat-tempo>") {
+    if (!transport.tempoValid)
+      result = U32(-50);
+    else {
+      if (arg(1))
+        put(arg(1), transport.beat);
+      if (arg(2))
+        put(arg(2), transport.tempo);
+    }
+  } else if (name == "<au-musical-location>") {
+    if (!transport.musicalLocationValid)
+      result = U32(-50);
+    else {
+      if (arg(1))
+        put(arg(1), transport.samplesToNextBeat);
+      if (arg(2))
+        put(arg(2), transport.timeSignatureNumerator);
+      if (arg(3))
+        put(arg(3), transport.timeSignatureDenominator);
+      if (arg(4))
+        put(arg(4), transport.measureStartBeat);
+    }
+  } else if (name == "<au-transport>") {
+    if (!transport.transportValid)
+      result = U32(-50);
+    else {
+      if (arg(1))
+        put(arg(1), std::uint8_t(transport.playing));
+      if (arg(2))
+        put(arg(2), std::uint8_t(transport.changed));
+      if (arg(3))
+        put(arg(3), transport.samplePosition);
+      if (arg(4))
+        put(arg(4), std::uint8_t(transport.cycling));
+      if (arg(5))
+        put(arg(5), transport.cycleStartBeat);
+      if (arg(6))
+        put(arg(6), transport.cycleEndBeat);
+    }
+  } else if (name == "__Znwm" || name == "__Znam" || name == "_malloc")
     result = allocate(arg(0));
   else if (name == "_calloc") {
     U64 n = U64(arg(0)) * arg(1);
@@ -1062,8 +1185,25 @@ void LegacyEngine::Impl::initialize() {
     return;
   for (std::size_t i = 0; i < legacy_initializer_count; ++i)
     run(legacy_initializers[i], {});
-  run(0x4e876, {object, 0x273c});
-  dispatch(0);
+  if (config.audioUnitMode) {
+    if (config.audioUnitOutputChannels != 2 &&
+        config.audioUnitOutputChannels != 6)
+      throw std::runtime_error(
+          "Original AU supports two or six output channels");
+    run(0x48b0, {outer, 0x70001000});
+    put(outer, U32(0xf2048));
+    put(outer + 8, U32(0xf21a8));
+    put(outer + 0xe4, U32(0xf21b4));
+    put(object, U32(0xf2208));
+    run(0xa6a2a, {outer});
+    run(0x2918, {outer});
+    put(outer + 0xcc, U32(0x70000200));
+    put(outer + 0xd0, U32(0x70000210));
+    put(outer + 0xd4, U32(0x70000220));
+  } else {
+    run(0x4e876, {object, 0x273c});
+    dispatch(0);
+  }
   initialized = true;
   if (!config.privateRegistration.empty()) {
     if (config.useLocalMacPreferences)
@@ -1086,7 +1226,8 @@ void LegacyEngine::Impl::prepareBuffers() {
     return;
   if (!active)
     throw std::runtime_error("Audio engine is not active");
-  const U32 channels = word(object + 0x40);
+  const U32 channels = config.audioUnitMode ? config.audioUnitOutputChannels
+                                            : word(object + 0x40);
   if (channels < 1 || channels > 16 || word(object + 0x3c))
     throw std::runtime_error("Unsupported engine audio topology");
   inputTable = allocate(4);
@@ -1104,6 +1245,29 @@ void LegacyEngine::Impl::prepareBuffers() {
   put(events + 12, U32(0));
 }
 
+void LegacyEngine::Impl::prepareAUParameterContext() {
+  initialize();
+  if (!config.audioUnitMode) {
+    put(outer, U32(0xf2048));
+    put(outer + 0x32b42c, U32(-1));
+    put(outer + 0x32b430, std::uint8_t(1));
+  }
+}
+void LegacyEngine::Impl::setAUFormat() {
+  const U32 p = 0x5da000;
+  zero(p, 40);
+  put(p, double(sampleRate));
+  put(p + 8, U32(0x6c70636d));
+  put(p + 12, U32(0x29));
+  put(p + 16, U32(4));
+  put(p + 20, U32(1));
+  put(p + 24, U32(4));
+  put(p + 28, config.audioUnitOutputChannels);
+  put(p + 32, U32(32));
+  if (run(0xa81f0, {outer, 8, 2, 0, p, 40}))
+    throw std::runtime_error("Original AU rejected its stream format");
+}
+
 LegacyEngine::LegacyEngine(LegacyEngineConfig config)
     : impl_(new Impl(std::move(config))) {}
 LegacyEngine::~LegacyEngine() = default;
@@ -1114,8 +1278,21 @@ void LegacyEngine::restoreChunk(const std::vector<std::uint8_t> &chunk,
   if (chunk.empty() || chunk.size() > 0x100000)
     throw std::runtime_error("Invalid legacy state size");
   impl_->write(0x600000, chunk.data(), chunk.size());
-  const auto n =
-      impl_->dispatch(24, program ? 1 : 0, U32(chunk.size()), 0x600000);
+  // Exact guard used by the original LPAUSynth::RestoreState (0x3e30).
+  // Suppress AU feedback while the original bank loader restores parameters.
+  const bool auBank = impl_->config.audioUnitMode && !program;
+  if (auBank)
+    impl_->put(outer + 0x32b434, std::uint8_t(1));
+  U32 n = 0;
+  try {
+    n = impl_->dispatch(24, program ? 1 : 0, U32(chunk.size()), 0x600000);
+  } catch (...) {
+    if (auBank)
+      impl_->put(outer + 0x32b434, std::uint8_t(0));
+    throw;
+  }
+  if (auBank)
+    impl_->put(outer + 0x32b434, std::uint8_t(0));
   if (n != chunk.size())
     throw std::runtime_error(
         "Original engine did not accept the complete state");
@@ -1131,12 +1308,95 @@ std::vector<std::uint8_t> LegacyEngine::saveProgram() {
   const auto *bytes = impl_->data(p, n);
   return {bytes, bytes + n};
 }
+std::vector<std::uint8_t> LegacyEngine::saveBank() {
+  impl_->initialize();
+  impl_->put(0x5f0000, U32(0));
+  U32 n = impl_->dispatch(23, 0, 0, 0x5f0000), p = impl_->word(0x5f0000);
+  if (n > 0x2000000 || (n && !p))
+    throw std::runtime_error("Invalid serialized legacy AU bank");
+  const auto *bytes = impl_->data(p, n);
+  return {bytes, bytes + n};
+}
+std::vector<U32> LegacyEngine::auParameterIds() {
+  impl_->prepareAUParameterContext();
+  impl_->put(0x5d0000, U32(0));
+  if (impl_->run(0x82cbe, {outer, 0, 0, 0x5d0000}))
+    throw std::runtime_error("Original AU parameter list query failed");
+  U32 count = impl_->word(0x5d0000);
+  if (count > 2048)
+    throw std::runtime_error("Invalid AU parameter count");
+  if (impl_->run(0x82cbe, {outer, 0, 0x5d0100, 0x5d0000}))
+    throw std::runtime_error("Original AU parameter list failed");
+  std::vector<U32> ids(count);
+  for (U32 i = 0; i < count; ++i)
+    ids[i] = impl_->word(0x5d0100 + i * 4);
+  return ids;
+}
+bool LegacyEngine::validAUParameter(U32 id) {
+  impl_->prepareAUParameterContext();
+  impl_->put(0x5d3000, id);
+  return impl_->run(0x835d6, {outer, 0x5d3000}) != 0;
+}
+LegacyAUParameterInfo LegacyEngine::auParameterInfo(U32 id) {
+  if (!validAUParameter(id))
+    throw std::out_of_range("Unknown original AU parameter");
+  const U32 p = 0x5d2000;
+  impl_->zero(p, 84);
+  if (impl_->run(0x82d68, {outer, 0, id, p}))
+    throw std::runtime_error("Original AU parameter metadata failed");
+  LegacyAUParameterInfo result;
+  result.id = id;
+  result.name = impl_->word(p + 60) ? impl_->cfString(impl_->word(p + 60))
+                                    : impl_->string(p, 52);
+  if (impl_->word(p + 52))
+    result.unitName = impl_->cfString(impl_->word(p + 52));
+  result.clump = impl_->word(p + 56);
+  result.unit = impl_->word(p + 64);
+  result.flags = impl_->word(p + 80);
+  result.minimum = impl_->read<float>(p + 68);
+  result.maximum = impl_->read<float>(p + 72);
+  result.defaultValue = impl_->read<float>(p + 76);
+  impl_->run(0x1ce0e, {object, id, 0x5d2200});
+  U32 kind = impl_->word(0x5d2200), lo = impl_->word(0x5d2204),
+      hi = impl_->word(0x5d2208), labels = impl_->word(0x5d2210),
+      width = impl_->word(0x5d2214);
+  if (kind == 2 && labels && width && hi >= lo &&
+      U64(hi - lo + 1) * width < 65536) {
+    for (U32 i = 0; i <= hi - lo; ++i) {
+      auto *bytes = impl_->data(labels + i * width, width);
+      std::string text(reinterpret_cast<const char *>(bytes), width);
+      auto zero = text.find('\0');
+      if (zero != std::string::npos)
+        text.resize(zero);
+      while (!text.empty() && text.back() == ' ')
+        text.pop_back();
+      result.valueStrings.push_back(std::move(text));
+    }
+  }
+  return result;
+}
+float LegacyEngine::auParameter(U32 id) {
+  if (!validAUParameter(id))
+    throw std::out_of_range("Unknown original AU parameter");
+  impl_->put(0x5d2100, U32(0));
+  if (impl_->run(0x3bfe, {outer, id, 0, 0, 0x5d2100}))
+    throw std::runtime_error("Original AU getParameter failed");
+  return impl_->read<float>(0x5d2100);
+}
+void LegacyEngine::setAUParameter(U32 id, float value) {
+  if (!std::isfinite(value) || !validAUParameter(id))
+    throw std::out_of_range("Unknown or invalid AU parameter");
+  if (impl_->run(0x3c80, {outer, id, 0, 0, bits32(value)}))
+    throw std::runtime_error("Original AU setParameter failed");
+}
 void LegacyEngine::setSampleRate(float rate) {
   impl_->initialize();
   if (!std::isfinite(rate) || rate < 8000 || rate > 384000)
     throw std::runtime_error("Unsupported sample rate");
   impl_->dispatch(10, 0, 0, 0, bits32(rate));
   impl_->sampleRate = rate;
+  if (impl_->config.audioUnitMode)
+    impl_->setAUFormat();
 }
 void LegacyEngine::setBlockSize(U32 frames) {
   impl_->initialize();
@@ -1145,14 +1405,83 @@ void LegacyEngine::setBlockSize(U32 frames) {
         "Block size cannot be changed after buffer allocation");
   impl_->dispatch(11, 0, frames);
   impl_->blockSize = frames;
+  if (impl_->config.audioUnitMode) {
+    impl_->put(0x5da100, frames);
+    if (impl_->run(0xa81f0, {outer, 14, 0, 0, 0x5da100, 4}))
+      throw std::runtime_error("Original AU rejected maximum block size");
+  }
 }
 void LegacyEngine::activate() {
   impl_->initialize();
-  impl_->dispatch(12, 0, 1);
+  if (impl_->config.audioUnitMode) {
+    impl_->setAUFormat();
+    if (impl_->run(0xa65d4, {outer}))
+      throw std::runtime_error("Original AU initialization failed");
+  } else
+    impl_->dispatch(12, 0, 1);
   impl_->active = true;
+}
+void LegacyEngine::deactivate() {
+  if (!impl_->active)
+    return;
+  if (impl_->config.audioUnitMode)
+    impl_->run(0xa661e, {outer});
+  else
+    impl_->dispatch(12, 0, 0);
+  impl_->active = false;
+  for (U32 p : impl_->outputBuffers)
+    impl_->release(p);
+  impl_->outputBuffers.clear();
+  for (U32 p :
+       {impl_->inputTable, impl_->outputTable, impl_->event, impl_->events})
+    if (p)
+      impl_->release(p);
+  impl_->inputTable = impl_->outputTable = impl_->event = impl_->events = 0;
+  impl_->auNextSample = 0;
+  impl_->explicitTransport = false;
+}
+void LegacyEngine::setAudioUnitOutputChannels(U32 channels) {
+  if (!impl_->config.audioUnitMode || impl_->active || impl_->outputTable ||
+      (channels != 2 && channels != 6))
+    throw std::runtime_error("Invalid AU channel configuration transition");
+  impl_->config.audioUnitOutputChannels = channels;
+  impl_->initialize();
+  impl_->setAUFormat();
+}
+void LegacyEngine::resetAudioUnit(U32 scope, U32 element) {
+  if (!impl_->config.audioUnitMode)
+    throw std::runtime_error("Reset requires the original AU mode");
+  impl_->initialize();
+  if (impl_->run(0x2a06, {outer, scope, element}))
+    throw std::runtime_error("Original AU reset failed");
+  impl_->auNextSample = 0;
+  impl_->explicitTransport = false;
+}
+void LegacyEngine::setTransport(const LegacyTransport &info) {
+  impl_->transport = info;
+  impl_->explicitTransport = true;
+}
+void LegacyEngine::setPrivateRegistration(const std::string &registration) {
+  impl_->initialize();
+  if (impl_->active || registration.empty() || registration.size() > 319 ||
+      *impl_->data(object + 0xb4 + 0x315, 1))
+    throw std::runtime_error(
+        "Private registration must be supplied before the first activation");
+  impl_->config.privateRegistration = registration;
+  impl_->config.useLocalMacPreferences = false;
+  impl_->string(0x5e0000, registration);
+  impl_->run(0x12c66, {object + 0xb4, 0, 1, 0x5e0000});
+  impl_->zero(0x5e0000, registration.size() + 1);
 }
 void LegacyEngine::midi(std::uint8_t status, std::uint8_t data1,
                         std::uint8_t data2, U32 delta) {
+  if (impl_->config.audioUnitMode) {
+    if (!impl_->active)
+      throw std::runtime_error("Audio engine is not active");
+    impl_->run(0x36f0, {outer, U32(status & 0xf0), U32(status & 0xf), data1,
+                        data2, delta});
+    return;
+  }
   impl_->prepareBuffers();
   if (delta >= impl_->blockSize)
     throw std::runtime_error("MIDI offset exceeds block");
@@ -1171,8 +1500,28 @@ void LegacyEngine::process(float *const *outputs, U32 channels, U32 frames) {
     throw std::runtime_error("Invalid audio buffers");
   for (U32 p : impl_->outputBuffers)
     impl_->zero(p, impl_->blockSize * 4);
-  impl_->run(impl_->word(object + 0x70),
-             {object + 0x20, impl_->inputTable, impl_->outputTable, frames});
+  if (impl_->config.audioUnitMode) {
+    U32 list = 0x5d8000, time = 0x5d9000;
+    impl_->zero(time, 64);
+    double sample = impl_->explicitTransport ? impl_->transport.samplePosition
+                                             : impl_->auNextSample;
+    impl_->put(time, sample);
+    impl_->put(time + 8, impl_->transport.hostTime);
+    impl_->put(time + 56, U32(impl_->transport.hostTime ? 3 : 1));
+    impl_->put(0x5d8f00, U32(0));
+    impl_->put(list, channels);
+    for (U32 c = 0; c < channels; ++c) {
+      impl_->put(list + 4 + c * 12, U32(1));
+      impl_->put(list + 8 + c * 12, frames * 4);
+      impl_->put(list + 12 + c * 12, impl_->outputBuffers[c]);
+    }
+    if (impl_->run(0xa7014, {outer, 0x5d8f00, time, 0, frames, list}))
+      throw std::runtime_error("Original AU render failed");
+    impl_->auNextSample = sample + frames;
+    impl_->explicitTransport = false;
+  } else
+    impl_->run(impl_->word(object + 0x70),
+               {object + 0x20, impl_->inputTable, impl_->outputTable, frames});
   for (U32 c = 0; c < channels; ++c) {
     if (!outputs[c])
       throw std::runtime_error("NULL output buffer");
@@ -1180,7 +1529,10 @@ void LegacyEngine::process(float *const *outputs, U32 channels, U32 frames) {
                 frames * 4);
   }
 }
-U32 LegacyEngine::outputChannels() const { return impl_->word(object + 0x40); }
+U32 LegacyEngine::outputChannels() const {
+  return impl_->config.audioUnitMode ? impl_->config.audioUnitOutputChannels
+                                     : impl_->word(object + 0x40);
+}
 bool LegacyEngine::registrationAccepted() const {
   return impl_->active && *impl_->data(object + 0xcfc8, 1) != 0;
 }

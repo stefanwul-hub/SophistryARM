@@ -189,7 +189,10 @@ int main(int argc, char **argv) {
         seconds = std::stod(argument());
       else if (a == "--snapshots")
         snapshots = true;
-      else if (a == "--local-mac-preferences")
+      else if (a == "--au-channels") {
+        config.audioUnitMode = true;
+        config.audioUnitOutputChannels = std::uint32_t(std::stoul(argument()));
+      } else if (a == "--local-mac-preferences")
         preferences = true;
       else if (a == "--registration-from-stdin")
         registrationInput = true;

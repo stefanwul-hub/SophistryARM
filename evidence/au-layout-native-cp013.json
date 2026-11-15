@@ -1,0 +1,164 @@
+{
+  "scope": "Original AU constructor and element layout in an explicit platform fixture; no system AU registration or audio rendering",
+  "backend": "static C++",
+  "stage": "completed",
+  "error": null,
+  "last_import": {
+    "address": "0x10300f",
+    "name": "_malloc"
+  },
+  "scopes": [
+    {
+      "scope": 0,
+      "elements": [
+        {
+          "address": "0x800080"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "scope": 1,
+      "elements": [],
+      "count": 0
+    },
+    {
+      "scope": 2,
+      "elements": [
+        {
+          "address": "0x8d87d0",
+          "default_format": {
+            "sample_rate": 44100.0,
+            "format_id": "0x6c70636d",
+            "flags": "0x29",
+            "bytes_per_packet": 4,
+            "frames_per_packet": 1,
+            "bytes_per_frame": 4,
+            "channels": 2,
+            "bits": 32
+          }
+        }
+      ],
+      "count": 1
+    }
+  ],
+  "supported_channel_configurations": [
+    {
+      "inputs": 0,
+      "outputs": 2
+    },
+    {
+      "inputs": 0,
+      "outputs": 6
+    }
+  ],
+  "format_checks": [
+    {
+      "scope": 0,
+      "channels": 1,
+      "accepted": false
+    },
+    {
+      "scope": 0,
+      "channels": 2,
+      "accepted": true
+    },
+    {
+      "scope": 0,
+      "channels": 4,
+      "accepted": false
+    },
+    {
+      "scope": 0,
+      "channels": 6,
+      "accepted": true
+    },
+    {
+      "scope": 0,
+      "channels": 8,
+      "accepted": false
+    },
+    {
+      "scope": 1,
+      "channels": 1,
+      "accepted": false
+    },
+    {
+      "scope": 1,
+      "channels": 2,
+      "accepted": false
+    },
+    {
+      "scope": 1,
+      "channels": 4,
+      "accepted": false
+    },
+    {
+      "scope": 1,
+      "channels": 6,
+      "accepted": false
+    },
+    {
+      "scope": 1,
+      "channels": 8,
+      "accepted": false
+    },
+    {
+      "scope": 2,
+      "channels": 1,
+      "accepted": false
+    },
+    {
+      "scope": 2,
+      "channels": 2,
+      "accepted": true
+    },
+    {
+      "scope": 2,
+      "channels": 4,
+      "accepted": false
+    },
+    {
+      "scope": 2,
+      "channels": 6,
+      "accepted": true
+    },
+    {
+      "scope": 2,
+      "channels": 8,
+      "accepted": false
+    }
+  ],
+  "host_calls": {
+    "__Znwm": 14,
+    "_pthread_mutexattr_init": 141,
+    "_pthread_mutexattr_settype": 141,
+    "_pthread_mutex_init": 141,
+    "_pthread_mutexattr_destroy": 141,
+    "_CMOpenProfile": 1,
+    "_CGColorSpaceCreateDeviceRGB": 1,
+    "_CFBundleGetBundleWithIdentifier": 1,
+    "__keymgr_get_and_lock_processwide_ptr_2": 1,
+    "_calloc": 1,
+    "_dlopen": 1,
+    "__keymgr_set_and_unlock_processwide_ptr": 1,
+    "_Gestalt": 2,
+    "_memmove": 2,
+    "_CFRetain": 1,
+    "_memset": 11,
+    "_strcpy": 3,
+    "_malloc": 98,
+    "_pow": 2664,
+    "_random": 37888,
+    "__Znam": 15,
+    "_time": 1,
+    "_srand": 1,
+    "_expf": 128,
+    "_sin": 34310,
+    "_cos": 6,
+    "_OSAtomicAdd32Barrier": 1,
+    "_DecrementAtomic": 1,
+    "_free": 1,
+    "__ZdlPv": 1
+  }
+}

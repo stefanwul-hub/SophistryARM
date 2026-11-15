@@ -1,6 +1,7 @@
 #pragma once
 #include <cstddef>
 #include <cstdint>
+#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
@@ -13,10 +14,30 @@ struct LegacyEngineConfig {
   bool deterministicTestHost = true;
   bool useLocalMacPreferences = false;
   bool recycleFreedBlocks = false;
+  bool audioUnitMode = false;
+  std::uint32_t audioUnitOutputChannels = 2;
+  bool collectDiagnostics = true;
+  std::function<void(std::uint32_t, std::uint32_t)> parameterEvent;
   // Optional private input. Passed to the original SysGlo string setter;
   // the original registration check decides whether it is accepted.
   std::string privateRegistration;
   std::size_t guestMemoryBytes = 64u * 1024u * 1024u;
+};
+
+struct LegacyAUParameterInfo {
+  std::uint32_t id = 0, flags = 0, unit = 0, clump = 0;
+  std::string name, unitName;
+  float minimum = 0, maximum = 0, defaultValue = 0;
+  std::vector<std::string> valueStrings;
+};
+struct LegacyTransport {
+  double samplePosition = 0, tempo = 120, beat = 0, measureStartBeat = 0;
+  double cycleStartBeat = 0, cycleEndBeat = 0;
+  std::uint64_t hostTime = 0;
+  float timeSignatureNumerator = 4;
+  std::uint32_t timeSignatureDenominator = 4, samplesToNextBeat = 0;
+  bool tempoValid = false, transportValid = false, musicalLocationValid = false;
+  bool playing = false, changed = false, cycling = false;
 };
 
 class LegacyEngine {
@@ -28,9 +49,20 @@ public:
   void initialize();
   void restoreChunk(const std::vector<std::uint8_t> &chunk, bool program);
   std::vector<std::uint8_t> saveProgram();
+  std::vector<std::uint8_t> saveBank();
+  std::vector<std::uint32_t> auParameterIds();
+  bool validAUParameter(std::uint32_t id);
+  LegacyAUParameterInfo auParameterInfo(std::uint32_t id);
+  float auParameter(std::uint32_t id);
+  void setAUParameter(std::uint32_t id, float value);
   void setSampleRate(float rate);
   void setBlockSize(std::uint32_t frames);
   void activate();
+  void deactivate();
+  void resetAudioUnit(std::uint32_t scope = 0, std::uint32_t element = 0);
+  void setAudioUnitOutputChannels(std::uint32_t channels);
+  void setTransport(const LegacyTransport &transport);
+  void setPrivateRegistration(const std::string &registration);
   void midi(std::uint8_t status, std::uint8_t data1, std::uint8_t data2,
             std::uint32_t delta = 0);
   void process(float *const *outputs, std::uint32_t channels,
