@@ -1,0 +1,11 @@
+{
+  "checkpoint": "CP-018",
+  "launcher_commit": "6a5372de3fdf5faf865dfe4f49f5a07844c217e1",
+  "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/6a5372de3fdf5faf865dfe4f49f5a07844c217e1/Demarrer-Sophistry-CP018.command",
+  "bytes": 2149,
+  "sha256": "a199bafac882e7257897f67d529f944cb8c432d78f150d26284d5ad09857782f",
+  "download_matches_local_exactly": true,
+  "bash_syntax_valid": true,
+  "forwards_choose_bank_option": true,
+  "mac_execution_pending": true
+}

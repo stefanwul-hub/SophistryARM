@@ -217,5 +217,7 @@
   "github_cp018_archive_sha256": "4d3635844d4bcdd71566b77eb4848ae7fa1eb295e57c1d09a25c232f8d6d2465",
   "github_cp018_verified_tracked_blobs": 4052,
   "github_cp018_launcher": "Demarrer-Sophistry-CP018.command",
-  "installed_component_checkpoint_last_confirmed": "CP-016"
+  "installed_component_checkpoint_last_confirmed": "CP-016",
+  "github_cp018_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/6a5372de3fdf5faf865dfe4f49f5a07844c217e1/Demarrer-Sophistry-CP018.command",
+  "github_cp018_launcher_verified": true
 }
