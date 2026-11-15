@@ -1,0 +1,242 @@
+{
+  "checkpoint": "CP-018",
+  "scope": "Development tests under Linux and ARM64/Linux/QEMU, cross-compilation for macOS; CP018 has not executed on a Mac",
+  "source_sha256": {
+    "src/engine/LegacyEngine.cpp": "e19b4014cf8db5b07a9e6e1f8310f7013bc1b8b88a2382a41cc563bbb5e873f8",
+    "src/engine/LegacyEngine.h": "3223a9959efef343991808e668e45bf10a4caf441fa798de6779acf4ff76f103",
+    "src/au/SophistryAU.cpp": "23efa5e34982cad46764f19b238415fc351fd66b92c7a7b23c6c7d8b722260b7",
+    "src/au/SophistryEditor.mm": "86a81db72163335bcffc19f2aaed065de0e9c3a436910ebc2a9c664484de1372",
+    "src/au/BankAccess.h": "c0cee9d0605b3e6c47f8bba3e4763349829df4b0c78d6853f4487f75d1b30868",
+    "src/au/SophistryProperties.h": "2ffd8fa862286adb0634c4c79a2e3190a9305d14e678bf0bdb735a0ade733717",
+    "src/au/ConfigureSophistry.mm": "0d65110c663780586e53bebb70991285246537e55de36ccd3d41664a4d234f40",
+    "src/au/Info.plist": "88931186db672adf74cc7d6b16ccee8c831c88c055311a75917187ed26cb8a91",
+    "tests/AudioUnitEditorProbe.mm": "422371be4c87f6266a42fc80f822ce36e5e0714a413531db93adc1382cc72b62",
+    "tests/NativeBankDiagnosticsProbe.cpp": "236284351b7782a48927dd0b20bfeb4f4ae1c895a8995161e089e7b55727a5ee",
+    "tests/probe_missing_sample.py": "8358aa5aae8875bd554754d0db3c80480aefe156c36b4cbddbb61da465f40454",
+    "Installer-ARM64.command": "e3dbcf6bb3164c264d1bd7df1f0d7987f2ac6cdaf04c48defd0eb16107ad3c80",
+    "scripts/build-audio-unit.sh": "4882534d70edc37b10bfef65a97f4bdbc513e25f3af10f63fc9ffcc5b6bd9b64"
+  },
+  "cross_compilation": "Zig/Clang19 + LLD19 + SDK11.3; user installer builds with local Xcode, deployment target macOS11",
+  "cross_link_deployment_target": "macOS13 (development binary only; installer uses macOS11)",
+  "binaries": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 30595680,
+      "sha256": "d8e9b486f5cc0e4b067bfd50d6233e871604014f59b96ada8aa6b1db8256f9e9",
+      "linked_with_unresolved_symbols_rejected": true
+    },
+    {
+      "name": "ConfigureSophistry",
+      "architecture": "arm64",
+      "bytes": 30350240,
+      "sha256": "8e233022fe6b8388f7f832aa27721576035a1901fd63e1d23dcb71f4d4a5a051",
+      "linked_with_unresolved_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitFactoryProbe",
+      "architecture": "arm64",
+      "bytes": 1364416,
+      "sha256": "c14751cd00e75182cf4b363ef35de0ec0f59d3293f9999e38cef96cb9582f1e9",
+      "linked_with_unresolved_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1267856,
+      "sha256": "0a6595351a7e6e14cd165d6210dbd71ff23a1d9fb4ee5f8e11928e9edfc4cfd9",
+      "linked_with_unresolved_symbols_rejected": true
+    }
+  ],
+  "audio_unit_factory_and_cocoa_factory_exports_verified": true,
+  "python_unit_tests_passed": 28,
+  "replacement_and_recovery_tests_passed": 12,
+  "settings_retention_tests_passed": 3,
+  "auval_runner_tests_passed": 3,
+  "parameter_text_cases_exact_against_original_cp016_reference": 596,
+  "default_host_state_regions_exact_against_cp011": [
+    {
+      "preset": "fxp",
+      "region": "object",
+      "bytes": 3407872,
+      "sha256": "80da19dfedf6b7832e083f6df1529f944eab57f6b51de85a582b4e138f45dec2"
+    },
+    {
+      "preset": "fxp",
+      "region": "heap",
+      "bytes": 5366192,
+      "sha256": "1701866396b5e8bf586d738c29f970df00d2fc07d261867d4da9fee335a140ca"
+    },
+    {
+      "preset": "fxp",
+      "region": "globals",
+      "bytes": 139264,
+      "sha256": "08481a49df361d5afdbd4a669ff0bd17eb0badde4dd5c31b3d4cea2610242f22"
+    },
+    {
+      "preset": "fxp",
+      "region": "chunk",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+    },
+    {
+      "preset": "aupreset",
+      "region": "object",
+      "bytes": 3407872,
+      "sha256": "1606db1cf2e5bd5f6108883645fcb7464e86ec1a36a48a1b8f470cad39df35e1"
+    },
+    {
+      "preset": "aupreset",
+      "region": "heap",
+      "bytes": 5367472,
+      "sha256": "949d481f9b067ac09294f6a2a8187537b56251b60fc56348be320f691021e73b"
+    },
+    {
+      "preset": "aupreset",
+      "region": "globals",
+      "bytes": 139264,
+      "sha256": "08481a49df361d5afdbd4a669ff0bd17eb0badde4dd5c31b3d4cea2610242f22"
+    },
+    {
+      "preset": "aupreset",
+      "region": "chunk",
+      "bytes": 21032,
+      "sha256": "0590b396932df720fa937ee6790802a55f9e38af7d004a656146423a287c05bf"
+    }
+  ],
+  "au_bridge_native_linux": {
+    "passed": true,
+    "parameter_records": 522,
+    "reinitialization_cycles": 8,
+    "channels": [
+      2,
+      6
+    ],
+    "sample_rates": [
+      22050,
+      44100,
+      48000,
+      96000,
+      192000
+    ],
+    "licensed_musical_audio_tested": false
+  },
+  "au_bridge_arm64_linux_qemu": {
+    "passed": true,
+    "parameter_records": 522,
+    "reinitialization_cycles": 8,
+    "channels": [
+      2,
+      6
+    ],
+    "sample_rates": [
+      22050,
+      44100,
+      48000,
+      96000,
+      192000
+    ],
+    "licensed_musical_audio_tested": false
+  },
+  "asset_path_scenarios": {
+    "scope": "Public fixture only, native host without licence/preferences; decoded guest object/heap/globals/program compared strictly",
+    "passed": true,
+    "cases": [
+      {
+        "case": "baseline",
+        "state_restored": true
+      },
+      {
+        "case": "nested-bank",
+        "state_restored": true
+      },
+      {
+        "case": "duplicate-basename",
+        "ambiguous_sample_refused": true
+      },
+      {
+        "case": "legacy-Samples-suffix",
+        "state_restored": true
+      },
+      {
+        "case": "explicit-bank-before-fallback",
+        "state_restored": true
+      }
+    ],
+    "private_inputs_used": false
+  },
+  "bank_diagnostics_native_and_arm64_exact": {
+    "passed": true,
+    "missing_sample_reported": true,
+    "sample_reopened_after_reindex": true,
+    "preset_restored_before_initialization_retained": true,
+    "preset_name_available": true,
+    "private_absolute_paths_in_diagnostics": false,
+    "unlicensed_fixture_only": true
+  },
+  "missing_sample_programs": [
+    {
+      "backend": "original",
+      "phase": "missing",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+    },
+    {
+      "backend": "original",
+      "phase": "reloaded",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+    },
+    {
+      "backend": "lifted",
+      "phase": "missing",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+    },
+    {
+      "backend": "lifted",
+      "phase": "reloaded",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+    },
+    {
+      "backend": "engine",
+      "phase": "missing",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+    },
+    {
+      "backend": "engine",
+      "phase": "reloaded",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+    },
+    {
+      "backend": "arm64",
+      "phase": "missing",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+    },
+    {
+      "backend": "arm64",
+      "phase": "reloaded",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88"
+    }
+  ],
+  "new_mac_tests_prepared": [
+    "actual Cocoa factory and resources",
+    "522 parameters, 15 main dials, seven tab filters",
+    "FXP/AUpreset import and volume gesture",
+    "state restored before Initialize, independent 3s reference audio comparison",
+    "in-process preflight, separate AU hosting after installation",
+    "system auval and registered stereo/six-channel reference comparisons",
+    "rollback before commit if any validation fails"
+  ],
+  "cp018_native_mac_executed": false,
+  "cp018_auval_passed": null,
+  "mac_bookmark_execution_pending": true,
+  "original_interface_complete": false,
+  "silent_logic_project_audio_fixed": false,
+  "production_ready": false
+}

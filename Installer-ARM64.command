@@ -118,7 +118,7 @@ stage='replays et régression du moteur AU'
 "$BUILD/NativeAUBridgeProbe" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$ROOT/reference/Samples" > "$REPORT/bridge-regression.json" 2> "$REPORT/bridge-errors.log"
 "$BUILD/NativeBankDiagnosticsProbe" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$ROOT/reference/Samples" "$ROOT/work/unavailable-bank-fixture" > "$REPORT/bank-diagnostics.json" 2> "$REPORT/bank-diagnostics.log"
 stage='configuration locale de la banque et de la licence'
-bank_options=()
+bank_options=(--backup-directory "$PRIVATE" --asset-directory "$ROOT/reference/Samples")
 if [[ "$choose_bank" -eq 1 ]]; then bank_options+=(--choose-bank);fi
 if "$BUILD/ConfigureSophistry" --check --no-folder-panel --asset-directory "$ROOT/reference/Samples" > "$REPORT/settings-existing.json" 2>&1; then
   if [[ "$choose_bank" -eq 1 ]]; then
@@ -133,9 +133,9 @@ else
   IFS= read -r -s serial_input < /dev/tty
   printf '\n'
   if [[ -n "$serial_input" ]]; then
-    printf '%s\n' "$serial_input" | "$BUILD/ConfigureSophistry" --registration-from-stdin "${bank_options[@]}" --backup-directory "$PRIVATE" --asset-directory "$ROOT/reference/Samples" > "$REPORT/settings-configured.json" 2>&1
+    printf '%s\n' "$serial_input" | "$BUILD/ConfigureSophistry" --registration-from-stdin "${bank_options[@]}" > "$REPORT/settings-configured.json" 2>&1
   else
-    "$BUILD/ConfigureSophistry" "${bank_options[@]}" --backup-directory "$PRIVATE" --asset-directory "$ROOT/reference/Samples" > "$REPORT/settings-configured.json" 2>&1
+    "$BUILD/ConfigureSophistry" "${bank_options[@]}" > "$REPORT/settings-configured.json" 2>&1
   fi
   unset serial_input
 fi

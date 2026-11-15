@@ -19,6 +19,7 @@ struct BankAccess {
   }
 };
 inline CFDataRef createBankBookmark(CFURLRef url) {
+  const bool active = CFURLStartAccessingSecurityScopedResource(url);
   CFDataRef bookmark = CFURLCreateBookmarkData(
       nullptr, url,
       kCFURLBookmarkCreationWithSecurityScope |
@@ -27,6 +28,8 @@ inline CFDataRef createBankBookmark(CFURLRef url) {
   if (!bookmark)
     bookmark =
         CFURLCreateBookmarkData(nullptr, url, 0, nullptr, nullptr, nullptr);
+  if (active)
+    CFURLStopAccessingSecurityScopedResource(url);
   return bookmark;
 }
 inline std::shared_ptr<BankAccess>
@@ -44,12 +47,15 @@ openBankBookmark(CFDataRef data, const std::string &expected) {
   auto access = std::make_shared<BankAccess>();
   access->url = url;
   std::array<UInt8, 4096> path{};
-  if (!CFURLGetFileSystemRepresentation(url, true, path.data(), path.size()) ||
-      std::filesystem::path(reinterpret_cast<const char *>(path.data()))
-              .lexically_normal() !=
-          std::filesystem::path(expected).lexically_normal())
+  if (!CFURLGetFileSystemRepresentation(url, true, path.data(), path.size()))
     return {};
   access->granted = CFURLStartAccessingSecurityScopedResource(url);
+  std::error_code first, second;
+  const auto resolved = std::filesystem::weakly_canonical(
+      reinterpret_cast<const char *>(path.data()), first);
+  const auto requested = std::filesystem::weakly_canonical(expected, second);
+  if (first || second || resolved != requested)
+    return {};
   return access;
 }
 inline std::shared_ptr<BankAccess> storedBankAccess(const std::string &path) {

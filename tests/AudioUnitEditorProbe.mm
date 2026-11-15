@@ -114,6 +114,8 @@ int main(int argc, const char **argv) {
     AudioUnit unit = nullptr;
     NSString *failure = nil;
     NSDictionary *viewReport = @{};
+    UInt32 renderedFrames = 0;
+    double peak = 0;
     BOOL screenshot = NO, unique = NO, aupreset = NO, fxp = NO, controls = NO,
          tabs = NO;
     [NSApplication sharedApplication];
@@ -214,7 +216,6 @@ int main(int argc, const char **argv) {
               ![view respondsToSelector:@selector(sophistryEditorReport)])
             failure = @"Cocoa factory did not return unique controllable views";
           else {
-            fxp = [view loadPresetURL:[NSURL fileURLWithPath:fxpPath]];
             aupreset = [view loadPresetURL:[NSURL fileURLWithPath:statePath]];
 
             AudioStreamBasicDescription format{
@@ -241,6 +242,10 @@ int main(int argc, const char **argv) {
             if (!failure)
               peak = renderAudio(unit, [prefix stringByAppendingString:@".wav"],
                                  renderedFrames, rendered);
+            // Check import only after the independent before-init render.
+            fxp = [view loadPresetURL:[NSURL fileURLWithPath:fxpPath]];
+            aupreset = aupreset &&
+                       [view loadPresetURL:[NSURL fileURLWithPath:statePath]];
             tabs = YES;
             for (NSInteger tab = 0; tab < 7; ++tab) {
               NSButton *selector = [NSButton new];

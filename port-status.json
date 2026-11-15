@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-017",
+  "checkpoint": "CP-018",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -29,17 +29,17 @@
   "complete_dsp_engine_ported": false,
   "state_decoder_complete": false,
   "native_audio_unit_available": true,
-  "native_ui_available": false,
+  "native_ui_available": true,
   "macos_auval_executed": true,
   "logic_projects_verified": false,
   "ableton_projects_verified": false,
   "install_allowed": true,
   "implemented_dsp_scope": "191378 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
-  "arm64_scope": "CP013/CP015 candidate compiled and executed on user ARM64 Mac; licensed AU stereo/six-channel preflight audio byte-exact against original AU instructions. CP016 fixes await Mac execution.",
+  "arm64_scope": "CP016 installed and auval/audio passed on user ARM64 Mac. CP018 sources cross-compiled and linked as Mach-O ARM64, with native Linux and ARM64/Linux/QEMU regression tests passed; CP018 Mac execution pending.",
   "next_work": [
-    "Implement faithful native editor from original layout routines and resources",
-    "Inspect user Logic project-recall results when received",
-    "Expand sample/preset/render tests and exercise Live project recall"
+    "Run CP018 Mac installer; inspect Cocoa in-process and separate-host tests, before-initialize audio and auval",
+    "Inspect diagnostic from a copy of a silent Logic project before changing its state or sample bank",
+    "Complete original interface and expand bank/sample format, polyphony, transport and Live project recall tests"
   ],
   "state_container_reader_implemented": true,
   "state_container_round_trip_tested": [
@@ -80,7 +80,7 @@
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
   "github_verified_code_commit": "452c29a90a95628a56437b10b30fbf1ea0c69b97",
   "github_verified_archive_sha256": "7457a9d4eba3bd64fabb2aa2e20257b0d8046d8eb486e76afb51acea4e45823e",
-  "macos_auval_scope": "The registered identity aumu/Sop3/LinP was not found (exitcode 2); no new native component was built or validated",
+  "macos_auval_scope": "CP016 system auval passed (exit 0, 522 parameter tests); CP018 auval and Mac execution pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
   "native_arm64_macos_libm_comparison": {
@@ -162,7 +162,7 @@
   "au_bridge_arm64_linux_qemu_regression_passed": true,
   "au_bridge_parameter_records_tested": 522,
   "au_bridge_reinitialization_cycles_tested": 8,
-  "au_native_gui_status": "Generic AU controls only; faithful Sophistry Cocoa interface remains unimplemented",
+  "au_native_gui_status": "CP018 initial Cocoa editor source: original backgrounds and 15 Main dials, master volume, searchable parameters, preset/bank operations and safe runtime diagnostic. Not yet executed on Mac; faithful full interface incomplete.",
   "install_block_reason": null,
   "installation_authorized_by_user": true,
   "github_cp013_source_commit": "92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
@@ -170,7 +170,7 @@
   "github_cp013_archive_sha256": "a689527bb1d8b1d4c612d6444c7ee27bed97dda1b100d154962aa3209e64769c",
   "github_cp013_verified_tracked_blobs": 4007,
   "github_cp013_launcher": "Demarrer-Sophistry-CP013.command",
-  "native_audio_unit_scope": "CP016 compiled/signed/installed on user ARM64 Mac; system auval passed and registered AU stereo/six-channel audio byte-exact against original instructions on provided preset. Original GUI and DAW project recall remain unverified.",
+  "native_audio_unit_scope": "CP016 compiled/signed/installed on user ARM64 Mac; system auval and registered AU stereo/six-channel audio byte-exact on provided preset. User reports Logic projects load but are silent. CP018 adds diagnostics and initial Cocoa editor, not yet executed on Mac.",
   "au_diagnostic_factory_macos_passed": true,
   "au_candidate_native_macos_evidence": "evidence/mac-cp016-installed-au.json",
   "one_au_preset_audio_reference_cases_passed": 2,
@@ -198,5 +198,18 @@
   "github_cp016_verified_tracked_blobs": 4039,
   "github_cp016_launcher": "Demarrer-Sophistry-CP016.command",
   "native_component_system_installation_committed": true,
-  "logic_project_recall_user_testing_in_progress": true
+  "logic_project_recall_user_testing_in_progress": true,
+  "native_ui_macos_executed": false,
+  "original_ui_complete": false,
+  "logic_project_load_reported_by_user": true,
+  "logic_project_audio_reported_by_user": false,
+  "logic_midi_activity_reported_by_user": true,
+  "cp018_native_cocoa_source_available": true,
+  "cp018_mac_execution_pending": true,
+  "cp018_auval_passed": null,
+  "cp018_bank_relocation_source_available": true,
+  "cp018_bank_bookmark_mac_executed": false,
+  "cp018_missing_sample_recovery_differential_passed": true,
+  "cp018_development_evidence": "evidence/cp018-development-checks.json",
+  "cp018_source_archive_verification_pending": true
 }

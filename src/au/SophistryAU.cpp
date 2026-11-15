@@ -553,6 +553,12 @@ public:
           lastError_ = "Selected sample bank is not an accessible directory";
           return kAudioUnitErr_InvalidPropertyValue;
         }
+        std::filesystem::directory_iterator readable(directory, ec);
+        if (ec) {
+          lastError_ =
+              "The AU hosting process cannot read the selected sample bank";
+          return kAudioUnitErr_InvalidPropertyValue;
+        }
         auto directories = config_.engine.assetDirectories;
         auto previous = CFPreferencesCopyValue(
             CFSTR("SophistryARMSampleRoot"), CFSTR("com.linplug.Sophistry"),
