@@ -276,6 +276,15 @@ public:
   OSStatus GetPropertyInfo(AudioUnitPropertyID id, AudioUnitScope scope,
                            AudioUnitElement element, UInt32 &bytes,
                            bool &writable) override {
+    if (id == kAudioUnitProperty_ParameterStringFromValue) {
+      if (scope != kAudioUnitScope_Global)
+        return kAudioUnitErr_InvalidScope;
+      if (element)
+        return kAudioUnitErr_InvalidElement;
+      bytes = sizeof(AudioUnitParameterStringFromValue);
+      writable = false;
+      return noErr;
+    }
     if (id == errorProperty || id == diagnosticsProperty ||
         id == wrapperVersionProperty) {
       if (scope != kAudioUnitScope_Global || element)
@@ -295,6 +304,31 @@ public:
   }
   OSStatus GetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, void *data) override {
+    if (id == kAudioUnitProperty_ParameterStringFromValue) {
+      if (scope != kAudioUnitScope_Global)
+        return kAudioUnitErr_InvalidScope;
+      if (element)
+        return kAudioUnitErr_InvalidElement;
+      if (!data)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        auto &request = *static_cast<AudioUnitParameterStringFromValue *>(data);
+        request.outString = nullptr;
+        auto result = engine_.auParameterText(
+            request.inParamID, request.inValue
+                                   ? std::optional<float>(*request.inValue)
+                                   : std::nullopt);
+        if (result.status)
+          return result.status;
+        if (result.text) {
+          request.outString = CFStringCreateWithCString(
+              nullptr, result.text->c_str(), kCFStringEncodingUTF8);
+          if (!request.outString)
+            return OSStatus(-108);
+        }
+        return noErr;
+      });
+    }
     if (id == errorProperty || id == diagnosticsProperty ||
         id == wrapperVersionProperty) {
       if (scope != kAudioUnitScope_Global || element || !data)
@@ -302,7 +336,7 @@ public:
       return guarded([&]() -> OSStatus {
         std::string value =
             id == wrapperVersionProperty
-                ? "SophistryARM CP-015"
+                ? "SophistryARM CP-016"
                 : (id == errorProperty ? lastError_ : engine_.diagnosticJson());
         CFStringRef s = CFStringCreateWithCString(nullptr, value.c_str(),
                                                   kCFStringEncodingUTF8);

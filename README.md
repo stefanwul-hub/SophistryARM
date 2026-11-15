@@ -1,12 +1,12 @@
-# Sophistry — checkpoint CP-015
+# Sophistry — checkpoint CP-016
 
 **Le premier candidat Audio Unit ARM64 a maintenant été compilé, signé et exécuté sur le Mac utilisateur.** Le rapport CP-013 confirme le chargement de la factory, les 522 métadonnées et deux rendus AU musicaux byte-exact contre les instructions originales. L’interface Sophistry, auval et la réouverture des projets restent à terminer.
 
 Le binaire fourni est Sophistry 3.0.8 **i386 32 bits + PowerPC**, sans tranche x86-64. L’identité à conserver pour les anciens projets AU est `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`.
 
-**CP-015 : installation de test préparée.** Le nouveau lanceur compile le candidat, configure localement la licence et la banque, compare l’audio, sauvegarde l’ancien composant, installe dans `/Library/Audio/Plug-Ins/Components`, lance auval et teste le composant enregistré. Un échec déclenche la restauration. La procédure attend encore son premier retour Mac ; voir [CP-015](docs/CP015.md). L’interface reste générique, le rappel Logic/Live reste à vérifier.
+**CP-016 : correctifs du rapport Mac CP-015.** La licence a bien été enregistrée et relue ; CP-015 l’a ensuite annulée en restaurant les préférences après l’échec d’auval. CP-016 conserve les réglages dès leur validation dans un nouveau processus. Il corrige aussi la propriété valeur/texte de 99 paramètres et la limite interrompant l’initialisation à 192 kHz. Les 596 cas de texte correspondent aux routines originales. Voir [CP-016](docs/CP016.md) et [le rapport Mac CP-015 anonymisé](evidence/mac-cp015-installation.json). Le nouvel auval Mac reste à effectuer ; interface générique et rappel Logic/Live non validé.
 
-[Télécharger le lanceur CP-015](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/a1a2fcf2f4d8240583dc23e5f48e13aa4277d5e9/Demarrer-Sophistry-CP015.command) puis lancer `bash "$HOME/Downloads/Demarrer-Sophistry-CP015.command"`. Les 4025 fichiers de l’archive ont été téléchargés et vérifiés.
+[Télécharger le lanceur CP-016](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP016.command), puis lancer `bash "$HOME/Downloads/Demarrer-Sophistry-CP016.command"`, sans sudo. Le lanceur vérifie l’archive épinglée ; les droits sont demandés au remplacement du composant.
 
 **CP-014 : rapport Mac CP-013 vérifié.** Les WAV du candidat, du moteur AU direct et de la référence i386 sont identiques pour chaque configuration 2/6 canaux : 264600 et 793800 échantillons float32, tous finis. La licence est acceptée localement. Trois secondes de son sont calculées en environ 0,60 s ; ce test hors temps réel ne certifie pas une charge de projet. Voir [la preuve anonymisée](evidence/mac-cp013-au-factory.json). Aucun composant n’a encore été installé par le script CP-013.
 
@@ -41,7 +41,7 @@ Le replay principal réinjecte les réponses `log10` et `pow` enregistrées avec
 
 Les rapports détaillés reçus confirment aussi **sept octets d’état interne différents et zéro octet différent dans les buffers audio comparés** sur le Mac ARM64, avec le même détail d’adresses et de valeurs que sous Linux/musl. Ils concernent les cas de filtre stéréo 117 et 123. Le replay avec les réponses mathématiques enregistrées passe ; la variation apparaît dans le mode séparé utilisant les fonctions mathématiques de la plateforme. La comparaison stricte reste en échec, car les états différents peuvent influer sur la suite. L’ancien libm Apple i386 n’est pas exécuté : les fixtures mathématiques Linux ne sont pas présentées comme une preuve de ses résultats. Voir `evidence/mac-cp008-native-math-details.json`.
 
-`auval` a renvoyé 2 avec « didn't find the component » pour `aumu/Sop3/LinP`. Ce résultat historique CP-008 ne concerne pas le candidat CP-013, qui n’a pas encore été exécuté dans les API AU de macOS.
+`auval` a renvoyé 2 avec « didn't find the component » pour `aumu/Sop3/LinP`. Ce résultat historique CP-008 précède les essais du candidat. Le rapport CP-015 contient le premier auval du nouveau composant enregistré : il échoue sur la propriété 33 et l’initialisation à 192 kHz ; voir CP-016.
 
 Le PCM du WAV est décodé selon la convention PCM16 standard pour les tests. Le loader original utilise AudioConverter ; cet appel Apple n’a pas été exécuté ici. L’adaptateur `free` des tests ne libère rien, car les buffers sont possédés par l’hôte de test. Ce n’est pas encore l’allocateur d’un moteur complet.
 
@@ -57,7 +57,7 @@ bash "/chemin/vers/Sophistry-CP008/Verifier-Mac.command"
 
 Le script compile les probes **en ARM64**, vérifie les en-têtes d’architecture, rejoue les références, compare séparément les maths natives et compile l’hôte de diagnostic AU. Il lance aussi `auval -v aumu Sop3 LinP` sur l’instrument déjà enregistré. Un échec est attendu si seul l’ancien composant i386/PPC est présent. Les résultats sont conservés dans `work/mac-<date>/`.
 
-Les anciens vérificateurs n’installent aucun composant. Pour le candidat CP-013, utiliser `Verifier-AU-Mac.command`. `Installer-ARM64.command` bloque encore le remplacement en attendant les validations du nouveau candidat et des projets Logic/Live.
+Les anciens vérificateurs n’installent aucun composant. Pour le candidat CP-013, utiliser `Verifier-AU-Mac.command`. `Installer-ARM64.command` réalise maintenant une installation expérimentale avec sauvegarde et restauration automatique sur échec, après les prévalidations. Le rappel des projets reste à tester sur des copies.
 
 Pour transmettre les détails d’un test déjà terminé, télécharger `Recuperer-Rapports-Mac.command` puis le lancer avec `bash`. Il sélectionne le dernier journal Sophistry sous son dossier ou `~/Downloads`, rassemble uniquement les neuf noms de rapports prévus dans une archive ZIP et affiche l’archive dans Finder. Il ne télécharge, ne recompile et n’installe rien. Un chemin vers le dossier de rapports ou vers son `diagnostic.log` peut être fourni en premier argument.
 

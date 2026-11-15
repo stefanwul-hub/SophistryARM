@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <functional>
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 namespace sophistry {
@@ -31,6 +32,12 @@ struct LegacyAUParameterInfo {
   float minimum = 0, maximum = 0, defaultValue = 0;
   std::vector<std::string> valueStrings;
 };
+struct LegacyAUParameterText {
+  std::int32_t status = 0;
+  // A null string is a successful, documented request for the host to
+  // display an ordinary numeric value (for example, a non-minimum dB value).
+  std::optional<std::string> text;
+};
 struct LegacyTransport {
   double samplePosition = 0, tempo = 120, beat = 0, measureStartBeat = 0;
   double cycleStartBeat = 0, cycleEndBeat = 0;
@@ -54,6 +61,8 @@ public:
   std::vector<std::uint32_t> auParameterIds();
   bool validAUParameter(std::uint32_t id);
   LegacyAUParameterInfo auParameterInfo(std::uint32_t id);
+  LegacyAUParameterText
+  auParameterText(std::uint32_t id, std::optional<float> value = std::nullopt);
   float auParameter(std::uint32_t id);
   void setAUParameter(std::uint32_t id, float value);
   void setSampleRate(float rate);

@@ -1,0 +1,14 @@
+{
+  "scope": "Original AU property 33 compared with translated instructions and standalone native host; explicit CF services, not Apple APIs",
+  "passed": true,
+  "flagged_parameters": 99,
+  "cases": 596,
+  "original_i386_vs_lifted_instructions_exact": true,
+  "original_i386_vs_native_cpp_host_exact": true,
+  "original_i386_vs_arm64_linux_qemu_exact": true,
+  "successful_null_string_cases": 116,
+  "negative_infinity_cases": 58,
+  "fixed_width_label_padding_preserved": true,
+  "fixture_sha256": "048ee7ee5e7c2b69eee24a90bdddcbe719939642dc825e6e88486dcb02c80cf8",
+  "macos_api_execution_pending": true
+}

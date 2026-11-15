@@ -1,5 +1,5 @@
 #!/bin/bash
-# CP-015: test installation with original registration, verified backup and rollback.
+# CP-016: test installation with original registration, verified backup and rollback.
 set +x
 set -euo pipefail
 umask 077
@@ -55,6 +55,7 @@ exec > >(/usr/bin/tee "$REPORT/diagnostic.log") 2>&1
 stage='début'
 installation_started=0
 committed=0
+settings_confirmed=0
 collect(){
   result=$?
   trap - EXIT INT TERM
@@ -65,8 +66,11 @@ collect(){
       echo 'Échec de validation : restauration du composant précédent…'
       /usr/bin/sudo -- "$SYSTEM_PYTHON" "$PRIVATE/ComponentTransaction.py" rollback --transaction "$TRANSACTION" > "$REPORT/component-rollback.json" 2>&1 || rollback_ok=false
     fi
-    if [[ "$rollback_ok" == true && -f "$PRIVATE/Preferences-privees-avant-installation.plist" ]]; then
+    if [[ "$rollback_ok" == true && "$settings_confirmed" -eq 0 && -f "$PRIVATE/Preferences-privees-avant-installation.plist" ]]; then
       "$PRIVATE/bin/ConfigureSophistry" --restore-backup "$PRIVATE/Preferences-privees-avant-installation.plist" > "$REPORT/preferences-rollback.json" 2>&1 || rollback_ok=false
+    fi
+    if [[ "$settings_confirmed" -eq 1 ]]; then
+      echo 'La licence et le dossier de sons ont été vérifiés dans un nouveau processus et restent enregistrés pour la prochaine tentative.'
     fi
     if [[ "$installation_started" -eq 1 ]]; then /usr/bin/killall -u "$(id -u)" AudioComponentRegistrar >/dev/null 2>&1 || true;fi
   fi
@@ -75,10 +79,11 @@ collect(){
   done
   printf '%s\n' "$result" > "$REPORT/script-exitcode.txt"
   printf '%s\n' "$stage" > "$REPORT/last-stage.txt"
-  printf '{"checkpoint":"CP-015","system_installation_committed":%s,"rollback_completed_if_needed":%s,"auval_and_registered_audio_passed":%s,"original_ui_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
+  printf '{"checkpoint":"CP-016","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"original_ui_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
     "$(if [[ "$committed" -eq 1 ]]; then echo true;else echo false;fi)" "$rollback_ok" \
+    "$(if [[ "$settings_confirmed" -eq 1 ]]; then echo true;else echo false;fi)" \
     "$(if [[ "$committed" -eq 1 ]]; then echo true;else echo false;fi)" > "$REPORT/result.json"
-  archive="$ROOT/Sophistry-rapports-CP015-$STAMP.zip"
+  archive="$ROOT/Sophistry-rapports-CP016-$STAMP.zip"
   (cd "$REPORT"; /usr/bin/zip -q "$archive" ./*.json ./*.txt ./*.log ./*.wav 2>/dev/null || true)
   printf '\n%s\n' "Rapports : $archive"
   printf '%s\n' "Restauration autonome : $PRIVATE/Restaurer-Sophistry.command"
@@ -91,7 +96,7 @@ collect(){
 trap collect EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
-echo 'Sophistry CP-015 — installation de test ARM64 avec sauvegarde et validation AU'
+echo 'Sophistry CP-016 — installation de test ARM64 avec sauvegarde et validation AU'
 echo 'Cette version utilise encore les contrôles génériques AU. Testez ensuite des copies de vos projets.'
 /usr/bin/sw_vers
 /usr/bin/uname -m
@@ -126,6 +131,8 @@ else
 fi
 stage='vérification de l’enregistrement dans un nouveau processus'
 "$BUILD/ConfigureSophistry" --check --no-folder-panel --asset-directory "$ROOT/reference/Samples" > "$REPORT/settings-fresh-process.json" 2>&1
+settings_confirmed=1
+printf 'validated in a fresh process\n' > "$PRIVATE/Settings-validated.txt"
 stage='préparation de la référence originale locale'
 REFERENCE_PYTHON="$ROOT/work/reference-python/bin/python3"
 if [[ ! -x "$REFERENCE_PYTHON" ]]; then "$SYSTEM_PYTHON" -m venv "$ROOT/work/reference-python" > "$REPORT/reference-setup.log" 2>&1;fi

@@ -1,0 +1,27 @@
+{
+  "scope": "Public fixture only, native host without licence/preferences; decoded guest object/heap/globals/program compared strictly",
+  "passed": true,
+  "cases": [
+    {
+      "case": "baseline",
+      "state_restored": true
+    },
+    {
+      "case": "nested-bank",
+      "state_restored": true
+    },
+    {
+      "case": "duplicate-basename",
+      "ambiguous_sample_refused": true
+    },
+    {
+      "case": "legacy-Samples-suffix",
+      "state_restored": true
+    },
+    {
+      "case": "explicit-bank-before-fallback",
+      "state_restored": true
+    }
+  ],
+  "private_inputs_used": false
+}

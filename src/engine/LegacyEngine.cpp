@@ -97,6 +97,8 @@ struct LegacyEngine::Impl {
   struct Value {
     std::string type, text;
     std::vector<U32> array;
+    std::vector<std::pair<U32, U32>> dictionary;
+    std::int64_t number = 0;
     U32 refs = 1;
   };
   std::map<U32, Value> values;
@@ -296,6 +298,33 @@ struct LegacyEngine::Impl {
     if (f != values.end())
       ++f->second.refs;
   }
+  U32 newDictionary() {
+    U32 p = allocate(16);
+    Value v;
+    v.type = "CFDictionary";
+    values.emplace(p, std::move(v));
+    return p;
+  }
+  bool equalValue(U32 a, U32 b) const {
+    if (a == b)
+      return true;
+    auto x = values.find(a), y = values.find(b);
+    if (x != values.end() && x->second.type == "CFNumber")
+      return y != values.end() && y->second.type == "CFNumber" &&
+             x->second.number == y->second.number;
+    if (y != values.end() && y->second.type == "CFNumber")
+      return false;
+    return cfString(a) == cfString(b);
+  }
+  U32 dictionaryValue(U32 dictionary, U32 key) const {
+    const auto &v = values.at(dictionary);
+    if (v.type != "CFDictionary")
+      throw std::runtime_error("Expected CFDictionary");
+    for (const auto &entry : v.dictionary)
+      if (equalValue(entry.first, key))
+        return entry.second;
+    return 0;
+  }
   void releaseValue(U32 p) {
     auto f = values.find(p);
     if (f == values.end()) {
@@ -304,6 +333,10 @@ struct LegacyEngine::Impl {
     }
     if (!--f->second.refs) {
       auto children = std::move(f->second.array);
+      for (const auto &entry : f->second.dictionary) {
+        children.push_back(entry.first);
+        children.push_back(entry.second);
+      }
       values.erase(f);
       for (U32 child : children)
         releaseValue(child);
@@ -332,7 +365,7 @@ struct LegacyEngine::Impl {
     randomRear = (randomRear + 1) % 31;
     return value >> 1;
   }
-  U32 run(U32 entry, std::initializer_list<U32> args) {
+  U32 run(U32 entry, std::initializer_list<U32> args, U64 budget = 300000000) {
     U32 at = stack;
     put(at, stop);
     for (U32 v : args) {
@@ -340,7 +373,10 @@ struct LegacyEngine::Impl {
       put(at, v);
     }
     reg(0x10, stack);
-    U64 remaining = 30000000;
+    // Control operations build rate-dependent tables: initialization at
+    // 192 kHz needs 55,566,775 lifted instructions in the AU regression.
+    // The audio render calls below retain their separate 30M guard.
+    U64 remaining = budget;
     for (;;) {
       int fault = sl_run(cpu, entry, stop, remaining);
       const U64 spent = sl_get_steps(cpu);
@@ -966,7 +1002,16 @@ void LegacyEngine::Impl::service(U32 pc) {
     result = newString(std::move(s));
   } else if (name == "_CFStringCreateCopy")
     result = newString(cfString(arg(1)));
-  else if (name == "_CFStringGetLength") {
+  else if (name == "_CFStringCreateWithSubstring") {
+    const auto text = cfString(arg(1));
+    // The original fixed-width AU parameter labels are ASCII. Do not apply
+    // byte offsets to an unimplemented UTF-16 range for other strings.
+    if (std::any_of(text.begin(), text.end(),
+                    [](unsigned char c) { return c > 127; }) ||
+        U64(arg(2)) + arg(3) > text.size())
+      throw std::runtime_error("Unsupported CFString substring range");
+    result = newString(text.substr(arg(2), arg(3)));
+  } else if (name == "_CFStringGetLength") {
     auto text = cfString(arg(0));
     U32 n = 0;
     for (unsigned char c : text)
@@ -1000,17 +1045,54 @@ void LegacyEngine::Impl::service(U32 pc) {
   else if (name == "_CFStringGetTypeID")
     result = 7;
   else if (name == "_CFGetTypeID") {
-    cfString(arg(0));
-    result = 7;
+    auto found = values.find(arg(0));
+    if (found != values.end() && found->second.type != "CFString") {
+      const auto &type = found->second.type;
+      result = type == "CFArray" ? 8 : type == "CFNumber" ? 9 : 10;
+    } else {
+      cfString(arg(0));
+      result = 7;
+    }
   } else if (name == "_CFRetain") {
     result = arg(0);
     retainValue(result);
   } else if (name == "_CFRelease")
     releaseValue(arg(0));
-  else if (name == "_CFArrayCreateMutable") {
+  else if (name == "_CFNumberCreate") {
+    // kCFNumberLongType: the original ABI has a 32-bit long.
+    if (arg(1) != 10)
+      throw std::runtime_error("Unsupported guest CFNumber type");
+    result = allocate(16);
+    Value v;
+    v.type = "CFNumber";
+    v.number = read<I32>(arg(2));
+    values.emplace(result, std::move(v));
+  } else if (name == "_CFDictionaryCreateMutable")
+    result = newDictionary();
+  else if (name == "_CFDictionaryContainsKey" ||
+           name == "_CFDictionaryGetValue") {
+    result = dictionaryValue(arg(0), arg(1));
+    if (name == "_CFDictionaryContainsKey")
+      result = result != 0;
+  } else if (name == "_CFDictionaryAddValue") {
+    if (!dictionaryValue(arg(0), arg(1))) {
+      values.at(arg(0)).dictionary.emplace_back(arg(1), arg(2));
+      retainValue(arg(1));
+      retainValue(arg(2));
+    }
+  } else if (name == "_CFArrayCreateMutable" || name == "_CFArrayCreate") {
     result = allocate(16);
     Value v;
     v.type = "CFArray";
+    if (name == "_CFArrayCreate") {
+      if (arg(2) > 65536)
+        throw std::runtime_error("Guest CFArray exceeds limit");
+      for (U32 i = 0; i < arg(2); ++i) {
+        U32 child = word(arg(1) + i * 4);
+        v.array.push_back(child);
+        retainValue(child);
+      }
+    }
     values.emplace(result, std::move(v));
   } else if (name == "_CFArrayAppendValue") {
     auto &v = values.at(arg(0));
@@ -1448,10 +1530,30 @@ LegacyAUParameterInfo LegacyEngine::auParameterInfo(U32 id) {
       auto zero = text.find('\0');
       if (zero != std::string::npos)
         text.resize(zero);
-      while (!text.empty() && text.back() == ' ')
-        text.pop_back();
       result.valueStrings.push_back(std::move(text));
     }
+  }
+  return result;
+}
+LegacyAUParameterText
+LegacyEngine::auParameterText(U32 id, std::optional<float> value) {
+  impl_->prepareAUParameterContext();
+  // _AUCronoXEntry (0x83cf6) creates this CFType dictionary in its derived
+  // constructor tail. Create the same cache lazily for display requests.
+  if (!impl_->word(outer + 0x32b464))
+    impl_->put(outer + 0x32b464, impl_->newDictionary());
+  const U32 p = 0x5d2500;
+  impl_->zero(p, 12);
+  impl_->put(p, id);
+  if (value) {
+    impl_->put(p + 4, p + 0x20);
+    impl_->put(p + 0x20, *value);
+  }
+  LegacyAUParameterText result;
+  result.status = I32(impl_->run(0x829fc, {outer, 33, 0, 0, p}));
+  if (const U32 text = impl_->word(p + 8)) {
+    result.text = impl_->cfString(text);
+    impl_->releaseValue(text);
   }
   return result;
 }
@@ -1646,13 +1748,14 @@ void LegacyEngine::process(float *const *outputs, U32 channels, U32 frames) {
       impl_->put(list + 8 + c * 12, frames * 4);
       impl_->put(list + 12 + c * 12, impl_->outputBuffers[c]);
     }
-    if (impl_->run(0xa7014, {outer, 0x5d8f00, time, 0, frames, list}))
+    if (impl_->run(0xa7014, {outer, 0x5d8f00, time, 0, frames, list}, 30000000))
       throw std::runtime_error("Original AU render failed");
     impl_->auNextSample = sample + frames;
     impl_->explicitTransport = false;
   } else
     impl_->run(impl_->word(object + 0x70),
-               {object + 0x20, impl_->inputTable, impl_->outputTable, frames});
+               {object + 0x20, impl_->inputTable, impl_->outputTable, frames},
+               30000000);
   for (U32 c = 0; c < channels; ++c) {
     if (!outputs[c])
       throw std::runtime_error("NULL output buffer");

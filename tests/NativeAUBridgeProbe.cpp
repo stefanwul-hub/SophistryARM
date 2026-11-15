@@ -59,11 +59,17 @@ int main(int argc, char **argv) {
     if (bank != engine.saveBank())
       throw std::runtime_error("Bank changed on round trip");
     for (auto spec :
-         std::array<std::array<unsigned, 3>, 4>{{{2, 44100, 512},
+         std::array<std::array<unsigned, 3>, 8>{{{2, 44100, 512},
                                                  {6, 48000, 1024},
                                                  {2, 96000, 128},
-                                                 {6, 44100, 512}}}) {
-      stage = "AU lifecycle cycle " + std::to_string(cycles);
+                                                 {6, 44100, 512},
+                                                 {2, 22050, 64},
+                                                 {2, 96000, 137},
+                                                 {2, 48000, 4096},
+                                                 {2, 192000, 4096}}}) {
+      stage = "AU lifecycle cycle " + std::to_string(cycles) +
+              " rate=" + std::to_string(spec[1]) +
+              " maxFrames=" + std::to_string(spec[2]);
       engine.setAudioUnitOutputChannels(spec[0]);
       engine.setSampleRate(float(spec[1]));
       engine.setBlockSize(spec[2]);
@@ -112,7 +118,8 @@ int main(int argc, char **argv) {
     }
     std::cout << "{\"passed\":true,\"parameter_records\":" << parameters
               << ",\"reinitialization_cycles\":" << cycles
-              << ",\"channels\":[2,6],\"sample_rates\":[44100,48000,96000],"
+              << ",\"channels\":[2,6],\"sample_rates\":[22050,44100,48000,"
+                 "96000,192000],"
                  "\"licensed_musical_audio_tested\":false}\n";
     return 0;
   } catch (const std::exception &e) {

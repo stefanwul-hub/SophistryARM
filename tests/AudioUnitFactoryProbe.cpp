@@ -103,8 +103,9 @@ void restore(AudioUnit unit, CFPropertyListRef p) {
                              kAudioUnitScope_Global, 0, &p, sizeof(p)),
         "Restore state");
 }
-void configure(AudioUnit unit, UInt32 channels) {
-  AudioStreamBasicDescription format{44100,
+void configure(AudioUnit unit, UInt32 channels, Float64 rate = 44100,
+               UInt32 maximum = 512) {
+  AudioStreamBasicDescription format{rate,
                                      kAudioFormatLinearPCM,
                                      kAudioFormatFlagIsFloat |
                                          kAudioFormatFlagIsPacked |
@@ -119,7 +120,6 @@ void configure(AudioUnit unit, UInt32 channels) {
                              kAudioUnitScope_Output, 0, &format,
                              sizeof(format)),
         "Set stream format");
-  UInt32 maximum = 512;
   check(AudioUnitSetProperty(unit, kAudioUnitProperty_MaximumFramesPerSlice,
                              kAudioUnitScope_Global, 0, &maximum,
                              sizeof(maximum)),
@@ -245,7 +245,7 @@ int main(int argc, char **argv) {
       if (!factory)
         throw std::runtime_error("Missing SophistryAUFactory");
       component = AudioComponentRegister(
-          &desc, CFSTR("LinPlug: Sophistry CP015 candidate"), 0x00030008,
+          &desc, CFSTR("LinPlug: Sophistry CP016 candidate"), 0x00030008,
           factory);
       if (!component)
         throw std::runtime_error("Process-local component registration failed");
@@ -253,9 +253,9 @@ int main(int argc, char **argv) {
     stage = "create instance";
     check(AudioComponentInstanceNew(component, &unit.value),
           "Create AU instance");
-    if (diagnostic(unit.value, 0x53705672) != "SophistryARM CP-015")
+    if (diagnostic(unit.value, 0x53705672) != "SophistryARM CP-016")
       throw std::runtime_error(
-          "Loaded component is not the expected CP-015 candidate");
+          "Loaded component is not the expected CP-016 candidate");
     if (discoverOnly) {
       const std::string result = "{\"system_registry_used\":true,\"expected_"
                                  "native_candidate_loaded\":true}\n";
@@ -334,6 +334,55 @@ int main(int argc, char **argv) {
     }
     passed.push_back(
         "522 parameter IDs, names, units, ranges and defaults match original");
+    stage = "parameter value to string property";
+    UInt32 textSize = 0;
+    Boolean textWritable = true;
+    check(AudioUnitGetPropertyInfo(
+              unit.value, kAudioUnitProperty_ParameterStringFromValue,
+              kAudioUnitScope_Global, 0, &textSize, &textWritable),
+          "Parameter string property info");
+    if (textSize != sizeof(AudioUnitParameterStringFromValue) || textWritable)
+      throw std::runtime_error("Incorrect native parameter string ABI");
+    CFPropertyListRef textFixture = readPlist(
+        contractPath.parent_path() / "original-au-parameter-text.plist");
+    if (CFGetTypeID(textFixture) != CFArrayGetTypeID()) {
+      CFRelease(textFixture);
+      throw std::runtime_error("Invalid original parameter text fixture");
+    }
+    auto textCases = static_cast<CFArrayRef>(textFixture);
+    for (CFIndex i = 0; i < CFArrayGetCount(textCases); ++i) {
+      auto test =
+          static_cast<CFDictionaryRef>(CFArrayGetValueAtIndex(textCases, i));
+      UInt32 id = UInt32(number(test, CFSTR("id")));
+      stage = "parameter text ID " + std::to_string(id) + " case " +
+              text(static_cast<CFStringRef>(
+                  CFDictionaryGetValue(test, CFSTR("case"))));
+      AudioUnitParameterValue value = float(number(test, CFSTR("value")));
+      bool current =
+          CFDictionaryGetValue(test, CFSTR("current")) == kCFBooleanTrue;
+      AudioUnitParameterStringFromValue request{id, current ? nullptr : &value,
+                                                nullptr};
+      UInt32 bytes = sizeof(request);
+      OSStatus status = AudioUnitGetProperty(
+          unit.value, kAudioUnitProperty_ParameterStringFromValue,
+          kAudioUnitScope_Global, 0, &request, &bytes);
+      bool expectedText =
+          CFDictionaryGetValue(test, CFSTR("has_text")) == kCFBooleanTrue;
+      bool equal = status == OSStatus(number(test, CFSTR("status"))) &&
+                   bool(request.outString) == expectedText &&
+                   text(request.outString) ==
+                       text(static_cast<CFStringRef>(
+                           CFDictionaryGetValue(test, CFSTR("text"))));
+      if (request.outString)
+        CFRelease(request.outString);
+      if (!equal) {
+        CFRelease(textFixture);
+        throw std::runtime_error("Parameter text differs from original");
+      }
+    }
+    CFRelease(textFixture);
+    passed.push_back("596 original property-33 cases match, including "
+                     "clamping, current values and null strings");
     stage = "restore provided old AU state";
     state = readPlist(statePath);
     restore(unit.value, state);
@@ -427,6 +476,33 @@ int main(int argc, char **argv) {
     }
     passed.push_back(
         "initialize, uninitialize and change between 2 and 6 channels");
+    for (auto spec : std::array<std::array<UInt32, 2>, 4>{
+             {{22050, 64}, {96000, 137}, {48000, 4096}, {192000, 4096}}}) {
+      stage = "rate/block validation rate=" + std::to_string(spec[0]) +
+              " frames=" + std::to_string(spec[1]);
+      configure(unit.value, channels, spec[0], spec[1]);
+      check(AudioUnitInitialize(unit.value), "Initialize rate/block test");
+      std::vector<std::vector<float>> trial(channels,
+                                            std::vector<float>(spec[1]));
+      for (UInt32 c = 0; c < channels; ++c)
+        abl->mBuffers[c] = {1, spec[1] * 4, trial[c].data()};
+      AudioTimeStamp timestamp{};
+      timestamp.mFlags = kAudioTimeStampSampleTimeValid;
+      AudioUnitRenderActionFlags flags = 0;
+      check(AudioUnitRender(unit.value, &flags, &timestamp, 0, spec[1], abl),
+            "Render rate/block test");
+      for (UInt32 c = 0; c < channels; ++c) {
+        auto *returned = static_cast<const float *>(abl->mBuffers[c].mData);
+        if (!returned || abl->mBuffers[c].mDataByteSize < spec[1] * 4)
+          throw std::runtime_error("Invalid rate/block output buffer");
+        for (UInt32 i = 0; i < spec[1]; ++i)
+          if (!std::isfinite(returned[i]))
+            throw std::runtime_error("Non-finite rate/block output");
+      }
+      check(AudioUnitUninitialize(unit.value), "Uninitialize rate/block test");
+    }
+    passed.push_back(
+        "initialize/render at 22050/64, 96000/137, 48000/4096, 192000/4096");
     stage = "completed";
   } catch (const std::exception &e) {
     error = e.what();

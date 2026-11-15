@@ -1,0 +1,44 @@
+{
+  "checkpoint": "CP-015 user Mac report",
+  "report_zip_sha256": "cc069227fcfdf940ae05942559ddd4961faadffe3da8b5c1da28cf5e4a6a37f0",
+  "platform": "macOS 15.7.2 ARM64",
+  "native_compilation_completed": true,
+  "settings": {
+    "registration_accepted": true,
+    "registration_persisted": true,
+    "sample_root_configured": true,
+    "accepted_in_fresh_process": true
+  },
+  "audio_preflight": {
+    "2": {
+      "bytes": 1058444,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39",
+      "byte_exact_against_original_au_instructions": true
+    },
+    "6": {
+      "bytes": 3175244,
+      "wav_sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134",
+      "byte_exact_against_original_au_instructions": true
+    }
+  },
+  "system_registry_candidate_loaded": true,
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 255,
+    "timed_out": false,
+    "passed": false
+  },
+  "auval_failures": {
+    "parameters_with_missing_property_33": 99,
+    "property_33_invalid_property_errors": 297,
+    "initialization_failed_at_sample_rate": 192000,
+    "initialization_failed_at_maximum_frames": 4096
+  },
+  "component_rollback_completed": true,
+  "previous_global_component_present": false,
+  "preferences_rollback_restored_prior_values": true,
+  "diagnosis": "CP015 rolled back the accepted licence and sample root with the component. CP016 retains settings once validated in a fresh process.",
+  "private_keys_preferences_paths_in_evidence": false,
+  "old_project_recall_verified": false
+}
