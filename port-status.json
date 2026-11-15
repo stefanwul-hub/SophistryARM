@@ -79,8 +79,8 @@
     "strict_passed": false
   },
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
-  "github_verified_code_commit": "442226d278bc2c9346ee069cfc88b462774a413c",
-  "github_verified_archive_sha256": "79538a2dc7b4430100b9a69f73eff32cd0f4ae5f9dc68e3230ef2b4fe3506b77",
+  "github_verified_code_commit": "df15c5b111ae6830574c182eab25e90e6299a2a2",
+  "github_verified_archive_sha256": "eb924d25024cf5a889b9bd39b618587548ecc0126b167177fef210db642a1d39",
   "macos_auval_scope": "CP020 system auval passed; CP021 pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
@@ -122,7 +122,7 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "CP020 archive independently downloaded; all 4069 tracked blobs verified. See checkpoints/CP020-publication.json.",
+  "github_verification_note": "CP021 source archive independently downloaded; all 4082 tracked blobs verified. See checkpoints/CP021-publication.json.",
   "native_cpp_host_available": true,
   "native_cpp_host_is_production_ready": false,
   "native_cpp_host_linux_executed": true,
@@ -283,5 +283,10 @@
   "cp021_original_sample_loader_cases": 12,
   "cp021_original_sample_loader_byte_exact_regions": 48,
   "cp021_native_apple_converter_oracle_executed": false,
-  "cp021_actual_user_project_audio_fix_verified": false
+  "cp021_actual_user_project_audio_fix_verified": false,
+  "github_cp021_source_commit": "df15c5b111ae6830574c182eab25e90e6299a2a2",
+  "github_cp021_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/df15c5b111ae6830574c182eab25e90e6299a2a2",
+  "github_cp021_archive_sha256": "eb924d25024cf5a889b9bd39b618587548ecc0126b167177fef210db642a1d39",
+  "github_cp021_verified_tracked_blobs": 4082,
+  "github_cp021_launcher": "Demarrer-Sophistry-CP021.command"
 }

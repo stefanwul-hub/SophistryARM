@@ -1,4 +1,4 @@
-# Reprendre à CP-021 — correctif terminé, publication à finaliser
+# Reprendre à CP-021 — archive vérifiée, lanceur à publier
 
 Dernier retour : CP020 compilé et installé, interface présente, mais anciens sons silencieux et « Son: empty ». Les deux pièces jointes CP020 et Diagnostic.txt sont analysées. Ne pas redemander la licence ni les banques : la licence est acceptée et le fichier D4U est trouvé. Les rapports bruts restent privés sous `work/mac-report-cp020` et dans les pièces jointes ; ne pas publier de chemins /Users, clés, préférences ou bookmarks.
 
@@ -12,7 +12,7 @@ Vérifications terminées : 256 cas PCM connus et516 rejets en Linux, ASan/UBSan
 
 **Aucune exécution CP021 sur macOS ici.** L’installateur préparé ajoute un oracle Apple32cas et deux rendus musicaux D4U mono/stéréo contre les instructions originales avec licence locale, puis conserve toutes les barrières AU existantes, installation système et restauration sur échec. Les échantillons sont dérivés du WAV public fourni ; le véritable D4U du diagnostic n’a pas été reçu. Le son du projet réel, les autres banques, l’interface complète et la charge polyphonique restent à vérifier.
 
-Publication autorisée sur `codex/sophistry-native-checkpoints` seulement. WIP déjà publié : `26fc0f2b40dc59749a2bf5df225b357c343dcbec`. À terminer : publier les sources finales, télécharger/vérifier chaque blob de l’archive immuable, créer le lanceur CP021 épinglé au SHA256, vérifier son téléchargement, mettre à jour les pointeurs et régénérer le bundle complet local. Le Mac réutilisera licence et banque. Réponse utilisateur : lien CP021, fermer Logic/Live, lancer, attendre installation confirmée, rouvrir une copie du même projet, envoyer rapport CP021 et diagnostic si encore silencieux.
+Publication autorisée sur `codex/sophistry-native-checkpoints` seulement. WIP déjà publié : `26fc0f2b40dc59749a2bf5df225b357c343dcbec`. Sources finales publiées : `df15c5b111ae6830574c182eab25e90e6299a2a2`. Archive téléchargée et vérifiée : 4082 blobs identiques, 44167860 octets, SHA256 `eb924d25024cf5a889b9bd39b618587548ecc0126b167177fef210db642a1d39`. Lanceur CP021 créé et épinglé à cette archive. À terminer : publier le lanceur, vérifier son téléchargement immuable, mettre à jour les pointeurs et régénérer le bundle complet local. Le Mac réutilisera licence et banque. Réponse utilisateur : lien CP021, fermer Logic/Live, lancer, attendre installation confirmée, rouvrir une copie du même projet, envoyer rapport CP021 et diagnostic si encore silencieux.
 
 Environnement conservé : sources, projet Ghidra, outils/SDK, objets et rapports sous workspace ; scripts de vérification sous `work/cp021`. Environ432Mo libres. Ne supprimer si nécessaire que des binaires identifiés comme reconstructibles, jamais rapports, objets, sources ou historique. Pas d’agents autorisés. Aucun nouveau preset nécessaire pour cette correction.
 
