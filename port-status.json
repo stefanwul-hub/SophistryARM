@@ -79,8 +79,8 @@
     "strict_passed": false
   },
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
-  "github_verified_code_commit": "15bdfcb8b1da2818395ecd66365005630aeabe07",
-  "github_verified_archive_sha256": "4d3635844d4bcdd71566b77eb4848ae7fa1eb295e57c1d09a25c232f8d6d2465",
+  "github_verified_code_commit": "f12e7869c1b1731df191f7d763376f8cd5d6d0cc",
+  "github_verified_archive_sha256": "d5567f0736b8867bf8fa91b5124725fbf5f295fc3bbde9ed72453bafc2d4c3be",
   "macos_auval_scope": "CP018 system auval passed (exit0); CP019 auval and Mac execution pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
@@ -122,7 +122,7 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "CP018 source archive independently downloaded; all 4052 tracked blobs verified. See checkpoints/CP018-publication.json.",
+  "github_verification_note": "CP019 immutable archive independently downloaded; all 4061 tracked blobs verified. See checkpoints/CP019-publication.json.",
   "native_cpp_host_available": true,
   "native_cpp_host_is_production_ready": false,
   "native_cpp_host_linux_executed": true,
@@ -234,5 +234,11 @@
   "cp019_remote_test_scope": "Own Cocoa factory driving a genuinely out-of-process AU; does not certify the host-managed remote window",
   "cp019_installed_au_inspector_source_available": true,
   "cp019_window_recenter_source_available": true,
-  "cp019_inspector_reads_active_daw_project": false
+  "cp019_inspector_reads_active_daw_project": false,
+  "github_cp019_source_commit": "f12e7869c1b1731df191f7d763376f8cd5d6d0cc",
+  "github_cp019_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/f12e7869c1b1731df191f7d763376f8cd5d6d0cc",
+  "github_cp019_archive_sha256": "d5567f0736b8867bf8fa91b5124725fbf5f295fc3bbde9ed72453bafc2d4c3be",
+  "github_cp019_verified_tracked_blobs": 4061,
+  "github_cp019_launcher": "Demarrer-Sophistry-CP019.command",
+  "cp019_source_archive_verification_pending": false
 }
