@@ -48,5 +48,27 @@
     "Unregistered original engine; only low-level denormal-prevention offsets are produced",
     "Platform services and modern libm are explicit adapters, not original Apple implementations",
     "The candidate macOS AU has not run on a Mac"
+  ],
+  "additional_au_state_cases": [
+    {
+      "state": "provided Lightgarden 02 BT.aupreset / CrX3 vstdata",
+      "channels": 2,
+      "frames": 132300,
+      "wav_bytes": 1058444,
+      "wav_sha256": "91a2920597f4cb4f911e8c93a903a596be79cc74b67640644e7beec6fe1c5582",
+      "byte_exact": true,
+      "registration_accepted": false,
+      "musical_audio_validated": false
+    },
+    {
+      "state": "provided Lightgarden 02 BT.aupreset / CrX3 vstdata",
+      "channels": 6,
+      "frames": 132300,
+      "wav_bytes": 3175244,
+      "wav_sha256": "5a62c801336245733bd0a180ccdd305eb0d1fac6656745ef9a704dfb7ecd24cf",
+      "byte_exact": true,
+      "registration_accepted": false,
+      "musical_audio_validated": false
+    }
   ]
 }

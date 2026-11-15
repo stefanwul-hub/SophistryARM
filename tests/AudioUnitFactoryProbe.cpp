@@ -351,15 +351,22 @@ int main(int argc, char **argv) {
                    std::chrono::duration<double>(
                        std::chrono::steady_clock::now() - callStart)
                        .count());
-      for (UInt32 c = 0; c < channels; ++c)
+      if (abl->mNumberBuffers != channels)
+        throw std::runtime_error("Changed output buffer count");
+      for (UInt32 c = 0; c < channels; ++c) {
+        if (!abl->mBuffers[c].mData || abl->mBuffers[c].mDataByteSize < n * 4)
+          throw std::runtime_error("Invalid returned audio buffer");
+        const auto *returned =
+            static_cast<const float *>(abl->mBuffers[c].mData);
         for (UInt32 i = 0; i < n; ++i) {
-          double v = buffers[c][i];
+          double v = returned[i];
           if (!std::isfinite(v))
             throw std::runtime_error("Non-finite audio");
           peaks[c] = std::max(peaks[c], std::fabs(v));
           rms[c] += v * v;
           audio[c][at + i] = float(v);
         }
+      }
       rendered += n;
     }
     renderSeconds = std::chrono::duration<double>(

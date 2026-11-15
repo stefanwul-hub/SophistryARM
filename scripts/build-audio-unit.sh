@@ -32,7 +32,7 @@ mkdir -p "$bundle/Contents/MacOS" "$bundle/Contents/Resources"
 cp "$ROOT/src/au/Info.plist" "$bundle/Contents/Info.plist"
 cp -R "$ROOT/reference/Samples" "$bundle/Contents/Resources/"
 cp -R "$ROOT/reference/Presets" "$bundle/Contents/Resources/"
-cp -R "$ROOT/reference/Resources" "$bundle/Contents/Resources/OriginalImages"
+/usr/bin/ditto "$ROOT/reference/Resources" "$bundle/Contents/Resources/OriginalImages"
 cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/AudioUnitSDK-LICENSE.txt"
 "${compiler[@]}" -arch arm64 -mmacosx-version-min=11.0 -bundle \
   "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" "${objects[@]}" \

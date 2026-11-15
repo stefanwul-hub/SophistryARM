@@ -164,5 +164,6 @@
   "au_bridge_parameter_records_tested": 522,
   "au_bridge_reinitialization_cycles_tested": 4,
   "au_native_gui_status": "Generic AU controls only; faithful Sophistry Cocoa interface remains unimplemented",
-  "install_block_reason": "Candidate has not executed through Apple AU APIs; GUI, auval and DAW project recall remain incomplete"
+  "install_block_reason": "Candidate has not executed through Apple AU APIs; GUI, auval and DAW project recall remain incomplete",
+  "installation_authorized_by_user": true
 }

@@ -321,18 +321,18 @@ public:
       OSStatus status = Base::SaveState(&base);
       if (status)
         return status;
+      std::unique_ptr<const void, decltype(&CFRelease)> owned(base, &CFRelease);
       auto dict = static_cast<CFMutableDictionaryRef>(const_cast<void *>(base));
       auto bytes = engine_.saveBank();
       CFDataRef data =
           CFDataCreate(nullptr, bytes.data(), CFIndex(bytes.size()));
       if (!data) {
-        CFRelease(base);
         return OSStatus(-108);
       }
       CFDictionaryRemoveValue(dict, CFSTR("data"));
       CFDictionarySetValue(dict, CFSTR("vstdata"), data);
       CFRelease(data);
-      *out = base;
+      *out = owned.release();
       return noErr;
     });
   }
