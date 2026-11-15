@@ -191,5 +191,10 @@
   "cp016_mac_execution_pending": true,
   "validated_settings_retained_on_later_failure": true,
   "original_au_parameter_text_cases": 596,
-  "cp016_auval_passed": null
+  "cp016_auval_passed": null,
+  "github_cp016_source_commit": "f582f492ea3f26854e33d738ec0c19ff12ac7eb1",
+  "github_cp016_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/f582f492ea3f26854e33d738ec0c19ff12ac7eb1",
+  "github_cp016_archive_sha256": "8a9b84cda354b50448ae478416ed3b7984d04153c237236b0d78299a49fa9132",
+  "github_cp016_verified_tracked_blobs": 4039,
+  "github_cp016_launcher": "Demarrer-Sophistry-CP016.command"
 }
