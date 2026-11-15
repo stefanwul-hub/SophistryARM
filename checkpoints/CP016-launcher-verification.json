@@ -1,0 +1,9 @@
+{
+  "checkpoint": "CP-016",
+  "launcher_commit": "3b81d8b39548536d1f8511e473fae3f8ee7dc141",
+  "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/3b81d8b39548536d1f8511e473fae3f8ee7dc141/Demarrer-Sophistry-CP016.command",
+  "bytes": 2144,
+  "sha256": "8ca10a9dc3cd9678d1a22ecfe71c8419b48a20a5c9facc057d8976ea7203130e",
+  "download_matches_local_exactly": true,
+  "mac_execution_pending": true
+}

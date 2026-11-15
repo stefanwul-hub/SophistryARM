@@ -1,5 +1,7 @@
 # Reprendre à CP-016 — corrections du rapport CP-015, nouveau test Mac à effectuer
 
+Lanceur immuable téléchargé et vérifié : https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/3b81d8b39548536d1f8511e473fae3f8ee7dc141/Demarrer-Sophistry-CP016.command ; SHA256 8ca10a9dc3cd9678d1a22ecfe71c8419b48a20a5c9facc057d8976ea7203130e.
+
 Source CP016 publiée/vérifiée : f582f492ea3f26854e33d738ec0c19ff12ac7eb1 ; archive https://codeload.github.com/stefanwul-hub/SophistryARM/zip/f582f492ea3f26854e33d738ec0c19ff12ac7eb1 ; SHA256 8a9b84cda354b50448ae478416ed3b7984d04153c237236b0d78299a49fa9132 ; 4039 blobs vérifiés. Le lanceur CP016 épingle cette archive et conserve les sources dans Documents/SophistryARM-CP016. Prochain rapport attendu : Sophistry-rapports-CP016-<date>.zip.
 
 Lire d’abord docs/CP016.md et evidence/mac-cp015-installation.json. Le rapport Sophistry-rapports-CP015-20261115T112344Z.zip confirme la compilation, la persistance/réutilisation de la licence dans un nouveau processus, la découverte du candidat système et les WAV préflight 2/6 canaux byte-exact contre la référence originale. auval échoue : 297 erreurs de propriété33 pour99 paramètres et initialisation192k/4096. Le composant est retiré ; CP015 a aussi restauré les anciennes préférences, donc supprimé la clé juste validée. Ne pas redemander de clé en ligne.
