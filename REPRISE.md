@@ -1,4 +1,4 @@
-# Reprendre à CP024 — rapport CP023 vérifié et correction graphique préparée
+# Reprendre à CP024 — source publiée et archive vérifiée
 
 Rapport reçu Sophistry-rapports-CP023-20261116T191207Z.zip, SHA25679d21d8296ece7319ffaaebba7422e6b645079a76802d008ae2cd3e9c07729a4. Originaux sous work/mac-report-cp023 et pièce jointe, privés/ignorés. Lire evidence/mac-cp023-installed-generators.json. InstallationCP023/build23001 confirmée, auval0, 14casCocoa/177modifications/14programmes+42banques exacts, frais nom+type rappelés, 32casPCMApple,96chargements mémoire stable. DouzeWAV indépendamment byte-exacts/finis : mêmes hashes CP021, stéréo5f5d161d... et6canauxda29170f... . Licence reconnue, settings réutilisés. Ne pas redemander ce ZIP ou une clé/preset. Pas de retour verbal de gestes/automation privés CP023.
 
@@ -10,7 +10,7 @@ Nouveau test Cocoa attache view à fenêtre NSWindow non affichée, maintenue ju
 
 Vérifications CP024 :177edits/381records/14cases/5rejets,56états identiques à l’original et au MacCP023. Layout14/109sprites,30testsPython. Cinq binaires Mac modifiés liés strictement ARM64(exportsfactory/Cocoa/générateurs vérifiés), sous work/cross-cp024 ; sources runtime+engine recompilées. Linux sous work/cp024. Les sources moteur et runtime ne changent pas ; nouvel objet LegacyEngine compile le layout actualisé. Pas de nouvelle comparaison musicaleCP024 à prétendre.
 
-Publication à terminer : source immuable via GitHub Git data, vérifier tousblobs archive, lanceurCP024 pins SHA256 et vérification rawdownload, métadonnées checkpoints, puis bundle autonome checkpoints/Sophistry-history.bundle. Publication déjà autorisée sur codex/sophistry-native-checkpoints seulement, main inchangée. Pasd’agents. Quelques exécutables CP023 Linux etcross reconstruisibles supprimés pour espace : noms/bytes/hashes dans work/cp024/rebuildable-cleanup.json ; aucun objet,source,snapshot,rapport,historique supprimé.
+SourceCP024 publiée `01e41abeb56795685afce45f95a3cca88d0f39f0` ; archive `https://codeload.github.com/stefanwul-hub/SophistryARM/zip/01e41abeb56795685afce45f95a3cca88d0f39f0` téléchargée et vérifiée : 44234195octets, SHA256 `a6b0c138245e6572af50272ffbd01a486bc0b756ce68b9243e3d7291be5e5995`, 4113blobs exacts. LanceurCP024 créé, publication et vérification raw encore à terminer ; puis régénérer checkpoints/Sophistry-history.bundle. Publication autorisée sur codex/sophistry-native-checkpoints uniquement, main inchangée. Pasd’agents. Nettoyage d’exécutables reconstructibles CP023 consigné sous work/cp024/rebuildable-cleanup.json ; aucun objet,source,snapshot,rapport,historique supprimé.
 
 Suite : valider sixclics/renduCP024 sur Mac, essais hôtes en copies puis navigateur/trim/zonesLoop et panneaux filtres/effets/modulation. Toute source/preuvepubliée doit exclure chemins privés/préférences/licence. L’utilisateur possède déjà licence,banques et presets publics.
 

@@ -79,8 +79,8 @@
     "strict_passed": false
   },
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
-  "github_verified_code_commit": "4947ef54239f5bf6ce54fb1954981f265a269c03",
-  "github_verified_archive_sha256": "ce440c10aa4ee04e359b591ce0d174862d19c9fba8d4b7a7eb1ddd700e7e0c7d",
+  "github_verified_code_commit": "01e41abeb56795685afce45f95a3cca88d0f39f0",
+  "github_verified_archive_sha256": "a6b0c138245e6572af50272ffbd01a486bc0b756ce68b9243e3d7291be5e5995",
   "macos_auval_scope": "CP023 independently reviewed and passed. CP024 pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
@@ -367,5 +367,10 @@
   "cp024_prepared_routing_mouse_cases": 6,
   "cp024_state_blocks_unchanged": 56,
   "cp024_strict_macos_arm64_binaries_linked": 5,
-  "cp024_source_archive_verification_pending": true
+  "cp024_source_archive_verification_pending": false,
+  "github_cp024_source_commit": "01e41abeb56795685afce45f95a3cca88d0f39f0",
+  "github_cp024_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/01e41abeb56795685afce45f95a3cca88d0f39f0",
+  "github_cp024_archive_sha256": "a6b0c138245e6572af50272ffbd01a486bc0b756ce68b9243e3d7291be5e5995",
+  "github_cp024_verified_tracked_blobs": 4113,
+  "github_cp024_launcher": "Demarrer-Sophistry-CP024.command"
 }
