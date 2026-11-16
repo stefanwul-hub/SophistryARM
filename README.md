@@ -10,7 +10,7 @@ Les 177 modifications testées sur quatorze combinaisons donnent les mêmes quat
 
 ## Installer et tester
 
-[Télécharger le lanceur CP023](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP023.command), fermer Logic et Live, puis exécuter :
+[Télécharger le lanceur CP023](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/3995fdfe5f2b77d30136c6feda8190b3d1e5e05c/Demarrer-Sophistry-CP023.command), fermer Logic et Live, puis exécuter :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP023.command"
