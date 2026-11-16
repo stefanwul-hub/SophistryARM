@@ -1,0 +1,16 @@
+{
+  "checkpoint": "CP-022",
+  "date": "2026-11-16",
+  "source": "Direct user feedback; no CP022 report archive supplied with this message",
+  "user_quote": "Très bien, j’ai testé dans Logic et Live. Le problème est résolu. Je peux charger des sons à la suite sans que ça bloque. Le nom du son s’affiche correctement après avoir rechargé une sauvegarde. Tu peux passer à la suite.",
+  "tested_hosts_reported": [
+    "Logic Pro 11",
+    "Ableton Live 11.3.2"
+  ],
+  "sequential_sound_loading_fixed_reported": true,
+  "preset_name_after_saved_state_reload_fixed_reported": true,
+  "cp022_automated_mac_report_independently_reviewed": false,
+  "complete_banks_or_all_parameters_verified": false,
+  "next_work_authorized": "Continue original graphical editor and controls",
+  "private_files_or_license_included": false
+}

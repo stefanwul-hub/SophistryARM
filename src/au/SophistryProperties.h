@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 namespace sophistry {
-constexpr char wrapperVersion[] = "SophistryARM CP-022";
+constexpr char wrapperVersion[] = "SophistryARM CP-023";
 // Private editor properties are for a view with a local AU handle.
 // Flat bytes avoid sharing object pointers, but the macOS remote proxy may
 // reject these IDs. Host-side remote tests must use public AU properties.
@@ -17,5 +17,7 @@ struct BankLocationHeader {
 static_assert(sizeof(BankLocationHeader) == 12);
 // SpBr: header, NUL-terminated UTF-8 path, private bookmark bytes.
 constexpr std::uint32_t sampleRootProperty = 0x53704272;
-constexpr std::uint32_t reloadStateProperty = 0x5370526c; // SpRl, UInt32=1
+constexpr std::uint32_t reloadStateProperty = 0x5370526c;    // SpRl, UInt32=1
+constexpr std::uint32_t generatorPanelProperty = 0x53704770; // SpGp, flat state
+constexpr std::uint32_t generatorEditProperty = 0x53704765;  // SpGe, flat edit
 } // namespace sophistry

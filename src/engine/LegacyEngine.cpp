@@ -322,8 +322,9 @@ struct LegacyEngine::Impl {
   U32 allocate(U32 n) {
     const U32 p = arena.allocate(n);
     // The reference address arena starts zero-filled. A newly reused span
-    // must have the same contents, including padding read by legacy serializers,
-    // rather than exposing a previous sample as an object's initial fields.
+    // must have the same contents, including padding read by legacy
+    // serializers, rather than exposing a previous sample as an object's
+    // initial fields.
     if (config.recycleFreedBlocks)
       zero(p, (std::max(n, U32(1)) + 15) & ~U32(15));
     return p;
@@ -1710,6 +1711,68 @@ void LegacyEngine::setAUParameter(U32 id, float value) {
     throw std::out_of_range("Unknown or invalid AU parameter");
   if (impl_->run(0x3c80, {outer, id, 0, 0, bits32(value)}))
     throw std::runtime_error("Original AU setParameter failed");
+}
+GeneratorPanelState LegacyEngine::generatorPanel(unsigned pair) {
+  impl_->initialize();
+  if (pair > 1)
+    throw std::out_of_range("Unknown generator panel");
+  GeneratorPanelState result;
+  result.pair = pair;
+  for (unsigned g = 0; g < 4; ++g) {
+    result.types[g] = impl_->run(0x1d28c, {object, generatorTypeTag(g)});
+    if (result.types[g] > (g < 2 ? 3u : 2u))
+      throw std::runtime_error("Invalid original generator type");
+  }
+  for (unsigned g = pair * 2; g < pair * 2 + 2; ++g) {
+    for (const auto &spec : generatorLayout(g, result.types[g])) {
+      if (result.count >= result.controls.size())
+        throw std::runtime_error("Generator panel exceeds wire capacity");
+      auto &c = result.controls[result.count++];
+      c.tag = spec.tag;
+      c.auParameter = generatorAUParameter(spec.tag);
+      const U32 info = 0x5d2200, text = 0x5d4000;
+      impl_->zero(info, 28);
+      impl_->run(0x1ce0e, {object, spec.tag, info});
+      c.kind = impl_->word(info);
+      c.minimum = I32(impl_->word(info + 4));
+      c.maximum = I32(impl_->word(info + 8));
+      c.defaultValue = I32(impl_->word(info + 12));
+      c.decimals = impl_->word(info + 20);
+      c.curve = impl_->read<float>(info + 24);
+      if (!std::isfinite(c.curve))
+        throw std::runtime_error("Invalid original control curve");
+      impl_->zero(text, 4096);
+      impl_->run(0x1d640, {object, spec.tag, text});
+      const auto name = impl_->string(text, 4096);
+      std::strncpy(c.name, name.c_str(), sizeof(c.name) - 1);
+      impl_->zero(text, 4096);
+      if (spec.widget == GeneratorWidget::Sample) {
+        if (c.kind != 7)
+          throw std::runtime_error("Unexpected sample-name control");
+        impl_->run(0x1ceb2, {object, spec.tag, text});
+        const auto value = baseName(impl_->string(text, 4096));
+        std::strncpy(c.text, value.c_str(), sizeof(c.text) - 1);
+      } else {
+        if (c.kind != 1 && c.kind != 2 && c.kind != 4 && c.kind != 5 &&
+            c.kind != 6)
+          throw std::runtime_error("Unexpected numeric generator control");
+        c.value = I32(impl_->run(0x1d28c, {object, spec.tag}));
+        impl_->run(0x1d532, {object, spec.tag, text, sizeof(c.text) - 1});
+        const auto value = impl_->string(text, 4096);
+        std::strncpy(c.text, value.c_str(), sizeof(c.text) - 1);
+      }
+    }
+  }
+  return result;
+}
+void LegacyEngine::setGeneratorControl(U32 tag, float normalized) {
+  impl_->initialize();
+  if (!isGeneratorControl(tag, true) || !std::isfinite(normalized) ||
+      normalized < 0 || normalized > 1)
+    throw std::out_of_range("Unknown or invalid generator edit");
+  // Synth::setParameter handles editor-only selectors beyond the public VST
+  // automation list, including voice updates and the original edited flag.
+  impl_->run(0x1cc86, {object, tag, bits32(normalized)});
 }
 void LegacyEngine::setSampleRate(float rate) {
   impl_->initialize();

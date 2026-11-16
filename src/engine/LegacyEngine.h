@@ -1,4 +1,5 @@
 #pragma once
+#include "GeneratorControls.h"
 #include <cstddef>
 #include <cstdint>
 #include <functional>
@@ -72,6 +73,8 @@ public:
   auParameterText(std::uint32_t id, std::optional<float> value = std::nullopt);
   float auParameter(std::uint32_t id);
   void setAUParameter(std::uint32_t id, float value);
+  GeneratorPanelState generatorPanel(unsigned pair);
+  void setGeneratorControl(std::uint32_t tag, float normalized);
   void setSampleRate(float rate);
   void setBlockSize(std::uint32_t frames);
   void activate();

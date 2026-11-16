@@ -1,3 +1,19 @@
+# Reprendre à CP023 — générateurs développés, publication à finaliser
+
+Retour du 16 novembre 2026 : l’utilisateur a testé Logic ET Live ; chargements successifs et nom après sauvegarde/réouverture corrigés. Voir evidence/mac-cp022-user-feedback.json. CP022 est sa base fonctionnelle. Aucun ZIP CP022 reçu à ce message ; les derniers contrôles auval/audio indépendamment examinés restent CP021 (evidence/mac-cp021-installed-audio.json). Ne pas redemander les rapports CP021, l’hôte, une clé ou des presets.
+
+CP023 : lire docs/CP023.md, docs/SUITE.md, analysis/generator-editor-bindings.json et evidence/cp023-development-checks.json. GeneratorControls.h décrit layouts/plages/types et protocole plat SpGp/SpGe ; LegacyEngine getters originaux 1d28c/1ce0e/1d640/1d532 (dernier argument longueur127), texte sample1ceb2, setter normalisé1cc86 (PAS stubVST94c7e). GeneratorView.h inclus par SophistryEditor.mm : sprites originaux, menus type, gestes AU, aliases detune484–487, routing108–109, nœuds cachés réutilisés pendant les callbacks. Ne pas ajouter de faux IDs AU. Aucun changement des unités machine DSP, du runtime, de l’allocateur ou du PCM de CP022. Identité aumu/Sop3/LinP, 522 paramètres et version3.0.8 conservés ; build23001.
+
+Principales commandes des 4 générateurs exposées ; Loop Sampler limité aux générateurs1/2 comme original. Fichier sample courant en lecture seule. Navigateur/trim, zones/boucles détaillées Loop et panneaux filtres/effets/modulation restent à développer. BitmapTime250 absent : commande encore dans navigateur AU, pas de faux sprite.
+
+Vérifications : 14 types,177 modifications,381 relevés,5 refus invalides. 14 programmes+42 banques exacts contre original i386 ; mêmes56 empreintes sous ARM64/Linux/QEMU. Banque éditée se normalise encore à la restauration dans ORIGINAL aussi : les3 transitions sont comparées, pas d’idempotence générale revendiquée. Layout14/102sprites mesurés,8 régionsCP021 byte-exactes,8 cycles pontAU/522params,96chargements/12formats mémoire stable,30testsPython. 14binairesMacARM64 strictement liés, exportsfactory/Cocoa/nœuds vérifiés. TestsCocoa14cas+PNG+freshname/type préparés mais NON exécutés ici ; auval/audioCP023 encore à faire sur le Mac. Tous gates/rollback/licence persistée conservés.
+
+Données privées sous work/, jamais publier rapports bruts/préférences/licence. Publication déjà autorisée sur codex/sophistry-native-checkpoints uniquement ; main inchangée. Pas d’agents. Espace disque limité : supprimer seulement exécutables reconstructibles identifiés si nécessaire ; préserver objets/sources/rapports/snapshots/historique. NettoyageCP023 consigné dans work/cp023/rebuildable-cleanup.json. Outils et scripts de build local sous work/cp023, cross sous work/cross-cp023.
+
+À cette sauvegarde : publier source via GitHub Git data, télécharger/archive immuable et vérifier tous blobs ; créer lanceurCP023 épinglé avec SHA256 et métadonnées checkpoints ; vérifier téléchargement exact du lanceur ; régénérer checkpoints/Sophistry-history.bundle. Prochain rapportMacCP023 contient14PNG. Demander essais de gestes et sauvegarde/réouverture sur copies de projets, puis poursuivre éditeur de samples/filtres/effets/modulation.
+
+Les notes suivantes sont historiques ; les attentes CP022 ci-dessous sont remplacées par le retour positif ci-dessus.
+
 # Reprendre à CP-022 — publication vérifiée, rapport Mac attendu
 
 Nouveau retour : testé Logic puis Live. Les anciens projets Logic produisent du son ; un son sauvegardé dans Live se recharge mais son nom devient « Defaut ». Après plusieurs changements, un preset peut refuser de se charger puis fonctionner après redémarrage de Live. L’utilisateur a transmis `Sophistry-rapports-CP021-20261115T210733Z.zip` et `Diagnostic2.txt`.

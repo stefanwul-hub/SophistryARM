@@ -1,6 +1,7 @@
 // Exercise the actual component Cocoa factory inside this process.
 // Remote host validation uses only public APIs in AudioUnitRemoteHostProbe.mm.
 #include "../src/au/SophistryProperties.h"
+#include "../src/engine/GeneratorControls.h"
 #import <AppKit/AppKit.h>
 #import <AudioToolbox/AUCocoaUIView.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -44,7 +45,12 @@ static NSDictionary *presetLabelRoundTrip(AudioComponent component,
       AudioUnitGetProperty(source, kAudioUnitProperty_ClassInfo,
                            kAudioUnitScope_Global, 0, &saved, &size);
   bool stored = false, restored = false, exposed = false, retained = false,
-       bankExact = false;
+       bankExact = false, generatorTypesRetained = false;
+  sophistry::GeneratorPanelState sourceGenerators{}, freshGenerators{};
+  UInt32 generatorBytes = sizeof(sourceGenerators);
+  const auto sourceGeneratorStatus = AudioUnitGetProperty(
+      source, sophistry::generatorPanelProperty, kAudioUnitScope_Global, 0,
+      &sourceGenerators, &generatorBytes);
   if (!status && saved && CFGetTypeID(saved) == CFDictionaryGetTypeID()) {
     auto dict = static_cast<CFDictionaryRef>(saved);
     const auto name =
@@ -69,6 +75,12 @@ static NSDictionary *presetLabelRoundTrip(AudioComponent component,
     NSDictionary *info = runtimeStatus(fresh, runtime);
     restored = !runtime && [info[@"state_loaded"] boolValue] &&
                [info[@"preset_name"] isEqualToString:@"BT_lightgarden_02"];
+    generatorBytes = sizeof(freshGenerators);
+    const auto freshStatus = AudioUnitGetProperty(
+        fresh, sophistry::generatorPanelProperty, kAudioUnitScope_Global, 0,
+        &freshGenerators, &generatorBytes);
+    generatorTypesRetained = !sourceGeneratorStatus && !freshStatus &&
+                             sourceGenerators.types == freshGenerators.types;
     size = sizeof(before);
     status = AudioUnitGetProperty(fresh, kAudioUnitProperty_ClassInfo,
                                   kAudioUnitScope_Global, 0, &before, &size);
@@ -115,14 +127,15 @@ static NSDictionary *presetLabelRoundTrip(AudioComponent component,
   if (after)
     CFRelease(after);
   return @{
-    @"passed" :
-        @(!status && stored && restored && exposed && retained && bankExact),
+    @"passed" : @(!status && stored && restored && exposed && retained &&
+                  bankExact && generatorTypesRetained),
     @"status" : @(status),
     @"name_serialized" : @(stored),
     @"name_restored_in_fresh_instance" : @(restored),
     @"present_preset_name_preserved" : @(exposed),
     @"generic_host_name_does_not_replace_original" : @(retained),
-    @"bank_unchanged_by_name_assignment" : @(bankExact)
+    @"bank_unchanged_by_name_assignment" : @(bankExact),
+    @"generator_types_retained" : @(generatorTypesRetained)
   };
 }
 
@@ -131,6 +144,7 @@ static NSDictionary *presetLabelRoundTrip(AudioComponent component,
 - (NSDictionary *)sophistryEditorReport;
 - (void)selectTab:(NSButton *)sender;
 - (void)parameterChanged:(NSControl *)sender;
+- (BOOL)testGeneratorControl:(UInt32)tag normalized:(float)value;
 @end
 
 int main(int argc, const char **argv) {
@@ -147,6 +161,8 @@ int main(int argc, const char **argv) {
     NSDictionary *viewReport = @{};
     NSDictionary *renderStatus = @{};
     NSDictionary *labelRoundTrip = @{};
+    NSMutableArray *generatorCases = [NSMutableArray array];
+    NSDictionary *generatorRecall = @{};
     NSString *advertisedClass = @"";
     NSString *componentViewClass = @"";
     OSStatus runtimePropertyStatus = noErr;
@@ -253,6 +269,66 @@ int main(int argc, const char **argv) {
                     isEqualToString:@"BT_lightgarden_02"];
             if (fxp && fxpNamePreserved)
               labelRoundTrip = presetLabelRoundTrip(component, unit);
+            for (unsigned generator = 0; !failure && generator < 4;
+                 ++generator) {
+              NSButton *section = [NSButton new];
+              section.tag = generator < 2 ? 1 : 2;
+              [view selectTab:section];
+              const unsigned maximum = generator < 2 ? 3 : 2;
+              for (unsigned type = 0; !failure && type <= maximum; ++type) {
+                const BOOL selected = [view
+                    testGeneratorControl:sophistry::generatorTypeTag(generator)
+                              normalized:float(type) / maximum];
+                NSDictionary *panel =
+                    [view sophistryEditorReport][@"generator_panel"];
+                float beforeVolume = 0, afterVolume = 0;
+                const auto beforeStatus = AudioUnitGetParameter(
+                    unit, 4 + generator, kAudioUnitScope_Global, 0,
+                    &beforeVolume);
+                const BOOL changed = [view
+                    testGeneratorControl:4 + generator
+                              normalized:beforeVolume > -12 ? 0.35f : 0.82f];
+                const auto afterStatus = AudioUnitGetParameter(
+                    unit, 4 + generator, kAudioUnitScope_Global, 0,
+                    &afterVolume);
+                NSBitmapImageRep *rep =
+                    [view bitmapImageRepForCachingDisplayInRect:view.bounds];
+                BOOL pngSaved = NO;
+                if (rep) {
+                  [view cacheDisplayInRect:view.bounds toBitmapImageRep:rep];
+                  NSData *png =
+                      [rep representationUsingType:NSBitmapImageFileTypePNG
+                                        properties:@{}];
+                  NSString *name =
+                      [NSString stringWithFormat:@"%@-g%u-type%u.png", prefix,
+                                                 generator + 1, type];
+                  pngSaved = [png writeToFile:name atomically:YES];
+                }
+                const BOOL passed =
+                    selected && changed && !beforeStatus && !afterStatus &&
+                    std::isfinite(afterVolume) &&
+                    fabsf(afterVolume - beforeVolume) > 0.5f &&
+                    [panel[@"property_status"] intValue] == 0 &&
+                    [panel[@"types"][generator] unsignedIntValue] == type &&
+                    [panel[@"active_controls_in_bounds"] boolValue] &&
+                    [panel[@"sprites_loaded"] boolValue] &&
+                    [panel[@"controls"] count] > 4 && pngSaved;
+                [generatorCases addObject:@{
+                  @"generator" : @(generator + 1),
+                  @"type" : @(type),
+                  @"passed" : @(passed),
+                  @"snapshot_saved" : @(pngSaved),
+                  @"panel" : panel,
+                  @"au_volume_before" : @(beforeVolume),
+                  @"au_volume_after" : @(afterVolume)
+                }];
+                if (!passed)
+                  failure =
+                      @"Original generator controls or selector test failed";
+              }
+            }
+            if (!failure)
+              generatorRecall = presetLabelRoundTrip(component, unit);
             aupreset = aupreset &&
                        [view loadPresetURL:[NSURL fileURLWithPath:statePath]];
             tabs = YES;
@@ -284,7 +360,8 @@ int main(int argc, const char **argv) {
             }
             viewReport = [view sophistryEditorReport];
             if (!failure &&
-                (!fxp || !fxpNamePreserved ||
+                (!fxp || !fxpNamePreserved || generatorCases.count != 14 ||
+                 ![generatorRecall[@"passed"] boolValue] ||
                  ![labelRoundTrip[@"passed"] boolValue] || !aupreset ||
                  !controls || !tabs || rendered || runtimePropertyStatus ||
                  [renderStatus[@"notes_received"] unsignedLongLongValue] != 1 ||
@@ -348,6 +425,8 @@ int main(int argc, const char **argv) {
       @"fxp_imported" : @(fxp),
       @"fxp_header_name_preserved" : @(fxpNamePreserved),
       @"preset_name_fresh_instance_roundtrip" : labelRoundTrip,
+      @"generator_cases" : generatorCases,
+      @"generator_fresh_instance_recall" : generatorRecall,
       @"aupreset_imported" : @(aupreset),
       @"native_view_snapshot_saved" : @(screenshot),
       @"view" : viewReport

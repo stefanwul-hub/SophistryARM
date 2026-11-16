@@ -1,0 +1,278 @@
+{
+  "checkpoint": "CP-023",
+  "scope": "Original generator control mapping and state comparison; Linux and ARM64/Linux/QEMU execution, strict macOS ARM64 cross-linking. CP023 native Cocoa/auval/audio execution pending.",
+  "source_sha256": {
+    "Diagnostiquer-Sophistry.command": "ed6941a649bce3d7c6943780f9082a65a2e96061104ba1ad2b6330b75c5c20d1",
+    "Installer-ARM64.command": "f51692fa6f133f93a472c629bc41d4c3e405f3defcf256a241075915cc15ea54",
+    "scripts/build-audio-unit.sh": "65ebd2f12b59cb03c24003a6c339fac9ee76451d438b7c49df1f757a54e73e4a",
+    "scripts/build-native-engine.sh": "d10f18394189866d79d1ba43d7135040c710ab9b4755ce6d0334a5c44f6dd47a",
+    "src/au/GeneratorView.h": "211aadb70ba86e5e32903b37c07338c0c259b0e7c9c1458ae826adb7c4da5265",
+    "src/au/Info.plist": "6ba1168bbf0549228243fb5a14041519f84ac7b1c5ba8c4ee9ae752f212c45f1",
+    "src/au/SophistryAU.cpp": "ef17f2a104e0c2afb15f9846f3aa6604118af79d1ec702099bed4f2acb0868f8",
+    "src/au/SophistryEditor.mm": "72fb4702c8def91814a5f163f5980314638673445c1f0bf88683fb520aab638a",
+    "src/au/SophistryProperties.h": "a09a66ad6463e67b00f86f8a90b2222c0608f876ff57a11a9f8e96c95e4dcfcc",
+    "src/engine/GeneratorControls.h": "4e67f9de4b2ac6c690ef117ac12088640189ffd37217d11138507933224dd402",
+    "src/engine/LegacyEngine.cpp": "f138963eeaa25763883e0616d5a2e247d07e8c6c8daeeed6e7b106925ceeed8e",
+    "src/engine/LegacyEngine.h": "550d1b9dc54bd64b9db5d2a5d91b440ee8986aadc172f87b48a40faea5d528d8",
+    "tests/AudioUnitEditorProbe.mm": "070e9b3e0efabd95c00503f93fad73baa632060ffaedd64d39b98a2dd491e1eb",
+    "tests/AudioUnitRemoteHostProbe.mm": "1d9cceb4fc3d46eef93cfdddbcfa25d75082a9482b7f870bf253bdef05d83179",
+    "tests/GeneratorLayoutProbe.cpp": "c4c604ce1d746feac571b646c4637367817e020bdb0825581e817ed74340ae79",
+    "tests/NativeGeneratorProbe.cpp": "7ab0a9d3d582753644ca01e1487e0cc52de986a17eb3af337e90bad9f5c9b720",
+    "tests/compare_generator_controls.py": "b9e01d33bc6f4f4e7ce4fac627a6e6cf2db15213b8b48a9cb0a6cb0e3006ed97"
+  },
+  "original_comparison_evidence": "evidence/generator-controls-cp023.json",
+  "native_generator_probe": {
+    "passed": true,
+    "generator_type_cases": 14,
+    "normalized_control_edits": 177,
+    "banks_changed_after_second_restore": 14,
+    "panel_control_records_checked": 381,
+    "au_parameter_count": 522,
+    "all_generated_controls_in_bounds": true,
+    "bank_recall_transitions_recorded": true,
+    "type_retained_after_bank_recall": true,
+    "rejected_invalid_edits": 5,
+    "private_inputs": false,
+    "licensed_audio_tested": false
+  },
+  "original_byte_exact_programs": 14,
+  "original_byte_exact_bank_transitions": 42,
+  "bank_recall_note": "Edited banks can change again on a subsequent restore in the original engine as well. All three transitions match the original byte-for-byte; arbitrary edited-bank idempotence is not claimed.",
+  "arm64_qemu_generator_probe": {
+    "passed": true,
+    "generator_type_cases": 14,
+    "normalized_control_edits": 177,
+    "banks_changed_after_second_restore": 14,
+    "panel_control_records_checked": 381,
+    "au_parameter_count": 522,
+    "all_generated_controls_in_bounds": true,
+    "bank_recall_transitions_recorded": true,
+    "type_retained_after_bank_recall": true,
+    "rejected_invalid_edits": 5,
+    "private_inputs": false,
+    "licensed_audio_tested": false
+  },
+  "arm64_program_and_bank_hashes_match_original": 56,
+  "layout": {
+    "passed": true,
+    "layouts": 14,
+    "sprite_bindings_measured": 102,
+    "background_dimensions_verified": true,
+    "native_cocoa_visual_render_tested": false
+  },
+  "au_bridge_regression": {
+    "passed": true,
+    "parameter_records": 522,
+    "reinitialization_cycles": 8,
+    "channels": [
+      2,
+      6
+    ],
+    "sample_rates": [
+      22050,
+      44100,
+      48000,
+      96000,
+      192000
+    ],
+    "licensed_musical_audio_tested": false
+  },
+  "native_preset_cycles": {
+    "passed": true,
+    "sample_formats": 12,
+    "rounds": 8,
+    "preset_loads": 96,
+    "serialized_programs_unchanged": true,
+    "live_allocations_stable": true,
+    "test_guest_memory_bytes": 67108864,
+    "peak_reserved_bytes": 6712896,
+    "final_live_bytes": 2670168,
+    "final_live_blocks": 2632,
+    "production_virtual_bytes": 1073741824,
+    "zero_filled_sparse_storage_checked": true,
+    "licensed_audio_tested": false
+  },
+  "previous_snapshot_regions": {
+    "passed": true,
+    "regions": [
+      {
+        "fixture": "fxp",
+        "region": "chunk",
+        "bytes": 21072,
+        "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+        "matches_cp021_byte_for_byte": true
+      },
+      {
+        "fixture": "fxp",
+        "region": "object",
+        "bytes": 3407872,
+        "sha256": "80da19dfedf6b7832e083f6df1529f944eab57f6b51de85a582b4e138f45dec2",
+        "matches_cp021_byte_for_byte": true
+      },
+      {
+        "fixture": "fxp",
+        "region": "heap",
+        "bytes": 5366192,
+        "sha256": "1701866396b5e8bf586d738c29f970df00d2fc07d261867d4da9fee335a140ca",
+        "matches_cp021_byte_for_byte": true
+      },
+      {
+        "fixture": "fxp",
+        "region": "globals",
+        "bytes": 139264,
+        "sha256": "08481a49df361d5afdbd4a669ff0bd17eb0badde4dd5c31b3d4cea2610242f22",
+        "matches_cp021_byte_for_byte": true
+      },
+      {
+        "fixture": "aupreset",
+        "region": "chunk",
+        "bytes": 21032,
+        "sha256": "0590b396932df720fa937ee6790802a55f9e38af7d004a656146423a287c05bf",
+        "matches_cp021_byte_for_byte": true
+      },
+      {
+        "fixture": "aupreset",
+        "region": "object",
+        "bytes": 3407872,
+        "sha256": "1606db1cf2e5bd5f6108883645fcb7464e86ec1a36a48a1b8f470cad39df35e1",
+        "matches_cp021_byte_for_byte": true
+      },
+      {
+        "fixture": "aupreset",
+        "region": "heap",
+        "bytes": 5367472,
+        "sha256": "949d481f9b067ac09294f6a2a8187537b56251b60fc56348be320f691021e73b",
+        "matches_cp021_byte_for_byte": true
+      },
+      {
+        "fixture": "aupreset",
+        "region": "globals",
+        "bytes": 139264,
+        "sha256": "08481a49df361d5afdbd4a669ff0bd17eb0badde4dd5c31b3d4cea2610242f22",
+        "matches_cp021_byte_for_byte": true
+      }
+    ]
+  },
+  "python_unit_tests_passed": 30,
+  "binaries": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 30673920,
+      "sha256": "951aa203c0f4e6297c10742e5e100c863dc966fb7762546c166c0fbbf3f25b6e",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "ConfigureSophistry",
+      "architecture": "arm64",
+      "bytes": 30370512,
+      "sha256": "f64d145a82c85bd3deeb2a0b6911d7e5149b745e3d67794896b8a535ecb9a9c5",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "NativeEngineProbe",
+      "architecture": "arm64",
+      "bytes": 30368016,
+      "sha256": "d2685be3f89bd6a861ea205bd289ca8e61e514c0ba26161ca9fd856be25e5838",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "PcmConversionProbe",
+      "architecture": "arm64",
+      "bytes": 1234208,
+      "sha256": "33cea86efa99bbcafe8d72d13c4d7f5c10434cc490fa4660f54957ed867b6e02",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "GuestAllocatorProbe",
+      "architecture": "arm64",
+      "bytes": 1233408,
+      "sha256": "95f52e9ccf16aab3686cbc83ec61e48d051156d741c74c161a235817075ae3d8",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "GeneratorLayoutProbe",
+      "architecture": "arm64",
+      "bytes": 1254048,
+      "sha256": "18dc1ac84eef26c2992f50d6db22f3a53e33007591c455588738dc12853dbf32",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "NativeGeneratorProbe",
+      "architecture": "arm64",
+      "bytes": 30366176,
+      "sha256": "65ad5e5e6784940dba9ca229baff29a862b982b9c4e844fc66d2a629757e79dd",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "NativePresetCycleProbe",
+      "architecture": "arm64",
+      "bytes": 30367152,
+      "sha256": "bf365bf8f9e4f45f76b4b8b09cfda66bed19a950c24f4332e7069ad0f212b65f",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "NativeAUBridgeProbe",
+      "architecture": "arm64",
+      "bytes": 30367072,
+      "sha256": "47d78934137da57b9ca297e6a7642f1de96e1c5210c357937a38de86d85beec8",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "NativeBankDiagnosticsProbe",
+      "architecture": "arm64",
+      "bytes": 30367552,
+      "sha256": "7d66238f938725392fb4a17364ec63803fd8c24f549e743f3912cc45ea010c26",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitFactoryProbe",
+      "architecture": "arm64",
+      "bytes": 1364544,
+      "sha256": "8c5386a4cdad68dc05427ac9f6daaed9d8bd5e7de59b8faf983ddb721046a089",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1231024,
+      "sha256": "441e07623bd48d6a9e453ac28da0ac787fda304291c4770160ba73f1e8825f66",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "99ecb873ad413be4eba2d9f678dd3666cbf6b3d1e3c7e06ceb11b6099527d1c1",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "2130a26043226a55057a1459a7c8e91666c5d2bca66594e048115631190e8d88",
+      "strict_link_undefined_symbols_rejected": true
+    }
+  ],
+  "required_exports_verified": [
+    "_SophistryAUFactory",
+    "_OBJC_CLASS_$_SophistryGeneratorPanel",
+    "_OBJC_CLASS_$_SophistryGeneratorNode",
+    "Sophistry Cocoa view factory"
+  ],
+  "lifter_units_math_allocator_and_pcm_implementation_unchanged_from_cp022": true,
+  "cp022_host_feedback": "evidence/mac-cp022-user-feedback.json",
+  "mac_tests_prepared": {
+    "actual_cocoa_generator_cases": 14,
+    "per_case_png": true,
+    "fresh_instance_name_and_generator_type_recall": true,
+    "existing_auval_pcm_audio_local_and_remote_gates_retained": true
+  },
+  "cp023_mac_execution_pending": true,
+  "cp023_auval_passed": null,
+  "original_ui_complete": false,
+  "detailed_multisample_editor_complete": false,
+  "sample_browse_and_trim_implemented": false,
+  "new_generator_musical_audio_tested": false,
+  "private_inputs_or_license_included": false
+}

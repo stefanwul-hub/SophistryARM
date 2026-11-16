@@ -77,6 +77,8 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
 }
 } // namespace
 
+#include "GeneratorView.h"
+
 @interface SophistryParameter : NSObject
 @property UInt32 identifier;
 @property float minimum, maximum, defaultValue;
@@ -203,6 +205,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
 - (instancetype)initWithAudioUnit:(AudioUnit)unit;
 - (BOOL)loadPresetURL:(NSURL *)url;
 - (NSDictionary *)sophistryEditorReport;
+- (BOOL)testGeneratorControl:(UInt32)tag normalized:(float)value;
 @end
 
 @implementation SophistryEditorView {
@@ -223,6 +226,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   SophistryFlippedView *document_;
   NSTimer *timer_;
   NSString *lastJSON_;
+  SophistryGeneratorPanel *generators_;
 }
 - (NSImage *)image:(NSUInteger)number {
   NSString *name =
@@ -287,6 +291,10 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   }
   frame_ = [self image:128];
   panel_ = [self image:200];
+  generators_ = [[SophistryGeneratorPanel alloc] initWithAudioUnit:unit_
+                                                            bundle:bundle_];
+  generators_.hidden = YES;
+  [self addSubview:generators_];
   for (SophistryParameter *p in parameters_) {
     if (p.identifier != 134)
       continue;
@@ -423,11 +431,11 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     return id == 134 || (id >= 480 && id <= 497) || (id >= 4 && id <= 11) ||
            (id >= 114 && id <= 117);
   case 1:
-    return id < 108 && id % 4 < 2;
+    return (id < 108 && id % 4 < 2) || id == 108 || id == 484 || id == 485;
   case 2:
-    return id < 108 && id % 4 >= 2;
+    return (id < 108 && id % 4 >= 2) || id == 109 || id == 486 || id == 487;
   case 3:
-    return id >= 108 && id < 134;
+    return id >= 110 && id < 134;
   case 4:
     return id >= 213 && id < 480;
   case 5:
@@ -528,6 +536,11 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   panel_ = [self image:200 + selectedTab_];
   for (NSView *view in mainControls_)
     view.hidden = selectedTab_ != 0;
+  generators_.hidden = selectedTab_ != 1 && selectedTab_ != 2;
+  if (!generators_.hidden) {
+    generators_.pair = selectedTab_ - 1;
+    [generators_ refresh];
+  }
   search_.stringValue = @"";
   [self buildRows];
   self.needsDisplay = YES;
@@ -561,6 +574,8 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   [self refreshParameters];
 }
 - (void)refreshParameters {
+  if (!generators_.hidden)
+    [generators_ refresh];
   float masterValue = 0;
   if (master_ && !AudioUnitGetParameter(unit_, 134, kAudioUnitScope_Global, 0,
                                         &masterValue)) {
@@ -841,8 +856,12 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     @"sprite_images_loaded" : @(images),
     @"visible_parameter_count" : @(rows_.count),
     @"size" : @[ @(self.frame.size.width), @(self.frame.size.height) ],
+    @"generator_panel" : [generators_ report],
     @"status" : status(unit_)
   };
+}
+- (BOOL)testGeneratorControl:(UInt32)tag normalized:(float)value {
+  return !generators_.hidden && [generators_ setControl:tag normalized:value];
 }
 @end
 

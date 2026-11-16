@@ -1,29 +1,25 @@
-# Suite après CP021
+# Suite après CP023
 
-Le 15 novembre 2026, l’utilisateur confirme que les anciens projets produisent de nouveau du son et que les sons se chargent. CP021 reste la base fonctionnelle à conserver. Ce retour est une observation d’usage ; les résultats automatiques CP021 attendent encore l’examen du ZIP déjà créé. Le retour suivant a identifié des refus de chargement et une perte de nom dans Live ; [CP022](CP022.md) traite ces points avant la suite graphique.
+Le 16 novembre 2026, l’utilisateur confirme dans Logic et Live que les chargements successifs et le nom du son après réouverture sont corrigés. [CP022](CP022.md) est la base fonctionnelle rapportée. Les résultats automatiques CP021 ont déjà été examinés : auval, installation, 32 cas PCM Apple, éditeurs local/distant et douze WAV comparés. Ne pas redemander ces rapports ni l’hôte utilisé.
 
-## Consolider le rappel des projets
-
-Examiner le rapport CP021 existant : version réellement installée, architecture, auval, oracle Core Audio, rendus D4U mono/stéréo, comparaison des rendus AU 2/6 canaux, éditeur local et distant. Identifier si le dernier essai porte sur Logic, Live ou les deux. Une réinstallation n’est pas nécessaire simplement pour transmettre le rapport existant.
-
-Sur une copie d’un projet, vérifier le cycle complet : jouer, enregistrer sous un autre nom, fermer l’hôte, rouvrir et rejouer. Vérifier aussi la conservation d’un réglage modifié et la lecture d’une automation existante. Répéter dans l’autre hôte disponible, sans convertir le projet d’origine. Un son audible ne suffit pas à certifier que tous les réglages du projet sont rappelés.
-
-## Prochain développement d’interface, après les correctifs CP022
-
-Les 106 images originales sont conservées dans `reference/Resources` ; la planche `analysis/interface-contact-sheet.jpg` aide à les repérer. La vue actuelle comporte sept panneaux, 15 molettes Main et un volume. Elle donne accès aux 522 paramètres, mais plusieurs panneaux utilisent encore le navigateur de paramètres.
-
-Compléter les commandes graphiques des générateurs 1–4, filtres, effets, modulation et réglages. Déduire leur position, type, sprite, identifiant, plage et comportement de la construction originale et du contrat AU. Vérifier les contrôles dépendant du mode sélectionné, les valeurs discrètes et les courbes de manipulation. Une ressemblance visuelle seule ne valide pas la commande.
-
-Conserver l’identité `aumu/Sop3/LinP`, les identifiants des 522 paramètres, le format des chunks et les instructions DSP. Chaque geste graphique doit produire les notifications AU attendues, suivre les modifications venues de l’hôte et se conserver à la sauvegarde. Valider aussi la taille de fenêtre et l’utilisation dans les hôtes local et distant. Les diagnostics et le changement de banque doivent rester accessibles.
-
-Préparer une nouvelle archive et un lanceur seulement lorsque le candidat est concret et vérifiable. Garder les sauvegardes et la restauration automatique du composant précédent.
-
-## Étendre la fidélité sonore et les essais de charge
-
-Étendre progressivement les comparaisons aux familles de presets et de générateurs, à plusieurs notes/vélocités, aux relâchements, à la pédale et au pitch bend, aux filtres et effets, et à plusieurs fréquences et tailles de buffers. Comparer au code original avec des services de plateforme documentés ; ne pas présenter l’hôte de référence comme l’exécution de l’ancien convertisseur ou de l’ancien libm Apple.
-
-Les tests déjà passés ne démontrent pas une identité sonore pour l’ensemble des banques. Les différences d’état connues sur certains cas utilisant le libm natif restent consignées. Mesurer aussi mémoire, temps de traitement et comportement en polyphonie dans les hôtes ; un rendu hors temps réel ne démontre pas la tenue d’un projet chargé.
+[CP023](CP023.md) poursuit les commandes graphiques des quatre générateurs. Les contrôles principaux, types et routages ont passé les comparaisons d’état au code original sur Linux et ARM64/QEMU. Le rendu Cocoa et le fonctionnement de ce nouveau checkpoint dans les hôtes attendent les tests Mac du lanceur CP023.
 
 ## Prochain retour utile
 
-Transmettre le ZIP `Sophistry-rapports-CP021-<date>.zip` déjà produit et préciser l’hôte essayé. Le projet privé, la clé de licence et de nouveaux presets ne sont pas nécessaires pour cette première vérification. Les banques et la licence restent sur le Mac.
+Examiner le ZIP CP023 : version réellement installée, auval, résultats audio, quatorze cas Cocoa et captures, rappel du type et du nom dans une instance neuve, vue distante. Sur copies de projets Logic et Live, vérifier que les nouvelles commandes correspondent au son entendu et que leurs modifications, le nom et le type sont rappelés après sauvegarde et réouverture. Contrôler une automation existante et une nouvelle automation de paramètre public. Licence et banques restent sur le Mac ; aucun nouveau preset n’est nécessaire à ce stade.
+
+## Compléter l’interface
+
+Comparer les captures automatiques aux 106 images originales et aux constructeurs KajaEditor. Corriger les gestes, textes ou positions si les essais natifs révèlent un écart. Ajouter ensuite le navigateur et le trim de samples, l’éditeur des zones et boucles Loop Sampler, puis les panneaux filtres, effets, modulation et réglages.
+
+Pour chaque commande, relever position, type, sprite, identifiant, plage, texte et courbe depuis l’original. Garder les 522 identifiants AU, les chunks d’état et l’identité `aumu/Sop3/LinP`. Les commandes privées de l’éditeur ne doivent pas être ajoutées arbitrairement à la liste publique. Conserver une fenêtre utilisable, les diagnostics, le changement de banque et les tests d’hébergement distant.
+
+## Étendre les comparaisons musicales
+
+Étendre les tests aux familles de presets et aux quatre modes de générateur, à plusieurs notes et vélocités, relâchements, pédale, pitch bend, filtres, effets et tailles de buffers. Les états exacts du test de commandes ne démontrent pas à eux seuls une identité sonore pour toutes les banques. Distinguer l’exécution des instructions originales avec services hôtes adaptés de l’exécution de l’ancien convertisseur ou de l’ancien libm Apple.
+
+Mesurer mémoire, temps de traitement et polyphonie dans les hôtes. Un rendu hors temps réel ne démontre pas la tenue d’un projet chargé. Conserver les différences connues de certains états avec libm natif et les limites de couverture du moteur.
+
+## Sauvegardes
+
+Publier les checkpoints sur `codex/sophistry-native-checkpoints`, conserver les archives immuables avec SHA-256 et vérifier les téléchargements. Garder `REPRISE.md`, `port-status.json`, les preuves filtrées et le bundle Git autonome à jour. L’installation garde sa transaction avec copie de l’ancien composant et restauration en cas d’échec.

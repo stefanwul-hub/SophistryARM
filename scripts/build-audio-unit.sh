@@ -20,7 +20,7 @@ sources=("$ROOT/third_party/AudioUnitSDK/src/AudioUnitSDK"/*.cpp "$ROOT/src/au/S
 objects=()
 for source in "${sources[@]}"; do
   object="$DEST/sdk/$(basename "$source" .cpp).o";objects+=("$object")
-  key="$( { printf '%s\n' "${flags[*]}" "$compiler_version" "$sdk_header_key"; cat "$ROOT/src/engine/LegacyEngine.h" "$ROOT/src/au/SophistryProperties.h" "$ROOT/src/au/BankAccess.h" "$source"; } | shasum -a 256 | awk '{print $1}')"
+  key="$( { printf '%s\n' "${flags[*]}" "$compiler_version" "$sdk_header_key"; cat "$ROOT/src/engine/GeneratorControls.h" "$ROOT/src/engine/LegacyEngine.h" "$ROOT/src/au/SophistryProperties.h" "$ROOT/src/au/BankAccess.h" "$source"; } | shasum -a 256 | awk '{print $1}')"
   if [[ ! -s "$object" || ! -f "$object.compile.sha256" || "$(cat "$object.compile.sha256")" != "$key" ]]; then
     "${compiler[@]}" "${flags[@]}" -c "$source" -o "$object.pending" > "$object.compile.log" 2>&1
     mv "$object.pending" "$object"
@@ -28,7 +28,7 @@ for source in "${sources[@]}"; do
   fi
 done
 editor="$DEST/sdk/SophistryEditor.o"
-key="$( { printf '%s\n' "${flags[*]} -fobjc-arc" "$compiler_version"; cat "$ROOT/src/au/SophistryProperties.h" "$ROOT/src/au/BankAccess.h" "$ROOT/src/au/SophistryEditor.mm"; } | shasum -a 256 | awk '{print $1}')"
+key="$( { printf '%s\n' "${flags[*]} -fobjc-arc" "$compiler_version"; cat "$ROOT/src/engine/GeneratorControls.h" "$ROOT/src/au/GeneratorView.h" "$ROOT/src/au/SophistryProperties.h" "$ROOT/src/au/BankAccess.h" "$ROOT/src/au/SophistryEditor.mm"; } | shasum -a 256 | awk '{print $1}')"
 if [[ ! -s "$editor" || ! -f "$editor.compile.sha256" || "$(cat "$editor.compile.sha256")" != "$key" ]]; then
   "${compiler[@]}" "${flags[@]}" -fobjc-arc -c "$ROOT/src/au/SophistryEditor.mm" -o "$editor.pending" > "$editor.compile.log" 2>&1
   mv "$editor.pending" "$editor"
@@ -77,6 +77,9 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
   -o "$DEST/PcmConversionProbe" > "$DEST/pcm-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/PcmConversionProbe" -verify_arch arm64
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 \
+  "$ROOT/tests/GeneratorLayoutProbe.cpp" -o "$DEST/GeneratorLayoutProbe" > "$DEST/generator-layout-probe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/GeneratorLayoutProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 \
   "$ROOT/tests/GuestAllocatorProbe.cpp" -o "$DEST/GuestAllocatorProbe" > "$DEST/allocator-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/GuestAllocatorProbe" -verify_arch arm64
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fno-fast-math -ffp-contract=off \
@@ -84,6 +87,11 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
   "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \
   -o "$DEST/NativePresetCycleProbe" > "$DEST/preset-cycle-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/NativePresetCycleProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fno-fast-math -ffp-contract=off \
+  "$ROOT/tests/NativeGeneratorProbe.cpp" "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" \
+  "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \
+  -o "$DEST/NativeGeneratorProbe" > "$DEST/generator-probe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/NativeGeneratorProbe" -verify_arch arm64
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fno-fast-math -ffp-contract=off \
   "$ROOT/tests/NativeAUBridgeProbe.cpp" "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" \
   "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \

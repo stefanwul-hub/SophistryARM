@@ -438,6 +438,17 @@ public:
   OSStatus GetPropertyInfo(AudioUnitPropertyID id, AudioUnitScope scope,
                            AudioUnitElement element, UInt32 &bytes,
                            bool &writable) override {
+    if (id == sophistry::generatorPanelProperty ||
+        id == sophistry::generatorEditProperty) {
+      if (scope != kAudioUnitScope_Global)
+        return kAudioUnitErr_InvalidScope;
+      if (element > (id == sophistry::generatorPanelProperty ? 1u : 0u))
+        return kAudioUnitErr_InvalidElement;
+      writable = id == sophistry::generatorEditProperty;
+      bytes = writable ? sizeof(sophistry::GeneratorControlEdit)
+                       : sizeof(sophistry::GeneratorPanelState);
+      return noErr;
+    }
     if (id == kAudioUnitProperty_CocoaUI ||
         id == sophistry::runtimeStatusProperty ||
         id == sophistry::importProgramProperty ||
@@ -483,6 +494,15 @@ public:
   }
   OSStatus GetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, void *data) override {
+    if (id == sophistry::generatorPanelProperty) {
+      if (scope != kAudioUnitScope_Global || element > 1 || !data)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        *static_cast<sophistry::GeneratorPanelState *>(data) =
+            engine_.generatorPanel(element);
+        return noErr;
+      });
+    }
     if (id == kAudioUnitProperty_CocoaUI) {
       if (scope != kAudioUnitScope_Global || element || !data)
         return kAudioUnitErr_InvalidPropertyValue;
@@ -553,6 +573,27 @@ public:
   OSStatus SetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, const void *data,
                        UInt32 bytes) override {
+    if (id == sophistry::generatorEditProperty) {
+      if (scope != kAudioUnitScope_Global || element || !data ||
+          bytes != sizeof(sophistry::GeneratorControlEdit))
+        return kAudioUnitErr_InvalidPropertyValue;
+      const auto edit =
+          *static_cast<const sophistry::GeneratorControlEdit *>(data);
+      if (edit.version != 1)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        engine_.setGeneratorControl(edit.tag, edit.normalized);
+        const auto au = sophistry::generatorAUParameter(edit.tag);
+        if (au != sophistry::noAUParameter)
+          Globals()->SetParameter(au, engine_.auParameter(au));
+        else if (edit.tag == 766 || edit.tag == 767 || edit.tag == 774 ||
+                 edit.tag == 775)
+          syncParameters();
+        PropertyChanged(kAudioUnitProperty_ClassInfo, kAudioUnitScope_Global,
+                        0);
+        return noErr;
+      });
+    }
     if (id == sophistry::importProgramProperty ||
         id == sophistry::sampleRootProperty ||
         id == sophistry::reloadStateProperty) {

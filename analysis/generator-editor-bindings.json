@@ -1,0 +1,46 @@
+{
+  "scope": "Original generator construction functions and bitmap styles used by the native editor",
+  "source_functions": [
+    "0x55b42",
+    "0x56cc6",
+    "0x57cce",
+    "0x5772a",
+    "0x571fc",
+    "0x58ece",
+    "0x5cce8"
+  ],
+  "style_table_address": "0xf0ac0",
+  "original_selector_tags": [
+    766,
+    767,
+    774,
+    775
+  ],
+  "selector_limits": [
+    3,
+    3,
+    2,
+    2
+  ],
+  "raw_cent_to_public_au": {
+    "28..31": "484..487",
+    "64..67": "484..487",
+    "88..91": "484..487"
+  },
+  "original_normalized_setter": "Synth::setParameter 0x1cc86, including editor-only selectors beyond the VST automation list",
+  "original_value_description": "0x1ce0e",
+  "original_display_text": "0x1d532 with bounded output length",
+  "bitmap_bindings": {
+    "0x27858": 329,
+    "0x2785c": 330,
+    "0x27944": 349,
+    "0x27804": 300,
+    "0x27810": 339,
+    "0x27940": 348,
+    "0x2793c": 326,
+    "0x27870": 325
+  },
+  "unavailable_bitmap_not_simulated": 250,
+  "sample_browsing_trim_and_full_loop_mapping_complete": false,
+  "native_mac_visual_fidelity_verified": false
+}

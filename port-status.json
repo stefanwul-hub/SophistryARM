@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-022",
+  "checkpoint": "CP-023",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -35,12 +35,12 @@
   "ableton_projects_verified": false,
   "install_allowed": true,
   "implemented_dsp_scope": "191378 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
-  "arm64_scope": "CP021 native Mac compilation/signature/auval/install, 32 Apple converter oracle cases, local/remote editor and twelve WAV comparisons independently verified. CP022 memory/loader regressions pass Linux and ARM64/QEMU; twelve Mac binaries cross-linked. CP022 Mac runtime pending.",
+  "arm64_scope": "CP021 native Mac gates independently verified; CP022 loading and saved-name fixes confirmed by user in both hosts. CP023 generator edits and 56 original state comparisons pass Linux and ARM64/QEMU; 14 Mac arm64 binaries strictly linked. CP023 native Cocoa/audio/auval pending.",
   "next_work": [
-    "Run CP022 Mac installer gates including fresh-instance name preservation and repeated loader tests",
-    "Test the large/repeated-load failures in Live, a new saved/reopened Live sound and a copy of an old Logic project",
-    "Use memory live/free/high-water diagnostics if a preset still fails; avoid publishing keys or private settings",
-    "Continue faithful original graphical controls and broader musical/polyphony comparisons after memory/name fixes"
+    "Run CP023 Mac gates and review 14 generator Cocoa cases, captures and fresh-instance state recall",
+    "Check generator gestures, saved changes and existing automation in copies of Logic and Live projects",
+    "Complete sample browser/trim/Loop zones, filters, effects and modulation panels from original constructors",
+    "Broaden original-versus-native musical/polyphony comparisons"
   ],
   "state_container_reader_implemented": true,
   "state_container_round_trip_tested": [
@@ -81,7 +81,7 @@
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
   "github_verified_code_commit": "aa5a4cd15a7b4753b8f4c8e08b06578c6ff491d8",
   "github_verified_archive_sha256": "09e9638d9e02747da6af9114d49ccb7a29824a901d928532c814729f8f4b4767",
-  "macos_auval_scope": "CP021 system auval independently reviewed and passed. CP022 pending.",
+  "macos_auval_scope": "CP021 system auval independently reviewed and passed. CP022 installation/user operation reported; automatic log not supplied. CP023 pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
   "native_arm64_macos_libm_comparison": {
@@ -199,7 +199,7 @@
   "github_cp016_verified_tracked_blobs": 4039,
   "github_cp016_launcher": "Demarrer-Sophistry-CP016.command",
   "native_component_system_installation_committed": true,
-  "logic_project_recall_user_testing_in_progress": true,
+  "logic_project_recall_user_testing_in_progress": false,
   "native_ui_macos_executed": true,
   "original_ui_complete": false,
   "logic_project_load_reported_by_user": true,
@@ -221,7 +221,7 @@
   "installed_component_checkpoint_last_confirmed": "CP-021",
   "github_cp018_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/6a5372de3fdf5faf865dfe4f49f5a07844c217e1/Demarrer-Sophistry-CP018.command",
   "github_cp018_launcher_verified": true,
-  "native_ui_macos_execution_scope": "CP021 local and remote Cocoa/editor/audio passed. CP022 metadata changes cross-linked; native execution pending.",
+  "native_ui_macos_execution_scope": "CP021 local and remote Cocoa/editor/audio passed. CP022 user operation in both hosts confirmed. New CP023 generator panels cross-linked; native execution pending.",
   "cp018_local_cocoa_editor_passed": true,
   "cp018_remote_editor_test_passed": false,
   "cp018_installation_committed": false,
@@ -300,7 +300,7 @@
     "Logic Pro 11",
     "Ableton Live 11.3.2"
   ],
-  "installed_component_checkpoint_last_user_reported": "CP-021",
+  "installed_component_checkpoint_last_user_reported": "CP-022",
   "development_roadmap": "docs/SUITE.md",
   "cp021_mac_evidence": "evidence/mac-cp021-installed-audio.json",
   "cp021_memory_failure_evidence": "evidence/mac-cp021-memory-load-error.json",
@@ -308,7 +308,7 @@
   "cp021_reference_exact_wav_files_verified": 12,
   "ableton_saved_sound_audio_reported_by_user": true,
   "ableton_saved_sound_name_loss_reported_by_user": true,
-  "cp022_mac_execution_pending": true,
+  "cp022_mac_execution_pending": false,
   "cp022_auval_passed": null,
   "cp022_memory_allocator_coalescing_and_splitting": true,
   "cp022_production_virtual_address_bytes": 1073741824,
@@ -327,5 +327,22 @@
   "github_cp022_verified_tracked_blobs": 4094,
   "github_cp022_launcher": "Demarrer-Sophistry-CP022.command",
   "github_cp022_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/b97843cff875ed80e17ef5c93d78ce8d685b71f6/Demarrer-Sophistry-CP022.command",
-  "github_cp022_launcher_verified": true
+  "github_cp022_launcher_verified": true,
+  "cp022_mac_report_review_pending": true,
+  "cp022_sequential_loading_fix_reported_by_user": true,
+  "cp022_live_name_fixed_in_actual_host_reported_by_user": true,
+  "cp022_user_evidence": "evidence/mac-cp022-user-feedback.json",
+  "ableton_saved_sound_name_loss_current": false,
+  "cp023_mac_execution_pending": true,
+  "cp023_auval_passed": null,
+  "cp023_development_evidence": "evidence/cp023-development-checks.json",
+  "cp023_original_control_evidence": "evidence/generator-controls-cp023.json",
+  "cp023_generator_type_cases": 14,
+  "cp023_normalized_control_edits": 177,
+  "cp023_original_byte_exact_programs": 14,
+  "cp023_original_byte_exact_bank_transitions": 42,
+  "cp023_arm64_qemu_state_comparisons": 56,
+  "cp023_strict_macos_arm64_binaries_linked": 14,
+  "cp023_detailed_loop_sample_editor_complete": false,
+  "cp023_source_archive_verification_pending": true
 }

@@ -1,0 +1,398 @@
+{
+  "passed": true,
+  "scope": "Original i386 vs standalone translated normalized editor controls and bank recall; public fixture, no licence or musical audio",
+  "native": {
+    "passed": true,
+    "generator_type_cases": 14,
+    "normalized_control_edits": 177,
+    "banks_changed_after_second_restore": 14,
+    "panel_control_records_checked": 381,
+    "au_parameter_count": 522,
+    "all_generated_controls_in_bounds": true,
+    "bank_recall_transitions_recorded": true,
+    "type_retained_after_bank_recall": true,
+    "rejected_invalid_edits": 5,
+    "private_inputs": false,
+    "licensed_audio_tested": false
+  },
+  "cases": [
+    {
+      "generator": 1,
+      "type": 0,
+      "serialized_program_bytes": 20960,
+      "sha256": "e635379dc767860fe7249f9e3573404192810b757a29e27779b0716ed41115bf",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "302fd34dc6e8a61f053d57094ccfd2f32d88762381d0d6c4bec873679b6b309a",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "d68dcbcd11e1667a4c32095d280d965c0625eae6518c171bc0387ce9077c6a00",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "814b285ad7aeb8d1be27b1945fa6f2036fa029e53997dcc771aeaf6c4c879a2a",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 1,
+      "type": 1,
+      "serialized_program_bytes": 20960,
+      "sha256": "001b2cc928b8a247667cd1aa0fcff3fc31dc1266ccc650e8d2ee11f90511dd7c",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "39599217a0a8dce0522ebadc9497e3cee23247f9991e1f3e9b813a5fe7443090",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "e0c7aa1aebcbb1b9fd5c132f8569c127d902f7001ee66e435eaaed8b825e6292",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "7659fb488d6c6b75c2b97eb87e35c1de47f653dce10bedd1f4dc696a67be93b7",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 1,
+      "type": 2,
+      "serialized_program_bytes": 20960,
+      "sha256": "6f2f1ceececbc5c7f0d840665a3263561de5991b6a70cd9fd4a115d42b807877",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "d16efa048dc3a0e7afb0f707c93495c93d6e7576d15835892921cb9964f165c8",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "00c94beb7bc909d558174ef3008e5000abbcc2e496221046f2c5469cc11e665f",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "453833f3bf573cf7a01b3d70346fcbd1d1acf957ac53919727d91a543ab32488",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 1,
+      "type": 3,
+      "serialized_program_bytes": 20960,
+      "sha256": "76ee0590069e7d699fac22d59b26cd979630e05fe121e6a1550e457d098e2ee7",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "94011e7df331cda7ad34aa4353d5899edde681a983e4090b9324b10aa536f709",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "d273c4b713339ee827d00fc7b3e7b087013e2cad8d7c8329f19566d79f7a76bd",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "fba2bf1911552c8b29f6507153e98a448ab0714cadd3f76c5ddb09bdd27badff",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 2,
+      "type": 0,
+      "serialized_program_bytes": 20960,
+      "sha256": "075a994f0a125a7ad3ec9568f1ff9cdd9610cdbf7fb30378586db29f8cf7ab28",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "2149f5c3393bbc60ca883c20034ec322e4d502fc95e276c9d938fb1376a56f34",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "4b309e2d17b338dfd49f925d0f5007b0310903fef841a5e04bb34f5f0a91d8e9",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "ce3e7751f136a525db2fda9dd5ea2be0403e1d1480df4b4b77e64959756315be",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 2,
+      "type": 1,
+      "serialized_program_bytes": 20960,
+      "sha256": "3c7f2fc8a561a41d18b6fca5b4afbd933e68842d512a45a4ccead52870588867",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "9ea775a6aaf490bff13e782938a11cb2081c8542ceaeedc39c1cd8bfe2a458c2",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "83ccb58a668f7014d8c6ab47c1405ff4105406fe2ae2f53844c1d89ba807ef99",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "a1b09815964df058c87e1929ebf9f5f67c98c69803570a54ffe659ada133a9bf",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 2,
+      "type": 2,
+      "serialized_program_bytes": 20960,
+      "sha256": "33b5a2c488d23023e232506433eb8dce6318fec30b7e7c01f47a59ce58cf0603",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "0003bdd50ad271ecb9243d9b370de2bb0ea43ba191e577790ddb54283ff25e4c",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "757c9bc1df46b1c3db07d0fb904a28d90c65bfd07ba748a1cc81a6fa439d6d6e",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "a2bac149b921880c0f6c45fecb5f1d85c7930c9a3d83ed0b8fbeacc7e33ff51e",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 2,
+      "type": 3,
+      "serialized_program_bytes": 20960,
+      "sha256": "ebcc3cfd90aab0d68473e625463ad7ae2d045d97c0be0a4773cfb4310bf4fafc",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "9b1ec6b278252589265946535107c5901d2789c69660b11810ad576771f1fbd8",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "8ac4fe6a97ac0c2c9dda25bb866bb84693a7648b92b9bdf03fcd501ac308d296",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "999bf896d3d80b8c72c448495d1bafd25a9b979de7ff14c6c4633ac617319454",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 3,
+      "type": 0,
+      "serialized_program_bytes": 20960,
+      "sha256": "e22b3288ffba47e74d44db4bde7f0e38b02e7bf6bc4be019de0bbe0a18b2f53f",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "25a2bb24ad4bf2cd2adaa94122811c68614e015a996472fbb9b6bf0d2d272a16",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "746c651a7740fab01ca81bbf646a0519a613d913c9cef9d57dd83e8e80ff9c13",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "96d51208c12bf6660def7c299eb60b2d2f8d1780c7d70c5c721ad78183c8ebb6",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 3,
+      "type": 1,
+      "serialized_program_bytes": 20960,
+      "sha256": "3fb49a96685b02d8588aa5cf9907f9403b153a79f5e8d70cdf036ea19132f29d",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "8e7fae34acab1c273f1cb6b59e2f25739c5b44a6ec7b92a226704fcd371f8158",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "e7e570d856f82cc5a37c6ac4a0fc47868e31cd5366e8973f613eca475c729ffa",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "f1218e19a66caefb182c210cdf2eca85815d80735d451bbc0b39bfdba0d4adc8",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 3,
+      "type": 2,
+      "serialized_program_bytes": 20960,
+      "sha256": "755acd81606bbaaa922fcc1c0389581e546a54012f809456f041ad69d85c7176",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "71d42703e67b199479e89ea8717f655cd5f50d8c696d8cb162875e3869e6b32d",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "e225d21be6c0216b282bfae3a925f6ed174905570b2c62a1d7e0b68b5ce87b05",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "09ebd9f21cd33c49211055164fd4514c3acef91dd51a9347617aada42cd6c93c",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 4,
+      "type": 0,
+      "serialized_program_bytes": 20960,
+      "sha256": "ed3bf365f73b60f2ec9e4fa543a1ff3f551615c8f7a129386950c3536b0c204c",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "acec339a1c4e39545788518da52c4bda8a24ac626859a9c6c4bb5308cf042771",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "47f5d3089b8a09d4a638ddece8c18d4e7b01bfc21c3f8ae5e1a024c1519290a0",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "606df701c2343f8f280d8a669a628b706ffdea0fa03ac348b1ac83aa4633ff4e",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 4,
+      "type": 1,
+      "serialized_program_bytes": 20960,
+      "sha256": "dea7e7ad96ac8880cf211d2a0535b6e3fbb3c7028421f9dcf2d84ad9dd75badd",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "96e8210eccc2c92704641110188bac0711bb2c74922fd8331eb2005cc727ab08",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "b82de0686518d9fb519f0a0eba9541fe0a4441684e97ee57eb2d00ebb831b76c",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "69aab5db88b2f62293c4909a13f6ad3a56f1ded38e282b8e9e5f7f8eae5144f6",
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "generator": 4,
+      "type": 2,
+      "serialized_program_bytes": 20960,
+      "sha256": "512a45b1ae0f1c1a6d7c11b8eebabe45c219e9252c36fe83df526e568ab07990",
+      "byte_exact": true,
+      "bank_transitions": [
+        {
+          "transition": 0,
+          "bytes": 21928,
+          "sha256": "10d1ffd7caf13cea2f8f6f626297fb5464b31b11bcf4295638ff0e1042e9907a",
+          "byte_exact": true
+        },
+        {
+          "transition": 1,
+          "bytes": 21928,
+          "sha256": "8b1dec8bf33838bea507a28af832be261cf1e590f265741e013df6c0f32c1095",
+          "byte_exact": true
+        },
+        {
+          "transition": 2,
+          "bytes": 21928,
+          "sha256": "07cac90301276004b1e130d6c8a62d6dbe887184cacc476dbaf6e41d1e8335ae",
+          "byte_exact": true
+        }
+      ]
+    }
+  ]
+}

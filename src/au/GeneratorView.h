@@ -1,0 +1,421 @@
+// Included by SophistryEditor.mm; Objective-C++/ARC only.
+#include "../engine/GeneratorControls.h"
+
+namespace sophistryGeneratorView {
+inline NSString *string(const char *bytes, std::size_t capacity) {
+  const auto size = strnlen(bytes, capacity);
+  NSString *s = [[NSString alloc] initWithBytes:bytes
+                                         length:size
+                                       encoding:NSUTF8StringEncoding];
+  if (!s)
+    s = [[NSString alloc] initWithBytes:bytes
+                                 length:size
+                               encoding:NSMacOSRomanStringEncoding];
+  return [s ?: @""
+      stringByTrimmingCharactersInSet:NSCharacterSet
+                                          .whitespaceAndNewlineCharacterSet];
+}
+inline void event(AudioUnit unit, UInt32 parameter, AudioUnitEventType type) {
+  if (parameter == sophistry::noAUParameter)
+    return;
+  AudioUnitEvent e{};
+  e.mEventType = type;
+  e.mArgument.mParameter = {unit, parameter, kAudioUnitScope_Global, 0};
+  AUEventListenerNotify(nullptr, nullptr, &e);
+}
+inline NSImage *image(NSBundle *bundle, unsigned number) {
+  NSString *name = [NSString stringWithFormat:@"bmp%05u", number];
+  NSURL *url = [bundle URLForResource:name
+                        withExtension:@"png"
+                         subdirectory:@"OriginalImages"];
+  return url ? [[NSImage alloc] initWithContentsOfURL:url] : nil;
+}
+inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
+  NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
+  style.alignment = NSTextAlignmentCenter;
+  style.lineBreakMode = NSLineBreakByTruncatingMiddle;
+  [s drawInRect:r
+      withAttributes:@{
+        NSFontAttributeName : [NSFont systemFontOfSize:size
+                                                weight:NSFontWeightMedium],
+        NSForegroundColorAttributeName : color,
+        NSParagraphStyleAttributeName : style
+      }];
+}
+} // namespace sophistryGeneratorView
+
+@interface SophistryGeneratorNode : NSControl
+@property AudioUnit audioUnit;
+@property sophistry::GeneratorControlSpec spec;
+@property sophistry::GeneratorControlState state;
+@property(strong) NSImage *sprite;
+- (BOOL)activateNormalized:(double)value;
+- (void)updateState:(sophistry::GeneratorControlState)state
+               spec:(sophistry::GeneratorControlSpec)spec;
+@end
+
+@implementation SophistryGeneratorNode
+- (BOOL)isFlipped {
+  return YES;
+}
+- (BOOL)acceptsFirstResponder {
+  return self.enabled;
+}
+- (double)normalized {
+  return sophistry::generatorNormalized(_state, _state.value);
+}
+- (NSRect)controlRect {
+  return NSMakeRect(_spec.x - self.frame.origin.x,
+                    _spec.y - self.frame.origin.y, _spec.width, _spec.height);
+}
+- (NSRect)valueRect {
+  return NSMakeRect(_spec.x + _spec.width / 2 - self.frame.origin.x - 18,
+                    _spec.y + _spec.height / 2 + _spec.valueOffset -
+                        self.frame.origin.y - 4,
+                    36, 10);
+}
+- (void)updateState:(sophistry::GeneratorControlState)state
+               spec:(sophistry::GeneratorControlSpec)spec {
+  _state = state;
+  _spec = spec;
+  NSRect r = NSMakeRect(spec.x, spec.y, spec.width, spec.height);
+  if (spec.widget == sophistry::GeneratorWidget::Dial && spec.valueOffset) {
+    NSRect value =
+        NSMakeRect(spec.x + spec.width / 2 - 18,
+                   spec.y + spec.height / 2 + spec.valueOffset - 4, 36, 10);
+    r = NSUnionRect(r, value);
+  }
+  self.frame = r;
+  self.enabled = spec.widget != sophistry::GeneratorWidget::Sample;
+  NSString *name =
+      sophistryGeneratorView::string(state.name, sizeof(state.name));
+  NSString *value =
+      sophistryGeneratorView::string(state.text, sizeof(state.text));
+  self.toolTip = [NSString stringWithFormat:@"%@ : %@", name, value];
+  self.accessibilityLabel = name;
+  self.accessibilityValue = value;
+  self.needsDisplay = YES;
+}
+- (BOOL)applyNormalized:(double)value {
+  if (!self.enabled || !std::isfinite(value))
+    return NO;
+  sophistry::GeneratorControlEdit request;
+  request.tag = _state.tag;
+  request.normalized = float(std::clamp(value, 0.0, 1.0));
+  const auto result = AudioUnitSetProperty(
+      _audioUnit, sophistry::generatorEditProperty, kAudioUnitScope_Global, 0,
+      &request, sizeof(request));
+  if (result) {
+    NSBeep();
+    return NO;
+  }
+  sophistryGeneratorView::event(_audioUnit, _state.auParameter,
+                                kAudioUnitEvent_ParameterValueChange);
+  [self sendAction:self.action to:self.target];
+  return YES;
+}
+- (BOOL)activateNormalized:(double)value {
+  sophistryGeneratorView::event(_audioUnit, _state.auParameter,
+                                kAudioUnitEvent_BeginParameterChangeGesture);
+  BOOL result = [self applyNormalized:value];
+  sophistryGeneratorView::event(_audioUnit, _state.auParameter,
+                                kAudioUnitEvent_EndParameterChangeGesture);
+  return result;
+}
+- (void)choose:(NSMenuItem *)item {
+  [self activateNormalized:sophistry::generatorNormalized(_state, item.tag)];
+}
+- (void)drawRect:(NSRect)dirty {
+  using W = sophistry::GeneratorWidget;
+  const auto r = [self controlRect];
+  const auto n = std::clamp([self normalized], 0.0, 1.0);
+  NSString *value =
+      sophistryGeneratorView::string(_state.text, sizeof(_state.text));
+  if (_sprite && _spec.frames) {
+    const auto frame = NSUInteger(std::lround(n * (_spec.frames - 1)));
+    const CGFloat height = _sprite.size.height / _spec.frames;
+    [_sprite
+            drawInRect:r
+              fromRect:NSMakeRect(0, _sprite.size.height - (frame + 1) * height,
+                                  _sprite.size.width, height)
+             operation:NSCompositingOperationSourceOver
+              fraction:1
+        respectFlipped:YES
+                 hints:nil];
+    if (_spec.widget == W::Dial && _spec.valueOffset)
+      sophistryGeneratorView::text(value, [self valueRect], 8,
+                                   _spec.darkValue ? [NSColor colorWithWhite:0.1
+                                                                       alpha:1]
+                                                   : [NSColor colorWithRed:0.99
+                                                                     green:0.95
+                                                                      blue:0.7
+                                                                     alpha:1]);
+  } else if (_spec.widget == W::Routing) {
+    NSArray *names = @[ @"MIX", @"AM", @"FM" ];
+    for (int i = 0; i < 3; ++i) {
+      const BOOL selected = _state.value == i;
+      [(selected ? [NSColor colorWithRed:0.8 green:0.94 blue:0.45 alpha:1]
+                 : [NSColor colorWithRed:0.25 green:0.4 blue:0.35
+                                   alpha:1]) setFill];
+      NSRect item = NSMakeRect(0, i * 18, r.size.width, 16);
+      [[NSBezierPath bezierPathWithRoundedRect:item xRadius:3 yRadius:3] fill];
+      sophistryGeneratorView::text(names[i], NSInsetRect(item, 1, 2), 8,
+                                   NSColor.blackColor);
+    }
+  } else if (_spec.widget == W::Sample) {
+    [[NSColor colorWithRed:0.2 green:0.32 blue:0.3 alpha:1] setFill];
+    [[NSBezierPath bezierPathWithRoundedRect:r xRadius:3 yRadius:3] fill];
+    sophistryGeneratorView::text(
+        value.length ? value : @"—", NSInsetRect(r, 3, 1),
+        r.size.height > 13 ? 9 : 8, NSColor.whiteColor);
+  } else {
+    NSRect text = r;
+    if (_spec.widget == W::Step) {
+      text.size.width = MAX(18, r.size.width - 25);
+      sophistryGeneratorView::text(value, text, r.size.height > 13 ? 9 : 8,
+                                   [NSColor colorWithWhite:0.08 alpha:1]);
+      sophistryGeneratorView::text(
+          @"−", NSMakeRect(NSMaxX(r) - 24, r.origin.y, 12, r.size.height), 10,
+          NSColor.whiteColor);
+      sophistryGeneratorView::text(
+          @"+", NSMakeRect(NSMaxX(r) - 12, r.origin.y, 12, r.size.height), 10,
+          NSColor.whiteColor);
+    } else
+      sophistryGeneratorView::text(value, text, 9, NSColor.whiteColor);
+  }
+}
+- (void)mouseDown:(NSEvent *)down {
+  if (!self.enabled)
+    return;
+  using W = sophistry::GeneratorWidget;
+  [self.window makeFirstResponder:self];
+  const NSPoint local = [self convertPoint:down.locationInWindow fromView:nil];
+  if (down.modifierFlags & NSEventModifierFlagCommand) {
+    [self activateNormalized:sophistry::generatorNormalized(
+                                 _state, _state.defaultValue)];
+    return;
+  }
+  if (_spec.widget == W::Type) {
+    NSMenu *menu = [NSMenu new];
+    NSArray *names =
+        @[ @"Oscillator", @"Time Sampler", @"Schrader", @"Loop Sampler" ];
+    for (NSInteger i = _state.minimum; i <= _state.maximum && i < 4; ++i) {
+      NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:names[i]
+                                                    action:@selector(choose:)
+                                             keyEquivalent:@""];
+      item.target = self;
+      item.tag = i;
+      item.state =
+          i == _state.value ? NSControlStateValueOn : NSControlStateValueOff;
+      [menu addItem:item];
+    }
+    [NSMenu popUpContextMenu:menu withEvent:down forView:self];
+    return;
+  }
+  if (_spec.widget == W::Routing) {
+    [self activateNormalized:sophistry::generatorNormalized(
+                                 _state, std::clamp(int(local.y / 18), 0, 2))];
+    return;
+  }
+  if (_spec.widget == W::Toggle) {
+    [self activateNormalized:_state.value ? 0 : 1];
+    return;
+  }
+  if ((_spec.widget == W::Step && local.x >= self.bounds.size.width - 24) ||
+      (down.modifierFlags & NSEventModifierFlagOption)) {
+    int direction =
+        (_spec.widget == W::Step && local.x >= self.bounds.size.width - 24)
+            ? (local.x >= self.bounds.size.width - 12 ? 1 : -1)
+            : (local.y < self.bounds.size.height / 2 ? 1 : -1);
+    [self activateNormalized:sophistry::generatorNormalized(
+                                 _state,
+                                 std::clamp(_state.value + direction,
+                                            _state.minimum, _state.maximum))];
+    return;
+  }
+  const double initial = [self normalized];
+  const NSPoint origin = down.locationInWindow;
+  sophistryGeneratorView::event(_audioUnit, _state.auParameter,
+                                kAudioUnitEvent_BeginParameterChangeGesture);
+  for (;;) {
+    NSEvent *next =
+        [self.window nextEventMatchingMask:NSEventMaskLeftMouseDragged |
+                                           NSEventMaskLeftMouseUp];
+    if (!next || next.type == NSEventTypeLeftMouseUp)
+      break;
+    const double sensitivity =
+        (next.modifierFlags & NSEventModifierFlagShift) ? 600 : 150;
+    [self applyNormalized:initial +
+                          (next.locationInWindow.y - origin.y) / sensitivity];
+    [self displayIfNeeded];
+  }
+  sophistryGeneratorView::event(_audioUnit, _state.auParameter,
+                                kAudioUnitEvent_EndParameterChangeGesture);
+}
+- (void)scrollWheel:(NSEvent *)input {
+  double target = [self normalized] + input.scrollingDeltaY / 200;
+  if (_spec.widget == sophistry::GeneratorWidget::Step ||
+      _spec.widget == sophistry::GeneratorWidget::Type ||
+      _spec.widget == sophistry::GeneratorWidget::Routing ||
+      _spec.widget == sophistry::GeneratorWidget::Toggle)
+    target = sophistry::generatorNormalized(
+        _state, std::clamp(_state.value + (input.scrollingDeltaY > 0 ? 1 : -1),
+                           _state.minimum, _state.maximum));
+  [self activateNormalized:target];
+}
+- (void)keyDown:(NSEvent *)key {
+  if (key.keyCode == 126 || key.keyCode == 125)
+    [self activateNormalized:sophistry::generatorNormalized(
+                                 _state,
+                                 std::clamp(_state.value +
+                                                (key.keyCode == 126 ? 1 : -1),
+                                            _state.minimum, _state.maximum))];
+  else
+    [super keyDown:key];
+}
+@end
+
+@interface SophistryGeneratorPanel : NSView
+@property NSUInteger pair;
+- (instancetype)initWithAudioUnit:(AudioUnit)unit bundle:(NSBundle *)bundle;
+- (void)refresh;
+- (NSDictionary *)report;
+- (BOOL)setControl:(UInt32)tag normalized:(float)value;
+@end
+@implementation SophistryGeneratorPanel {
+  AudioUnit unit_;
+  NSBundle *bundle_;
+  NSMutableDictionary<NSNumber *, SophistryGeneratorNode *> *nodes_;
+  NSMutableDictionary<NSNumber *, NSImage *> *images_;
+  sophistry::GeneratorPanelState state_;
+  OSStatus result_;
+}
+- (BOOL)isFlipped {
+  return YES;
+}
+- (instancetype)initWithAudioUnit:(AudioUnit)unit bundle:(NSBundle *)bundle {
+  if (!(self = [super initWithFrame:NSMakeRect(0, 37, 762, 290)]))
+    return nil;
+  unit_ = unit;
+  bundle_ = bundle;
+  nodes_ = [NSMutableDictionary dictionary];
+  images_ = [NSMutableDictionary dictionary];
+  return self;
+}
+- (NSImage *)image:(unsigned)n {
+  NSImage *image = images_[@(n)];
+  if (!image) {
+    image = sophistryGeneratorView::image(bundle_, n);
+    if (image)
+      images_[@(n)] = image;
+  }
+  return image;
+}
+- (void)changed:(id)sender {
+  [self refresh];
+}
+- (void)refresh {
+  UInt32 bytes = sizeof(state_);
+  result_ = AudioUnitGetProperty(unit_, sophistry::generatorPanelProperty,
+                                 kAudioUnitScope_Global, UInt32(_pair), &state_,
+                                 &bytes);
+  for (SophistryGeneratorNode *n in nodes_.allValues)
+    n.hidden = YES;
+  if (result_ || bytes != sizeof(state_) || state_.version != 1 ||
+      state_.count > state_.controls.size()) {
+    self.needsDisplay = YES;
+    return;
+  }
+  for (unsigned g = unsigned(_pair) * 2; g < unsigned(_pair) * 2 + 2; ++g)
+    for (auto spec : sophistry::generatorLayout(g, state_.types[g])) {
+      const sophistry::GeneratorControlState *value = nullptr;
+      for (unsigned i = 0; i < state_.count; ++i)
+        if (state_.controls[i].tag == spec.tag) {
+          value = &state_.controls[i];
+          break;
+        }
+      if (!value)
+        continue;
+      SophistryGeneratorNode *node = nodes_[@(spec.tag)];
+      if (!node) {
+        node = [[SophistryGeneratorNode alloc] initWithFrame:NSZeroRect];
+        node.tag = spec.tag;
+        node.audioUnit = unit_;
+        node.target = self;
+        node.action = @selector(changed:);
+        nodes_[@(spec.tag)] = node;
+        [self addSubview:node];
+      }
+      [node updateState:*value spec:spec];
+      node.sprite = spec.image ? [self image:spec.image] : nil;
+      node.hidden = NO;
+    }
+  self.needsDisplay = YES;
+}
+- (void)drawRect:(NSRect)dirty {
+  if (result_) {
+    sophistryGeneratorView::text(@"Commandes des générateurs indisponibles",
+                                 NSMakeRect(130, 40, 500, 25), 12,
+                                 NSColor.whiteColor);
+    return;
+  }
+  for (unsigned i = 0; i < 2; ++i) {
+    unsigned type = state_.types[unsigned(_pair) * 2 + i];
+    unsigned resource = 220 + type * 2 + i;
+    NSImage *image = [self image:resource];
+    [image drawInRect:NSMakeRect(126, i * 145, 636, 145)
+              fromRect:NSZeroRect
+             operation:NSCompositingOperationSourceOver
+              fraction:1
+        respectFlipped:YES
+                 hints:nil];
+  }
+}
+- (BOOL)setControl:(UInt32)tag normalized:(float)value {
+  [self refresh];
+  SophistryGeneratorNode *node = nodes_[@(tag)];
+  return node && !node.hidden && [node activateNormalized:value];
+}
+- (NSDictionary *)report {
+  [self refresh];
+  NSMutableArray *controls = [NSMutableArray array];
+  BOOL bounds = YES, images = YES;
+  for (SophistryGeneratorNode *n in nodes_.allValues) {
+    if (n.hidden)
+      continue;
+    bounds = bounds && NSContainsRect(self.bounds, n.frame);
+    images = images && (!n.spec.image || n.sprite != nil);
+    const auto s = n.state;
+    [controls addObject:@{
+      @"tag" : @(s.tag),
+      @"value" : @(s.value),
+      @"normalized" : @(sophistry::generatorNormalized(s, s.value)),
+      @"au_parameter" : s.auParameter == sophistry::noAUParameter
+          ? [NSNull null]
+          : @(s.auParameter),
+      @"sample_name_read_only" : @(!n.enabled),
+      @"sprite" : @(n.spec.image),
+      @"frame" : @[
+        @(n.frame.origin.x), @(n.frame.origin.y), @(n.frame.size.width),
+        @(n.frame.size.height)
+      ]
+    }];
+  }
+  [controls sortUsingComparator:^NSComparisonResult(NSDictionary *a,
+                                                    NSDictionary *b) {
+    return [a[@"tag"] compare:b[@"tag"]];
+  }];
+  return @{
+    @"property_status" : @(result_),
+    @"pair" : @(_pair),
+    @"types" : @[
+      @(state_.types[0]), @(state_.types[1]), @(state_.types[2]),
+      @(state_.types[3])
+    ],
+    @"controls" : controls,
+    @"active_controls_in_bounds" : @(bounds),
+    @"sprites_loaded" : @(images),
+    @"complete_multisample_editor" : @NO
+  };
+}
+@end
