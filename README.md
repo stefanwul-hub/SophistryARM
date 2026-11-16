@@ -12,7 +12,7 @@ Le navigateur/trim de samples, les zones et boucles détaillées du Loop Sampler
 
 ## Installer et tester
 
-[Télécharger le lanceur CP025](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP025.command), fermer Logic et Live, puis exécuter :
+[Télécharger le lanceur CP025](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/758bd9233d46cf33258042cce2980f1bc6909fd0/Demarrer-Sophistry-CP025.command), fermer Logic et Live, puis exécuter :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP025.command"
