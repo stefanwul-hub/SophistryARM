@@ -79,8 +79,8 @@
     "strict_passed": false
   },
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
-  "github_verified_code_commit": "aa5a4cd15a7b4753b8f4c8e08b06578c6ff491d8",
-  "github_verified_archive_sha256": "09e9638d9e02747da6af9114d49ccb7a29824a901d928532c814729f8f4b4767",
+  "github_verified_code_commit": "4947ef54239f5bf6ce54fb1954981f265a269c03",
+  "github_verified_archive_sha256": "ce440c10aa4ee04e359b591ce0d174862d19c9fba8d4b7a7eb1ddd700e7e0c7d",
   "macos_auval_scope": "CP021 system auval independently reviewed and passed. CP022 installation/user operation reported; automatic log not supplied. CP023 pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
@@ -344,5 +344,10 @@
   "cp023_arm64_qemu_state_comparisons": 56,
   "cp023_strict_macos_arm64_binaries_linked": 14,
   "cp023_detailed_loop_sample_editor_complete": false,
-  "cp023_source_archive_verification_pending": true
+  "cp023_source_archive_verification_pending": false,
+  "github_cp023_source_commit": "4947ef54239f5bf6ce54fb1954981f265a269c03",
+  "github_cp023_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/4947ef54239f5bf6ce54fb1954981f265a269c03",
+  "github_cp023_archive_sha256": "ce440c10aa4ee04e359b591ce0d174862d19c9fba8d4b7a7eb1ddd700e7e0c7d",
+  "github_cp023_verified_tracked_blobs": 4107,
+  "github_cp023_launcher": "Demarrer-Sophistry-CP023.command"
 }

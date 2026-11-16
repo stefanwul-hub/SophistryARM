@@ -16,7 +16,7 @@ Les 177 modifications testées sur quatorze combinaisons donnent les mêmes quat
 bash "$HOME/Downloads/Demarrer-Sophistry-CP023.command"
 ```
 
-Le script télécharge l’archive de sources épinglée, vérifie son SHA-256, l’extrait, compile, teste et valide auval. Licence et dossier de banque valides sont réutilisés. Il sauvegarde le composant précédent et installe dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration si un contrôle échoue. Les droits administrateur sont demandés pour le remplacement système.
+Le script télécharge [l’archive de sources épinglée](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/4947ef54239f5bf6ce54fb1954981f265a269c03), vérifie son SHA-256, l’extrait, compile, teste et valide auval. Licence et dossier de banque valides sont réutilisés. Il sauvegarde le composant précédent et installe dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration si un contrôle échoue. Les droits administrateur sont demandés pour le remplacement système.
 
 Attendre **« Installation CP023 confirmée »**, puis essayer les panneaux Generators 1–2 et 3–4 dans une copie de projet. Modifier quelques commandes, sauvegarder et réouvrir ; vérifier le son, les réglages et le nom dans les deux hôtes. Transmettre le ZIP CP023 produit automatiquement, qui contient notamment quatorze captures des nouveaux panneaux. Les contrôles ne peuvent certifier tous les projets privés ou toutes les banques.
 

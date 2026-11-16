@@ -1,4 +1,4 @@
-# Reprendre à CP023 — générateurs développés, publication à finaliser
+# Reprendre à CP023 — source publiée et archive vérifiée
 
 Retour du 16 novembre 2026 : l’utilisateur a testé Logic ET Live ; chargements successifs et nom après sauvegarde/réouverture corrigés. Voir evidence/mac-cp022-user-feedback.json. CP022 est sa base fonctionnelle. Aucun ZIP CP022 reçu à ce message ; les derniers contrôles auval/audio indépendamment examinés restent CP021 (evidence/mac-cp021-installed-audio.json). Ne pas redemander les rapports CP021, l’hôte, une clé ou des presets.
 
@@ -10,7 +10,7 @@ Vérifications : 14 types,177 modifications,381 relevés,5 refus invalides. 14 p
 
 Données privées sous work/, jamais publier rapports bruts/préférences/licence. Publication déjà autorisée sur codex/sophistry-native-checkpoints uniquement ; main inchangée. Pas d’agents. Espace disque limité : supprimer seulement exécutables reconstructibles identifiés si nécessaire ; préserver objets/sources/rapports/snapshots/historique. NettoyageCP023 consigné dans work/cp023/rebuildable-cleanup.json. Outils et scripts de build local sous work/cp023, cross sous work/cross-cp023.
 
-À cette sauvegarde : publier source via GitHub Git data, télécharger/archive immuable et vérifier tous blobs ; créer lanceurCP023 épinglé avec SHA256 et métadonnées checkpoints ; vérifier téléchargement exact du lanceur ; régénérer checkpoints/Sophistry-history.bundle. Prochain rapportMacCP023 contient14PNG. Demander essais de gestes et sauvegarde/réouverture sur copies de projets, puis poursuivre éditeur de samples/filtres/effets/modulation.
+SourceCP023 publiée `4947ef54239f5bf6ce54fb1954981f265a269c03` ; archive `https://codeload.github.com/stefanwul-hub/SophistryARM/zip/4947ef54239f5bf6ce54fb1954981f265a269c03` téléchargée, 44220152octets, SHA256 `ce440c10aa4ee04e359b591ce0d174862d19c9fba8d4b7a7eb1ddd700e7e0c7d`, 4107blobs vérifiés contre Git. LanceurCP023 créé avec ces pins ; publication/vérification du lanceur et bundle Git à terminer. Métadonnées checkpoints/CP023-publication.json. Prochain rapportMacCP023 contient14PNG. Demander essais de gestes et sauvegarde/réouverture sur copies de projets, puis poursuivre éditeur de samples/filtres/effets/modulation.
 
 Les notes suivantes sont historiques ; les attentes CP022 ci-dessous sont remplacées par le retour positif ci-dessus.
 
