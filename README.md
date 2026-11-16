@@ -10,7 +10,7 @@ Le navigateur/trim de samples, les zones et boucles détaillées du Loop Sampler
 
 ## Installer et tester
 
-[Télécharger le lanceur CP024](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP024.command), fermer Logic et Live, puis exécuter :
+[Télécharger le lanceur CP024](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/d0276a313c1764ee21885382998fca5fb63c1950/Demarrer-Sophistry-CP024.command), fermer Logic et Live, puis exécuter :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP024.command"
