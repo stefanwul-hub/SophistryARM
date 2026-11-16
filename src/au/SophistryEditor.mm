@@ -1,6 +1,7 @@
 // Native Cocoa view. Original panel/knob images are drawn directly; the
 // parameter browser uses the original AU IDs and value-string property.
 #include "BankAccess.h"
+#include "PresetBrowser.h"
 #include "SophistryProperties.h"
 #import <AppKit/AppKit.h>
 #import <AudioToolbox/AUCocoaUIView.h>
@@ -206,6 +207,8 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
 - (BOOL)loadPresetURL:(NSURL *)url;
 - (NSDictionary *)sophistryEditorReport;
 - (BOOL)testGeneratorControl:(UInt32)tag normalized:(float)value;
+- (NSView *)controlAtPoint:(NSPoint)point;
+- (void)navigatePreset:(NSInteger)direction;
 @end
 
 @implementation SophistryEditorView {
@@ -227,6 +230,11 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   NSTimer *timer_;
   NSString *lastJSON_;
   SophistryGeneratorPanel *generators_;
+  NSURL *lastPresetURL_;
+  NSString *lastPresetLabel_;
+  NSButton *previousPreset_, *nextPreset_;
+  BOOL presetNavigationBusy_;
+  NSDictionary *lastClick_;
 }
 - (NSImage *)image:(NSUInteger)number {
   NSString *name =
@@ -363,23 +371,37 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   [self addSubview:lcd_];
   [mainControls_ addObject:lcd_];
   NSButton *load =
-      button(NSMakeRect(59, 264, 38, 16), @"", self, @selector(choosePreset:));
+      button(NSMakeRect(59, 265, 38, 15), @"", self, @selector(choosePreset:));
   load.bordered = NO;
   load.toolTip = @"Charger un preset FXP ou AU";
   [self addSubview:load];
   [mainControls_ addObject:load];
   NSButton *save =
-      button(NSMakeRect(135, 264, 38, 16), @"", self, @selector(savePreset:));
+      button(NSMakeRect(135, 265, 38, 15), @"", self, @selector(savePreset:));
   save.bordered = NO;
   save.toolTip = @"Enregistrer le son au format AU";
   [self addSubview:save];
   [mainControls_ addObject:save];
-  const char *edits[] = {"Générateurs", "Filtres", "Effets"};
-  for (int i = 0; i < 3; i++) {
-    NSButton *edit = button(NSMakeRect((int[]){161, 375, 649}[i], 111, 30, 30),
-                            @"", self, @selector(editSection:));
+  previousPreset_ = button(NSMakeRect(21, 265, 38, 15), @"", self,
+                           @selector(previousPreset:));
+  nextPreset_ =
+      button(NSMakeRect(97, 265, 38, 15), @"", self, @selector(nextPreset:));
+  for (NSButton *control in @[ previousPreset_, nextPreset_ ]) {
+    control.bordered = NO;
+    [self addSubview:control];
+    [mainControls_ addObject:control];
+  }
+  previousPreset_.toolTip = @"Son précédent dans le dossier du preset";
+  nextPreset_.toolTip = @"Son suivant dans le dossier du preset";
+  const char *edits[] = {"Générateurs 1–2", "Générateurs 3–4", "Filtres",
+                         "Effets"};
+  const NSRect editRects[] = {
+      NSMakeRect(161, 111, 29, 14), NSMakeRect(161, 126, 29, 14),
+      NSMakeRect(406, 111, 30, 30), NSMakeRect(649, 111, 30, 30)};
+  for (int i = 0; i < 4; i++) {
+    NSButton *edit = button(editRects[i], @"", self, @selector(editSection:));
     edit.bordered = NO;
-    edit.tag = (int[]){1, 3, 4}[i];
+    edit.tag = i + 1;
     edit.toolTip = [NSString stringWithUTF8String:edits[i]];
     [self addSubview:edit];
     [mainControls_ addObject:edit];
@@ -390,6 +412,10 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   activity_ = label(NSMakeRect(16, 446, 365, 18), @"", 10);
   for (NSView *v in @[ preset_, bank_, message_, activity_ ])
     [self addSubview:v];
+  [self addSubview:label(NSMakeRect(16, 465, 150, 11),
+                         [NSString
+                             stringWithUTF8String:sophistry::wrapperVersion],
+                         8)];
   [self addSubview:button(NSMakeRect(523, 353, 109, 25), @"Charger un son…",
                           self, @selector(choosePreset:))];
   [self addSubview:button(NSMakeRect(638, 353, 109, 25), @"Banque de sons…",
@@ -729,13 +755,91 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     }
   }
   [self refresh:nil];
+  if (!result) {
+    lastPresetURL_ = url.URLByStandardizingPath;
+    lastPresetLabel_ = [status(unit_)[@"preset_name"] copy];
+  }
   return result == noErr;
+}
+- (void)previousPreset:(id)sender {
+  [self navigatePreset:-1];
+}
+- (void)nextPreset:(id)sender {
+  [self navigatePreset:1];
+}
+- (void)navigatePreset:(NSInteger)direction {
+  if (presetNavigationBusy_)
+    return;
+  NSString *name = status(unit_)[@"preset_name"] ?: @"";
+  if (lastPresetURL_ && [lastPresetLabel_ isEqualToString:name]) {
+    NSURL *next = sophistryPresetBrowser::adjacent(
+        sophistryPresetBrowser::directory(
+            lastPresetURL_.URLByDeletingLastPathComponent),
+        lastPresetURL_, direction);
+    if (next) {
+      if (![self loadPresetURL:next])
+        [self showError:@"Le preset voisin n’a pas pu être chargé. Copiez le "
+                        @"diagnostic."];
+      return;
+    }
+  }
+  if (!name.length || [name isEqualToString:@"empty"] ||
+      [name caseInsensitiveCompare:@"Default"] == NSOrderedSame ||
+      [name caseInsensitiveCompare:@"Défaut"] == NSOrderedSame) {
+    [self choosePreset:nil];
+    return;
+  }
+  CFPropertyListRef saved = CFPreferencesCopyValue(
+      CFSTR("SophistryARMSampleRoot"), CFSTR("com.linplug.Sophistry"),
+      kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+  NSString *path = saved && CFGetTypeID(saved) == CFStringGetTypeID()
+                       ? [(__bridge NSString *)saved copy]
+                       : nil;
+  if (saved)
+    CFRelease(saved);
+  if (!path.length) {
+    [self choosePreset:nil];
+    return;
+  }
+  presetNavigationBusy_ = YES;
+  previousPreset_.enabled = nextPreset_.enabled = NO;
+  __weak SophistryEditorView *weak = self;
+  dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+    NSURL *match = sophistryPresetBrowser::find(
+        [NSURL fileURLWithPath:path isDirectory:YES], name);
+    dispatch_async(dispatch_get_main_queue(), ^{
+      SophistryEditorView *view = weak;
+      if (!view)
+        return;
+      view->presetNavigationBusy_ = NO;
+      view->previousPreset_.enabled = view->nextPreset_.enabled = YES;
+      if (![status(view->unit_)[@"preset_name"] isEqualToString:name])
+        return;
+      if (match) {
+        NSURL *next = sophistryPresetBrowser::adjacent(
+            sophistryPresetBrowser::directory(
+                match.URLByDeletingLastPathComponent),
+            match, direction);
+        if (next) {
+          if (![view loadPresetURL:next])
+            [view showError:@"Le preset voisin n’a pas pu être chargé. Copiez "
+                            @"le diagnostic."];
+        } else
+          [view choosePreset:nil];
+      } else
+        [view choosePreset:nil];
+    });
+  });
 }
 - (void)choosePreset:(id)sender {
   NSOpenPanel *panel = [NSOpenPanel openPanel];
   panel.allowedFileTypes = @[ @"fxp", @"aupreset" ];
   panel.allowsMultipleSelection = NO;
   panel.title = @"Charger un son Sophistry";
+  panel.message =
+      @"Prev et Next parcourront les presets du dossier du son choisi.";
+  if (lastPresetURL_)
+    panel.directoryURL = lastPresetURL_.URLByDeletingLastPathComponent;
   [panel
       beginSheetModalForWindow:self.window
              completionHandler:^(NSModalResponse result) {
@@ -857,6 +961,10 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     @"visible_parameter_count" : @(rows_.count),
     @"size" : @[ @(self.frame.size.width), @(self.frame.size.height) ],
     @"generator_panel" : [generators_ report],
+    @"selected_tab" : @(selectedTab_),
+    @"last_click" : lastClick_ ?: @{},
+    @"preset_navigation_busy" : @(presetNavigationBusy_),
+    @"source_preset_file" : lastPresetURL_.lastPathComponent ?: @"",
     @"status" : status(unit_)
   };
 }
@@ -868,7 +976,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     return NO;
   // Probe the original screen coordinates, independently of the node layout.
   NSPoint point = NSMakePoint(82 + 15, 37 + 86 + slot * 18 + 9);
-  NSView *hit = [self hitTest:point];
+  NSView *hit = [self controlAtPoint:point];
   if (![hit isKindOfClass:SophistryGeneratorNode.class] ||
       ((SophistryGeneratorNode *)hit).spec.widget !=
           sophistry::GeneratorWidget::Routing)
@@ -884,6 +992,24 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
                                     clickCount:1
                                       pressure:1];
   [hit mouseDown:click];
+  return YES;
+}
+- (NSView *)controlAtPoint:(NSPoint)point {
+  NSPoint superPoint = [self convertPoint:point toView:self.superview];
+  NSView *hit = [self hitTest:superPoint];
+  lastClick_ = @{
+    @"point" : @[ @(point.x), @(point.y) ],
+    @"superview_point" : @[ @(superPoint.x), @(superPoint.y) ],
+    @"hit_class" : hit ? NSStringFromClass(hit.class) : @"none",
+    @"hit_tag" : @(hit ? hit.tag : -1)
+  };
+  return hit;
+}
+- (BOOL)testEditorButtonAtX:(double)x y:(double)y {
+  NSView *hit = [self controlAtPoint:NSMakePoint(x, y)];
+  if (![hit isKindOfClass:NSButton.class] || !((NSButton *)hit).enabled)
+    return NO;
+  [(NSButton *)hit performClick:nil];
   return YES;
 }
 @end

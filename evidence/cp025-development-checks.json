@@ -1,0 +1,134 @@
+{
+  "checkpoint": "CP-025",
+  "scope": "Correct AppKit hit-testing harness, original Main Edit coordinates and new Prev/Next navigation; strict macOS ARM64 cross-compilation. New native Mac behavior tests pending.",
+  "mac_failure_evidence": "evidence/mac-cp024-preflight-editor-stop.json",
+  "source_sha256": {
+    "src/au/PresetBrowser.h": "0d27c20a073bde0ab6c0ba070f7dd8ad715ec70ee5279001a731298359dead6b",
+    "src/au/SophistryEditor.mm": "08ef2b4a37bab638ae62730973c2f46b7ac3ee108597a7db6c11a12d7fc92895",
+    "src/au/SophistryProperties.h": "5d0a3cfba72dc926cfb67b7da74afdaf7900c94fabb368abbc01ec5c0d34a70c",
+    "src/au/Info.plist": "e6251279dc534684630ddeb1340b0aadf5fb8e5b3c690de28b588df198e489f6",
+    "tests/AudioUnitEditorProbe.mm": "98fea65fdb007b625fb4b2e85e36fb1df07db60a9a3773210fe86ec363db3f2a",
+    "tests/AudioUnitRemoteHostProbe.mm": "36f939c4f30063c12f6812850cb0014bf5fa87280135aae5e5019d099d27c870",
+    "scripts/build-audio-unit.sh": "747c1337c7f73ab665c07ada9d6416c1c72b302f1320f3795f0cde75274f0d57",
+    "Installer-ARM64.command": "d427dd7075959e1638b7db83bacc25de19288591d5c5fa945dfe8fb883055ff2",
+    "Diagnostiquer-Sophistry.command": "cb9f5ec229036bd401cc30b36bf2951c4851261976d390e3611c49536cedbf92"
+  },
+  "binaries": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 30678800,
+      "sha256": "41e17bc781ca84ee9fe0e481daf89b52dba2ae700b60fb06a2309c11a844e7ba",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1268816,
+      "sha256": "1b4ba0e8f6e5873b1bbf8ca2eee2b3cac62296c2573e1dd0996f94892ce0c3a0",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "e00e2e917fa32810d81f5b997422cf2e9fde8e60060c960f8f25dc0c0c666195",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "2c8175ba2dae0fc83cda5a1b2bde0c787d23209f409e33ffc4566ded52e4803c",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "GeneratorLayoutProbe",
+      "architecture": "arm64",
+      "bytes": 1254048,
+      "sha256": "188ac07b1e5ee7cb42472f0e5c9ddccc0a69bc94e338998f2cbd94b84bf38edb",
+      "strict_link_undefined_symbols_rejected": true
+    }
+  ],
+  "python_unit_tests_passed": 30,
+  "bash_syntax_valid": true,
+  "lifter_engine_allocator_and_pcm_sources_unchanged_from_cp024": true,
+  "existing_cp024_graphics_fixes_retained": true,
+  "user_confirmed_existing_routing_and_type_controls_functional": true,
+  "main_original_button_coordinates": {
+    "source_functions": [
+      "0x54214",
+      "0x57fe0"
+    ],
+    "panel_origin_y": 37,
+    "previous": [
+      21,
+      265,
+      38,
+      15
+    ],
+    "load": [
+      59,
+      265,
+      38,
+      15
+    ],
+    "next": [
+      97,
+      265,
+      38,
+      15
+    ],
+    "save": [
+      135,
+      265,
+      38,
+      15
+    ],
+    "generators12_edit": [
+      161,
+      111,
+      29,
+      14
+    ],
+    "generators34_edit": [
+      161,
+      126,
+      29,
+      14
+    ],
+    "filter_edit": [
+      406,
+      111,
+      30,
+      30
+    ],
+    "effects_edit": [
+      649,
+      111,
+      30,
+      30
+    ]
+  },
+  "native_mac_tests_prepared": {
+    "main_edit_coordinate_actions": 4,
+    "prev_next_coordinate_actions": 6,
+    "preset_formats": [
+      "FXP",
+      "uppercase FXP",
+      "AU preset"
+    ],
+    "next_and_previous_wraparound": true,
+    "unique_missing_ambiguous_source_lookup": true,
+    "routing_coordinate_mouse_events": 6,
+    "generator_type_cases": 14,
+    "fresh_name_type_recall_retained": true,
+    "render_audio_and_auval_gates_retained": true
+  },
+  "new_navigation_rules": "Natural filename order within selected source folder, wraps both directions; unique source lookup in configured library when project source is unknown, otherwise file picker. Lookup runs in background. Source file paths are editor-local and not added to AU state or report.",
+  "visible_checkpoint_marker": "SophistryARM CP-025 at bottom of editor",
+  "cp025_mac_execution_pending": true,
+  "cp025_auval_passed": null,
+  "complete_original_gui_claimed": false,
+  "private_paths_preferences_or_key_published": false
+}

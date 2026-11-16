@@ -1,5 +1,6 @@
 // Exercise the actual component Cocoa factory inside this process.
 // Remote host validation uses only public APIs in AudioUnitRemoteHostProbe.mm.
+#include "../src/au/PresetBrowser.h"
 #include "../src/au/SophistryProperties.h"
 #include "../src/engine/GeneratorControls.h"
 #import <AppKit/AppKit.h>
@@ -146,7 +147,103 @@ static NSDictionary *presetLabelRoundTrip(AudioComponent component,
 - (void)parameterChanged:(NSControl *)sender;
 - (BOOL)testGeneratorControl:(UInt32)tag normalized:(float)value;
 - (BOOL)testGeneratorRoutingClick:(unsigned)slot;
+- (BOOL)testEditorButtonAtX:(double)x y:(double)y;
 @end
+
+static NSDictionary *mainButtonTests(NSView *view, NSString *fxpPath,
+                                     NSString *statePath) {
+  NSMutableArray *edits = [NSMutableArray array],
+                 *navigation = [NSMutableArray array];
+  NSButton *main = [NSButton new];
+  main.tag = 0;
+  const double points[][2] = {{175, 118}, {175, 133}, {421, 126}, {664, 126}};
+  BOOL passed = YES;
+  for (unsigned i = 0; i < 4; ++i) {
+    [view selectTab:main];
+    BOOL clicked = [view testEditorButtonAtX:points[i][0] y:points[i][1]];
+    NSDictionary *report = [view sophistryEditorReport];
+    BOOL ok = clicked && [report[@"selected_tab"] unsignedIntValue] == i + 1;
+    [edits addObject:@{
+      @"target_tab" : @(i + 1),
+      @"point" : @[ @(points[i][0]), @(points[i][1]) ],
+      @"passed" : @(ok),
+      @"hit" : report[@"last_click"] ?: @{}
+    }];
+    passed = passed && ok;
+  }
+  NSURL *folder = [[NSURL fileURLWithPath:NSTemporaryDirectory()
+                              isDirectory:YES]
+      URLByAppendingPathComponent:[@"SophistryNavigation-"
+                                      stringByAppendingString:NSUUID.UUID
+                                                                  .UUIDString]
+                      isDirectory:YES];
+  BOOL made = [NSFileManager.defaultManager createDirectoryAtURL:folder
+                                     withIntermediateDirectories:NO
+                                                      attributes:nil
+                                                           error:nil];
+  NSArray<NSString *> *names = @[ @"Alpha", @"Bravo", @"Charlie" ];
+  NSArray<NSURL *> *urls = @[
+    [folder URLByAppendingPathComponent:@"A Alpha.fxp"],
+    [folder URLByAppendingPathComponent:@"B Bravo.FXP"],
+    [folder URLByAppendingPathComponent:@"C Charlie.aupreset"]
+  ];
+  NSData *source = [NSData dataWithContentsOfFile:fxpPath];
+  made = made && source.length >= 60;
+  for (unsigned i = 0; made && i < 2; ++i) {
+    NSMutableData *data = [source mutableCopy];
+    char *bytes = static_cast<char *>(data.mutableBytes);
+    memset(bytes + 28, 0, 28);
+    memcpy(bytes + 28, names[i].UTF8String, names[i].length);
+    made = [data writeToURL:urls[i] atomically:YES];
+  }
+  NSMutableDictionary *state =
+      [[NSDictionary dictionaryWithContentsOfFile:statePath] mutableCopy];
+  state[@"name"] = names[2];
+  state[@"SophistryARMPresetName"] = names[2];
+  made = made && state && [state writeToURL:urls[2] atomically:YES];
+  BOOL catalogue =
+      made && sophistryPresetBrowser::directory(folder).count == 3 &&
+      [sophistryPresetBrowser::find(folder, @"Bravo").lastPathComponent
+          isEqual:urls[1].lastPathComponent] &&
+      !sophistryPresetBrowser::find(folder, @"No such sound");
+  NSURL *duplicate = [folder URLByAppendingPathComponent:@"D Duplicate.fxp"];
+  if (catalogue) {
+    catalogue = [NSFileManager.defaultManager copyItemAtURL:urls[1]
+                                                      toURL:duplicate
+                                                      error:nil] &&
+                !sophistryPresetBrowser::find(folder, @"Bravo");
+    [NSFileManager.defaultManager removeItemAtURL:duplicate error:nil];
+  }
+  [view selectTab:main];
+  BOOL loaded = made && [view loadPresetURL:urls[0]];
+  const unsigned order[] = {1, 2, 0, 2, 1, 0};
+  for (unsigned i = 0; loaded && i < 6; ++i) {
+    BOOL clicked = [view testEditorButtonAtX:(i < 3 ? 116 : 40) y:272];
+    NSDictionary *report = [view sophistryEditorReport];
+    BOOL ok = clicked &&
+              [report[@"status"][@"preset_name"] isEqual:names[order[i]]] &&
+              [report[@"source_preset_file"]
+                  isEqual:urls[order[i]].lastPathComponent];
+    [navigation addObject:@{
+      @"direction" : i < 3 ? @"next" : @"previous",
+      @"expected_name" : names[order[i]],
+      @"passed" : @(ok),
+      @"hit" : report[@"last_click"] ?: @{}
+    }];
+    passed = passed && ok;
+    if (!ok)
+      break;
+  }
+  BOOL restored = [view loadPresetURL:[NSURL fileURLWithPath:fxpPath]];
+  [NSFileManager.defaultManager removeItemAtURL:folder error:nil];
+  return @{
+    @"passed" : @(passed && catalogue && restored && navigation.count == 6),
+    @"edit_buttons" : edits,
+    @"preset_navigation" : navigation,
+    @"catalogue_unique_missing_and_ambiguous_checks" : @(catalogue),
+    @"original_public_preset_restored" : @(restored)
+  };
+}
 
 int main(int argc, const char **argv) {
   @autoreleasepool {
@@ -165,6 +262,7 @@ int main(int argc, const char **argv) {
     NSMutableArray *generatorCases = [NSMutableArray array];
     NSMutableArray *routingCases = [NSMutableArray array];
     NSDictionary *generatorRecall = @{};
+    NSDictionary *mainButtons = @{};
     NSString *advertisedClass = @"";
     NSString *componentViewClass = @"";
     OSStatus runtimePropertyStatus = noErr;
@@ -278,6 +376,12 @@ int main(int argc, const char **argv) {
                     isEqualToString:@"BT_lightgarden_02"];
             if (fxp && fxpNamePreserved)
               labelRoundTrip = presetLabelRoundTrip(component, unit);
+            if (!failure) {
+              mainButtons = mainButtonTests(view, fxpPath, statePath);
+              if (![mainButtons[@"passed"] boolValue])
+                failure =
+                    @"Main Edit or Prev/Next coordinate action test failed";
+            }
             for (unsigned generator = 0; !failure && generator < 4;
                  ++generator) {
               NSButton *section = [NSButton new];
@@ -473,6 +577,7 @@ int main(int argc, const char **argv) {
       @"preset_name_fresh_instance_roundtrip" : labelRoundTrip,
       @"generator_cases" : generatorCases,
       @"routing_mouse_cases" : routingCases,
+      @"main_button_tests" : mainButtons,
       @"generator_fresh_instance_recall" : generatorRecall,
       @"aupreset_imported" : @(aupreset),
       @"native_view_snapshot_saved" : @(screenshot),

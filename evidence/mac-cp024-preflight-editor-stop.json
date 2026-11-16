@@ -1,0 +1,129 @@
+{
+  "checkpoint": "CP-024",
+  "source": "Mac report Sophistry-rapports-CP024-20261116T203139Z.zip; received with user report that old defects remain, Filter Edit and Prev/Next do not respond",
+  "archive_sha256": "22d9695a87490bb60fbf68e891be099b6ada275a090ec0b11024693cf0d08a77",
+  "script_exitcode": 1,
+  "system_installation_committed": false,
+  "system_replacement_started": false,
+  "previous_component_preserved": true,
+  "last_independently_confirmed_installed_checkpoint": "CP-023",
+  "failure_stage": "local Cocoa preset/control prevalidation, before system replacement or auval",
+  "error": "Original routing coordinate mouse test failed",
+  "candidate_reported_version": "SophistryARM CP-024",
+  "routing_mouse_cases": [
+    {
+      "snapshot_saved": true,
+      "passed": false,
+      "original_coordinate_mouse_click": false,
+      "requested": 0,
+      "pair": 1,
+      "public_au_value": 0
+    }
+  ],
+  "generator_type_cases_reached": 0,
+  "auval_executed": false,
+  "preset_name_fresh_instance_roundtrip": {
+    "passed": true,
+    "status": 0,
+    "name_restored_in_fresh_instance": true,
+    "present_preset_name_preserved": true,
+    "generator_types_retained": true,
+    "generic_host_name_does_not_replace_original": true,
+    "bank_unchanged_by_name_assignment": true,
+    "name_serialized": true
+  },
+  "preflight_audio_comparisons": [
+    {
+      "files": [
+        "original-2.wav",
+        "preflight-2.wav",
+        "editor.wav"
+      ],
+      "byte_exact": true,
+      "all_finite": true,
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    },
+    {
+      "files": [
+        "original-6.wav",
+        "preflight-6.wav"
+      ],
+      "byte_exact": true,
+      "all_finite": true,
+      "channels": 6,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "wav_sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134"
+    },
+    {
+      "files": [
+        "format-d4u-32-1-original.wav",
+        "format-d4u-32-1-native.wav"
+      ],
+      "byte_exact": true,
+      "all_finite": true,
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "wav_sha256": "48209ab5de65a716a22d4538c99c7bfbaeb20550b0774ffc38de3d37bdb07cac"
+    },
+    {
+      "files": [
+        "format-d4u-32-2-original.wav",
+        "format-d4u-32-2-native.wav"
+      ],
+      "byte_exact": true,
+      "all_finite": true,
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    }
+  ],
+  "public_reference_wavs_verified": 9,
+  "validated_settings_retained": true,
+  "pcm_conversion": {
+    "passed": true,
+    "known_ieee_cases": 256,
+    "rejected_invalid_buffers_or_formats": 516,
+    "native_core_audio_cases": 32,
+    "native_float_signed_flags_normalized": 0,
+    "error": ""
+  },
+  "preset_cycles": {
+    "passed": true,
+    "sample_formats": 12,
+    "rounds": 8,
+    "preset_loads": 96,
+    "serialized_programs_unchanged": true,
+    "live_allocations_stable": true,
+    "test_guest_memory_bytes": 67108864,
+    "peak_reserved_bytes": 6712896,
+    "final_live_bytes": 2670168,
+    "final_live_blocks": 2632,
+    "production_virtual_bytes": 1073741824,
+    "zero_filled_sparse_storage_checked": true,
+    "licensed_audio_tested": false
+  },
+  "candidate_visual_observation": "Single local candidate PNG shows mode text no longer superimposed, original MIX/AM/FM sprites at y86 and no added stepper glyphs. Candidate was not installed. Full visual fidelity not certified.",
+  "coordinate_test_issue": "Root view is flipped; NSView hitTest: takes a point in its superview coordinate system. CP024 supplied root-local coordinates after embedding in NSWindow. CP025 explicitly converts to the superview coordinate system.",
+  "user_followup_quote": "Routage et s\u00e9lecteur de type fonctionnent.",
+  "user_reports_existing_routing_and_type_functional": true,
+  "user_host_for_this_followup_specified": false,
+  "filter_edit_original_position": {
+    "x": 406,
+    "y_in_original_panel": 74,
+    "panel_y": 37,
+    "width": 30,
+    "height": 30,
+    "source_function": "0x57fe0"
+  },
+  "filter_edit_previous_wrong_x": 375,
+  "prev_next_actions_previously_implemented": false,
+  "private_paths_preferences_or_license_published": false,
+  "candidate_original_generator_state_comparison_passed": true,
+  "candidate_original_normalized_control_edits": 177
+}
