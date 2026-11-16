@@ -1,3 +1,21 @@
+# Reprendre à CP024 — rapport CP023 vérifié et correction graphique préparée
+
+Rapport reçu Sophistry-rapports-CP023-20261116T191207Z.zip, SHA25679d21d8296ece7319ffaaebba7422e6b645079a76802d008ae2cd3e9c07729a4. Originaux sous work/mac-report-cp023 et pièce jointe, privés/ignorés. Lire evidence/mac-cp023-installed-generators.json. InstallationCP023/build23001 confirmée, auval0, 14casCocoa/177modifications/14programmes+42banques exacts, frais nom+type rappelés, 32casPCMApple,96chargements mémoire stable. DouzeWAV indépendamment byte-exacts/finis : mêmes hashes CP021, stéréo5f5d161d... et6canauxda29170f... . Licence reconnue, settings réutilisés. Ne pas redemander ce ZIP ou une clé/preset. Pas de retour verbal de gestes/automation privés CP023.
+
+Vue distante créée via OS, audio exact, mais remote-host.png entièrement noire : aucune preuve de fidélité visuelle distante. Ne pas déduire d’une capture du conteneur seule que l’interface du vrai hôte est noire. Captures locales2240x954 : type dessiné par-dessus texte baked, routage ày72 sur balance et4eFM, glyphes ajoutés sur flèches. Champ recherche avec trait sombre, cause non établie.
+
+CP024 corrige UNIQUEMENT ces3 défauts documentés (pas le champ recherche) : GeneratorView.h ne redessine plus le type déjà dans les overlays ; supprime+/-sur flèches ; routage sprite380x30y108,3rowsOFF puis3ON, x82/y86/w30/h54 selon 5efe2 ->25926(pointer27818). LayoutGeneratorControls.h mis à jour. Aucun changement moteur/DSP/math/allocateur/PCM niidentité522params aumu/Sop3/LinP, compat3.0.8 ; build24001.
+
+Nouveau test Cocoa attache view à fenêtre NSWindow non affichée, maintenue jusqu’au close final. testGeneratorRoutingClick envoie mouseDown aux coordonnées originales indépendantes du layout, vérifie hitTest classeRouting, puis AU108/109 doit valoir0/1/2 :6cas+PNG. Les14cas de types et tousgates précédents restent. Tests MacCP024 NON exécutés ici ; rollbackinstallation conservé. Lire docs/CP024.md/evidence/cp024-development-checks.json.
+
+Vérifications CP024 :177edits/381records/14cases/5rejets,56états identiques à l’original et au MacCP023. Layout14/109sprites,30testsPython. Cinq binaires Mac modifiés liés strictement ARM64(exportsfactory/Cocoa/générateurs vérifiés), sous work/cross-cp024 ; sources runtime+engine recompilées. Linux sous work/cp024. Les sources moteur et runtime ne changent pas ; nouvel objet LegacyEngine compile le layout actualisé. Pas de nouvelle comparaison musicaleCP024 à prétendre.
+
+Publication à terminer : source immuable via GitHub Git data, vérifier tousblobs archive, lanceurCP024 pins SHA256 et vérification rawdownload, métadonnées checkpoints, puis bundle autonome checkpoints/Sophistry-history.bundle. Publication déjà autorisée sur codex/sophistry-native-checkpoints seulement, main inchangée. Pasd’agents. Quelques exécutables CP023 Linux etcross reconstruisibles supprimés pour espace : noms/bytes/hashes dans work/cp024/rebuildable-cleanup.json ; aucun objet,source,snapshot,rapport,historique supprimé.
+
+Suite : valider sixclics/renduCP024 sur Mac, essais hôtes en copies puis navigateur/trim/zonesLoop et panneaux filtres/effets/modulation. Toute source/preuvepubliée doit exclure chemins privés/préférences/licence. L’utilisateur possède déjà licence,banques et presets publics.
+
+Les notes suivantes sont historiques.
+
 # Reprendre à CP023 — publication et lanceur vérifiés, test Mac à faire
 
 Retour du 16 novembre 2026 : l’utilisateur a testé Logic ET Live ; chargements successifs et nom après sauvegarde/réouverture corrigés. Voir evidence/mac-cp022-user-feedback.json. CP022 est sa base fonctionnelle. Aucun ZIP CP022 reçu à ce message ; les derniers contrôles auval/audio indépendamment examinés restent CP021 (evidence/mac-cp021-installed-audio.json). Ne pas redemander les rapports CP021, l’hôte, une clé ou des presets.

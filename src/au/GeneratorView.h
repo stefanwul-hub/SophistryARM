@@ -131,7 +131,29 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
   const auto n = std::clamp([self normalized], 0.0, 1.0);
   NSString *value =
       sophistryGeneratorView::string(_state.text, sizeof(_state.text));
-  if (_sprite && _spec.frames) {
+  // Each mode background already contains its type label and step arrows.
+  // Keep the native hit regions and accessibility without drawing over them.
+  if (_spec.widget == W::Type)
+    return;
+  if (_spec.widget == W::Routing) {
+    if (!_sprite)
+      return;
+    const CGFloat rowHeight = r.size.height / 3;
+    const CGFloat sourceHeight = _sprite.size.height / 6;
+    for (int i = 0; i < 3; ++i) {
+      const int frame = i + (_state.value == i ? 3 : 0);
+      [_sprite drawInRect:NSMakeRect(r.origin.x, r.origin.y + i * rowHeight,
+                                     r.size.width, rowHeight)
+                 fromRect:NSMakeRect(0,
+                                     _sprite.size.height -
+                                         (frame + 1) * sourceHeight,
+                                     _sprite.size.width, sourceHeight)
+                operation:NSCompositingOperationSourceOver
+                 fraction:1
+           respectFlipped:YES
+                    hints:nil];
+    }
+  } else if (_sprite && _spec.frames) {
     const auto frame = NSUInteger(std::lround(n * (_spec.frames - 1)));
     const CGFloat height = _sprite.size.height / _spec.frames;
     [_sprite
@@ -150,18 +172,6 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
                                                                      green:0.95
                                                                       blue:0.7
                                                                      alpha:1]);
-  } else if (_spec.widget == W::Routing) {
-    NSArray *names = @[ @"MIX", @"AM", @"FM" ];
-    for (int i = 0; i < 3; ++i) {
-      const BOOL selected = _state.value == i;
-      [(selected ? [NSColor colorWithRed:0.8 green:0.94 blue:0.45 alpha:1]
-                 : [NSColor colorWithRed:0.25 green:0.4 blue:0.35
-                                   alpha:1]) setFill];
-      NSRect item = NSMakeRect(0, i * 18, r.size.width, 16);
-      [[NSBezierPath bezierPathWithRoundedRect:item xRadius:3 yRadius:3] fill];
-      sophistryGeneratorView::text(names[i], NSInsetRect(item, 1, 2), 8,
-                                   NSColor.blackColor);
-    }
   } else if (_spec.widget == W::Sample) {
     [[NSColor colorWithRed:0.2 green:0.32 blue:0.3 alpha:1] setFill];
     [[NSBezierPath bezierPathWithRoundedRect:r xRadius:3 yRadius:3] fill];
@@ -174,12 +184,6 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
       text.size.width = MAX(18, r.size.width - 25);
       sophistryGeneratorView::text(value, text, r.size.height > 13 ? 9 : 8,
                                    [NSColor colorWithWhite:0.08 alpha:1]);
-      sophistryGeneratorView::text(
-          @"−", NSMakeRect(NSMaxX(r) - 24, r.origin.y, 12, r.size.height), 10,
-          NSColor.whiteColor);
-      sophistryGeneratorView::text(
-          @"+", NSMakeRect(NSMaxX(r) - 12, r.origin.y, 12, r.size.height), 10,
-          NSColor.whiteColor);
     } else
       sophistryGeneratorView::text(value, text, 9, NSColor.whiteColor);
   }

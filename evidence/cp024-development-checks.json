@@ -1,0 +1,116 @@
+{
+  "checkpoint": "CP-024",
+  "scope": "Visual corrections from CP023 Mac captures; native Linux state/layout checks and strict macOS ARM64 linking. CP024 native Mac execution pending.",
+  "source_sha256": {
+    "src/au/GeneratorView.h": "575f488387e89ae9ae522acbfc1175ab5c45a33690ee8ccd71aaaf5aac6e6cfd",
+    "src/au/SophistryEditor.mm": "6d7ed8d49bb732962b208f2a5f41c9da5c85dd1635dfb947b27df090f97a30ac",
+    "src/engine/GeneratorControls.h": "d68382b4259f9cafaa3cb12d558c86b70c11330e6d9d1bb565228c843888ca9f",
+    "tests/AudioUnitEditorProbe.mm": "73957e062ff7b9cec249a590e28b0a1f9b7b1fb403245bd5c88b1ee398e273d5",
+    "tests/AudioUnitRemoteHostProbe.mm": "deef34141727f74e0d207c3ca2f8cf91f80e7077a14d6d6da8615f3e36b1ec92",
+    "src/au/Info.plist": "4113c9f1177a8648ebc27af21f7acc3770c13bec60b9a8a86f1e71a7bef1ad12",
+    "src/au/SophistryProperties.h": "b1bf5fef8ac839f3e6e1d9cf77015f7d318621bbe9286e5bf59452e10bb3d4cd",
+    "Installer-ARM64.command": "5fb498b7ec03f43fc73e7ce77bc78b073c0fed3daa74cae5393bc4d99ea83dec",
+    "Diagnostiquer-Sophistry.command": "56816b1b9c0b03c46e7a32648279406255cb64396a61bfbd0c3751ef05317c8f"
+  },
+  "mac_cp023_report": "evidence/mac-cp023-installed-generators.json",
+  "native_generator_probe": {
+    "passed": true,
+    "generator_type_cases": 14,
+    "normalized_control_edits": 177,
+    "banks_changed_after_second_restore": 14,
+    "panel_control_records_checked": 381,
+    "au_parameter_count": 522,
+    "all_generated_controls_in_bounds": true,
+    "bank_recall_transitions_recorded": true,
+    "type_retained_after_bank_recall": true,
+    "rejected_invalid_edits": 5,
+    "private_inputs": false,
+    "licensed_audio_tested": false
+  },
+  "state_regression": {
+    "passed": true,
+    "state_blocks_compared": 56,
+    "compared_to": "evidence/generator-controls-cp023.json original i386 bank/program bytes; also matched on user Mac CP023",
+    "ui_only_change_preserves_all_tested_states": true
+  },
+  "layout": {
+    "passed": true,
+    "layouts": 14,
+    "sprite_bindings_measured": 109,
+    "background_dimensions_verified": true,
+    "native_cocoa_visual_render_tested": false
+  },
+  "python_unit_tests_passed": 30,
+  "binaries": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 30674320,
+      "sha256": "7e5f857f6532c94b0551e35241ea3318cf8653b409b7c786c4fb87f0660d8445",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1247936,
+      "sha256": "05187236d8d07e60b17ec4d679d4f3450763accb9618fde539a53dbeed4790e2",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "a6efa6c231c76cfc046ba2d3b23e1de5a36d2622f29f8d067a5a7c3e426acf3a",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "850b6adb31f66e6a2f9c06c0946f00bdb157a8e3ea664798f711c5676a8ec6f7",
+      "strict_link_undefined_symbols_rejected": true
+    },
+    {
+      "name": "GeneratorLayoutProbe",
+      "architecture": "arm64",
+      "bytes": 1254048,
+      "sha256": "188ac07b1e5ee7cb42472f0e5c9ddccc0a69bc94e338998f2cbd94b84bf38edb",
+      "strict_link_undefined_symbols_rejected": true
+    }
+  ],
+  "original_routing_source": {
+    "constructor": "0x5efe2",
+    "control_builder": "0x25926",
+    "tags": [
+      108,
+      109
+    ],
+    "sprite": 380,
+    "sprite_pointer": "0x27818",
+    "x": 82,
+    "y": 86,
+    "width": 30,
+    "height": 54,
+    "rows": 3,
+    "source_frames": 6,
+    "frame_order": "three inactive rows, then three active rows"
+  },
+  "mac_ui_tests_prepared": {
+    "generator_type_cases": 14,
+    "routing_coordinate_mouse_click_cases": 6,
+    "routing_click_expected_public_values": [
+      0,
+      1,
+      2
+    ],
+    "routes_tested_on_both_pairs": true,
+    "hidden_native_window_for_coordinate_conversion": true,
+    "state_name_and_type_fresh_instance_checks_retained": true
+  },
+  "lifter_engine_allocator_and_pcm_sources_unchanged_from_cp023": true,
+  "cp024_mac_execution_pending": true,
+  "cp024_auval_passed": null,
+  "full_original_interface_complete": false,
+  "remote_editor_visual_fidelity_certified": false,
+  "private_paths_preferences_or_key_published": false
+}

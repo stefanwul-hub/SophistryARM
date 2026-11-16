@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-023",
+  "checkpoint": "CP-024",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -35,12 +35,12 @@
   "ableton_projects_verified": false,
   "install_allowed": true,
   "implemented_dsp_scope": "191378 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
-  "arm64_scope": "CP021 native Mac gates independently verified; CP022 loading and saved-name fixes confirmed by user in both hosts. CP023 generator edits and 56 original state comparisons pass Linux and ARM64/QEMU; 14 Mac arm64 binaries strictly linked. CP023 native Cocoa/audio/auval pending.",
+  "arm64_scope": "CP023 Mac ARM64 build23001 installation/auval confirmed. Fourteen Cocoa generator cases, fresh name/type recall, 32 Apple PCM cases and twelve WAVs independently verified. CP024 visual fixes preserve all 56 original state blocks; five changed Mac binaries strictly arm64-linked. New Mac execution pending.",
   "next_work": [
-    "Run CP023 Mac gates and review 14 generator Cocoa cases, captures and fresh-instance state recall",
-    "Check generator gestures, saved changes and existing automation in copies of Logic and Live projects",
-    "Complete sample browser/trim/Loop zones, filters, effects and modulation panels from original constructors",
-    "Broaden original-versus-native musical/polyphony comparisons"
+    "Run CP024 six coordinate mouse clicks and inspect routing/type/stepper screenshots",
+    "Check generator gestures, saved changes and automation on copies of Logic and Live projects",
+    "Complete sample browser/trim/Loop zones and filter/effect/modulation panels",
+    "Broaden musical/polyphony comparisons and independently confirm distant host visuals"
   ],
   "state_container_reader_implemented": true,
   "state_container_round_trip_tested": [
@@ -81,7 +81,7 @@
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
   "github_verified_code_commit": "4947ef54239f5bf6ce54fb1954981f265a269c03",
   "github_verified_archive_sha256": "ce440c10aa4ee04e359b591ce0d174862d19c9fba8d4b7a7eb1ddd700e7e0c7d",
-  "macos_auval_scope": "CP021 system auval independently reviewed and passed. CP022 installation/user operation reported; automatic log not supplied. CP023 pending.",
+  "macos_auval_scope": "CP023 independently reviewed and passed. CP024 pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
   "native_arm64_macos_libm_comparison": {
@@ -218,10 +218,10 @@
   "github_cp018_archive_sha256": "4d3635844d4bcdd71566b77eb4848ae7fa1eb295e57c1d09a25c232f8d6d2465",
   "github_cp018_verified_tracked_blobs": 4052,
   "github_cp018_launcher": "Demarrer-Sophistry-CP018.command",
-  "installed_component_checkpoint_last_confirmed": "CP-021",
+  "installed_component_checkpoint_last_confirmed": "CP-023",
   "github_cp018_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/6a5372de3fdf5faf865dfe4f49f5a07844c217e1/Demarrer-Sophistry-CP018.command",
   "github_cp018_launcher_verified": true,
-  "native_ui_macos_execution_scope": "CP021 local and remote Cocoa/editor/audio passed. CP022 user operation in both hosts confirmed. New CP023 generator panels cross-linked; native execution pending.",
+  "native_ui_macos_execution_scope": "CP023 local Cocoa generator/editor checks passed. Remote OS-managed view creation and audio passed; container capture black, visual fidelity not certified. CP024 visual and coordinate-click changes pending.",
   "cp018_local_cocoa_editor_passed": true,
   "cp018_remote_editor_test_passed": false,
   "cp018_installation_committed": false,
@@ -333,8 +333,8 @@
   "cp022_live_name_fixed_in_actual_host_reported_by_user": true,
   "cp022_user_evidence": "evidence/mac-cp022-user-feedback.json",
   "ableton_saved_sound_name_loss_current": false,
-  "cp023_mac_execution_pending": true,
-  "cp023_auval_passed": null,
+  "cp023_mac_execution_pending": false,
+  "cp023_auval_passed": true,
   "cp023_development_evidence": "evidence/cp023-development-checks.json",
   "cp023_original_control_evidence": "evidence/generator-controls-cp023.json",
   "cp023_generator_type_cases": 14,
@@ -351,5 +351,21 @@
   "github_cp023_verified_tracked_blobs": 4107,
   "github_cp023_launcher": "Demarrer-Sophistry-CP023.command",
   "github_cp023_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/3995fdfe5f2b77d30136c6feda8190b3d1e5e05c/Demarrer-Sophistry-CP023.command",
-  "github_cp023_launcher_verified": true
+  "github_cp023_launcher_verified": true,
+  "cp023_mac_evidence": "evidence/mac-cp023-installed-generators.json",
+  "cp023_generator_cocoa_cases_passed": 14,
+  "cp023_reference_exact_wav_files_verified": 12,
+  "cp023_preset_cycles_on_mac": 96,
+  "cp023_fresh_name_and_type_recall_passed": true,
+  "cp023_remote_host_view_creation_and_audio_passed": true,
+  "cp023_remote_visual_fidelity_certified": false,
+  "cp023_host_project_gesture_validation_pending": true,
+  "cp024_mac_execution_pending": true,
+  "cp024_auval_passed": null,
+  "cp024_development_evidence": "evidence/cp024-development-checks.json",
+  "cp024_original_sprite_380_routing_position_fixed": true,
+  "cp024_prepared_routing_mouse_cases": 6,
+  "cp024_state_blocks_unchanged": 56,
+  "cp024_strict_macos_arm64_binaries_linked": 5,
+  "cp024_source_archive_verification_pending": true
 }

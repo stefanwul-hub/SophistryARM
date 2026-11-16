@@ -145,6 +145,7 @@ static NSDictionary *presetLabelRoundTrip(AudioComponent component,
 - (void)selectTab:(NSButton *)sender;
 - (void)parameterChanged:(NSControl *)sender;
 - (BOOL)testGeneratorControl:(UInt32)tag normalized:(float)value;
+- (BOOL)testGeneratorRoutingClick:(unsigned)slot;
 @end
 
 int main(int argc, const char **argv) {
@@ -162,6 +163,7 @@ int main(int argc, const char **argv) {
     NSDictionary *renderStatus = @{};
     NSDictionary *labelRoundTrip = @{};
     NSMutableArray *generatorCases = [NSMutableArray array];
+    NSMutableArray *routingCases = [NSMutableArray array];
     NSDictionary *generatorRecall = @{};
     NSString *advertisedClass = @"";
     NSString *componentViewClass = @"";
@@ -235,6 +237,13 @@ int main(int argc, const char **argv) {
             failure =
                 @"The component view does not implement its test interface";
           else {
+            NSWindow *testWindow = [[NSWindow alloc]
+                initWithContentRect:view.bounds
+                          styleMask:NSWindowStyleMaskBorderless
+                            backing:NSBackingStoreBuffered
+                              defer:NO];
+            testWindow.releasedWhenClosed = NO;
+            testWindow.contentView = view;
             aupreset = [view loadPresetURL:[NSURL fileURLWithPath:statePath]];
 
             AudioStreamBasicDescription format{
@@ -274,6 +283,41 @@ int main(int argc, const char **argv) {
               NSButton *section = [NSButton new];
               section.tag = generator < 2 ? 1 : 2;
               [view selectTab:section];
+              if ((generator & 1) == 0) {
+                for (unsigned slot = 0; !failure && slot < 3; ++slot) {
+                  const BOOL clicked = [view testGeneratorRoutingClick:slot];
+                  float actual = -1;
+                  const auto routeStatus =
+                      AudioUnitGetParameter(unit, 108 + generator / 2,
+                                            kAudioUnitScope_Global, 0, &actual);
+                  NSBitmapImageRep *rep =
+                      [view bitmapImageRepForCachingDisplayInRect:view.bounds];
+                  BOOL saved = NO;
+                  if (rep) {
+                    [view cacheDisplayInRect:view.bounds toBitmapImageRep:rep];
+                    NSData *png =
+                        [rep representationUsingType:NSBitmapImageFileTypePNG
+                                          properties:@{}];
+                    NSString *name = [NSString
+                        stringWithFormat:@"%@-routing-pair%u-value%u.png",
+                                         prefix, generator / 2 + 1, slot];
+                    saved = [png writeToFile:name atomically:YES];
+                  }
+                  const BOOL passed = clicked && !routeStatus &&
+                                      std::isfinite(actual) &&
+                                      fabsf(actual - slot) < 0.001f && saved;
+                  [routingCases addObject:@{
+                    @"pair" : @(generator / 2 + 1),
+                    @"requested" : @(slot),
+                    @"public_au_value" : @(actual),
+                    @"original_coordinate_mouse_click" : @(clicked),
+                    @"snapshot_saved" : @(saved),
+                    @"passed" : @(passed)
+                  }];
+                  if (!passed)
+                    failure = @"Original routing coordinate mouse test failed";
+                }
+              }
               const unsigned maximum = generator < 2 ? 3 : 2;
               for (unsigned type = 0; !failure && type <= maximum; ++type) {
                 const BOOL selected = [view
@@ -361,6 +405,7 @@ int main(int argc, const char **argv) {
             viewReport = [view sophistryEditorReport];
             if (!failure &&
                 (!fxp || !fxpNamePreserved || generatorCases.count != 14 ||
+                 routingCases.count != 6 ||
                  ![generatorRecall[@"passed"] boolValue] ||
                  ![labelRoundTrip[@"passed"] boolValue] || !aupreset ||
                  !controls || !tabs || rendered || runtimePropertyStatus ||
@@ -396,6 +441,7 @@ int main(int argc, const char **argv) {
               if (!screenshot)
                 failure = @"Cannot snapshot the native Cocoa view";
             }
+            [testWindow close];
           }
         }
       }
@@ -426,6 +472,7 @@ int main(int argc, const char **argv) {
       @"fxp_header_name_preserved" : @(fxpNamePreserved),
       @"preset_name_fresh_instance_roundtrip" : labelRoundTrip,
       @"generator_cases" : generatorCases,
+      @"routing_mouse_cases" : routingCases,
       @"generator_fresh_instance_recall" : generatorRecall,
       @"aupreset_imported" : @(aupreset),
       @"native_view_snapshot_saved" : @(screenshot),

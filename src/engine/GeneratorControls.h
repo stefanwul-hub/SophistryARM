@@ -80,7 +80,9 @@ inline std::vector<GeneratorControlSpec> generatorLayout(unsigned g,
   dial(4 + g, bottom ? 72 : 50, bottom ? 223 : 108, 350, 33, 33, 71);
   dial(8 + g, 70, bottom ? 171 : 56, 353, 78, 38, 53);
   if (!bottom)
-    box(108 + g / 2, W::Routing, 82, 72, 30, 54);
+    // 0x5efe2: x=0x52, y=0x56, three rows; bitmap380 has
+    // three inactive rows followed by the three active rows.
+    box(108 + g / 2, W::Routing, 82, 86, 30, 54, 380, 2);
   box(generatorTypeTag(g), W::Type, 135, row + (bottom ? 116 : 10), 120, 19);
   auto modeDial = [&](unsigned tag, int x, int y, unsigned image, int w, int h,
                       unsigned frames, int offset = 0, bool dark = false) {

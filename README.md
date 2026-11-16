@@ -1,26 +1,26 @@
-# Sophistry — checkpoint CP023
+# Sophistry — checkpoint CP024
 
-Portage expérimental de Sophistry 3.0.8 vers Audio Unit ARM64 pour macOS. L’original est un binaire **i386 32 bits et PowerPC**. Les instructions originales sélectionnées sont traduites statiquement en C++ ; le moteur n’est pas une nouvelle synthèse approchée. La couverture complète de tous les chemins et de toutes les banques reste à démontrer.
+Portage expérimental de Sophistry 3.0.8 vers Audio Unit ARM64 pour macOS. L’original est un binaire i386 32 bits et PowerPC ; les instructions originales sélectionnées sont traduites statiquement en C++. La couverture complète de tous les chemins et de toutes les banques reste à démontrer.
 
-**CP022 est confirmé par l’utilisateur dans Logic Pro 11 et Ableton Live 11.3.2** : chargements successifs sans blocage et nom du son conservé après réouverture. [Retour enregistré](evidence/mac-cp022-user-feedback.json). Les derniers journaux automatiques Mac examinés sont ceux de [CP021](evidence/mac-cp021-installed-audio.json) : installation, auval, oracle Core Audio et douze WAV de référence vérifiés.
+**CP023 est installé et validé par le rapport Mac du 16 novembre 2026** : auval, quatorze cas Cocoa des générateurs, rappel du nom et du type dans une instance neuve, 32 cas PCM Apple, 96 chargements avec mémoire stable et douze WAV reçus comparés à leurs références. [Preuve vérifiée](evidence/mac-cp023-installed-generators.json). La création de vue distante et son audio passent ; sa capture noire ne certifie pas son affichage. Le fonctionnement des chargements successifs et du nom est également confirmé par l’utilisateur dans Logic et Live depuis CP022.
 
-**CP023 ajoute les commandes graphiques principales des quatre générateurs**, leur type, volume, balance, hauteur, routage et commandes propres au mode, avec les images et positions originales. Le sample courant s’affiche en lecture seule. Les zones détaillées Loop Sampler, le navigateur/trim de samples et les panneaux filtres/effets/modulation restent à compléter. Voir [CP023](docs/CP023.md) et [la suite](docs/SUITE.md).
+**CP024 corrige les libellés superposés et les boutons de routage des générateurs**, à partir des captures CP023. MIX/AM/FM utilise son sprite et sa position d’origine ; les signes ajoutés sur les flèches sont retirés. Le moteur reste inchangé. Les 56 états testés correspondent toujours au code original ; les cinq binaires Mac concernés sont liés en ARM64. Les six nouveaux tests de clics et le rendu Cocoa CP024 restent à exécuter sur le Mac. Voir [CP024](docs/CP024.md) et [les preuves de développement](evidence/cp024-development-checks.json).
 
-Les 177 modifications testées sur quatorze combinaisons donnent les mêmes quatorze programmes et 42 états de banque que le code original. Le test passe aussi en C++ ARM64 sous QEMU. Les quatorze binaires Mac sont liés en ARM64 ; **les nouveaux panneaux Cocoa, auval et l’audio de CP023 attendent encore leur exécution sur votre Mac**. [Preuves](evidence/cp023-development-checks.json).
+Le navigateur/trim de samples, les zones et boucles détaillées du Loop Sampler et les panneaux filtres/effets/modulation restent à compléter. [Suite du travail](docs/SUITE.md).
 
 ## Installer et tester
 
-[Télécharger le lanceur CP023](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/3995fdfe5f2b77d30136c6feda8190b3d1e5e05c/Demarrer-Sophistry-CP023.command), fermer Logic et Live, puis exécuter :
+[Télécharger le lanceur CP024](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP024.command), fermer Logic et Live, puis exécuter :
 
 ```bash
-bash "$HOME/Downloads/Demarrer-Sophistry-CP023.command"
+bash "$HOME/Downloads/Demarrer-Sophistry-CP024.command"
 ```
 
-Le script télécharge [l’archive de sources épinglée](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/4947ef54239f5bf6ce54fb1954981f265a269c03), vérifie son SHA-256, l’extrait, compile, teste et valide auval. Licence et dossier de banque valides sont réutilisés. Il sauvegarde le composant précédent et installe dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration si un contrôle échoue. Les droits administrateur sont demandés pour le remplacement système.
+Le script télécharge l’archive de sources épinglée, vérifie son SHA-256, l’extrait, compile, teste et valide auval. Licence et dossier de banque valides sont réutilisés. Il sauvegarde le composant précédent et installe dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration si un contrôle échoue. Les droits administrateur sont demandés pour le remplacement système.
 
-Attendre **« Installation CP023 confirmée »**, puis essayer les panneaux Generators 1–2 et 3–4 dans une copie de projet. Modifier quelques commandes, sauvegarder et réouvrir ; vérifier le son, les réglages et le nom dans les deux hôtes. Transmettre le ZIP CP023 produit automatiquement, qui contient notamment quatorze captures des nouveaux panneaux. Les contrôles ne peuvent certifier tous les projets privés ou toutes les banques.
+Attendre **« Installation CP024 confirmée »**, puis essayer les panneaux Generators 1–2 et 3–4 dans une copie de projet. Modifier quelques commandes, sauvegarder et réouvrir ; vérifier le son, les réglages et le nom dans les deux hôtes. Transmettre le ZIP CP024 produit automatiquement, qui contient les captures des quatorze cas de générateurs et des six clics de routage. Les contrôles ne peuvent certifier tous les projets privés ou toutes les banques.
 
-Pour choisir une autre banque : `bash "$HOME/Downloads/Demarrer-Sophistry-CP023.command" --choose-bank`. Les options `--diagnose-only` et `--recenter-windows` restent disponibles sans installation.
+Pour choisir une autre banque : `bash "$HOME/Downloads/Demarrer-Sophistry-CP024.command" --choose-bank`. Les options `--diagnose-only` et `--recenter-windows` restent disponibles sans installation.
 
 ## Compatibilité et reprise
 

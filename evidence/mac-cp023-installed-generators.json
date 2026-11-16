@@ -1,0 +1,425 @@
+{
+  "checkpoint": "CP-023",
+  "source": "Received Mac report Sophistry-rapports-CP023-20261116T191207Z.zip; independently inspected JSON, logs, fourteen generator cases, screenshots and all twelve WAVs",
+  "archive_sha256": "79d21d8296ece7319ffaaebba7422e6b645079a76802d008ae2cd3e9c07729a4",
+  "tested_source_commit": "4947ef54239f5bf6ce54fb1954981f265a269c03",
+  "platform": "macOS 15.7.2 / ARM64 / Apple clang 17.0.0",
+  "script_exitcode": 0,
+  "system_installation_committed": true,
+  "installed_build_verified": "23001",
+  "loaded_checkpoint_verified": "SophistryARM CP-023",
+  "duplicate_user_component_found": false,
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  "native_pcm_conversion": {
+    "passed": true,
+    "known_ieee_cases": 256,
+    "rejected_invalid_buffers_or_formats": 516,
+    "native_core_audio_cases": 32,
+    "native_float_signed_flags_normalized": 0,
+    "error": ""
+  },
+  "guest_allocator": {
+    "passed": true,
+    "variable_size_rounds": 512,
+    "variable_size_allocations": 16384,
+    "live_payload_bytes_checked": true,
+    "coalescing_and_splitting": true,
+    "reference_layout_retained": true,
+    "exhaustion_recovery": true,
+    "invalid_releases_rejected": true,
+    "extended_arena_live_bytes": 301989888
+  },
+  "preset_cycles": {
+    "passed": true,
+    "sample_formats": 12,
+    "rounds": 8,
+    "preset_loads": 96,
+    "serialized_programs_unchanged": true,
+    "live_allocations_stable": true,
+    "test_guest_memory_bytes": 67108864,
+    "peak_reserved_bytes": 6712896,
+    "final_live_bytes": 2670168,
+    "final_live_blocks": 2632,
+    "production_virtual_bytes": 1073741824,
+    "zero_filled_sparse_storage_checked": true,
+    "licensed_audio_tested": false
+  },
+  "dsp_replay": {
+    "scope": "selected statically lifted DSP",
+    "cases": 704,
+    "compared_bytes": 5420672,
+    "byte_mismatches": 0,
+    "output_buffer_byte_mismatches": 0,
+    "object_state_byte_mismatches": 0,
+    "math_calls": 201,
+    "math_mode": "recorded ABI responses",
+    "instruction_addresses_executed": 3113,
+    "fixture_valid": true,
+    "passed": true,
+    "full_synth_tested": false
+  },
+  "instruction_replay": {
+    "scope": "isolated original instruction fixtures including explicit guards",
+    "cases": 11635,
+    "compared_register_bytes": 146749,
+    "passed": true,
+    "full_engine_tested": false
+  },
+  "local_editor_passed": true,
+  "generator_cocoa_cases": [
+    {
+      "generator": 1,
+      "type": 0,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 1,
+      "type": 1,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 1,
+      "type": 2,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 1,
+      "type": 3,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 2,
+      "type": 0,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 2,
+      "type": 1,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 2,
+      "type": 2,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 2,
+      "type": 3,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 3,
+      "type": 0,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 3,
+      "type": 1,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 3,
+      "type": 2,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 4,
+      "type": 0,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 4,
+      "type": 1,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    },
+    {
+      "generator": 4,
+      "type": 2,
+      "passed": true,
+      "snapshot_saved": true,
+      "controls_in_bounds": true,
+      "sprites_loaded": true,
+      "public_volume_changed": true
+    }
+  ],
+  "generator_state_comparison_matches_published_evidence": true,
+  "normalized_control_edits": 177,
+  "original_byte_exact_programs": 14,
+  "original_byte_exact_bank_transitions": 42,
+  "preset_name_fresh_instance_roundtrip": {
+    "passed": true,
+    "status": 0,
+    "name_restored_in_fresh_instance": true,
+    "present_preset_name_preserved": true,
+    "generator_types_retained": true,
+    "generic_host_name_does_not_replace_original": true,
+    "bank_unchanged_by_name_assignment": true,
+    "name_serialized": true
+  },
+  "generator_fresh_instance_recall": {
+    "passed": true,
+    "status": 0,
+    "name_restored_in_fresh_instance": true,
+    "present_preset_name_preserved": true,
+    "generator_types_retained": true,
+    "generic_host_name_does_not_replace_original": true,
+    "bank_unchanged_by_name_assignment": true,
+    "name_serialized": true
+  },
+  "remote_host": {
+    "passed": true,
+    "loaded_out_of_process": true,
+    "reported_checkpoint": "SophistryARM CP-023",
+    "checkpoint_matches": true,
+    "custom_view_created": true,
+    "advertised_cocoa_factory": "_RemoteAUv2ViewFactory",
+    "host_view_class": "AUv2ContainerView",
+    "state_bank_roundtrip_exact": true,
+    "visual_fidelity_certified": false,
+    "host_view_snapshot_uniform_black": true,
+    "visual_scope": "Public API view creation and audio passed; the container screenshot is black and does not establish visible remote editor content. No DAW display failure is inferred from this capture alone."
+  },
+  "audio_comparisons": [
+    {
+      "files": [
+        "original-2.wav",
+        "preflight-2.wav",
+        "registered-2.wav",
+        "editor.wav",
+        "remote-host.wav"
+      ],
+      "all_files_byte_exact": true,
+      "frames": 132300,
+      "channels": 2,
+      "sample_rate": 44100,
+      "format": "float32",
+      "all_values_finite": true,
+      "peak": 0.10761502385139465,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    },
+    {
+      "files": [
+        "original-6.wav",
+        "preflight-6.wav",
+        "registered-6.wav"
+      ],
+      "all_files_byte_exact": true,
+      "frames": 132300,
+      "channels": 6,
+      "sample_rate": 44100,
+      "format": "float32",
+      "all_values_finite": true,
+      "peak": 0.05377645418047905,
+      "wav_sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134"
+    },
+    {
+      "files": [
+        "format-d4u-32-1-original.wav",
+        "format-d4u-32-1-native.wav"
+      ],
+      "all_files_byte_exact": true,
+      "frames": 132300,
+      "channels": 2,
+      "sample_rate": 44100,
+      "format": "float32",
+      "all_values_finite": true,
+      "peak": 0.11708078533411026,
+      "wav_sha256": "48209ab5de65a716a22d4538c99c7bfbaeb20550b0774ffc38de3d37bdb07cac"
+    },
+    {
+      "files": [
+        "format-d4u-32-2-original.wav",
+        "format-d4u-32-2-native.wav"
+      ],
+      "all_files_byte_exact": true,
+      "frames": 132300,
+      "channels": 2,
+      "sample_rate": 44100,
+      "format": "float32",
+      "all_values_finite": true,
+      "peak": 0.10761502385139465,
+      "wav_sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    }
+  ],
+  "original_registration_accepted": true,
+  "private_project_roundtrip_independently_inspected": false,
+  "full_interface_complete": false,
+  "visual_findings": [
+    "Mode bitmap already contains its type name; the dynamic text is superimposed on the baked label.",
+    "Synthetic routing choices overlap the balance label and leave an extra FM button visible.",
+    "Numeric stepper overlays include added plus/minus glyphs over baked arrow buttons."
+  ],
+  "private_paths_preferences_or_key_published": false,
+  "local_generator_screenshot_files_checked": [
+    {
+      "file": "editor-g1-type0.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "423cffad785809db28985ec5123c5f6e14298edba2b85064161c76a5210720e3"
+    },
+    {
+      "file": "editor-g1-type1.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "0e95eba7b9d68c31e160cd4964dcd1747fae51d2a7aef246ccad1cb071c10c14"
+    },
+    {
+      "file": "editor-g1-type2.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "8d1b7e473e031a6ea0a815fff7d305334031e323dca763ae437b0a45ef3a528c"
+    },
+    {
+      "file": "editor-g1-type3.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "328c14a274620d82f84e96dbe2c2830b757ca96a7acf31e420dc24a48ee961fd"
+    },
+    {
+      "file": "editor-g2-type0.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "61d7354867ea26c4747c3ff9c38af98ba0ecbb31e4174bcb839cb3d2d815e97e"
+    },
+    {
+      "file": "editor-g2-type1.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "1b9b0a16e6cae805b9b7c57fbe07d80b152f7231473d33c62d81577792b6dc1c"
+    },
+    {
+      "file": "editor-g2-type2.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "0fe9ca30e7b4f0fcf7db99fd7c3a390895c191c63c126684666c6bbdf101b53c"
+    },
+    {
+      "file": "editor-g2-type3.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "e890ed3f99d7e0d644c11abbfd4701db7b6e30f3df9fa52dbe8d22c1619d57e8"
+    },
+    {
+      "file": "editor-g3-type0.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "ac158aca97b36462d271bb38eb30ca02d73247f69e06640a16b8dbdd8c3ca708"
+    },
+    {
+      "file": "editor-g3-type1.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "10c1c6ccdbe3bb395b1db00b73dee7d879e0359d9f5164470c9a664ea4c33da5"
+    },
+    {
+      "file": "editor-g3-type2.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "5fe5541c99642a649090939611274d2884e8943dc71c3e9f32e4117b992197fa"
+    },
+    {
+      "file": "editor-g4-type0.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "93b1cb6bad4d5cc3234af8885166a3a6e8d572e4a1ddd00c11382e0c03995d32"
+    },
+    {
+      "file": "editor-g4-type1.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "a53b9eca4e280e5a8cf191c385f3dd9ea9ee617705f4f2dfbc3ea97d3d7d92b7"
+    },
+    {
+      "file": "editor-g4-type2.png",
+      "dimensions": [
+        2240,
+        954
+      ],
+      "sha256": "3c3b0310d1d3d71a3ea5b12b1bbc7d62203e3ae0b85e7b41bbd8b38de3b69e40"
+    }
+  ]
+}

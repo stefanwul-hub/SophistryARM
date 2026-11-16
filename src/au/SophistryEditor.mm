@@ -863,6 +863,29 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
 - (BOOL)testGeneratorControl:(UInt32)tag normalized:(float)value {
   return !generators_.hidden && [generators_ setControl:tag normalized:value];
 }
+- (BOOL)testGeneratorRoutingClick:(unsigned)slot {
+  if (generators_.hidden || slot > 2 || !self.window)
+    return NO;
+  // Probe the original screen coordinates, independently of the node layout.
+  NSPoint point = NSMakePoint(82 + 15, 37 + 86 + slot * 18 + 9);
+  NSView *hit = [self hitTest:point];
+  if (![hit isKindOfClass:SophistryGeneratorNode.class] ||
+      ((SophistryGeneratorNode *)hit).spec.widget !=
+          sophistry::GeneratorWidget::Routing)
+    return NO;
+  NSEvent *click = [NSEvent mouseEventWithType:NSEventTypeLeftMouseDown
+                                      location:[self convertPoint:point
+                                                           toView:nil]
+                                 modifierFlags:0
+                                     timestamp:0
+                                  windowNumber:self.window.windowNumber
+                                       context:nil
+                                   eventNumber:0
+                                    clickCount:1
+                                      pressure:1];
+  [hit mouseDown:click];
+  return YES;
+}
 @end
 
 @interface SophistryCocoaFactory : NSObject <AUCocoaUIBase>

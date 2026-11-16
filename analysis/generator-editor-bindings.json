@@ -7,7 +7,8 @@
     "0x5772a",
     "0x571fc",
     "0x58ece",
-    "0x5cce8"
+    "0x5cce8",
+    "0x5efe2"
   ],
   "style_table_address": "0xf0ac0",
   "original_selector_tags": [
@@ -38,9 +39,21 @@
     "0x27810": 339,
     "0x27940": 348,
     "0x2793c": 326,
-    "0x27870": 325
+    "0x27870": 325,
+    "0x27818": 380
   },
   "unavailable_bitmap_not_simulated": 250,
   "sample_browsing_trim_and_full_loop_mapping_complete": false,
-  "native_mac_visual_fidelity_verified": false
+  "native_mac_visual_fidelity_verified": false,
+  "routing_layout": {
+    "constructor": "0x5efe2",
+    "x": 82,
+    "y": 86,
+    "width": 30,
+    "height": 54,
+    "rows": 3,
+    "source_frames": 6
+  },
+  "native_mac_cp023_editor_executed": true,
+  "cp024_visual_changes_mac_execution_pending": true
 }
