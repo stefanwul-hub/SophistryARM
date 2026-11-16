@@ -18,7 +18,7 @@ Le navigateur/trim de samples, les zones et boucles détaillées du Loop Sampler
 bash "$HOME/Downloads/Demarrer-Sophistry-CP025.command"
 ```
 
-Le script télécharge l’archive de sources épinglée, vérifie son SHA-256, l’extrait, compile, teste et valide auval. Licence et dossier de banque valides sont réutilisés. Il sauvegarde le composant précédent et installe dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration si un contrôle échoue. Les droits administrateur sont demandés pour le remplacement système.
+Le script télécharge [l’archive de sources épinglée](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/e6bb75ee78d839e55d3ff37ef5476bd866aad74b), vérifie son SHA-256, l’extrait, compile, teste et valide auval. Licence et dossier de banque valides sont réutilisés. Il sauvegarde le composant précédent et installe dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration si un contrôle échoue. Les droits administrateur sont demandés pour le remplacement système.
 
 Attendre **« Installation CP025 confirmée »**, puis vérifier la mention **SophistryARM CP-025** en bas de l’éditeur et essayer Edit du filtre ainsi que Prev/Next dans une copie de projet. Modifier quelques commandes, sauvegarder et réouvrir ; vérifier le son, les réglages et le nom dans les deux hôtes. Transmettre le ZIP CP025 produit automatiquement, qui contient les captures des quatorze cas de générateurs et des six clics de routage. Les contrôles ne peuvent certifier tous les projets privés ou toutes les banques.
 
