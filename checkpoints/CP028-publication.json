@@ -1,0 +1,16 @@
+{
+  "checkpoint": "CP-028",
+  "source_commit": "8f5a7b879edc436173c0304f29f37849ef0f427d",
+  "source_tree": "e806265d2881cf0a4a3f18a009ee4fe87da4d8bd",
+  "archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/8f5a7b879edc436173c0304f29f37849ef0f427d",
+  "archive_bytes": 44370742,
+  "archive_sha256": "b05dd8c2983f026eafd00712f29a303a698134380064eb9bc4032a438b1e35bb",
+  "all_tracked_blobs_verified": true,
+  "tracked_blobs": 4164,
+  "launcher": "Demarrer-Sophistry-CP028.command",
+  "mac_cp028_execution_confirmed": false,
+  "publication_branch": "codex/sophistry-native-checkpoints",
+  "includes_private_logs_or_license": false,
+  "launcher_sha256": "13cce51bb7289e07881de0c34d098a5e98ae80b5698473f910f62321a3bf9950",
+  "forwards_choose_bank_diagnose_and_recenter_options": true
+}

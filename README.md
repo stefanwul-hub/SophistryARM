@@ -8,13 +8,13 @@ Les 50 transitions entre modes et leurs états sont comparés aux instructions o
 
 ## Télécharger et installer
 
-Fermer Logic et Live, puis lancer le lanceur CP028 vérifié :
+[Télécharger le lanceur CP028](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP028.command), fermer Logic et Live, puis lancer :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP028.command"
 ```
 
-Le lanceur télécharge l’archive immuable CP028 (lien après publication), vérifie son SHA-256, la décompacte puis exécute la compilation ARM64, les tests, auval et le remplacement sauvegardé dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`. En cas d’échec, il restaure le composant précédent. Licence et banque valides restent enregistrées localement.
+Le lanceur télécharge [l’archive immuable CP028](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/8f5a7b879edc436173c0304f29f37849ef0f427d), vérifie son SHA-256, la décompacte puis exécute la compilation ARM64, les tests, auval et le remplacement sauvegardé dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`. En cas d’échec, il restaure le composant précédent. Licence et banque valides restent enregistrées localement.
 
 Attendre **Installation CP028 confirmée**, puis vérifier **SophistryARM CP-028** dans l’éditeur. Parcourir les sept pages et **Clavier / MIDI…**, essayer les repères Loop et les menus de modules, puis sauvegarder/réouvrir des copies de projets Logic et Live. Le ZIP CP028 est créé automatiquement, y compris en cas d’échec.
 
