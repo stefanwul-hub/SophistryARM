@@ -8,7 +8,7 @@ Les 50 transitions entre modes et leurs états sont comparés aux instructions o
 
 ## Télécharger et installer
 
-[Télécharger le lanceur CP028](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP028.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur CP028](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/b9a5ae7d79208427ea82fa37e3476fb677f69ad3/Demarrer-Sophistry-CP028.command), fermer Logic et Live, puis lancer :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP028.command"
