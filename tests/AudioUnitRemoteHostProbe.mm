@@ -171,7 +171,7 @@ int main(int argc, const char **argv) {
 
         stage = "single view via public host APIs";
         window =
-            [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 1120, 477)
+            [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 762, 477)
                                         styleMask:NSWindowStyleMaskTitled |
                                                   NSWindowStyleMaskClosable
                                           backing:NSBackingStoreBuffered
@@ -216,7 +216,7 @@ int main(int argc, const char **argv) {
                 // A host requests one OS-managed view, without private
                 // selectors.
                 view = [factory uiViewForAudioUnit:unit
-                                          withSize:NSMakeSize(1120, 477)];
+                                          withSize:NSMakeSize(762, 477)];
                 if (view)
                   viewRoute = @"published Cocoa factory, one host-managed view";
               }
@@ -271,7 +271,7 @@ int main(int argc, const char **argv) {
         }
         if (view) {
           if (view.frame.size.width <= 0 || view.frame.size.height <= 0)
-            view.frame = NSMakeRect(0, 0, 1120, 477);
+            view.frame = NSMakeRect(0, 0, 762, 477);
           window.contentView = view;
           [window setContentSize:view.frame.size];
           [window center];

@@ -1,0 +1,116 @@
+{
+  "checkpoint": "CP-029",
+  "passed": true,
+  "scope": "Source audit, unchanged DSP/parameter contract checks and strict ARM64 Mac cross-linking; no macOS runtime execution",
+  "source_sha256": {
+    "src/au/CompleteEditorView.h": "f00180aabe0a656ce0f386ff347e1e389c49c77f95015bb57ef27d812b908d92",
+    "src/au/SampleDisplay.h": "484c118662578117cedad855061c904d8ca3d96de6bd0eca48e9a670e90dab88",
+    "src/au/SophistryEditor.mm": "778a8e934b587d9e499be2ca79797b5b4de6e9c760498c983fb72654974907ad",
+    "src/au/SophistryProperties.h": "c55a19bd654af338e6394fa731444d7969d0793e74a66957a6e3295089cce5d8",
+    "src/au/Info.plist": "67a832b9543f17a8d1760fe6c35c887df6bc066f89ff8a4bad89f29ad1d66ef2",
+    "tests/AudioUnitEditorProbe.mm": "22157aa275dcad9097f6fbf85c89e8d5e156a729ca65101d0540edca104797b0",
+    "tests/AudioUnitRemoteHostProbe.mm": "72d1116c214de84336c3369c2b787e33f9f310c532f7bfef54647a4c64183b6e",
+    "scripts/build-audio-unit.sh": "4c74f4509663547e5f54638ef29c6e19fe5134f5b5675a8b52db64d083289788",
+    "Installer-ARM64.command": "e671470e2bbc70aeb42e9e6b18b97b32c3b836104f1c1775aa9643eff4f3244d",
+    "Diagnostiquer-Sophistry.command": "25b2ccdab125def333b669b60aec2f139381f945f8d72bf3d560043ddbbee8de"
+  },
+  "unchanged_engine_and_contract_sha256": {
+    "src/au/SophistryAU.cpp": "0d8f5d8c7952f84fb5fe379aef7ebb9f889585c59f48faa6ecfd7f94bb18dd61",
+    "src/engine/LegacyEngine.cpp": "61a7aa37f5c334134a8e72a15ae39f2c5f46c7550892bf33802b4a9cde03606b",
+    "src/engine/LegacyEngine.h": "a1f89595493db57de27cbbc3fde7cec206e59188c04ece701b115ae5f6b295f1",
+    "src/lifter/LifterRuntime.h": "04b3c63541d811fa447a221dfd43b499922637ed3de8439ea54c472aefdbd78f",
+    "src/lifter/LifterRuntime.cpp": "f7a83df4c836481fe8b5ad6276ca7323fe5f85c52d8299f98e0c4781368e5d2e",
+    "src/lifter/whole/manifest.json": "d5c59cc23c71d5693050bbcb1393755431be31dd91634a07fda9337d441f9dde",
+    "analysis/au-parameter-contract.json": "6f1d6ceadc4acc8084489b6b0347bcdeded33cc6a2500a808c891e54f2a5ce5c",
+    "tests/NativeCompleteEditorProbe.cpp": "d5ed81481d1cc8a7607287c634bf78162db8be7b8fe4264a9282182bf8752225",
+    "tests/compare_complete_editor.py": "585b4ace2e41976d9d9032b0c5dc7a7bb0d1871370999a5c6fed74d573a42bad"
+  },
+  "unchanged_lifter_tree": "5529dfebd599e2f541709be4c7a9465c03ed3134",
+  "mac_arm64_strict_links": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 31279424,
+      "sha256": "aa96a40944bfdc24edf8013affbd8afcab03010f7da8baf3d2c9bc00ab3681a5",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1302480,
+      "sha256": "0f390546b26c36e5ff15484ff88bcc331e9ec2f63412e61783dad59b9d8c5cbd",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "c41812a954a2ab7727ce43f4ab49c3799c611ed509ae3c4d4ceba85d139d1a37",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "62efba0ad9fa4dd8ae36b040b9020b08bc2a5e0cec32d94c50ce3e819a4f190d",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "NativeCompleteEditorProbe",
+      "architecture": "arm64",
+      "bytes": 30686224,
+      "sha256": "583ec54848b91bc35719da7c4d296ed48bf266e7a174432fcf1545e1450fa845",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "NativeEditorProbe",
+      "architecture": "arm64",
+      "bytes": 30585376,
+      "sha256": "ef8d71174d267a70eca14dd39174f006484ad85d9f550e417106554385435b5e",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "GeneratorLayoutProbe",
+      "architecture": "arm64",
+      "bytes": 1254048,
+      "sha256": "188ac07b1e5ee7cb42472f0e5c9ddccc0a69bc94e338998f2cbd94b84bf38edb",
+      "strict_link_no_dynamic_lookup": true
+    }
+  ],
+  "required_factory_symbols_present": true,
+  "au_identity": {
+    "bundle_id": "com.linplug.au.Sophistry",
+    "type": "aumu",
+    "subtype": "Sop3",
+    "manufacturer": "LinP",
+    "version": 196616,
+    "build": "29001"
+  },
+  "interface_audit": "cp029-interface-audit.json",
+  "previous_original_engine_comparison": "complete-editor-cp028.json",
+  "previous_comparison_reused_because_engine_and_test_sources_are_identical": true,
+  "editor_width": 762,
+  "editor_height": 477,
+  "cocoa_checks_prepared": [
+    "no generic browser in actual subview tree",
+    "762-point editor width",
+    "all seven original pages remain populated",
+    "four Time Sampler Full Loop menu enable/disable/restore cycles",
+    "Windows sample path displayed as BT_cronox18.wav",
+    "existing generator, routing, preset, FX, modulation, Loop and auxiliary checks"
+  ],
+  "stress_tests_canceled_by_user": true,
+  "stress_probe_in_installer": false,
+  "cpu_metrics_added": false,
+  "new_samples_in_package": false,
+  "standard_prevalidation_audio_auval_remote_host_and_rollback_gates_preserved": true,
+  "shell_syntax_and_diff_check": true,
+  "mac_cocoa_cp029_executed": false,
+  "mac_auval_cp029_executed": false,
+  "licensed_musical_audio_cp029_tested": false,
+  "cp028_user_report": {
+    "compiled": true,
+    "tested_interface_controls_work": true,
+    "full_mac_report_received": false
+  }
+}

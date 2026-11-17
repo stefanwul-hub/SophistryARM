@@ -1,0 +1,61 @@
+{
+  "checkpoint": "CP-029",
+  "original_source": "Sophistry i386 3.0.8, executed constructors 0x55064/0x5efe2 and recovered parameter metadata",
+  "constructor_controls": 1067,
+  "original_panels": 86,
+  "complete_fidelity_certified": false,
+  "full_loop_controls": [
+    {
+      "generator": 1,
+      "tag": 52,
+      "panel": 18,
+      "name": "FullLoop On/Off",
+      "original_au_id": 52,
+      "access": "Full Loop in Time Sampler type menu"
+    },
+    {
+      "generator": 2,
+      "tag": 53,
+      "panel": 19,
+      "name": "FullLoop On/Off",
+      "original_au_id": 53,
+      "access": "Full Loop in Time Sampler type menu"
+    },
+    {
+      "generator": 3,
+      "tag": 54,
+      "panel": 20,
+      "name": "FullLoop On/Off",
+      "original_au_id": 54,
+      "access": "Full Loop in Time Sampler type menu"
+    },
+    {
+      "generator": 4,
+      "tag": 55,
+      "panel": 21,
+      "name": "FullLoop On/Off",
+      "original_au_id": 55,
+      "access": "Full Loop in Time Sampler type menu"
+    }
+  ],
+  "missing_original_bitmap": 250,
+  "full_loop_uses_existing_original_au_setter": true,
+  "enhanced_panels_without_recovered_widgets": [
+    70,
+    71,
+    82,
+    83,
+    84,
+    85,
+    86
+  ],
+  "direct_fxp_export_in_editor": false,
+  "general_preset_save_format": "aupreset",
+  "module_save_format": "MOD",
+  "midi_learn_and_all_host_cases_fully_certified": false,
+  "original_drawbar_pointer_entry": "0x8089a",
+  "envelope_direction": "minimum at top, maximum at bottom; unchanged",
+  "generic_browser_removed": true,
+  "host_generic_view_and_automation_parameter_contract_preserved": true,
+  "mac_cocoa_execution_cp029_pending": true
+}

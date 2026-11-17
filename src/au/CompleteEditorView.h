@@ -2,6 +2,7 @@
 #pragma once
 #include "../engine/CompleteEditorControls.h"
 #include "GeneratorView.h"
+#include "SampleDisplay.h"
 namespace sophistryCompleteView {
 inline NSString *string(const char *p, std::size_t capacity) {
   auto n = strnlen(p, capacity);
@@ -68,6 +69,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 @property(weak) id<SophistryRecoveredOwner> owner;
 @property BOOL circular;
 @property float secondaryNormalized;
+@property(copy) NSString *sampleLabel;
 - (void)updateRecovered:(sophistry::RecoveredControl)control
                   value:(sophistry::EditorControlState)value;
 - (NSMenu *)recoveredMenu;
@@ -188,7 +190,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
           NSInsetRect(r, 2, 0), 8);
   } else if (c.kind == K::Text || c.kind == K::Display) {
     if (self.state.kind == 7 && c.tag != 648)
-      value = value.lastPathComponent;
+      value = self.sampleLabel ?: @"";
     sophistryCompleteView::drawText(value, r, r.size.height <= 11 ? 7 : 9);
   }
   if (c.valueRect[2] > 0) {
@@ -205,7 +207,29 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   }
 }
 - (void)chooseRecovered:(NSMenuItem *)item {
-  if ([item.representedObject isKindOfClass:NSNumber.class])
+  if ([item.representedObject isKindOfClass:NSDictionary.class]) {
+    NSNumber *parameter = item.representedObject[@"full_loop"];
+    if (!parameter)
+      return;
+    float current = 0;
+    unsigned id = parameter.unsignedIntValue;
+    if (AudioUnitGetParameter(self.audioUnit, id, kAudioUnitScope_Global, 0,
+                              &current))
+      return;
+    sophistryGeneratorView::event(self.audioUnit, id,
+                                  kAudioUnitEvent_BeginParameterChangeGesture);
+    OSStatus result =
+        AudioUnitSetParameter(self.audioUnit, id, kAudioUnitScope_Global, 0,
+                              current >= .5f ? 0.f : 1.f, 0);
+    if (!result)
+      sophistryGeneratorView::event(self.audioUnit, id,
+                                    kAudioUnitEvent_ParameterValueChange);
+    sophistryGeneratorView::event(self.audioUnit, id,
+                                  kAudioUnitEvent_EndParameterChangeGesture);
+    if (result)
+      NSBeep();
+    [self.owner changed:self];
+  } else if ([item.representedObject isKindOfClass:NSNumber.class])
     [self.owner moduleMenu:[item.representedObject unsignedIntValue]
                      value:unsigned(item.tag)];
   else
@@ -235,6 +259,24 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     [menu addItem:item];
   }
   if (unsigned g = sophistry::generatorForTypeTag(c.tag); g < 4) {
+    // The original four Time Sampler FullLoop controls (52..55) use the
+    // missing bitmap 250. Preserve their original AU parameter via this menu.
+    if (self.state.value == 1) {
+      float value = 0;
+      if (!AudioUnitGetParameter(self.audioUnit, 52 + g, kAudioUnitScope_Global,
+                                 0, &value)) {
+        [menu addItem:NSMenuItem.separatorItem];
+        NSMenuItem *item =
+            [[NSMenuItem alloc] initWithTitle:@"Full Loop"
+                                       action:@selector(chooseRecovered:)
+                                keyEquivalent:@""];
+        item.target = self;
+        item.state =
+            value >= .5f ? NSControlStateValueOn : NSControlStateValueOff;
+        item.representedObject = @{@"full_loop" : @(52 + g)};
+        [menu addItem:item];
+      }
+    }
     unsigned tag = 643 + g;
     choices = {};
     size = sizeof(choices);
@@ -811,6 +853,18 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
       else
         data.value.tag = c.tag;
       [n updateRecovered:c value:data];
+      n.sampleLabel = nil;
+      if (data.value.kind == 7 && c.tag != 648) {
+        NSData *full = sophistryCompleteView::text(unit_, c.tag);
+        std::string path;
+        if (full.length)
+          path.assign(static_cast<const char *>(full.bytes), full.length);
+        else
+          path.assign(data.value.text, strnlen(data.value.text, sizeof(data.value.text)));
+        const auto name = sophistry::sampleDisplayName(path);
+        n.sampleLabel = sophistryCompleteView::string(name.c_str(), name.size());
+        n.toolTip = n.sampleLabel;
+      }
       n.sprite = c.image ? [self image:c.image] : nil;
       n.circular = [self selection:657] == 0;
       if (c.kind == K::Scrollbar) {
@@ -1021,6 +1075,28 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 }
 - (BOOL)setControl:(unsigned)tag normalized:(float)value {
   [self refresh];
+  if (tag >= 52 && tag <= 55) {
+    for (NSView *v in views_.allValues)
+      if (!v.hidden && [v isKindOfClass:SophistryRecoveredNode.class]) {
+        auto *node = (SophistryRecoveredNode *)v;
+        if (sophistry::generatorForTypeTag(node.state.tag) != tag - 52)
+          continue;
+        for (NSMenuItem *item in [node recoveredMenu].itemArray)
+          if ([item.representedObject isKindOfClass:NSDictionary.class] &&
+              [item.representedObject[@"full_loop"] unsignedIntValue] == tag) {
+            float current = 0;
+            if (AudioUnitGetParameter(unit_, tag, kAudioUnitScope_Global, 0,
+                                      &current))
+              return NO;
+            if ((current >= .5f) != (value >= .5f))
+              [node chooseRecovered:item];
+            return !AudioUnitGetParameter(unit_, tag, kAudioUnitScope_Global, 0,
+                                          &current) &&
+                   ((current >= .5f) == (value >= .5f));
+          }
+      }
+    return NO;
+  }
   const auto *placed = sophistry::completeEditorControl(layout_, tag);
   if (!placed)
     return NO;
@@ -1039,11 +1115,12 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
         BOOL found = NO;
         unsigned modules = 0, generator = sophistry::generatorForTypeTag(tag);
         for (NSMenuItem *item in menu.itemArray) {
-          if (item.representedObject) {
+          if ([item.representedObject isKindOfClass:NSNumber.class]) {
             if (generator < 4 &&
                 [item.representedObject unsignedIntValue] == 643 + generator)
               ++modules;
-          } else if (!item.separatorItem && item.tag == requested)
+          } else if (!item.representedObject && !item.separatorItem &&
+                     item.tag == requested)
             found = YES;
         }
         if (!found || (generator < 4 && modules != 5))
@@ -1102,6 +1179,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
               ? [NSNull null]
               : @(n.state.auParameter),
           @"sprite" : @(n.spec.image),
+          @"sample_label" : n.sampleLabel ?: @"",
           @"frame" : @[
             @(v.frame.origin.x), @(v.frame.origin.y), @(v.frame.size.width),
             @(v.frame.size.height)

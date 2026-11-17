@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-028",
+  "checkpoint": "CP-029",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -35,11 +35,11 @@
   "ableton_projects_verified": false,
   "install_allowed": true,
   "implemented_dsp_scope": "191379 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
-  "arm64_scope": "CP028 generator menu aliases, 50 successive transitions and 17 files compared to original i386 and Linux ARM64/QEMU; seven Mac ARM64 binaries strictly linked. CP028 Cocoa/auval/audio runtime validation pending.",
+  "arm64_scope": "CP029 editor and standard Mac validators strictly linked in ARM64. DSP/runtime/units and 522-parameter contract unchanged from CP028. CP029 AppKit/auval/audio runtime pending.",
   "next_work": [
-    "Run CP028 immutable installer and inspect its full Cocoa, auval, audio and separate-host reports",
-    "Review mode selectors, module menus and bitmap geometry in all pages in Logic/Live project copies",
-    "Broaden licensed musical, automation and real-time polyphony comparisons"
+    "Inspect CP029 Mac standard installation and Cocoa report with compact editor and Full Loop menus",
+    "Investigate original Enhanced editor paths beyond the empty recovered panels",
+    "Consider original FXP export UI and complete MIDI-learn/host automation review"
   ],
   "state_container_reader_implemented": true,
   "state_container_round_trip_tested": [
@@ -121,7 +121,7 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "CP028 source archive downloaded and all 4164 blobs verified. Immutable launcher fetched and byte-exact. See checkpoints/CP028-publication.json and CP028-launcher-verification.json.",
+  "github_verification_note": "CP028 published artifacts remain verified. CP029 source and launcher publication/verification in progress.",
   "native_cpp_host_available": true,
   "native_cpp_host_is_production_ready": false,
   "native_cpp_host_linux_executed": true,
@@ -162,7 +162,7 @@
   "au_bridge_arm64_linux_qemu_regression_passed": true,
   "au_bridge_parameter_records_tested": 522,
   "au_bridge_reinitialization_cycles_tested": 8,
-  "au_native_gui_status": "CP027 implements the visible original constructor panels and controls with native dialogs and an auxiliary keyboard/MIDI window. Mac visual review and full behavioral coverage pending.",
+  "au_native_gui_status": "CP029 removes provisional generic parameter browser, keeps seven recovered pages and adds missing Full Loop controls via Time Sampler menus; known Enhanced and FXP export limits documented.",
   "install_block_reason": null,
   "installation_authorized_by_user": true,
   "github_cp013_source_commit": "92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
@@ -220,7 +220,7 @@
   "installed_component_checkpoint_last_confirmed": "CP-025",
   "github_cp018_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/6a5372de3fdf5faf865dfe4f49f5a07844c217e1/Demarrer-Sophistry-CP018.command",
   "github_cp018_launcher_verified": true,
-  "native_ui_macos_execution_scope": "CP027 Main/Filter fields, eight XY controls, Loop waveform and preset navigation passed. First generator selector test failed on mode-specific tag; remaining complete-editor tests not reached. CP028 pending.",
+  "native_ui_macos_execution_scope": "User reports CP028 compiled and all tried UI commands work; full validation ZIP not received. CP029 compact editor and Full Loop menu pending on Mac.",
   "cp018_local_cocoa_editor_passed": true,
   "cp018_remote_editor_test_passed": false,
   "cp018_installation_committed": false,
@@ -445,7 +445,7 @@
   "cp027_audio_files_byte_exact": 5,
   "cp028_original_editor_evidence": "evidence/complete-editor-cp028.json",
   "cp028_development_evidence": "evidence/cp028-development-checks.json",
-  "cp028_mac_execution_pending": true,
+  "cp028_mac_execution_pending": false,
   "cp028_visible_generator_menu_transitions": 50,
   "cp028_build": "28001",
   "cp028_dsp_runtime_or_lifted_units_changed": false,
@@ -455,5 +455,32 @@
   "github_cp028_launcher": "Demarrer-Sophistry-CP028.command",
   "github_cp028_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/b9a5ae7d79208427ea82fa37e3476fb677f69ad3/Demarrer-Sophistry-CP028.command",
   "github_cp028_launcher_commit": "b9a5ae7d79208427ea82fa37e3476fb677f69ad3",
-  "github_cp028_launcher_sha256": "13cce51bb7289e07881de0c34d098a5e98ae80b5698473f910f62321a3bf9950"
+  "github_cp028_launcher_sha256": "13cce51bb7289e07881de0c34d098a5e98ae80b5698473f910f62321a3bf9950",
+  "cp028_user_report": {
+    "compiled": true,
+    "tested_interface_commands_work": true,
+    "auval_report_received": false
+  },
+  "cp029_work_in_progress": false,
+  "cp028_mac_validation_report_pending": true,
+  "cp029_stress_tests_canceled_by_user": true,
+  "cp029_audio_engine_changed": false,
+  "cp029_mac_execution_pending": true,
+  "cp029_development_evidence": "evidence/cp029-development-checks.json",
+  "cp029_interface_audit": "evidence/cp029-interface-audit.json",
+  "cp029_generic_browser_removed": true,
+  "cp029_editor_size": [
+    762,
+    477
+  ],
+  "cp029_full_loop_menu_parameters": [
+    52,
+    53,
+    54,
+    55
+  ],
+  "cp029_known_remaining_ui_limits": [
+    "No usable Enhanced editor recovered for reserved panels70/71/82..86",
+    "No direct general FXP export; AU save remains available"
+  ]
 }

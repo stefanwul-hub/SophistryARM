@@ -335,14 +335,22 @@ static NSDictionary *completeEditorTests(NSView *view, AudioUnit unit,
     markers = markers && ok && found;
   }
   restored = restored && [view loadPresetURL:[NSURL fileURLWithPath:fxp]];
+  page(1);
+  NSString *sampleName = nil;
+  for (NSDictionary *c in
+       [view sophistryEditorReport][@"original_panel"][@"controls"])
+    if ([c[@"tag"] unsignedIntValue] == 737)
+      sampleName = c[@"sample_label"];
+  const BOOL filename = [sampleName isEqualToString:@"BT_cronox18.wav"];
   return @{
-    @"passed" : @(passed && arp && restored && markers),
+    @"passed" : @(passed && arp && restored && markers && filename),
     @"pages" : pages,
     @"effects" : effects,
     @"modulation" : modulation,
     @"auxiliary" : auxiliary,
     @"arpeggiator_binary_text_edit" : @(arp),
     @"numeric_loop_markers" : @(markers),
+    @"windows_sample_filename_display" : @(filename),
     @"public_preset_restored" : @(restored)
   };
 }
@@ -757,6 +765,23 @@ int main(int argc, const char **argv) {
                               normalized:float(type) / maximum];
                 NSDictionary *panel =
                     [view sophistryEditorReport][@"generator_panel"];
+                BOOL fullLoop = YES;
+                if (type == 1) {
+                  float original = 0, enabled = 0, disabled = 1;
+                  const unsigned tag = 52 + generator;
+                  fullLoop =
+                      !AudioUnitGetParameter(unit, tag, kAudioUnitScope_Global,
+                                             0, &original) &&
+                      [view testGeneratorControl:tag normalized:1] &&
+                      !AudioUnitGetParameter(unit, tag, kAudioUnitScope_Global,
+                                             0, &enabled) &&
+                      enabled == 1 &&
+                      [view testGeneratorControl:tag normalized:0] &&
+                      !AudioUnitGetParameter(unit, tag, kAudioUnitScope_Global,
+                                             0, &disabled) &&
+                      disabled == 0 &&
+                      [view testGeneratorControl:tag normalized:original];
+                }
                 float beforeVolume = 0, afterVolume = 0;
                 const auto beforeStatus = AudioUnitGetParameter(
                     unit, 4 + generator, kAudioUnitScope_Global, 0,
@@ -781,8 +806,8 @@ int main(int argc, const char **argv) {
                   pngSaved = [png writeToFile:name atomically:YES];
                 }
                 const BOOL passed =
-                    selected && changed && !beforeStatus && !afterStatus &&
-                    std::isfinite(afterVolume) &&
+                    selected && changed && fullLoop && !beforeStatus &&
+                    !afterStatus && std::isfinite(afterVolume) &&
                     fabsf(afterVolume - beforeVolume) > 0.5f &&
                     [panel[@"property_status"] intValue] == 0 &&
                     [panel[@"types"][generator] unsignedIntValue] == type &&
@@ -796,6 +821,7 @@ int main(int argc, const char **argv) {
                   @"type" : @(type),
                   @"selection_succeeded" : @(selected),
                   @"volume_edit_succeeded" : @(changed),
+                  @"full_loop_menu_roundtrip" : @(fullLoop),
                   @"passed" : @(passed),
                   @"snapshot_saved" : @(pngSaved),
                   @"panel" : panel,
@@ -829,7 +855,8 @@ int main(int argc, const char **argv) {
               NSButton *selector = [NSButton new];
               selector.tag = tab;
               [view selectTab:selector];
-              if ([[view sophistryEditorReport][@"visible_parameter_count"]
+              if ([[view sophistryEditorReport]
+                          [@"visible_original_control_count"]
                       unsignedIntValue] == 0)
                 tabs = NO;
             }
@@ -862,6 +889,8 @@ int main(int argc, const char **argv) {
                  [renderStatus[@"render_calls"] unsignedLongLongValue] == 0 ||
                  peak <= 0.00001 || renderedFrames != 132300 ||
                  [viewReport[@"parameter_count"] unsignedIntValue] != 522 ||
+                 [viewReport[@"generic_parameter_browser_present"] boolValue] ||
+                 [viewReport[@"size"][0] unsignedIntValue] != 762 ||
                  [viewReport[@"main_dial_count"] unsignedIntValue] != 15 ||
                  ![viewReport[@"background_images_loaded"] boolValue] ||
                  [viewReport[@"sprite_images_loaded"] unsignedIntValue] != 15 ||

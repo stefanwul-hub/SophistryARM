@@ -1,5 +1,4 @@
-// Native Cocoa view. Original panel/knob images are drawn directly; the
-// parameter browser uses the original AU IDs and value-string property.
+// Native Cocoa view using the recovered original panels and controls.
 #include "BankAccess.h"
 #include "PresetBrowser.h"
 #include "SophistryProperties.h"
@@ -76,20 +75,19 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   value.font = [NSFont systemFontOfSize:11];
   return value;
 }
+BOOL hasGenericBrowser(NSView *view) {
+  if ([view isKindOfClass:NSSearchField.class] ||
+      [view isKindOfClass:NSScrollView.class])
+    return YES;
+  for (NSView *child in view.subviews)
+    if (hasGenericBrowser(child))
+      return YES;
+  return NO;
+}
 } // namespace
 
 #include "CompleteEditorView.h"
 #include "GeneratorView.h"
-
-@interface SophistryParameter : NSObject
-@property UInt32 identifier;
-@property float minimum, maximum, defaultValue;
-@property UInt32 unit, flags;
-@property(copy) NSString *name;
-@property(strong) NSArray<NSString *> *choices;
-@end
-@implementation SophistryParameter
-@end
 
 @interface SophistryFlippedView : NSView
 @end
@@ -99,7 +97,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
 }
 @end
 
-@interface SophistryEditorView : SophistryFlippedView <NSSearchFieldDelegate>
+@interface SophistryEditorView : SophistryFlippedView
 - (instancetype)initWithAudioUnit:(AudioUnit)unit;
 - (BOOL)loadPresetURL:(NSURL *)url;
 - (NSDictionary *)sophistryEditorReport;
@@ -113,16 +111,11 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   NSBundle *bundle_;
   NSImage *frame_, *panel_;
   NSInteger selectedTab_;
-  NSMutableArray<SophistryParameter *> *parameters_;
-  NSMutableDictionary<NSNumber *, NSControl *> *rows_;
-  NSMutableDictionary<NSNumber *, NSTextField *> *values_;
+  std::vector<UInt32> parameterIDs_;
   NSMutableArray<NSView *> *mainControls_;
   NSTextField *preset_, *bank_, *message_, *activity_, *lcd_;
   NSSlider *master_;
   NSTextField *masterValue_;
-  NSSearchField *search_;
-  NSScrollView *scroll_;
-  SophistryFlippedView *document_;
   NSTimer *timer_;
   NSString *lastJSON_;
   SophistryCompletePanel *complete_, *auxiliary_;
@@ -142,14 +135,11 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   return url ? [[NSImage alloc] initWithContentsOfURL:url] : nil;
 }
 - (instancetype)initWithAudioUnit:(AudioUnit)unit {
-  if (!(self = [super initWithFrame:NSMakeRect(0, 0, 1120, 477)]))
+  if (!(self = [super initWithFrame:NSMakeRect(0, 0, 762, 477)]))
     return nil;
   unit_ = unit;
   bundle_ = [NSBundle bundleForClass:self.class];
-  parameters_ = [NSMutableArray array];
   mainControls_ = [NSMutableArray array];
-  rows_ = [NSMutableDictionary dictionary];
-  values_ = [NSMutableDictionary dictionary];
   UInt32 size = 0;
   Boolean writable = NO;
   if (!AudioUnitGetPropertyInfo(unit_, kAudioUnitProperty_ParameterList,
@@ -158,39 +148,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     std::vector<UInt32> ids(size / sizeof(UInt32));
     if (!AudioUnitGetProperty(unit_, kAudioUnitProperty_ParameterList,
                               kAudioUnitScope_Global, 0, ids.data(), &size)) {
-      for (UInt32 identifier : ids) {
-        AudioUnitParameterInfo info{};
-        UInt32 n = sizeof(info);
-        if (AudioUnitGetProperty(unit_, kAudioUnitProperty_ParameterInfo,
-                                 kAudioUnitScope_Global, identifier, &info, &n))
-          continue;
-        SophistryParameter *p = [SophistryParameter new];
-        p.identifier = identifier;
-        p.name = info.cfNameString
-                     ? string(info.cfNameString)
-                     : ([NSString stringWithUTF8String:info.name] ?: @"");
-        p.minimum = info.minValue;
-        p.maximum = info.maxValue;
-        p.defaultValue = info.defaultValue;
-        p.unit = info.unit;
-        p.flags = info.flags;
-        if ((info.flags & kAudioUnitParameterFlag_CFNameRelease) &&
-            info.cfNameString)
-          CFRelease(info.cfNameString);
-        if ((info.flags & kAudioUnitParameterFlag_ValuesHaveStrings) &&
-            info.unit != kAudioUnitParameterUnit_Decibels) {
-          CFArrayRef array = nullptr;
-          UInt32 bytes = sizeof(array);
-          if (!AudioUnitGetProperty(
-                  unit_, kAudioUnitProperty_ParameterValueStrings,
-                  kAudioUnitScope_Global, identifier, &array, &bytes) &&
-              array) {
-            p.choices = [(__bridge NSArray *)array copy];
-            CFRelease(array);
-          }
-        }
-        [parameters_ addObject:p];
-      }
+      parameterIDs_ = std::move(ids);
     }
   }
   frame_ = [self image:128];
@@ -199,12 +157,14 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
                                                          bundle:bundle_];
   complete_.changeTarget = self;
   [self addSubview:complete_];
-  for (SophistryParameter *p in parameters_) {
-    if (p.identifier != 134)
-      continue;
+  AudioUnitParameterInfo masterInfo{};
+  UInt32 masterBytes = sizeof(masterInfo);
+  if (!AudioUnitGetProperty(unit_, kAudioUnitProperty_ParameterInfo,
+                            kAudioUnitScope_Global, 134, &masterInfo,
+                            &masterBytes)) {
     master_ = [[NSSlider alloc] initWithFrame:NSMakeRect(591, 330, 151, 17)];
-    master_.minValue = p.minimum;
-    master_.maxValue = p.maximum;
+    master_.minValue = masterInfo.minValue;
+    master_.maxValue = masterInfo.maxValue;
     master_.continuous = YES;
     master_.tag = 134;
     master_.target = self;
@@ -213,11 +173,13 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     masterValue_ = label(NSMakeRect(487, 329, 67, 19), @"", 11);
     [self addSubview:master_];
     [self addSubview:masterValue_];
-    break;
+    if ((masterInfo.flags & kAudioUnitParameterFlag_CFNameRelease) &&
+        masterInfo.cfNameString)
+      CFRelease(masterInfo.cfNameString);
   }
   for (NSInteger i = 0; i < 7; ++i) {
-    NSButton *tab = button(NSMakeRect(i * 109, 0, 109, 30), @"", self,
-                           @selector(selectTab:));
+    NSButton *tab = button(NSMakeRect(i * 109, 0, i == 6 ? 108 : 109, 30), @"",
+                           self, @selector(selectTab:));
     tab.bordered = NO;
     tab.tag = i;
     tab.toolTip = @[
@@ -266,7 +228,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     [self addSubview:edit];
     [mainControls_ addObject:edit];
   }
-  preset_ = label(NSMakeRect(16, 358, 504, 21), @"Son : …", 13);
+  preset_ = label(NSMakeRect(16, 358, 350, 21), @"Son : …", 13);
   bank_ = label(NSMakeRect(16, 383, 724, 19), @"", 11);
   message_ = label(NSMakeRect(16, 406, 724, 32), @"", 11);
   activity_ = label(NSMakeRect(16, 446, 365, 18), @"", 10);
@@ -287,103 +249,10 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   [self
       addSubview:button(NSMakeRect(575, 440, 173, 26), @"Copier le diagnostic",
                         self, @selector(copyDiagnostic:))];
-  NSTextField *title =
-      label(NSMakeRect(780, 12, 184, 21), @"Commandes du son", 15);
-  [self addSubview:title];
-  NSButton *keys = button(NSMakeRect(964, 10, 142, 25), @"Clavier / MIDI…",
-                          self, @selector(showAuxiliary:));
-  [self addSubview:keys];
-  search_ = [[NSSearchField alloc] initWithFrame:NSMakeRect(780, 43, 322, 25)];
-  search_.placeholderString = @"Rechercher un paramètre…";
-  search_.delegate = self;
-  [self addSubview:search_];
-  scroll_ = [[NSScrollView alloc] initWithFrame:NSMakeRect(774, 80, 338, 383)];
-  scroll_.hasVerticalScroller = YES;
-  scroll_.drawsBackground = NO;
-  document_ =
-      [[SophistryFlippedView alloc] initWithFrame:NSMakeRect(0, 0, 320, 383)];
-  scroll_.documentView = document_;
-  [self addSubview:scroll_];
-  [self buildRows];
+  [self addSubview:button(NSMakeRect(374, 353, 143, 25), @"Clavier / MIDI…",
+                          self, @selector(showAuxiliary:))];
   [self refresh:nil];
   return self;
-}
-- (BOOL)included:(SophistryParameter *)p {
-  if (search_.stringValue.length)
-    return [p.name rangeOfString:search_.stringValue
-                         options:NSCaseInsensitiveSearch |
-                                 NSDiacriticInsensitiveSearch]
-               .location != NSNotFound;
-  UInt32 id = p.identifier;
-  switch (selectedTab_) {
-  case 0:
-    return id == 134 || (id >= 480 && id <= 497) || (id >= 4 && id <= 11) ||
-           (id >= 114 && id <= 117);
-  case 1:
-    return (id < 108 && id % 4 < 2) || id == 108 || id == 484 || id == 485;
-  case 2:
-    return (id < 108 && id % 4 >= 2) || id == 109 || id == 486 || id == 487;
-  case 3:
-    return (id >= 110 && id < 134) || (id >= 141 && id <= 152);
-  case 4:
-    return id >= 213 && id < 480;
-  case 5:
-    return id >= 135 && id < 213;
-  case 6:
-    return id == 134 || id >= 510;
-  }
-  return NO;
-}
-- (void)buildRows {
-  for (NSView *v in document_.subviews.copy)
-    [v removeFromSuperview];
-  [rows_ removeAllObjects];
-  [values_ removeAllObjects];
-  CGFloat y = 0;
-  for (SophistryParameter *p in parameters_) {
-    if (![self included:p])
-      continue;
-    NSTextField *name = label(NSMakeRect(5, y, 305, 17), p.name, 11);
-    [document_ addSubview:name];
-    NSControl *control;
-    if (p.choices.count) {
-      NSPopUpButton *menu =
-          [[NSPopUpButton alloc] initWithFrame:NSMakeRect(3, y + 17, 211, 23)
-                                     pullsDown:NO];
-      NSMenu *choices = [NSMenu new];
-      choices.autoenablesItems = NO;
-      for (NSString *choice in p.choices) {
-        NSString *title = [choice
-            stringByTrimmingCharactersInSet:NSCharacterSet
-                                                .whitespaceCharacterSet];
-        [choices addItem:[[NSMenuItem alloc] initWithTitle:title
-                                                    action:nullptr
-                                             keyEquivalent:@""]];
-      }
-      menu.menu = choices;
-      menu.font = [NSFont systemFontOfSize:10];
-      control = menu;
-    } else {
-      NSSlider *slider =
-          [[NSSlider alloc] initWithFrame:NSMakeRect(5, y + 18, 207, 20)];
-      slider.minValue = p.minimum;
-      slider.maxValue = p.maximum;
-      slider.continuous = YES;
-      control = slider;
-    }
-    control.tag = p.identifier;
-    control.target = self;
-    control.action = @selector(parameterChanged:);
-    rows_[@(p.identifier)] = control;
-    [document_ addSubview:control];
-    NSTextField *value = label(NSMakeRect(219, y + 18, 95, 20), @"", 10);
-    values_[@(p.identifier)] = value;
-    [document_ addSubview:value];
-    y += 48;
-  }
-  document_.frame = NSMakeRect(0, 0, 320, MAX(383, y));
-  [scroll_.contentView scrollToPoint:NSZeroPoint];
-  [self refreshParameters];
 }
 - (void)viewDidMoveToWindow {
   [super viewDidMoveToWindow];
@@ -436,8 +305,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     view.hidden = selectedTab_ != 0;
   complete_.page = selectedTab_;
   [complete_ refresh];
-  search_.stringValue = @"";
-  [self buildRows];
+  [self refreshParameters];
   self.needsDisplay = YES;
 }
 - (void)showAuxiliary:(id)sender {
@@ -502,25 +370,15 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
 - (void)editSection:(NSButton *)sender {
   [self selectTab:sender];
 }
-- (void)controlTextDidChange:(NSNotification *)note {
-  [self buildRows];
-}
 - (void)controlChanged:(id)sender {
   [self refreshParameters];
 }
 - (void)parameterChanged:(NSControl *)sender {
   UInt32 id = UInt32(sender.tag);
-  SophistryParameter *p = nil;
-  for (SophistryParameter *candidate in parameters_)
-    if (candidate.identifier == id) {
-      p = candidate;
-      break;
-    }
-  if (!p)
+  if (std::find(parameterIDs_.begin(), parameterIDs_.end(), id) ==
+      parameterIDs_.end())
     return;
-  float value = [sender isKindOfClass:NSPopUpButton.class]
-                    ? p.minimum + [(NSPopUpButton *)sender indexOfSelectedItem]
-                    : sender.floatValue;
+  float value = sender.floatValue;
   event(unit_, id, kAudioUnitEvent_BeginParameterChangeGesture);
   if (!AudioUnitSetParameter(unit_, id, kAudioUnitScope_Global, 0, value, 0))
     event(unit_, id, kAudioUnitEvent_ParameterValueChange);
@@ -538,26 +396,8 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     masterValue_.stringValue =
         [valueText(unit_, 134, masterValue) stringByAppendingString:@" dB"];
   }
-
-  for (SophistryParameter *p in parameters_) {
-    NSControl *control = rows_[@(p.identifier)];
-    if (!control)
-      continue;
-    float value = 0;
-    if (AudioUnitGetParameter(unit_, p.identifier, kAudioUnitScope_Global, 0,
-                              &value))
-      continue;
-    if ([control isKindOfClass:NSPopUpButton.class]) {
-      auto *menu = (NSPopUpButton *)control;
-      [menu selectItemAtIndex:std::clamp(
-                                  NSInteger(std::lround(value - p.minimum)),
-                                  NSInteger(0), menu.numberOfItems - 1)];
-    } else
-      control.floatValue = value;
-    values_[@(p.identifier)].stringValue =
-        valueText(unit_, p.identifier, value);
-  }
 }
+
 - (void)refresh:(NSTimer *)timer {
   NSDictionary *s = status(unit_);
   NSDictionary *engine = s[@"engine"];
@@ -880,11 +720,13 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   [self refresh:nil];
   NSUInteger images = [complete_ mainSpriteCount];
   return @{
-    @"parameter_count" : @(parameters_.count),
+    @"parameter_count" : @(parameterIDs_.size()),
     @"main_dial_count" : @([complete_ mainDialCount]),
     @"background_images_loaded" : @(frame_ && panel_),
     @"sprite_images_loaded" : @(images),
-    @"visible_parameter_count" : @(rows_.count),
+    @"visible_original_control_count" :
+        @([[complete_ report][@"controls"] count]),
+    @"generic_parameter_browser_present" : @(hasGenericBrowser(self)),
     @"size" : @[ @(self.frame.size.width), @(self.frame.size.height) ],
     @"generator_panel" : [complete_ generatorReport],
     @"original_panel" : [complete_ report],

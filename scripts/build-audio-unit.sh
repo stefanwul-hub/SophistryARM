@@ -28,7 +28,7 @@ for source in "${sources[@]}"; do
   fi
 done
 editor="$DEST/sdk/SophistryEditor.o"
-key="$( { printf '%s\n' "${flags[*]} -fobjc-arc" "$compiler_version"; cat "$ROOT/src/engine/CompleteEditorControls.h" "$ROOT/src/engine/RecoveredEditorLayout.h" "$ROOT/src/engine/RecoveredKeyboard.h" "$ROOT/src/engine/EditorControls.h" "$ROOT/src/engine/GeneratorControls.h" "$ROOT/src/au/CompleteEditorView.h" "$ROOT/src/au/GeneratorView.h" "$ROOT/src/au/OriginalEditorView.h" "$ROOT/src/au/PresetBrowser.h" "$ROOT/src/au/SophistryProperties.h" "$ROOT/src/au/BankAccess.h" "$ROOT/src/au/SophistryEditor.mm"; } | shasum -a 256 | awk '{print $1}')"
+key="$( { printf '%s\n' "${flags[*]} -fobjc-arc" "$compiler_version"; cat "$ROOT/src/engine/CompleteEditorControls.h" "$ROOT/src/engine/RecoveredEditorLayout.h" "$ROOT/src/engine/RecoveredKeyboard.h" "$ROOT/src/engine/EditorControls.h" "$ROOT/src/engine/GeneratorControls.h" "$ROOT/src/au/CompleteEditorView.h" "$ROOT/src/au/SampleDisplay.h" "$ROOT/src/au/GeneratorView.h" "$ROOT/src/au/OriginalEditorView.h" "$ROOT/src/au/PresetBrowser.h" "$ROOT/src/au/SophistryProperties.h" "$ROOT/src/au/BankAccess.h" "$ROOT/src/au/SophistryEditor.mm"; } | shasum -a 256 | awk '{print $1}')"
 if [[ ! -s "$editor" || ! -f "$editor.compile.sha256" || "$(cat "$editor.compile.sha256")" != "$key" ]]; then
   "${compiler[@]}" "${flags[@]}" -fobjc-arc -c "$ROOT/src/au/SophistryEditor.mm" -o "$editor.pending" > "$editor.compile.log" 2>&1
   mv "$editor.pending" "$editor"
