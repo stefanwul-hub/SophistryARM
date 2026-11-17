@@ -8,7 +8,7 @@ L’utilisateur confirme que CP028 compile et que les commandes essayées foncti
 
 ## Télécharger et installer
 
-[Télécharger le lanceur CP029](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP029.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur CP029](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/4259c7c51806eb2656e333f611e2d185b2d44f15/Demarrer-Sophistry-CP029.command), fermer Logic et Live, puis lancer :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP029.command"

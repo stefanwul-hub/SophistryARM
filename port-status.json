@@ -121,7 +121,7 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "CP029 source archive downloaded; all 4171 tracked blobs verified. Launcher download verification pending.",
+  "github_verification_note": "CP029 source archive downloaded and all 4171 blobs verified. Immutable launcher fetched and byte-exact. See checkpoints/CP029-publication.json and CP029-launcher-verification.json.",
   "native_cpp_host_available": true,
   "native_cpp_host_is_production_ready": false,
   "native_cpp_host_linux_executed": true,
@@ -486,5 +486,8 @@
   "github_cp029_source_commit": "19b3bdea246534ba0b902d3435b48f5deb6bc9d0",
   "github_cp029_source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/19b3bdea246534ba0b902d3435b48f5deb6bc9d0",
   "github_cp029_archive_sha256": "784e9e0cd1988765f1bb56fdd04b6bdcfcbf470e2a112fb3b2973e1672324359",
-  "github_cp029_launcher": "Demarrer-Sophistry-CP029.command"
+  "github_cp029_launcher": "Demarrer-Sophistry-CP029.command",
+  "github_cp029_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/4259c7c51806eb2656e333f611e2d185b2d44f15/Demarrer-Sophistry-CP029.command",
+  "github_cp029_launcher_commit": "4259c7c51806eb2656e333f611e2d185b2d44f15",
+  "github_cp029_launcher_sha256": "cde52095529c772d8d6d3b44b9ec1c898f5f9d38d60bd5c03c42098237fb694c"
 }
