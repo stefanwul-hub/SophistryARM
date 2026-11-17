@@ -1,4 +1,4 @@
-# Reprendre à CP026 — tests de développement passés, publication en préparation
+# Reprendre à CP026 — source et archive vérifiées, lanceur en préparation
 
 ## Demande et dernier Mac confirmé
 
@@ -23,3 +23,7 @@ Disque serré ; suppressions d’exécutables reconstruisibles consignées work/
 ## À terminer
 
 Publier source→télécharger/vérifier chaque blob de l’archive→lanceur pinned→vérifier téléchargement brut→métadonnées et bundle. Ensuite livrer lien et commande Mac ; examiner prochain ZIP CP026. Interface complète encore inachevée : browser/trim/zones/zoomLoop/enveloppes graphiques/effets/modulation. Étendre ensuite comparaisons musicales, automation et charge temps réel. Ne pas présenter les tracés/états exacts comme certification sonore complète.
+
+## Publication source confirmée
+
+Source `259682fd602ee76ae4455a7468892ec002aa84df` publiée. Archive `https://codeload.github.com/stefanwul-hub/SophistryARM/zip/259682fd602ee76ae4455a7468892ec002aa84df` : 44258206octets, SHA256 `827fc4160277296301c87e33ff1d14a7b6bfaedead048d058f01595d6cc68c64`, 4134blobs exacts vérifiés. Lire checkpoints/CP026-publication.json. LanceurCP026 créé avec ces constantes, Bash validé, publication/vérification brute à terminer.

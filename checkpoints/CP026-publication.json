@@ -1,0 +1,17 @@
+{
+  "checkpoint": "CP-026",
+  "source_commit": "259682fd602ee76ae4455a7468892ec002aa84df",
+  "archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/259682fd602ee76ae4455a7468892ec002aa84df",
+  "archive_bytes": 44258206,
+  "archive_sha256": "827fc4160277296301c87e33ff1d14a7b6bfaedead048d058f01595d6cc68c64",
+  "tracked_blobs_verified": 4134,
+  "all_tracked_blobs_exact": true,
+  "includes_private_logs_or_license": false,
+  "cp026_mac_execution_pending": true,
+  "cp026_auval_executed": false,
+  "cp026_auval_passed": null,
+  "launcher": "Demarrer-Sophistry-CP026.command",
+  "launcher_sha256": "a869962a9925ee84c9ac5823ed40e2e6bcf39408a0ae0cfd9f0ad898c6d93c9d",
+  "forwards_choose_bank_diagnose_and_recenter_options": true,
+  "non_installation_mode_messages_keep_hosts_open": true
+}

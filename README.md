@@ -16,7 +16,7 @@ Les carrés sont des commandes X/Y. Le tracé de sample apparaît pour le Loop S
 bash "$HOME/Downloads/Demarrer-Sophistry-CP026.command"
 ```
 
-Le lanceur télécharge l’archive immuable, vérifie son SHA-256 et la décompacte. Le script compile, teste, valide auval, sauvegarde l’ancien composant et le remplace dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration en cas d’échec. Licence et banque valides sont réutilisées. Les droits administrateur servent au remplacement système.
+Le lanceur télécharge [l’archive immuable](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/259682fd602ee76ae4455a7468892ec002aa84df), vérifie son SHA-256 et la décompacte. Le script compile, teste, valide auval, sauvegarde l’ancien composant et le remplace dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration en cas d’échec. Licence et banque valides sont réutilisées. Les droits administrateur servent au remplacement système.
 
 Attendre **« Installation CP026 confirmée »** et vérifier **SophistryARM CP-026** en bas de l’éditeur. Sur une copie de projet, vérifier les trois champs Main, déplacer les carrés X/Y, tourner Cutoff/Resonance dans Filter et ouvrir un preset Loop avec sample chargé. Écouter, sauvegarder et réouvrir dans Logic/Live. Le ZIP CP026 automatique contient les nouveaux tests et les captures Filter/Loop, en plus des contrôles audio précédents ; transmettre ce rapport.
 

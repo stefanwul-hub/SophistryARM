@@ -79,8 +79,8 @@
     "strict_passed": false
   },
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
-  "github_verified_code_commit": "e6bb75ee78d839e55d3ff37ef5476bd866aad74b",
-  "github_verified_archive_sha256": "c5948b0f0f393efc44e3bce86d7b6b7fa1d6378fd3b085aa7b0d06735a913f1e",
+  "github_verified_code_commit": "259682fd602ee76ae4455a7468892ec002aa84df",
+  "github_verified_archive_sha256": "827fc4160277296301c87e33ff1d14a7b6bfaedead048d058f01595d6cc68c64",
   "macos_auval_scope": "CP025 passed and installed25001 verified. CP026 pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
@@ -122,7 +122,7 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "CP022 source archive independently downloaded and all 4094 tracked blobs verified. See checkpoints/CP022-publication.json.",
+  "github_verification_note": "CP026 archive independently downloaded; all4134 tracked blobs verified. See checkpoints/CP026-publication.json.",
   "native_cpp_host_available": true,
   "native_cpp_host_is_production_ready": false,
   "native_cpp_host_linux_executed": true,
@@ -417,5 +417,10 @@
   "cp026_arm64_qemu_byte_exact_files": 14,
   "cp026_strict_macos_arm64_binaries_linked": 6,
   "cp026_original_gui_complete": false,
-  "cp026_source_archive_verification_pending": true
+  "cp026_source_archive_verification_pending": false,
+  "github_cp026_source_commit": "259682fd602ee76ae4455a7468892ec002aa84df",
+  "github_cp026_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/259682fd602ee76ae4455a7468892ec002aa84df",
+  "github_cp026_archive_sha256": "827fc4160277296301c87e33ff1d14a7b6bfaedead048d058f01595d6cc68c64",
+  "github_cp026_verified_tracked_blobs": 4134,
+  "github_cp026_launcher": "Demarrer-Sophistry-CP026.command"
 }
