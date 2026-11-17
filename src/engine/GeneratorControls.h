@@ -49,6 +49,15 @@ static_assert(sizeof(GeneratorControlEdit) == 12);
 inline std::uint32_t generatorTypeTag(unsigned generator) {
   return generator < 2 ? 766 + generator : 772 + generator;
 }
+// The original constructor gives each mode its own type menu. 0x1cb52
+// resolves all of one generator's menu aliases to the same parameter.
+inline unsigned generatorForTypeTag(std::uint32_t tag) {
+  if (tag >= 766 && tag <= 773)
+    return (tag - 766) % 2;
+  if (tag >= 774 && tag <= 779)
+    return 2 + (tag - 774) % 2;
+  return 4;
+}
 inline std::uint32_t generatorAUParameter(std::uint32_t tag) {
   if ((tag >= 28 && tag < 32) || (tag >= 64 && tag < 68) ||
       (tag >= 88 && tag < 92))

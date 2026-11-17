@@ -116,7 +116,8 @@ def compare(engine,output):
   for case,change in enumerate(cases):
    if change:edit(*change)
    check_metadata(case)
-  print(len(rows),'original control records and choices matched',flush=True);restore()
+  print(len(rows),'original control records and choices matched',flush=True)
+  restore()
   for tag in range(643,648):
    for operation in range(2):
     previous=call(0x1d28c,obj,tag);module,index,part=resolve(tag);h.selected='';edit(tag,operation/4)
@@ -172,6 +173,31 @@ def compare(engine,output):
    spec=next(c for c in controls if c['kind']=='Action' and c['extra'][0]==command and (c['extra'][1]==0 if command<10 else c['extra'][2]==0));args=[v&0xffffffff for v in spec['extra']]
    h.confirm=command in [4,43];assert call(0x4de48,obj,*args,0);h.confirm=False
    b.write(0x5f0100,bytes(256));call(h.word(obj+0x24),obj+0x20,5,0,0,0x5f0100,0);h.put(0x5f0000,0);n=call(h.word(obj+0x24),obj+0x20,23,1,0,0x5f0000,0);exact(f'-sample-action{command}.program',b.read(h.word(0x5f0000),n))
+
+  # The recording host deliberately does not recycle freed guest allocations.
+  # Keep the new sequence independent of the existing module/sample suite.
+  b.close();b=EditorOriginal(bytes(image.mapped()),0x4000000);h=ModuleHost(b,image)
+  for pc in image.initializers:call(pc)
+  call(0x48b0,outer,0x70001000)
+  for off,v in [(0,0xf2048),(8,0xf21a8),(0xe4,0xf21b4),(0xec,0xf2208)]:h.put(outer+off,v)
+  call(0xa6a2a,outer);call(0x2918,outer)
+  # Validate the Cocoa resolver's mode-specific menus independently against
+  # original 0x1cb52, then compare every transition's serialized program.
+  restore();alias_programs=bytearray();alias_cases=json.loads(Path(str(prefix)+'-generator-aliases.json').read_text());case=0
+  for g in range(4):
+   maximum=3 if g<2 else 2;canonical=766+g if g<2 else 772+g
+   for source in range(maximum+1):
+    visible=766+2*source+g if g<2 else 774+2*source+g-2
+    assert resolve(visible)==resolve(canonical),(g,source,visible)
+    for target in range(maximum+1):
+     edit(canonical,source/maximum);edit(visible,target/maximum)
+     assert call(0x1d28c,obj,canonical)==target
+     assert alias_cases[case]=={'generator':g,'source':source,'target':target,'visible_tag':visible};case+=1
+     b.write(0x5f0100,bytes(256));call(h.word(obj+0x24),obj+0x20,5,0,0,0x5f0100,0);h.put(0x5f0000,0);n=call(h.word(obj+0x24),obj+0x20,23,1,0,0x5f0000,0)
+     alias_programs+=struct.pack('<I',n)+b.read(h.word(0x5f0000),n)
+  assert case==native['visible_generator_menu_transitions']==50
+  exact('-generator-aliases.bin',alias_programs)
+  print('50 visible generator menu transitions matched original programs',flush=True)
 
  finally:b.close()
  report={'passed':True,'scope':'Original i386 execution vs statically translated C++; public data, no registration or musical audio','native':native,'control_records':len(rows),'maximum_normalized_ulp':max(errors),'files':checks,'mac_appkit_executed':False}

@@ -1,0 +1,173 @@
+{
+  "checkpoint": "CP-027",
+  "report_sha256": "0b4c42d472d1221bf6f5b2baf9e4b4864107c6d90d012454c99af440521970ba",
+  "scope": "Filtered facts from user Mac ARM64 report; no private paths, preferences, bank catalogue or registration data",
+  "installation_confirmed": false,
+  "candidate_installed": false,
+  "previous_component_preserved": true,
+  "validated_settings_retained": true,
+  "script_exitcode": 1,
+  "failure": "Original generator controls or selector test failed",
+  "main_edit_buttons_and_preset_navigation_passed": true,
+  "original_main_filter_xy_and_loop_passed": true,
+  "field_and_filter_cases": 7,
+  "xy_cases": 8,
+  "loop": {
+    "status": 0,
+    "source_frames": 334664,
+    "sample_rate": 44100,
+    "drawing_id": 8,
+    "lines": 474,
+    "visible": true
+  },
+  "first_generator_case": {
+    "generator": 1,
+    "requested_type": 0,
+    "actual_types": [
+      2,
+      0,
+      0,
+      0
+    ],
+    "visible_type_menu_tags": [
+      770,
+      767
+    ],
+    "volume_before": -14.800000190734863,
+    "volume_after": -6.400000095367432,
+    "sprite_and_bounds_checks_passed": true,
+    "snapshot_saved": true
+  },
+  "remaining_complete_editor_tests_executed": false,
+  "preset_name_roundtrip": {
+    "passed": true,
+    "status": 0,
+    "name_restored_in_fresh_instance": true,
+    "present_preset_name_preserved": true,
+    "generator_types_retained": true,
+    "generic_host_name_does_not_replace_original": true,
+    "bank_unchanged_by_name_assignment": true,
+    "name_serialized": true
+  },
+  "native_complete_editor_comparison": {
+    "passed": true,
+    "control_records": 852,
+    "maximum_normalized_ulp": 0,
+    "files_compared": 16,
+    "files_all_byte_exact": true
+  },
+  "preflight": [
+    {
+      "channels": 2,
+      "checks_passed": [
+        "candidate factory loads without installation",
+        "522 parameter IDs, names, units, ranges and defaults match original",
+        "596 original property-33 cases match, including clamping, current values and null strings",
+        "old vstdata restores and serialized AU state round-trips in memory",
+        "3 seconds of finite audible audio through AudioUnitRender",
+        "initialize, uninitialize and change between 2 and 6 channels",
+        "initialize/render at 22050/64, 96000/137, 48000/4096, 192000/4096"
+      ],
+      "error": null
+    },
+    {
+      "channels": 6,
+      "checks_passed": [
+        "candidate factory loads without installation",
+        "522 parameter IDs, names, units, ranges and defaults match original",
+        "596 original property-33 cases match, including clamping, current values and null strings",
+        "old vstdata restores and serialized AU state round-trips in memory",
+        "3 seconds of finite audible audio through AudioUnitRender",
+        "initialize, uninitialize and change between 2 and 6 channels",
+        "initialize/render at 22050/64, 96000/137, 48000/4096, 192000/4096"
+      ],
+      "error": null
+    }
+  ],
+  "audio_comparisons": [
+    {
+      "candidate": "preflight-2.wav",
+      "reference": "original-2.wav",
+      "bytes": 1058444,
+      "sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39",
+      "byte_exact": true
+    },
+    {
+      "candidate": "preflight-6.wav",
+      "reference": "original-6.wav",
+      "bytes": 3175244,
+      "sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134",
+      "byte_exact": true
+    },
+    {
+      "candidate": "editor.wav",
+      "reference": "original-2.wav",
+      "bytes": 1058444,
+      "sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39",
+      "byte_exact": true
+    },
+    {
+      "candidate": "format-d4u-32-1-native.wav",
+      "reference": "format-d4u-32-1-original.wav",
+      "bytes": 1058444,
+      "sha256": "48209ab5de65a716a22d4538c99c7bfbaeb20550b0774ffc38de3d37bdb07cac",
+      "byte_exact": true
+    },
+    {
+      "candidate": "format-d4u-32-2-native.wav",
+      "reference": "format-d4u-32-2-original.wav",
+      "bytes": 1058444,
+      "sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39",
+      "byte_exact": true
+    }
+  ],
+  "auval_cp027_executed": false,
+  "remote_host_cp027_executed": false,
+  "private_report_published": false,
+  "bridge_regression": {
+    "passed": true,
+    "parameter_records": 522,
+    "reinitialization_cycles": 8,
+    "channels": [
+      2,
+      6
+    ],
+    "sample_rates": [
+      22050,
+      44100,
+      48000,
+      96000,
+      192000
+    ],
+    "licensed_musical_audio_tested": false
+  },
+  "dsp_fixtures": {
+    "scope": "selected statically lifted DSP",
+    "cases": 704,
+    "compared_bytes": 5420672,
+    "byte_mismatches": 0,
+    "output_buffer_byte_mismatches": 0,
+    "object_state_byte_mismatches": 0,
+    "math_calls": 201,
+    "math_mode": "recorded ABI responses",
+    "instruction_addresses_executed": 3113,
+    "fixture_valid": true,
+    "passed": true,
+    "full_synth_tested": false
+  },
+  "instruction_fixtures": {
+    "scope": "isolated original instruction fixtures including explicit guards",
+    "cases": 11635,
+    "compared_register_bytes": 146749,
+    "passed": true,
+    "full_engine_tested": false
+  },
+  "pcm_conversion": {
+    "passed": true,
+    "known_ieee_cases": 256,
+    "rejected_invalid_buffers_or_formats": 516,
+    "native_core_audio_cases": 32,
+    "native_float_signed_flags_normalized": 0,
+    "error": ""
+  }
+}

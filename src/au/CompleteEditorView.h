@@ -70,6 +70,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 @property float secondaryNormalized;
 - (void)updateRecovered:(sophistry::RecoveredControl)control
                   value:(sophistry::EditorControlState)value;
+- (NSMenu *)recoveredMenu;
 @end
 @implementation SophistryRecoveredNode
 - (void)updateRecovered:(sophistry::RecoveredControl)c
@@ -179,7 +180,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
                respectFlipped:YES
                         hints:nil];
     // Type names and the small Copy/Paste triangles are already in their skins.
-    if (c.tag != 766 && c.tag != 767 && c.tag != 774 && c.tag != 775 &&
+    if (sophistry::generatorForTypeTag(c.tag) == 4 &&
         !(c.tag >= 639 && c.tag <= 647))
       sophistryCompleteView::drawText(
           [value stringByTrimmingCharactersInSet:NSCharacterSet
@@ -210,57 +211,61 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   else
     [self.owner chooseNode:self value:item.tag];
 }
+- (NSMenu *)recoveredMenu {
+  auto c = self.recovered;
+  sophistry::EditorChoices choices;
+  UInt32 size = sizeof(choices);
+  if (AudioUnitGetProperty(self.audioUnit, sophistry::editorChoicesProperty,
+                           kAudioUnitScope_Global, c.tag, &choices, &size)) {
+    return nil;
+  }
+  NSMenu *menu = [NSMenu new];
+  for (unsigned i = 0; i < choices.count; ++i) {
+    NSString *title = [sophistryCompleteView::string(choices.labels[i].data(),
+                                                     choices.labels[i].size())
+        stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+    NSMenuItem *item =
+        [[NSMenuItem alloc] initWithTitle:title.length ? title : @"—"
+                                   action:@selector(chooseRecovered:)
+                            keyEquivalent:@""];
+    item.tag = self.state.minimum + i;
+    item.target = self;
+    item.state = item.tag == self.state.value ? NSControlStateValueOn
+                                              : NSControlStateValueOff;
+    [menu addItem:item];
+  }
+  if (unsigned g = sophistry::generatorForTypeTag(c.tag); g < 4) {
+    unsigned tag = 643 + g;
+    choices = {};
+    size = sizeof(choices);
+    if (!AudioUnitGetProperty(self.audioUnit, sophistry::editorChoicesProperty,
+                              kAudioUnitScope_Global, tag, &choices, &size)) {
+      [menu addItem:NSMenuItem.separatorItem];
+      for (unsigned i = 0; i < choices.count; ++i) {
+        NSString *title = sophistryCompleteView::string(
+            choices.labels[i].data(), choices.labels[i].size());
+        NSMenuItem *item =
+            [[NSMenuItem alloc] initWithTitle:title
+                                       action:@selector(chooseRecovered:)
+                                keyEquivalent:@""];
+        item.tag = i;
+        item.representedObject = @(tag);
+        item.target = self;
+        [menu addItem:item];
+      }
+    }
+  }
+  return menu;
+}
 - (void)mouseDown:(NSEvent *)event {
   using K = sophistry::RecoveredWidget;
   auto c = self.recovered;
   if (c.kind == K::Menu) {
-    sophistry::EditorChoices choices;
-    UInt32 size = sizeof(choices);
-    if (AudioUnitGetProperty(self.audioUnit, sophistry::editorChoicesProperty,
-                             kAudioUnitScope_Global, c.tag, &choices, &size)) {
+    NSMenu *menu = [self recoveredMenu];
+    if (menu)
+      [NSMenu popUpContextMenu:menu withEvent:event forView:self];
+    else
       NSBeep();
-      return;
-    }
-    NSMenu *menu = [NSMenu new];
-    for (unsigned i = 0; i < choices.count; ++i) {
-      NSString *title = [sophistryCompleteView::string(choices.labels[i].data(),
-                                                       choices.labels[i].size())
-          stringByTrimmingCharactersInSet:NSCharacterSet
-                                              .whitespaceCharacterSet];
-      NSMenuItem *item =
-          [[NSMenuItem alloc] initWithTitle:title.length ? title : @"—"
-                                     action:@selector(chooseRecovered:)
-                              keyEquivalent:@""];
-      item.tag = self.state.minimum + i;
-      item.target = self;
-      item.state = item.tag == self.state.value ? NSControlStateValueOn
-                                                : NSControlStateValueOff;
-      [menu addItem:item];
-    }
-    if (c.tag == 766 || c.tag == 767 || c.tag == 774 || c.tag == 775) {
-      unsigned g = c.tag < 770 ? c.tag - 766 : c.tag - 772;
-      unsigned tag = 643 + g;
-      choices = {};
-      size = sizeof(choices);
-      if (!AudioUnitGetProperty(self.audioUnit,
-                                sophistry::editorChoicesProperty,
-                                kAudioUnitScope_Global, tag, &choices, &size)) {
-        [menu addItem:NSMenuItem.separatorItem];
-        for (unsigned i = 0; i < choices.count; ++i) {
-          NSString *title = sophistryCompleteView::string(
-              choices.labels[i].data(), choices.labels[i].size());
-          NSMenuItem *item =
-              [[NSMenuItem alloc] initWithTitle:title
-                                         action:@selector(chooseRecovered:)
-                                  keyEquivalent:@""];
-          item.tag = i;
-          item.representedObject = @(tag);
-          item.target = self;
-          [menu addItem:item];
-        }
-      }
-    }
-    [NSMenu popUpContextMenu:menu withEvent:event forView:self];
     return;
   }
   if (c.kind == K::File) {
@@ -1016,10 +1021,36 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 }
 - (BOOL)setControl:(unsigned)tag normalized:(float)value {
   [self refresh];
+  const auto *placed = sophistry::completeEditorControl(layout_, tag);
+  if (!placed)
+    return NO;
   for (NSView *v in views_.allValues)
     if (!v.hidden && [v isKindOfClass:SophistryRecoveredNode.class] &&
-        ((SophistryRecoveredNode *)v).state.tag == tag)
-      return [(SophistryRecoveredNode *)v activateNormalized:value];
+        ((SophistryRecoveredNode *)v).recovered.key == placed->control.key) {
+      auto *node = (SophistryRecoveredNode *)v;
+      if (node.recovered.kind == sophistry::RecoveredWidget::Menu) {
+        // Test the menu actually offered by mouseDown, including each mode's
+        // generator module commands, before activating its selected value.
+        NSMenu *menu = [node recoveredMenu];
+        const NSInteger requested =
+            node.state.minimum +
+            lround(std::clamp(value, 0.f, 1.f) *
+                   (node.state.maximum - node.state.minimum));
+        BOOL found = NO;
+        unsigned modules = 0, generator = sophistry::generatorForTypeTag(tag);
+        for (NSMenuItem *item in menu.itemArray) {
+          if (item.representedObject) {
+            if (generator < 4 &&
+                [item.representedObject unsignedIntValue] == 643 + generator)
+              ++modules;
+          } else if (!item.separatorItem && item.tag == requested)
+            found = YES;
+        }
+        if (!found || (generator < 4 && modules != 5))
+          return NO;
+      }
+      return [node activateNormalized:value];
+    }
   return NO;
 }
 - (BOOL)setText:(unsigned)tag value:(NSString *)value {
@@ -1041,20 +1072,27 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   NSMutableArray *controls = [NSMutableArray array],
                  *panels = [NSMutableArray array],
                  *waves = [NSMutableArray array];
-  BOOL bounds = YES, images = YES;
-  for (auto &p : layout_.panels)
+  BOOL bounds = YES, images = YES, pixelSizes = YES;
+  for (auto &p : layout_.panels) {
+    NSImage *image = [self image:p.image];
+    images = images && image;
+    pixelSizes = pixelSizes && sophistryGeneratorView::originalPixelSize(image);
     [panels addObject:@{
       @"id" : @(p.id),
       @"image" : @(p.image),
       @"x" : @(p.x),
       @"y" : @(p.y)
     }];
+  }
   for (NSView *v in views_.allValues)
     if (!v.hidden) {
       bounds = bounds && NSContainsRect(self.bounds, v.frame);
       if ([v isKindOfClass:SophistryRecoveredNode.class]) {
         auto *n = (SophistryRecoveredNode *)v;
         images = images && (!n.spec.image || n.sprite);
+        pixelSizes = pixelSizes &&
+                     (!n.spec.image ||
+                      sophistryGeneratorView::originalPixelSize(n.sprite));
         [controls addObject:@{
           @"tag" : @(n.state.tag),
           @"kind" : @(int(n.recovered.kind)),
@@ -1081,6 +1119,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     @"drawings" : waves,
     @"active_controls_in_bounds" : @(bounds),
     @"sprites_loaded" : @(images),
+    @"image_dimensions_match_original_pixels" : @(pixelSizes),
     @"arpeggiator_bytes" : @(sophistryCompleteView::text(unit_, 648).length)
   };
 }

@@ -98,6 +98,21 @@ completeEditorLayout(unsigned page, const std::function<int(unsigned)> &value) {
   }
   return result;
 }
+// Resolve against the controls in the current original panel, rather than
+// sending an invisible mode's tag directly to the engine.
+inline const PlacedEditorControl *
+completeEditorControl(const CompleteEditorLayout &layout, unsigned tag) {
+  for (const auto &c : layout.controls)
+    if (c.control.tag == tag)
+      return &c;
+  const unsigned generator = generatorForTypeTag(tag);
+  if (generator < 4)
+    for (const auto &c : layout.controls)
+      if (c.control.kind == RecoveredWidget::Menu &&
+          generatorForTypeTag(c.control.tag) == generator)
+        return &c;
+  return nullptr;
+}
 inline bool originalPointerKind(RecoveredWidget k) {
   return k == RecoveredWidget::Dial || k == RecoveredWidget::Drawbar ||
          k == RecoveredWidget::ThinSlider || k == RecoveredWidget::Scrollbar;

@@ -159,6 +159,54 @@ static NSDictionary *presetLabelRoundTrip(AudioComponent component,
               normalizedY:(float)ny;
 @end
 
+static NSDictionary *generatorAliasTests(NSView *view) {
+  NSMutableArray *cases = [NSMutableArray array];
+  BOOL passed = YES;
+  for (unsigned g = 0; g < 4; ++g) {
+    NSButton *tab = [NSButton new];
+    tab.tag = g < 2 ? 1 : 2;
+    [view selectTab:tab];
+    const unsigned maximum = g < 2 ? 3 : 2;
+    for (unsigned source = 0; source <= maximum; ++source)
+      for (unsigned target = 0; target <= maximum; ++target) {
+        const unsigned canonical = sophistry::generatorTypeTag(g);
+        const BOOL setup = [view testGeneratorControl:canonical
+                                           normalized:float(source) / maximum];
+        NSDictionary *before = [view sophistryEditorReport][@"generator_panel"];
+        unsigned visible = 0;
+        for (NSDictionary *c in before[@"controls"])
+          if (sophistry::generatorForTypeTag([c[@"tag"] unsignedIntValue]) == g)
+            visible = [c[@"tag"] unsignedIntValue];
+        const unsigned expected =
+            g < 2 ? 766 + 2 * source + g : 774 + 2 * source + g - 2;
+        const BOOL selected =
+            [view testGeneratorControl:canonical
+                            normalized:float(target) / maximum];
+        NSDictionary *after = [view sophistryEditorReport][@"generator_panel"];
+        const BOOL ok =
+            setup && selected && visible == expected &&
+            [before[@"types"][g] unsignedIntValue] == source &&
+            [after[@"types"][g] unsignedIntValue] == target &&
+            [after[@"property_status"] intValue] == 0 &&
+            [after[@"active_controls_in_bounds"] boolValue] &&
+            [after[@"image_dimensions_match_original_pixels"] boolValue] &&
+            [after[@"sprites_loaded"] boolValue];
+        passed = passed && ok;
+        [cases addObject:@{
+          @"generator" : @(g + 1),
+          @"source" : @(source),
+          @"target" : @(target),
+          @"requested_tag" : @(canonical),
+          @"visible_tag" : @(visible),
+          @"setup_succeeded" : @(setup),
+          @"selection_succeeded" : @(selected),
+          @"passed" : @(ok)
+        }];
+      }
+  }
+  return @{@"passed" : @(passed && cases.count == 50), @"transitions" : cases};
+}
+
 static NSDictionary *completeEditorTests(NSView *view, AudioUnit unit,
                                          NSString *fxp, NSString *prefix,
                                          NSString *loop) {
@@ -175,6 +223,7 @@ static NSDictionary *completeEditorTests(NSView *view, AudioUnit unit,
   auto valid = [&](NSDictionary *r) {
     return [r[@"status"] intValue] == 0 &&
            [r[@"active_controls_in_bounds"] boolValue] &&
+           [r[@"image_dimensions_match_original_pixels"] boolValue] &&
            [r[@"sprites_loaded"] boolValue] && [r[@"controls"] count] > 0;
   };
   for (unsigned i = 0; i < 7; ++i) {
@@ -240,6 +289,7 @@ static NSDictionary *completeEditorTests(NSView *view, AudioUnit unit,
                                                            prefix, i]];
     BOOL ok = [r[@"status"] intValue] == 0 &&
               [r[@"active_controls_in_bounds"] boolValue] &&
+              [r[@"image_dimensions_match_original_pixels"] boolValue] &&
               [r[@"sprites_loaded"] boolValue] &&
               [r[@"snapshot_saved"] boolValue];
     passed = passed && ok;
@@ -530,6 +580,7 @@ int main(int argc, const char **argv) {
     NSMutableArray *generatorCases = [NSMutableArray array];
     NSMutableArray *routingCases = [NSMutableArray array];
     NSDictionary *generatorRecall = @{};
+    NSDictionary *generatorAliases = @{};
     NSDictionary *mainButtons = @{};
     NSDictionary *originalEditor = @{};
     NSDictionary *completeEditor = @{};
@@ -736,11 +787,15 @@ int main(int argc, const char **argv) {
                     [panel[@"property_status"] intValue] == 0 &&
                     [panel[@"types"][generator] unsignedIntValue] == type &&
                     [panel[@"active_controls_in_bounds"] boolValue] &&
+                    [panel[@"image_dimensions_match_original_pixels"]
+                        boolValue] &&
                     [panel[@"sprites_loaded"] boolValue] &&
                     [panel[@"controls"] count] > 4 && pngSaved;
                 [generatorCases addObject:@{
                   @"generator" : @(generator + 1),
                   @"type" : @(type),
+                  @"selection_succeeded" : @(selected),
+                  @"volume_edit_succeeded" : @(changed),
                   @"passed" : @(passed),
                   @"snapshot_saved" : @(pngSaved),
                   @"panel" : panel,
@@ -751,6 +806,12 @@ int main(int argc, const char **argv) {
                   failure =
                       @"Original generator controls or selector test failed";
               }
+            }
+            if (!failure) {
+              generatorAliases = generatorAliasTests(view);
+              if (![generatorAliases[@"passed"] boolValue])
+                failure =
+                    @"Visible original generator menu transition test failed";
             }
             if (!failure)
               generatorRecall = presetLabelRoundTrip(component, unit);
@@ -860,6 +921,7 @@ int main(int argc, const char **argv) {
       @"fxp_header_name_preserved" : @(fxpNamePreserved),
       @"preset_name_fresh_instance_roundtrip" : labelRoundTrip,
       @"generator_cases" : generatorCases,
+      @"generator_menu_aliases" : generatorAliases,
       @"routing_mouse_cases" : routingCases,
       @"main_button_tests" : mainButtons,
       @"original_editor_tests" : originalEditor,

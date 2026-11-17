@@ -122,6 +122,56 @@ int main(int argc, char **argv) {
     metadata << "]\n";
     metadata.close();
     std::cerr << "all page reads complete\n";
+    unsigned aliasTransitions = 0;
+    std::vector<std::uint8_t> aliasPrograms;
+    std::ofstream aliases(prefix + "-generator-aliases.json");
+    aliases << "[";
+    e.restoreChunk({fxp.begin() + 60, fxp.end()}, true);
+    for (unsigned g = 0; g < 4; ++g) {
+      const unsigned maximum = g < 2 ? 3 : 2;
+      const unsigned canonical = sophistry::generatorTypeTag(g);
+      for (unsigned source = 0; source <= maximum; ++source)
+        for (unsigned target = 0; target <= maximum; ++target) {
+          e.setEditorControl(canonical, float(source) / maximum);
+          auto state = e.completeEditor(g < 2 ? 1 : 2);
+          auto layout =
+              sophistry::completeEditorLayout(state.page, [&](unsigned tag) {
+                for (unsigned i = 0; i < state.selectionCount; ++i)
+                  if (state.selections[i].tag == tag)
+                    return state.selections[i].value;
+                throw std::runtime_error("Missing original panel selection");
+              });
+          const auto *visible =
+              sophistry::completeEditorControl(layout, canonical);
+          const unsigned expected =
+              g < 2 ? 766 + 2 * source + g : 774 + 2 * source + g - 2;
+          require(visible && visible->control.tag == expected &&
+                      visible->control.kind == sophistry::RecoveredWidget::Menu,
+                  "Visible original generator menu alias was not resolved");
+          auto choices = e.editorChoices(visible->control.tag);
+          require(choices.count == maximum + 1 &&
+                      e.editorChoices(643 + g).count == 5,
+                  "Original generator type/module choices incomplete");
+          e.setEditorControl(visible->control.tag, float(target) / maximum);
+          require(e.generatorPanel(g / 2).types[g] == target,
+                  "Visible generator menu did not select target type");
+          if (aliasTransitions++)
+            aliases << ",";
+          aliases << "{\"generator\":" << g << ",\"source\":" << source
+                  << ",\"target\":" << target << ",\"visible_tag\":" << expected
+                  << "}";
+          auto saved = e.saveProgram();
+          for (unsigned shift = 0; shift < 32; shift += 8)
+            aliasPrograms.push_back(std::uint32_t(saved.size()) >> shift);
+          aliasPrograms.insert(aliasPrograms.end(), saved.begin(), saved.end());
+          require(!sophistry::completeEditorControl(layout, g < 2 ? 774 : 766),
+                  "Hidden generator pair resolved to an active menu");
+        }
+    }
+    aliases << "]\n";
+    aliases.close();
+    require(aliasTransitions == 50, "Missing generator mode transition");
+    write("-generator-aliases.bin", aliasPrograms.data(), aliasPrograms.size());
     e.restoreChunk({fxp.begin() + 60, fxp.end()}, true);
     auto inspectUnchanged = [&](auto action) {
       auto before = e.saveProgram();
@@ -307,6 +357,7 @@ int main(int argc, char **argv) {
     require(rejected == 4, "Unexposed editor field accepted");
     std::cout << "{\"passed\":true,\"pages_and_modes\":" << pages
               << ",\"unique_controls\":" << seen.size()
+              << ",\"visible_generator_menu_transitions\":" << aliasTransitions
               << ",\"choice_lists\":" << choiceLists
               << ",\"file_dialogs\":" << menus
               << ",\"file_roundtrips\":" << fileCount

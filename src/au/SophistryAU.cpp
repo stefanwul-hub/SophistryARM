@@ -777,8 +777,8 @@ public:
           syncParameters(); // choosing an FX type can exchange another slot
         else if (au != sophistry::noAUParameter)
           Globals()->SetParameter(au, engine_.auParameter(au));
-        else if (edit.tag == 780 || edit.tag == 781 || edit.tag == 766 ||
-                 edit.tag == 767 || edit.tag == 774 || edit.tag == 775 ||
+        else if (edit.tag == 780 || edit.tag == 781 ||
+                 sophistry::generatorForTypeTag(edit.tag) < 4 ||
                  (edit.tag >= 639 && edit.tag <= 647) || edit.tag == 610)
           syncParameters();
         PropertyChanged(kAudioUnitProperty_ClassInfo, kAudioUnitScope_Global,

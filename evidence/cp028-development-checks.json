@@ -1,0 +1,528 @@
+{
+  "checkpoint": "CP-028",
+  "passed": true,
+  "scope": "Linux development, original i386 differential execution and strict Mac ARM64 cross-linking. CP028 macOS runtime validation pending.",
+  "original_comparison": "complete-editor-cp028.json",
+  "source_sha256": {
+    "src/au/CompleteEditorView.h": "b57e5b2a8542d0b6a2f04fc643ec31d0788b8f5b41c942a2012c224b0663b943",
+    "src/au/GeneratorView.h": "a390039560a115894991e3b24f3bd1d055f39f76fa88895ada84c568f7741ea2",
+    "src/au/SophistryAU.cpp": "0d8f5d8c7952f84fb5fe379aef7ebb9f889585c59f48faa6ecfd7f94bb18dd61",
+    "src/au/SophistryEditor.mm": "4005c77290a60b906077f067d817e38fddd9312de60de32f971d4c1d0f83135e",
+    "src/au/SophistryProperties.h": "072354ec8e71aa29eb31f85bcc3de5a48ed68577aadae9ce1b097575142db277",
+    "src/au/Info.plist": "dfa0809fe1a2c4aae7820f021b2b3a7ffa8ec5403bbfa5fe7e6e909e57a6caaf",
+    "src/engine/CompleteEditorControls.h": "9b1443dee04dec739028980acc8023cadc1cf387504b070aded0e68c32d9c36b",
+    "src/engine/GeneratorControls.h": "68be5660c86a5213465dd7b698306131308030446d4fadbc4ac61afe8866fb4b",
+    "tests/NativeCompleteEditorProbe.cpp": "d5ed81481d1cc8a7607287c634bf78162db8be7b8fe4264a9282182bf8752225",
+    "tests/compare_complete_editor.py": "585b4ace2e41976d9d9032b0c5dc7a7bb0d1871370999a5c6fed74d573a42bad",
+    "tests/AudioUnitEditorProbe.mm": "1df38c7005ed6cd2b91299184b802db26ced51775a1720f1d7a523599ffe19e9",
+    "scripts/build-audio-unit.sh": "6c88247b27d9c22b14f94376a2133d3899fec499e44b6c463d2f50114d30c119",
+    "Installer-ARM64.command": "e4a3fb5a9d9d8a075e9bb2c57197041364b9261b036887e774283dce0513ee31",
+    "Diagnostiquer-Sophistry.command": "50c52062f13e4fdea3c72cf911a6b007ebe17dc8085a80b2a9298acce54a50d0"
+  },
+  "original_type_alias_resolver": "0x1cb52",
+  "original_alias_resolution": [
+    {
+      "tag": 766,
+      "generator": 1,
+      "original_parameter_index": 90,
+      "part": 0
+    },
+    {
+      "tag": 767,
+      "generator": 2,
+      "original_parameter_index": 91,
+      "part": 0
+    },
+    {
+      "tag": 768,
+      "generator": 1,
+      "original_parameter_index": 90,
+      "part": 0
+    },
+    {
+      "tag": 769,
+      "generator": 2,
+      "original_parameter_index": 91,
+      "part": 0
+    },
+    {
+      "tag": 770,
+      "generator": 1,
+      "original_parameter_index": 90,
+      "part": 0
+    },
+    {
+      "tag": 771,
+      "generator": 2,
+      "original_parameter_index": 91,
+      "part": 0
+    },
+    {
+      "tag": 772,
+      "generator": 1,
+      "original_parameter_index": 90,
+      "part": 0
+    },
+    {
+      "tag": 773,
+      "generator": 2,
+      "original_parameter_index": 91,
+      "part": 0
+    },
+    {
+      "tag": 774,
+      "generator": 3,
+      "original_parameter_index": 102,
+      "part": 0
+    },
+    {
+      "tag": 775,
+      "generator": 4,
+      "original_parameter_index": 103,
+      "part": 0
+    },
+    {
+      "tag": 776,
+      "generator": 3,
+      "original_parameter_index": 102,
+      "part": 0
+    },
+    {
+      "tag": 777,
+      "generator": 4,
+      "original_parameter_index": 103,
+      "part": 0
+    },
+    {
+      "tag": 778,
+      "generator": 3,
+      "original_parameter_index": 102,
+      "part": 0
+    },
+    {
+      "tag": 779,
+      "generator": 4,
+      "original_parameter_index": 103,
+      "part": 0
+    }
+  ],
+  "visible_generator_menu_transitions": 50,
+  "five_module_commands_checked_for_each_transition": true,
+  "hidden_generator_pair_not_resolved": true,
+  "arm64_qemu": {
+    "passed": true,
+    "architecture": "Linux ARM64 under QEMU; no CoreAudio/AppKit",
+    "files": [
+      {
+        "file": "editor-actions.program",
+        "bytes": 21072,
+        "sha256": "f2ae4b35082db8ce78aa8585f3fd8b7e8e364298440e553910146736ee060d71",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-generator-aliases.bin",
+        "bytes": 1048200,
+        "sha256": "9772b12a4c1fcd30589f25af6cf926228698cef7845a6c299fd057e60afbccc8",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-keys.bin",
+        "bytes": 38880,
+        "sha256": "a23846ab111bc42e78806a7e1d7b5a706d83b3cc006c19fbeed9f8d667ed854d",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-knobs.bin",
+        "bytes": 2704,
+        "sha256": "95644c454e791eb66f6f88e1b9f1f8039ab5cc8945a55c3b2a9190316de5dff5",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-loop-edited.program",
+        "bytes": 20920,
+        "sha256": "6a47a26cc966378e53ff91438555db1dd9bd7aa92e63d401bff7d09fbab3adff",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-midi.mod",
+        "bytes": 7220,
+        "sha256": "d8b28e0e94830de1d2e029b39ed9444fcd95511a9ae92c4fc37c2d26319b630e",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module643.mod",
+        "bytes": 48,
+        "sha256": "e6f217398d9140c5c68a10e988bcfa89dda43d5df6cc09ca7e6b7751e7973242",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module644.mod",
+        "bytes": 76,
+        "sha256": "7a0d839ff7db7459583071ce9328c2701af4d3ce042243976b063cfb8fb84b44",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module645.mod",
+        "bytes": 76,
+        "sha256": "c44cfdddeb9d8c8d83d68f9afeeac6214265988ecd88063a1449c786fd9c54f7",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module646.mod",
+        "bytes": 76,
+        "sha256": "9896aa088d6bdf4288d027a65bc5e50dba2642c3a83772cb89816bcd721487be",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module647.mod",
+        "bytes": 356,
+        "sha256": "05d2f42c07248c8d5d42d731b121257f5425b44ece01ffbfdaa51bd07974f791",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action2.program",
+        "bytes": 20916,
+        "sha256": "fbaa2c1488f0244e468df5597896096a213aeb1edb41ed681e31c8767b78f033",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action3.program",
+        "bytes": 20916,
+        "sha256": "4bdbe07666b4a7e8b052c0117750d1c6db9326001e1e5fda06c4febed7b69182",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action4.program",
+        "bytes": 20904,
+        "sha256": "dbde3000b37ffaeb398d1ee9b5600ef07bcea9bc670af0c8457f0a3c108bc074",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action41.program",
+        "bytes": 21072,
+        "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action42.program",
+        "bytes": 21072,
+        "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action43.program",
+        "bytes": 20960,
+        "sha256": "6d84690e4ffceb91104ba320dad3cb28fbd9589b5864a13be43c6cab1a53d233",
+        "byte_exact_to_x86_64_native_and_original": true
+      }
+    ]
+  },
+  "mac_arm64_strict_links": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 31284144,
+      "sha256": "e1ce0dba4092290e06c4e84fb8c68acd0dfbab2cab7f056eeca6ab60001df6bf",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "NativeCompleteEditorProbe",
+      "architecture": "arm64",
+      "bytes": 30686224,
+      "sha256": "583ec54848b91bc35719da7c4d296ed48bf266e7a174432fcf1545e1450fa845",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "NativeEditorProbe",
+      "architecture": "arm64",
+      "bytes": 30585376,
+      "sha256": "ef8d71174d267a70eca14dd39174f006484ad85d9f550e417106554385435b5e",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1302480,
+      "sha256": "6872d6e9766a0bff5f31ee53fb29cb23d393415470a718c621242c129b8c6851",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "cd6cb381ff02d5168f68452f664b6eee11b2a7d75ed3a17f9722feb1d967b094",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "efce5bdb3c2d287df9ce53c85eb3679d19e92763f7e944bd53b14e1b68bfd56c",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "GeneratorLayoutProbe",
+      "architecture": "arm64",
+      "bytes": 1254048,
+      "sha256": "188ac07b1e5ee7cb42472f0e5c9ddccc0a69bc94e338998f2cbd94b84bf38edb",
+      "strict_link_no_undefined_dynamic_lookup": true
+    }
+  ],
+  "required_factory_symbols_present": true,
+  "bitmap_geometry": {
+    "non_72_dpi_original_images": [
+      {
+        "image": "bmp00241.png",
+        "pixels": [
+          762,
+          129
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "33f89eedabe2df8a2330fce47e95770a0589a9386e1ee895f38b186016ce125c"
+      },
+      {
+        "image": "bmp00242.png",
+        "pixels": [
+          128,
+          128
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "8b65fc8a49cc88bd0f37e7050422c4cd5e6eec9a9f21416c0477a1a3c931b604"
+      },
+      {
+        "image": "bmp00243.png",
+        "pixels": [
+          128,
+          128
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "cde89a3f0bc3540c3a812653e3ea19a64db4d6b872e5ad190321b97489c1a9d6"
+      },
+      {
+        "image": "bmp00244.png",
+        "pixels": [
+          353,
+          101
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "788f50e45c96f6b23ee1d0c1a0fd126e79b99fcbacc477fc6353865138838581"
+      },
+      {
+        "image": "bmp00304.png",
+        "pixels": [
+          12,
+          24
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "e3dab01a8ea7374499dbfb66204f2738292589575742bb2b56804d701801210f"
+      },
+      {
+        "image": "bmp00305.png",
+        "pixels": [
+          11,
+          224
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "89258458f6ab95fbf59ec243bbf6d9bcf23327c7f7f04b4e15954113a515d811"
+      },
+      {
+        "image": "bmp00306.png",
+        "pixels": [
+          8,
+          24
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "cfe284e2580dee811f04d24fb53b73ec585a4f6041fa2629d0cad19565672777"
+      },
+      {
+        "image": "bmp00307.png",
+        "pixels": [
+          14,
+          112
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "14899b3b9aecdd0d0045470578aa2b2f75471716ceb04debb7ac468839fc72c0"
+      },
+      {
+        "image": "bmp00321.png",
+        "pixels": [
+          648,
+          89
+        ],
+        "declared_pixels_per_meter": [
+          5669,
+          5669
+        ],
+        "unit_is_meter": true,
+        "sha256": "749fae2f12145ba1faeb69d37841d8078008a1d2b49669330911be8cac14043f"
+      },
+      {
+        "image": "bmp00324.png",
+        "pixels": [
+          76,
+          220
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "0b97ea43b2b5e3ffca1257ced629d06762dd224f33b5313f382fa3358cf5d2df"
+      },
+      {
+        "image": "bmp00327.png",
+        "pixels": [
+          8,
+          96
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "341f999c04726e383db5267b11ad1858476e10472227a03e629fc0bcc15884a5"
+      },
+      {
+        "image": "bmp00328.png",
+        "pixels": [
+          8,
+          192
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "15ab05f63f767f477ee49e6c44d44534e4b4e136cb517b4b8ee09ff6afe80a40"
+      },
+      {
+        "image": "bmp00363.png",
+        "pixels": [
+          58,
+          2394
+        ],
+        "declared_pixels_per_meter": [
+          29996,
+          29996
+        ],
+        "unit_is_meter": true,
+        "sha256": "47b8445332f0ec8c5f47164e0b3d1beeadda226dde079a4be068a8906205a51a"
+      },
+      {
+        "image": "bmp00378.png",
+        "pixels": [
+          16,
+          32
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "44f19381572775ac146f7a8956d637453101d836e69812acc3ae1ef7858d49c6"
+      },
+      {
+        "image": "bmp00379.png",
+        "pixels": [
+          16,
+          32
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "8db9783ecbc5093ee409324d25dad8d4ec66635a9f05cfe0f20f55159dc18c26"
+      },
+      {
+        "image": "bmp00380.png",
+        "pixels": [
+          30,
+          108
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "7ba67aad8dcb6b327c4c56e80cb3d7c67dfa0f5a49703071759f2ba0c1939cb4"
+      },
+      {
+        "image": "bmp00396.png",
+        "pixels": [
+          12,
+          84
+        ],
+        "declared_pixels_per_meter": [
+          11814,
+          11814
+        ],
+        "unit_is_meter": true,
+        "sha256": "3d134b2b0d529a56ae072209bd9bae25f0dd2284325fbb6de4e200bcea299d2f"
+      }
+    ],
+    "images_unchanged": true,
+    "cocoa_loader_sets_point_size_to_pixel_dimensions": true,
+    "cocoa_dimension_checks_added": true,
+    "cp028_mac_render_executed": false
+  },
+  "au_identity": {
+    "bundle_id": "com.linplug.au.Sophistry",
+    "type": "aumu",
+    "subtype": "Sop3",
+    "manufacturer": "LinP",
+    "version": 196616,
+    "build": "28001"
+  },
+  "unchanged_engine_and_contract_sha256": {
+    "src/engine/LegacyEngine.cpp": "61a7aa37f5c334134a8e72a15ae39f2c5f46c7550892bf33802b4a9cde03606b",
+    "src/engine/LegacyEngine.h": "a1f89595493db57de27cbbc3fde7cec206e59188c04ece701b115ae5f6b295f1",
+    "src/lifter/LifterRuntime.cpp": "f7a83df4c836481fe8b5ad6276ca7323fe5f85c52d8299f98e0c4781368e5d2e",
+    "src/lifter/whole/manifest.json": "d5c59cc23c71d5693050bbcb1393755431be31dd91634a07fda9337d441f9dde",
+    "analysis/au-parameter-contract.json": "6f1d6ceadc4acc8084489b6b0347bcdeded33cc6a2500a808c891e54f2a5ce5c"
+  },
+  "unchanged_lifter_tree": "5529dfebd599e2f541709be4c7a9465c03ed3134",
+  "cp027_mac_report": "mac-cp027-prevalidation.json",
+  "python_tests": {
+    "passed": true,
+    "count": 30
+  },
+  "shell_syntax_and_diff_check": true,
+  "preinstallation_and_rollback_gates_preserved": true,
+  "mac_appkit_cp028_executed": false,
+  "mac_auval_cp028_executed": false,
+  "licensed_musical_audio_cp028_tested": false,
+  "project_recall_cp028_verified": false
+}

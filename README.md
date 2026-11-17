@@ -1,27 +1,27 @@
-# Sophistry — checkpoint CP027
+# Sophistry — checkpoint CP028
 
 Audio Unit ARM64 expérimental pour rouvrir les projets Sophistry 3.0.8. Le composant original i386/PPC fourni est traduit statiquement en C++ ; aucun décodeur x86 ne tourne dans le plugin. La couverture de tous les chemins DSP reste à démontrer.
 
-**CP027 implémente les pages restantes à partir des constructeurs originaux** : effets, modulation, enveloppes ADSFR, détails Loop, séquenceur, clavier, sorties et menus de modules. Le relevé contient 86 panneaux et 1 067 définitions visuelles. Les fonctions de conversion, de commande et de sérialisation sont celles du moteur original. [Détails et limites](docs/CP027.md).
+**CP028 corrige l’échec de prévalidation CP027** : sélection des générateurs selon le mode affiché, menus de modules et dimensions des images Cocoa. Les sept pages récupérées depuis les constructeurs originaux sont conservées. [Détails et limites](docs/CP028.md).
 
-Les comparaisons originales et ARM64/QEMU passent, ainsi que les liens stricts de sept binaires Mac. **L’exécution Cocoa, auval et audio CP027 reste à effectuer sur votre Mac.** Les dernières validations Mac reçues sont celles de CP025 ; les chargements successifs et noms sauvegardés dans Logic/Live avaient déjà été confirmés.
+Les 50 transitions entre modes et leurs états sont comparés aux instructions originales et en ARM64/QEMU. Sept binaires Mac sont liés strictement en ARM64. **L’exécution Cocoa, auval et audio CP028 reste à effectuer sur votre Mac.** Le rapport CP027 confirme des rendus audio exacts, puis un arrêt avant remplacement ; le composant précédent a été conservé. [Rapport filtré](evidence/mac-cp027-prevalidation.json).
 
 ## Télécharger et installer
 
-[Télécharger le lanceur CP027](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/e157133359f8da45524f27b1f7ddec5119f720c1/Demarrer-Sophistry-CP027.command), fermer Logic et Live, puis lancer :
+Fermer Logic et Live, puis lancer le lanceur CP028 vérifié :
 
 ```bash
-bash "$HOME/Downloads/Demarrer-Sophistry-CP027.command"
+bash "$HOME/Downloads/Demarrer-Sophistry-CP028.command"
 ```
 
-Le lanceur télécharge [l’archive immuable](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/2756543de3f18ae4e1e7f6ed55d28a4228ed068c), vérifie son SHA-256, la décompacte puis exécute la compilation ARM64, les tests, auval et le remplacement sauvegardé dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`. En cas d’échec, il restaure le composant précédent. Licence et banque valides restent enregistrées localement.
+Le lanceur télécharge l’archive immuable CP028 (lien après publication), vérifie son SHA-256, la décompacte puis exécute la compilation ARM64, les tests, auval et le remplacement sauvegardé dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`. En cas d’échec, il restaure le composant précédent. Licence et banque valides restent enregistrées localement.
 
-Attendre **Installation CP027 confirmée**, puis vérifier **SophistryARM CP-027** dans l’éditeur. Parcourir les sept pages et **Clavier / MIDI…**, essayer les repères Loop et les menus de modules, puis sauvegarder/réouvrir des copies de projets Logic et Live. Le ZIP CP027 est créé automatiquement, y compris en cas d’échec.
+Attendre **Installation CP028 confirmée**, puis vérifier **SophistryARM CP-028** dans l’éditeur. Parcourir les sept pages et **Clavier / MIDI…**, essayer les repères Loop et les menus de modules, puis sauvegarder/réouvrir des copies de projets Logic et Live. Le ZIP CP028 est créé automatiquement, y compris en cas d’échec.
 
 Pour changer de banque : ajouter `--choose-bank`. Les options `--diagnose-only` et `--recenter-windows` restent disponibles.
 
 ## Compatibilité et reprise
 
-Identité `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`, 522 paramètres, version AU 3.0.8 et chunks conservés ; build `27001`. La sauvegarde générale reste `.aupreset`, les modules utilisent leur format original `.MOD`.
+Identité `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`, 522 paramètres, version AU 3.0.8 et chunks conservés ; build `28001`. La sauvegarde générale reste `.aupreset`, les modules utilisent leur format original `.MOD`.
 
-[Comparaisons originales](evidence/complete-editor-cp027.json) · [Vérifications](evidence/cp027-development-checks.json) · [Reprise](REPRISE.md). Les sources et checkpoints sont publiés sur `codex/sophistry-native-checkpoints`. Préférences, licence et rapports Mac bruts restent privés.
+[Comparaisons originales](evidence/complete-editor-cp028.json) · [Vérifications](evidence/cp028-development-checks.json) · [Reprise](REPRISE.md). Les sources et checkpoints sont publiés sur `codex/sophistry-native-checkpoints`. Préférences, licence et rapports Mac bruts restent privés.

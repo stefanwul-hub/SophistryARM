@@ -29,7 +29,22 @@ inline NSImage *image(NSBundle *bundle, unsigned number) {
   NSURL *url = [bundle URLForResource:name
                         withExtension:@"png"
                          subdirectory:@"OriginalImages"];
-  return url ? [[NSImage alloc] initWithContentsOfURL:url] : nil;
+  NSImage *image = url ? [[NSImage alloc] initWithContentsOfURL:url] : nil;
+  // Original editor rectangles use bitmap pixels. Some PNGs declare 144,
+  // 300 or 762 DPI; AppKit's point size must not shrink these sprite sheets.
+  for (NSImageRep *rep in image.representations)
+    if (rep.pixelsWide > 0 && rep.pixelsHigh > 0) {
+      image.size = NSMakeSize(rep.pixelsWide, rep.pixelsHigh);
+      break;
+    }
+  return image;
+}
+inline BOOL originalPixelSize(NSImage *image) {
+  for (NSImageRep *rep in image.representations)
+    if (rep.pixelsWide > 0 && rep.pixelsHigh > 0)
+      return NSEqualSizes(image.size,
+                          NSMakeSize(rep.pixelsWide, rep.pixelsHigh));
+  return NO;
 }
 inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
   NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];

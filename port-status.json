@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-027",
+  "checkpoint": "CP-028",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -35,10 +35,10 @@
   "ableton_projects_verified": false,
   "install_allowed": true,
   "implemented_dsp_scope": "191379 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
-  "arm64_scope": "CP027 original UI data, gestures, module files and edited states compared to i386 and Linux ARM64/QEMU. Seven Mac ARM64 binaries strictly linked. CP027 AppKit/auval/audio execution pending.",
+  "arm64_scope": "CP028 generator menu aliases, 50 successive transitions and 17 files compared to original i386 and Linux ARM64/QEMU; seven Mac ARM64 binaries strictly linked. CP028 Cocoa/auval/audio runtime validation pending.",
   "next_work": [
-    "Inspect CP027 Mac installation/Cocoa/auval/audio report and snapshots",
-    "Review the seven pages, module menus, auxiliary views and Loop markers in Logic/Live project copies",
+    "Run CP028 immutable installer and inspect its full Cocoa, auval, audio and separate-host reports",
+    "Review mode selectors, module menus and bitmap geometry in all pages in Logic/Live project copies",
     "Broaden licensed musical, automation and real-time polyphony comparisons"
   ],
   "state_container_reader_implemented": true,
@@ -80,7 +80,7 @@
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
   "github_verified_code_commit": "259682fd602ee76ae4455a7468892ec002aa84df",
   "github_verified_archive_sha256": "827fc4160277296301c87e33ff1d14a7b6bfaedead048d058f01595d6cc68c64",
-  "macos_auval_scope": "CP025 passed and installed25001 verified. CP027 pending.",
+  "macos_auval_scope": "CP025 passed and installed25001 verified. CP027 prevalidation stopped before installation and auval. CP028 pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
   "native_arm64_macos_libm_comparison": {
@@ -121,7 +121,7 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "CP027 source archive downloaded and all 4157 blobs verified. Immutable launcher fetched and byte-exact. See checkpoints/CP027-publication.json and CP027-launcher-verification.json.",
+  "github_verification_note": "CP027 published artifacts remain verified. CP028 sources and immutable launcher publication in progress; see checkpoints after verification.",
   "native_cpp_host_available": true,
   "native_cpp_host_is_production_ready": false,
   "native_cpp_host_linux_executed": true,
@@ -220,7 +220,7 @@
   "installed_component_checkpoint_last_confirmed": "CP-025",
   "github_cp018_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/6a5372de3fdf5faf865dfe4f49f5a07844c217e1/Demarrer-Sophistry-CP018.command",
   "github_cp018_launcher_verified": true,
-  "native_ui_macos_execution_scope": "CP025 local Cocoa and OS-managed remote view/audio passed; CP027 seven-page/effect/modulation/auxiliary/Loop text tests prepared.",
+  "native_ui_macos_execution_scope": "CP027 Main/Filter fields, eight XY controls, Loop waveform and preset navigation passed. First generator selector test failed on mode-specific tag; remaining complete-editor tests not reached. CP028 pending.",
   "cp018_local_cocoa_editor_passed": true,
   "cp018_remote_editor_test_passed": false,
   "cp018_installation_committed": false,
@@ -428,7 +428,7 @@
   "native_ui_constructor_implementation_complete": true,
   "cp027_original_editor_evidence": "evidence/complete-editor-cp027.json",
   "cp027_development_evidence": "evidence/cp027-development-checks.json",
-  "cp027_mac_execution_confirmed": false,
+  "cp027_mac_execution_confirmed": true,
   "cp027_constructor_controls": 1067,
   "cp027_original_panels": 86,
   "cp027_instruction_count": 191379,
@@ -438,5 +438,15 @@
   "github_cp027_launcher": "Demarrer-Sophistry-CP027.command",
   "github_cp027_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/e157133359f8da45524f27b1f7ddec5119f720c1/Demarrer-Sophistry-CP027.command",
   "github_cp027_launcher_commit": "e157133359f8da45524f27b1f7ddec5119f720c1",
-  "github_cp027_launcher_sha256": "ce8989f7a295480cfcf060bc4fc24a3431570689401f062cb54ba46a5db7dd22"
+  "github_cp027_launcher_sha256": "ce8989f7a295480cfcf060bc4fc24a3431570689401f062cb54ba46a5db7dd22",
+  "cp027_installation_confirmed": false,
+  "cp027_mac_evidence": "evidence/mac-cp027-prevalidation.json",
+  "cp027_previous_component_preserved": true,
+  "cp027_audio_files_byte_exact": 5,
+  "cp028_original_editor_evidence": "evidence/complete-editor-cp028.json",
+  "cp028_development_evidence": "evidence/cp028-development-checks.json",
+  "cp028_mac_execution_pending": true,
+  "cp028_visible_generator_menu_transitions": 50,
+  "cp028_build": "28001",
+  "cp028_dsp_runtime_or_lifted_units_changed": false
 }
