@@ -121,7 +121,7 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "CP028 published artifacts remain verified. CP029 source and launcher publication/verification in progress.",
+  "github_verification_note": "CP029 source archive downloaded; all 4171 tracked blobs verified. Launcher download verification pending.",
   "native_cpp_host_available": true,
   "native_cpp_host_is_production_ready": false,
   "native_cpp_host_linux_executed": true,
@@ -482,5 +482,9 @@
   "cp029_known_remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save remains available"
-  ]
+  ],
+  "github_cp029_source_commit": "19b3bdea246534ba0b902d3435b48f5deb6bc9d0",
+  "github_cp029_source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/19b3bdea246534ba0b902d3435b48f5deb6bc9d0",
+  "github_cp029_archive_sha256": "784e9e0cd1988765f1bb56fdd04b6bdcfcbf470e2a112fb3b2973e1672324359",
+  "github_cp029_launcher": "Demarrer-Sophistry-CP029.command"
 }
