@@ -8,7 +8,7 @@ Les comparaisons originales et ARM64/QEMU passent, ainsi que les liens stricts d
 
 ## Télécharger et installer
 
-[Télécharger le lanceur CP027](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP027.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur CP027](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/e157133359f8da45524f27b1f7ddec5119f720c1/Demarrer-Sophistry-CP027.command), fermer Logic et Live, puis lancer :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP027.command"
