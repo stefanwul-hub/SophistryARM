@@ -1,4 +1,4 @@
-# Reprendre à CP026 — source et archive vérifiées, lanceur en préparation
+# Reprendre à CP026 — source, archive et lanceur vérifiés — prochain rapport Mac à examiner
 
 ## Demande et dernier Mac confirmé
 
@@ -22,8 +22,8 @@ Disque serré ; suppressions d’exécutables reconstruisibles consignées work/
 
 ## À terminer
 
-Publier source→télécharger/vérifier chaque blob de l’archive→lanceur pinned→vérifier téléchargement brut→métadonnées et bundle. Ensuite livrer lien et commande Mac ; examiner prochain ZIP CP026. Interface complète encore inachevée : browser/trim/zones/zoomLoop/enveloppes graphiques/effets/modulation. Étendre ensuite comparaisons musicales, automation et charge temps réel. Ne pas présenter les tracés/états exacts comme certification sonore complète.
+Publication source/archive/lanceur achevée et vérifiée ; métadonnées finales conservées avec les sources. Le bundle autonome local est régénéré après le dernier commit. Prochaine étape : examiner le ZIP CP026 du Mac. Interface complète encore inachevée : browser/trim/zones/zoomLoop/enveloppes graphiques/effets/modulation. Étendre ensuite comparaisons musicales, automation et charge temps réel. Ne pas présenter les tracés/états exacts comme certification sonore complète.
 
 ## Publication source confirmée
 
-Source `259682fd602ee76ae4455a7468892ec002aa84df` publiée. Archive `https://codeload.github.com/stefanwul-hub/SophistryARM/zip/259682fd602ee76ae4455a7468892ec002aa84df` : 44258206octets, SHA256 `827fc4160277296301c87e33ff1d14a7b6bfaedead048d058f01595d6cc68c64`, 4134blobs exacts vérifiés. Lire checkpoints/CP026-publication.json. LanceurCP026 créé avec ces constantes, Bash validé, publication/vérification brute à terminer.
+Source `259682fd602ee76ae4455a7468892ec002aa84df` publiée. Archive `https://codeload.github.com/stefanwul-hub/SophistryARM/zip/259682fd602ee76ae4455a7468892ec002aa84df` : 44258206octets, SHA256 `827fc4160277296301c87e33ff1d14a7b6bfaedead048d058f01595d6cc68c64`, 4134blobs exacts vérifiés. Lire checkpoints/CP026-publication.json. LanceurCP026 publié et téléchargé à l’identique, Bash validé. URL immuable : https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/9475b87d6a76e66176df221e6809084e81d57465/Demarrer-Sophistry-CP026.command ; 2448octets, SHA256 `a869962a9925ee84c9ac5823ed40e2e6bcf39408a0ae0cfd9f0ad898c6d93c9d`. Lire checkpoints/CP026-launcher-verification.json.

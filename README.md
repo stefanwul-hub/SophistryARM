@@ -10,7 +10,7 @@ Les carrés sont des commandes X/Y. Le tracé de sample apparaît pour le Loop S
 
 ## Installer et tester
 
-[Télécharger le lanceur CP026](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP026.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur CP026](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/9475b87d6a76e66176df221e6809084e81d57465/Demarrer-Sophistry-CP026.command), fermer Logic et Live, puis lancer :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP026.command"
