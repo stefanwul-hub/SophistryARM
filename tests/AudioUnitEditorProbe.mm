@@ -2,6 +2,7 @@
 // Remote host validation uses only public APIs in AudioUnitRemoteHostProbe.mm.
 #include "../src/au/PresetBrowser.h"
 #include "../src/au/SophistryProperties.h"
+#include "../src/engine/CompleteEditorControls.h"
 #include "../src/engine/EditorControls.h"
 #import <AppKit/AppKit.h>
 #import <AudioToolbox/AUCocoaUIView.h>
@@ -146,6 +147,9 @@ static NSDictionary *presetLabelRoundTrip(AudioComponent component,
 - (void)selectTab:(NSButton *)sender;
 - (void)parameterChanged:(NSControl *)sender;
 - (BOOL)testGeneratorControl:(UInt32)tag normalized:(float)value;
+- (BOOL)testCompleteControl:(UInt32)tag normalized:(float)value;
+- (BOOL)testCompleteText:(UInt32)tag value:(NSString *)value;
+- (NSDictionary *)testAuxiliaryPage:(unsigned)page snapshot:(NSString *)path;
 - (BOOL)testGeneratorRoutingClick:(unsigned)slot;
 - (BOOL)testEditorButtonAtX:(double)x y:(double)y;
 - (BOOL)testOriginalControlAtX:(double)x y:(double)y normalized:(float)value;
@@ -154,6 +158,144 @@ static NSDictionary *presetLabelRoundTrip(AudioComponent component,
               normalizedX:(float)nx
               normalizedY:(float)ny;
 @end
+
+static NSDictionary *completeEditorTests(NSView *view, AudioUnit unit,
+                                         NSString *fxp, NSString *prefix,
+                                         NSString *loop) {
+  NSMutableArray *pages = [NSMutableArray array],
+                 *effects = [NSMutableArray array],
+                 *modulation = [NSMutableArray array],
+                 *auxiliary = [NSMutableArray array];
+  BOOL passed = YES;
+  auto page = [&](unsigned index) {
+    NSButton *tab = [NSButton new];
+    tab.tag = index;
+    [view selectTab:tab];
+  };
+  auto valid = [&](NSDictionary *r) {
+    return [r[@"status"] intValue] == 0 &&
+           [r[@"active_controls_in_bounds"] boolValue] &&
+           [r[@"sprites_loaded"] boolValue] && [r[@"controls"] count] > 0;
+  };
+  for (unsigned i = 0; i < 7; ++i) {
+    page(i);
+    NSMutableDictionary *r =
+        [[view sophistryEditorReport][@"original_panel"] mutableCopy];
+    NSBitmapImageRep *rep =
+        [view bitmapImageRepForCachingDisplayInRect:view.bounds];
+    BOOL saved = NO;
+    if (rep) {
+      [view cacheDisplayInRect:view.bounds toBitmapImageRep:rep];
+      saved = [[rep representationUsingType:NSBitmapImageFileTypePNG
+                                 properties:@{}]
+          writeToFile:[NSString stringWithFormat:@"%@-page%u.png", prefix, i]
+           atomically:YES];
+    }
+    r[@"snapshot_saved"] = @(saved);
+    passed = passed && valid(r) && saved;
+    [pages addObject:r];
+  }
+  page(4);
+  for (unsigned slot = 0; slot < 6; ++slot)
+    for (unsigned type = 0; type < 12; ++type) {
+      BOOL edited = [view testCompleteControl:213 + slot
+                                   normalized:float(type) / 11];
+      NSDictionary *r = [view sophistryEditorReport][@"original_panel"];
+      BOOL selected = NO;
+      for (NSDictionary *c in r[@"controls"])
+        if ([c[@"tag"] unsignedIntValue] == 213 + slot)
+          selected = [c[@"value"] unsignedIntValue] == type;
+      BOOL ok = edited && selected && valid(r);
+      passed = passed && ok;
+      [effects addObject:@{
+        @"slot" : @(slot),
+        @"type" : @(type),
+        @"passed" : @(ok),
+        @"panels" : r[@"panels"] ?: @[]
+      }];
+    }
+  page(5);
+  for (auto pair :
+       std::array<std::pair<unsigned, unsigned>, 2>{{{606, 4}, {605, 5}}})
+    for (unsigned i = 0; i < pair.second; ++i) {
+      BOOL edited = [view testCompleteControl:pair.first
+                                   normalized:float(i) / (pair.second - 1)];
+      NSDictionary *r = [view sophistryEditorReport][@"original_panel"];
+      BOOL selected = NO;
+      for (NSDictionary *c in r[@"controls"])
+        if ([c[@"tag"] unsignedIntValue] == pair.first)
+          selected = [c[@"value"] unsignedIntValue] == i;
+      BOOL ok = edited && selected && valid(r);
+      passed = passed && ok;
+      [modulation addObject:@{
+        @"selector" : @(pair.first),
+        @"value" : @(i),
+        @"passed" : @(ok)
+      }];
+    }
+  for (unsigned i = 7; i < 9; ++i) {
+    NSDictionary *r =
+        [view testAuxiliaryPage:i
+                       snapshot:[NSString stringWithFormat:@"%@-aux%u.png",
+                                                           prefix, i]];
+    BOOL ok = [r[@"status"] intValue] == 0 &&
+              [r[@"active_controls_in_bounds"] boolValue] &&
+              [r[@"sprites_loaded"] boolValue] &&
+              [r[@"snapshot_saved"] boolValue];
+    passed = passed && ok;
+    [auxiliary addObject:r];
+  }
+  std::array<char, sophistry::editorStringBytes> sequence{};
+  UInt32 size = sequence.size();
+  BOOL arp = !AudioUnitGetProperty(unit, sophistry::editorStringProperty,
+                                   kAudioUnitScope_Global, 648, sequence.data(),
+                                   &size) &&
+             strnlen(sequence.data(), sequence.size()) == 258;
+  if (arp) {
+    auto changed = sequence;
+    changed[2] = 61;
+    changed[3] = char(129);
+    sophistry::EditorTextEditHeader h{1, 648, 259};
+    std::vector<char> data(sizeof(h) + 259);
+    memcpy(data.data(), &h, sizeof(h));
+    memcpy(data.data() + sizeof(h), changed.data(), 259);
+    arp = !AudioUnitSetProperty(unit, sophistry::editorTextEditProperty,
+                                kAudioUnitScope_Global, 0, data.data(),
+                                UInt32(data.size()));
+    std::array<char, sophistry::editorStringBytes> read{};
+    size = read.size();
+    arp = arp &&
+          !AudioUnitGetProperty(unit, sophistry::editorStringProperty,
+                                kAudioUnitScope_Global, 648, read.data(),
+                                &size) &&
+          !memcmp(read.data(), changed.data(), 259);
+  }
+  BOOL restored = [view loadPresetURL:[NSURL fileURLWithPath:fxp]];
+  BOOL markers = [view loadPresetURL:[NSURL fileURLWithPath:loop]];
+  page(1);
+  for (auto [tag, value] : std::array<std::pair<unsigned, int>, 4>{
+           {{950, 1024}, {952, 4096}, {954, 32000}, {956, 8000}}}) {
+    BOOL ok = [view testCompleteText:tag
+                               value:[NSString stringWithFormat:@"%d", value]];
+    NSDictionary *r = [view sophistryEditorReport][@"original_panel"];
+    BOOL found = NO;
+    for (NSDictionary *c in r[@"controls"])
+      if ([c[@"tag"] unsignedIntValue] == tag)
+        found = [c[@"value"] intValue] == value;
+    markers = markers && ok && found;
+  }
+  restored = restored && [view loadPresetURL:[NSURL fileURLWithPath:fxp]];
+  return @{
+    @"passed" : @(passed && arp && restored && markers),
+    @"pages" : pages,
+    @"effects" : effects,
+    @"modulation" : modulation,
+    @"auxiliary" : auxiliary,
+    @"arpeggiator_binary_text_edit" : @(arp),
+    @"numeric_loop_markers" : @(markers),
+    @"public_preset_restored" : @(restored)
+  };
+}
 
 static NSDictionary *mainButtonTests(NSView *view, NSString *fxpPath,
                                      NSString *statePath) {
@@ -390,6 +532,7 @@ int main(int argc, const char **argv) {
     NSDictionary *generatorRecall = @{};
     NSDictionary *mainButtons = @{};
     NSDictionary *originalEditor = @{};
+    NSDictionary *completeEditor = @{};
     NSString *advertisedClass = @"";
     NSString *componentViewClass = @"";
     OSStatus runtimePropertyStatus = noErr;
@@ -611,6 +754,13 @@ int main(int argc, const char **argv) {
             }
             if (!failure)
               generatorRecall = presetLabelRoundTrip(component, unit);
+            if (!failure) {
+              completeEditor =
+                  completeEditorTests(view, unit, fxpPath, prefix, loopPath);
+              if (![completeEditor[@"passed"] boolValue])
+                failure = @"Complete recovered editor "
+                          @"page/effect/modulation/auxiliary test failed";
+            }
             aupreset = aupreset &&
                        [view loadPresetURL:[NSURL fileURLWithPath:statePath]];
             tabs = YES;
@@ -713,6 +863,7 @@ int main(int argc, const char **argv) {
       @"routing_mouse_cases" : routingCases,
       @"main_button_tests" : mainButtons,
       @"original_editor_tests" : originalEditor,
+      @"complete_editor_tests" : completeEditor,
       @"generator_fresh_instance_recall" : generatorRecall,
       @"aupreset_imported" : @(aupreset),
       @"native_view_snapshot_saved" : @(screenshot),

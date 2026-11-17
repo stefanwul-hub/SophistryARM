@@ -8,6 +8,7 @@
 #include <cctype>
 #include <chrono>
 #include <cmath>
+#include <codecvt>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -15,10 +16,12 @@
 #include <fstream>
 #include <iomanip>
 #include <limits>
+#include <locale>
 #include <map>
 #include <set>
 #include <sstream>
 #include <stdexcept>
+#include <thread>
 #include <utility>
 #ifdef __APPLE__
 #include <CoreFoundation/CoreFoundation.h>
@@ -95,6 +98,7 @@ struct LegacyEngine::Impl {
   struct DrawingCache {
     std::vector<U32> key;
     EditorDrawing drawing;
+    float first = 0, span = 0;
   };
   std::map<unsigned, DrawingCache> drawings;
   EditorControlState editorControl(U32 tag);
@@ -123,8 +127,23 @@ struct LegacyEngine::Impl {
     std::vector<std::uint8_t> data;
     U64 position = 0;
     bool eof = false, error = false;
+    std::filesystem::path output;
+    bool selectedModule = false;
   };
   std::map<U32, File> files;
+  bool editorFileActive = false;
+  bool editorModuleRead = false;
+  bool editorConfirmation = false;
+  std::string editorFilePath;
+  EditorFileInfo editorFileDescription;
+  U32 editorFileGeneration = 0;
+  std::map<U32, std::string> fileSystemRefs;
+  std::map<std::pair<std::string, std::string>, std::string> editorPreferences;
+  std::set<U32> editorDialogs, editorUpps;
+  bool editorPlatformService(const std::string &name, U32 stack, U32 &result);
+  EditorFileInfo performEditorFile(U32 tag, unsigned operation,
+                                   const std::string &path);
+  void editorParameter(U32 tag, float value);
   std::map<std::string, std::vector<std::filesystem::path>> assets;
   std::vector<std::filesystem::path> assetRoots;
   struct AssetRootStatus {
@@ -543,8 +562,13 @@ struct LegacyEngine::Impl {
   }
 };
 
+#include "EditorPlatform.h"
+
 U32 LegacyEngine::Impl::preference(const std::string &key,
                                    const std::string &application) {
+  auto saved = editorPreferences.find({key, application});
+  if (saved != editorPreferences.end())
+    return newString(saved->second);
 #ifdef __APPLE__
   if (config.useLocalMacPreferences) {
     CFStringRef k =
@@ -698,9 +722,12 @@ void LegacyEngine::Impl::service(U32 pc) {
   double fp = 0;
   bool has64 = false;
   U64 integer64 = 0;
-  if (activeDrawing &&
-      (name == "_CGContextBeginPath" || name == "_CGContextMoveToPoint" ||
-       name == "_CGContextAddLineToPoint" || name == "_CGContextDrawPath")) {
+  if (editorPlatformService(name, sp, result)) {
+    // Modern Cocoa owns the chooser; original module IO continues below it.
+  } else if (activeDrawing && (name == "_CGContextBeginPath" ||
+                               name == "_CGContextMoveToPoint" ||
+                               name == "_CGContextAddLineToPoint" ||
+                               name == "_CGContextDrawPath")) {
     if (arg(0))
       throw std::runtime_error("Unexpected preview graphics context");
     if (name == "_CGContextBeginPath")
@@ -1163,7 +1190,7 @@ void LegacyEngine::Impl::service(U32 pc) {
     releaseValue(arg(0));
   else if (name == "_CFNumberCreate") {
     // kCFNumberLongType: the original ABI has a 32-bit long.
-    if (arg(1) != 10)
+    if (arg(1) != 10 && arg(1) != 3)
       throw std::runtime_error("Unsupported guest CFNumber type");
     result = allocate(16);
     Value v;
@@ -1227,13 +1254,16 @@ void LegacyEngine::Impl::service(U32 pc) {
   else if (name == "_CreateStandardAlert") {
     // Carbon is unavailable to the native editor. These exact one-button
     // load-error notifications are retained in status and acknowledged;
-    // question/confirmation dialogs remain unsupported and never accepted.
+    // Explicit editor confirmations are acknowledged only inside their command
+    // scope.
     const auto title = cfString(arg(1));
-    if (arg(0) != 1 ||
-        (title != "File Error - Load failed" && title != "Load Error" &&
-         title != "Instrument Load Error" && title != "Bank Load Error"))
+    const bool confirmed = editorConfirmation && arg(0) == 2;
+    if (!confirmed &&
+        (arg(0) != 1 ||
+         (title != "File Error - Load failed" && title != "Load Error" &&
+          title != "Instrument Load Error" && title != "Bank Load Error")))
       throw std::runtime_error("Unsupported original dialog request");
-    if (loadAlerts.size() < 16)
+    if (!confirmed && loadAlerts.size() < 16)
       loadAlerts.push_back(title);
     const U32 token = allocate(16);
     informationalAlerts.insert(token);
@@ -1245,57 +1275,111 @@ void LegacyEngine::Impl::service(U32 pc) {
       put(arg(2), std::uint16_t(1));
     release(arg(0));
   } else if (name == "_fopen" || name == "_fclose" || name == "_fread" ||
-             name == "_fseek" || name == "_ftell" || name == "_rewind" ||
-             name == "_feof" || name == "_ferror" || name == "_clearerr" ||
-             name == "_fflush" || name == "_fgetc" || name == "_getc" ||
-             name == "_fgets" || name == "_fgetpos" || name == "_fsetpos") {
+             name == "_fwrite" || name == "_fseek" || name == "_ftell" ||
+             name == "_rewind" || name == "_feof" || name == "_ferror" ||
+             name == "_clearerr" || name == "_fflush" || name == "_fgetc" ||
+             name == "_getc" || name == "_fgets" || name == "_fgetpos" ||
+             name == "_fsetpos") {
     // Native FILE pointers are never narrowed into the guest address space.
     if (name == "_fopen") {
       auto path = string(arg(0)), mode = string(arg(1));
       const std::string basename = baseName(path);
       if (assetOpenResults.size() < 256 || assetOpenResults.count(basename))
         assetOpenResults[basename] = false;
-      if (mode != "r" && mode != "rb")
-        throw std::runtime_error("Host exposes read-only assets");
-      std::filesystem::path resolved;
-      if (!config.deterministicTestHost &&
-          std::filesystem::is_regular_file(path))
-        resolved = path;
-      else {
-        resolved = resolveAsset(path);
-      }
-      if (!resolved.empty()) {
+      const bool writing = mode == "w" || mode == "wb";
+      if (mode != "r" && mode != "rb" && !writing)
+        throw std::runtime_error("Unsupported legacy file mode");
+      if (writing) {
+        if (!editorFileActive || editorFilePath.empty() ||
+            std::filesystem::path(path).lexically_normal() !=
+                std::filesystem::path(editorFilePath).lexically_normal())
+          throw std::runtime_error("No selected editor output file");
         File f;
-        f.data = readFile(resolved);
-        if (assetOpenResults.count(basename))
-          assetOpenResults[basename] = true;
-        lastOpenedAsset = basename;
+        f.output = path;
         result = allocate(256);
         files.emplace(result, std::move(f));
       } else {
-        if (!errnoPointer)
-          errnoPointer = allocate(4);
-        put(errnoPointer, U32(2));
+        std::filesystem::path resolved;
+        if (((!config.deterministicTestHost) ||
+             (editorFileActive && path == editorFilePath)) &&
+            std::filesystem::is_regular_file(path))
+          resolved = path;
+        else {
+          resolved = resolveAsset(path);
+        }
+        if (!resolved.empty()) {
+          File f;
+          f.data = readFile(resolved);
+          f.selectedModule = editorFileActive && path == editorFilePath;
+          if (assetOpenResults.count(basename))
+            assetOpenResults[basename] = true;
+          lastOpenedAsset = basename;
+          result = allocate(256);
+          files.emplace(result, std::move(f));
+        } else {
+          if (!errnoPointer)
+            errnoPointer = allocate(4);
+          put(errnoPointer, U32(2));
+        }
       }
     } else if (name == "_fclose") {
-      if (!files.erase(arg(0)))
+      auto found = files.find(arg(0));
+      if (found == files.end())
         result = U32(-1);
-      else
+      else {
+        auto &f = found->second;
+        if (!f.output.empty()) {
+          auto pending = f.output;
+          do {
+            pending = f.output;
+            pending +=
+                ".sophistry-stage-" + std::to_string(++editorFileGeneration);
+          } while (std::filesystem::exists(pending));
+          try {
+            std::ofstream out(pending, std::ios::binary | std::ios::trunc);
+            out.write(reinterpret_cast<const char *>(f.data.data()),
+                      f.data.size());
+            out.close();
+            if (!out)
+              throw std::runtime_error("Cannot write selected file");
+            std::filesystem::rename(pending, f.output);
+          } catch (...) {
+            std::error_code error;
+            std::filesystem::remove(pending, error);
+            throw;
+          }
+        }
+        files.erase(found);
         release(arg(0));
+      }
     } else if (name == "_fflush" && !arg(0))
       result = 0;
     else {
-      U32 token = name == "_fgets"   ? arg(2)
-                  : name == "_fread" ? arg(3)
-                                     : arg(0);
+      U32 token = name == "_fgets"                        ? arg(2)
+                  : name == "_fread" || name == "_fwrite" ? arg(3)
+                                                          : arg(0);
       auto &f = files.at(token);
-      if (name == "_fread") {
+      if (name == "_fwrite") {
+        U64 n = U64(arg(1)) * arg(2);
+        if (f.output.empty() || n > 512u * 1024u * 1024u ||
+            f.position + n > 512u * 1024u * 1024u)
+          throw std::runtime_error("Invalid editor file write");
+        if (f.position + n > f.data.size())
+          f.data.resize(f.position + n);
+        if (n)
+          std::memcpy(f.data.data() + f.position, data(arg(0), n), n);
+        f.position += n;
+        result = arg(2);
+      } else if (name == "_fread") {
         U64 n = U64(arg(1)) * arg(2);
         if (n > 0x2000000)
           throw std::runtime_error("Guest fread exceeds limit");
         U64 count = std::min(n, f.position < f.data.size()
                                     ? U64(f.data.size()) - f.position
                                     : 0);
+        if (f.selectedModule && f.position == 0 && n == f.data.size() &&
+            count == n)
+          editorModuleRead = true;
         if (count)
           write(arg(0), f.data.data() + f.position, std::size_t(count));
         f.position += count;
@@ -1873,15 +1957,308 @@ EditorPanelState LegacyEngine::editorPanel(unsigned panel) {
 }
 void LegacyEngine::setEditorControl(U32 tag, float value) {
   impl_->initialize();
-  if (!isEditorControl(tag) || !std::isfinite(value) || value < 0 || value > 1)
+  if ((!isEditorControl(tag) && !completeControlEditable(tag)) ||
+      !std::isfinite(value) || value < 0 || value > 1)
     throw std::out_of_range("Invalid original editor control");
-  impl_->run(0x1cc86, {object, tag, bits32(value)});
+  impl_->editorParameter(tag, value);
+}
+CompleteEditorState LegacyEngine::completeEditor(unsigned page) {
+  impl_->initialize();
+  CompleteEditorState state;
+  state.page = page;
+  std::map<unsigned, int> values;
+  for (auto tag : completeSelectionTags()) {
+    if (state.selectionCount >= state.selections.size())
+      throw std::runtime_error("Original page selector capacity exceeded");
+    auto value = I32(impl_->run(0x1d28c, {object, tag}));
+    values[tag] = value;
+    state.selections[state.selectionCount++] = {tag, value};
+  }
+  auto layout =
+      completeEditorLayout(page, [&](unsigned tag) { return values.at(tag); });
+  std::set<unsigned> tags;
+  for (const auto &placed : layout.controls) {
+    const auto &c = placed.control;
+    if (c.kind == RecoveredWidget::Licence ||
+        c.kind == RecoveredWidget::Label || c.kind == RecoveredWidget::Action)
+      continue;
+    tags.insert(c.tag);
+    if (c.kind == RecoveredWidget::XY || c.kind == RecoveredWidget::Scrollbar)
+      tags.insert(c.extra[0]);
+    if (c.kind == RecoveredWidget::Surround)
+      for (unsigned tag = 523; tag <= 578; ++tag)
+        tags.insert(tag);
+  }
+  for (auto tag : tags) {
+    if (!completeControlReadable(tag) || state.count >= state.controls.size())
+      throw std::runtime_error("Invalid original editor control layout");
+    auto &c = state.controls[state.count++];
+    c = impl_->editorControl(tag);
+    c.value.auParameter = recoveredAUParameter(tag);
+    if (c.value.kind == 7) {
+      const auto text = editorString(tag);
+      std::memset(c.value.text, 0, sizeof(c.value.text));
+      std::strncpy(c.value.text, text.c_str(), sizeof(c.value.text) - 1);
+    }
+  }
+  for (const auto &placed : layout.controls) {
+    if (placed.control.kind != RecoveredWidget::Wave)
+      continue;
+    const unsigned g = placed.control.tag - 812;
+    if (g > 1)
+      continue;
+    auto drawing = editorDrawing(8 + g);
+    if (drawing.sourceFrames) {
+      const auto &cached = impl_->drawings.at(8 + g);
+      state.waveforms[g] = {cached.first, cached.span, drawing.sourceFrames,
+                            drawing.sampleRate};
+    }
+  }
+  return state;
+}
+EditorChoices LegacyEngine::editorChoices(U32 tag) {
+  impl_->initialize();
+  if (!completeControlReadable(tag))
+    throw std::out_of_range("Unknown editor choice parameter");
+  constexpr U32 info = 0x5d2200;
+  impl_->zero(info, 28);
+  impl_->run(0x1ce0e, {object, tag, info});
+  const auto kind = impl_->word(info);
+  const I32 lo = I32(impl_->word(info + 4)), hi = I32(impl_->word(info + 8));
+  const auto labels = impl_->word(info + 16), width = impl_->word(info + 20);
+  EditorChoices out;
+  if (kind != 2 || !labels || !width || width > 320 || hi < lo ||
+      U64(hi - lo + 1) > out.labels.size())
+    return out;
+  for (I32 i = lo; i <= hi; ++i) {
+    auto raw = impl_->data(labels + U32(i - lo) * width, width);
+    const auto length = std::min<std::size_t>(width, out.labels[0].size() - 1);
+    std::memcpy(out.labels[out.count++].data(), raw, length);
+  }
+  return out;
+}
+std::string LegacyEngine::editorString(U32 tag) {
+  impl_->initialize();
+  if (!completeControlReadable(tag))
+    throw std::out_of_range("Unknown editor string parameter");
+  constexpr U32 buffer = 0x5d6000;
+  impl_->zero(buffer, editorStringBytes);
+  impl_->run(0x1ceb2, {object, tag, buffer});
+  return impl_->string(buffer, editorStringBytes);
+}
+void LegacyEngine::setEditorString(U32 tag, const std::string &text) {
+  impl_->initialize();
+  if (!completeControlStringEditable(tag) || text.size() >= 320 ||
+      text.find('\0') != std::string::npos)
+    throw std::out_of_range("Invalid original editor text edit");
+  constexpr U32 buffer = 0x5d6000;
+  impl_->zero(buffer, editorStringBytes);
+  impl_->write(buffer, text.data(), text.size());
+  auto metadata = impl_->editorControl(tag).value;
+  if (metadata.kind == 7 || metadata.kind == 2)
+    impl_->run(0x1cf16, {object, tag, buffer});
+  else {
+    // The original string setter only accepts string/enumeration parameters.
+    // Native text entry converts display units to a raw integer; the original
+    // Param setter and normalized getter supply its curve and quantization.
+    constexpr U32 out = 0x5d1900;
+    impl_->run(0x1cb52, {object, tag, out, out + 4, out + 8});
+    const U32 module = impl_->word(out), index = impl_->word(out + 4),
+              part = impl_->word(out + 8);
+    if (!module || I32(index) < 0)
+      throw std::runtime_error("No original numeric parameter");
+    const U32 store = impl_->word(module + 0x120);
+    const U32 parameter =
+        impl_->word(impl_->word(store + 0x1c) + 4 * part) + 0x70 * index;
+    const I32 previous = metadata.value;
+    auto raw = [&](I32 v) { impl_->run(0x109c8, {parameter, U32(v)}); };
+    char *end = nullptr;
+    const double parsed = std::strtod(text.c_str(), &end);
+    const bool digits = end && end != text.c_str();
+    while (end && std::isspace(static_cast<unsigned char>(*end)))
+      ++end;
+    I32 target = previous;
+    bool found = digits && !*end && std::isfinite(parsed);
+    if (found) {
+      const double scale = metadata.kind == 1 && metadata.decimals <= 9
+                               ? std::pow(10.0, metadata.decimals)
+                               : 1;
+      target = I32(std::llround(std::clamp(
+          parsed * scale, double(metadata.minimum), double(metadata.maximum))));
+    }
+    float normalized = 0;
+    try {
+      if (!found && std::int64_t(metadata.maximum) - metadata.minimum <= 255) {
+        auto trimmed = [](std::string s) {
+          while (!s.empty() &&
+                 std::isspace(static_cast<unsigned char>(s.back())))
+            s.pop_back();
+          auto p = s.find_first_not_of(" \t\r\n");
+          return lower(p == std::string::npos ? std::string() : s.substr(p));
+        };
+        for (I32 v = metadata.minimum; v <= metadata.maximum; ++v) {
+          raw(v);
+          impl_->zero(buffer, editorStringBytes);
+          impl_->run(0x1d532, {object, tag, buffer, 127});
+          if (trimmed(impl_->string(buffer)) == trimmed(text)) {
+            target = v;
+            found = true;
+            break;
+          }
+        }
+      }
+      if (!found)
+        throw std::out_of_range("Invalid numeric editor text");
+      raw(target);
+      normalized = impl_->editorNormalized(tag);
+      raw(previous);
+    } catch (...) {
+      raw(previous);
+      throw;
+    }
+    impl_->editorParameter(tag, normalized);
+  }
+  ++impl_->editorRevision;
+}
+void LegacyEngine::editorAction(unsigned key) {
+  impl_->initialize();
+  const auto &controls = recoveredControls();
+  if (key >= controls.size() || controls[key].kind != RecoveredWidget::Action)
+    throw std::out_of_range("Unknown original editor action");
+  const auto &c = controls[key];
+  const auto previous = impl_->editorConfirmation;
+  impl_->editorConfirmation = c.extra[0] == 4 || c.extra[0] == 43;
+  U32 handled = 0;
+  try {
+    handled = impl_->run(0x4de48, {object, U32(c.extra[0]), U32(c.extra[1]),
+                                   U32(c.extra[2]), 0});
+  } catch (...) {
+    impl_->editorConfirmation = previous;
+    throw;
+  }
+  impl_->editorConfirmation = previous;
+  if (!handled)
+    throw std::runtime_error("Original editor command was not handled");
+  ++impl_->editorRevision;
+}
+EditorFileInfo LegacyEngine::editorFileInfo(U32 tag, unsigned operation) {
+  return impl_->performEditorFile(tag, operation, {});
+}
+void LegacyEngine::editorFileOperation(U32 tag, unsigned operation,
+                                       const std::string &path) {
+  if (path.empty())
+    throw std::out_of_range("No selected editor file");
+  impl_->performEditorFile(tag, operation, path);
+}
+EditorKeyHit LegacyEngine::editorKeyHit(unsigned x, unsigned y) {
+  impl_->initialize();
+  if (x >= 648 || y >= 95)
+    throw std::out_of_range("Outside original keyboard");
+  constexpr U32 keyboard = 0x5a0000, result = 0x5a0800;
+  impl_->zero(keyboard, 0x900);
+  for (auto [offset, value] : std::array<std::pair<U32, U32>, 6>{{{0x4dc, 126},
+                                                                  {0x4b8, 3},
+                                                                  {0x4c8, 18},
+                                                                  {0x4d0, 10},
+                                                                  {0x4d4, 60},
+                                                                  {0x4d8, 13}}})
+    impl_->put(keyboard + offset, value);
+  if (!impl_->run(0x942d0, {keyboard, x, y, result}))
+    throw std::runtime_error("Original keyboard rejected coordinates");
+  return {1, impl_->word(result + 8), impl_->word(result + 12)};
+}
+float LegacyEngine::editorKnob(unsigned key, int x, int y) {
+  const auto &controls = recoveredControls();
+  if (key >= controls.size() || !originalPointerKind(controls[key].kind) ||
+      x < -512 || x > 511 || y < -512 || y > 511)
+    throw std::out_of_range("Invalid original knob coordinates");
+  impl_->initialize();
+  const auto &c = controls[key];
+  constexpr U32 knob = 0x59c000, rect = knob + 0x200, point = knob + 0x220;
+  U32 pointerEntry = 0x05a12;
+  if (c.kind != RecoveredWidget::Dial) {
+    constexpr U32 ctl = 0x59c400, values = ctl + 0x200;
+    impl_->zero(ctl, 0x300);
+    impl_->put(ctl + 16, U32(c.width));
+    impl_->put(ctl + 20, U32(c.height));
+    impl_->put(ctl + 0x90, values);
+    impl_->put(values + 12, impl_->editorNormalized(c.tag));
+    impl_->put(ctl + 0xc8, U32(c.width));
+    impl_->put(ctl + 0xcc, U32(c.height));
+    if (c.kind == RecoveredWidget::Drawbar) {
+      impl_->put(ctl + 0xc4, U32(c.extra[0] / 2));
+      impl_->put(ctl + 0xcc, U32(c.height - c.extra[0] / 2));
+      pointerEntry = 0x8089a;
+    } else if (c.kind == RecoveredWidget::ThinSlider) {
+      impl_->put(ctl + 0xd8, std::uint8_t(1));
+      impl_->put(ctl + 0xdc, U32(c.extra[0]));
+      impl_->put(ctl + 0xe0, U32(c.extra[1]));
+      pointerEntry = 0x08b04;
+    } else {
+      impl_->put(ctl + 0xd4, std::uint8_t(1));
+      impl_->put(ctl + 0xd8, U32(c.extra[1]));
+      impl_->put(values + 36, impl_->editorNormalized(c.extra[0]));
+      pointerEntry = 0x80cf0;
+    }
+    impl_->put(point, I32(x));
+    impl_->put(point + 4, I32(y));
+    std::array<std::uint8_t, 128> previous{};
+    std::memcpy(previous.data(), impl_->cpu->reg + 0x1100, previous.size());
+    impl_->run(pointerEntry, {ctl, point});
+    SlU bits = 0;
+    std::memcpy(&bits, impl_->cpu->reg + 0x1100, 10);
+    const float result = sl_float<float>(sl_ext80_to_f32(bits));
+    std::memcpy(impl_->cpu->reg + 0x1100, previous.data(), previous.size());
+    if (!std::isfinite(result))
+      throw std::runtime_error("Invalid original pointer result");
+    return std::clamp(result, 0.f, 1.f);
+  }
+  if (!impl_->word(knob)) {
+    impl_->zero(knob, 0x300);
+    impl_->put(rect + 8, U32(c.width));
+    impl_->put(rect + 12, U32(c.height));
+    impl_->run(0x05886, {knob, rect, 0, c.tag, 0, 0, bits32(300.f), 0});
+    // The original constructor owns this value array; retain it until engine
+    // destruction. The drawing/hit-test object never becomes a Carbon view.
+  }
+  impl_->put(knob + 8, U32(0));
+  impl_->put(knob + 12, U32(0));
+  impl_->put(knob + 16, U32(c.width));
+  impl_->put(knob + 20, U32(c.height));
+  impl_->put(knob + 0xb5, std::uint8_t(c.image == 357));
+  const auto normalized = impl_->editorNormalized(c.tag);
+  const U32 originalValues = impl_->word(knob + 0x90);
+  auto metadata = impl_->editorControl(c.tag).value;
+  float defaultValue = metadata.minimum < metadata.maximum
+                           ? float(metadata.defaultValue - metadata.minimum) /
+                                 float(metadata.maximum - metadata.minimum)
+                           : .5f;
+  if (std::abs(metadata.curve) > .01f)
+    defaultValue =
+        float(std::log(std::exp(double(metadata.curve)) * double(defaultValue) -
+                       double(defaultValue) + 1.0)) /
+        metadata.curve;
+  impl_->put(originalValues + 4, defaultValue);
+  impl_->put(originalValues + 12, normalized);
+  impl_->put(point, I32(x));
+  impl_->put(point + 4, I32(y));
+  std::array<std::uint8_t, 128> previous{};
+  std::memcpy(previous.data(), impl_->cpu->reg + 0x1100, previous.size());
+  impl_->run(0x05a12, {knob, point});
+  SlU bits = 0;
+  std::memcpy(&bits, impl_->cpu->reg + 0x1100, 10);
+  const float result = sl_float<float>(sl_ext80_to_f32(bits));
+  std::memcpy(impl_->cpu->reg + 0x1100, previous.data(), previous.size());
+  if (!std::isfinite(result))
+    throw std::runtime_error("Invalid original knob result");
+  return result;
 }
 EditorDrawing LegacyEngine::editorDrawing(unsigned id) {
   impl_->initialize();
   if (id > 9)
     throw std::out_of_range("Unknown original drawing");
   EditorDrawing out;
+  float viewportFirst = 0, viewportSpan = 0;
   constexpr U32 ctl = 0x5b0000, ctx = 0x5b0200, values = 0x5b0400,
                 rect = 0x5b0300;
   std::vector<U32> key{impl_->editorRevision};
@@ -1952,13 +2329,15 @@ EditorDrawing LegacyEngine::editorDrawing(unsigned id) {
     impl_->run(0x81258, {ctl, 0x5b3000, 0x5b3010});
     float first = impl_->read<float>(0x5b3000),
           span = impl_->read<float>(0x5b3010) - first;
+    viewportFirst = first;
+    viewportSpan = span;
     impl_->put(rect, U32(0));
     impl_->put(rect + 4, U32(0));
     impl_->put(rect + 8, out.width);
     impl_->put(rect + 12, out.height);
     impl_->run(0x8231e, {ctl, ctx, rect, bits32(first), bits32(span)});
   }
-  impl_->drawings[id] = {std::move(key), out};
+  impl_->drawings[id] = {std::move(key), out, viewportFirst, viewportSpan};
   return out;
 }
 void LegacyEngine::setSampleRate(float rate) {

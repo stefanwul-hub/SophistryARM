@@ -1,5 +1,5 @@
 #pragma once
-#include "EditorControls.h"
+#include "CompleteEditorControls.h"
 #include "GeneratorControls.h"
 #include <cstddef>
 #include <cstdint>
@@ -79,6 +79,16 @@ public:
   EditorPanelState editorPanel(unsigned panel);
   void setEditorControl(std::uint32_t tag, float normalized);
   EditorDrawing editorDrawing(unsigned id);
+  CompleteEditorState completeEditor(unsigned page);
+  EditorChoices editorChoices(std::uint32_t tag);
+  std::string editorString(std::uint32_t tag);
+  void setEditorString(std::uint32_t tag, const std::string &text);
+  void editorAction(unsigned key);
+  EditorKeyHit editorKeyHit(unsigned x, unsigned y);
+  float editorKnob(unsigned key, int x, int y);
+  EditorFileInfo editorFileInfo(std::uint32_t tag, unsigned operation);
+  void editorFileOperation(std::uint32_t tag, unsigned operation,
+                           const std::string &path);
   void setSampleRate(float rate);
   void setBlockSize(std::uint32_t frames);
   void activate();

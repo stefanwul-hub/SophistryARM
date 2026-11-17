@@ -1,11 +1,11 @@
 {
   "scope": "Statically emitted detected internal instructions; emission is not whole-engine execution proof",
   "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
-  "input_raw_sha256": "7ecf6ffc7b21139e5f1c7814f83731075fcaa2f85c60941b2fc21580023cb102",
-  "instruction_count": 191378,
-  "pcode_operation_count": 758579,
+  "input_raw_sha256": "3f6c8938406e4931cd7cc03ce11dc6fc8bd404f4b7ca6d990300741cc6027530",
+  "instruction_count": 191379,
+  "pcode_operation_count": 758582,
   "operation_counts": {
-    "COPY": 174719,
+    "COPY": 174720,
     "INT_SUB": 29703,
     "STORE": 73011,
     "INT_LESS": 9206,
@@ -14,8 +14,8 @@
     "INT_EQUAL": 54398,
     "INT_AND": 71861,
     "POPCOUNT": 26050,
-    "INT_ADD": 114803,
-    "LOAD": 68035,
+    "INT_ADD": 114804,
+    "LOAD": 68036,
     "RETURN": 3138,
     "CALL": 9815,
     "CALLIND": 2141,
@@ -396,7 +396,7 @@
     512,
     512,
     512,
-    614,
+    615,
     512,
     512,
     512,
@@ -2508,8 +2508,8 @@
     },
     {
       "name": "Unit0335.cpp",
-      "bytes": 350973,
-      "sha256": "f729c5da215350f4d964b94cd97b475f87b04de295acd4d0114a47831b889750"
+      "bytes": 351447,
+      "sha256": "dc902bcb2a3d1cd3299928e8561cf202c391bfc1e33d4db5e1f2dbc7aa9a35e2"
     },
     {
       "name": "Unit0336.cpp",
@@ -2653,8 +2653,8 @@
     },
     {
       "name": "Dispatch.cpp",
-      "bytes": 2035476,
-      "sha256": "1beadd0133fdeb7b81abfa46020c4a5aa8e343ccc65d35455026e5066770093c"
+      "bytes": 2035478,
+      "sha256": "af2439000ee1f48753b43ecf0512421a7a91dd9debfdbe073c89330fbac68d4d"
     }
   ]
 }

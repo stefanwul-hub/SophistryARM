@@ -1,4 +1,5 @@
 // Included by SophistryEditor.mm; Objective-C++/ARC only.
+#pragma once
 #include "../engine/GeneratorControls.h"
 
 namespace sophistryGeneratorView {

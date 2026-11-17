@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 namespace sophistry {
-constexpr char wrapperVersion[] = "SophistryARM CP-026";
+constexpr char wrapperVersion[] = "SophistryARM CP-027";
 // Private editor properties are for a view with a local AU handle.
 // Flat bytes avoid sharing object pointers, but the macOS remote proxy may
 // reject these IDs. Host-side remote tests must use public AU properties.
@@ -23,4 +23,19 @@ constexpr std::uint32_t generatorEditProperty = 0x53704765;  // SpGe, flat edit
 constexpr std::uint32_t editorPanelProperty = 0x53704570;    // SpEp
 constexpr std::uint32_t editorEditProperty = 0x53704565;     // SpEe
 constexpr std::uint32_t editorDrawingProperty = 0x53704564;  // SpEd
+constexpr std::uint32_t completeEditorProperty = 0x53704370; // SpCp
+constexpr std::uint32_t editorChoicesProperty = 0x53704368;  // SpCh
+constexpr std::uint32_t editorStringProperty = 0x53705478;   // SpTx
+constexpr std::uint32_t editorTextEditProperty = 0x53705465; // SpTe
+constexpr std::uint32_t editorActionProperty = 0x53704163;   // SpAc
+constexpr std::uint32_t editorKeyHitProperty = 0x53704b68;   // SpKh
+constexpr std::uint32_t editorFileInfoProperty =
+    0x53704669; // SpFi, tag | operation<<16
+constexpr std::uint32_t editorFileProperty =
+    0x5370466f; // SpFo, request + UTF-8 path
+constexpr std::uint32_t editorKnobProperty =
+    0x53704b6e; // SpKn, key + biased 10-bit x/y
+struct EditorTextEditHeader {
+  std::uint32_t version = 1, tag = 0, bytes = 0;
+};
 } // namespace sophistry

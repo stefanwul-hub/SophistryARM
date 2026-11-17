@@ -83,6 +83,7 @@ case 0xb5b61:goto L_b5b61;
 case 0xb5b63:goto L_b5b63;
 case 0xb5b66:goto L_b5b66;
 case 0xb5b6c:goto L_b5b6c;
+case 0xb5b71:goto L_b5b71;
 case 0xb5b74:goto L_b5b74;
 case 0xb5b7e:goto L_b5b7e;
 case 0xb5b82:goto L_b5b82;
@@ -1554,7 +1555,18 @@ c.pc=0xb5b6c;if(!sl_tick(c))return int(c.fault);
 P_b5b6c_0:;
 goto L_b5a59;
 P_b5b6c_1:;
-c.pc=0xb5b71;goto dispatch;
+goto L_b5b71;
+}
+L_b5b71:{ // MOV ECX,dword ptr [EBP + 0x8]
+c.pc=0xb5b71;if(!sl_tick(c))return int(c.fault);
+P_b5b71_0:;
+sl_put<4>(c.temp,sizeof(c.temp),0x3280,(sl_get<4>(c.reg,sizeof(c.reg),0x14,c) + SlU(0x8ULL)),c);
+P_b5b71_1:;
+sl_put<4>(c.temp,sizeof(c.temp),0x9680,sl_get<4>(c.memory,c.memory_size,SlU32(sl_get<4>(c.temp,sizeof(c.temp),0x3280,c)),c),c);
+P_b5b71_2:;
+sl_put<4>(c.reg,sizeof(c.reg),0x4,sl_get<4>(c.temp,sizeof(c.temp),0x9680,c),c);
+P_b5b71_3:;
+goto L_b5b74;
 }
 L_b5b74:{ // MOV dword ptr [ECX + 0x2a4],0x1
 c.pc=0xb5b74;if(!sl_tick(c))return int(c.fault);

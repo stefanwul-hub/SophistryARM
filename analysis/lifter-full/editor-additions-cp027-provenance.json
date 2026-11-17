@@ -1,0 +1,13 @@
+{
+  "scope": "One Ghidra-recovered original module-save instruction, merged into the immutable base p-code during generation",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "base_archive_sha256": "b856a7d8ca25acad668fc9c705474991a2356b3d1beef97ff713242e224b64fb",
+  "addition_sha256": "43489c5d0a9ddca47ffc4760fcfced85fcb87dd748d13b7df9ed907175a1fec7",
+  "base_instructions": 191378,
+  "additional_instructions": 1,
+  "combined_instructions": 191379,
+  "original_address": "0xb5b71",
+  "assembly": "MOV ECX,dword ptr [EBP + 0x8]",
+  "machine_bytes": "8b4d08",
+  "regenerate_command": "python3 scripts/lift_pcode_chunks.py analysis/lifter-full/instructions.jsonl.gz work/regenerated-cp027 --reuse-layout src/lifter/whole/manifest.json --additions analysis/lifter-full/editor-additions-cp027.jsonl"
+}

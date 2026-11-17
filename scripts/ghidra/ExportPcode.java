@@ -14,7 +14,11 @@ public class ExportPcode extends GhidraScript {
   TreeMap<Long,Instruction> instructions=new TreeMap<>();Set<Long> visited=new HashSet<>();
   List<String> funcs=new ArrayList<>();
   boolean all=args.length>1 && args[1].equals("--all");
-  if(all) {
+  if(args.length==4 && args[1].equals("--range")) {
+   long start=Long.parseUnsignedLong(args[2].replace("0x",""),16),end=Long.parseUnsignedLong(args[3].replace("0x",""),16);
+   InstructionIterator it=currentProgram.getListing().getInstructions(toAddr(start),true);
+   while(it.hasNext()){Instruction ins=it.next();long pc=ins.getAddress().getOffset();if(pc>=end)break;instructions.put(pc,ins);}
+  } else if(all) {
    InstructionIterator it=currentProgram.getListing().getInstructions(true);
    while(it.hasNext()){Instruction ins=it.next();if(ins.getAddress().getOffset()<0x103000)instructions.put(ins.getAddress().getOffset(),ins);}
    FunctionIterator fi=currentProgram.getFunctionManager().getFunctions(true);

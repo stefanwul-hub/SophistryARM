@@ -78,6 +78,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
 }
 } // namespace
 
+#include "CompleteEditorView.h"
 #include "GeneratorView.h"
 
 @interface SophistryParameter : NSObject
@@ -124,8 +125,8 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   SophistryFlippedView *document_;
   NSTimer *timer_;
   NSString *lastJSON_;
-  SophistryGeneratorPanel *generators_;
-  SophistryOriginalPanel *original_;
+  SophistryCompletePanel *complete_, *auxiliary_;
+  NSPanel *auxiliaryWindow_;
   NSURL *lastPresetURL_;
   NSString *lastPresetLabel_;
   NSButton *previousPreset_, *nextPreset_;
@@ -194,13 +195,10 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   }
   frame_ = [self image:128];
   panel_ = [self image:200];
-  generators_ = [[SophistryGeneratorPanel alloc] initWithAudioUnit:unit_
-                                                            bundle:bundle_];
-  generators_.hidden = YES;
-  [self addSubview:generators_];
-  original_ = [[SophistryOriginalPanel alloc] initWithAudioUnit:unit_
+  complete_ = [[SophistryCompletePanel alloc] initWithAudioUnit:unit_
                                                          bundle:bundle_];
-  [self addSubview:original_];
+  complete_.changeTarget = self;
+  [self addSubview:complete_];
   for (SophistryParameter *p in parameters_) {
     if (p.identifier != 134)
       continue;
@@ -290,8 +288,11 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
       addSubview:button(NSMakeRect(575, 440, 173, 26), @"Copier le diagnostic",
                         self, @selector(copyDiagnostic:))];
   NSTextField *title =
-      label(NSMakeRect(780, 12, 316, 21), @"Commandes du son", 15);
+      label(NSMakeRect(780, 12, 184, 21), @"Commandes du son", 15);
   [self addSubview:title];
+  NSButton *keys = button(NSMakeRect(964, 10, 142, 25), @"Clavier / MIDI…",
+                          self, @selector(showAuxiliary:));
+  [self addSubview:keys];
   search_ = [[NSSearchField alloc] initWithFrame:NSMakeRect(780, 43, 322, 25)];
   search_.placeholderString = @"Rechercher un paramètre…";
   search_.delegate = self;
@@ -400,6 +401,15 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
 }
 - (void)dealloc {
   [timer_ invalidate];
+  [auxiliaryWindow_ close];
+}
+- (void)viewWillMoveToWindow:(NSWindow *)window {
+  if (!window) {
+    [auxiliaryWindow_ close];
+    auxiliaryWindow_ = nil;
+    auxiliary_ = nil;
+  }
+  [super viewWillMoveToWindow:window];
 }
 - (void)drawRect:(NSRect)dirty {
   [[NSColor colorWithCalibratedRed:0.13 green:0.15 blue:0.2 alpha:1] setFill];
@@ -424,19 +434,70 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   panel_ = [self image:200 + selectedTab_];
   for (NSView *view in mainControls_)
     view.hidden = selectedTab_ != 0;
-  generators_.hidden = selectedTab_ != 1 && selectedTab_ != 2;
-  original_.hidden = selectedTab_ != 0 && selectedTab_ != 3;
-  if (!original_.hidden) {
-    original_.panel = selectedTab_ == 3 ? 1 : 0;
-    [original_ refresh];
-  }
-  if (!generators_.hidden) {
-    generators_.pair = selectedTab_ - 1;
-    [generators_ refresh];
-  }
+  complete_.page = selectedTab_;
+  [complete_ refresh];
   search_.stringValue = @"";
   [self buildRows];
   self.needsDisplay = YES;
+}
+- (void)showAuxiliary:(id)sender {
+  if (!auxiliaryWindow_) {
+    auxiliaryWindow_ = [[NSPanel alloc]
+        initWithContentRect:NSMakeRect(0, 0, 762, 170)
+                  styleMask:NSWindowStyleMaskTitled | NSWindowStyleMaskClosable
+                    backing:NSBackingStoreBuffered
+                      defer:NO];
+    auxiliaryWindow_.title = @"Sophistry — Clavier et sorties MIDI";
+    auxiliaryWindow_.releasedWhenClosed = NO;
+    SophistryFlippedView *content =
+        [[SophistryFlippedView alloc] initWithFrame:NSMakeRect(0, 0, 762, 170)];
+    auxiliaryWindow_.contentView = content;
+    NSSegmentedControl *tabs =
+        [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(12, 5, 380, 25)];
+    tabs.segmentCount = 2;
+    [tabs setLabel:@"Clavier" forSegment:0];
+    [tabs setLabel:@"Sorties / MIDI" forSegment:1];
+    tabs.selectedSegment = 0;
+    tabs.target = self;
+    tabs.action = @selector(auxiliaryTab:);
+    [content addSubview:tabs];
+    auxiliary_ = [[SophistryCompletePanel alloc] initWithAudioUnit:unit_
+                                                            bundle:bundle_];
+    auxiliary_.frame = NSMakeRect(0, 35, 762, 130);
+    auxiliary_.page = 8;
+    auxiliary_.changeTarget = self;
+    [content addSubview:auxiliary_];
+    NSPopUpButton *midi =
+        [[NSPopUpButton alloc] initWithFrame:NSMakeRect(420, 5, 325, 25)];
+    [midi addItemWithTitle:@"Apprentissage MIDI…"];
+    sophistry::EditorChoices choices;
+    UInt32 bytes = sizeof(choices);
+    if (!AudioUnitGetProperty(unit_, sophistry::editorChoicesProperty,
+                              kAudioUnitScope_Global, 610, &choices, &bytes))
+      for (unsigned i = 0; i < choices.count; ++i)
+        [midi addItemWithTitle:sophistryCompleteView::string(
+                                   choices.labels[i].data(),
+                                   choices.labels[i].size())];
+    midi.target = auxiliary_;
+    midi.action = @selector(midiCommand:);
+    [content addSubview:midi];
+  }
+  [auxiliary_ refresh];
+  [auxiliaryWindow_ center];
+  [self.window addChildWindow:auxiliaryWindow_ ordered:NSWindowAbove];
+  [auxiliaryWindow_ makeKeyAndOrderFront:nil];
+}
+- (void)auxiliaryTab:(NSSegmentedControl *)sender {
+  auxiliary_.page = sender.selectedSegment ? 7 : 8;
+  [auxiliary_ refresh];
+}
+- (void)completeChanged:(id)sender {
+  [self refresh:nil];
+}
+- (void)completeSelectPage:(NSNumber *)page {
+  NSButton *tab = [NSButton new];
+  tab.tag = std::clamp(page.integerValue, NSInteger(0), NSInteger(6));
+  [self selectTab:tab];
 }
 - (void)editSection:(NSButton *)sender {
   [self selectTab:sender];
@@ -467,8 +528,9 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   [self refreshParameters];
 }
 - (void)refreshParameters {
-  if (!generators_.hidden)
-    [generators_ refresh];
+  [complete_ refresh];
+  if (auxiliaryWindow_.visible)
+    [auxiliary_ refresh];
   float masterValue = 0;
   if (master_ && !AudioUnitGetParameter(unit_, 134, kAudioUnitScope_Global, 0,
                                         &masterValue)) {
@@ -476,8 +538,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     masterValue_.stringValue =
         [valueText(unit_, 134, masterValue) stringByAppendingString:@" dB"];
   }
-  if (!original_.hidden)
-    [original_ refresh];
+
   for (SophistryParameter *p in parameters_) {
     NSControl *control = rows_[@(p.identifier)];
     if (!control)
@@ -808,23 +869,25 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   panel.nameFieldStringValue = @"Sophistry.aupreset";
   [panel beginSheetModalForWindow:self.window
                 completionHandler:^(NSModalResponse result) {
-                  if (result == NSModalResponseOK && ![data writeToURL:panel.URL
-                                                            atomically:YES])
-                    [self showError:@"Le preset n’a pas pu être enregistré."];
+                  if (result == NSModalResponseOK) {
+                    BOOL ok = [data writeToURL:panel.URL atomically:YES];
+                    if (!ok)
+                      [self showError:@"Le preset n’a pas pu être enregistré."];
+                  }
                 }];
 }
 - (NSDictionary *)sophistryEditorReport {
   [self refresh:nil];
-  NSUInteger images = [original_ mainSpriteCount];
+  NSUInteger images = [complete_ mainSpriteCount];
   return @{
     @"parameter_count" : @(parameters_.count),
-    @"main_dial_count" : @([original_ mainDialCount]),
+    @"main_dial_count" : @([complete_ mainDialCount]),
     @"background_images_loaded" : @(frame_ && panel_),
     @"sprite_images_loaded" : @(images),
     @"visible_parameter_count" : @(rows_.count),
     @"size" : @[ @(self.frame.size.width), @(self.frame.size.height) ],
-    @"generator_panel" : [generators_ report],
-    @"original_panel" : [original_ report],
+    @"generator_panel" : [complete_ generatorReport],
+    @"original_panel" : [complete_ report],
     @"selected_tab" : @(selectedTab_),
     @"last_click" : lastClick_ ?: @{},
     @"preset_navigation_busy" : @(presetNavigationBusy_),
@@ -833,10 +896,36 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   };
 }
 - (BOOL)testGeneratorControl:(UInt32)tag normalized:(float)value {
-  return !generators_.hidden && [generators_ setControl:tag normalized:value];
+  return (selectedTab_ == 1 || selectedTab_ == 2) &&
+         [complete_ setControl:tag normalized:value];
+}
+- (BOOL)testCompleteControl:(UInt32)tag normalized:(float)value {
+  return [complete_ setControl:tag normalized:value];
+}
+- (BOOL)testCompleteText:(UInt32)tag value:(NSString *)value {
+  return [complete_ setText:tag value:value];
+}
+- (NSDictionary *)testAuxiliaryPage:(unsigned)page snapshot:(NSString *)path {
+  if (page != 7 && page != 8)
+    return @{};
+  [self showAuxiliary:nil];
+  auxiliary_.page = page;
+  [auxiliary_ refresh];
+  NSBitmapImageRep *rep =
+      [auxiliary_ bitmapImageRepForCachingDisplayInRect:auxiliary_.bounds];
+  BOOL saved = NO;
+  if (rep) {
+    [auxiliary_ cacheDisplayInRect:auxiliary_.bounds toBitmapImageRep:rep];
+    saved = [[rep representationUsingType:NSBitmapImageFileTypePNG
+                               properties:@{}] writeToFile:path atomically:YES];
+  }
+  NSMutableDictionary *report = [[auxiliary_ report] mutableCopy];
+  report[@"snapshot_saved"] = @(saved);
+  [auxiliaryWindow_ orderOut:nil];
+  return report;
 }
 - (BOOL)testGeneratorRoutingClick:(unsigned)slot {
-  if (generators_.hidden || slot > 2 || !self.window)
+  if ((selectedTab_ != 1 && selectedTab_ != 2) || slot > 2 || !self.window)
     return NO;
   // Probe the original screen coordinates, independently of the node layout.
   NSPoint point = NSMakePoint(82 + 15, 37 + 86 + slot * 18 + 9);

@@ -27,3 +27,5 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-017 — Mac CP-016 confirmé** : auval et installation ARM64 réussis, 522 paramètres validés, six WAV originaux/prévalidation/enregistrés exacts. Licence persistée puis réutilisée. L’utilisateur teste ses projets Logic ; interface fidèle en développement.
 
 - **CP-026 — affichages Main/Filter et Loop** : CP025 installé/auval/audio/actions confirmés ; getter/setter et tracés originaux raccordés, huit croix et forme d’onde exacte,136 modifications/cinq programmes exacts,ARM64/QEMU et six liens Mac stricts. Exécution Mac CP026 en attente. Voir [CP026](../docs/CP026.md).
+
+- **CP-027 — interface des constructeurs originaux** : 86 panneaux/1 067 définitions, effets/modulation/Loop/Arp/clavier/sorties/modules raccordés ; comparaisons i386, ARM64/QEMU et liens Mac stricts. Validation Mac CP027 en attente. Voir [CP027](../docs/CP027.md).

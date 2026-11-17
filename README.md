@@ -1,29 +1,27 @@
-# Sophistry — checkpoint CP026
+# Sophistry — checkpoint CP027
 
-Portage expérimental de Sophistry 3.0.8 vers Audio Unit ARM64. L’original contient du code i386 32 bits et PowerPC ; les instructions récupérées sont traduites statiquement en C++. La couverture de tous les chemins et de toutes les banques reste à démontrer.
+Audio Unit ARM64 expérimental pour rouvrir les projets Sophistry 3.0.8. Le composant original i386/PPC fourni est traduit statiquement en C++ ; aucun décodeur x86 ne tourne dans le plugin. La couverture de tous les chemins DSP reste à démontrer.
 
-**CP025 est installé et validé sur Mac** : auval, boutons Edit et Prev/Next, quatorze cas de générateurs, six clics de routage, rappel du nom/type et douze WAV vérifiés. L’utilisateur confirme les corrections graphiques et les commandes. Le rappel sonore des anciens projets Logic et des sons sauvegardés dans Live est confirmé depuis les étapes précédentes. [Preuve CP025](evidence/mac-cp025-installed-controls.json).
+**CP027 implémente les pages restantes à partir des constructeurs originaux** : effets, modulation, enveloppes ADSFR, détails Loop, séquenceur, clavier, sorties et menus de modules. Le relevé contient 86 panneaux et 1 067 définitions visuelles. Les fonctions de conversion, de commande et de sérialisation sont celles du moteur original. [Détails et limites](docs/CP027.md).
 
-**CP026 ajoute les croix X/Y Main/Filter, la forme d’onde du Loop Sampler, les valeurs Voices/Precision/Auto Bend et les commandes Filter dont Cutoff/Resonance.** Les calculs de tracé et les getters/setters originaux sont exécutés dans le moteur statiquement traduit. La comparaison avec les instructions i386 et l’exécution ARM64/QEMU passent ; six binaires Mac sont liés strictement en ARM64. **Cocoa, auval et les rendus audio CP026 restent à exécuter sur le Mac.** Voir [CP026](docs/CP026.md), [comparaisons originales](evidence/editor-controls-cp026.json) et [vérifications de développement](evidence/cp026-development-checks.json).
+Les comparaisons originales et ARM64/QEMU passent, ainsi que les liens stricts de sept binaires Mac. **L’exécution Cocoa, auval et audio CP027 reste à effectuer sur votre Mac.** Les dernières validations Mac reçues sont celles de CP025 ; les chargements successifs et noms sauvegardés dans Logic/Live avaient déjà été confirmés.
 
-Les carrés sont des commandes X/Y. Le tracé de sample apparaît pour le Loop Sampler avec sample chargé. Le navigateur/trim, les zones et boucles détaillées Loop, les enveloppes graphiques, les effets et la modulation restent à compléter. [Suite](docs/SUITE.md).
+## Télécharger et installer
 
-## Installer et tester
-
-[Télécharger le lanceur CP026](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/9475b87d6a76e66176df221e6809084e81d57465/Demarrer-Sophistry-CP026.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur CP027](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP027.command), fermer Logic et Live, puis lancer :
 
 ```bash
-bash "$HOME/Downloads/Demarrer-Sophistry-CP026.command"
+bash "$HOME/Downloads/Demarrer-Sophistry-CP027.command"
 ```
 
-Le lanceur télécharge [l’archive immuable](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/259682fd602ee76ae4455a7468892ec002aa84df), vérifie son SHA-256 et la décompacte. Le script compile, teste, valide auval, sauvegarde l’ancien composant et le remplace dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration en cas d’échec. Licence et banque valides sont réutilisées. Les droits administrateur servent au remplacement système.
+Le lanceur télécharge une archive immuable, vérifie son SHA-256, la décompacte puis exécute la compilation ARM64, les tests, auval et le remplacement sauvegardé dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`. En cas d’échec, il restaure le composant précédent. Licence et banque valides restent enregistrées localement.
 
-Attendre **« Installation CP026 confirmée »** et vérifier **SophistryARM CP-026** en bas de l’éditeur. Sur une copie de projet, vérifier les trois champs Main, déplacer les carrés X/Y, tourner Cutoff/Resonance dans Filter et ouvrir un preset Loop avec sample chargé. Écouter, sauvegarder et réouvrir dans Logic/Live. Le ZIP CP026 automatique contient les nouveaux tests et les captures Filter/Loop, en plus des contrôles audio précédents ; transmettre ce rapport.
+Attendre **Installation CP027 confirmée**, puis vérifier **SophistryARM CP-027** dans l’éditeur. Parcourir les sept pages et **Clavier / MIDI…**, essayer les repères Loop et les menus de modules, puis sauvegarder/réouvrir des copies de projets Logic et Live. Le ZIP CP027 est créé automatiquement, y compris en cas d’échec.
 
-Pour changer de banque : `bash "$HOME/Downloads/Demarrer-Sophistry-CP026.command" --choose-bank`. `--diagnose-only` et `--recenter-windows` restent disponibles sans installation.
+Pour changer de banque : ajouter `--choose-bank`. Les options `--diagnose-only` et `--recenter-windows` restent disponibles.
 
 ## Compatibilité et reprise
 
-L’identité `aumu / Sop3 / LinP`, le bundle `com.linplug.au.Sophistry`, les 522 paramètres, la version AU 3.0.8 et les formats de chunks sont conservés. Le build est `26001`. Les essais reçus et les états exacts ne certifient pas tous les projets ou toute la fidélité sonore.
+Identité `aumu / Sop3 / LinP`, bundle `com.linplug.au.Sophistry`, 522 paramètres, version AU 3.0.8 et chunks conservés ; build `27001`. La sauvegarde générale reste `.aupreset`, les modules utilisent leur format original `.MOD`.
 
-Sources/tests/preuves : branche `codex/sophistry-native-checkpoints`. [REPRISE.md](REPRISE.md) conserve l’état et les suites ; les archives et lanceurs vérifiés sont décrits dans `checkpoints/`. Préférences privées, licence et rapports Mac bruts restent exclus de Git.
+[Comparaisons originales](evidence/complete-editor-cp027.json) · [Vérifications](evidence/cp027-development-checks.json) · [Reprise](REPRISE.md). Les sources et checkpoints sont publiés sur `codex/sophistry-native-checkpoints`. Préférences, licence et rapports Mac bruts restent privés.

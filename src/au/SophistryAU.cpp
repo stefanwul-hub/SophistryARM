@@ -438,6 +438,61 @@ public:
   OSStatus GetPropertyInfo(AudioUnitPropertyID id, AudioUnitScope scope,
                            AudioUnitElement element, UInt32 &bytes,
                            bool &writable) override {
+    if (id == sophistry::editorKnobProperty) {
+      const auto key = element & 2047;
+      if (scope != kAudioUnitScope_Global || element >> 31 ||
+          key >= sophistry::recoveredControls().size() ||
+          !sophistry::originalPointerKind(
+              sophistry::recoveredControls()[key].kind))
+        return kAudioUnitErr_InvalidPropertyValue;
+      bytes = sizeof(float);
+      writable = false;
+      return noErr;
+    }
+    if (id == sophistry::editorFileInfoProperty ||
+        id == sophistry::editorFileProperty) {
+      if (scope != kAudioUnitScope_Global)
+        return kAudioUnitErr_InvalidScope;
+      writable = id == sophistry::editorFileProperty;
+      if (writable
+              ? element != 0
+              : !sophistry::editorFileCommand(element & 65535, element >> 16))
+        return kAudioUnitErr_InvalidElement;
+      bytes = writable ? sizeof(sophistry::EditorFileRequest) + 256
+                       : sizeof(sophistry::EditorFileInfo);
+      return noErr;
+    }
+    if (id == sophistry::editorKeyHitProperty) {
+      if (scope != kAudioUnitScope_Global || (element & 1023) >= 648 ||
+          (element >> 10) >= 95)
+        return kAudioUnitErr_InvalidPropertyValue;
+      bytes = sizeof(sophistry::EditorKeyHit);
+      writable = false;
+      return noErr;
+    }
+    if (id == sophistry::completeEditorProperty ||
+        id == sophistry::editorChoicesProperty ||
+        id == sophistry::editorStringProperty ||
+        id == sophistry::editorTextEditProperty ||
+        id == sophistry::editorActionProperty) {
+      if (scope != kAudioUnitScope_Global)
+        return kAudioUnitErr_InvalidScope;
+      writable = id == sophistry::editorTextEditProperty ||
+                 id == sophistry::editorActionProperty;
+      if ((id == sophistry::completeEditorProperty && element > 8) ||
+          (writable && element) ||
+          (!writable && id != sophistry::completeEditorProperty &&
+           !sophistry::completeControlReadable(element)))
+        return kAudioUnitErr_InvalidElement;
+      bytes = id == sophistry::completeEditorProperty
+                  ? sizeof(sophistry::CompleteEditorState)
+              : id == sophistry::editorChoicesProperty
+                  ? sizeof(sophistry::EditorChoices)
+              : id == sophistry::editorActionProperty
+                  ? sizeof(sophistry::EditorAction)
+                  : sophistry::editorStringBytes;
+      return noErr;
+    }
     if (id == sophistry::editorPanelProperty ||
         id == sophistry::editorDrawingProperty ||
         id == sophistry::editorEditProperty) {
@@ -510,6 +565,57 @@ public:
   }
   OSStatus GetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, void *data) override {
+    if (id == sophistry::editorKnobProperty) {
+      if (scope != kAudioUnitScope_Global || !data || element >> 31)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        *static_cast<float *>(data) = engine_.editorKnob(
+            element & 2047, int((element >> 11) & 1023) - 512,
+            int((element >> 21) & 1023) - 512);
+        return noErr;
+      });
+    }
+    if (id == sophistry::editorFileInfoProperty) {
+      if (scope != kAudioUnitScope_Global || !data ||
+          !sophistry::editorFileCommand(element & 65535, element >> 16))
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        *static_cast<sophistry::EditorFileInfo *>(data) =
+            engine_.editorFileInfo(element & 65535, element >> 16);
+        return noErr;
+      });
+    }
+    if (id == sophistry::editorKeyHitProperty) {
+      if (scope != kAudioUnitScope_Global || !data)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        *static_cast<sophistry::EditorKeyHit *>(data) =
+            engine_.editorKeyHit(element & 1023, element >> 10);
+        return noErr;
+      });
+    }
+    if (id == sophistry::completeEditorProperty ||
+        id == sophistry::editorChoicesProperty ||
+        id == sophistry::editorStringProperty) {
+      if (scope != kAudioUnitScope_Global || !data)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        if (id == sophistry::completeEditorProperty)
+          *static_cast<sophistry::CompleteEditorState *>(data) =
+              engine_.completeEditor(element);
+        else if (id == sophistry::editorChoicesProperty)
+          *static_cast<sophistry::EditorChoices *>(data) =
+              engine_.editorChoices(element);
+        else {
+          const auto value = engine_.editorString(element);
+          std::memset(data, 0, sophistry::editorStringBytes);
+          std::memcpy(data, value.data(),
+                      std::min<std::size_t>(value.size(),
+                                            sophistry::editorStringBytes - 1));
+        }
+        return noErr;
+      });
+    }
     if (id == sophistry::editorPanelProperty ||
         id == sophistry::editorDrawingProperty) {
       if (scope != kAudioUnitScope_Global || !data ||
@@ -604,6 +710,59 @@ public:
   OSStatus SetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, const void *data,
                        UInt32 bytes) override {
+    if (id == sophistry::editorFileProperty) {
+      if (scope != kAudioUnitScope_Global || element || !data ||
+          bytes < sizeof(sophistry::EditorFileRequest) + 2)
+        return kAudioUnitErr_InvalidPropertyValue;
+      sophistry::EditorFileRequest h;
+      std::memcpy(&h, data, sizeof(h));
+      const char *path = static_cast<const char *>(data) + sizeof(h);
+      if (h.version != 1 || !sophistry::editorFileCommand(h.tag, h.operation) ||
+          h.pathBytes < 2 || h.pathBytes > 256 ||
+          sizeof(h) + h.pathBytes != bytes || path[h.pathBytes - 1] ||
+          std::memchr(path, 0, h.pathBytes - 1))
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        engine_.editorFileOperation(h.tag, h.operation,
+                                    {path, h.pathBytes - 1});
+        syncParameters();
+        PropertyChanged(kAudioUnitProperty_ClassInfo, kAudioUnitScope_Global,
+                        0);
+        return noErr;
+      });
+    }
+    if (id == sophistry::editorTextEditProperty ||
+        id == sophistry::editorActionProperty) {
+      if (scope != kAudioUnitScope_Global || element || !data)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        if (id == sophistry::editorActionProperty) {
+          if (bytes != sizeof(sophistry::EditorAction))
+            return kAudioUnitErr_InvalidPropertyValue;
+          const auto action =
+              *static_cast<const sophistry::EditorAction *>(data);
+          if (action.version != 1)
+            return kAudioUnitErr_InvalidPropertyValue;
+          engine_.editorAction(action.key);
+        } else {
+          if (bytes < sizeof(sophistry::EditorTextEditHeader) + 1)
+            return kAudioUnitErr_InvalidPropertyValue;
+          sophistry::EditorTextEditHeader header;
+          std::memcpy(&header, data, sizeof(header));
+          const auto *text = static_cast<const char *>(data) + sizeof(header);
+          if (header.version != 1 || header.bytes < 1 ||
+              header.bytes > sophistry::editorStringBytes ||
+              std::uint64_t(sizeof(header)) + header.bytes != bytes ||
+              text[header.bytes - 1] || std::memchr(text, 0, header.bytes - 1))
+            return kAudioUnitErr_InvalidPropertyValue;
+          engine_.setEditorString(header.tag, {text, header.bytes - 1});
+        }
+        syncParameters();
+        PropertyChanged(kAudioUnitProperty_ClassInfo, kAudioUnitScope_Global,
+                        0);
+        return noErr;
+      });
+    }
     if (id == sophistry::editorEditProperty) {
       if (scope != kAudioUnitScope_Global || element || !data ||
           bytes != sizeof(sophistry::GeneratorControlEdit))
@@ -613,10 +772,14 @@ public:
         return kAudioUnitErr_InvalidPropertyValue;
       return guarded([&]() -> OSStatus {
         engine_.setEditorControl(edit.tag, edit.normalized);
-        auto au = sophistry::editorAUParameter(edit.tag);
-        if (au != sophistry::noAUParameter)
+        auto au = sophistry::recoveredAUParameter(edit.tag);
+        if (edit.tag >= 213 && edit.tag <= 218)
+          syncParameters(); // choosing an FX type can exchange another slot
+        else if (au != sophistry::noAUParameter)
           Globals()->SetParameter(au, engine_.auParameter(au));
-        else if (edit.tag == 780 || edit.tag == 781)
+        else if (edit.tag == 780 || edit.tag == 781 || edit.tag == 766 ||
+                 edit.tag == 767 || edit.tag == 774 || edit.tag == 775 ||
+                 (edit.tag >= 639 && edit.tag <= 647) || edit.tag == 610)
           syncParameters();
         PropertyChanged(kAudioUnitProperty_ClassInfo, kAudioUnitScope_Global,
                         0);

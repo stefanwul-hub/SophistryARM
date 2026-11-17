@@ -1,0 +1,368 @@
+{
+  "checkpoint": "CP-027",
+  "passed": true,
+  "scope": "Linux development and cross-compilation; no macOS runtime execution",
+  "source_sha256": {
+    "src/au/CompleteEditorView.h": "b09d8c6f618559846c4d996a092be5715fa501bda0ff0ce12c79d334d1a4aadb",
+    "src/au/GeneratorView.h": "f001eea2abb83d9673b7e83fcd4bb4e261f83cc0974fccf499bbceceb2e10757",
+    "src/au/OriginalEditorView.h": "300dde07a1e26b7a9a05e1c415ced230d84c179341313f7955d5c23eec3a5972",
+    "src/au/SophistryAU.cpp": "9e57de44cec1be13c4cc3b30a5f202a1bd370a4eaf5cf99066985dbff36f49d9",
+    "src/au/SophistryEditor.mm": "4005c77290a60b906077f067d817e38fddd9312de60de32f971d4c1d0f83135e",
+    "src/au/SophistryProperties.h": "f5079e2d8472ac2c881215a954b0ac71f9a1a08a1f4b902a20f77ac41a2f7279",
+    "src/au/Info.plist": "de8265fd0aafed843e0cc6ae4c329916853e415b43e7d5de759032348ec344a6",
+    "src/engine/LegacyEngine.cpp": "61a7aa37f5c334134a8e72a15ae39f2c5f46c7550892bf33802b4a9cde03606b",
+    "src/engine/LegacyEngine.h": "a1f89595493db57de27cbbc3fde7cec206e59188c04ece701b115ae5f6b295f1",
+    "src/engine/CompleteEditorControls.h": "0599a9afe9100949ae0d35e032838db9adf51912ba7244e067b91b1bd49f3e5f",
+    "src/engine/EditorPlatform.h": "ba036d8ec399915fa8f08953897714177c7d99d10e41505439e2aec7eedcf729",
+    "src/engine/RecoveredEditorLayout.h": "b20fc108a368abe7e0c43ec4918f20f77ceb784dcbc09a768adfc85514d60030",
+    "src/engine/RecoveredKeyboard.h": "8e613635e4347f9a381fc45314b08087a9f67e9b2e94bff9e06448d37a5bec12",
+    "src/lifter/whole/Unit0335.cpp": "dc902bcb2a3d1cd3299928e8561cf202c391bfc1e33d4db5e1f2dbc7aa9a35e2",
+    "src/lifter/whole/Dispatch.cpp": "af2439000ee1f48753b43ecf0512421a7a91dd9debfdbe073c89330fbac68d4d",
+    "src/lifter/whole/manifest.json": "d5c59cc23c71d5693050bbcb1393755431be31dd91634a07fda9337d441f9dde",
+    "tests/NativeCompleteEditorProbe.cpp": "9a0fb8cd5b1a5fc30c525b35c4f226b3f5a836e1789fe6b7859659b411e9b05c",
+    "tests/compare_complete_editor.py": "362b846848f9de703336978d11fe152a690d4a3f35441cbbec60631cf5828224",
+    "tests/AudioUnitEditorProbe.mm": "8cc3606b09e6c8bd17192e57b2f4c13199afd15d7b4506ffa55219bd0534ad83",
+    "scripts/build-audio-unit.sh": "6c88247b27d9c22b14f94376a2133d3899fec499e44b6c463d2f50114d30c119",
+    "scripts/build-native-engine.sh": "47c3b12190007992be61d3a463151d572455ef68b640b21f35d519f157cb0c74",
+    "Installer-ARM64.command": "363ae007e37c68ef6a196dea118b6068002b1b25f1da8498309eebc92257e1c0"
+  },
+  "original_comparison": "complete-editor-cp027.json",
+  "recovery": "editor-recovery-cp027.json",
+  "arm64_qemu": {
+    "passed": true,
+    "architecture": "Linux ARM64 under QEMU; no CoreAudio/AppKit",
+    "files": [
+      {
+        "file": "editor-actions.program",
+        "bytes": 21072,
+        "sha256": "f2ae4b35082db8ce78aa8585f3fd8b7e8e364298440e553910146736ee060d71",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-keys.bin",
+        "bytes": 38880,
+        "sha256": "a23846ab111bc42e78806a7e1d7b5a706d83b3cc006c19fbeed9f8d667ed854d",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-knobs.bin",
+        "bytes": 2704,
+        "sha256": "95644c454e791eb66f6f88e1b9f1f8039ab5cc8945a55c3b2a9190316de5dff5",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-loop-edited.program",
+        "bytes": 20920,
+        "sha256": "6a47a26cc966378e53ff91438555db1dd9bd7aa92e63d401bff7d09fbab3adff",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-midi.mod",
+        "bytes": 7220,
+        "sha256": "d8b28e0e94830de1d2e029b39ed9444fcd95511a9ae92c4fc37c2d26319b630e",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module643.mod",
+        "bytes": 48,
+        "sha256": "e6f217398d9140c5c68a10e988bcfa89dda43d5df6cc09ca7e6b7751e7973242",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module644.mod",
+        "bytes": 76,
+        "sha256": "7a0d839ff7db7459583071ce9328c2701af4d3ce042243976b063cfb8fb84b44",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module645.mod",
+        "bytes": 76,
+        "sha256": "c44cfdddeb9d8c8d83d68f9afeeac6214265988ecd88063a1449c786fd9c54f7",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module646.mod",
+        "bytes": 76,
+        "sha256": "9896aa088d6bdf4288d027a65bc5e50dba2642c3a83772cb89816bcd721487be",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module647.mod",
+        "bytes": 356,
+        "sha256": "05d2f42c07248c8d5d42d731b121257f5425b44ece01ffbfdaa51bd07974f791",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action2.program",
+        "bytes": 20916,
+        "sha256": "fbaa2c1488f0244e468df5597896096a213aeb1edb41ed681e31c8767b78f033",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action3.program",
+        "bytes": 20916,
+        "sha256": "4bdbe07666b4a7e8b052c0117750d1c6db9326001e1e5fda06c4febed7b69182",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action4.program",
+        "bytes": 20904,
+        "sha256": "dbde3000b37ffaeb398d1ee9b5600ef07bcea9bc670af0c8457f0a3c108bc074",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action41.program",
+        "bytes": 21072,
+        "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action42.program",
+        "bytes": 21072,
+        "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action43.program",
+        "bytes": 20960,
+        "sha256": "6d84690e4ffceb91104ba320dad3cb28fbd9589b5864a13be43c6cab1a53d233",
+        "byte_exact_to_x86_64_native_and_original": true
+      }
+    ]
+  },
+  "mac_arm64_strict_links": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 31283568,
+      "sha256": "c4a88d38e42a150581544fb270f1488dd207558e22fa443d5327253ac34a8848",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "NativeCompleteEditorProbe",
+      "architecture": "arm64",
+      "bytes": 30668112,
+      "sha256": "06e2fceeeffb039ade7da692fdccd85581da44ddb1080495f7d66204aa40efc3",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "NativeEditorProbe",
+      "architecture": "arm64",
+      "bytes": 30585376,
+      "sha256": "ef8d71174d267a70eca14dd39174f006484ad85d9f550e417106554385435b5e",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1285888,
+      "sha256": "6cf65d37c43d71dc14800cb237e4dc2b8c5e378d3eecc6e9c251c614eb1da97b",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "851a0a2a832785a881b72a8d57eaaefc422ce9797281da771d5b28e80de8d0df",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "9e073df545ded26fc153a352e7bff1488fd06003e294cfdcaf8dfe2f3f5a9068",
+      "strict_link_no_undefined_dynamic_lookup": true
+    },
+    {
+      "name": "GeneratorLayoutProbe",
+      "architecture": "arm64",
+      "bytes": 1254048,
+      "sha256": "188ac07b1e5ee7cb42472f0e5c9ddccc0a69bc94e338998f2cbd94b84bf38edb",
+      "strict_link_no_undefined_dynamic_lookup": true
+    }
+  ],
+  "required_factory_symbols_present": true,
+  "au_identity": {
+    "bundle_id": "com.linplug.au.Sophistry",
+    "type": "aumu",
+    "subtype": "Sop3",
+    "manufacturer": "LinP",
+    "version": 196616,
+    "build": "27001"
+  },
+  "previous_editor_regression": {
+    "passed": true,
+    "scope": "Original i386 editor/getter/setter/path generation vs static C++; public fixtures, no licence or musical audio",
+    "native": {
+      "passed": true,
+      "xy_plots": 8,
+      "control_records": 59,
+      "normalized_edits": 136,
+      "edited_programs": 5,
+      "rejected_invalid_edits": 4,
+      "field_and_xy_value_roundtrips": 23,
+      "waveform_lines": 474,
+      "source_frames": 334664,
+      "preview_leaves_program_unchanged": true,
+      "musical_audio_tested": false
+    },
+    "control_records_equal": 59,
+    "maximum_normalized_difference_from_json_decimal": 4.82757611663942e-10,
+    "maximum_normalized_float32_ulp_difference": 0,
+    "drawings": [
+      {
+        "name": "xy0",
+        "byte_exact": true,
+        "segments": 10,
+        "bytes": 10264,
+        "sha256": "3e8aaf56d02666ce73356e8b0ce24ea76f03b794b16b307dcf831840fb1539c4"
+      },
+      {
+        "name": "xy1",
+        "byte_exact": true,
+        "segments": 10,
+        "bytes": 10264,
+        "sha256": "3a4b966b7cf6d4f714836ee1ee0fe5b6aa7c7aabeed9dcf2672601d2ec521e5f"
+      },
+      {
+        "name": "xy2",
+        "byte_exact": true,
+        "segments": 10,
+        "bytes": 10264,
+        "sha256": "ad33395e328779a844461484475fc6a62a3285f4adf8f48d1e92a1687e7578cb"
+      },
+      {
+        "name": "xy3",
+        "byte_exact": true,
+        "segments": 10,
+        "bytes": 10264,
+        "sha256": "44716226b39dd4de66891ea730c5c877f2f6c79395cb952515140b9c8a177511"
+      },
+      {
+        "name": "xy4",
+        "byte_exact": true,
+        "segments": 10,
+        "bytes": 10264,
+        "sha256": "878006ff87ea3d83dcfe6aae4810070f15ca61d584d39ca5019bcaebee3e5dec"
+      },
+      {
+        "name": "xy5",
+        "byte_exact": true,
+        "segments": 10,
+        "bytes": 10264,
+        "sha256": "26fb8d777ad7e3580cfcf193a4054a14a4b38c000d62fafc3b4616d7a56f57e9"
+      },
+      {
+        "name": "xy6",
+        "byte_exact": true,
+        "segments": 10,
+        "bytes": 10264,
+        "sha256": "9c01d29f53407a62bcfbf99a6a132ad4dcb74f5183a06844b0d0e2b21af17be3"
+      },
+      {
+        "name": "xy7",
+        "byte_exact": true,
+        "segments": 10,
+        "bytes": 10264,
+        "sha256": "ea7114b5075d7fbdfbf3d38acce91c8a3fece141b523a789b1c5bfe2a3e97c63"
+      },
+      {
+        "name": "wave",
+        "byte_exact": true,
+        "segments": 474,
+        "bytes": 10264,
+        "sha256": "b0738dc94626ae97e481da11cb3218450f14b9377a892540e2b02c7889b78556"
+      }
+    ],
+    "edited_programs": [
+      {
+        "case": 0,
+        "bytes": 21072,
+        "byte_exact": true,
+        "sha256": "54b89ac19e91dc09196a4d4964fc6c18f88b645852c57670ad1393b84fdd396c"
+      },
+      {
+        "case": 1,
+        "bytes": 21072,
+        "byte_exact": true,
+        "sha256": "e3a0116efce36f7536142d290c5e4190c8990b4614402d0bd381d70addedaf7d"
+      },
+      {
+        "case": 2,
+        "bytes": 21072,
+        "byte_exact": true,
+        "sha256": "9c73adbb8349cb36ba72f40529f9aeb4337722519628ff67aa4d250c856b1643"
+      },
+      {
+        "case": 3,
+        "bytes": 21072,
+        "byte_exact": true,
+        "sha256": "9c73adbb8349cb36ba72f40529f9aeb4337722519628ff67aa4d250c856b1643"
+      },
+      {
+        "case": 4,
+        "bytes": 21072,
+        "byte_exact": true,
+        "sha256": "6d75c18798e9f7c34c36ea41f1e21b8dc32f8e615b5f1e133d3f1e857412dfc5"
+      }
+    ],
+    "native_cocoa_execution_tested": false
+  },
+  "au_bridge_regression": {
+    "passed": true,
+    "parameter_records": 522,
+    "reinitialization_cycles": 8,
+    "channels": [
+      2,
+      6
+    ],
+    "sample_rates": [
+      22050,
+      44100,
+      48000,
+      96000,
+      192000
+    ],
+    "licensed_musical_audio_tested": false
+  },
+  "dsp_and_primitive_regression": [
+    {
+      "target": "LiftedProbe",
+      "binary_sha256": "d4a81dc1286990adf077b53f90b9be1deea02c4f0047d1e9adf4fda1e6c410de",
+      "result": {
+        "scope": "selected statically lifted DSP",
+        "cases": 704,
+        "compared_bytes": 5420672,
+        "byte_mismatches": 0,
+        "output_buffer_byte_mismatches": 0,
+        "object_state_byte_mismatches": 0,
+        "math_calls": 201,
+        "math_mode": "recorded ABI responses",
+        "instruction_addresses_executed": 3113,
+        "fixture_valid": true,
+        "passed": true,
+        "full_synth_tested": false
+      }
+    },
+    {
+      "target": "InstructionProbe",
+      "binary_sha256": "5379eaaab89e0f23d8511614d7b4cdfb038e114990a42a051d72556600f2355d",
+      "result": {
+        "scope": "isolated original instruction fixtures including explicit guards",
+        "cases": 11635,
+        "compared_register_bytes": 146749,
+        "passed": true,
+        "full_engine_tested": false
+      }
+    }
+  ],
+  "python_tests": {
+    "passed": true,
+    "count": 30
+  },
+  "shell_syntax_and_diff_check": true,
+  "mac_appkit_executed": false,
+  "mac_auval_cp027_executed": false,
+  "licensed_musical_audio_cp027_tested": false,
+  "project_recall_cp027_verified": false
+}

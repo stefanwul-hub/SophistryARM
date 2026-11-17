@@ -3,19 +3,32 @@
 import argparse,array,bisect,collections,gzip,hashlib,json,re
 from pathlib import Path
 from lift_pcode_cpp import emit,SHA
-def rows(path):
+def rows(path,additions=None):
+ extra={}
+ if additions:
+  for line in additions.read_bytes().splitlines(keepends=True):
+   ins=json.loads(line);address=int(ins['address'],16)
+   if address in extra:raise ValueError('Duplicate additional instruction')
+   extra[address]=(line,ins)
  opener=gzip.open if path.suffix=='.gz' else open
  with opener(path,'rb') as f:
   for line in f:
-   if line.strip():yield line,json.loads(line)
-def generate(source,output,chunk_size,layout=None):
+   if line.strip():
+    ins=json.loads(line);address=int(ins['address'],16)
+    if address in extra:raise ValueError('Additional instruction overlaps base archive')
+    for pc in sorted(list(extra)):
+     if pc<address:yield extra.pop(pc)
+    yield line,ins
+ for pc in sorted(extra):yield extra[pc]
+def generate(source,output,chunk_size,layout=None,update=False,additions=None):
  provenance=json.loads((source.parent/'provenance.json').read_text())
  if provenance['sha256']!=SHA:raise ValueError('Wrong original binary provenance')
  if chunk_size<16 or chunk_size>2048:raise ValueError('Choose 16..2048 instructions per unit')
  output.mkdir(parents=True,exist_ok=True)
- if any(output.iterdir()):raise ValueError('Use a new, empty output directory')
+ if any(output.iterdir()) and not update:raise ValueError('Use a new, empty output directory')
+ if update and (not layout or layout.resolve()!=(output/'manifest.json').resolve()):raise ValueError('Updates must reuse the existing output manifest layout')
  addresses=[];raw_hash=hashlib.sha256();last=-1;maxima={'register':0,'unique':0}
- for raw,ins in rows(source):
+ for raw,ins in rows(source,additions):
   address=int(ins['address'],16)
   if address<=last or address>=0x103000:raise ValueError('Unsorted, duplicate or import-stub address')
   addresses.append(address);last=address;raw_hash.update(raw)
@@ -64,9 +77,11 @@ def generate(source,output,chunk_size,layout=None):
    next_pc=addr+ins['length']
    lines += [f'goto L_{next_pc:x};' if next_pc in known else f'c.pc=0x{next_pc:x};goto dispatch;','}']
   lines += ['}']
-  path=output/names[index];path.write_text('\n'.join(lines)+'\n');sizes.append(len(instructions))
+  path=output/names[index];text='\n'.join(lines)+'\n'
+  if not update or not path.exists() or path.read_text()!=text:path.write_text(text)
+  sizes.append(len(instructions))
  group=[];unit=0
- for index,(_,ins) in enumerate(rows(source)):
+ for index,(_,ins) in enumerate(rows(source,additions)):
   key=unit_for(int(ins['address'],16),index)
   if key!=unit:
    write_unit(unit,group);group=[];unit=key
@@ -114,5 +129,5 @@ for(;;){
  (output/'manifest.json').write_text(json.dumps(result,indent=2)+'\n')
  return result
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('source',type=Path);p.add_argument('output',type=Path);p.add_argument('--chunk-instructions',type=int,default=512);p.add_argument('--reuse-layout',type=Path);n=p.parse_args()
- r=generate(n.source,n.output,n.chunk_instructions,n.reuse_layout);print(json.dumps({k:r[k] for k in ['instruction_count','pcode_operation_count','compilation_units','terminal_guard_operations']},indent=2))
+ p=argparse.ArgumentParser();p.add_argument('source',type=Path);p.add_argument('output',type=Path);p.add_argument('--chunk-instructions',type=int,default=512);p.add_argument('--reuse-layout',type=Path);p.add_argument('--update',action='store_true');p.add_argument('--additions',type=Path);n=p.parse_args()
+ r=generate(n.source,n.output,n.chunk_instructions,n.reuse_layout,n.update,n.additions);print(json.dumps({k:r[k] for k in ['instruction_count','pcode_operation_count','compilation_units','terminal_guard_operations']},indent=2))

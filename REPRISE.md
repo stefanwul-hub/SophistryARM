@@ -1,29 +1,25 @@
-# Reprendre à CP026 — source, archive et lanceur vérifiés — prochain rapport Mac à examiner
+# Reprendre à CP027 — interface récupérée ; validation Mac en attente
 
-## Demande et dernier Mac confirmé
+## Instructions persistantes
 
-L’utilisateur confirme CP025 : Edit Filter, Prev/Next et corrections graphiques fonctionnent. Demande : formes d’onde, carrés Generators/Filters vides, valeurs Voices/Precision/Auto Bend et Cutoff/Resonance Filter inactifs ; récupérer les routines originales.
+Utilisateur propriétaire de la licence et des banques, publication explicitement autorisée. Ne pas demander à nouveau la clé, les presets ou les banques. Ne publier ni préférences, ni rapports Mac bruts, ni chemins privés. Branche autorisée : `codex/sophistry-native-checkpoints` ; ne pas modifier `main`. Pas de sous-agents sans demande explicite. Voir README et docs/CP027.md.
 
-Le ZIP CP025 reçu a été inspecté indépendamment. SHA256 c2fabc1c8986e9f846fe1f1c56d2f4cbd49d99c355b3eeec9a8fde269deff098. Installation/build25001/CP-025/auval/actions/nom-rappel confirmés ; douze WAV finis non silencieux, huit comparaisons exactes. Preuve publique filtrée : evidence/mac-cp025-installed-controls.json. Le rapport brut est privé, conservé dans les attachments de cette session. Ne pas le redemander.
+## État technique
 
-## CP026 réalisé
+CP027 implémente les sept pages, 12 types/six emplacements FX, modulation/enveloppes ADSFR, zones/repères/zoom Loop, séquenceur, clavier et carte des sorties. Relevé original : 86 panneaux,19 sélecteurs,1067 définitions. Les champs Main/navigateur et dialogues utilisent l’adaptation Cocoa existante. Panneaux Enhanced réservés vides et bitmap250 absent documentés. Numéro de série non exposé ; statut seulement.
 
-Nouveaux EditorControls.h et OriginalEditorView.h ; propriétés SpEp/SpEe/SpEd sans nouveaux ID AU. Métadonnées originales1ce0e/1d640/1d532/1d28c, getter normalisé vtable2b4, setter1cc86. Carrés Main/Filter = croix X/Y : original729d2, dix segments/couleurs, facteur de geste0.006666. Main15 molettes avec courbes originales +958Voices/614Precision/482Bend +481Glide/483Const. Filter114..117 et commandes périphériques/types780/781 selon567e6. Enveloppes141..152 encore dans la colonne générique.
+Getters et setters originaux ; saisie numérique convertie par 109c8/getter normalisé puis1cc86, car1cf16 ignore les nombres. ModuleManager b5a12/Nav2bf9e exécutés avec adaptateurs de plateforme ; Arp647 explicitement transmis au gestionnaire d’origine lorsque ses notifications sont désactivées. Écritures limitées au chemin choisi. Copie/collage d’origine ; aucun presse-papiers DSP inventé. Confirmation native pour les actions concernées. Clavier62 états/72blits et hit942d0 ; quatre routines de gestes originales, tracés XY/Loop CP026 conservés.
 
-Loop : original81258/8231e/819e2/818cc exécuté statiquement, quatre imports CGContext convertis en segments Cocoa avec CGFloat32. Données du sample intégré ; cache révision+valeurs ; lecture sans modifier le preset. Fixture publique tests/fixtures/loop-preview.fxp créée par original766type3 puis setter string1cf16 tag804 BT_cronox18.wav. Provenance jointe ;334664frames/44100Hz. Pas de licence privée. Les sources des instructions, runtime, allocateur, PCM et image restent inchangées. Identité aumu/Sop3/LinP, bundle,522ID et chunks conservés ; build26001, marqueurCP-026.
+Ghidra a récupéré b5b71 MOV ECX,[EBP+8]. Listing191379,366 unités. Base gzip inchangée +fragment analysis/lifter-full/editor-additions-cp027.jsonl ; commande de génération dans sa provenance. Seuls Unit0335/Dispatch et manifeste changent. Runtime/allocateur/PCM inchangés. Identité aumu/Sop3/LinP, bundle,522ID,AU3.0.8,chunks préservés ; build27001, marqueurCP-027.
 
-## Tests et reprise locale
+## Vérifications
 
-work/cp026 : builds/logs/recherches ; work/cross-cp026 : six MachOarm64 liés strictement. tests/compare_editor_controls.py passe59metadata/getters float32exacts, huit croix et un tracéLoop474segments byte-exacts,136edits/cinq programmes exacts. NativeEditorProbe :23allers-retours de valeurs,quatre entrées invalides rejetées,aperçu ne change pas programme. Même14fichiers exacts sous ARM64/QEMU. Bridge522paramètres/huit cycles passe.30testsPython,bashsyntax/diffcheck passent. Preuves : evidence/editor-controls-cp026.json et evidence/cp026-development-checks.json. AppKit/auval/audio avec licence CP026 NON exécutés dans Linux.
+NativeCompleteEditorProbe/compare_complete_editor :104configurations,852metadata/choix normalisés exacts,12dialogues,6fichiers de modules,3copies/collages,3240positions clavier,676positions de quatre gestes,4repères Loop numériques et6actions samples. États/fichiers exacts à l’original. Module incompatible rejeté. Mêmes sorties ARM64/QEMU. Régressions59champs/8XY/formeLoop/136edits/cinq états ;522paramètres/huit cycles ;704DSP et11635instructions ;30Python. Sept binaires Mac liés strictement. Voir preuves publiques ; ne pas confondre ces contrôles avec exécution AppKit/auval/audio CP027 sur Mac.
 
-Installer ajoute NativeEditorProbe/comparaisonUnicorn puis sept actions de champs/Filter et huitXY par coordonnées, capturesFilter/Loop. Tests précédents audio/auval et rollback restent obligatoires. Licence/banque privées sont réutilisées, ne pas les demander. LanceurCP026 doit épingler l’archive de sources et SHA256. Publication déjà autorisée sur codex/sophistry-native-checkpoints seulement ; main intacte. Aucun agent.
+Les scripts d’installation gardent audio original/licence locale/auval/rollback. Nouveau parcours Cocoa7pages,72cas FX,9choix modulation,auxiliaires et quatre saisies Loop. Cache de compilation inclut tous les nouveaux en-têtes. Dernier Mac reçu et confirmé :CP025,preuve evidence/mac-cp025-installed-controls.json. CP026/CP027 Mac en attente ; l’utilisateur a demandé de continuer sans nouveau rapport.
 
-Disque serré ; suppressions d’exécutables reconstruisibles consignées work/cp026/rebuildable-cleanup.json. Sources, objets, snapshots, rapports et historique conservés. Bundle complet ignoré checkpoints/Sophistry-history.bundle à régénérer après le dernier commit. Ne pas supprimer les snapshots de référence.
+## Reproduction et fichiers de travail
 
-## À terminer
+`python3 scripts/recover_original_editor.py --output work/editor-recovery --check` recrée les tables depuis le composant public, sans licence/préférences. `work/cp027` contient recherches/builds/logs/comparaisons ; `work/cross-cp027` les liens Mac ; `work/cp027/arm64` le replay QEMU. Outils/SDK dans `/workspace/work/tools`. Ne pas relancer toute la recompilation des366unités : les objets existent. Le nettoyage ciblé d’anciens exécutables/du tar SDK extrait est consigné dans work/cp027/rebuildable-cleanup.json ; sources, objets, rapports et historique conservés.
 
-Publication source/archive/lanceur achevée et vérifiée ; métadonnées finales conservées avec les sources. Le bundle autonome local est régénéré après le dernier commit. Prochaine étape : examiner le ZIP CP026 du Mac. Interface complète encore inachevée : browser/trim/zones/zoomLoop/enveloppes graphiques/effets/modulation. Étendre ensuite comparaisons musicales, automation et charge temps réel. Ne pas présenter les tracés/états exacts comme certification sonore complète.
-
-## Publication source confirmée
-
-Source `259682fd602ee76ae4455a7468892ec002aa84df` publiée. Archive `https://codeload.github.com/stefanwul-hub/SophistryARM/zip/259682fd602ee76ae4455a7468892ec002aa84df` : 44258206octets, SHA256 `827fc4160277296301c87e33ff1d14a7b6bfaedead048d058f01595d6cc68c64`, 4134blobs exacts vérifiés. Lire checkpoints/CP026-publication.json. LanceurCP026 publié et téléchargé à l’identique, Bash validé. URL immuable : https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/9475b87d6a76e66176df221e6809084e81d57465/Demarrer-Sophistry-CP026.command ; 2448octets, SHA256 `a869962a9925ee84c9ac5823ed40e2e6bcf39408a0ae0cfd9f0ad898c6d93c9d`. Lire checkpoints/CP026-launcher-verification.json.
+Publication : terminer source → archive codeload téléchargée et tous blobs vérifiés → lanceur épinglé/SHA256 → vérification du lanceur → métadonnées finales. Régénérer checkpoints/Sophistry-history.bundle après le dernier commit et vérifier l’arbre propre. Aucune publication CP027 n’est à annoncer avant ces contrôles.

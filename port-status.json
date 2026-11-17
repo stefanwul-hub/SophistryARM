@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-026",
+  "checkpoint": "CP-027",
   "mac_verifier_revision": 1,
   "mac_user_diagnostic": {
     "system": "macOS 15.7.2 / arm64 / Apple clang 17.0.0 / SDK 15.5",
@@ -34,13 +34,12 @@
   "logic_projects_verified": false,
   "ableton_projects_verified": false,
   "install_allowed": true,
-  "implemented_dsp_scope": "191378 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
-  "arm64_scope": "CP025 installed Mac ARM64/auval/actions/audio confirmed. CP026 editor paths and state compared to original and ARM64/QEMU; six Mac ARM64 binaries strictly cross-linked. CP026 native Cocoa/auval/audio execution pending.",
+  "implemented_dsp_scope": "191379 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
+  "arm64_scope": "CP027 original UI data, gestures, module files and edited states compared to i386 and Linux ARM64/QEMU. Seven Mac ARM64 binaries strictly linked. CP027 AppKit/auval/audio execution pending.",
   "next_work": [
-    "Run CP026 Mac gates and inspect Filter/Loop snapshots and seven controls/eight XY tests",
-    "Check values, waveform and filter gestures in saved Logic/Live project copies",
-    "Complete original browser/trim/Loop zones and graphical filter envelopes/effects/modulation",
-    "Broaden licensed audio, automation and real-time polyphony comparisons"
+    "Inspect CP027 Mac installation/Cocoa/auval/audio report and snapshots",
+    "Review the seven pages, module menus, auxiliary views and Loop markers in Logic/Live project copies",
+    "Broaden licensed musical, automation and real-time polyphony comparisons"
   ],
   "state_container_reader_implemented": true,
   "state_container_round_trip_tested": [
@@ -56,7 +55,7 @@
   "sample_used_for_full_synth_audio_test": true,
   "sample_sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050",
   "static_lifter_implemented": true,
-  "static_lifter_scope": "191378 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
+  "static_lifter_scope": "191379 statically translated instructions; one licensed full-preset render passed on native ARM64 macOS (CP-011). Original AU lifecycle/metadata/MIDI/render paths are being integrated; whole-engine coverage remains unproven.",
   "static_lifter_test_cases": 704,
   "static_lifter_bit_exact_vs_unicorn": true,
   "static_lifter_original_apple_libm_tested": false,
@@ -81,7 +80,7 @@
   "github_checkpoint_branch": "codex/sophistry-native-checkpoints",
   "github_verified_code_commit": "259682fd602ee76ae4455a7468892ec002aa84df",
   "github_verified_archive_sha256": "827fc4160277296301c87e33ff1d14a7b6bfaedead048d058f01595d6cc68c64",
-  "macos_auval_scope": "CP025 passed and installed25001 verified. CP026 pending.",
+  "macos_auval_scope": "CP025 passed and installed25001 verified. CP027 pending.",
   "static_lifter_macos_fixture_cases_passed": 704,
   "au_diagnostic_host_macos_compilation_confirmed": true,
   "native_arm64_macos_libm_comparison": {
@@ -122,7 +121,7 @@
   "prototype_host_registration_preferences_loaded": false,
   "prototype_full_render_signal_above_minus_100_dbfs": false,
   "prototype_full_render_matches_original": true,
-  "github_verification_note": "CP026 archive independently downloaded; all4134 tracked blobs verified. See checkpoints/CP026-publication.json.",
+  "github_verification_note": "CP026 immutable sources and launcher verified. CP027 publication checks are recorded separately when complete.",
   "native_cpp_host_available": true,
   "native_cpp_host_is_production_ready": false,
   "native_cpp_host_linux_executed": true,
@@ -163,7 +162,7 @@
   "au_bridge_arm64_linux_qemu_regression_passed": true,
   "au_bridge_parameter_records_tested": 522,
   "au_bridge_reinitialization_cycles_tested": 8,
-  "au_native_gui_status": "CP025 Main Edit/Prev/Next, generator types/routing and graphics confirmed. CP026 original XY paths, Loop preview, Main fields and Filter controls added; native Mac execution pending. Full GUI incomplete.",
+  "au_native_gui_status": "CP027 implements the visible original constructor panels and controls with native dialogs and an auxiliary keyboard/MIDI window. Mac visual review and full behavioral coverage pending.",
   "install_block_reason": null,
   "installation_authorized_by_user": true,
   "github_cp013_source_commit": "92d1d60d44e8cfa89d570721bfdbd9d52ad12adf",
@@ -221,7 +220,7 @@
   "installed_component_checkpoint_last_confirmed": "CP-025",
   "github_cp018_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/6a5372de3fdf5faf865dfe4f49f5a07844c217e1/Demarrer-Sophistry-CP018.command",
   "github_cp018_launcher_verified": true,
-  "native_ui_macos_execution_scope": "CP025 local Cocoa and OS-managed remote view/audio passed; new CP026 field/XY/waveform tests prepared. Remote visual fidelity remains unproven.",
+  "native_ui_macos_execution_scope": "CP025 local Cocoa and OS-managed remote view/audio passed; CP027 seven-page/effect/modulation/auxiliary/Loop text tests prepared.",
   "cp018_local_cocoa_editor_passed": true,
   "cp018_remote_editor_test_passed": false,
   "cp018_installation_committed": false,
@@ -424,5 +423,13 @@
   "github_cp026_verified_tracked_blobs": 4134,
   "github_cp026_launcher": "Demarrer-Sophistry-CP026.command",
   "github_cp026_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/9475b87d6a76e66176df221e6809084e81d57465/Demarrer-Sophistry-CP026.command",
-  "github_cp026_launcher_verified": true
+  "github_cp026_launcher_verified": true,
+  "original_ui_complete_scope": "Full fidelity is not certified before Mac review; CP027 implements the recovered visible controls. Reserved empty original panels and missing bitmap250 are documented.",
+  "native_ui_constructor_implementation_complete": true,
+  "cp027_original_editor_evidence": "evidence/complete-editor-cp027.json",
+  "cp027_development_evidence": "evidence/cp027-development-checks.json",
+  "cp027_mac_execution_confirmed": false,
+  "cp027_constructor_controls": 1067,
+  "cp027_original_panels": 86,
+  "cp027_instruction_count": 191379
 }

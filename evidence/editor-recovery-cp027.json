@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "scope": "Re-execution of original constructors/metadata/keyboard draw with recording platform adapters; no preferences or registration input",
+  "panels": 86,
+  "selectors": 19,
+  "visual_definitions": 1067,
+  "protected_registration_tag": 765,
+  "reserved_empty_panels": [
+    70,
+    71,
+    82,
+    83,
+    84,
+    85,
+    86
+  ],
+  "bitmap_250_absent_from_original_resource_fork": true,
+  "regenerated_files": [
+    {
+      "file": "analysis/recovered-editor-layout.json",
+      "sha256": "c9458d48c28f2e7ffbd08f4a254dc6d487d7002e1da1ca68701029c24e3eae31"
+    },
+    {
+      "file": "src/engine/RecoveredEditorLayout.h",
+      "sha256": "b20fc108a368abe7e0c43ec4918f20f77ceb784dcbc09a768adfc85514d60030"
+    },
+    {
+      "file": "src/engine/RecoveredKeyboard.h",
+      "sha256": "8e613635e4347f9a381fc45314b08087a9f67e9b2e94bff9e06448d37a5bec12"
+    }
+  ]
+}
