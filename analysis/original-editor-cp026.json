@@ -1,0 +1,496 @@
+{
+  "scope": "Original Main/Filter editor recovered from i386 code; native Cocoa adapter",
+  "original_image_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "source_functions": {
+    "main": "0x56e50 / 0x57ef8 / 0x57fe0",
+    "filter": "0x567e6",
+    "metadata": "0x1ce0e / 0x1d640 / 0x1d532 / 0x1d28c",
+    "normalized_getter": "Synth vtable +0x2b4",
+    "normalized_setter": "0x1cc86",
+    "xy_constructor": "0x72790",
+    "xy_draw": "0x729d2 / 0x72cac",
+    "xy_mouse": "0x72de8",
+    "loop_viewport": "0x81258",
+    "loop_extrema": "0x8231e",
+    "loop_path": "0x819e2",
+    "loop_colors": "0x818cc"
+  },
+  "main_private_fields": {
+    "958": "Voices 1..13 (13=all)",
+    "614": "Exactness / Precision 85..100",
+    "482": "Bend -48..48 (AU482)"
+  },
+  "xy_raw_pairs": [
+    [
+      585,
+      586
+    ],
+    [
+      587,
+      588
+    ],
+    [
+      589,
+      590
+    ],
+    [
+      591,
+      592
+    ],
+    [
+      593,
+      594
+    ],
+    [
+      595,
+      596
+    ],
+    [
+      597,
+      598
+    ],
+    [
+      599,
+      600
+    ]
+  ],
+  "main_xy_size": [
+    40,
+    40
+  ],
+  "filter_xy_size": [
+    60,
+    60
+  ],
+  "loop_view_size": [
+    316,
+    92
+  ],
+  "loop_original_sample_slots": "Synth +0x32b070+4*generator (generator 0 or 1)",
+  "loop_normalized_slot_tags": [
+    812,
+    814,
+    816,
+    832,
+    946,
+    948
+  ],
+  "xy_relative_drag_scale": 0.006666,
+  "public_au_parameter_count_unchanged": 522,
+  "controls": [
+    {
+      "tag": 480,
+      "name": "Time",
+      "text": "0.030",
+      "value": 30,
+      "normalized": 0.207832277
+    },
+    {
+      "tag": 481,
+      "name": "Glide Mode",
+      "text": "Off ",
+      "value": 0,
+      "normalized": 0
+    },
+    {
+      "tag": 482,
+      "name": "Bend",
+      "text": "0",
+      "value": 0,
+      "normalized": 0.5
+    },
+    {
+      "tag": 483,
+      "name": "Const",
+      "text": "Time",
+      "value": 0,
+      "normalized": 0
+    },
+    {
+      "tag": 484,
+      "name": "G3 Cent",
+      "text": "0",
+      "value": 0,
+      "normalized": 0.5
+    },
+    {
+      "tag": 485,
+      "name": "G3 Cent",
+      "text": "0",
+      "value": 0,
+      "normalized": 0.5
+    },
+    {
+      "tag": 486,
+      "name": "G3 Cent",
+      "text": "0",
+      "value": 0,
+      "normalized": 0.5
+    },
+    {
+      "tag": 487,
+      "name": "G3 Cent",
+      "text": "0",
+      "value": 0,
+      "normalized": 0.5
+    },
+    {
+      "tag": 488,
+      "name": "Cutoff",
+      "text": "1704",
+      "value": 1704,
+      "normalized": 0.424742073
+    },
+    {
+      "tag": 489,
+      "name": "Cutoff",
+      "text": "420",
+      "value": 420,
+      "normalized": 0.175824568
+    },
+    {
+      "tag": 490,
+      "name": "Resonance",
+      "text": "67",
+      "value": 67,
+      "normalized": 0.670000017
+    },
+    {
+      "tag": 491,
+      "name": "Resonance",
+      "text": "61",
+      "value": 61,
+      "normalized": 0.610000014
+    },
+    {
+      "tag": 498,
+      "name": "Fx0 Wet",
+      "text": "0.339",
+      "value": 339,
+      "normalized": 0.738333642
+    },
+    {
+      "tag": 499,
+      "name": "Fx1 Wet",
+      "text": "1.000",
+      "value": 1000,
+      "normalized": 1
+    },
+    {
+      "tag": 500,
+      "name": "Fx2 Wet",
+      "text": "0.152",
+      "value": 152,
+      "normalized": 0.553354263
+    },
+    {
+      "tag": 501,
+      "name": "Fx3 Wet",
+      "text": "0.000",
+      "value": 0,
+      "normalized": 0
+    },
+    {
+      "tag": 502,
+      "name": "Fx4 Wet",
+      "text": "0.468",
+      "value": 468,
+      "normalized": 0.815329909
+    },
+    {
+      "tag": 503,
+      "name": "Fx5 Wet",
+      "text": "0.200",
+      "value": 200,
+      "normalized": 0.615316331
+    },
+    {
+      "tag": 585,
+      "name": "Pan",
+      "text": "-0.24",
+      "value": -24,
+      "normalized": 0.379999995
+    },
+    {
+      "tag": 586,
+      "name": "Gen0 Vol.",
+      "text": "-14",
+      "value": -74,
+      "normalized": 0.591160238
+    },
+    {
+      "tag": 587,
+      "name": "Pan",
+      "text": "0.85",
+      "value": 85,
+      "normalized": 0.925000012
+    },
+    {
+      "tag": 588,
+      "name": "Gen1 Vol.",
+      "text": "-6.0",
+      "value": -30,
+      "normalized": 0.834254146
+    },
+    {
+      "tag": 589,
+      "name": "Pan",
+      "text": "0.02",
+      "value": 2,
+      "normalized": 0.50999999
+    },
+    {
+      "tag": 590,
+      "name": "Gen2 Vol.",
+      "text": "-31",
+      "value": -156,
+      "normalized": 0.138121545
+    },
+    {
+      "tag": 591,
+      "name": "Pan",
+      "text": "0.00",
+      "value": 0,
+      "normalized": 0.5
+    },
+    {
+      "tag": 592,
+      "name": "Gen3 Vol.",
+      "text": "-34",
+      "value": -171,
+      "normalized": 0.0552486181
+    },
+    {
+      "tag": 593,
+      "name": "Cutoff",
+      "text": "1704",
+      "value": 1704,
+      "normalized": 0.424742073
+    },
+    {
+      "tag": 594,
+      "name": "Resonance",
+      "text": "67",
+      "value": 67,
+      "normalized": 0.670000017
+    },
+    {
+      "tag": 595,
+      "name": "Cutoff",
+      "text": "420",
+      "value": 420,
+      "normalized": 0.175824568
+    },
+    {
+      "tag": 596,
+      "name": "Resonance",
+      "text": "61",
+      "value": 61,
+      "normalized": 0.610000014
+    },
+    {
+      "tag": 614,
+      "name": "Exactness",
+      "text": "97",
+      "value": 97,
+      "normalized": 0.800000012
+    },
+    {
+      "tag": 958,
+      "name": "Voices",
+      "text": "  9 ",
+      "value": 9,
+      "normalized": 0.666666687
+    },
+    {
+      "tag": 110,
+      "name": "Intense",
+      "text": "0",
+      "value": 0,
+      "normalized": 0
+    },
+    {
+      "tag": 111,
+      "name": "Intense",
+      "text": "0",
+      "value": 0,
+      "normalized": 0
+    },
+    {
+      "tag": 112,
+      "name": "Var 0 On",
+      "text": "On ",
+      "value": 1,
+      "normalized": 1
+    },
+    {
+      "tag": 113,
+      "name": "Var 1 On",
+      "text": "On ",
+      "value": 1,
+      "normalized": 1
+    },
+    {
+      "tag": 114,
+      "name": "Cutoff",
+      "text": "1704",
+      "value": 1704,
+      "normalized": 0.424742073
+    },
+    {
+      "tag": 115,
+      "name": "Cutoff",
+      "text": "420",
+      "value": 420,
+      "normalized": 0.175824568
+    },
+    {
+      "tag": 116,
+      "name": "Resonance",
+      "text": "67",
+      "value": 67,
+      "normalized": 0.670000017
+    },
+    {
+      "tag": 117,
+      "name": "Resonance",
+      "text": "61",
+      "value": 61,
+      "normalized": 0.610000014
+    },
+    {
+      "tag": 119,
+      "name": "FilterType",
+      "text": "LP24",
+      "value": 0,
+      "normalized": 0.333333343
+    },
+    {
+      "tag": 120,
+      "name": "Cut KeyF",
+      "text": "100",
+      "value": 100,
+      "normalized": 1
+    },
+    {
+      "tag": 121,
+      "name": "Cut KeyF",
+      "text": "100",
+      "value": 100,
+      "normalized": 1
+    },
+    {
+      "tag": 122,
+      "name": "EnvInv",
+      "text": "Off",
+      "value": 0,
+      "normalized": 0
+    },
+    {
+      "tag": 123,
+      "name": "EnvInv",
+      "text": "Off",
+      "value": 0,
+      "normalized": 0
+    },
+    {
+      "tag": 124,
+      "name": "EnvDepth",
+      "text": "0.00",
+      "value": 0,
+      "normalized": 0
+    },
+    {
+      "tag": 125,
+      "name": "EnvDepth",
+      "text": "0.00",
+      "value": 0,
+      "normalized": 0
+    },
+    {
+      "tag": 126,
+      "name": "Type     ",
+      "text": "0.20",
+      "value": 20,
+      "normalized": 0.200000003
+    },
+    {
+      "tag": 128,
+      "name": "Slope    ",
+      "text": "12 dB",
+      "value": 1,
+      "normalized": 0
+    },
+    {
+      "tag": 130,
+      "name": "Var0Pan",
+      "text": "0.00",
+      "value": 0,
+      "normalized": 0.5
+    },
+    {
+      "tag": 131,
+      "name": "Var1Pan",
+      "text": "0.00",
+      "value": 0,
+      "normalized": 0.5
+    },
+    {
+      "tag": 132,
+      "name": "Gen0 Vol.",
+      "text": "-3.0",
+      "value": -15,
+      "normalized": 0.876033068
+    },
+    {
+      "tag": 133,
+      "name": "Gen0 Vol.",
+      "text": "-3.0",
+      "value": -15,
+      "normalized": 0.876033068
+    },
+    {
+      "tag": 597,
+      "name": "Cutoff",
+      "text": "1704",
+      "value": 1704,
+      "normalized": 0.424742073
+    },
+    {
+      "tag": 598,
+      "name": "Resonance",
+      "text": "67",
+      "value": 67,
+      "normalized": 0.670000017
+    },
+    {
+      "tag": 599,
+      "name": "Cutoff",
+      "text": "420",
+      "value": 420,
+      "normalized": 0.175824568
+    },
+    {
+      "tag": 600,
+      "name": "Resonance",
+      "text": "61",
+      "value": 61,
+      "normalized": 0.610000014
+    },
+    {
+      "tag": 780,
+      "name": "Var 0 Type",
+      "text": "Alltype ",
+      "value": 1,
+      "normalized": 1
+    },
+    {
+      "tag": 781,
+      "name": "Var 1 Type",
+      "text": "Classic ",
+      "value": 0,
+      "normalized": 0
+    }
+  ],
+  "complete_original_gui": false
+}

@@ -25,3 +25,5 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-016 — retour CP-015 et corrections auval** : compilation/persistance de licence et audio préflight confirmés sur Mac, auval échoué et rollback confirmé. Propriété33 raccordée à l’original (596cas), initialisation192k/4096 débloquée et réglages validés conservés après échec. Prochain auval Mac et rappel de projets à vérifier.
 
 - **CP-017 — Mac CP-016 confirmé** : auval et installation ARM64 réussis, 522 paramètres validés, six WAV originaux/prévalidation/enregistrés exacts. Licence persistée puis réutilisée. L’utilisateur teste ses projets Logic ; interface fidèle en développement.
+
+- **CP-026 — affichages Main/Filter et Loop** : CP025 installé/auval/audio/actions confirmés ; getter/setter et tracés originaux raccordés, huit croix et forme d’onde exacte,136 modifications/cinq programmes exacts,ARM64/QEMU et six liens Mac stricts. Exécution Mac CP026 en attente. Voir [CP026](../docs/CP026.md).

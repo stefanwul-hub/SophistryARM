@@ -1,4 +1,5 @@
 #pragma once
+#include "EditorControls.h"
 #include "GeneratorControls.h"
 #include <cstddef>
 #include <cstdint>
@@ -75,6 +76,9 @@ public:
   void setAUParameter(std::uint32_t id, float value);
   GeneratorPanelState generatorPanel(unsigned pair);
   void setGeneratorControl(std::uint32_t tag, float normalized);
+  EditorPanelState editorPanel(unsigned panel);
+  void setEditorControl(std::uint32_t tag, float normalized);
+  EditorDrawing editorDrawing(unsigned id);
   void setSampleRate(float rate);
   void setBlockSize(std::uint32_t frames);
   void activate();

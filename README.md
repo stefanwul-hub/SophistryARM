@@ -1,31 +1,29 @@
-# Sophistry — checkpoint CP025
+# Sophistry — checkpoint CP026
 
-Portage expérimental de Sophistry 3.0.8 vers Audio Unit ARM64 pour macOS. L’original est un binaire i386 32 bits et PowerPC ; les instructions originales sélectionnées sont traduites statiquement en C++. La couverture complète de tous les chemins et de toutes les banques reste à démontrer.
+Portage expérimental de Sophistry 3.0.8 vers Audio Unit ARM64. L’original contient du code i386 32 bits et PowerPC ; les instructions récupérées sont traduites statiquement en C++. La couverture de tous les chemins et de toutes les banques reste à démontrer.
 
-**CP023 est installé et validé par le rapport Mac du 16 novembre 2026** : auval, quatorze cas Cocoa des générateurs, rappel du nom et du type dans une instance neuve, 32 cas PCM Apple, 96 chargements avec mémoire stable et douze WAV reçus comparés à leurs références. [Preuve vérifiée](evidence/mac-cp023-installed-generators.json). La création de vue distante et son audio passent ; sa capture noire ne certifie pas son affichage. Le fonctionnement des chargements successifs et du nom est également confirmé par l’utilisateur dans Logic et Live depuis CP022.
+**CP025 est installé et validé sur Mac** : auval, boutons Edit et Prev/Next, quatorze cas de générateurs, six clics de routage, rappel du nom/type et douze WAV vérifiés. L’utilisateur confirme les corrections graphiques et les commandes. Le rappel sonore des anciens projets Logic et des sons sauvegardés dans Live est confirmé depuis les étapes précédentes. [Preuve CP025](evidence/mac-cp025-installed-controls.json).
 
-**CP024 n’a pas été installé** : son nouveau test de clic a échoué avant la copie système. CP023 a été conservé ; les neuf WAV de prévalidation sont exacts et la licence reste enregistrée. Le retour utilisateur confirme que MIX/AM/FM et le choix du type fonctionnent. [Analyse du rapport CP024](evidence/mac-cp024-preflight-editor-stop.json).
+**CP026 ajoute les croix X/Y Main/Filter, la forme d’onde du Loop Sampler, les valeurs Voices/Precision/Auto Bend et les commandes Filter dont Cutoff/Resonance.** Les calculs de tracé et les getters/setters originaux sont exécutés dans le moteur statiquement traduit. La comparaison avec les instructions i386 et l’exécution ARM64/QEMU passent ; six binaires Mac sont liés strictement en ARM64. **Cocoa, auval et les rendus audio CP026 restent à exécuter sur le Mac.** Voir [CP026](docs/CP026.md), [comparaisons originales](evidence/editor-controls-cp026.json) et [vérifications de développement](evidence/cp026-development-checks.json).
 
-**CP025 corrige le repère du test, la zone Edit des filtres et active Prev/Next.** Les corrections graphiques CP024 restent incluses. Prev/Next parcourent les FXP/AU presets du dossier du son ouvert ; si le fichier source du son restauré n’est pas identifiable, un choix de preset donne un point de départ. Le moteur reste inchangé. Les cinq binaires Mac concernés sont liés en ARM64 ; les nouveaux tests AppKit restent à exécuter sur le Mac. Voir [CP025](docs/CP025.md) et [les preuves de développement](evidence/cp025-development-checks.json).
-
-Le navigateur/trim de samples, les zones et boucles détaillées du Loop Sampler et les panneaux filtres/effets/modulation restent à compléter. [Suite du travail](docs/SUITE.md).
+Les carrés sont des commandes X/Y. Le tracé de sample apparaît pour le Loop Sampler avec sample chargé. Le navigateur/trim, les zones et boucles détaillées Loop, les enveloppes graphiques, les effets et la modulation restent à compléter. [Suite](docs/SUITE.md).
 
 ## Installer et tester
 
-[Télécharger le lanceur CP025](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/758bd9233d46cf33258042cce2980f1bc6909fd0/Demarrer-Sophistry-CP025.command), fermer Logic et Live, puis exécuter :
+[Télécharger le lanceur CP026](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP026.command), fermer Logic et Live, puis lancer :
 
 ```bash
-bash "$HOME/Downloads/Demarrer-Sophistry-CP025.command"
+bash "$HOME/Downloads/Demarrer-Sophistry-CP026.command"
 ```
 
-Le script télécharge [l’archive de sources épinglée](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/e6bb75ee78d839e55d3ff37ef5476bd866aad74b), vérifie son SHA-256, l’extrait, compile, teste et valide auval. Licence et dossier de banque valides sont réutilisés. Il sauvegarde le composant précédent et installe dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration si un contrôle échoue. Les droits administrateur sont demandés pour le remplacement système.
+Le lanceur télécharge l’archive immuable, vérifie son SHA-256 et la décompacte. Le script compile, teste, valide auval, sauvegarde l’ancien composant et le remplace dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`, avec restauration en cas d’échec. Licence et banque valides sont réutilisées. Les droits administrateur servent au remplacement système.
 
-Attendre **« Installation CP025 confirmée »**, puis vérifier la mention **SophistryARM CP-025** en bas de l’éditeur et essayer Edit du filtre ainsi que Prev/Next dans une copie de projet. Modifier quelques commandes, sauvegarder et réouvrir ; vérifier le son, les réglages et le nom dans les deux hôtes. Transmettre le ZIP CP025 produit automatiquement, qui contient les captures des quatorze cas de générateurs et des six clics de routage. Les contrôles ne peuvent certifier tous les projets privés ou toutes les banques.
+Attendre **« Installation CP026 confirmée »** et vérifier **SophistryARM CP-026** en bas de l’éditeur. Sur une copie de projet, vérifier les trois champs Main, déplacer les carrés X/Y, tourner Cutoff/Resonance dans Filter et ouvrir un preset Loop avec sample chargé. Écouter, sauvegarder et réouvrir dans Logic/Live. Le ZIP CP026 automatique contient les nouveaux tests et les captures Filter/Loop, en plus des contrôles audio précédents ; transmettre ce rapport.
 
-Pour choisir une autre banque : `bash "$HOME/Downloads/Demarrer-Sophistry-CP025.command" --choose-bank`. Les options `--diagnose-only` et `--recenter-windows` restent disponibles sans installation.
+Pour changer de banque : `bash "$HOME/Downloads/Demarrer-Sophistry-CP026.command" --choose-bank`. `--diagnose-only` et `--recenter-windows` restent disponibles sans installation.
 
 ## Compatibilité et reprise
 
-L’identité historique `aumu / Sop3 / LinP`, le bundle `com.linplug.au.Sophistry`, les 522 paramètres et le format de chunks sont conservés pour les projets AU. Les anciens projets Logic sont de nouveau audibles selon les retours utilisateur ; le rappel des sons est également confirmé dans Live. La fidélité sonore générale reste à mesurer sur davantage de scénarios.
+L’identité `aumu / Sop3 / LinP`, le bundle `com.linplug.au.Sophistry`, les 522 paramètres, la version AU 3.0.8 et les formats de chunks sont conservés. Le build est `26001`. Les essais reçus et les états exacts ne certifient pas tous les projets ou toute la fidélité sonore.
 
-Sources, tests et preuves sont sur la branche `codex/sophistry-native-checkpoints`. [REPRISE.md](REPRISE.md) donne l’état courant et les étapes suivantes. Les archives vérifiées et lanceurs précédents restent décrits dans `checkpoints/`. Préférences privées, licence et rapports Mac bruts restent exclus de Git.
+Sources/tests/preuves : branche `codex/sophistry-native-checkpoints`. [REPRISE.md](REPRISE.md) conserve l’état et les suites ; les archives et lanceurs vérifiés sont décrits dans `checkpoints/`. Préférences privées, licence et rapports Mac bruts restent exclus de Git.

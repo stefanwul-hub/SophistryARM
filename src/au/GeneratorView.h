@@ -49,6 +49,9 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
 @property sophistry::GeneratorControlSpec spec;
 @property sophistry::GeneratorControlState state;
 @property(strong) NSImage *sprite;
+@property AudioUnitPropertyID editProperty;
+@property BOOL useOriginalNormalized;
+@property float originalNormalized;
 - (BOOL)activateNormalized:(double)value;
 - (void)updateState:(sophistry::GeneratorControlState)state
                spec:(sophistry::GeneratorControlSpec)spec;
@@ -62,6 +65,8 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
   return self.enabled;
 }
 - (double)normalized {
+  if (_useOriginalNormalized)
+    return _originalNormalized;
   return sophistry::generatorNormalized(_state, _state.value);
 }
 - (NSRect)controlRect {
@@ -103,8 +108,8 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
   request.tag = _state.tag;
   request.normalized = float(std::clamp(value, 0.0, 1.0));
   const auto result = AudioUnitSetProperty(
-      _audioUnit, sophistry::generatorEditProperty, kAudioUnitScope_Global, 0,
-      &request, sizeof(request));
+      _audioUnit, _editProperty ?: sophistry::generatorEditProperty,
+      kAudioUnitScope_Global, 0, &request, sizeof(request));
   if (result) {
     NSBeep();
     return NO;
@@ -135,15 +140,24 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
   // Keep the native hit regions and accessibility without drawing over them.
   if (_spec.widget == W::Type)
     return;
-  if (_spec.widget == W::Routing) {
+  if (_spec.widget == W::Routing || _spec.widget == W::Radio ||
+      _spec.widget == W::HorizontalRadio) {
     if (!_sprite)
       return;
-    const CGFloat rowHeight = r.size.height / 3;
-    const CGFloat sourceHeight = _sprite.size.height / 6;
-    for (int i = 0; i < 3; ++i) {
-      const int frame = i + (_state.value == i ? 3 : 0);
-      [_sprite drawInRect:NSMakeRect(r.origin.x, r.origin.y + i * rowHeight,
-                                     r.size.width, rowHeight)
+    const int count = _state.maximum - _state.minimum + 1;
+    if (count < 1 || count > 16)
+      return;
+    const BOOL horizontal = _spec.widget == W::HorizontalRadio;
+    const CGFloat rowHeight =
+        horizontal ? r.size.height : r.size.height / count;
+    const CGFloat width = horizontal ? r.size.width / count : r.size.width;
+    const CGFloat sourceHeight = _sprite.size.height / (2 * count);
+    for (int i = 0; i < count; ++i) {
+      const int frame = i + (_state.value == i + _state.minimum ? count : 0);
+      [_sprite drawInRect:NSMakeRect(r.origin.x + (horizontal ? i * width : 0),
+                                     r.origin.y +
+                                         (horizontal ? 0 : i * rowHeight),
+                                     width, rowHeight)
                  fromRect:NSMakeRect(0,
                                      _sprite.size.height -
                                          (frame + 1) * sourceHeight,
@@ -154,7 +168,8 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
                     hints:nil];
     }
   } else if (_sprite && _spec.frames) {
-    const auto frame = NSUInteger(std::lround(n * (_spec.frames - 1)));
+    const auto frame = NSUInteger(std::clamp(
+        int(float(n) * (_spec.frames - 1) + 0.001f), 0, int(_spec.frames - 1)));
     const CGFloat height = _sprite.size.height / _spec.frames;
     [_sprite
             drawInRect:r
@@ -216,13 +231,22 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
     [NSMenu popUpContextMenu:menu withEvent:down forView:self];
     return;
   }
-  if (_spec.widget == W::Routing) {
+  if (_spec.widget == W::Routing || _spec.widget == W::Radio ||
+      _spec.widget == W::HorizontalRadio) {
+    const int count = _state.maximum - _state.minimum + 1;
+    const double coordinate = _spec.widget == W::HorizontalRadio
+                                  ? local.x / self.bounds.size.width
+                                  : local.y / self.bounds.size.height;
     [self activateNormalized:sophistry::generatorNormalized(
-                                 _state, std::clamp(int(local.y / 18), 0, 2))];
+                                 _state, _state.minimum +
+                                             std::clamp(int(coordinate * count),
+                                                        0, count - 1))];
     return;
   }
   if (_spec.widget == W::Toggle) {
-    [self activateNormalized:_state.value ? 0 : 1];
+    const int next =
+        _state.value >= _state.maximum ? _state.minimum : _state.value + 1;
+    [self activateNormalized:sophistry::generatorNormalized(_state, next)];
     return;
   }
   if ((_spec.widget == W::Step && local.x >= self.bounds.size.width - 24) ||
@@ -279,6 +303,8 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
 }
 @end
 
+#include "OriginalEditorView.h"
+
 @interface SophistryGeneratorPanel : NSView
 @property NSUInteger pair;
 - (instancetype)initWithAudioUnit:(AudioUnit)unit bundle:(NSBundle *)bundle;
@@ -293,6 +319,7 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
   NSMutableDictionary<NSNumber *, NSImage *> *images_;
   sophistry::GeneratorPanelState state_;
   OSStatus result_;
+  NSMutableArray<SophistryOriginalDrawing *> *waves_;
 }
 - (BOOL)isFlipped {
   return YES;
@@ -304,6 +331,16 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
   bundle_ = bundle;
   nodes_ = [NSMutableDictionary dictionary];
   images_ = [NSMutableDictionary dictionary];
+  waves_ = [NSMutableArray array];
+  for (unsigned g = 0; g < 2; ++g) {
+    SophistryOriginalDrawing *view = [[SophistryOriginalDrawing alloc]
+        initWithFrame:NSMakeRect(429, g ? 161 : 24, 316, 92)];
+    view.audioUnit = unit_;
+    view.drawingID = 8 + g;
+    view.hidden = YES;
+    [self addSubview:view];
+    [waves_ addObject:view];
+  }
   return self;
 }
 - (NSImage *)image:(unsigned)n {
@@ -325,6 +362,8 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
                                  &bytes);
   for (SophistryGeneratorNode *n in nodes_.allValues)
     n.hidden = YES;
+  for (SophistryOriginalDrawing *v in waves_)
+    v.hidden = YES;
   if (result_ || bytes != sizeof(state_) || state_.version != 1 ||
       state_.count > state_.controls.size()) {
     self.needsDisplay = YES;
@@ -354,6 +393,12 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
       node.sprite = spec.image ? [self image:spec.image] : nil;
       node.hidden = NO;
     }
+  if (!_pair)
+    for (unsigned g = 0; g < 2; ++g)
+      if (state_.types[g] == 3) {
+        waves_[g].hidden = NO;
+        [waves_[g] refresh];
+      }
   self.needsDisplay = YES;
 }
 - (void)drawRect:(NSRect)dirty {
@@ -419,7 +464,8 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
     @"controls" : controls,
     @"active_controls_in_bounds" : @(bounds),
     @"sprites_loaded" : @(images),
-    @"complete_multisample_editor" : @NO
+    @"complete_multisample_editor" : @NO,
+    @"waveforms" : @[ [waves_[0] report], [waves_[1] report] ]
   };
 }
 @end

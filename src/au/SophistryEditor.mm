@@ -90,110 +90,6 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
 @implementation SophistryParameter
 @end
 
-@interface SophistryDial : NSControl
-@property AudioUnit audioUnit;
-@property(strong) SophistryParameter *parameter;
-@property(strong) NSImage *sprite;
-@property NSUInteger frames;
-@property float value;
-- (void)refresh;
-@end
-@implementation SophistryDial
-- (BOOL)isFlipped {
-  return YES;
-}
-- (BOOL)acceptsFirstResponder {
-  return YES;
-}
-- (void)refresh {
-  float value = 0;
-  if (!AudioUnitGetParameter(_audioUnit, _parameter.identifier,
-                             kAudioUnitScope_Global, 0, &value)) {
-    if (value != _value) {
-      _value = value;
-      self.needsDisplay = YES;
-    }
-    self.toolTip = [NSString
-        stringWithFormat:@"%@ : %@", _parameter.name,
-                         valueText(_audioUnit, _parameter.identifier, value)];
-    self.accessibilityLabel = _parameter.name;
-    self.accessibilityValue = @(value);
-  }
-}
-- (void)drawRect:(NSRect)dirty {
-  if (!_sprite || !_frames)
-    return;
-  const double range = _parameter.maximum - _parameter.minimum;
-  const double normalized =
-      range > 0
-          ? std::clamp(double((_value - _parameter.minimum) / range), 0.0, 1.0)
-          : 0;
-  const NSUInteger frame = NSUInteger(std::lround(normalized * (_frames - 1)));
-  const CGFloat height = _sprite.size.height / _frames;
-  [_sprite drawInRect:self.bounds
-             fromRect:NSMakeRect(0, _sprite.size.height - (frame + 1) * height,
-                                 _sprite.size.width, height)
-            operation:NSCompositingOperationSourceOver
-             fraction:1
-       respectFlipped:YES
-                hints:nil];
-}
-- (void)setFromNormalized:(double)value {
-  value = std::clamp(value, 0.0, 1.0);
-  float physical =
-      _parameter.minimum + value * (_parameter.maximum - _parameter.minimum);
-  if (!AudioUnitSetParameter(_audioUnit, _parameter.identifier,
-                             kAudioUnitScope_Global, 0, physical, 0)) {
-    event(_audioUnit, _parameter.identifier,
-          kAudioUnitEvent_ParameterValueChange);
-    [self refresh];
-    [self sendAction:self.action to:self.target];
-  }
-}
-- (void)mouseDown:(NSEvent *)down {
-  [self.window makeFirstResponder:self];
-  event(_audioUnit, _parameter.identifier,
-        kAudioUnitEvent_BeginParameterChangeGesture);
-  if (down.modifierFlags & NSEventModifierFlagCommand) {
-    AudioUnitSetParameter(_audioUnit, _parameter.identifier,
-                          kAudioUnitScope_Global, 0, _parameter.defaultValue,
-                          0);
-    event(_audioUnit, _parameter.identifier,
-          kAudioUnitEvent_ParameterValueChange);
-    [self refresh];
-  } else {
-    const double range = _parameter.maximum - _parameter.minimum;
-    double initial = range > 0 ? (_value - _parameter.minimum) / range : 0;
-    NSPoint origin = down.locationInWindow;
-    for (;;) {
-      NSEvent *next =
-          [self.window nextEventMatchingMask:NSEventMaskLeftMouseDragged |
-                                             NSEventMaskLeftMouseUp];
-      if (!next || next.type == NSEventTypeLeftMouseUp)
-        break;
-      double sensitivity =
-          (next.modifierFlags & NSEventModifierFlagOption) ? 600 : 150;
-      [self setFromNormalized:initial + (next.locationInWindow.y - origin.y) /
-                                            sensitivity];
-      [self displayIfNeeded];
-    }
-  }
-  event(_audioUnit, _parameter.identifier,
-        kAudioUnitEvent_EndParameterChangeGesture);
-}
-- (void)scrollWheel:(NSEvent *)input {
-  const double range = _parameter.maximum - _parameter.minimum;
-  if (range <= 0)
-    return;
-  event(_audioUnit, _parameter.identifier,
-        kAudioUnitEvent_BeginParameterChangeGesture);
-  [self setFromNormalized:(_value - _parameter.minimum) / range +
-                          input.scrollingDeltaY / 200];
-  event(_audioUnit, _parameter.identifier,
-        kAudioUnitEvent_EndParameterChangeGesture);
-}
-@end
-
 @interface SophistryFlippedView : NSView
 @end
 @implementation SophistryFlippedView
@@ -217,7 +113,6 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   NSImage *frame_, *panel_;
   NSInteger selectedTab_;
   NSMutableArray<SophistryParameter *> *parameters_;
-  NSMutableArray<SophistryDial *> *dials_;
   NSMutableDictionary<NSNumber *, NSControl *> *rows_;
   NSMutableDictionary<NSNumber *, NSTextField *> *values_;
   NSMutableArray<NSView *> *mainControls_;
@@ -230,6 +125,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   NSTimer *timer_;
   NSString *lastJSON_;
   SophistryGeneratorPanel *generators_;
+  SophistryOriginalPanel *original_;
   NSURL *lastPresetURL_;
   NSString *lastPresetLabel_;
   NSButton *previousPreset_, *nextPreset_;
@@ -250,7 +146,6 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   unit_ = unit;
   bundle_ = [NSBundle bundleForClass:self.class];
   parameters_ = [NSMutableArray array];
-  dials_ = [NSMutableArray array];
   mainControls_ = [NSMutableArray array];
   rows_ = [NSMutableDictionary dictionary];
   values_ = [NSMutableDictionary dictionary];
@@ -303,6 +198,9 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
                                                             bundle:bundle_];
   generators_.hidden = YES;
   [self addSubview:generators_];
+  original_ = [[SophistryOriginalPanel alloc] initWithAudioUnit:unit_
+                                                         bundle:bundle_];
+  [self addSubview:original_];
   for (SophistryParameter *p in parameters_) {
     if (p.identifier != 134)
       continue;
@@ -329,42 +227,6 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
       @"Modulation", @"Réglages"
     ][i];
     [self addSubview:tab];
-  }
-  // Main control centers/styles are from KajaEditor 0x57fe0/0x57ef8.
-  const struct {
-    UInt32 id, sprite, frames;
-    int x, y, w, h;
-  } knobs[] = {
-      {484, 360, 42, 144, 94, 58, 57},  {485, 361, 42, 206, 94, 58, 57},
-      {486, 362, 42, 144, 156, 58, 57}, {487, 363, 42, 206, 156, 58, 57},
-      {114, 364, 42, 389, 94, 58, 57},  {115, 366, 42, 389, 156, 58, 57},
-      {116, 365, 42, 451, 94, 58, 57},  {117, 367, 42, 451, 156, 58, 57},
-      {492, 356, 41, 663, 94, 120, 57}, {493, 355, 41, 663, 156, 120, 57},
-      {494, 352, 51, 250, 284, 73, 36}, {495, 352, 51, 336, 284, 73, 36},
-      {496, 352, 51, 422, 284, 73, 36}, {497, 352, 51, 508, 284, 73, 36},
-      {480, 350, 71, 692, 263, 33, 33}};
-  for (auto spec : knobs) {
-    SophistryParameter *parameter = nil;
-    for (SophistryParameter *p in parameters_)
-      if (p.identifier == spec.id) {
-        parameter = p;
-        break;
-      }
-    if (!parameter)
-      continue;
-    SophistryDial *dial = [[SophistryDial alloc]
-        initWithFrame:NSMakeRect(spec.x - spec.w / 2, spec.y - spec.h / 2,
-                                 spec.w, spec.h)];
-    dial.parameter = parameter;
-    dial.audioUnit = unit_;
-    dial.sprite = [self image:spec.sprite];
-    dial.frames = spec.frames;
-    dial.target = self;
-    dial.action = @selector(controlChanged:);
-    [dial refresh];
-    [dials_ addObject:dial];
-    [mainControls_ addObject:dial];
-    [self addSubview:dial];
   }
   lcd_ = label(NSMakeRect(24, 226, 145, 33), @"", 10);
   lcd_.textColor = [NSColor colorWithWhite:0.1 alpha:1];
@@ -461,7 +323,7 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   case 2:
     return (id < 108 && id % 4 >= 2) || id == 109 || id == 486 || id == 487;
   case 3:
-    return id >= 110 && id < 134;
+    return (id >= 110 && id < 134) || (id >= 141 && id <= 152);
   case 4:
     return id >= 213 && id < 480;
   case 5:
@@ -563,6 +425,11 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
   for (NSView *view in mainControls_)
     view.hidden = selectedTab_ != 0;
   generators_.hidden = selectedTab_ != 1 && selectedTab_ != 2;
+  original_.hidden = selectedTab_ != 0 && selectedTab_ != 3;
+  if (!original_.hidden) {
+    original_.panel = selectedTab_ == 3 ? 1 : 0;
+    [original_ refresh];
+  }
   if (!generators_.hidden) {
     generators_.pair = selectedTab_ - 1;
     [generators_ refresh];
@@ -609,9 +476,8 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     masterValue_.stringValue =
         [valueText(unit_, 134, masterValue) stringByAppendingString:@" dB"];
   }
-  for (SophistryDial *dial in dials_)
-    if (!dial.hidden)
-      [dial refresh];
+  if (!original_.hidden)
+    [original_ refresh];
   for (SophistryParameter *p in parameters_) {
     NSControl *control = rows_[@(p.identifier)];
     if (!control)
@@ -949,18 +815,16 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
 }
 - (NSDictionary *)sophistryEditorReport {
   [self refresh:nil];
-  NSUInteger images = 0;
-  for (SophistryDial *dial in dials_)
-    if (dial.sprite)
-      ++images;
+  NSUInteger images = [original_ mainSpriteCount];
   return @{
     @"parameter_count" : @(parameters_.count),
-    @"main_dial_count" : @(dials_.count),
+    @"main_dial_count" : @([original_ mainDialCount]),
     @"background_images_loaded" : @(frame_ && panel_),
     @"sprite_images_loaded" : @(images),
     @"visible_parameter_count" : @(rows_.count),
     @"size" : @[ @(self.frame.size.width), @(self.frame.size.height) ],
     @"generator_panel" : [generators_ report],
+    @"original_panel" : [original_ report],
     @"selected_tab" : @(selectedTab_),
     @"last_click" : lastClick_ ?: @{},
     @"preset_navigation_busy" : @(presetNavigationBusy_),
@@ -1011,6 +875,19 @@ NSButton *button(NSRect rect, NSString *title, id target, SEL action) {
     return NO;
   [(NSButton *)hit performClick:nil];
   return YES;
+}
+- (BOOL)testOriginalControlAtX:(double)x y:(double)y normalized:(float)value {
+  NSView *hit = [self controlAtPoint:NSMakePoint(x, y)];
+  return [hit isKindOfClass:SophistryGeneratorNode.class] &&
+         [(SophistryGeneratorNode *)hit activateNormalized:value];
+}
+- (BOOL)testOriginalXYAtX:(double)x
+                        y:(double)y
+              normalizedX:(float)nx
+              normalizedY:(float)ny {
+  NSView *hit = [self controlAtPoint:NSMakePoint(x, y)];
+  return [hit isKindOfClass:SophistryOriginalXY.class] &&
+         [(SophistryOriginalXY *)hit activateX:nx y:ny];
 }
 @end
 

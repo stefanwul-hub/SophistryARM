@@ -2,7 +2,7 @@
 // Remote host validation uses only public APIs in AudioUnitRemoteHostProbe.mm.
 #include "../src/au/PresetBrowser.h"
 #include "../src/au/SophistryProperties.h"
-#include "../src/engine/GeneratorControls.h"
+#include "../src/engine/EditorControls.h"
 #import <AppKit/AppKit.h>
 #import <AudioToolbox/AUCocoaUIView.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -148,6 +148,11 @@ static NSDictionary *presetLabelRoundTrip(AudioComponent component,
 - (BOOL)testGeneratorControl:(UInt32)tag normalized:(float)value;
 - (BOOL)testGeneratorRoutingClick:(unsigned)slot;
 - (BOOL)testEditorButtonAtX:(double)x y:(double)y;
+- (BOOL)testOriginalControlAtX:(double)x y:(double)y normalized:(float)value;
+- (BOOL)testOriginalXYAtX:(double)x
+                        y:(double)y
+              normalizedX:(float)nx
+              normalizedY:(float)ny;
 @end
 
 static NSDictionary *mainButtonTests(NSView *view, NSString *fxpPath,
@@ -245,14 +250,135 @@ static NSDictionary *mainButtonTests(NSView *view, NSString *fxpPath,
   };
 }
 
+static sophistry::EditorControlState
+originalControl(AudioUnit unit, unsigned panel, unsigned tag) {
+  sophistry::EditorPanelState state;
+  UInt32 size = sizeof(state);
+  if (AudioUnitGetProperty(unit, sophistry::editorPanelProperty,
+                           kAudioUnitScope_Global, panel, &state, &size))
+    return {};
+  for (unsigned i = 0; i < state.count && i < state.controls.size(); ++i)
+    if (state.controls[i].value.tag == tag)
+      return state.controls[i];
+  return {};
+}
+static NSDictionary *originalEditorTests(NSView *view, AudioUnit unit,
+                                         NSString *fxp, NSString *loop,
+                                         NSString *prefix) {
+  NSMutableArray *controls = [NSMutableArray array],
+                 *xy = [NSMutableArray array];
+  BOOL passed = YES;
+  const struct {
+    unsigned panel, tag;
+    int x, y;
+  } cases[] = {{0, 958, 58, 300}, {0, 614, 137, 300}, {0, 482, 625, 293},
+               {1, 114, 205, 81}, {1, 116, 205, 143}, {1, 115, 205, 219},
+               {1, 117, 205, 281}};
+  NSButton *tab = [NSButton new];
+  for (auto c : cases) {
+    tab.tag = c.panel ? 3 : 0;
+    [view selectTab:tab];
+    auto before = originalControl(unit, c.panel, c.tag);
+    float target = before.normalized < .4f ? .82f : .17f;
+    BOOL hit = [view testOriginalControlAtX:c.x y:c.y normalized:target];
+    auto after = originalControl(unit, c.panel, c.tag);
+    BOOL ok = hit && before.value.tag == c.tag && after.value.tag == c.tag &&
+              after.value.value != before.value.value;
+    BOOL restored = [view testOriginalControlAtX:c.x
+                                               y:c.y
+                                      normalized:before.normalized];
+    restored = restored && originalControl(unit, c.panel, c.tag).value.value ==
+                               before.value.value;
+    [controls addObject:@{
+      @"tag" : @(c.tag),
+      @"hit" : @(hit),
+      @"before" : @(before.value.value),
+      @"after" : @(after.value.value),
+      @"restored" : @(restored),
+      @"passed" : @(ok && restored)
+    }];
+    passed = passed && ok && restored;
+  }
+  for (unsigned panel = 0; panel < 2; ++panel) {
+    tab.tag = panel ? 3 : 0;
+    [view selectTab:tab];
+    for (auto spec : sophistry::editorXY(panel)) {
+      auto x = originalControl(unit, panel, spec.xTag),
+           y = originalControl(unit, panel, spec.yTag);
+      float nx = x.normalized < .5f ? .81f : .21f,
+            ny = y.normalized < .5f ? .79f : .19f;
+      int cx = spec.x + spec.size / 2, cy = 37 + spec.y + spec.size / 2;
+      BOOL hit = [view testOriginalXYAtX:cx y:cy normalizedX:nx normalizedY:ny];
+      auto xx = originalControl(unit, panel, spec.xTag),
+           yy = originalControl(unit, panel, spec.yTag);
+      BOOL ok = hit && xx.value.value != x.value.value &&
+                yy.value.value != y.value.value;
+      BOOL restored = [view testOriginalXYAtX:cx
+                                            y:cy
+                                  normalizedX:x.normalized
+                                  normalizedY:y.normalized];
+      restored =
+          restored &&
+          originalControl(unit, panel, spec.xTag).value.value ==
+              x.value.value &&
+          originalControl(unit, panel, spec.yTag).value.value == y.value.value;
+      [xy addObject:@{
+        @"x_tag" : @(spec.xTag),
+        @"y_tag" : @(spec.yTag),
+        @"passed" : @(ok && restored)
+      }];
+      passed = passed && ok && restored;
+    }
+  }
+  NSBitmapImageRep *filter =
+      [view bitmapImageRepForCachingDisplayInRect:view.bounds];
+  BOOL filterPNG = NO;
+  if (filter) {
+    [view cacheDisplayInRect:view.bounds toBitmapImageRep:filter];
+    filterPNG = [[filter representationUsingType:NSBitmapImageFileTypePNG
+                                      properties:@{}]
+        writeToFile:[prefix stringByAppendingString:@"-filters.png"]
+         atomically:YES];
+  }
+  BOOL loaded = [view loadPresetURL:[NSURL fileURLWithPath:loop]];
+  tab.tag = 1;
+  [view selectTab:tab];
+  NSDictionary *waveReport =
+      [view sophistryEditorReport][@"generator_panel"][@"waveforms"][0];
+  BOOL waveform = loaded && [waveReport[@"status"] intValue] == 0 &&
+                  [waveReport[@"source_frames"] unsignedIntValue] == 334664 &&
+                  [waveReport[@"lines"] unsignedIntValue] > 300;
+  NSBitmapImageRep *rep =
+      [view bitmapImageRepForCachingDisplayInRect:view.bounds];
+  BOOL wavePNG = NO;
+  if (rep) {
+    [view cacheDisplayInRect:view.bounds toBitmapImageRep:rep];
+    wavePNG = [[rep representationUsingType:NSBitmapImageFileTypePNG
+                                 properties:@{}]
+        writeToFile:[prefix stringByAppendingString:@"-loop-waveform.png"]
+         atomically:YES];
+  }
+  BOOL restored = [view loadPresetURL:[NSURL fileURLWithPath:fxp]];
+  return @{
+    @"passed" : @(passed && filterPNG && waveform && wavePNG && restored),
+    @"field_and_filter_controls" : controls,
+    @"xy_controls" : xy,
+    @"loop_waveform" : waveReport ?: @{},
+    @"filter_snapshot" : @(filterPNG),
+    @"waveform_snapshot" : @(wavePNG),
+    @"public_preset_restored" : @(restored)
+  };
+}
+
 int main(int argc, const char **argv) {
   @autoreleasepool {
-    if (argc != 5)
+    if (argc != 6)
       return 2;
     NSString *bundlePath = [NSString stringWithUTF8String:argv[1]];
     NSString *statePath = [NSString stringWithUTF8String:argv[2]];
     NSString *fxpPath = [NSString stringWithUTF8String:argv[3]];
     NSString *prefix = [NSString stringWithUTF8String:argv[4]];
+    NSString *loopPath = [NSString stringWithUTF8String:argv[5]];
     AudioUnit unit = nullptr;
     AudioComponent component = nullptr;
     NSString *failure = nil;
@@ -263,6 +389,7 @@ int main(int argc, const char **argv) {
     NSMutableArray *routingCases = [NSMutableArray array];
     NSDictionary *generatorRecall = @{};
     NSDictionary *mainButtons = @{};
+    NSDictionary *originalEditor = @{};
     NSString *advertisedClass = @"";
     NSString *componentViewClass = @"";
     OSStatus runtimePropertyStatus = noErr;
@@ -381,6 +508,13 @@ int main(int argc, const char **argv) {
               if (![mainButtons[@"passed"] boolValue])
                 failure =
                     @"Main Edit or Prev/Next coordinate action test failed";
+            }
+            if (!failure) {
+              originalEditor =
+                  originalEditorTests(view, unit, fxpPath, loopPath, prefix);
+              if (![originalEditor[@"passed"] boolValue])
+                failure = @"Original Main/Filter controls or loop waveform "
+                          @"test failed";
             }
             for (unsigned generator = 0; !failure && generator < 4;
                  ++generator) {
@@ -578,6 +712,7 @@ int main(int argc, const char **argv) {
       @"generator_cases" : generatorCases,
       @"routing_mouse_cases" : routingCases,
       @"main_button_tests" : mainButtons,
+      @"original_editor_tests" : originalEditor,
       @"generator_fresh_instance_recall" : generatorRecall,
       @"aupreset_imported" : @(aupreset),
       @"native_view_snapshot_saved" : @(screenshot),

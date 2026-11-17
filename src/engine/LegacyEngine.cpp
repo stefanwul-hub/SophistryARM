@@ -88,6 +88,17 @@ struct LegacyEngine::Impl {
   std::map<U32, std::string> imports;
   std::map<std::string, U64> calls;
   std::string lastImport;
+  EditorDrawing *activeDrawing = nullptr;
+  float drawX = 0, drawY = 0;
+  bool drawPoint = false;
+  U32 editorRevision = 0;
+  struct DrawingCache {
+    std::vector<U32> key;
+    EditorDrawing drawing;
+  };
+  std::map<unsigned, DrawingCache> drawings;
+  EditorControlState editorControl(U32 tag);
+  float editorNormalized(U32 tag);
   std::map<U32, U32> attributes;
   struct Mutex {
     U32 type = 0, depth = 0;
@@ -687,7 +698,29 @@ void LegacyEngine::Impl::service(U32 pc) {
   double fp = 0;
   bool has64 = false;
   U64 integer64 = 0;
-  if (name == "___dynamic_cast") {
+  if (activeDrawing &&
+      (name == "_CGContextBeginPath" || name == "_CGContextMoveToPoint" ||
+       name == "_CGContextAddLineToPoint" || name == "_CGContextDrawPath")) {
+    if (arg(0))
+      throw std::runtime_error("Unexpected preview graphics context");
+    if (name == "_CGContextBeginPath")
+      drawPoint = false;
+    else if (name == "_CGContextMoveToPoint" ||
+             name == "_CGContextAddLineToPoint") {
+      const float x = sl_float<float>(arg(1)), y = sl_float<float>(arg(2));
+      if (!std::isfinite(x) || !std::isfinite(y))
+        throw std::runtime_error("Nonfinite original preview point");
+      if (name == "_CGContextAddLineToPoint" && drawPoint) {
+        if (activeDrawing->count >= activeDrawing->lines.size())
+          throw std::runtime_error("Original preview exceeds line capacity");
+        activeDrawing->lines[activeDrawing->count++] = {drawX, drawY, x, y,
+                                                        word(0x5b0240)};
+      }
+      drawX = x;
+      drawY = y;
+      drawPoint = true;
+    }
+  } else if (name == "___dynamic_cast") {
     if (!arg(0))
       result = 0;
     else {
@@ -1561,6 +1594,7 @@ void LegacyEngine::initialize() { impl_->initialize(); }
 void LegacyEngine::restoreChunk(const std::vector<std::uint8_t> &chunk,
                                 bool program) {
   impl_->initialize();
+  ++impl_->editorRevision;
   if (chunk.empty() || chunk.size() > 0x100000)
     throw std::runtime_error("Invalid legacy state size");
   impl_->assetOpenResults.clear();
@@ -1773,6 +1807,159 @@ void LegacyEngine::setGeneratorControl(U32 tag, float normalized) {
   // Synth::setParameter handles editor-only selectors beyond the public VST
   // automation list, including voice updates and the original edited flag.
   impl_->run(0x1cc86, {object, tag, bits32(normalized)});
+}
+float LegacyEngine::Impl::editorNormalized(U32 tag) {
+  std::array<std::uint8_t, 128> previous{};
+  std::memcpy(previous.data(), cpu->reg + 0x1100, previous.size());
+  run(word(word(object) + 0x2b4), {object, tag});
+  SlU bits = 0;
+  std::memcpy(&bits, cpu->reg + 0x1100, 10);
+  const float value = sl_float<float>(sl_ext80_to_f32(bits));
+  std::memcpy(cpu->reg + 0x1100, previous.data(), previous.size());
+  if (!std::isfinite(value))
+    throw std::runtime_error("Invalid original normalized editor value");
+  return std::clamp(value, 0.f, 1.f);
+}
+EditorControlState LegacyEngine::Impl::editorControl(U32 tag) {
+  EditorControlState r;
+  auto &c = r.value;
+  c.tag = tag;
+  c.auParameter = editorAUParameter(tag);
+  constexpr U32 info = 0x5d2200, text = 0x5d4000;
+  zero(info, 28);
+  run(0x1ce0e, {object, tag, info});
+  c.kind = word(info);
+  c.minimum = I32(word(info + 4));
+  c.maximum = I32(word(info + 8));
+  c.defaultValue = I32(word(info + 12));
+  c.decimals = word(info + 20);
+  c.curve = read<float>(info + 24);
+  zero(text, 4096);
+  run(0x1d640, {object, tag, text});
+  std::strncpy(c.name, string(text, 4096).c_str(), sizeof(c.name) - 1);
+  zero(text, 4096);
+  run(0x1d532, {object, tag, text, sizeof(c.text) - 1});
+  std::strncpy(c.text, string(text, 4096).c_str(), sizeof(c.text) - 1);
+  c.value = I32(run(0x1d28c, {object, tag}));
+  r.normalized = editorNormalized(tag);
+  return r;
+}
+EditorPanelState LegacyEngine::editorPanel(unsigned panel) {
+  impl_->initialize();
+  if (panel > 1)
+    throw std::out_of_range("Unknown editor panel");
+  EditorPanelState r;
+  r.panel = panel;
+  for (unsigned f = 0; f < 2; ++f) {
+    r.filterModes[f] = impl_->run(0x1d28c, {object, 780 + f});
+    r.envelopeModes[f] = impl_->run(0x1d28c, {object, 793 + f});
+  }
+  std::set<U32> tags;
+  for (const auto &s : editorLayout(panel, r.filterModes))
+    tags.insert(s.tag);
+  for (const auto &s : editorXY(panel)) {
+    tags.insert(s.xTag);
+    tags.insert(s.yTag);
+  }
+  if (panel) {
+    tags.insert(780);
+    tags.insert(781);
+  }
+  if (tags.size() > r.controls.size())
+    throw std::runtime_error("Too many original editor controls");
+  for (auto tag : tags)
+    r.controls[r.count++] = impl_->editorControl(tag);
+  return r;
+}
+void LegacyEngine::setEditorControl(U32 tag, float value) {
+  impl_->initialize();
+  if (!isEditorControl(tag) || !std::isfinite(value) || value < 0 || value > 1)
+    throw std::out_of_range("Invalid original editor control");
+  impl_->run(0x1cc86, {object, tag, bits32(value)});
+}
+EditorDrawing LegacyEngine::editorDrawing(unsigned id) {
+  impl_->initialize();
+  if (id > 9)
+    throw std::out_of_range("Unknown original drawing");
+  EditorDrawing out;
+  constexpr U32 ctl = 0x5b0000, ctx = 0x5b0200, values = 0x5b0400,
+                rect = 0x5b0300;
+  std::vector<U32> key{impl_->editorRevision};
+  U32 wave = 0;
+  std::array<float, 6> normalized{};
+  if (id < 8) {
+    auto xy = id < 6 ? editorXY(0)[id] : editorXY(1)[id - 6];
+    normalized[0] = impl_->editorNormalized(xy.xTag);
+    normalized[1] = impl_->editorNormalized(xy.yTag);
+    out.width = out.height = xy.size;
+  } else {
+    const U32 g = id - 8;
+    wave = impl_->word(object + 0x32b070 + 4 * g);
+    out.width = 316;
+    out.height = 92;
+    if (!wave || !impl_->word(wave + 0x21c) ||
+        I32(impl_->word(wave + 0x210)) < 1000 || !impl_->word(wave + 0x22c))
+      return out;
+    out.sourceFrames = impl_->word(wave + 0x22c);
+    out.sampleRate = impl_->word(wave + 0x210);
+    key.insert(key.end(), {wave, impl_->word(wave + 0x21c), out.sourceFrames,
+                           out.sampleRate});
+    const unsigned tags[] = {812 + g, 814 + g, 816 + g,
+                             832 + g, 946 + g, 948 + g};
+    for (unsigned i = 0; i < 6; ++i)
+      normalized[i] = impl_->editorNormalized(tags[i]);
+  }
+  for (auto n : normalized)
+    key.push_back(bits32(n));
+  auto cached = impl_->drawings.find(id);
+  if (cached != impl_->drawings.end() && cached->second.key == key)
+    return cached->second.drawing;
+  impl_->zero(ctl, 0x3000);
+  impl_->put(ctl + 8, U32(0));
+  impl_->put(ctl + 12, U32(0));
+  impl_->put(ctl + 16, out.width);
+  impl_->put(ctl + 20, out.height);
+  impl_->put(ctl + 0x90, values);
+  impl_->put(ctl + 0xa4, U32(6));
+  for (unsigned i = 0; i < 6; ++i)
+    impl_->put(values + i * 24 + 12, normalized[i]);
+  impl_->put(ctl + 0xc4, U32(0xfff0f0f0));
+  impl_->put(ctx + 0x3c, U32(1));
+  impl_->put(ctx + 0x40, U32(0xfff0f0f0));
+  struct Scope {
+    Impl *p;
+    ~Scope() { p->activeDrawing = nullptr; }
+  } scope{impl_.get()};
+  impl_->activeDrawing = &out;
+  if (id < 8) {
+    const I32 x = I32(normalized[0] * (float(out.width) * 0.9999f));
+    const I32 y = I32(out.height) -
+                  I32(normalized[1] * (float(out.height) * 0.9999f)) - 1;
+    impl_->run(0x729d2, {ctl, ctx, U32(x), U32(y), 1});
+    impl_->run(0x729d2, {ctl, ctx, U32(x), U32(y), 0});
+  } else {
+    impl_->put(ctl + 0xb0, out.width);
+    impl_->put(ctl + 0xc8, object + 0x32b070 + (id - 8) * 4);
+    impl_->put(ctl + 0xd0, U32(0x5b1000));
+    impl_->put(ctl + 0xd4, U32(0x5b2000));
+    impl_->put(ctl + 0xd8, std::uint8_t(1));
+    impl_->put(ctl + 0xdc, float(out.sampleRate));
+    impl_->put(ctl + 0xe0, out.sourceFrames);
+    impl_->put(ctl + 0xe8, float(out.sourceFrames) / out.sampleRate);
+    impl_->put(ctl + 0xbc, U32(0xfff0f5f0));
+    impl_->put(ctl + 0xc0, U32(0xff646464));
+    impl_->put(ctl + 0xc4, U32(0xff7df578));
+    impl_->run(0x81258, {ctl, 0x5b3000, 0x5b3010});
+    float first = impl_->read<float>(0x5b3000),
+          span = impl_->read<float>(0x5b3010) - first;
+    impl_->put(rect, U32(0));
+    impl_->put(rect + 4, U32(0));
+    impl_->put(rect + 8, out.width);
+    impl_->put(rect + 12, out.height);
+    impl_->run(0x8231e, {ctl, ctx, rect, bits32(first), bits32(span)});
+  }
+  impl_->drawings[id] = {std::move(key), out};
+  return out;
 }
 void LegacyEngine::setSampleRate(float rate) {
   impl_->initialize();

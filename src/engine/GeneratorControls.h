@@ -7,7 +7,16 @@
 
 namespace sophistry {
 constexpr std::uint32_t noAUParameter = 0xffffffffu;
-enum class GeneratorWidget { Dial, Step, Toggle, Type, Routing, Sample };
+enum class GeneratorWidget {
+  Dial,
+  Step,
+  Toggle,
+  Type,
+  Routing,
+  Sample,
+  Radio,
+  HorizontalRadio
+};
 struct GeneratorControlSpec {
   std::uint32_t tag = 0;
   GeneratorWidget widget = GeneratorWidget::Dial;

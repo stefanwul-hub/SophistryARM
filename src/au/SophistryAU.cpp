@@ -438,6 +438,22 @@ public:
   OSStatus GetPropertyInfo(AudioUnitPropertyID id, AudioUnitScope scope,
                            AudioUnitElement element, UInt32 &bytes,
                            bool &writable) override {
+    if (id == sophistry::editorPanelProperty ||
+        id == sophistry::editorDrawingProperty ||
+        id == sophistry::editorEditProperty) {
+      if (scope != kAudioUnitScope_Global)
+        return kAudioUnitErr_InvalidScope;
+      if (element > (id == sophistry::editorPanelProperty     ? 1u
+                     : id == sophistry::editorDrawingProperty ? 9u
+                                                              : 0u))
+        return kAudioUnitErr_InvalidElement;
+      writable = id == sophistry::editorEditProperty;
+      bytes = writable ? sizeof(sophistry::GeneratorControlEdit)
+              : id == sophistry::editorPanelProperty
+                  ? sizeof(sophistry::EditorPanelState)
+                  : sizeof(sophistry::EditorDrawing);
+      return noErr;
+    }
     if (id == sophistry::generatorPanelProperty ||
         id == sophistry::generatorEditProperty) {
       if (scope != kAudioUnitScope_Global)
@@ -494,6 +510,21 @@ public:
   }
   OSStatus GetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, void *data) override {
+    if (id == sophistry::editorPanelProperty ||
+        id == sophistry::editorDrawingProperty) {
+      if (scope != kAudioUnitScope_Global || !data ||
+          element > (id == sophistry::editorPanelProperty ? 1u : 9u))
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        if (id == sophistry::editorPanelProperty)
+          *static_cast<sophistry::EditorPanelState *>(data) =
+              engine_.editorPanel(element);
+        else
+          *static_cast<sophistry::EditorDrawing *>(data) =
+              engine_.editorDrawing(element);
+        return noErr;
+      });
+    }
     if (id == sophistry::generatorPanelProperty) {
       if (scope != kAudioUnitScope_Global || element > 1 || !data)
         return kAudioUnitErr_InvalidPropertyValue;
@@ -573,6 +604,25 @@ public:
   OSStatus SetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, const void *data,
                        UInt32 bytes) override {
+    if (id == sophistry::editorEditProperty) {
+      if (scope != kAudioUnitScope_Global || element || !data ||
+          bytes != sizeof(sophistry::GeneratorControlEdit))
+        return kAudioUnitErr_InvalidPropertyValue;
+      auto edit = *static_cast<const sophistry::GeneratorControlEdit *>(data);
+      if (edit.version != 1)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]() -> OSStatus {
+        engine_.setEditorControl(edit.tag, edit.normalized);
+        auto au = sophistry::editorAUParameter(edit.tag);
+        if (au != sophistry::noAUParameter)
+          Globals()->SetParameter(au, engine_.auParameter(au));
+        else if (edit.tag == 780 || edit.tag == 781)
+          syncParameters();
+        PropertyChanged(kAudioUnitProperty_ClassInfo, kAudioUnitScope_Global,
+                        0);
+        return noErr;
+      });
+    }
     if (id == sophistry::generatorEditProperty) {
       if (scope != kAudioUnitScope_Global || element || !data ||
           bytes != sizeof(sophistry::GeneratorControlEdit))

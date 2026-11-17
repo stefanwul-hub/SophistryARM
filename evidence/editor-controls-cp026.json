@@ -1,0 +1,118 @@
+{
+  "passed": true,
+  "scope": "Original i386 editor/getter/setter/path generation vs static C++; public fixtures, no licence or musical audio",
+  "native": {
+    "passed": true,
+    "xy_plots": 8,
+    "control_records": 59,
+    "normalized_edits": 136,
+    "edited_programs": 5,
+    "rejected_invalid_edits": 4,
+    "field_and_xy_value_roundtrips": 23,
+    "waveform_lines": 474,
+    "source_frames": 334664,
+    "preview_leaves_program_unchanged": true,
+    "musical_audio_tested": false
+  },
+  "control_records_equal": 59,
+  "maximum_normalized_difference_from_json_decimal": 4.82757611663942e-10,
+  "maximum_normalized_float32_ulp_difference": 0,
+  "drawings": [
+    {
+      "name": "xy0",
+      "byte_exact": true,
+      "segments": 10,
+      "bytes": 10264,
+      "sha256": "3e8aaf56d02666ce73356e8b0ce24ea76f03b794b16b307dcf831840fb1539c4"
+    },
+    {
+      "name": "xy1",
+      "byte_exact": true,
+      "segments": 10,
+      "bytes": 10264,
+      "sha256": "3a4b966b7cf6d4f714836ee1ee0fe5b6aa7c7aabeed9dcf2672601d2ec521e5f"
+    },
+    {
+      "name": "xy2",
+      "byte_exact": true,
+      "segments": 10,
+      "bytes": 10264,
+      "sha256": "ad33395e328779a844461484475fc6a62a3285f4adf8f48d1e92a1687e7578cb"
+    },
+    {
+      "name": "xy3",
+      "byte_exact": true,
+      "segments": 10,
+      "bytes": 10264,
+      "sha256": "44716226b39dd4de66891ea730c5c877f2f6c79395cb952515140b9c8a177511"
+    },
+    {
+      "name": "xy4",
+      "byte_exact": true,
+      "segments": 10,
+      "bytes": 10264,
+      "sha256": "878006ff87ea3d83dcfe6aae4810070f15ca61d584d39ca5019bcaebee3e5dec"
+    },
+    {
+      "name": "xy5",
+      "byte_exact": true,
+      "segments": 10,
+      "bytes": 10264,
+      "sha256": "26fb8d777ad7e3580cfcf193a4054a14a4b38c000d62fafc3b4616d7a56f57e9"
+    },
+    {
+      "name": "xy6",
+      "byte_exact": true,
+      "segments": 10,
+      "bytes": 10264,
+      "sha256": "9c01d29f53407a62bcfbf99a6a132ad4dcb74f5183a06844b0d0e2b21af17be3"
+    },
+    {
+      "name": "xy7",
+      "byte_exact": true,
+      "segments": 10,
+      "bytes": 10264,
+      "sha256": "ea7114b5075d7fbdfbf3d38acce91c8a3fece141b523a789b1c5bfe2a3e97c63"
+    },
+    {
+      "name": "wave",
+      "byte_exact": true,
+      "segments": 474,
+      "bytes": 10264,
+      "sha256": "b0738dc94626ae97e481da11cb3218450f14b9377a892540e2b02c7889b78556"
+    }
+  ],
+  "edited_programs": [
+    {
+      "case": 0,
+      "bytes": 21072,
+      "byte_exact": true,
+      "sha256": "54b89ac19e91dc09196a4d4964fc6c18f88b645852c57670ad1393b84fdd396c"
+    },
+    {
+      "case": 1,
+      "bytes": 21072,
+      "byte_exact": true,
+      "sha256": "e3a0116efce36f7536142d290c5e4190c8990b4614402d0bd381d70addedaf7d"
+    },
+    {
+      "case": 2,
+      "bytes": 21072,
+      "byte_exact": true,
+      "sha256": "9c73adbb8349cb36ba72f40529f9aeb4337722519628ff67aa4d250c856b1643"
+    },
+    {
+      "case": 3,
+      "bytes": 21072,
+      "byte_exact": true,
+      "sha256": "9c73adbb8349cb36ba72f40529f9aeb4337722519628ff67aa4d250c856b1643"
+    },
+    {
+      "case": 4,
+      "bytes": 21072,
+      "byte_exact": true,
+      "sha256": "6d75c18798e9f7c34c36ea41f1e21b8dc32f8e615b5f1e133d3f1e857412dfc5"
+    }
+  ],
+  "native_cocoa_execution_tested": false
+}

@@ -1,0 +1,533 @@
+{
+  "checkpoint": "CP-025",
+  "source": "User report independently inspected; public test results only",
+  "archive_sha256": "c2fabc1c8986e9f846fe1f1c56d2f4cbd49d99c355b3eeec9a8fde269deff098",
+  "tested_source_commit": "e6bb75ee78d839e55d3ff37ef5476bd866aad74b",
+  "platform": "macOS 15.7.2 / ARM64 / Apple clang 17.0.0",
+  "result": {
+    "checkpoint": "CP-025",
+    "system_installation_committed": true,
+    "rollback_completed_if_needed": true,
+    "validated_settings_retained": true,
+    "auval_and_registered_audio_passed": true,
+    "local_editor_and_audio_passed": true,
+    "remote_host_view_and_audio_passed": true,
+    "script_exitcode": 0,
+    "original_ui_complete": false,
+    "project_recall_verified": false,
+    "private_preferences_in_report": false
+  },
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  "installed_build": "25001",
+  "loaded_checkpoint": "SophistryARM CP-025",
+  "registered_matches": 1,
+  "cocoa_property_available": true,
+  "local_editor_passed": true,
+  "main_button_tests": {
+    "passed": true,
+    "edit_buttons": [
+      {
+        "passed": true,
+        "hit": {
+          "hit_tag": 1,
+          "superview_point": [
+            175,
+            359
+          ],
+          "point": [
+            175,
+            118
+          ],
+          "hit_class": "NSButton"
+        },
+        "target_tab": 1,
+        "point": [
+          175,
+          118
+        ]
+      },
+      {
+        "passed": true,
+        "hit": {
+          "hit_tag": 2,
+          "superview_point": [
+            175,
+            344
+          ],
+          "point": [
+            175,
+            133
+          ],
+          "hit_class": "NSButton"
+        },
+        "target_tab": 2,
+        "point": [
+          175,
+          133
+        ]
+      },
+      {
+        "passed": true,
+        "hit": {
+          "hit_tag": 3,
+          "superview_point": [
+            421,
+            351
+          ],
+          "point": [
+            421,
+            126
+          ],
+          "hit_class": "NSButton"
+        },
+        "target_tab": 3,
+        "point": [
+          421,
+          126
+        ]
+      },
+      {
+        "passed": true,
+        "hit": {
+          "hit_tag": 4,
+          "superview_point": [
+            664,
+            351
+          ],
+          "point": [
+            664,
+            126
+          ],
+          "hit_class": "NSButton"
+        },
+        "target_tab": 4,
+        "point": [
+          664,
+          126
+        ]
+      }
+    ],
+    "preset_navigation": [
+      {
+        "passed": true,
+        "hit": {
+          "hit_tag": -1,
+          "superview_point": [
+            116,
+            205
+          ],
+          "point": [
+            116,
+            272
+          ],
+          "hit_class": "NSButton"
+        },
+        "expected_name": "Bravo",
+        "direction": "next"
+      },
+      {
+        "passed": true,
+        "hit": {
+          "hit_tag": -1,
+          "superview_point": [
+            116,
+            205
+          ],
+          "point": [
+            116,
+            272
+          ],
+          "hit_class": "NSButton"
+        },
+        "expected_name": "Charlie",
+        "direction": "next"
+      },
+      {
+        "passed": true,
+        "hit": {
+          "hit_tag": -1,
+          "superview_point": [
+            116,
+            205
+          ],
+          "point": [
+            116,
+            272
+          ],
+          "hit_class": "NSButton"
+        },
+        "expected_name": "Alpha",
+        "direction": "next"
+      },
+      {
+        "passed": true,
+        "hit": {
+          "hit_tag": -1,
+          "superview_point": [
+            40,
+            205
+          ],
+          "point": [
+            40,
+            272
+          ],
+          "hit_class": "NSButton"
+        },
+        "expected_name": "Charlie",
+        "direction": "previous"
+      },
+      {
+        "passed": true,
+        "hit": {
+          "hit_tag": -1,
+          "superview_point": [
+            40,
+            205
+          ],
+          "point": [
+            40,
+            272
+          ],
+          "hit_class": "NSButton"
+        },
+        "expected_name": "Bravo",
+        "direction": "previous"
+      },
+      {
+        "passed": true,
+        "hit": {
+          "hit_tag": -1,
+          "superview_point": [
+            40,
+            205
+          ],
+          "point": [
+            40,
+            272
+          ],
+          "hit_class": "NSButton"
+        },
+        "expected_name": "Alpha",
+        "direction": "previous"
+      }
+    ],
+    "catalogue_unique_missing_and_ambiguous_checks": true,
+    "original_public_preset_restored": true
+  },
+  "generator_cocoa_cases": [
+    {
+      "generator": 1,
+      "type": 0,
+      "passed": true
+    },
+    {
+      "generator": 1,
+      "type": 1,
+      "passed": true
+    },
+    {
+      "generator": 1,
+      "type": 2,
+      "passed": true
+    },
+    {
+      "generator": 1,
+      "type": 3,
+      "passed": true
+    },
+    {
+      "generator": 2,
+      "type": 0,
+      "passed": true
+    },
+    {
+      "generator": 2,
+      "type": 1,
+      "passed": true
+    },
+    {
+      "generator": 2,
+      "type": 2,
+      "passed": true
+    },
+    {
+      "generator": 2,
+      "type": 3,
+      "passed": true
+    },
+    {
+      "generator": 3,
+      "type": 0,
+      "passed": true
+    },
+    {
+      "generator": 3,
+      "type": 1,
+      "passed": true
+    },
+    {
+      "generator": 3,
+      "type": 2,
+      "passed": true
+    },
+    {
+      "generator": 4,
+      "type": 0,
+      "passed": true
+    },
+    {
+      "generator": 4,
+      "type": 1,
+      "passed": true
+    },
+    {
+      "generator": 4,
+      "type": 2,
+      "passed": true
+    }
+  ],
+  "routing_mouse_cases": [
+    {
+      "snapshot_saved": true,
+      "passed": true,
+      "original_coordinate_mouse_click": true,
+      "requested": 0,
+      "pair": 1,
+      "public_au_value": 0
+    },
+    {
+      "snapshot_saved": true,
+      "passed": true,
+      "original_coordinate_mouse_click": true,
+      "requested": 1,
+      "pair": 1,
+      "public_au_value": 1
+    },
+    {
+      "snapshot_saved": true,
+      "passed": true,
+      "original_coordinate_mouse_click": true,
+      "requested": 2,
+      "pair": 1,
+      "public_au_value": 2
+    },
+    {
+      "snapshot_saved": true,
+      "passed": true,
+      "original_coordinate_mouse_click": true,
+      "requested": 0,
+      "pair": 2,
+      "public_au_value": 0
+    },
+    {
+      "snapshot_saved": true,
+      "passed": true,
+      "original_coordinate_mouse_click": true,
+      "requested": 1,
+      "pair": 2,
+      "public_au_value": 1
+    },
+    {
+      "snapshot_saved": true,
+      "passed": true,
+      "original_coordinate_mouse_click": true,
+      "requested": 2,
+      "pair": 2,
+      "public_au_value": 2
+    }
+  ],
+  "fresh_name_roundtrip": {
+    "passed": true,
+    "status": 0,
+    "name_restored_in_fresh_instance": true,
+    "present_preset_name_preserved": true,
+    "generator_types_retained": true,
+    "generic_host_name_does_not_replace_original": true,
+    "bank_unchanged_by_name_assignment": true,
+    "name_serialized": true
+  },
+  "generator_recall": {
+    "passed": true,
+    "status": 0,
+    "name_restored_in_fresh_instance": true,
+    "present_preset_name_preserved": true,
+    "generator_types_retained": true,
+    "generic_host_name_does_not_replace_original": true,
+    "bank_unchanged_by_name_assignment": true,
+    "name_serialized": true
+  },
+  "remote_host": {
+    "passed": true,
+    "parameter_count": 522,
+    "custom_view_created": true,
+    "loaded_out_of_process": true,
+    "checkpoint_matches": true,
+    "state_bank_roundtrip_exact": true,
+    "visual_fidelity_certified": false
+  },
+  "wav_comparisons": [
+    {
+      "actual": "preflight-2.wav",
+      "reference": "original-2.wav",
+      "byte_exact": true,
+      "bytes": 1058444,
+      "sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    },
+    {
+      "actual": "registered-2.wav",
+      "reference": "original-2.wav",
+      "byte_exact": true,
+      "bytes": 1058444,
+      "sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    },
+    {
+      "actual": "editor.wav",
+      "reference": "original-2.wav",
+      "byte_exact": true,
+      "bytes": 1058444,
+      "sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    },
+    {
+      "actual": "remote-host.wav",
+      "reference": "original-2.wav",
+      "byte_exact": true,
+      "bytes": 1058444,
+      "sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    },
+    {
+      "actual": "preflight-6.wav",
+      "reference": "original-6.wav",
+      "byte_exact": true,
+      "bytes": 3175244,
+      "sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134"
+    },
+    {
+      "actual": "registered-6.wav",
+      "reference": "original-6.wav",
+      "byte_exact": true,
+      "bytes": 3175244,
+      "sha256": "da29170f01481908abe380d027fdaf5f3225873688f5886fa51719ed08875134"
+    },
+    {
+      "actual": "format-d4u-32-1-native.wav",
+      "reference": "format-d4u-32-1-original.wav",
+      "byte_exact": true,
+      "bytes": 1058444,
+      "sha256": "48209ab5de65a716a22d4538c99c7bfbaeb20550b0774ffc38de3d37bdb07cac"
+    },
+    {
+      "actual": "format-d4u-32-2-native.wav",
+      "reference": "format-d4u-32-2-original.wav",
+      "byte_exact": true,
+      "bytes": 1058444,
+      "sha256": "5f5d161d3eeff49eb99b13f7008f19e0601b5a4464f85baa434483f67552ff39"
+    }
+  ],
+  "independently_checked_wavs": [
+    {
+      "file": "editor.wav",
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.10761502385139465,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "format-d4u-32-1-native.wav",
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.11708078533411026,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "format-d4u-32-1-original.wav",
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.11708078533411026,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "format-d4u-32-2-native.wav",
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.10761502385139465,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "format-d4u-32-2-original.wav",
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.10761502385139465,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "original-2.wav",
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.10761502385139465,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "original-6.wav",
+      "channels": 6,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.05377645418047905,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "preflight-2.wav",
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.10761502385139465,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "preflight-6.wav",
+      "channels": 6,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.05377645418047905,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "registered-2.wav",
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.10761502385139465,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "registered-6.wav",
+      "channels": 6,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.05377645418047905,
+      "finite_and_non_silent": true
+    },
+    {
+      "file": "remote-host.wav",
+      "channels": 2,
+      "sample_rate": 44100,
+      "frames": 132300,
+      "peak": 0.10761502385139465,
+      "finite_and_non_silent": true
+    }
+  ],
+  "verified_wav_file_count": 12,
+  "user_feedback": "CP025 fonctionne. Edit Filtre, Prev/Next, et corrections graphiques sont ok. Missing waveforms, XY squares, Voices/Precision/Auto Bend values, Filter Cutoff/Resonance controls.",
+  "private_preferences_or_paths_published": false
+}

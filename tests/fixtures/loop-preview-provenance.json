@@ -1,0 +1,34 @@
+{
+  "fixture": "tests/fixtures/loop-preview.fxp",
+  "sha256": "3d860b9e25b27f06acf9760c136ab8a4bc56575d9f2b9e5ad7547d1334b11680",
+  "bytes": 20980,
+  "kind": "Public original program serialized after original parameter/sample setters; no licence or user preferences",
+  "original_image_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "source_program": "reference/Presets/lightgarden 02 BT.FXP",
+  "source_sample": "reference/Samples/BT_cronox18.wav",
+  "source_sample_sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050",
+  "operations": [
+    {
+      "entry": "0x1cc86",
+      "tag": 766,
+      "normalized": 1,
+      "purpose": "Generator1 Loop Sampler"
+    },
+    {
+      "entry": "0x1cf16",
+      "tag": 804,
+      "text": "BT_cronox18.wav",
+      "purpose": "Load one zone using original sample loader"
+    },
+    {
+      "entry": "AEffect.dispatcher",
+      "opcode": 23,
+      "program": true,
+      "purpose": "Save original program"
+    }
+  ],
+  "fxp_header_name": "BT Loop Preview",
+  "frames": 334664,
+  "sample_rate": 44100,
+  "licensed_musical_audio_claimed": false
+}
