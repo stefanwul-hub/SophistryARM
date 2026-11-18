@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "sample_formats": 12,
+  "rounds": 8,
+  "preset_loads": 96,
+  "serialized_programs_unchanged": true,
+  "live_allocations_stable": true,
+  "test_guest_memory_bytes": 67108864,
+  "peak_reserved_bytes": 6712896,
+  "final_live_bytes": 2670168,
+  "final_live_blocks": 2632,
+  "production_virtual_bytes": 1073741824,
+  "zero_filled_sparse_storage_checked": true,
+  "licensed_audio_tested": false
+}

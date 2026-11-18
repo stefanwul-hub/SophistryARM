@@ -53,6 +53,7 @@ class Host:
   self.rand_seed=1
   self.clock=1794675600 # Fixed current task date: 2026-11-14 17:00 UTC, test inputs only.
   self.monotonic_ticks=0
+  self.native_monotonic_clock=None
   self.sample_rate=44100;self.block_size=512;self.sample_position=0;self.time_info=0
   self.event_loop=0;self.timer_upps={};self.timers={}
   self.files={};self.opened_reference_files=[];self.file_requests=[];self.missing_directories=[];self.errno_pointer=0;self.private_preferences=None
@@ -287,9 +288,13 @@ class Host:
   elif name=='_gettimeofday':
    if arg(0):self.b.write(arg(0),struct.pack('<II',self.clock,0))
    if arg(1):self.b.write(arg(1),b'\0'*8)
-  elif name=='_mach_timebase_info':self.b.write(arg(0),struct.pack('<II',1,1))
+  elif name=='_mach_timebase_info':
+   base=(self.native_monotonic_clock.numerator,self.native_monotonic_clock.denominator) if self.native_monotonic_clock else (1,1)
+   self.b.write(arg(0),struct.pack('<II',*base))
   elif name=='_mach_absolute_time':
-   self.monotonic_ticks+=1000;integer64=self.monotonic_ticks;result=integer64&0xffffffff
+   if self.native_monotonic_clock:integer64=self.native_monotonic_clock.ticks()
+   else:self.monotonic_ticks+=1000;integer64=self.monotonic_ticks
+   result=integer64&0xffffffff
   elif name=='_GetMainEventLoop':
    if not self.event_loop:self.event_loop=self.alloc(16)
    result=self.event_loop

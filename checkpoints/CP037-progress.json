@@ -1,0 +1,12 @@
+{
+  "checkpoint": "CP-037",
+  "status": "Development checks passed; Mac execution pending",
+  "baseline": "1a32688cce7017bc40a6085563a0aa82edb08639",
+  "component_build": "37001",
+  "original_dsp_kernel_changed": false,
+  "new_dsp_optimization": false,
+  "steps_compared": 9897,
+  "evidence": "evidence/cp037-development-checks.json",
+  "private_mac_preferences_published": false,
+  "publication_verified": false
+}

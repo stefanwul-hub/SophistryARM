@@ -1,10 +1,16 @@
-# Sophistry — CP036 : exploration des voix, composant CP032
+# Sophistry — CP037 : horloge native et réutilisation des voix
 
-**CP036 confirme que l’horloge simulée peut modifier le nombre de voix occupées.** Un cas contrôlé à sept notes produit cinq appels de voix au lieu de quatre dans la boucle originale. Les 63 scénarios et 6598 étapes comparées restent identiques entre i386 et C++ pour un même contrat d’horloge. [Résultats et limites CP036](docs/CP036.md). Le facteur CPU observé dans Live reste à quantifier. Aucun changement du composant ni optimisation n’est livré dans ce checkpoint ; CP032 reste la référence.
+**CP037 fournit l’horloge Mach native aux routines originales de voix**, en conservant le noyau DSP CP032. Les 9897 étapes différentielles passent. Le diagnostic affiche maintenant les voix occupées et maintenues par partie. La baisse du CPU Live reste à mesurer sur le Mac. [Correction et limites CP037](docs/CP037.md).
 
 Audio Unit ARM64 expérimental destiné à rouvrir les projets Sophistry 3.0.8 à partir de son code machine i386.
 
 **CP033 est retiré.** Le rapport Mac mesure un coût CPU du rendu multiplié par **3,31** par rapport à CP032, malgré un audio identique. CP034 rétablit exactement les sources, les tests et l’installateur CP032. Aucune nouvelle optimisation DSP n’est introduite. [Audit et limites](docs/CP034.md).
+
+## Essayer CP037
+
+Le lanceur `Demarrer-Sophistry-CP037.command` décompacte les sources vérifiées, compile et valide sur votre Mac, puis installe le composant. Fermer Logic et Live et lancer le fichier téléchargé avec `bash`. Licence et banque valides sont réutilisées. Les objets CP032 compatibles peuvent réduire la compilation.
+
+Une référence CP032 est exigée. Cinq passages par version comparent CPU et audio avant remplacement ; un rapport médian CPU supérieur à 1,5 ou un WAV différent arrêtent l’installation. Les tests audio/Cocoa et auval avec restauration automatique restent obligatoires. Cela ne prouve pas encore une amélioration dans Live. [Détails](docs/CP037.md).
 
 ## Revenir à CP032 sur votre Mac
 
@@ -22,7 +28,7 @@ Attendre **Installation CP032 confirmée**, puis vérifier **Sophistry ARM64 por
 
 Les inventaires ne trouvent aucune cible originale identifiée manquante parmi les 191379 instructions. Les 704 comparaisons DSP sélectionnées avec l’i386, les replays de 11635 primitives et 1351 cas récupérés, ainsi que 12 comparaisons de sélection SSE/horloge passent. Ces contrôles ciblés ne certifient pas chaque comportement du moteur et de ses dépendances macOS.
 
-Un écart d’adaptation est confirmé : le composant de production utilise encore une horloge simulée et une base de temps fixe. Les imports mathématiques et certains services système sont également adaptés. Le mode SSE3 original est bien sélectionné. Aucun de ces constats n’établit encore la cause du surcoût CPU de CP032 face à CronoX.
+L’écart d’horloge simulée constaté à CP034–CP036 est corrigé dans CP037. Les imports mathématiques et certains services système sont également adaptés. Le mode SSE3 original est bien sélectionné. Aucun de ces constats n’établit encore la cause du surcoût CPU de CP032 face à CronoX.
 
 La traduction compilée en ARM64 conserve des registres virtuels, des contrôles mémoire et du suivi par instruction. Le code source C++ historique n’a pas été retrouvé. Présence du code traduit, fidélité des services système et parité CPU sont des vérifications distinctes.
 
@@ -33,3 +39,5 @@ Identité AU `aumu/Sop3/LinP`, bundle `com.linplug.au.Sophistry`, version AU 3.0
 [Archive des sources et de l’audit CP034](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/b57f576eb9b52928d9069446167a1b49f8a1ffbe) — le lanceur de restauration utilise l’archive CP032 originale indiquée plus haut.
 
 [Archive des sources et de l’audit CP035](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/fa4d1996589ebf9ddce702ea7a2b7274c90e7926) — aucun changement du composant CP032.
+
+[Archive des sources et de l’exploration CP036](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/c8f4215bddbb8e45419346f2722f4a2705a236f8) — composant CP032 inchangé.

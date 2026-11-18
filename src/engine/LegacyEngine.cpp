@@ -4,6 +4,7 @@
 #include "GuestAllocator.h"
 #include "LegacyImageData.h"
 #include "PcmConversion.h"
+#include "MonotonicClock.h"
 #include <algorithm>
 #include <array>
 #include <cctype>
@@ -87,6 +88,7 @@ std::vector<std::uint8_t> readFile(const std::filesystem::path &path) {
 
 struct LegacyEngine::Impl {
   LegacyEngineConfig config;
+  MonotonicClock<> monotonicClock;
   SlCpu *cpu = nullptr;
   GuestAllocator arena;
   std::map<U32, std::string> imports;
@@ -105,6 +107,7 @@ struct LegacyEngine::Impl {
   std::map<unsigned, DrawingCache> drawings;
   EditorControlState editorControl(U32 tag);
   float editorNormalized(U32 tag);
+  std::string voiceActivityJson();
   std::map<U32, U32> attributes;
   struct Mutex {
     U32 type = 0, depth = 0;
@@ -124,7 +127,6 @@ struct LegacyEngine::Impl {
   unsigned randomFront = 3, randomRear = 0;
   U32 randSeed = 1;
   U32 epoch = 1794675600;
-  U64 ticks = 0;
   struct File {
     std::vector<std::uint8_t> data;
     U64 position = 0;
@@ -193,6 +195,7 @@ struct LegacyEngine::Impl {
 
   explicit Impl(LegacyEngineConfig c)
       : config(std::move(c)),
+        monotonicClock(config.nativeMonotonicClock),
         arena(0x800000, U32(config.guestMemoryBytes - 0x200000),
               config.recycleFreedBlocks) {
     if (config.guestMemoryBytes < 64u * 1024u * 1024u ||
@@ -1066,11 +1069,11 @@ void LegacyEngine::Impl::service(U32 pc) {
     if (arg(1))
       zero(arg(1), 8);
   } else if (name == "_mach_timebase_info") {
-    put(arg(0), U32(1));
-    put(arg(0) + 4, U32(1));
+    const auto base = monotonicClock.timebase();
+    put(arg(0), base.numerator);
+    put(arg(0) + 4, base.denominator);
   } else if (name == "_mach_absolute_time") {
-    ticks += 1000;
-    integer64 = ticks;
+    integer64 = monotonicClock.ticks();
     has64 = true;
   } else if (name == "_GetMainEventLoop") {
     if (!eventLoop)
@@ -2585,6 +2588,53 @@ std::vector<std::uint8_t> LegacyEngine::globalSnapshot() const {
   auto p = impl_->data(0xe2000, 0x22000);
   return {p, p + 0x22000};
 }
+std::string LegacyEngine::Impl::voiceActivityJson() {
+  if (!initialized)
+    return "null";
+  try {
+    constexpr U32 manager = object + 0x38cc;
+    const U32 capacity = word(manager + 12), table = word(manager + 16);
+    if (capacity > 4096 || (capacity && !table))
+      return "{\"available\":false}";
+    data(table, capacity * 36);
+    std::array<U32, 4> totals{};
+    std::map<U32, std::array<U32, 4>> parts;
+    for (U32 i = 0; i < capacity; ++i) {
+      const U32 row = table + i * 36, state = word(row);
+      if (state > 3)
+        return "{\"available\":false}";
+      ++totals[state];
+      if (state)
+        ++parts[word(row + 4)][state];
+    }
+    const U32 occupied = word(manager + 20), held = word(manager + 24);
+    std::ostringstream out;
+    out << "{\"available\":true,\"capacity\":" << capacity
+        << ",\"occupied\":" << occupied << ",\"held\":" << held
+        << ",\"released\":" << totals[2]
+        << ",\"forced_release\":" << totals[3]
+        << ",\"counters_consistent\":"
+        << (occupied == capacity - totals[0] && held == totals[1] ? "true" : "false")
+        << ",\"by_part\":[";
+    bool first = true;
+    for (const auto &part : parts) {
+      if (!first)
+        out << ',';
+      first = false;
+      const auto &n = part.second;
+      out << "{\"part\":" << part.first
+          << ",\"occupied\":" << n[1] + n[2] + n[3]
+          << ",\"held\":" << n[1] << ",\"released\":" << n[2]
+          << ",\"forced_release\":" << n[3] << '}';
+    }
+    out << "]}";
+    return out.str();
+  } catch (...) {
+    // Keep the rest of an error diagnostic usable; never expose guest memory.
+    return "{\"available\":false}";
+  }
+}
+
 std::string LegacyEngine::diagnosticJson() const {
   std::ostringstream o;
   o << "{\"scope\":\"Static translated DSP with explicit platform "
@@ -2598,6 +2648,15 @@ std::string LegacyEngine::diagnosticJson() const {
     << ",\"heap_free_bytes\":" << impl_->arena.freeBytes()
     << ",\"heap_largest_free_bytes\":" << impl_->arena.largestFreeBytes()
     << ",\"heap_reused_blocks\":" << impl_->arena.reusedBlocks()
+    << ",\"monotonic_clock\":{\"source\":\""
+    << (impl_->monotonicClock.native() ? "native" : "deterministic")
+    << "\",\"timebase_numerator\":"
+    << impl_->monotonicClock.timebase().numerator
+    << ",\"timebase_denominator\":"
+    << impl_->monotonicClock.timebase().denominator
+    << ",\"au_host_timestamp_units_match_native_clock\":"
+    << (impl_->monotonicClock.native() ? "true" : "false") << '}'
+    << ",\"voice_activity\":" << impl_->voiceActivityJson()
     << ",\"initialized\":" << (impl_->initialized ? "true" : "false")
     << ",\"active\":" << (impl_->active ? "true" : "false")
     << ",\"original_render_denormal_mode_applied\":"

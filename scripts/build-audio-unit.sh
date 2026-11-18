@@ -60,6 +60,14 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
   "$ROOT/tests/AudioUnitFactoryProbe.cpp" -framework AudioToolbox -framework CoreFoundation \
   -o "$DEST/AudioUnitFactoryProbe" > "$DEST/factory-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/AudioUnitFactoryProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 \
+  "$ROOT/tests/MonotonicClockProbe.cpp" -o "$DEST/MonotonicClockProbe" > "$DEST/clock-probe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/MonotonicClockProbe" -verify_arch arm64
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -ffp-contract=off -fno-fast-math \
+  "$ROOT/tests/NativeClockHostProbe.cpp" "$DEST/host/LegacyEngine.o" "$DEST/host/LegacyImageData.o" \
+  "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \
+  -o "$DEST/NativeClockHostProbe" > "$DEST/clock-host-probe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/NativeClockHostProbe" -verify_arch arm64
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -fobjc-arc \
   "$ROOT/tests/AudioUnitEditorProbe.mm" -lobjc -framework AppKit -framework Foundation -framework AudioToolbox -framework CoreFoundation \
   -o "$DEST/AudioUnitEditorProbe" > "$DEST/editor-probe.compile.log" 2>&1

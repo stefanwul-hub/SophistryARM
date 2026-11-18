@@ -91,10 +91,10 @@ HostedConfiguration configuration() {
   c.collectDiagnostics = false;
   c.recursiveAssetSearch = true;
   c.guestMemoryBytes = sophistry::productionGuestMemoryBytes;
-  // Keep deterministic platform inputs until the AU comparison is verified;
-  // tempo, sample positions and transport are supplied by actual host
-  // callbacks.
+  // Preserve the reference wall-clock/random inputs while supplying actual
+  // monotonic time. The original AU timestamps retain the same Mach units.
   c.deterministicTestHost = true;
+  c.nativeMonotonicClock = true;
   Dl_info location{};
   if (dladdr(reinterpret_cast<const void *>(&configuration), &location) &&
       location.dli_fname) {

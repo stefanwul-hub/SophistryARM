@@ -191,6 +191,8 @@ int main(int argc, char **argv) {
         snapshots = true;
       else if (a == "--recursive-assets")
         config.recursiveAssetSearch = true;
+      else if (a == "--native-clock")
+        config.nativeMonotonicClock = true;
       else if (a == "--au-channels") {
         config.audioUnitMode = true;
         config.audioUnitOutputChannels = std::uint32_t(std::stoul(argument()));
@@ -205,7 +207,7 @@ int main(int argc, char **argv) {
       throw std::runtime_error(
           "Usage: NativeEngineProbe --state file --output-prefix path "
           "[--asset-directory dir] [--render seconds] [--snapshots] "
-          "[--local-mac-preferences]");
+          "[--local-mac-preferences] [--native-clock]");
     if (seconds < 0 || seconds > 30 || !std::isfinite(seconds))
       throw std::runtime_error("Invalid render duration");
     if ((preferences || registrationInput) && snapshots)

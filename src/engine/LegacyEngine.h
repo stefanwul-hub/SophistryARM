@@ -18,6 +18,9 @@ constexpr std::size_t productionGuestMemoryBytes = 1024u * 1024u * 1024u;
 struct LegacyEngineConfig {
   std::vector<std::string> assetDirectories;
   bool deterministicTestHost = true;
+  // Native monotonic ticks and timebase for an actual AU host. Kept separate
+  // from deterministic wall-clock/random inputs used by existing references.
+  bool nativeMonotonicClock = false;
   bool useLocalMacPreferences = false;
   bool recycleFreedBlocks = false;
   bool audioUnitMode = false;

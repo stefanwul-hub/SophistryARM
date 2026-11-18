@@ -1,0 +1,21 @@
+{
+  "checkpoint": "CP-037",
+  "scope": "Development execution on Linux; ARM64 Linux clock probe under QEMU; strict Mach-O cross-links, no macOS AU execution",
+  "clock_voice_contracts": "evidence/cp037-clock-voice-contracts.json",
+  "core_identity": "evidence/cp037-core-baseline.json",
+  "arm64_macos_links": "evidence/cp037-macos-links.json",
+  "clock_adapter_abi_modes_tested": [
+    "deterministic",
+    "native"
+  ],
+  "preset_cycle_loads": 96,
+  "cache_reuse_tests_passed": 7,
+  "cpu_guard_tests_passed": 5,
+  "python_native_clock_monotonic_reads": 1024,
+  "shell_syntax_passed": true,
+  "auval_executed": false,
+  "mac_licensed_audio_executed": false,
+  "live_cpu_improvement_measured": false,
+  "cronox_cpu_parity_proven": false,
+  "passed": true
+}

@@ -1,5 +1,5 @@
 #!/bin/bash
-# CP-032: test installation with original registration, verified backup and rollback.
+# CP-037: test installation with original registration, verified backup and rollback.
 set +x
 set -euo pipefail
 umask 077
@@ -102,7 +102,7 @@ collect(){
   done
   printf '%s\n' "$result" > "$REPORT/script-exitcode.txt"
   printf '%s\n' "$stage" > "$REPORT/last-stage.txt"
-  printf '{"checkpoint":"CP-032","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"local_editor_and_audio_passed":%s,"remote_host_view_and_audio_passed":%s,"script_exitcode":%s,"recovered_constructor_controls":1067,"mac_gui_review_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
+  printf '{"checkpoint":"CP-037","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"local_editor_and_audio_passed":%s,"remote_host_view_and_audio_passed":%s,"script_exitcode":%s,"recovered_constructor_controls":1067,"mac_gui_review_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
     "$(if [[ "$committed" -eq 1 ]]; then echo true;else echo false;fi)" "$rollback_ok" \
     "$(if [[ "$settings_confirmed" -eq 1 ]]; then echo true;else echo false;fi)" \
     "$(if [[ "${auval_passed:-0}" -eq 1 && "${registered_audio_passed:-0}" -eq 1 ]]; then echo true;else echo false;fi)" \
@@ -110,15 +110,15 @@ collect(){
     "$(if [[ "${remote_host_passed:-0}" -eq 1 ]]; then echo true;else echo false;fi)" \
     "$result" > "$REPORT/result.json"
   if [[ "$result" -ne 0 ]]; then
-    printf '%s\n' "Installation CP032 non confirmée : $stage (code $result)."
+    printf '%s\n' "Installation CP037 non confirmée : $stage (code $result)."
     if [[ "$installation_started" -eq 1 && "$committed" -eq 0 && "$rollback_ok" == true ]]; then
-      echo 'Le composant précédent a été restauré : la nouvelle interface CP032 n’est donc pas installée.'
+      echo 'Le composant précédent a été restauré : la nouvelle interface CP037 n’est donc pas installée.'
     elif [[ "$installation_started" -eq 0 ]]; then
       echo 'Le composant installé auparavant a été conservé.'
       echo 'Les corrections de cette tentative ne sont pas installées ; Logic et Live affichent encore la version précédente.'
     fi
   fi
-  archive="$ROOT/Sophistry-rapports-CP032-$STAMP.zip"
+  archive="$ROOT/Sophistry-rapports-CP037-$STAMP.zip"
   (cd "$REPORT"; /usr/bin/zip -q "$archive" ./*.json ./*.txt ./*.log ./*.wav ./*.png 2>/dev/null || true)
   printf '\n%s\n' "Rapports : $archive"
   printf '%s\n' "Restauration autonome : $PRIVATE/Restaurer-Sophistry.command"
@@ -131,11 +131,30 @@ collect(){
 trap collect EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
-echo 'Sophistry CP-032 — installation de test ARM64 avec sauvegarde et validation AU'
-echo 'Cette version affiche le nom des samples sans les anciens chemins Windows. Testez des copies de vos projets.'
+echo 'Sophistry CP-037 — installation de test ARM64 avec sauvegarde et validation AU'
+echo 'Cette version corrige l’horloge monotone sans modifier la sélection originale des voix. Testez des copies de vos projets.'
 /usr/bin/sw_vers
 /usr/bin/uname -m
 /usr/bin/xcrun clang++ --version
+stage='vérification de la référence CP032 et du cache ARM64'
+CP032_SOURCE="${SOPHISTRY_CP032_SOURCE:-$HOME/Documents/SophistryARM-CP032/SophistryARM-6859eaa4b3513b384ecab6bc6e5501174977dfb8}"
+"$SYSTEM_PYTHON" "$ROOT/scripts/reuse_cp032_core.py" --previous-root "$CP032_SOURCE" --current-root "$ROOT" --report "$REPORT/core-cache-reuse.json"
+BASELINE_COMPONENT="$("$SYSTEM_PYTHON" - "$CP032_SOURCE/work/audio-unit/Sophistry.component" /Library/Audio/Plug-Ins/Components/Sophistry.component <<'PY'
+import plistlib,sys
+from pathlib import Path
+for value in sys.argv[1:]:
+    root=Path(value)
+    try:
+        info=plistlib.loads((root/'Contents/Info.plist').read_bytes())
+    except (OSError,ValueError):
+        continue
+    if info.get('CFBundleIdentifier')=='com.linplug.au.Sophistry' and str(info.get('CFBundleVersion'))=='32001' and (root/'Contents/MacOS/Sophistry').is_file():
+        print(value)
+        break
+else:
+    raise SystemExit('Référence CP032 introuvable : restaurez CP032 avant de valider CP037. Aucun composant n’a été remplacé.')
+PY
+)"
 stage='compilation ARM64'
 bash "$ROOT/scripts/build-audio-unit.sh" "$BUILD" "$CORE" 2>&1 | /usr/bin/tee "$REPORT/build.log"
 cp "$ROOT/scripts/component_transaction.py" "$PRIVATE/ComponentTransaction.py"
@@ -143,6 +162,9 @@ cp "$ROOT/scripts/Restaurer-Sophistry.command" "$PRIVATE/Restaurer-Sophistry.com
 cp -p "$BUILD/ConfigureSophistry" "$PRIVATE/bin/ConfigureSophistry"
 chmod 700 "$PRIVATE/Restaurer-Sophistry.command"
 stage='replays et régression du moteur AU'
+"$BUILD/MonotonicClockProbe" --require-original-timer-range > "$REPORT/monotonic-clock.json" 2> "$REPORT/monotonic-clock.log"
+"$BUILD/NativeClockHostProbe" > "$REPORT/clock-host-reference.json" 2> "$REPORT/clock-host-reference.log"
+"$BUILD/NativeClockHostProbe" --native-clock > "$REPORT/clock-host-native.json" 2> "$REPORT/clock-host-native.log"
 "$CORE/LiftedProbe" "$ROOT/reference/Sophistry.i386" "$ROOT/evidence/static-lift-comparison.fixtures" > "$REPORT/dsp-replay.json"
 "$CORE/InstructionProbe" "$ROOT/reference/Sophistry.i386" "$ROOT/evidence/primitive-instructions.fixtures" > "$REPORT/instruction-replay.json"
 stage='régression des blocs et tables de saut récupérés'
@@ -194,10 +216,12 @@ if [[ ! -x "$REFERENCE_PYTHON" ]]; then "$SYSTEM_PYTHON" -m venv "$ROOT/work/ref
 "$REFERENCE_PYTHON" -m pip --disable-pip-version-check install --cache-dir "$ROOT/work/pip-cache" --only-binary=:all: -r "$ROOT/requirements-analysis.txt" >> "$REPORT/reference-setup.log" 2>&1
 state="$ROOT/reference/Presets/Lightgarden 02 BT.aupreset"
 contract="$ROOT/tests/fixtures/original-au-parameters.plist"
+stage='comparaison CPU CP032/CP037 avant remplacement'
+"$SYSTEM_PYTHON" "$ROOT/scripts/compare_au_cpu_guard.py" --probe "$BUILD/AudioUnitFactoryProbe" --baseline "$BASELINE_COMPONENT" --candidate "$BUILD/Sophistry.component" --state "$state" --contract "$contract" --output "$REPORT"
 for channels in 2 6; do
   stage="prévalidation du candidat $channels canaux"
   "$BUILD/AudioUnitFactoryProbe" --bundle "$BUILD/Sophistry.component" --state "$state" --contract "$contract" --channels "$channels" --output-prefix "$REPORT/preflight-$channels" > "$REPORT/preflight-$channels.log" 2>&1
-  "$REFERENCE_PYTHON" "$ROOT/tests/probe_au_render.py" --state "$state" --channels "$channels" --seconds 3 --local-mac-preferences --output "$REPORT/original-$channels.json" > "$REPORT/original-$channels.log" 2>&1
+  "$REFERENCE_PYTHON" "$ROOT/tests/probe_au_render.py" --state "$state" --channels "$channels" --seconds 3 --local-mac-preferences --native-clock --output "$REPORT/original-$channels.json" > "$REPORT/original-$channels.log" 2>&1
   /usr/bin/cmp "$REPORT/preflight-$channels.wav" "$REPORT/original-$channels.wav" > "$REPORT/preflight-comparison-$channels.txt" 2>&1
 done
 stage='génération des fixtures publiques de formats de samples'
@@ -207,8 +231,8 @@ stage='chargements répétés de douze formats et stabilité mémoire'
 "$BUILD/NativePresetCycleProbe" "$FORMATS" > "$REPORT/preset-cycles.json" 2> "$REPORT/preset-cycles.log"
 for format in d4u-32-1 d4u-32-2; do
   stage="rendu D4U par moteur AU et référence originale : $format"
-  "$BUILD/host/NativeEngineProbe" --state "$FORMATS/$format/program.aupreset" --asset-directory "$FORMATS/$format" --au-channels 2 --render 3 --local-mac-preferences --output-prefix "$REPORT/format-$format-native" > "$REPORT/format-$format-native.log" 2>&1
-  "$REFERENCE_PYTHON" "$ROOT/tests/probe_au_render.py" --state "$FORMATS/$format/program.aupreset" --asset-directory "$FORMATS/$format" --channels 2 --seconds 3 --local-mac-preferences --output "$REPORT/format-$format-original.json" > "$REPORT/format-$format-original.log" 2>&1
+  "$BUILD/host/NativeEngineProbe" --state "$FORMATS/$format/program.aupreset" --asset-directory "$FORMATS/$format" --au-channels 2 --render 3 --local-mac-preferences --native-clock --output-prefix "$REPORT/format-$format-native" > "$REPORT/format-$format-native.log" 2>&1
+  "$REFERENCE_PYTHON" "$ROOT/tests/probe_au_render.py" --state "$FORMATS/$format/program.aupreset" --asset-directory "$FORMATS/$format" --channels 2 --seconds 3 --local-mac-preferences --native-clock --output "$REPORT/format-$format-original.json" > "$REPORT/format-$format-original.log" 2>&1
   /usr/bin/cmp "$REPORT/format-$format-native.wav" "$REPORT/format-$format-original.wav" > "$REPORT/format-$format-comparison.txt" 2>&1
 done
 stage='commandes des générateurs contre les instructions originales'
@@ -278,14 +302,14 @@ except subprocess.TimeoutExpired:
 if result.returncode: raise SystemExit(result.returncode)
 r=json.load(open(sys.argv[2]))
 if not (r['current_checkpoint_loaded'] and r['cocoa_property_available'] and r['registered_matches']==1):
-    raise SystemExit('L’inspection finale ne confirme pas la version CP032 et sa propriété Cocoa.')
+    raise SystemExit('L’inspection finale ne confirme pas la version CP037 et sa propriété Cocoa.')
 PY
 stage='confirmation de l’installation vérifiée'
 /usr/bin/sudo -- "$SYSTEM_PYTHON" "$PRIVATE/ComponentTransaction.py" commit --transaction "$TRANSACTION" > "$REPORT/component-commit.json" 2>&1
 committed=1
 stage='installation de test terminée'
 echo 'Le candidat ARM64 est installé dans /Library/Audio/Plug-Ins/Components/Sophistry.component.'
-echo 'Installation CP032 confirmée : auval, éditeur local, hôte séparé avec vue système et comparaisons audio passent.'
-echo 'Après réouverture de Logic/Live, vérifiez la mention SophistryARM CP-032 en bas de l’éditeur.'
+echo 'Installation CP037 confirmée : auval, éditeur local, hôte séparé avec vue système et comparaisons audio passent.'
+echo 'Après réouverture de Logic/Live, vérifiez la mention SophistryARM CP-037 en bas de l’éditeur.'
 echo 'Le rappel sonore des projets et la fenêtre relayée par Logic/Live restent à vérifier sur des copies.'
 exit 0

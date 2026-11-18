@@ -1,0 +1,19 @@
+{
+  "checkpoint": "CP-036",
+  "source_commit": "c8f4215bddbb8e45419346f2722f4a2705a236f8",
+  "source_tree": "352a55cac1d6cf159af1f37f74a7306a6d387b96",
+  "source_parent": "5ad281785f774925fe4c0b5eac1d112b934549ac",
+  "publication_branch": "codex/sophistry-native-checkpoints",
+  "source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/c8f4215bddbb8e45419346f2722f4a2705a236f8",
+  "audit_url": "https://github.com/stefanwul-hub/SophistryARM/blob/c8f4215bddbb8e45419346f2722f4a2705a236f8/docs/CP036.md",
+  "main_before": "d9fc740319b1bb3d3846df32f31e59bacf7df44c",
+  "functional_component": "CP-032",
+  "runtime_changed": false,
+  "new_component_installation_required": false,
+  "archive_bytes": 44660775,
+  "archive_sha256": "eeb473e7763aac402ef765994ed4e573c0c7d342f0f6c70730f987c23a8c8d8a",
+  "archive_verified_git_blobs": 4245,
+  "archive_crc_and_git_content_verified": true,
+  "functional_sources_identical_to_cp032": true,
+  "optimization_added": false
+}

@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "native_float_state_restored": true,
+  "parameter_records": 522,
+  "reinitialization_cycles": 8,
+  "channels": [
+    2,
+    6
+  ],
+  "sample_rates": [
+    22050,
+    44100,
+    48000,
+    96000,
+    192000
+  ],
+  "licensed_musical_audio_tested": false
+}

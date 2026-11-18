@@ -42,10 +42,13 @@ class RenderHost(AUPlatformHost):
   else:self.b.regwrite(0,struct.pack('<I',result&0xffffffff))
   self.b.ret()
 
-def run(library,state,channels,seconds,output,registration=None,preferences=None,asset_directories=None):
+def run(library,state,channels,seconds,output,registration=None,preferences=None,asset_directories=None,native_clock=False):
  image=LegacyImage((ROOT/'reference/Sophistry.i386').read_bytes())
  backend=HostedNative(ctypes.CDLL(str(library.resolve())),bytes(image.mapped()),0x4000000) if library else Original(bytes(image.mapped()),0x4000000)
  h=RenderHost(backend,image);h.private_preferences=preferences;h.asset_directories=asset_directories or [];outer=0x200000-0xec;obj=0x200000;stage='initializers';error=None;rendered=0;peaks=[];sums=[];wav=None;accepted=False
+ if native_clock:
+  from native_monotonic_clock import NativeMonotonicClock
+  h.native_monotonic_clock=NativeMonotonicClock()
  def call(pc,*args):backend.run(pc,list(args));return h.eax()
  def checked(pc,*args):
   status=call(pc,*args)
@@ -99,11 +102,11 @@ def run(library,state,channels,seconds,output,registration=None,preferences=None
  except Exception as e:error=str(e).replace(registration,'<redacted>') if registration else str(e)
  output.parent.mkdir(parents=True,exist_ok=True)
  if wav:output.with_suffix('.wav').write_bytes(wav)
- result={'scope':'Original AU framework in explicit platform fixture, not Apple AudioComponent integration','backend':'static C++' if library else 'original i386 / Unicorn','stage':stage,'error':error,'channels':channels,'frames':rendered,'sample_rate':44100,'maximum_frames':512,'registration_accepted':accepted,'private_registration_input':registration is not None,'private_local_preferences':preferences is not None,'signal_above_minus_100_dbfs':any(p>1e-5 for p in peaks),'peak_per_channel':peaks,'rms_per_channel':[math.sqrt(s/rendered) for s in sums] if rendered else [],'wav_sha256':hashlib.sha256(wav).hexdigest() if wav else None,'host_calls':dict(h.calls),'last_import':h.last_import}
+ result={'scope':'Original AU framework in explicit platform fixture, not Apple AudioComponent integration','backend':'static C++' if library else 'original i386 / Unicorn','native_monotonic_clock':bool(native_clock),'stage':stage,'error':error,'channels':channels,'frames':rendered,'sample_rate':44100,'maximum_frames':512,'registration_accepted':accepted,'private_registration_input':registration is not None,'private_local_preferences':preferences is not None,'signal_above_minus_100_dbfs':any(p>1e-5 for p in peaks),'peak_per_channel':peaks,'rms_per_channel':[math.sqrt(s/rendered) for s in sums] if rendered else [],'wav_sha256':hashlib.sha256(wav).hexdigest() if wav else None,'host_calls':dict(h.calls),'last_import':h.last_import}
  output.write_text(json.dumps(result,indent=2)+'\n');backend.close();return result
 
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--library',type=Path);p.add_argument('--state',type=Path,required=True);p.add_argument('--channels',type=int,choices=[2,6],default=2);p.add_argument('--seconds',type=float,default=3);p.add_argument('--output',type=Path,required=True);p.add_argument('--asset-directory',type=Path,action='append',default=[]);p.add_argument('--registration-from-stdin',action='store_true');p.add_argument('--local-mac-preferences',action='store_true');a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--library',type=Path);p.add_argument('--state',type=Path,required=True);p.add_argument('--channels',type=int,choices=[2,6],default=2);p.add_argument('--seconds',type=float,default=3);p.add_argument('--output',type=Path,required=True);p.add_argument('--asset-directory',type=Path,action='append',default=[]);p.add_argument('--registration-from-stdin',action='store_true');p.add_argument('--local-mac-preferences',action='store_true');p.add_argument('--native-clock',action='store_true');a=p.parse_args()
  if not 0<a.seconds<=30:p.error('seconds must be in (0,30]')
  key=None
  if a.registration_from_stdin:
@@ -115,4 +118,4 @@ if __name__=='__main__':
   import subprocess
   exported=subprocess.run(['/usr/bin/defaults','export','com.linplug.Sophistry','-'],stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=False)
   prefs=plistlib.loads(exported.stdout) if exported.returncode==0 else {}
- result=run(a.library,a.state,a.channels,a.seconds,a.output,key,prefs,a.asset_directory);print(json.dumps(result,indent=2));sys.exit(1 if result['error'] else 0)
+ result=run(a.library,a.state,a.channels,a.seconds,a.output,key,prefs,a.asset_directory,a.native_clock);print(json.dumps(result,indent=2));sys.exit(1 if result['error'] else 0)

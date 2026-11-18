@@ -1,0 +1,25 @@
+{
+  "scope": "Original timer ABI through the actual host adapter; unregistered fixture, no audio or private preferences",
+  "native_clock": false,
+  "original_timer_receives_expected_clock": true,
+  "passed": true,
+  "monotonic_clock": {
+    "source": "deterministic",
+    "timebase_numerator": 1,
+    "timebase_denominator": 1,
+    "au_host_timestamp_units_match_native_clock": false
+  },
+  "voice_activity": {
+    "available": true,
+    "capacity": 32,
+    "occupied": 0,
+    "held": 0,
+    "released": 0,
+    "forced_release": 0,
+    "counters_consistent": true,
+    "by_part": []
+  },
+  "private_preferences_or_registration_used": false,
+  "licensed_audio_tested": false,
+  "full_diagnostic_retained_locally_only": true
+}

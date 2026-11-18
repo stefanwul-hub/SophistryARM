@@ -41,9 +41,9 @@ bool LegacyEngine::Impl::editorPlatformService(const std::string &name, U32 sp,
   };
   result = 0;
   if (name == "_usleep") {
-    if (!config.deterministicTestHost)
+    if (monotonicClock.native() || !config.deterministicTestHost)
       std::this_thread::sleep_for(std::chrono::microseconds(arg(0)));
-    ticks += U64(arg(0)) * 1000;
+    monotonicClock.advanceDeterministicSleep(arg(0));
   } else if (name == "_GetDblTime")
     result = 30; // old Carbon ticks; Cocoa owns click timing
   else if (name == "_NewNavEventUPP" || name == "_NewNavObjectFilterUPP") {

@@ -1,0 +1,39 @@
+{
+  "checkpoint": "CP-037",
+  "scope": "Run CP036 original/translated voice trajectories through the CP037 C++ clock.\n\nThe clock policy is the production template with a controlled source. Its\nsystem-specific source is tested separately. Original instrument rendering is\nexecuted with controlled final DSP callbacks, not a complete audio engine.",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "profiles": [
+    {
+      "profile": "deterministic_reference",
+      "native_policy": false,
+      "timebase_numerator": 1,
+      "timebase_denominator": 1,
+      "differential_event_steps": 3299,
+      "passed": true
+    },
+    {
+      "profile": "native_nanosecond_units",
+      "native_policy": true,
+      "timebase_numerator": 1,
+      "timebase_denominator": 1,
+      "differential_event_steps": 3299,
+      "passed": true
+    },
+    {
+      "profile": "native_mach_125_over_3_units",
+      "native_policy": true,
+      "timebase_numerator": 125,
+      "timebase_denominator": 3,
+      "differential_event_steps": 3299,
+      "passed": true
+    }
+  ],
+  "differential_event_steps": 9897,
+  "compared_state_bytes": 85622244,
+  "original_voice_selection_code_changed": false,
+  "deterministic_reference_preserved": true,
+  "native_policy_recovers_elapsed_clock_voice_counts": true,
+  "full_audio_envelopes_or_live_cpu_tested": false,
+  "mismatches": [],
+  "passed": true
+}

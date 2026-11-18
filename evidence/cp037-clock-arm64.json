@@ -1,0 +1,11 @@
+{
+  "deterministic_progression_exact": true,
+  "native_source_and_timebase_preserved": true,
+  "timebase_cached": true,
+  "invalid_timebases_rejected": true,
+  "system_clock_monotonic": true,
+  "timebase_numerator": 1,
+  "timebase_denominator": 1,
+  "original_u32_millisecond_timer_in_range": true,
+  "passed": true
+}
