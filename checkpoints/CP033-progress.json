@@ -1,12 +1,12 @@
 {
   "checkpoint": "CP-033",
-  "phase": "native_validation_pending",
+  "phase": "user_mac_validation_package",
   "prepared_source_commit": "1ddb5c73c2ea606a60e96c39f68b1e6a40b20163",
   "prepared_source_tree": "847b089906fcd3b3c23d48edf308d137b52ef74a",
   "all_21_prepared_files_recovered_with_identical_git_blob_hashes": true,
   "macos_arm64_workflow_run": 44337088624,
   "macos_arm64_workflow_url": "https://github.com/stefanwul-hub/SophistryARM/actions/runs/44337088624",
-  "macos_arm64_state_at_checkpoint": "queued",
+  "macos_arm64_state_at_checkpoint": "Runner capacity/infrastructure error reported before compilation",
   "prototype_evidence": "evidence/cp033-cpu-prototype.json",
   "original_instruction_count": 191379,
   "proven_instruction_local_scratch_count": 153643,
@@ -14,10 +14,10 @@
   "original_pcode_sha256": "1982dac58e305b5773ce9f358ab3ae47da831466de124adb6be3044fca712a5b",
   "private_user_inputs_published": false,
   "remaining": [
-    "Complete native ARM64 validation and inspect all results",
-    "Prepare immutable source archive and automatic launcher with verified SHA256",
-    "Verify direct downloads and preserve full Git checkpoint",
-    "Run licensed audio and CP032/CP033 render-thread CPU comparison on user Mac through installer"
+    "Publish and verify immutable source archive and launcher",
+    "Compile, run AU/audio validation and measure CP032/CP033 render CPU on user Mac"
   ],
-  "current_user_mac_component": "CP-032"
+  "current_user_mac_component": "CP-032",
+  "hosted_runner_required": false,
+  "user_requested_validation_location": "Own Mac, same installation workflow as previous checkpoints"
 }

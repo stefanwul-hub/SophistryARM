@@ -1,0 +1,69 @@
+{
+  "checkpoint": "CP-033",
+  "scope": "Local development checks and selected DSP prototype; complete native Mac installation, AU validation and musical audio remain for user Mac",
+  "source_sha256": {
+    "src/lifter/OptimizedLifter.h": "f88c84d88906ba7fb68cbd24eabfcea5167c4792cb741b9525371147ca1318cf",
+    "scripts/optimize_lifted_cpp.py": "0ae9f95a35a66e7856e402e977b4e06e2041789aadf877796f635c3e8fd5d914",
+    "scripts/build-lifter-chunks.sh": "009b5ef0eda4d47c88a597c2ce741b52cba9f78b8d2ce943baf5d7a30c2cfdba",
+    "tests/StorageOptimizationProbe.cpp": "f1e84111b05f0feb6b762fa740098a1a209ae0b89f53857d08bb4a1c74cca3d7",
+    "tests/test_lifted_storage_analysis.py": "90278f56deb39ddbdc440b8527a95902f5368abedf6c24270f5667797f890aa5",
+    "scripts/compare_au_cpu.py": "1ac31bcb842b9687d5400ba09e136224dbc92bfe182eeb21868e4447923b33e5",
+    "tests/AudioUnitFactoryProbe.cpp": "071f641bb77fbbc63883d44c595d28c7c044f2b671820e775ed62090055ad394",
+    "Installer-ARM64.command": "f4bc9f1757513f97340dde8c04445e688ee1c8fa6a8ee69ccc086cb66524f210",
+    "src/au/SophistryProperties.h": "801998832081c3b97eef884dd99525b37fc7a1914986b7add289a25f4fffcd24",
+    "src/au/Info.plist": "e765caf402e3f89e12dd271c1f5d71ad96d463da92d950b280ca2c2a1e3c5a8c"
+  },
+  "scratch_dataflow_tests_passed": 8,
+  "final_storage_state": {
+    "scope": "GP/flag cache commits at interior stops, memory fault and exact instruction limits",
+    "cases": 6,
+    "compared_register_bytes": 49152,
+    "guest_memory_pc_steps_and_coverage_checked": true,
+    "passed": true
+  },
+  "storage_state_core_scope": "Final optimized Unit0049; other linked units use the CP032 baseline",
+  "storage_optimization": {
+    "scope": "Build-time storage optimization of the complete original static lift",
+    "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+    "original_pcode_sha256": "1982dac58e305b5773ce9f358ab3ae47da831466de124adb6be3044fca712a5b",
+    "instruction_count": 191379,
+    "compilation_units": 364,
+    "register_ranges_cached": [
+      [
+        0,
+        32
+      ],
+      [
+        512,
+        528
+      ]
+    ],
+    "instruction_ticks_changed": false,
+    "execution_fields_localized": [
+      "pc",
+      "fault",
+      "steps",
+      "stop",
+      "limit",
+      "memory",
+      "memory_size"
+    ],
+    "arithmetic_operations_changed": false,
+    "host_callbacks_at_unit_boundaries": true,
+    "instruction_labels_preserved": 191379,
+    "instructions_with_local_scratch": 153643,
+    "scratch_fallback_addresses": [],
+    "maximum_local_scratch_bytes": 72,
+    "temp_accesses_localized": 812181,
+    "reg_accesses_localized": 636172,
+    "reused": false
+  },
+  "prototype_evidence": "evidence/cp033-cpu-prototype.json",
+  "mac_cp032_evidence": "evidence/mac-cp032-installed.json",
+  "user_mac_arm64_compilation_pending": true,
+  "user_mac_auval_pending": true,
+  "user_mac_licensed_musical_audio_pending": true,
+  "hosted_runner_required": false,
+  "dx_bass_extreme_release_stress_resumed": false,
+  "gain_compensation_added": false
+}

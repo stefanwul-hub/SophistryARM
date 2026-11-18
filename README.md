@@ -1,27 +1,27 @@
-# Sophistry — CP033 en validation
+# Sophistry — checkpoint CP033
 
 Audio Unit ARM64 expérimental pour rouvrir les projets Sophistry 3.0.8 à partir du code machine i386 fourni.
 
-**CP033 optimise le stockage intermédiaire de la traduction complète.** Les instructions originales restent dans le C++ de référence ; un passage vérifié prépare des variables locales avant compilation. Le prototype améliore les routines DSP sélectionnées sans écart de sortie ou d’état. La validation native ARM64 est en cours. [Détails et limites CP033](docs/CP033.md).
+**CP033 réduit le coût du stockage intermédiaire du moteur traduit.** Le prototype passe les références DSP sélectionnées avec environ 45 % de temps en moins sous Linux, sans écart de sortie ou d’état. Le gain dans Live et Logic reste à mesurer sur votre Mac. Les 191379 instructions originales identifiées sont conservées. [Détails CP033](docs/CP033.md).
 
-CP032 est confirmé fonctionnel sur le Mac de l’utilisateur ; son coût CPU reste élevé. Le téléchargement ci-dessous reste celui de CP032 pendant la préparation du paquet CP033.
+## Télécharger et installer sur votre Mac
 
-## Télécharger et installer
-
-[Télécharger le lanceur CP032](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/bbac4a3781b090fb20b76fcb00eae999ea06c378/Demarrer-Sophistry-CP032.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur CP033](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP033.command), fermer Logic et Live, puis lancer :
 
 ```bash
-bash "$HOME/Downloads/Demarrer-Sophistry-CP032.command"
+bash "$HOME/Downloads/Demarrer-Sophistry-CP033.command"
 ```
 
-Le lanceur télécharge [l’archive immuable CP032](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/6859eaa4b3513b384ecab6bc6e5501174977dfb8), vérifie son SHA-256, la décompacte, compile en ARM64, exécute les tests et auval puis remplace `/Library/Audio/Plug-Ins/Components/Sophistry.component`. L’ancien composant est restauré si une validation échoue. Licence et banque valides restent enregistrées localement.
+Le lanceur télécharge l’archive immuable CP033 (lien après publication), vérifie son SHA-256, la décompacte, compile en ARM64 puis exécute les tests audio et auval sur votre Mac. Il remplace `/Library/Audio/Plug-Ins/Components/Sophistry.component` après les prévalidations et restaure l’ancien composant si une validation échoue. Licence et banque valides restent enregistrées localement.
 
-Attendre **Installation CP032 confirmée**, puis vérifier **Sophistry ARM64 port OA 2026 (CP-032)** en bas à gauche. Le ZIP de rapports CP032 est créé automatiquement, y compris en cas d’échec. Les options `--choose-bank`, `--diagnose-only` et `--recenter-windows` restent disponibles.
+Attendre **Installation CP033 confirmée**, puis vérifier **Sophistry ARM64 port OA 2026 (CP-033)** en bas à gauche. Le ZIP de rapports CP033 est créé automatiquement. Les options `--choose-bank`, `--diagnose-only` et `--recenter-windows` restent disponibles.
 
-## Vérifications et limites
+## Mesure CPU et portée des tests
 
-Les1351nouveaux cas de code original, les références d’instructions et DSP précédentes, l’intégration AU et l’éditeur passent localement et sous ARM64/QEMU selon leur périmètre. Les binaires Mac sont liés strictement en ARM64. **CP032 est confirmé sur le Mac de l’utilisateur ; CP033 reste en validation.** La couverture du code identifié ne constitue pas une validation de tous les presets et comportements possibles.
+Si CP032 est installé, le script compare avant remplacement les deux composants dans des processus séparés : cinq passages chacun, même son public et même note, 44100 Hz/256 samples. Il vérifie un audio identique et écrit `cpu-comparison.json` dans le rapport. La mesure porte sur le thread de rendu ; elle ne constitue pas une comparaison avec CronoX.
 
-Identité `aumu/Sop3/LinP`, bundle `com.linplug.au.Sophistry`,522 paramètres, chunks et version AU 3.0.8 conservés ; build 32001. Les fonctions d’interface déjà disponibles et la sauvegarde `.aupreset`/modules`.MOD` restent en place.
+Les huit tests de preuve des temporaires et les six cas de conservation d’état lors d’arrêts/erreurs passent localement. Le prototype DSP a passé les références originales sélectionnées. **La compilation ARM64 complète, auval et le rendu musical CP033 seront validés sur votre Mac, comme aux checkpoints précédents.** Aucun runner GitHub n’est requis.
 
-[Couverture du code original](evidence/cp032-original-code-coverage.json) · [Vérifications CP032](evidence/cp032-development-checks.json) · [Rapport Mac CP031 filtré](evidence/mac-cp031-installed.json) · [Reprise](REPRISE.md). Publication sur `codex/sophistry-native-checkpoints` ; préférences, licence, chemins privés et rapports bruts restent hors Git.
+CP032 est confirmé fonctionnel sur le Mac de l’utilisateur. Identité AU `aumu/Sop3/LinP`, bundle `com.linplug.au.Sophistry`, 522 paramètres, chunks et version AU 3.0.8 sont conservés ; build 33001. L’identité sonore de tous les presets et la parité CPU avec CronoX restent à vérifier.
+
+[Couverture du code original](evidence/cp032-original-code-coverage.json) · [Mesure du prototype CP033](evidence/cp033-cpu-prototype.json) · [Rapport Mac CP032 filtré](evidence/mac-cp032-installed.json) · [Reprise](REPRISE.md).

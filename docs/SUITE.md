@@ -1,9 +1,7 @@
-# Suite après CP032
+# Suite après CP033
 
-La priorité « code original complet » a conduit à retrouver et intégrer trois blocs omis. Les inventaires identifiés, les contrôles de tables et les nouvelles références d’exécution passent : [CP032](CP032.md).
+Installer CP033 sur le Mac avec le lanceur automatique et conserver le rapport. Vérifier `storage-state.json` (six cas), les replays, les comparaisons audio et auval. Si CP032 était installé, `cpu-comparison.json` fournit la mesure du thread audio avant/après ; le comparer aussi à l’usage réel dans Logic et Live.
 
-La prochaine vérification est l’installation CP032 sur Mac avec auval, l’audio et les anciens projets Logic/Live. Conserver le rapport automatique. Les nouveaux cas doivent apparaître dans recovered-code.json avec1351 cas réussis.
+Le gain d’environ 45 % mesuré sur le prototype concerne des routines DSP sélectionnées, pas le synthétiseur complet ni CronoX. Reprendre le profilage à partir du résultat réel sur le Mac si le coût reste élevé.
 
-Reprendre ensuite le coût CPU sur cette base corrigée. Live activait déjà le mode flottant ; la correction CP031 ne pouvait pas réduire ce coût dans la session diagnostiquée. Le code du lifter garde ses contrôles et son suivi d’exécution. Aucun gain chiffré n’est annoncé pour CP032.
-
-L’enquête de niveau est classée à la demande de l’utilisateur, sauf défaut DSP démontré. Le scénario DX Bass avec release extrême reste annulé. Conserver les preuves de couverture, les références originales, le rollback et les checkpoints vérifiés.
+Les contrôles de limites, le suivi d’exécution et les 191379 instructions identifiées restent présents. Conserver l’identité AU, les anciens états et la fidélité sonore. Le niveau reste classé sauf défaut DSP démontré ; le stress DX Bass avec release extrême reste annulé.

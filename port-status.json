@@ -45,7 +45,7 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-032)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "CP033 source prepared for native ARM64 CI; verified release download pending.",
+  "publication_status": "CP033 source release preparation; automatic user Mac validation retained.",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -114,8 +114,11 @@
   "cp033_local_scratch_proven_instructions": 153643,
   "cp033_arithmetic_formulas_changed": false,
   "cp033_instruction_guards_disabled": false,
-  "cp033_native_ci_pending": true,
+  "cp033_native_ci_pending": false,
   "cp033_user_mac_runtime_pending": true,
   "cp033_mac_cpu_comparison_prepared": true,
-  "cp033_cronox_cpu_parity_proven": false
+  "cp033_cronox_cpu_parity_proven": false,
+  "cp033_validation_location": "User Mac through the automatic installer, explicitly requested",
+  "cp033_hosted_runner_required": false,
+  "cp033_development_evidence": "evidence/cp033-development-checks.json"
 }

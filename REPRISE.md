@@ -1,13 +1,13 @@
-# Reprendre à CP033 — CPU
+# Reprendre à CP033 — optimisation CPU
 
-Publication autorisée uniquement sur `codex/sophistry-native-checkpoints`, sans modifier `main`. Licence, préférences, chemins privés, banques complètes et rapports bruts restent hors Git. Ne pas redemander la licence.
+Publication autorisée uniquement sur `codex/sophistry-native-checkpoints`, sans modifier `main`. Licence, préférences, banques complètes et rapports bruts restent hors Git. Ne pas redemander la licence.
 
-CP032 fonctionne sur le Mac de l’utilisateur mais le CPU reste élevé. Son rapport confirme auval et huit comparaisons PCM exactes ; les faits publics filtrés sont dans `evidence/mac-cp032-installed.json`. L’enquête de niveau et le stress DX Bass restent annulés.
+CP032 fonctionne chez l’utilisateur mais le CPU reste élevé. CP033 conserve le C++ original complet de référence et prépare avant compilation un stockage local des temporaires prouvés, registres et état d’exécution. Les 191379 instructions, opérations numériques, arrêts précis et limites restent présents. Le prototype DSP sélectionné passe avec une médiane 1,826 fois plus rapide sous Linux, sans écart de sortie ou d’état ; cela ne prouve pas la parité avec CronoX.
 
-CP033 conserve le C++ complet de référence et prépare une version optimisée avant compilation : preuve des temporaires locaux, cache des registres généraux/indicateurs et état d’exécution publié à chaque sortie d’unité. Les 191379 instructions, les opérations numériques et les contrôles précis restent présents. Le prototype retenu passe les références sélectionnées avec une médiane 1,826 fois plus rapide sous Linux ; ce chiffre ne concerne pas le synthétiseur complet.
+L’utilisateur demande explicitement la validation sur son Mac, comme auparavant. Les workflows GitHub ajoutés ont été retirés : leur disponibilité ne conditionne pas l’installation. Le lanceur exécute compilation ARM64, tests, auval, comparaisons audio et rollback. Si CP032 est installé, il mesure aussi cinq paires de rendus AU identiques à 44100 Hz/256 samples. Les préférences de licence et de banque restent réutilisées.
 
-Les scripts, tests de chemins et d’arrêts/erreurs ainsi que la comparaison CPU automatique sur le Mac sont prêts. Une CI macOS 15 ARM64 sans licence privée est préparée. Ses résultats et les validations complètes restent en attente. Ne pas annoncer un succès CI, auval CP033 ou un gain dans Live sans les rapports correspondants.
+Huit tests de preuve des temporaires et six cas d’arrêt/limite/erreur du bloc optimisé passent localement. Les replays du prototype sont exacts. La validation complète ARM64 et l’audio musical CP033 restent à exécuter sur le Mac ; ne pas les annoncer déjà réussis. Build 33001, identité AU et 522 paramètres inchangés.
 
-Build 33001, identité AU et 522 paramètres conservés. Sources de compilation optimisées et manifestes restent dans le dossier de travail ; le code de référence n’est pas modifié. L’installation conserve sa licence persistée, ses comparaisons audio, auval et le rollback.
+L’enquête de niveau et le stress DX Bass restent annulés. Le checkpoint conserve les sources, preuves, scripts et références originales ; poursuivre le CPU selon les mesures réelles reçues.
 
-Après validation, terminer les preuves publiques, publier une archive immuable et son lanceur, vérifier leurs téléchargements, puis régénérer et vérifier le bundle Git autonome. Garder le dépôt propre.
+Publication CP033 : en cours. Vérifier tous les blobs du ZIP et le lanceur téléchargé, inscrire les commits et empreintes immuables puis régénérer et vérifier le bundle Git autonome. Garder le dépôt propre.
