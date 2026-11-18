@@ -45,11 +45,15 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-030)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "source upload in progress",
+  "publication_status": "CP030 source archive downloaded and verified; pinned launcher publication pending.",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
   ],
   "historical_checkpoint_index": "checkpoints/INDEX.md",
-  "historical_evidence_directory": "evidence"
+  "historical_evidence_directory": "evidence",
+  "github_cp030_source_commit": "8d20e5950eb1dac53b1b606d11d0d1fa962b49e1",
+  "github_cp030_source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/8d20e5950eb1dac53b1b606d11d0d1fa962b49e1",
+  "github_cp030_archive_sha256": "222b9df5174edc8db10f6b03053fbbf1144623df9554354da41f850579da8626",
+  "github_cp030_launcher": "Demarrer-Sophistry-CP030.command"
 }

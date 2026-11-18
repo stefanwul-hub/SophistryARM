@@ -14,7 +14,7 @@ Le rapport reçu confirme l’installation, auval et les comparaisons audio de C
 bash "$HOME/Downloads/Demarrer-Sophistry-CP030.command"
 ```
 
-Le lanceur télécharge l’archive immuable CP030 (lien après publication), vérifie son SHA-256, la décompacte puis exécute la compilation ARM64, les tests, auval et le remplacement sauvegardé dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`. En cas d’échec, il restaure le composant précédent. Licence et banque valides restent enregistrées localement.
+Le lanceur télécharge [l’archive immuable CP030](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/8d20e5950eb1dac53b1b606d11d0d1fa962b49e1), vérifie son SHA-256, la décompacte puis exécute la compilation ARM64, les tests, auval et le remplacement sauvegardé dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`. En cas d’échec, il restaure le composant précédent. Licence et banque valides restent enregistrées localement.
 
 Attendre **Installation CP030 confirmée**, puis vérifier **Sophistry ARM64 port OA 2026 (CP-030)** en bas à gauche. Écouter le même preset avec Main puis Gen1+2 et vérifier les enveloppes et les textes blancs. Un bref essai automatique compare également l’audio Main/Gen1+2. Le test extrême DX Bass annulé précédemment reste exclu. Le ZIP de rapports CP030 est créé automatiquement, y compris en cas d’échec.
 
