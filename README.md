@@ -8,7 +8,7 @@ Cette étape donne priorité à l’intégration du code original. L’optimisat
 
 ## Télécharger et installer
 
-[Télécharger le lanceur CP032](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP032.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur CP032](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/bbac4a3781b090fb20b76fcb00eae999ea06c378/Demarrer-Sophistry-CP032.command), fermer Logic et Live, puis lancer :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP032.command"
