@@ -1,0 +1,65 @@
+{
+  "checkpoint": "CP-033",
+  "scope": "Development prototype, native Linux x86-64 GCC; four selected DSP units optimized, other units shared. 704 original-i386 reference cases repeated 32 times; five alternating runs each. Core wall duration, not full-synth CPU or CronoX parity.",
+  "variant": "Instruction-local scratch, GP/flags cache and per-unit execution state",
+  "runs": [
+    {
+      "mode": "baseline",
+      "trial": 0,
+      "core_wall_seconds": 2.606958746
+    },
+    {
+      "mode": "candidate",
+      "trial": 0,
+      "core_wall_seconds": 1.4342363759999999
+    },
+    {
+      "mode": "candidate",
+      "trial": 1,
+      "core_wall_seconds": 1.396210896
+    },
+    {
+      "mode": "baseline",
+      "trial": 1,
+      "core_wall_seconds": 2.621385099
+    },
+    {
+      "mode": "baseline",
+      "trial": 2,
+      "core_wall_seconds": 2.603474854
+    },
+    {
+      "mode": "candidate",
+      "trial": 2,
+      "core_wall_seconds": 1.427871326
+    },
+    {
+      "mode": "candidate",
+      "trial": 3,
+      "core_wall_seconds": 1.388603694
+    },
+    {
+      "mode": "baseline",
+      "trial": 3,
+      "core_wall_seconds": 2.48958122
+    },
+    {
+      "mode": "baseline",
+      "trial": 4,
+      "core_wall_seconds": 2.656455577
+    },
+    {
+      "mode": "candidate",
+      "trial": 4,
+      "core_wall_seconds": 1.5090940609999999
+    }
+  ],
+  "median_core_wall_seconds": {
+    "baseline": 2.606958746,
+    "candidate": 1.427871326
+  },
+  "median_speedup": 1.8257658785704898,
+  "median_time_reduction_percent": 45.22846484660099,
+  "all_recorded_fixture_output_and_object_state_comparisons_byte_exact": true,
+  "final_public_native_validation_pending": true
+}

@@ -1,0 +1,56 @@
+name: Sophistry ARM64 core regression
+on:
+  push:
+    branches: [codex/sophistry-native-checkpoints]
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - '.github/workflows/core-regression.yml'
+permissions:
+  contents: read
+jobs:
+  linux-arm64:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 90
+    env:
+      SOPHISTRY_BUILD_JOBS: '4'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Build complete optimized core and execute original references
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(uname -m)" = aarch64
+          mkdir -p work/core-report
+          bash scripts/build-native-engine.sh work/core-host work/core
+          python3 -m unittest discover -s tests -p test_lifted_storage_analysis.py
+          work/core/StorageOptimizationProbe reference/Sophistry.i386 | tee work/core-report/storage-state.json
+          work/core/InstructionProbe reference/Sophistry.i386 evidence/primitive-instructions.fixtures | tee work/core-report/instruction-replay.json
+          gzip -dc evidence/recovered-code-cp032.fixtures.gz > work/recovered.fixtures
+          work/core/InstructionProbe reference/Sophistry.i386 work/recovered.fixtures | tee work/core-report/recovered-code.json
+          work/core/LiftedProbe reference/Sophistry.i386 evidence/static-lift-comparison.fixtures | tee work/core-report/dsp-replay.json
+          flags=(-std=c++17 -O2 -g0 -ffp-contract=off -fno-fast-math -Isrc/lifter)
+          core=(work/core/LifterRuntime.o work/core/Dispatch.o work/core/Unit*.o)
+          host=(work/core-host/LegacyEngine.o work/core-host/LegacyImageData.o)
+          for probe in NativeAUBridgeProbe MasterVolumeProbe; do
+            c++ "${flags[@]}" "${core[@]}" "${host[@]}" "tests/$probe.cpp" -o "work/$probe"
+            "work/$probe" 'reference/Presets/lightgarden 02 BT.FXP' reference/Samples | tee "work/core-report/$probe.json"
+          done
+          python3 - <<'PY'
+          import hashlib,json,os,platform
+          from pathlib import Path
+          paths=['src/lifter/LifterRuntime.h','src/lifter/LifterRuntime.cpp','src/lifter/OptimizedLifter.h','scripts/optimize_lifted_cpp.py','scripts/build-lifter-chunks.sh','src/engine/LegacyEngine.cpp','tests/StorageOptimizationProbe.cpp']
+          r={'checkpoint':'CP-033','scope':'Native Linux ARM64 full optimized core and public replay/lifecycle fixtures; not macOS or licensed musical AU validation','commit':os.environ['GITHUB_SHA'],'architecture':platform.machine(),'source_sha256':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in paths},'original_pcode_sha256':json.loads(Path('work/core/optimized/manifest.json').read_text())['original_pcode_sha256'],'private_user_data_used':False,'passed':True}
+          Path('work/core-report/summary.json').write_text(json.dumps(r,indent=2)+'\n')
+          print(json.dumps(r))
+          PY
+      - name: Preserve core reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sophistry-cp033-linux-arm64
+          path: work/core-report/
+          retention-days: 7
