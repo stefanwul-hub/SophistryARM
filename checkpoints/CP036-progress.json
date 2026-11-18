@@ -1,0 +1,20 @@
+{
+  "checkpoint": "CP-036",
+  "functional_component": "CP-032",
+  "runtime_changed": false,
+  "optimization_added": false,
+  "scenarios": 63,
+  "differential_event_steps": 6598,
+  "compared_state_bytes": 57081496,
+  "original_cpp_same_contract_agree": true,
+  "extra_voice_and_render_dispatch_demonstrated": true,
+  "live_cpu_causality_quantified": false,
+  "new_mac_installation_required": false,
+  "evidence": [
+    "evidence/cp036-concordance-audit.json",
+    "evidence/cp036-voice-lifetimes.json",
+    "evidence/cp036-counterexamples.json",
+    "evidence/cp036-functional-baseline.json",
+    "evidence/cp036-voice-lifetime-traces.json.gz"
+  ]
+}

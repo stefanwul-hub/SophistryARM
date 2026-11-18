@@ -1,6 +1,6 @@
-# Sophistry — CP035 : suite de l’audit, composant CP032
+# Sophistry — CP036 : exploration des voix, composant CP032
 
-**CP035 poursuit la comparaison avec l’original sans modifier le composant.** 984 nouveaux cas passent ; deux scénarios montrent comment l’horloge simulée peut changer des décisions de voix et de MIDI. Le rappel périodique AU d’origine est aussi enregistré sans être déclenché par l’adaptateur ; son contrat avec la nouvelle interface reste à examiner. [Résultats et limites CP035](docs/CP035.md). Aucune nouvelle installation ni validation Mac n’est nécessaire pour cet audit ; le lanceur ci-dessous remet toujours CP032.
+**CP036 confirme que l’horloge simulée peut modifier le nombre de voix occupées.** Un cas contrôlé à sept notes produit cinq appels de voix au lieu de quatre dans la boucle originale. Les 63 scénarios et 6598 étapes comparées restent identiques entre i386 et C++ pour un même contrat d’horloge. [Résultats et limites CP036](docs/CP036.md). Le facteur CPU observé dans Live reste à quantifier. Aucun changement du composant ni optimisation n’est livré dans ce checkpoint ; CP032 reste la référence.
 
 Audio Unit ARM64 expérimental destiné à rouvrir les projets Sophistry 3.0.8 à partir de son code machine i386.
 

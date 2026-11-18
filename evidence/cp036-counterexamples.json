@@ -1,0 +1,1072 @@
+{
+  "checkpoint": "CP-036",
+  "scope": "Original i386 and unchanged CP032 agree on these trajectories for each clock contract. Voice DSP callbacks are controlled. Counts are not DAW CPU measurements.",
+  "seven_note_fixture": {
+    "pool_capacity": 8,
+    "voice_limit_argument_per_instrument": 2,
+    "instruments": 2,
+    "midi_channels": 2,
+    "note_off_or_envelope_completion_before_difference": false,
+    "elapsed_final_before_cleanup": {
+      "occupied": 4,
+      "dsp_calls": 4
+    },
+    "cp032_synthetic_final_before_cleanup": {
+      "occupied": 5,
+      "dsp_calls": 5
+    }
+  },
+  "single_channel_fixture": {
+    "pool_capacity": 3,
+    "voice_limit_argument": 3,
+    "instruments": 1,
+    "midi_channels": 1,
+    "held_after_note_off_elapsed": 2,
+    "held_after_note_off_synthetic": 3,
+    "occupied_after_controlled_250ms_release_elapsed": 2,
+    "occupied_after_controlled_250ms_release_synthetic": 3,
+    "release_completion_is_fixture_not_executed_envelope": true
+  },
+  "traces": {
+    "seven_note_counterexample": {
+      "elapsed": [
+        {
+          "time_ms": 0,
+          "event": "on",
+          "note": 61,
+          "instrument": 0,
+          "midi_channel_zero_based": 1,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": false
+          },
+          "occupied": 1,
+          "held": 1,
+          "per_instrument_occupied": [
+            1,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 1
+        },
+        {
+          "time_ms": 100,
+          "event": "on",
+          "note": 64,
+          "instrument": 1,
+          "midi_channel_zero_based": 1,
+          "decision": {
+            "slot": 1,
+            "reuse_or_steal": false
+          },
+          "occupied": 2,
+          "held": 2,
+          "per_instrument_occupied": [
+            1,
+            1
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 200,
+          "event": "on",
+          "note": 64,
+          "instrument": 1,
+          "midi_channel_zero_based": 1,
+          "decision": {
+            "slot": 2,
+            "reuse_or_steal": false
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            1,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 300,
+          "event": "on",
+          "note": 65,
+          "instrument": 0,
+          "midi_channel_zero_based": 1,
+          "decision": {
+            "slot": 3,
+            "reuse_or_steal": false
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 400,
+          "event": "on",
+          "note": 63,
+          "instrument": 0,
+          "midi_channel_zero_based": 1,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 500,
+          "event": "on",
+          "note": 60,
+          "instrument": 1,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 1,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 600,
+          "event": "on",
+          "note": 64,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 2,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            3,
+            1
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 1000,
+          "event": "complete_all",
+          "note": 60,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slots": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "occupied": 0,
+          "held": 0,
+          "per_instrument_occupied": [
+            0,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 0
+        }
+      ],
+      "cp032_synthetic": [
+        {
+          "time_ms": 0,
+          "event": "on",
+          "note": 61,
+          "instrument": 0,
+          "midi_channel_zero_based": 1,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": false
+          },
+          "occupied": 1,
+          "held": 1,
+          "per_instrument_occupied": [
+            1,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 1
+        },
+        {
+          "time_ms": 100,
+          "event": "on",
+          "note": 64,
+          "instrument": 1,
+          "midi_channel_zero_based": 1,
+          "decision": {
+            "slot": 1,
+            "reuse_or_steal": false
+          },
+          "occupied": 2,
+          "held": 2,
+          "per_instrument_occupied": [
+            1,
+            1
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 200,
+          "event": "on",
+          "note": 64,
+          "instrument": 1,
+          "midi_channel_zero_based": 1,
+          "decision": {
+            "slot": 2,
+            "reuse_or_steal": false
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            1,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 300,
+          "event": "on",
+          "note": 65,
+          "instrument": 0,
+          "midi_channel_zero_based": 1,
+          "decision": {
+            "slot": 3,
+            "reuse_or_steal": false
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 400,
+          "event": "on",
+          "note": 63,
+          "instrument": 0,
+          "midi_channel_zero_based": 1,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 500,
+          "event": "on",
+          "note": 60,
+          "instrument": 1,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            1,
+            3
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 600,
+          "event": "on",
+          "note": 64,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 4,
+            "reuse_or_steal": false
+          },
+          "occupied": 5,
+          "held": 5,
+          "per_instrument_occupied": [
+            2,
+            3
+          ],
+          "original_polyphonic_render_dsp_calls": 5
+        },
+        {
+          "time_ms": 1000,
+          "event": "complete_all",
+          "note": 60,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slots": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "occupied": 0,
+          "held": 0,
+          "per_instrument_occupied": [
+            0,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 0
+        }
+      ]
+    },
+    "seven_note_single_channel_control": {
+      "elapsed": [
+        {
+          "time_ms": 0,
+          "event": "on",
+          "note": 61,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": false
+          },
+          "occupied": 1,
+          "held": 1,
+          "per_instrument_occupied": [
+            1,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 1
+        },
+        {
+          "time_ms": 100,
+          "event": "on",
+          "note": 64,
+          "instrument": 1,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 1,
+            "reuse_or_steal": false
+          },
+          "occupied": 2,
+          "held": 2,
+          "per_instrument_occupied": [
+            1,
+            1
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 200,
+          "event": "on",
+          "note": 64,
+          "instrument": 1,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 2,
+            "reuse_or_steal": false
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            1,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 300,
+          "event": "on",
+          "note": 65,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 3,
+            "reuse_or_steal": false
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 400,
+          "event": "on",
+          "note": 63,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 500,
+          "event": "on",
+          "note": 60,
+          "instrument": 1,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 1,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 600,
+          "event": "on",
+          "note": 64,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 3,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 1000,
+          "event": "complete_all",
+          "note": 60,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slots": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "occupied": 0,
+          "held": 0,
+          "per_instrument_occupied": [
+            0,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 0
+        }
+      ],
+      "cp032_synthetic": [
+        {
+          "time_ms": 0,
+          "event": "on",
+          "note": 61,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": false
+          },
+          "occupied": 1,
+          "held": 1,
+          "per_instrument_occupied": [
+            1,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 1
+        },
+        {
+          "time_ms": 100,
+          "event": "on",
+          "note": 64,
+          "instrument": 1,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 1,
+            "reuse_or_steal": false
+          },
+          "occupied": 2,
+          "held": 2,
+          "per_instrument_occupied": [
+            1,
+            1
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 200,
+          "event": "on",
+          "note": 64,
+          "instrument": 1,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 2,
+            "reuse_or_steal": false
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            1,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 300,
+          "event": "on",
+          "note": 65,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 3,
+            "reuse_or_steal": false
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 400,
+          "event": "on",
+          "note": 63,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 500,
+          "event": "on",
+          "note": 60,
+          "instrument": 1,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 1,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 600,
+          "event": "on",
+          "note": 64,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": true
+          },
+          "occupied": 4,
+          "held": 4,
+          "per_instrument_occupied": [
+            2,
+            2
+          ],
+          "original_polyphonic_render_dsp_calls": 4
+        },
+        {
+          "time_ms": 1000,
+          "event": "complete_all",
+          "note": 60,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slots": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "occupied": 0,
+          "held": 0,
+          "per_instrument_occupied": [
+            0,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 0
+        }
+      ]
+    },
+    "single_channel_note_off_after_wrong_steal": {
+      "elapsed": [
+        {
+          "time_ms": 0,
+          "event": "on",
+          "note": 60,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": false
+          },
+          "occupied": 1,
+          "held": 1,
+          "per_instrument_occupied": [
+            1,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 1
+        },
+        {
+          "time_ms": 100,
+          "event": "on",
+          "note": 62,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 1,
+            "reuse_or_steal": false
+          },
+          "occupied": 2,
+          "held": 2,
+          "per_instrument_occupied": [
+            2,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 200,
+          "event": "on",
+          "note": 64,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 2,
+            "reuse_or_steal": false
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 300,
+          "event": "on",
+          "note": 65,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": true
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 400,
+          "event": "on",
+          "note": 67,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 1,
+            "reuse_or_steal": true
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 450,
+          "event": "off",
+          "note": 65,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0
+          },
+          "occupied": 3,
+          "held": 2,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 700,
+          "event": "complete_note",
+          "note": 65,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slots": [
+              0
+            ]
+          },
+          "occupied": 2,
+          "held": 2,
+          "per_instrument_occupied": [
+            2,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 750,
+          "event": "off",
+          "note": 60,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": -1
+          },
+          "occupied": 2,
+          "held": 2,
+          "per_instrument_occupied": [
+            2,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 800,
+          "event": "off",
+          "note": 62,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": -1
+          },
+          "occupied": 2,
+          "held": 2,
+          "per_instrument_occupied": [
+            2,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 850,
+          "event": "off",
+          "note": 64,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 2
+          },
+          "occupied": 2,
+          "held": 1,
+          "per_instrument_occupied": [
+            2,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 900,
+          "event": "off",
+          "note": 67,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 1
+          },
+          "occupied": 2,
+          "held": 0,
+          "per_instrument_occupied": [
+            2,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 1200,
+          "event": "complete_released",
+          "note": 60,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slots": [
+              1,
+              2
+            ]
+          },
+          "occupied": 0,
+          "held": 0,
+          "per_instrument_occupied": [
+            0,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 0
+        }
+      ],
+      "cp032_synthetic": [
+        {
+          "time_ms": 0,
+          "event": "on",
+          "note": 60,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": false
+          },
+          "occupied": 1,
+          "held": 1,
+          "per_instrument_occupied": [
+            1,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 1
+        },
+        {
+          "time_ms": 100,
+          "event": "on",
+          "note": 62,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 1,
+            "reuse_or_steal": false
+          },
+          "occupied": 2,
+          "held": 2,
+          "per_instrument_occupied": [
+            2,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 2
+        },
+        {
+          "time_ms": 200,
+          "event": "on",
+          "note": 64,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 2,
+            "reuse_or_steal": false
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 300,
+          "event": "on",
+          "note": 65,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": true
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 400,
+          "event": "on",
+          "note": 67,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0,
+            "reuse_or_steal": true
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 450,
+          "event": "off",
+          "note": 65,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": -1
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 700,
+          "event": "complete_note",
+          "note": 65,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slots": []
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 750,
+          "event": "off",
+          "note": 60,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": -1
+          },
+          "occupied": 3,
+          "held": 3,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 800,
+          "event": "off",
+          "note": 62,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 1
+          },
+          "occupied": 3,
+          "held": 2,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 850,
+          "event": "off",
+          "note": 64,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 2
+          },
+          "occupied": 3,
+          "held": 1,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 900,
+          "event": "off",
+          "note": 67,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slot": 0
+          },
+          "occupied": 3,
+          "held": 0,
+          "per_instrument_occupied": [
+            3,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 3
+        },
+        {
+          "time_ms": 1200,
+          "event": "complete_released",
+          "note": 60,
+          "instrument": 0,
+          "midi_channel_zero_based": 0,
+          "decision": {
+            "slots": [
+              0,
+              1,
+              2
+            ]
+          },
+          "occupied": 0,
+          "held": 0,
+          "per_instrument_occupied": [
+            0,
+            0
+          ],
+          "original_polyphonic_render_dsp_calls": 0
+        }
+      ]
+    }
+  },
+  "full_engine_audio_or_cpu_causality_proven": false,
+  "production_code_changed": false
+}

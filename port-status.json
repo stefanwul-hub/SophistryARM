@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-035",
+  "checkpoint": "CP-036",
   "original_version": "3.0.8",
   "original_architectures": [
     "ppc",
@@ -16,8 +16,8 @@
   "native_audio_unit_available": true,
   "native_ui_available": true,
   "install_allowed": true,
-  "arm64_scope": "CP032 component retained unchanged. CP035 adds 984 isolated original-i386 versus C++ behavior cases and an unchanged-host timer observation on Linux x86_64; no new Mac execution claimed.",
-  "next_work": "Continue semantic fidelity review of real clock/AU timestamp units and the original idle request/scheduling contract. No special optimization. Quantitative CPU gap with CronoX unresolved.",
+  "arm64_scope": "Unchanged CP032 component retained. CP036 compares original voice-management and polyphonic render-loop instructions against the C++ lift on Linux x86_64; final voice DSP callbacks remain controlled.",
+  "next_work": "Correct clock/AU timestamp fidelity without changing original voice-allocation policy; measure occupied and held voices by part during actual preset audio to quantify CPU contribution.",
   "cp030_work_in_progress": false,
   "cp030_build": "30001",
   "cp030_mac_execution_pending": true,
@@ -45,7 +45,7 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-032)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "CP035 audit sources and evidence published, archive downloaded and fully verified. CP032 component and restoration launcher unchanged.",
+  "publication_status": "CP036 voice-reuse exploration prepared; CP032 restoration launcher unchanged.",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -187,5 +187,25 @@
   "github_cp035_source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/fa4d1996589ebf9ddce702ea7a2b7274c90e7926",
   "github_cp035_archive_sha256": "8b6539505f45946ba305ff3d9d7644c3780770542ef0d9770313cb3b8c094471",
   "github_cp035_archive_verified_blobs": 4236,
-  "github_cp035_audit_url": "https://github.com/stefanwul-hub/SophistryARM/blob/fa4d1996589ebf9ddce702ea7a2b7274c90e7926/docs/CP035.md"
+  "github_cp035_audit_url": "https://github.com/stefanwul-hub/SophistryARM/blob/fa4d1996589ebf9ddce702ea7a2b7274c90e7926/docs/CP035.md",
+  "cp036_scenarios": 63,
+  "cp036_differential_event_steps": 6598,
+  "cp036_compared_state_bytes": 57081496,
+  "cp036_original_native_same_input_mismatches": 0,
+  "cp036_original_polyphonic_render_loop_executed": true,
+  "cp036_actual_voice_dsp_envelopes_executed": false,
+  "cp036_wrong_clock_can_increase_occupied_voices": true,
+  "cp036_seven_note_original_render_call_counts": {
+    "elapsed": 4,
+    "synthetic": 5
+  },
+  "cp036_single_channel_extra_held_voice_demonstrated": true,
+  "cp036_single_channel_occupied_difference_uses_controlled_completion_fixture": true,
+  "cp036_counter_invariant_or_pool_capacity_failure": false,
+  "cp036_unbounded_voice_leak_proven": false,
+  "cp036_live_cronox_cpu_difference_quantified": false,
+  "cp036_runtime_changed": false,
+  "cp036_new_optimization": false,
+  "cp036_evidence": "evidence/cp036-concordance-audit.json",
+  "cp036_mac_reinstallation_required_for_this_exploration": false
 }

@@ -1,0 +1,42 @@
+{
+  "checkpoint": "CP-036",
+  "purpose": "Explore wrong voice reuse and whether it can increase occupied voices and original render dispatch work",
+  "functional_baseline": "CP-032",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "original_allocator_entry": "0x2fb5c",
+  "note_off_entry": "0x2fdc4",
+  "completion_entry": "0x2f86e",
+  "render_loop_entry": "0xd1a6",
+  "differential_event_steps": 6598,
+  "scenarios": 63,
+  "compared_state_bytes": 57081496,
+  "evidence": [
+    "cp036-voice-lifetimes.json",
+    "cp036-counterexamples.json",
+    "cp036-voice-lifetime-traces.json.gz",
+    "cp036-functional-baseline.json"
+  ],
+  "findings": {
+    "same_contract_original_cpp_mismatches": 0,
+    "wrong_synthetic_age_can_change_victim_voice": true,
+    "wrong_synthetic_age_can_indirectly_increase_occupied_voices": true,
+    "seven_note_case_before_any_noteoff_or_completion": {
+      "elapsed_occupied": 4,
+      "synthetic_occupied": 5,
+      "actual_original_render_dispatch_dsp_calls": [
+        4,
+        5
+      ]
+    },
+    "single_channel_case_changes_held_voices_before_any_modeled_completion": true,
+    "single_channel_occupied_count_difference_requires_explicit_completion_in_named_case": true,
+    "count_invariants_or_pool_capacity_violation_observed": false,
+    "general_unbounded_voice_leak_proven": false,
+    "full_dsp_envelope_completion_executed": false,
+    "user_mac_cronox_cpu_difference_quantitatively_explained": false,
+    "single_note_and_named_melody_chord_cases_created_extra_voices": false
+  },
+  "runtime_changed": false,
+  "optimization_added": false,
+  "private_registration_or_preferences_used": false
+}

@@ -1,9 +1,9 @@
-# Suite après CP035
+# Suite après CP036
 
-Continuer à utiliser CP032. Le checkpoint CP035 ajoute une recherche de concordance ; il ne change pas le composant et ne nécessite pas de compilation ni de validation Mac supplémentaires. Le retour CP032 demandé après CP033 reste disponible avec le lanceur conservé.
+CP032 reste la référence fonctionnelle. CP036 explore les voix et conserve les sources, traces et conclusions, sans modifier le composant ni introduire d’optimisation.
 
-Les 984 cas supplémentaires passent à entrées contrôlées identiques. Deux scénarios démontrent cependant que l’horloge synthétique peut changer le choix d’une voix et l’expiration de données NRPN. L’adaptateur doit fournir une horloge réelle cohérente avec les timestamps AU ; c’est un sujet de fidélité fonctionnelle, sans optimisation particulière.
+La mauvaise datation peut modifier plus que l’identité de la voix reprise : un exemple contrôlé à sept notes passe de quatre à cinq voix occupées et appels dans la boucle originale. Sur un seul canal, un autre exemple change déjà le nombre de voix maintenues au note-off ; la persistance du nombre de voix occupées a été illustrée avec une fin de relâchement explicite de la sonde. Le vrai DSP des enveloppes reste à vérifier.
 
-Le service périodique AU original est enregistré mais l’adaptateur commun ne le planifie pas. Le drapeau de demande reste également inactif dans l’essai et aucune notification ne s’accumule dans cette séquence. Examiner le contrat complet avec l’interface et le cycle de vie avant de considérer son activation comme un correctif. Les appels et sélections originaux concernés sont couverts par les nouvelles sondes.
+Préparer une correction de fidélité de l’horloge et des unités de timestamps AU en conservant les routines originales de sélection. Pour chiffrer l’impact CPU, observer séparément les voix occupées, maintenues et par partie dans le rendu du vrai preset. Les compteurs sont cohérents dans les cas testés ; éviter une réécriture arbitraire de l’allocation ou une limite forcée.
 
-La cause quantitative de l’écart CPU CP032/CronoX n’est pas établie. Conserver l’identité AU et la compatibilité des états. Le niveau et le stress DX Bass avec release extrême restent classés conformément à la demande de l’utilisateur.
+Le service périodique original étudié à CP035 reste un autre contrat d’intégration à examiner. Aucune conclusion de fuite illimitée, de parité CPU CronoX ou d’équivalence sonore exhaustive n’est acquise. Les demandes de niveau et de stress extrême DX Bass restent classées.
