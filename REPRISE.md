@@ -17,3 +17,5 @@ Conserver CP032 pendant cette recherche. CP035 est un checkpoint d’audit, sans
 Les preuves sont dans evidence/cp035-*.json et docs/CP035.md ; sondes reproductibles dans analysis/cp035. Les limites CP034 sur bibliothèques mathématiques, services système et absence de preuve exhaustive restent valides. La parité CPU CronoX n’est pas démontrée. L’enquête de niveau et le stress extrême DX Bass restent classés.
 
 Après la publication finale, régénérer et vérifier le bundle Git autonome checkpoints/Sophistry-history.bundle. Le backup Ghidra CP032 est inchangé, empreinte et journal dans les checkpoints locaux ignorés de Git. Conserver les entrées de reprise et les empreintes sans publier de données privées.
+
+Publication CP035 : fa4d1996589ebf9ddce702ea7a2b7274c90e7926, arbre 59be88cdb719b4a53b60d6b0abfda881ec972ab5. Archive téléchargée et vérifiée : 44521714 octets, SHA256 8b6539505f45946ba305ff3d9d7644c3780770542ef0d9770313cb3b8c094471, 4236 blobs exacts. Preuve publique dans checkpoints/CP035-publication.json.

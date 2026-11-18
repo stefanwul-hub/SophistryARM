@@ -45,7 +45,7 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-032)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "CP035 concordance research prepared; CP032 installation archive and restoration launcher remain unchanged.",
+  "publication_status": "CP035 audit sources and evidence published, archive downloaded and fully verified. CP032 component and restoration launcher unchanged.",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -182,5 +182,10 @@
   "cp035_concordance_evidence": "evidence/cp035-concordance-audit.json",
   "cp035_timing_evidence": "evidence/cp035-timing-behaviour.json",
   "cp035_host_evidence": "evidence/cp035-host-idle-observation.json",
-  "cp035_baseline_evidence": "evidence/cp035-functional-baseline.json"
+  "cp035_baseline_evidence": "evidence/cp035-functional-baseline.json",
+  "github_cp035_source_commit": "fa4d1996589ebf9ddce702ea7a2b7274c90e7926",
+  "github_cp035_source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/fa4d1996589ebf9ddce702ea7a2b7274c90e7926",
+  "github_cp035_archive_sha256": "8b6539505f45946ba305ff3d9d7644c3780770542ef0d9770313cb3b8c094471",
+  "github_cp035_archive_verified_blobs": 4236,
+  "github_cp035_audit_url": "https://github.com/stefanwul-hub/SophistryARM/blob/fa4d1996589ebf9ddce702ea7a2b7274c90e7926/docs/CP035.md"
 }
