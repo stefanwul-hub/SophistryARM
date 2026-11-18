@@ -12,7 +12,7 @@ CP030 a supprimé les craquements de Gen1+2 selon le retour de l’utilisateur. 
 bash "$HOME/Downloads/Demarrer-Sophistry-CP031.command"
 ```
 
-Le lanceur télécharge l’archive immuable CP031 (lien après publication), vérifie son SHA-256, la décompacte, compile en ARM64, exécute les tests et auval puis remplace `/Library/Audio/Plug-Ins/Components/Sophistry.component`. L’ancien composant est restauré si une validation échoue. Licence et banque valides restent enregistrées localement.
+Le lanceur télécharge [l’archive immuable CP031](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/eeca148326f7d96d1059d37d0a264d50b194344e), vérifie son SHA-256, la décompacte, compile en ARM64, exécute les tests et auval puis remplace `/Library/Audio/Plug-Ins/Components/Sophistry.component`. L’ancien composant est restauré si une validation échoue. Licence et banque valides restent enregistrées localement.
 
 Attendre **Installation CP031 confirmée**, puis vérifier **Sophistry ARM64 port OA 2026 (CP-031)** en bas à gauche. Le ZIP de rapports CP031 est créé automatiquement. Pour l’enquête CPU/niveau, copier le diagnostic après lecture du preset concerné : il contient le Master réel et indique si l’hôte utilisait déjà le mode flottant corrigé. Le scénario DX Bass avec release extrême reste exclu.
 

@@ -45,7 +45,7 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-031)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "CP031 sources prepared; publication pending.",
+  "publication_status": "CP031 source archive downloaded and verified; pinned launcher publication pending.",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -72,5 +72,9 @@
   "cp031_cronox_level_difference_resolved": false,
   "cp031_gain_compensation_added": false,
   "cp031_lifted_units_or_numeric_runtime_changed": false,
-  "complete_original_reproduction_certified": false
+  "complete_original_reproduction_certified": false,
+  "github_cp031_source_commit": "eeca148326f7d96d1059d37d0a264d50b194344e",
+  "github_cp031_source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/eeca148326f7d96d1059d37d0a264d50b194344e",
+  "github_cp031_archive_sha256": "5da26a3f8db0ab596f66186877aff31c663a0a873430e35c4df9b42d81ba6a7c",
+  "github_cp031_launcher": "Demarrer-Sophistry-CP031.command"
 }
