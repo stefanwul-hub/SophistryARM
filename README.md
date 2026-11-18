@@ -8,7 +8,7 @@ Le rapport reçu confirme l’installation, auval et les comparaisons audio de C
 
 ## Télécharger et installer
 
-[Télécharger le lanceur CP030](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP030.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur CP030](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/80afd66fd049bb45ea5764c21a2b3eaf67c62945/Demarrer-Sophistry-CP030.command), fermer Logic et Live, puis lancer :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP030.command"
