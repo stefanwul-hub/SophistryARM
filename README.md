@@ -6,7 +6,7 @@ CP030 a supprimé les craquements de Gen1+2 selon le retour de l’utilisateur. 
 
 ## Télécharger et installer
 
-[Télécharger le lanceur CP031](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP031.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur CP031](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/e3a0c5c8921b1c3304c3f0b6721f177140c1163e/Demarrer-Sophistry-CP031.command), fermer Logic et Live, puis lancer :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP031.command"

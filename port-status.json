@@ -45,7 +45,7 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-031)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "CP031 source archive downloaded and verified; pinned launcher publication pending.",
+  "publication_status": "Source archive and pinned launcher published, downloaded and verified.",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -76,5 +76,9 @@
   "github_cp031_source_commit": "eeca148326f7d96d1059d37d0a264d50b194344e",
   "github_cp031_source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/eeca148326f7d96d1059d37d0a264d50b194344e",
   "github_cp031_archive_sha256": "5da26a3f8db0ab596f66186877aff31c663a0a873430e35c4df9b42d81ba6a7c",
-  "github_cp031_launcher": "Demarrer-Sophistry-CP031.command"
+  "github_cp031_launcher": "Demarrer-Sophistry-CP031.command",
+  "github_cp031_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/e3a0c5c8921b1c3304c3f0b6721f177140c1163e/Demarrer-Sophistry-CP031.command",
+  "github_cp031_launcher_commit": "e3a0c5c8921b1c3304c3f0b6721f177140c1163e",
+  "github_cp031_launcher_sha256": "c49ca5b7d58a1a55732684f7757cd3c8a2f5ceb4e7d3927c3360a9d4d0a20909",
+  "github_cp031_launcher_verified": true
 }
