@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-034",
+  "checkpoint": "CP-035",
   "original_version": "3.0.8",
   "original_architectures": [
     "ppc",
@@ -16,8 +16,8 @@
   "native_audio_unit_available": true,
   "native_ui_available": true,
   "install_allowed": true,
-  "arm64_scope": "Exact CP032 sources restored. CP034 concordance audits executed on Linux x86_64; original selected DSP, recovered code and platform probes pass. No new Apple Silicon execution claimed.",
-  "next_work": "Confirm CP032 restoration on user Mac. Continue original-code and OS-adapter fidelity review without special optimization; synthetic production clock identified, CPU causality unresolved.",
+  "arm64_scope": "CP032 component retained unchanged. CP035 adds 984 isolated original-i386 versus C++ behavior cases and an unchanged-host timer observation on Linux x86_64; no new Mac execution claimed.",
+  "next_work": "Continue semantic fidelity review of real clock/AU timestamp units and the original idle request/scheduling contract. No special optimization. Quantitative CPU gap with CronoX unresolved.",
   "cp030_work_in_progress": false,
   "cp030_build": "30001",
   "cp030_mac_execution_pending": true,
@@ -45,7 +45,7 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-032)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "CP034 restoration/audit source archive and rollback launcher published, downloaded and verified. Original immutable CP032 source archive remains the installation source.",
+  "publication_status": "CP035 concordance research prepared; CP032 installation archive and restoration launcher remain unchanged.",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -162,5 +162,25 @@
   "github_cp034_archive_verified_blobs": 4227,
   "github_cp034_restoration_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/b57f576eb9b52928d9069446167a1b49f8a1ffbe/Revenir-Sophistry-CP032.command",
   "github_cp034_restoration_launcher_sha256": "012575e97ef7bfce5d1d9deef936db3d05f45eba0910d19b826c1e2f267ff7b0",
-  "github_cp034_restoration_launcher_verified": true
+  "github_cp034_restoration_launcher_verified": true,
+  "cp035_functional_sources_identical_to_cp032": true,
+  "cp035_new_runtime_correction": false,
+  "cp035_new_runtime_optimization": false,
+  "cp035_original_differential_cases": 984,
+  "cp035_compared_state_bytes": 7224440,
+  "cp035_controlled_clock_sensitivity_scenarios": 2,
+  "cp035_clock_can_change_voice_selection_and_nrpn_decisions": true,
+  "cp035_original_au_timer_registration_observed": true,
+  "cp035_original_au_timer_callback": "0x3aba",
+  "cp035_original_au_timer_initial_delay_seconds": 0.005,
+  "cp035_original_au_timer_interval_seconds": 0.25,
+  "cp035_original_au_timer_not_dispatched_in_observed_host_sequence": true,
+  "cp035_original_idle_request_predicate_unset_in_observation": true,
+  "cp035_pending_notification_backlog_observed": false,
+  "cp035_cpu_causality_demonstrated": false,
+  "cp035_mac_runtime_test_required_for_this_audit": false,
+  "cp035_concordance_evidence": "evidence/cp035-concordance-audit.json",
+  "cp035_timing_evidence": "evidence/cp035-timing-behaviour.json",
+  "cp035_host_evidence": "evidence/cp035-host-idle-observation.json",
+  "cp035_baseline_evidence": "evidence/cp035-functional-baseline.json"
 }

@@ -1,0 +1,57 @@
+{
+  "checkpoint": "CP-035",
+  "functional_baseline": "CP-032",
+  "scope": "Compare original i386 timing-dependent decisions with the unchanged CP032 lift.\n\nThese are isolated, public synthetic fixtures, without registration or presets.\nOS imports and virtual notification consumers are controlled explicitly. They\ntest the original decisions, not the complete synth, its CPU cost or AU hosting.",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "architecture_executed": "Linux x86_64 C++ and original i386/Unicorn",
+  "cases_by_kind": {
+    "original_au_capabilities": 8,
+    "voice_selection": 512,
+    "voice_state_transition": 48,
+    "nrpn_timeout": 216,
+    "pointer_acceleration": 72,
+    "idle_timer_dispatch": 16,
+    "original_au_idle_timer": 64,
+    "original_notification_dispatch": 48
+  },
+  "differential_cases": 984,
+  "compared_state_bytes": 7224440,
+  "mismatches": [],
+  "clock_contract_sensitivity": {
+    "nrpn_data_five_seconds_after_selection": {
+      "elapsed": {
+        "accepted": false,
+        "parameter": 6,
+        "value": 17
+      },
+      "cp032_synthetic": {
+        "accepted": true,
+        "parameter": 259,
+        "value": 17
+      }
+    },
+    "oldest_voice_after_slot_reuse": {
+      "elapsed": 1,
+      "cp032_synthetic": 0
+    }
+  },
+  "original_au_capabilities": {
+    "supplyIdle": 1,
+    "receiveVstEvents": 0,
+    "receiveVstMidiEvent": 0,
+    "sendVstEvents": 1,
+    "sendVstMidiEvent": 1,
+    "receiveVstTimeInfo": 0,
+    "offline": 0,
+    "x-unsupported": 0
+  },
+  "timer_callback": "0xae9ec -> 0x1af32 -> 0x1a54a",
+  "actual_au_timer_callback": "0x3aba -> 0x1a004 -> 0x1a54a; rearm 250ms",
+  "notification_consumer": "Original 0x18360 also executed in 48 cases",
+  "callback_consumers": "Controlled final presentation callbacks; not the real editor",
+  "cpu_causality_demonstrated": false,
+  "full_engine_audio_tested": false,
+  "private_registration_or_preferences_used": false,
+  "production_code_changed": false,
+  "passed": true
+}

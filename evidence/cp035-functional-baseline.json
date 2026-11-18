@@ -1,0 +1,16 @@
+{
+  "checkpoint": "CP-035",
+  "functional_baseline": "CP-032",
+  "baseline_commit": "1a32688cce7017bc40a6085563a0aa82edb08639",
+  "current_runtime_src_scripts_tests_and_installer_bytes_match_cp032": true,
+  "matching_trees": {
+    "src": "a1e48f1f1101a5c9667b350eb5e52c36a09381f7",
+    "scripts": "d3ecefd458a5f4b81c2165f7bf09810ab1eabcc4",
+    "tests": "38e896a3e1571269e78ddb8a664537da749761b3"
+  },
+  "new_runtime_optimization": false,
+  "new_runtime_semantic_change": false,
+  "component_checkpoint": "CP-032",
+  "component_build": 32001,
+  "restoration_launcher_sha256": "012575e97ef7bfce5d1d9deef936db3d05f45eba0910d19b826c1e2f267ff7b0"
+}

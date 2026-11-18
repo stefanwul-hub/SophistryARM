@@ -1,0 +1,105 @@
+{
+  "checkpoint": "CP-035",
+  "functional_baseline": "CP-032",
+  "scope": "Unchanged LegacyEngine host built on Linux x86_64. Initialize, activate without licence or notes, edit two public parameters, wait 300ms, execute public editor getters. No Apple AudioComponent or actual Cocoa runloop used.",
+  "instrumentation": "Analysis executable only: GNU --wrap=sl_run reads import arguments and instruction coverage; CPU state is not changed by the observer.",
+  "raw_engine_diagnostics_published": false,
+  "private_registration_or_preferences_used": false,
+  "stages": [
+    {
+      "stage": "initialized",
+      "queue_capacity": 640,
+      "queue_write_index": 0,
+      "queue_read_index": 0,
+      "last_idle_milliseconds": 0,
+      "original_idle_available_flag": 1,
+      "original_au_idle_requested_flag": 0,
+      "original_au_timer_entry_executed": false,
+      "original_synth_idle_entry_executed": false,
+      "registered_timers": [],
+      "active": false,
+      "registration_accepted": false,
+      "clock_import_calls": 1,
+      "timer_install_import_calls": 0
+    },
+    {
+      "stage": "active_without_registration_or_notes",
+      "queue_capacity": 640,
+      "queue_write_index": 0,
+      "queue_read_index": 0,
+      "last_idle_milliseconds": 0,
+      "original_idle_available_flag": 1,
+      "original_au_idle_requested_flag": 0,
+      "original_au_timer_entry_executed": false,
+      "original_synth_idle_entry_executed": false,
+      "registered_timers": [
+        {
+          "callback": 15034,
+          "delay": 0.005,
+          "interval": 0.25
+        }
+      ],
+      "active": true,
+      "registration_accepted": false,
+      "clock_import_calls": 1,
+      "timer_install_import_calls": 1
+    },
+    {
+      "stage": "after_public_parameter_edits",
+      "queue_capacity": 640,
+      "queue_write_index": 0,
+      "queue_read_index": 0,
+      "last_idle_milliseconds": 0,
+      "original_idle_available_flag": 1,
+      "original_au_idle_requested_flag": 0,
+      "original_au_timer_entry_executed": false,
+      "original_synth_idle_entry_executed": false,
+      "registered_timers": [
+        {
+          "callback": 15034,
+          "delay": 0.005,
+          "interval": 0.25
+        }
+      ],
+      "active": true,
+      "registration_accepted": false,
+      "clock_import_calls": 1,
+      "timer_install_import_calls": 1
+    },
+    {
+      "stage": "after_300ms_and_editor_getters",
+      "queue_capacity": 640,
+      "queue_write_index": 0,
+      "queue_read_index": 0,
+      "last_idle_milliseconds": 0,
+      "original_idle_available_flag": 1,
+      "original_au_idle_requested_flag": 0,
+      "original_au_timer_entry_executed": false,
+      "original_synth_idle_entry_executed": false,
+      "registered_timers": [
+        {
+          "callback": 15034,
+          "delay": 0.005,
+          "interval": 0.25
+        }
+      ],
+      "active": true,
+      "registration_accepted": false,
+      "clock_import_calls": 1,
+      "timer_install_import_calls": 1
+    }
+  ],
+  "conclusions": {
+    "original_au_timer_registered": true,
+    "registered_callback": "0x3aba",
+    "initial_delay_seconds": 0.005,
+    "interval_seconds": 0.25,
+    "original_au_timer_entry_executed_in_observed_sequence": false,
+    "original_synth_idle_entry_executed_in_observed_sequence": false,
+    "original_idle_request_predicate_remained_unset": true,
+    "no_pending_notification_backlog_observed": true,
+    "callbacks_not_scheduled_by_common_host_adapter": true,
+    "live_logic_audio_or_cpu_effect_demonstrated": false,
+    "runtime_correction_applied": false
+  }
+}

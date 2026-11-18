@@ -1,0 +1,19 @@
+{
+  "checkpoint": "CP-035",
+  "functional_baseline": "CP-032",
+  "purpose": "Continue original-code concordance without optimization",
+  "runtime_changed": false,
+  "new_mac_installation_or_validation_required": false,
+  "differential_cases_passed": 984,
+  "compared_state_bytes": 7224440,
+  "clock_contract_behavior_differences_demonstrated": 2,
+  "original_au_timer_contract_examined": true,
+  "cpu_causality_demonstrated": false,
+  "private_input_used": false,
+  "evidence": [
+    "evidence/cp035-timing-behaviour.json",
+    "evidence/cp035-host-idle-observation.json",
+    "evidence/cp035-functional-baseline.json",
+    "evidence/cp035-concordance-audit.json"
+  ]
+}

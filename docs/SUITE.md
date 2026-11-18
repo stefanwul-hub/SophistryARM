@@ -1,9 +1,9 @@
-# Suite après CP034
+# Suite après CP035
 
-Revenir au composant CP032 avec `Revenir-Sophistry-CP032.command`, fermer Logic et Live pendant l’installation, puis vérifier le pied de page CP-032 et le résultat du lanceur. La compilation, les tests audio et auval restent locaux sur le Mac. Le dossier de travail CP032 et les préférences valides sont réutilisés.
+Continuer à utiliser CP032. Le checkpoint CP035 ajoute une recherche de concordance ; il ne change pas le composant et ne nécessite pas de compilation ni de validation Mac supplémentaires. Le retour CP032 demandé après CP033 reste disponible avec le lanceur conservé.
 
-CP033 est retiré : son rapport mesure un coût de rendu 3,306 fois plus élevé que CP032. Ne pas le réinstaller depuis un ancien lien et ne pas reprendre ses optimisations dans cette restauration.
+Les 984 cas supplémentaires passent à entrées contrôlées identiques. Deux scénarios démontrent cependant que l’horloge synthétique peut changer le choix d’une voix et l’expiration de données NRPN. L’adaptateur doit fournir une horloge réelle cohérente avec les timestamps AU ; c’est un sujet de fidélité fonctionnelle, sans optimisation particulière.
 
-L’audit CP034 conserve un retour fonctionnel exact à CP032 et des contrôles de concordance réussis. La fidélité des adaptateurs système reste à examiner, notamment l’horloge simulée et les unités des timestamps AU. Aucun lien causal avec le surcoût CPU CP032/CronoX n’est démontré. Ne pas annoncer une équivalence exhaustive du moteur sur la seule base d’un inventaire ou de comparaisons ciblées.
+Le service périodique AU original est enregistré mais l’adaptateur commun ne le planifie pas. Le drapeau de demande reste également inactif dans l’essai et aucune notification ne s’accumule dans cette séquence. Examiner le contrat complet avec l’interface et le cycle de vie avant de considérer son activation comme un correctif. Les appels et sélections originaux concernés sont couverts par les nouvelles sondes.
 
-L’utilisateur demande d’examiner la concordance sans optimisation particulière. Conserver cette priorité et l’identité AU. Le niveau reste classé sauf défaut DSP démontré ; le stress DX Bass avec release extrême reste annulé.
+La cause quantitative de l’écart CPU CP032/CronoX n’est pas établie. Conserver l’identité AU et la compatibilité des états. Le niveau et le stress DX Bass avec release extrême restent classés conformément à la demande de l’utilisateur.

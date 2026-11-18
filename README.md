@@ -1,4 +1,6 @@
-# Sophistry — CP034 : retour strict à CP032 et audit
+# Sophistry — CP035 : suite de l’audit, composant CP032
+
+**CP035 poursuit la comparaison avec l’original sans modifier le composant.** 984 nouveaux cas passent ; deux scénarios montrent comment l’horloge simulée peut changer des décisions de voix et de MIDI. Le rappel périodique AU d’origine est aussi enregistré sans être déclenché par l’adaptateur ; son contrat avec la nouvelle interface reste à examiner. [Résultats et limites CP035](docs/CP035.md). Aucune nouvelle installation ni validation Mac n’est nécessaire pour cet audit ; le lanceur ci-dessous remet toujours CP032.
 
 Audio Unit ARM64 expérimental destiné à rouvrir les projets Sophistry 3.0.8 à partir de son code machine i386.
 
@@ -26,6 +28,6 @@ La traduction compilée en ARM64 conserve des registres virtuels, des contrôles
 
 Identité AU `aumu/Sop3/LinP`, bundle `com.linplug.au.Sophistry`, version AU 3.0.8 et 522 paramètres conservés.
 
-[Audit CP034](docs/CP034.md) · [Preuve du retour exact](evidence/cp034-restored-baseline.json) · [Régression Mac CP033](evidence/mac-cp033-regression.json) · [Reprise](REPRISE.md).
+[Audit CP035](docs/CP035.md) · [Audit CP034](docs/CP034.md) · [Preuve du retour exact](evidence/cp034-restored-baseline.json) · [Régression Mac CP033](evidence/mac-cp033-regression.json) · [Reprise](REPRISE.md).
 
 [Archive des sources et de l’audit CP034](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/b57f576eb9b52928d9069446167a1b49f8a1ffbe) — le lanceur de restauration utilise l’archive CP032 originale indiquée plus haut.

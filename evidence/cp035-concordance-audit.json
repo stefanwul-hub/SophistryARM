@@ -1,0 +1,44 @@
+{
+  "checkpoint": "CP-035",
+  "functional_baseline": "CP-032",
+  "parent_checkpoint_commit": "d1e079f07f32fffc5f245acdd18c31efa13404b3",
+  "purpose": "Continue original-code concordance without optimization or a new component installation",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "differential_cases": 984,
+  "compared_state_bytes": 7224440,
+  "cases_by_kind": {
+    "original_au_capabilities": 8,
+    "voice_selection": 512,
+    "voice_state_transition": 48,
+    "nrpn_timeout": 216,
+    "pointer_acceleration": 72,
+    "idle_timer_dispatch": 16,
+    "original_au_idle_timer": 64,
+    "original_notification_dispatch": 48
+  },
+  "timing_evidence": "cp035-timing-behaviour.json",
+  "host_observation_evidence": "cp035-host-idle-observation.json",
+  "baseline_proof": "cp035-functional-baseline.json",
+  "findings": [
+    {
+      "finding": "Original and lifted timing-dependent voice, NRPN and control routines agree for equal modeled inputs",
+      "status": "984 differential cases passed",
+      "scope": "Isolated routines and controlled platform/final presentation callbacks"
+    },
+    {
+      "finding": "Synthetic clock can change original voice-reuse choices and NRPN timeout outcomes",
+      "status": "Two controlled behavior differences demonstrated in both original and C++",
+      "scope": "Not a reproduction of the user DAW session or CPU cause"
+    },
+    {
+      "finding": "AU activation registers original callback 0x3aba for 5ms initial delay and 250ms interval, but common host adapter only stores timers",
+      "status": "Import-argument and instruction-coverage observation plus source inspection",
+      "scope": "Original idle request predicate is also unset in this sequence. No pending notification backlog observed; no assertion that pumping it alone fixes the sound or CPU."
+    }
+  ],
+  "runtime_changed": false,
+  "optimization_added": false,
+  "mac_runtime_test_required_for_this_audit": false,
+  "full_engine_sound_equivalence_certified": false,
+  "cp032_cronox_cpu_gap_explained": false
+}
