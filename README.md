@@ -12,7 +12,7 @@ Audio Unit ARM64 expérimental pour rouvrir les projets Sophistry 3.0.8 à parti
 bash "$HOME/Downloads/Demarrer-Sophistry-CP033.command"
 ```
 
-Le lanceur télécharge l’archive immuable CP033 (lien après publication), vérifie son SHA-256, la décompacte, compile en ARM64 puis exécute les tests audio et auval sur votre Mac. Il remplace `/Library/Audio/Plug-Ins/Components/Sophistry.component` après les prévalidations et restaure l’ancien composant si une validation échoue. Licence et banque valides restent enregistrées localement.
+Le lanceur télécharge [l’archive immuable CP033](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/63fdae177535c81efb1cabd4413b9661e138798a), vérifie son SHA-256, la décompacte, compile en ARM64 puis exécute les tests audio et auval sur votre Mac. Il remplace `/Library/Audio/Plug-Ins/Components/Sophistry.component` après les prévalidations et restaure l’ancien composant si une validation échoue. Licence et banque valides restent enregistrées localement.
 
 Attendre **Installation CP033 confirmée**, puis vérifier **Sophistry ARM64 port OA 2026 (CP-033)** en bas à gauche. Le ZIP de rapports CP033 est créé automatiquement. Les options `--choose-bank`, `--diagnose-only` et `--recenter-windows` restent disponibles.
 

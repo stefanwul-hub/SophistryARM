@@ -1,0 +1,18 @@
+{
+  "checkpoint": "CP-033",
+  "source_commit": "63fdae177535c81efb1cabd4413b9661e138798a",
+  "source_tree": "787e739d406bfec85c9646ca95784f9778287110",
+  "archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/63fdae177535c81efb1cabd4413b9661e138798a",
+  "archive_bytes": 44500488,
+  "archive_sha256": "ab4e491f9bcff35324aa696eb225d4f1c92300f73a42dd9f36aa2328dce3fc52",
+  "all_tracked_blobs_verified": true,
+  "tracked_blobs": 4223,
+  "launcher": "Demarrer-Sophistry-CP033.command",
+  "mac_cp033_execution_confirmed": false,
+  "validation_on_user_mac": true,
+  "hosted_runner_required": false,
+  "publication_branch": "codex/sophistry-native-checkpoints",
+  "private_data_included": false,
+  "launcher_sha256": "3ed816052044e73a41e3787160a7438ad6b3fce90ec384f5dc5b32ede27f5bca",
+  "forwards_choose_bank_diagnose_and_recenter_options": true
+}

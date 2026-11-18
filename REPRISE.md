@@ -10,4 +10,4 @@ Huit tests de preuve des temporaires et six cas d’arrêt/limite/erreur du bloc
 
 L’enquête de niveau et le stress DX Bass restent annulés. Le checkpoint conserve les sources, preuves, scripts et références originales ; poursuivre le CPU selon les mesures réelles reçues.
 
-Publication CP033 : en cours. Vérifier tous les blobs du ZIP et le lanceur téléchargé, inscrire les commits et empreintes immuables puis régénérer et vérifier le bundle Git autonome. Garder le dépôt propre.
+Publication source CP033 : `63fdae177535c81efb1cabd4413b9661e138798a` ; arbre `787e739d406bfec85c9646ca95784f9778287110`. Archive vérifiée : 44500488 octets, SHA256 `ab4e491f9bcff35324aa696eb225d4f1c92300f73a42dd9f36aa2328dce3fc52`, 4223 blobs exacts. Le lanceur est épinglé sur cette source et cette empreinte. Terminer sa publication et sa vérification puis régénérer et vérifier le bundle Git autonome. Garder le dépôt propre.
