@@ -15,3 +15,5 @@ Ne pas annoncer une équivalence exhaustive ni une parité CPU CronoX. Le C++ st
 La restauration, la compilation ARM64, les tests audio et auval s’exécutent sur le Mac via le lanceur comme auparavant, sans CI. La restauration Mac reste à confirmer. Garder les demandes de niveau et de stress extrême DX Bass classées.
 
 Sources, preuve d’identité CP032 et audit sont conservés dans Git. Le bundle autonome `checkpoints/Sophistry-history.bundle` et le projet Ghidra CP032 restent des sauvegardes locales ; les régénérer/vérifier après la publication finale et conserver un journal de leurs empreintes hors Git.
+
+Publication CP034 : sources et audit b57f576eb9b52928d9069446167a1b49f8a1ffbe, arbre c48ab7d8b5e59d011db5da1eb93ea68788368326. Archive téléchargée et vérifiée : 44503927 octets, SHA256 9fbf7ccdb3a51d20b2d44a963138b174916401c9f68b3dad81dee182167d8b43, 4227 blobs exacts. Lanceur de restauration téléchargé et identique : https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/b57f576eb9b52928d9069446167a1b49f8a1ffbe/Revenir-Sophistry-CP032.command. Les métadonnées publiques sont dans checkpoints/CP034-publication.json.

@@ -45,7 +45,7 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-032)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "CP034 restoration and audit prepared; original immutable CP032 installer archive remains the installation source.",
+  "publication_status": "CP034 restoration/audit source archive and rollback launcher published, downloaded and verified. Original immutable CP032 source archive remains the installation source.",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -155,5 +155,12 @@
   "cp034_exhaustive_behavior_equivalence_proven": false,
   "cp034_cp032_cronox_cpu_difference_explained": false,
   "cp034_user_requested_no_special_optimization": true,
-  "cp034_validation_location": "User Mac through the existing CP032 automatic installer; no hosted runner required"
+  "cp034_validation_location": "User Mac through the existing CP032 automatic installer; no hosted runner required",
+  "github_cp034_source_commit": "b57f576eb9b52928d9069446167a1b49f8a1ffbe",
+  "github_cp034_source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/b57f576eb9b52928d9069446167a1b49f8a1ffbe",
+  "github_cp034_archive_sha256": "9fbf7ccdb3a51d20b2d44a963138b174916401c9f68b3dad81dee182167d8b43",
+  "github_cp034_archive_verified_blobs": 4227,
+  "github_cp034_restoration_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/b57f576eb9b52928d9069446167a1b49f8a1ffbe/Revenir-Sophistry-CP032.command",
+  "github_cp034_restoration_launcher_sha256": "012575e97ef7bfce5d1d9deef936db3d05f45eba0910d19b826c1e2f267ff7b0",
+  "github_cp034_restoration_launcher_verified": true
 }

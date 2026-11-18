@@ -6,7 +6,7 @@ Audio Unit ARM64 expérimental destiné à rouvrir les projets Sophistry 3.0.8 �
 
 ## Revenir à CP032 sur votre Mac
 
-[Télécharger le lanceur de restauration](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Revenir-Sophistry-CP032.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur de restauration](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/b57f576eb9b52928d9069446167a1b49f8a1ffbe/Revenir-Sophistry-CP032.command), fermer Logic et Live, puis lancer :
 
 ```bash
 bash "$HOME/Downloads/Revenir-Sophistry-CP032.command"
@@ -27,3 +27,5 @@ La traduction compilée en ARM64 conserve des registres virtuels, des contrôles
 Identité AU `aumu/Sop3/LinP`, bundle `com.linplug.au.Sophistry`, version AU 3.0.8 et 522 paramètres conservés.
 
 [Audit CP034](docs/CP034.md) · [Preuve du retour exact](evidence/cp034-restored-baseline.json) · [Régression Mac CP033](evidence/mac-cp033-regression.json) · [Reprise](REPRISE.md).
+
+[Archive des sources et de l’audit CP034](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/b57f576eb9b52928d9069446167a1b49f8a1ffbe) — le lanceur de restauration utilise l’archive CP032 originale indiquée plus haut.

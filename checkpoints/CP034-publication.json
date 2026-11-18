@@ -1,0 +1,20 @@
+{
+  "checkpoint": "CP-034",
+  "source_commit": "b57f576eb9b52928d9069446167a1b49f8a1ffbe",
+  "source_tree": "c48ab7d8b5e59d011db5da1eb93ea68788368326",
+  "source_parent": "8e29b6a6c9ddad7e7aee84fb435fc4bbbd8d1200",
+  "main_before": "d9fc740319b1bb3d3846df32f31e59bacf7df44c",
+  "source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/b57f576eb9b52928d9069446167a1b49f8a1ffbe",
+  "launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/b57f576eb9b52928d9069446167a1b49f8a1ffbe/Revenir-Sophistry-CP032.command",
+  "archive_bytes": 44503927,
+  "archive_sha256": "9fbf7ccdb3a51d20b2d44a963138b174916401c9f68b3dad81dee182167d8b43",
+  "archive_verified_git_blobs": 4227,
+  "archive_crc_and_git_content_verified": true,
+  "launcher_bytes": 2448,
+  "launcher_sha256": "012575e97ef7bfce5d1d9deef936db3d05f45eba0910d19b826c1e2f267ff7b0",
+  "launcher_downloaded_byte_identical": true,
+  "installation_source_is_original_cp032": true,
+  "installation_source_commit": "6859eaa4b3513b384ecab6bc6e5501174977dfb8",
+  "installation_archive_sha256": "0fa3d52b58c753ba5b2cee5dbc6cd13d5099191f78b18812e2274ceff0661d0a",
+  "user_mac_restoration_pending": true
+}
