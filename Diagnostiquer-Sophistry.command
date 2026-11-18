@@ -16,7 +16,7 @@ collect(){
   result=$?
   trap - EXIT
   printf '%s\n' "$result" > "$REPORT/script-exitcode.txt"
-  archive="$ROOT/Sophistry-inspection-CP031-$STAMP.zip"
+  archive="$ROOT/Sophistry-inspection-CP032-$STAMP.zip"
   (cd "$REPORT"; /usr/bin/zip -q "$archive" ./*.json ./*.log ./*.txt 2>/dev/null || true)
   printf '\n%s\n' "Rapport : $archive"
   /usr/bin/open -R "$archive" >/dev/null 2>&1 || true
@@ -49,5 +49,5 @@ r=json.load(open(sys.argv[1]))
 print('Version réellement chargée :',r['loaded_wrapper_version'] or 'non identifiée')
 print('Propriété de vue Cocoa disponible :', 'oui' if r['cocoa_property_available'] else 'non')
 if not r['current_checkpoint_loaded']:
-    print('Le registre charge une autre version que CP031 ; consulter le rapport avant de relancer une installation.')
+    print('Le registre charge une autre version que CP032 ; consulter le rapport avant de relancer une installation.')
 PY

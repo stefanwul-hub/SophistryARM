@@ -1,9 +1,9 @@
-# Suite après CP031
+# Suite après CP032
 
-CP030 a supprimé les craquements de Gen1+2 selon le retour utilisateur. CP031 corrige un réglage flottant du rendu original et ajoute des contrôles du Master : [description](CP031.md).
+La priorité « code original complet » a conduit à retrouver et intégrer trois blocs omis. Les inventaires identifiés, les contrôles de tables et les nouvelles références d’exécution passent : [CP032](CP032.md).
 
-La prochaine étape est le rapport Mac CP031 et un diagnostic pris dans le DAW après lecture du preset comparé. Lire le Master réel et `host_denormal_mode_already_enabled`. Si l’hôte appliquait déjà le mode flottant, cette correction ne suffit pas à expliquer le surcoût CPU. Ne pas annoncer un gain global chiffré sans mesure.
+La prochaine vérification est l’installation CP032 sur Mac avec auval, l’audio et les anciens projets Logic/Live. Conserver le rapport automatique. Les nouveaux cas doivent apparaître dans recovered-code.json avec1351 cas réussis.
 
-Il faut encore connaître le preset, la version de CronoX et les conditions de comparaison pour expliquer l’écart de niveau. Aucun boost de volume arbitraire n’est prévu. L’original de référence reste Sophistry3.0.8 fourni, et une reproduction exhaustive n’est pas certifiée.
+Reprendre ensuite le coût CPU sur cette base corrigée. Live activait déjà le mode flottant ; la correction CP031 ne pouvait pas réduire ce coût dans la session diagnostiquée. Le code du lifter garde ses contrôles et son suivi d’exécution. Aucun gain chiffré n’est annoncé pour CP032.
 
-Conserver les validations, références audio, auval et rollback, les lanceurs épinglés et vérifiés, les preuves filtrées et le bundle Git autonome. Le scénario DX Bass avec release extrême reste annulé.
+L’enquête de niveau est classée à la demande de l’utilisateur, sauf défaut DSP démontré. Le scénario DX Bass avec release extrême reste annulé. Conserver les preuves de couverture, les références originales, le rollback et les checkpoints vérifiés.

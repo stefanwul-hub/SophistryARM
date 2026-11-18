@@ -6,11 +6,14 @@ import ghidra.program.model.address.*;
 import java.nio.file.*;
 import java.io.*;
 import java.util.*;
+import java.util.zip.GZIPOutputStream;
 public class ExportPcode extends GhidraScript {
  String esc(String s){return s.replace("\\","\\\\").replace("\"","\\\"").replace("\n","\\n").replace("\r","\\r").replace("\t","\\t");}
  String vn(Varnode v){if(v==null)return "null";return "{\"space\":\""+esc(v.getAddress().getAddressSpace().getName())+"\",\"offset\":\""+Long.toUnsignedString(v.getOffset(),16)+"\",\"size\":"+v.getSize()+"}";}
  public void run() throws Exception {
   String[] args=getScriptArgs();Path output=Paths.get(args[0]);Files.createDirectories(output);
+  if(!currentProgram.getExecutableSHA256().equals("17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12"))throw new Exception("Wrong original image");
+  boolean gzip=Arrays.asList(args).contains("--gzip");
   TreeMap<Long,Instruction> instructions=new TreeMap<>();Set<Long> visited=new HashSet<>();
   List<String> funcs=new ArrayList<>();
   boolean all=args.length>1 && args[1].equals("--all");
@@ -34,7 +37,10 @@ public class ExportPcode extends GhidraScript {
     for(Function callee:f.getCalledFunctions(monitor))if(!callee.isExternal()&&callee.getEntryPoint().getOffset()<0x103000)queue.add(callee);
    }
   }
-  try(PrintWriter out=new PrintWriter(Files.newBufferedWriter(output.resolve("instructions.jsonl")))) {
+  Path streamPath=output.resolve(gzip?"instructions.jsonl.gz":"instructions.jsonl");
+  OutputStream stream=Files.newOutputStream(streamPath);
+  if(gzip)stream=new GZIPOutputStream(stream,65536);
+  try(PrintWriter out=new PrintWriter(new BufferedWriter(new OutputStreamWriter(stream,java.nio.charset.StandardCharsets.UTF_8)))) {
    int exported=0;
    for(Instruction ins:instructions.values()) {
     if((++exported)%10000==0)println("P-code instructions exported: "+exported);

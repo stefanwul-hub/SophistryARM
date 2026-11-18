@@ -22,7 +22,7 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 
 - **CP-011 — hôte C++ et contrat de paramètres AU** : hôte C++ autonome, import/sérialisation et régions mémoire exacts sous Linux natif et ARM64/QEMU ; métadonnées des 522 paramètres et 56 alias de validation vérifiés sur les routines originales/traduites. Test Mac avec licence saisie localement et comparaison i386 prévue, non encore exécuté. Licence invalide refusée, captures mémoire privées désactivées. Aucun AU installable.
 
-- **CP-016 — retour CP-015 et corrections auval** : compilation/persistance de licence et audio préflight confirmés sur Mac, auval échoué et rollback confirmé. Propriété33 raccordée à l’original (596cas), initialisation192k/4096 débloquée et réglages validés conservés après échec. Prochain auval Mac et rappel de projets à vérifier.
+- **CP-016 — retour CP-015 et corrections auval** : compilation/persistance de licence et audio préflight confirmés sur Mac, auval échoué et rollback confirmé. Propriété33 raccordée à l’original (596 cas), initialisation192k/4096 débloquée et réglages validés conservés après échec. Prochain auval Mac et rappel de projets à vérifier.
 
 - **CP-017 — Mac CP-016 confirmé** : auval et installation ARM64 réussis, 522 paramètres validés, six WAV originaux/prévalidation/enregistrés exacts. Licence persistée puis réutilisée. L’utilisateur teste ses projets Logic ; interface fidèle en développement.
 
@@ -37,3 +37,5 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-030 — Gen1+2, tirettes, CPU et lisibilité** : préparation Loop déplacée au chargement, verrou relâché entre getters complets, redessins réduits, chemins de conversion numérique exacts raccourcis. Drapeau original d’inversion récupéré pour41 Drawbar ; preset et quatre boutons blancs, nouveau pied de page. Comparaisons i386, Linux, ARM64/QEMU et huit liens Mac stricts réussis ; exécution Mac CP030 en attente. Voir [CP030](../docs/CP030.md).
 
 - **CP-031 — enquête CPU et niveau** : CP030 résout les craquements Gen1+2 selon l’utilisateur. Rendu natif corrigé pour reproduire FTZ/DAZ original, état du thread restauré, Master comparé à l’i386. Tests Linux/ARM64/QEMU et neuf liens Mac stricts. Écarts CPU/niveau avec CronoX encore non résolus ; reproduction exhaustive non certifiée. [CP031](../docs/CP031.md).
+
+- **CP-032 — blocs originaux manquants intégrés** : trois blocs/huit instructions récupérés dans les octets originaux, huit alignements incorrects exclus. Inventaires et33 tables/839 choix complets ;1351nouveaux cas et références précédentes passent Linux/ARM64/QEMU. Neuf liens Mac stricts, exécution Mac en attente. Le code identifié correspond au nouvel export Ghidra ; l’optimisation CPU suit cette étape. [CP032](../docs/CP032.md).

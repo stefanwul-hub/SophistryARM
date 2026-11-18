@@ -1,31 +1,42 @@
 {
   "scope": "Statically emitted detected internal instructions; emission is not whole-engine execution proof",
   "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
-  "input_raw_sha256": "3f6c8938406e4931cd7cc03ce11dc6fc8bd404f4b7ca6d990300741cc6027530",
+  "input_raw_sha256": "1982dac58e305b5773ce9f358ab3ae47da831466de124adb6be3044fca712a5b",
   "instruction_count": 191379,
-  "pcode_operation_count": 758582,
+  "additional_instructions_filename": "integration-additions-cp032.jsonl",
+  "excluded_instruction_addresses": [
+    "0x184d3",
+    "0x184d9",
+    "0x23f6f",
+    "0x23f75",
+    "0x23f77",
+    "0x23f7d",
+    "0x23f7f",
+    "0x23f81"
+  ],
+  "pcode_operation_count": 758490,
   "operation_counts": {
     "COPY": 174720,
-    "INT_SUB": 29703,
-    "STORE": 73011,
-    "INT_LESS": 9206,
-    "INT_SBORROW": 9259,
-    "INT_SLESS": 27890,
-    "INT_EQUAL": 54398,
-    "INT_AND": 71861,
-    "POPCOUNT": 26050,
-    "INT_ADD": 114804,
-    "LOAD": 68036,
+    "INT_SUB": 29702,
+    "STORE": 73009,
+    "INT_LESS": 9205,
+    "INT_SBORROW": 9258,
+    "INT_SLESS": 27883,
+    "INT_EQUAL": 54384,
+    "INT_AND": 71845,
+    "POPCOUNT": 26043,
+    "INT_ADD": 114801,
+    "LOAD": 68007,
     "RETURN": 3138,
     "CALL": 9815,
     "CALLIND": 2141,
     "CBRANCH": 12421,
-    "INT_CARRY": 8183,
-    "INT_SCARRY": 8184,
-    "BRANCH": 4307,
+    "INT_CARRY": 8178,
+    "INT_SCARRY": 8179,
+    "BRANCH": 4308,
     "BOOL_NEGATE": 10400,
     "INT_ZEXT": 2034,
-    "BOOL_OR": 2772,
+    "BOOL_OR": 2771,
     "INT_LEFT": 1771,
     "INT_NOTEQUAL": 4302,
     "INT_OR": 7940,
@@ -50,7 +61,7 @@
     "FLOAT_LESSEQUAL": 7,
     "INT2FLOAT": 623,
     "INT_NEGATE": 310,
-    "BOOL_XOR": 33,
+    "BOOL_XOR": 32,
     "INT_SDIV": 79,
     "INT_SREM": 79,
     "CALLOTHER": 5,
@@ -134,7 +145,7 @@
     512,
     512,
     512,
-    605,
+    603,
     512,
     512,
     512,
@@ -219,7 +230,7 @@
     512,
     512,
     1046,
-    777,
+    779,
     512,
     512,
     512,
@@ -1078,8 +1089,8 @@
     },
     {
       "name": "Unit0049.cpp",
-      "bytes": 483195,
-      "sha256": "23f6d1a356368df9cd0a43425a755b08a052dde70cc33661506b178d13af9dfa"
+      "bytes": 480540,
+      "sha256": "27b4a0980cc7421ba53511d12c2013f803ba744bda124251112f0e371a968a18"
     },
     {
       "name": "Unit0050.cpp",
@@ -1198,8 +1209,8 @@
     },
     {
       "name": "Unit0073.cpp",
-      "bytes": 370286,
-      "sha256": "4a1cc56e9c24f6f47244d01dabbb4512c30995c07bc3b6cd53c7ac7a61f7b94c"
+      "bytes": 359228,
+      "sha256": "03ce2f27dfb4070ecef29894a932cefca84d8ac0ef889277383e5cbd11b14bfd"
     },
     {
       "name": "Unit0074.cpp",
@@ -1623,8 +1634,8 @@
     },
     {
       "name": "Unit0158.cpp",
-      "bytes": 636814,
-      "sha256": "9cffc977b6076c0997ababe5ab7dd1c8f9e19bb5728d5aa2d8fa20722c36dafa"
+      "bytes": 637165,
+      "sha256": "40a2d5d95512e2c38028765afbe7e6e87263870d9c83395de90e0fb236eb1892"
     },
     {
       "name": "Unit0159.cpp",
@@ -2653,8 +2664,8 @@
     },
     {
       "name": "Dispatch.cpp",
-      "bytes": 2035478,
-      "sha256": "af2439000ee1f48753b43ecf0512421a7a91dd9debfdbe073c89330fbac68d4d"
+      "bytes": 2035480,
+      "sha256": "6d6d52b0e8678ad74f71d21787a7a367b8d61e0d6ac5c365aa7b9260d662e825"
     }
   ]
 }

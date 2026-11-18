@@ -601,6 +601,8 @@ case 0x544ad:goto L_544ad;
 case 0x544af:goto L_544af;
 case 0x544b6:goto L_544b6;
 case 0x544b8:goto L_544b8;
+case 0x54534:goto L_54534;
+case 0x54539:goto L_54539;
 case 0x5453e:goto L_5453e;
 case 0x54541:goto L_54541;
 case 0x54548:goto L_54548;
@@ -11382,6 +11384,20 @@ P_544b8_0:;
 c.pc=SlU32(sl_get<4>(c.reg,sizeof(c.reg),0x0,c));goto dispatch;
 P_544b8_1:;
 c.pc=0x544ba;goto dispatch;
+}
+L_54534:{ // MOV EAX,0x30
+c.pc=0x54534;if(!sl_tick(c))return int(c.fault);
+P_54534_0:;
+sl_put<4>(c.reg,sizeof(c.reg),0x0,SlU(0x30ULL),c);
+P_54534_1:;
+goto L_54539;
+}
+L_54539:{ // JMP 0x00054479
+c.pc=0x54539;if(!sl_tick(c))return int(c.fault);
+P_54539_0:;
+goto L_54479;
+P_54539_1:;
+goto L_5453e;
 }
 L_5453e:{ // ADD ESI,0x1
 c.pc=0x5453e;if(!sl_tick(c))return int(c.fault);

@@ -1,0 +1,232 @@
+{
+  "checkpoint": "CP-032",
+  "passed": true,
+  "scope": "Complete current original-code inventory, recovered blocks and switch dispatch comparisons; selected DSP, AU integration and strict Mac ARM64 links. No CP032 macOS runtime execution here.",
+  "source_sha256": {
+    "Diagnostiquer-Sophistry.command": "4a01c0ae9cdf44a0c0c422565923441220b552ce48666d5887967cb8f4c7a11a",
+    "Installer-ARM64.command": "7ae5c684b6952a36db96ee699e210221cdccec6706dfe2e202c221e4a2eab40d",
+    "analysis/lifter-full/excluded-misaligned-cp032.json": "2cb87b98f24f6edb003b44c07f7a8e3e9b1809cc8293878d105718c500aa47c6",
+    "analysis/lifter-full/integration-additions-cp032.jsonl": "821368bb06c6fabefb040f53bfe35327bcff8f29b0fb11bb96c8cf5eb8a31a04",
+    "scripts/audit_jump_tables.py": "ee820835b132e51d41b0a3f0fe4529213a4b0e5fcc470fa81d782cf83a69ec84",
+    "scripts/audit_original_code.py": "8c1df0e4df872ef22ea0a8a84c748c288baca0b36ae5f983ba0dfdad53899a34",
+    "scripts/audit_unwind_entries.py": "c268b22c3705256b32926a7eabc1ac7eb71eb5425efda777f33d946c1be1eb63",
+    "scripts/ghidra/ExportPcode.java": "12680ef8eb4375dd8f821989b8e815e916553dcb75960659dc132b973321a4a8",
+    "scripts/ghidra/RecoverOverlappingCode.java": "5d1a8af3546eda2f64d6cacecc24b00ac5501ae52d1fe0793afa262cc0fbc808",
+    "scripts/lift_pcode_chunks.py": "daf6fb47637ea66c2bd64c958f46051e9f646d88e8fd3de50e22a142dfaaad4c",
+    "src/au/Info.plist": "00edc6780239fdfdc67dab7eedd865ceb77cb82a502746f6320332679269aaca",
+    "src/au/SophistryProperties.h": "67a2ca537756fa79ce112d7818c3d103662b71364dee2e64ad522b2bb820b6c0",
+    "src/lifter/whole/Dispatch.cpp": "6d6d52b0e8678ad74f71d21787a7a367b8d61e0d6ac5c365aa7b9260d662e825",
+    "src/lifter/whole/Unit0049.cpp": "27b4a0980cc7421ba53511d12c2013f803ba744bda124251112f0e371a968a18",
+    "src/lifter/whole/Unit0073.cpp": "03ce2f27dfb4070ecef29894a932cefca84d8ac0ef889277383e5cbd11b14bfd",
+    "src/lifter/whole/Unit0158.cpp": "40a2d5d95512e2c38028765afbe7e6e87263870d9c83395de90e0fb236eb1892",
+    "src/lifter/whole/manifest.json": "89f124d555578897d5e6a38c491233692e1c0ef2911ca74760244f36320bbc3a",
+    "tests/InstructionProbeMain.cpp": "e5dfcb5005c1dbec7aa23d2d6b1a2beada24aa14896963c0a5228862fcbf1dcf",
+    "tests/generate_recovered_code_fixtures.py": "c6166085538af9bc69ecf9042b7f2dcf5892687b9c4bcaaaa3c1760cbf99b41e"
+  },
+  "coverage_evidence": "cp032-original-code-coverage.json",
+  "baseline_failure": {
+    "previous_core_failed_as_expected": true,
+    "exitcode": 1,
+    "error": "Instruction case 0 at 0x184d4 fault 3, expected 0"
+  },
+  "regression": {
+    "linux": {
+      "recovered-code": {
+        "scope": "isolated original instruction and recovered-branch fixtures",
+        "cases": 1351,
+        "compared_register_bytes": 49987,
+        "compared_memory_bytes": 768,
+        "passed": true,
+        "full_engine_tested": false
+      },
+      "primitive-instructions": {
+        "scope": "isolated original instruction and recovered-branch fixtures",
+        "cases": 11635,
+        "compared_register_bytes": 146749,
+        "compared_memory_bytes": 0,
+        "passed": true,
+        "full_engine_tested": false
+      },
+      "selected-dsp": {
+        "scope": "selected statically lifted DSP",
+        "cases": 704,
+        "compared_bytes": 5420672,
+        "byte_mismatches": 0,
+        "output_buffer_byte_mismatches": 0,
+        "object_state_byte_mismatches": 0,
+        "math_calls": 201,
+        "math_mode": "recorded ABI responses",
+        "instruction_addresses_executed": 3113,
+        "fixture_valid": true,
+        "passed": true,
+        "full_synth_tested": false
+      }
+    },
+    "arm64": {
+      "recovered-code": {
+        "scope": "isolated original instruction and recovered-branch fixtures",
+        "cases": 1351,
+        "compared_register_bytes": 49987,
+        "compared_memory_bytes": 768,
+        "passed": true,
+        "full_engine_tested": false
+      },
+      "primitive-instructions": {
+        "scope": "isolated original instruction and recovered-branch fixtures",
+        "cases": 11635,
+        "compared_register_bytes": 146749,
+        "compared_memory_bytes": 0,
+        "passed": true,
+        "full_engine_tested": false
+      },
+      "selected-dsp": {
+        "scope": "selected statically lifted DSP",
+        "cases": 704,
+        "compared_bytes": 5420672,
+        "byte_mismatches": 0,
+        "output_buffer_byte_mismatches": 0,
+        "object_state_byte_mismatches": 0,
+        "math_calls": 201,
+        "math_mode": "recorded ABI responses",
+        "instruction_addresses_executed": 3113,
+        "fixture_valid": true,
+        "passed": true,
+        "full_synth_tested": false
+      }
+    }
+  },
+  "native_editor": {
+    "passed": true,
+    "pages_and_modes": 104,
+    "unique_controls": 852,
+    "visible_generator_menu_transitions": 50,
+    "choice_lists": 1512,
+    "cooperative_getter_boundaries": 6327,
+    "file_dialogs": 12,
+    "file_roundtrips": 6,
+    "module_copy_paste": 3,
+    "key_hits": 3240,
+    "knob_positions": 676,
+    "pointer_kinds": 4,
+    "numeric_loop_edits": 4,
+    "sample_actions": 6,
+    "wrong_module_rejected": true,
+    "page_reads_leave_program_unchanged": true,
+    "musical_audio_tested": false
+  },
+  "native_au_bridge": {
+    "passed": true,
+    "native_float_state_restored": true,
+    "parameter_records": 522,
+    "reinitialization_cycles": 8,
+    "channels": [
+      2,
+      6
+    ],
+    "sample_rates": [
+      22050,
+      44100,
+      48000,
+      96000,
+      192000
+    ],
+    "licensed_musical_audio_tested": false
+  },
+  "master_state_regression": {
+    "passed": true,
+    "musical_audio_tested": false,
+    "initial_master_db": -6,
+    "fxp_master_db": 0,
+    "program_saved_master_db": 0,
+    "master_before_program_restore_db": -12,
+    "master_after_program_restore_db": 0,
+    "bank_saved_master_db": 0,
+    "master_before_bank_restore_db": -12,
+    "master_after_bank_restore_db": 0,
+    "program_bytes": 21072,
+    "bank_bytes": 22040
+  },
+  "original_complete_editor_reference": "complete-editor-cp032.json",
+  "fixture_regeneration_byte_exact": true,
+  "mac_arm64_strict_links": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 31300880,
+      "sha256": "cc3a8e0d624a9408af536be6cd8d13da3a9ccd9ef0d98182539f0f4c3dec5d4d",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1342800,
+      "sha256": "edcdfc5fc91f3f8869981b7f03208698416a00b36da91d45a6f515c455e4bd5f",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "edd9a1ac13759411f0b604d8c0c8821717e07920b884e7e0815541e5ea21d2d2",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitFactoryProbe",
+      "architecture": "arm64",
+      "bytes": 1364544,
+      "sha256": "036e1e3e772162bcce788dc871773c7a36349207624a651cb0ac2bbf98834661",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "c5a1ae9f36d2494760f0ec24a3cad247ce7d4999643d7a5a374ba9318302fb89",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "NativeCompleteEditorProbe",
+      "architecture": "arm64",
+      "bytes": 30688160,
+      "sha256": "b5879c1beb0996860ef700dc0b4dd5c070db0295525332df26942cd34fbf2556",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "NativeAUBridgeProbe",
+      "architecture": "arm64",
+      "bytes": 30569776,
+      "sha256": "c768585b68bf6bc40e39d1f6bceb15b23066ff0726f6d66ef3e2cb9cc2db1e63",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "InstructionProbe",
+      "architecture": "arm64",
+      "bytes": 27683088,
+      "sha256": "b8bc728689890d16fa6a554abf515fa7e8527a5effc998abaaf9becc468ab06c",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "LiftedProbe",
+      "architecture": "arm64",
+      "bytes": 27683232,
+      "sha256": "229188ef8df34a2717761c9f610d21e92a2168246f8fa6e4eab3579b72e003dd",
+      "strict_link_no_dynamic_lookup": true
+    }
+  ],
+  "au_identity": {
+    "bundle_id": "com.linplug.au.Sophistry",
+    "type": "aumu",
+    "subtype": "Sop3",
+    "manufacturer": "LinP",
+    "version": 196616,
+    "build": "32001"
+  },
+  "runtime_and_dsp_math_helpers_unchanged": true,
+  "licence_and_audio_unit_parameter_contract_changed": false,
+  "cpu_optimization_shipped": false,
+  "user_priority": "Complete original code integration first; level issue set aside",
+  "mac_cp031_report": "mac-cp031-installed.json",
+  "mac_cp032_cocoa_executed": false,
+  "mac_cp032_auval_executed": false,
+  "mac_cp032_licensed_audio_executed": false
+}

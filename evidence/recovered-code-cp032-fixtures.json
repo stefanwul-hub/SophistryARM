@@ -1,0 +1,66 @@
+{
+  "scope": "Original i386 execution; all recovered integer instructions plus original EBX-relative switch dispatches; no licence or musical audio",
+  "cases": 1351,
+  "groups": {
+    "recovered-instruction": 512,
+    "original-switch-dispatch": 839
+  },
+  "recovered_instructions": [
+    {
+      "address": "0x184d4",
+      "asm": "MOV EAX,dword ptr [ESI + 0xc]"
+    },
+    {
+      "address": "0x184d7",
+      "asm": "MOV dword ptr [ESP + 0x8],EAX"
+    },
+    {
+      "address": "0x23f70",
+      "asm": "MOV EAX,dword ptr [EBP + 0x8]"
+    },
+    {
+      "address": "0x23f73",
+      "asm": "ADD EAX,0x38cc"
+    },
+    {
+      "address": "0x23f78",
+      "asm": "MOV dword ptr [EBP + -0x70],EAX"
+    },
+    {
+      "address": "0x23f7b",
+      "asm": "MOV dword ptr [ESP + 0xc],0x10"
+    },
+    {
+      "address": "0x54534",
+      "asm": "MOV EAX,0x30"
+    },
+    {
+      "address": "0x54539",
+      "asm": "JMP 0x00054479"
+    }
+  ],
+  "switch_tables": 33,
+  "registers_compared": [
+    "eax",
+    "ecx",
+    "edx",
+    "ebx",
+    "esp",
+    "ebp",
+    "esi",
+    "edi"
+  ],
+  "flags_compared": [
+    "CF",
+    "PF",
+    "ZF",
+    "SF",
+    "OF"
+  ],
+  "memory_store_outputs_compared": true,
+  "fixture_bytes": 517462,
+  "fixture_sha256": "1602aac3fdc3d58897f8b5c5383f05e7a2294bd70ebda2875632c5064f96e89e",
+  "gzip_bytes": 37113,
+  "gzip_sha256": "ed8aaa78dbc9a332163bb8235b08910cb88579578ed27d49545b917e31c724bd",
+  "full_synth_tested": false
+}

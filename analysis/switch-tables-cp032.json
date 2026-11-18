@@ -1,0 +1,2149 @@
+{
+  "source_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "scope": "Independent original-byte EBX-relative switch-table target audit; indirect virtual calls checked separately",
+  "tables": [
+    {
+      "jump": "0xd4c4",
+      "function": "Instrument_c_vslot_23",
+      "function_entry": "d47a",
+      "pic_base": "0xd487",
+      "table": "0xd4c8",
+      "dispatch_load": "0xd4bb",
+      "index_register": "eax",
+      "entries": 102,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0xd67d",
+        "0xd684",
+        "0xd697",
+        "0xd67d",
+        "0xd6a1",
+        "0xd67d",
+        "0xd6ab",
+        "0xd70d",
+        "0xd67d",
+        "0xd67d",
+        "0xd71e",
+        "0xd734",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd7b3",
+        "0xd799",
+        "0xd7a6",
+        "0xd741",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd74e",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd67d",
+        "0xd77a",
+        "0xd660"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x10546",
+      "function": "FUN_000104be",
+      "function_entry": "104be",
+      "pic_base": "0x104cc",
+      "table": "0x10548",
+      "dispatch_load": "0x1053d",
+      "index_register": "eax",
+      "entries": 12,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x10581",
+        "0x10710",
+        "0x106f2",
+        "0x1063e",
+        "0x1076a",
+        "0x1074c",
+        "0x1072e",
+        "0x106b6",
+        "0x10698",
+        "0x1067a",
+        "0x1065c",
+        "0x106d4"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x11302",
+      "function": "FUN_00011190",
+      "function_entry": "11190",
+      "pic_base": "0x111a1",
+      "table": "0x11304",
+      "dispatch_load": "0x112f9",
+      "index_register": "eax",
+      "entries": 10,
+      "length_inferred_from_valid_code_targets": true,
+      "targets": [
+        "0x111de",
+        "0x111de",
+        "0x113a5",
+        "0x11521",
+        "0x11504",
+        "0x114e7",
+        "0x114b7",
+        "0x1149a",
+        "0x111de",
+        "0x1145c"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x1838d",
+      "function": "Kaja_c_vslot_244",
+      "function_entry": "18360",
+      "pic_base": "0x1836e",
+      "table": "0x18390",
+      "dispatch_load": "0x18384",
+      "index_register": "eax",
+      "entries": 81,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x18506",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x1850e",
+        "0x18549",
+        "0x1856e",
+        "0x1850e",
+        "0x1850e",
+        "0x18600",
+        "0x18582",
+        "0x185a2",
+        "0x185c2",
+        "0x1853f",
+        "0x18564",
+        "0x185e9",
+        "0x184d4"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x1ba78",
+      "function": "Synth_vslot_203",
+      "function_entry": "1ba28",
+      "pic_base": "0x1ba36",
+      "table": "0x1ba7c",
+      "dispatch_load": "0x1ba6f",
+      "index_register": "eax",
+      "entries": 60,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x1bb96",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bc4a",
+        "0x1bb6c",
+        "0x1bc29",
+        "0x1bc08",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bbf0",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bb6c",
+        "0x1bcaf",
+        "0x1bc7a",
+        "0x1bcff",
+        "0x1bbb8"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x23f48",
+      "function": "Kaja_c_vslot_228",
+      "function_entry": "23e36",
+      "pic_base": "0x23e44",
+      "table": "0x23f4c",
+      "dispatch_load": "0x23f3f",
+      "index_register": "ecx",
+      "entries": 9,
+      "length_inferred_from_valid_code_targets": true,
+      "targets": [
+        "0x23f34",
+        "0x23f70",
+        "0x24159",
+        "0x24109",
+        "0x2405f",
+        "0x2405f",
+        "0x2405f",
+        "0x2405f",
+        "0x2405f"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x4c732",
+      "function": "FUN_0004c384",
+      "function_entry": "4c384",
+      "pic_base": "0x4c392",
+      "table": "0x4c734",
+      "dispatch_load": "0x4c729",
+      "index_register": "edi",
+      "entries": 5,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x4c748",
+        "0x4c76a",
+        "0x4c78c",
+        "0x4c7ae",
+        "0x4c7d0"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x4deb8",
+      "function": "Kaja_c_vslot_203",
+      "function_entry": "4de48",
+      "pic_base": "0x4de56",
+      "table": "0x4debc",
+      "dispatch_load": "0x4deaf",
+      "index_register": "edx",
+      "entries": 96,
+      "length_inferred_from_valid_code_targets": true,
+      "targets": [
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e08e",
+        "0x4e125",
+        "0x4e1a1",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e304",
+        "0x4e36f",
+        "0x4e3dd",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e03c",
+        "0x4e2cf",
+        "0x4e2eb",
+        "0x4e44b",
+        "0x4e45c"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x51c6c",
+      "function": "Kaja_c_vslot_217",
+      "function_entry": "514b4",
+      "pic_base": "0x514c5",
+      "table": "0x51c70",
+      "dispatch_load": "0x51c63",
+      "index_register": "eax",
+      "entries": 12,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x53f89",
+        "0x53fb3",
+        "0x53fdd",
+        "0x54007",
+        "0x54031",
+        "0x5405b",
+        "0x54085",
+        "0x540af",
+        "0x540d9",
+        "0x54103",
+        "0x5412d",
+        "0x5396f"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x52a65",
+      "function": "Kaja_c_vslot_217",
+      "function_entry": "514b4",
+      "pic_base": "0x514c5",
+      "table": "0x52a68",
+      "dispatch_load": "0x52a5c",
+      "index_register": "eax",
+      "entries": 12,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x5309c",
+        "0x530c6",
+        "0x530f0",
+        "0x5311a",
+        "0x53144",
+        "0x5316e",
+        "0x52fca",
+        "0x52ff4",
+        "0x5301e",
+        "0x53048",
+        "0x52fa0",
+        "0x52a98"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x52ae8",
+      "function": "Kaja_c_vslot_217",
+      "function_entry": "514b4",
+      "pic_base": "0x514c5",
+      "table": "0x52aec",
+      "dispatch_load": "0x52adf",
+      "index_register": "eax",
+      "entries": 12,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x534e0",
+        "0x5350a",
+        "0x53534",
+        "0x5355e",
+        "0x53588",
+        "0x535b2",
+        "0x535dc",
+        "0x53606",
+        "0x53630",
+        "0x5365a",
+        "0x53072",
+        "0x52b1c"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x52b6c",
+      "function": "Kaja_c_vslot_217",
+      "function_entry": "514b4",
+      "pic_base": "0x514c5",
+      "table": "0x52b70",
+      "dispatch_load": "0x52b63",
+      "index_register": "eax",
+      "entries": 12,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x53312",
+        "0x5333c",
+        "0x53366",
+        "0x53390",
+        "0x533ba",
+        "0x533e4",
+        "0x5340e",
+        "0x53438",
+        "0x53462",
+        "0x5348c",
+        "0x534b6",
+        "0x52ba0"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x52bf0",
+      "function": "Kaja_c_vslot_217",
+      "function_entry": "514b4",
+      "pic_base": "0x514c5",
+      "table": "0x52bf4",
+      "dispatch_load": "0x52be7",
+      "index_register": "eax",
+      "entries": 12,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x52f4c",
+        "0x52f76",
+        "0x53198",
+        "0x531c2",
+        "0x531ec",
+        "0x53216",
+        "0x53240",
+        "0x5326a",
+        "0x53294",
+        "0x532be",
+        "0x532e8",
+        "0x52c24"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x53bf4",
+      "function": "Kaja_c_vslot_217",
+      "function_entry": "514b4",
+      "pic_base": "0x514c5",
+      "table": "0x53bf8",
+      "dispatch_load": "0x53beb",
+      "index_register": "eax",
+      "entries": 12,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x53f0b",
+        "0x53f35",
+        "0x53f5f",
+        "0x53dbb",
+        "0x53de5",
+        "0x53e0f",
+        "0x53e39",
+        "0x53e63",
+        "0x53e8d",
+        "0x53eb7",
+        "0x53ee1",
+        "0x53d12"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x544b8",
+      "function": "FUN_00054462",
+      "function_entry": "54462",
+      "pic_base": "0x5446f",
+      "table": "0x544bc",
+      "dispatch_load": "0x544af",
+      "index_register": "eax",
+      "entries": 30,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x54534",
+        "0x54534",
+        "0x54534",
+        "0x54534",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54477",
+        "0x54534",
+        "0x5455c",
+        "0x5454d",
+        "0x5453e",
+        "0x54480"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x62581",
+      "function": "FUN_00062548",
+      "function_entry": "62548",
+      "pic_base": "0x62555",
+      "table": "0x62584",
+      "dispatch_load": "0x62578",
+      "index_register": "eax",
+      "entries": 12,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x625e6",
+        "0x62613",
+        "0x62640",
+        "0x62670",
+        "0x626a0",
+        "0x626d0",
+        "0x62700",
+        "0x62730",
+        "0x62760",
+        "0x62790",
+        "0x625df",
+        "0x625b4"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x627e9",
+      "function": "FUN_000627c0",
+      "function_entry": "627c0",
+      "pic_base": "0x627ce",
+      "table": "0x627ec",
+      "dispatch_load": "0x627e0",
+      "index_register": "eax",
+      "entries": 6,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x62804",
+        "0x629d5",
+        "0x629c9",
+        "0x629bd",
+        "0x629b1",
+        "0x62998"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x6ab7a",
+      "function": "FUN_0006ab56",
+      "function_entry": "6ab56",
+      "pic_base": "0x6ab62",
+      "table": "0x6ab7c",
+      "dispatch_load": "0x6ab71",
+      "index_register": "eax",
+      "entries": 59,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x6acca",
+        "0x6acd5",
+        "0x6ace0",
+        "0x6aceb",
+        "0x6acf6",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6ad04",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6ad1d",
+        "0x6ad6b",
+        "0x6adb9",
+        "0x6ae07",
+        "0x6ac68",
+        "0x6ae55",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6aea3",
+        "0x6aebc",
+        "0x6aed5",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6aee6",
+        "0x6acc4",
+        "0x6af3e",
+        "0x6af4f",
+        "0x6afa7",
+        "0x6afff",
+        "0x6b00c",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6acc4",
+        "0x6b02e"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x70cd6",
+      "function": "FUN_00070c94",
+      "function_entry": "70c94",
+      "pic_base": "0x70ca2",
+      "table": "0x70cd8",
+      "dispatch_load": "0x70ccd",
+      "index_register": "eax",
+      "entries": 11,
+      "length_inferred_from_valid_code_targets": true,
+      "targets": [
+        "0x70ebc",
+        "0x70d5f",
+        "0x70e4b",
+        "0x70dd5",
+        "0x70d04",
+        "0x70d30",
+        "0x70d04",
+        "0x70d30",
+        "0x70f7f",
+        "0x70cbf",
+        "0x70ecb"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x8cbe1",
+      "function": "ECS2_c_vslot_30",
+      "function_entry": "8cb50",
+      "pic_base": "0x8cb5e",
+      "table": "0x8cbe4",
+      "dispatch_load": "0x8cbd8",
+      "index_register": "eax",
+      "entries": 7,
+      "length_inferred_from_valid_code_targets": true,
+      "targets": [
+        "0x8cc31",
+        "0x8cc49",
+        "0x8cc6e",
+        "0x8cc93",
+        "0x8ccf6",
+        "0x8cd49",
+        "0x8cda3"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x916ba",
+      "function": "Phaser1SR_c_vslot_56",
+      "function_entry": "9163c",
+      "pic_base": "0x9164a",
+      "table": "0x916bc",
+      "dispatch_load": "0x916b1",
+      "index_register": "eax",
+      "entries": 10,
+      "length_inferred_from_valid_code_targets": true,
+      "targets": [
+        "0x916f0",
+        "0x91707",
+        "0x919ca",
+        "0x919b9",
+        "0x919a8",
+        "0x91997",
+        "0x91986",
+        "0x91975",
+        "0x91964",
+        "0x916e4"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x9443c",
+      "function": "CKeyboard2_vslot_81",
+      "function_entry": "942d0",
+      "pic_base": "0x942de",
+      "table": "0x94440",
+      "dispatch_load": "0x94433",
+      "index_register": "ecx",
+      "entries": 7,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x944e3",
+        "0x94500",
+        "0x94521",
+        "0x94542",
+        "0x944a1",
+        "0x944c2",
+        "0x94480"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x94465",
+      "function": "CKeyboard2_vslot_81",
+      "function_entry": "942d0",
+      "pic_base": "0x942de",
+      "table": "0x94468",
+      "dispatch_load": "0x9445c",
+      "index_register": "ecx",
+      "entries": 6,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x94563",
+        "0x9458a",
+        "0x94422",
+        "0x945b1",
+        "0x945d8",
+        "0x9436b"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x94dc1",
+      "function": "AudioEffect_vslot_2",
+      "function_entry": "94d90",
+      "pic_base": "0x94d9e",
+      "table": "0x94dc4",
+      "dispatch_load": "0x94db8",
+      "index_register": "eax",
+      "entries": 25,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x94e41",
+        "0x94e4d",
+        "0x94e59",
+        "0x94e6e",
+        "0x94e7f",
+        "0x94e92",
+        "0x94ea5",
+        "0x94ebf",
+        "0x94ed9",
+        "0x94ef3",
+        "0x94f17",
+        "0x94f2a",
+        "0x94f3d",
+        "0x94f54",
+        "0x94f98",
+        "0x94f80",
+        "0x94fc4",
+        "0x94fe5",
+        "0x95007",
+        "0x95026",
+        "0x95040",
+        "0x94e28",
+        "0x9505a",
+        "0x95064",
+        "0x9507e"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x9698b",
+      "function": "Synth_vslot_2",
+      "function_entry": "96964",
+      "pic_base": "0x96970",
+      "table": "0x96990",
+      "dispatch_load": "0x96982",
+      "index_register": "eax",
+      "entries": 55,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x96a9e",
+        "0x96ab2",
+        "0x96ad3",
+        "0x96af4",
+        "0x96b01",
+        "0x96b2c",
+        "0x96b49",
+        "0x96b72",
+        "0x96b9b",
+        "0x96bc6",
+        "0x96bf1",
+        "0x96c01",
+        "0x96c11",
+        "0x96c24",
+        "0x96c52",
+        "0x96c73",
+        "0x96c94",
+        "0x96cb8",
+        "0x96ce3",
+        "0x96d0a",
+        "0x96d34",
+        "0x96d58",
+        "0x96d7c",
+        "0x96da0",
+        "0x96dc4",
+        "0x96dd4",
+        "0x96e04",
+        "0x96e1b",
+        "0x96e2b",
+        "0x96e3b",
+        "0x96e4e",
+        "0x96e79",
+        "0x96ea4",
+        "0x96ebe",
+        "0x96ece",
+        "0x96f17",
+        "0x96f60",
+        "0x96f8c",
+        "0x96faa",
+        "0x96fc8",
+        "0x96fe6",
+        "0x9700a",
+        "0x97035",
+        "0x97052",
+        "0x9706f",
+        "0x9709a",
+        "0x970b1",
+        "0x970c1",
+        "0x970d1",
+        "0x970e8",
+        "0x97117",
+        "0x9712e",
+        "0x97145",
+        "0x97169",
+        "0x97179"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0x9d373",
+      "function": "CFrame_vslot_78",
+      "function_entry": "9d356",
+      "pic_base": "0x9d362",
+      "table": "0x9d378",
+      "dispatch_load": "0x9d36a",
+      "index_register": "eax",
+      "entries": 10,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0x9d3a0",
+        "0x9d446",
+        "0x9d3e5",
+        "0x9d3c4",
+        "0x9d3b2",
+        "0x9d3b2",
+        "0x9d3b2",
+        "0x9d435",
+        "0x9d414",
+        "0x9d406"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0xa6c6d",
+      "function": "LPAUSynth_vslot_46",
+      "function_entry": "a6c4e",
+      "pic_base": "0xa6c5c",
+      "table": "0xa6c70",
+      "dispatch_load": "0xa6c64",
+      "index_register": "eax",
+      "entries": 5,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0xa6cb0",
+        "0xa6cfe",
+        "0xa6cd7",
+        "0xa6cb0",
+        "0xa6cb0"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0xa8216",
+      "function": "FUN_000a81f0",
+      "function_entry": "a81f0",
+      "pic_base": "0xa8201",
+      "table": "0xa8218",
+      "dispatch_load": "0xa820d",
+      "index_register": "edi",
+      "entries": 37,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0xa8317",
+        "0xa8333",
+        "0xa834f",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa8427",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa8577",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa85df",
+        "0xa861d",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa86a8",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa870e",
+        "0xa82ac",
+        "0xa863e",
+        "0xa82ac",
+        "0xa87e7",
+        "0xa87f8",
+        "0xa82ac",
+        "0xa8755",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa82ac",
+        "0xa87f8"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0xa9865",
+      "function": "FUN_000a983c",
+      "function_entry": "a983c",
+      "pic_base": "0xa984a",
+      "table": "0xa9868",
+      "dispatch_load": "0xa985c",
+      "index_register": "ecx",
+      "entries": 40,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0xa992e",
+        "0xa9908",
+        "0xa9942",
+        "0xa9967",
+        "0xa998a",
+        "0xa99a6",
+        "0xa9908",
+        "0xa9908",
+        "0xa99eb",
+        "0xa9908",
+        "0xa9908",
+        "0xa9a45",
+        "0xa9a69",
+        "0xa9a7d",
+        "0xa9aac",
+        "0xa9908",
+        "0xa9abb",
+        "0xa9908",
+        "0xa9ada",
+        "0xa9af0",
+        "0xa9b26",
+        "0xa9908",
+        "0xa9b49",
+        "0xa9908",
+        "0xa9c98",
+        "0xa9c35",
+        "0xa9908",
+        "0xa9cb2",
+        "0xa9c55",
+        "0xa9908",
+        "0xa9b62",
+        "0xa9908",
+        "0xa9bb4",
+        "0xa9908",
+        "0xa9908",
+        "0xa9908",
+        "0xa9c55",
+        "0xa9908",
+        "0xa9908",
+        "0xa9c84"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0xaa205",
+      "function": "FUN_000aa1dc",
+      "function_entry": "aa1dc",
+      "pic_base": "0xaa1ea",
+      "table": "0xaa208",
+      "dispatch_load": "0xaa1fc",
+      "index_register": "edx",
+      "entries": 40,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0xaa2d9",
+        "0xaa66c",
+        "0xaa45b",
+        "0xaa4b1",
+        "0xaa4eb",
+        "0xaa501",
+        "0xaa2a8",
+        "0xaa2a8",
+        "0xaa51f",
+        "0xaa2a8",
+        "0xaa2a8",
+        "0xaa52d",
+        "0xaa54e",
+        "0xaa56a",
+        "0xaa2d9",
+        "0xaa2a8",
+        "0xaa330",
+        "0xaa2a8",
+        "0xaa369",
+        "0xaa398",
+        "0xaa3da",
+        "0xaa2a8",
+        "0xaa405",
+        "0xaa421",
+        "0xaa435",
+        "0xaa2d9",
+        "0xaa2a8",
+        "0xaa689",
+        "0xaa621",
+        "0xaa2a8",
+        "0xaa5a0",
+        "0xaa2a8",
+        "0xaa5b4",
+        "0xaa2a8",
+        "0xaa2a8",
+        "0xaa2a8",
+        "0xaa621",
+        "0xaa2a8",
+        "0xaa2a8",
+        "0xaa63d"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0xaabff",
+      "function": "FUN_000aabb6",
+      "function_entry": "aabb6",
+      "pic_base": "0xaabc4",
+      "table": "0xaac04",
+      "dispatch_load": "0xaabf6",
+      "index_register": "eax",
+      "entries": 21,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0xaac67",
+        "0xaabde",
+        "0xaabde",
+        "0xaabde",
+        "0xaaf5d",
+        "0xaaeed",
+        "0xaaefc",
+        "0xaae88",
+        "0xaae3a",
+        "0xaadfb",
+        "0xaadc9",
+        "0xaabde",
+        "0xaad98",
+        "0xaad74",
+        "0xaad57",
+        "0xaabde",
+        "0xaabde",
+        "0xaad01",
+        "0xaace4",
+        "0xaacc7",
+        "0xaaca0"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0xae019",
+      "function": "FUN_000adfd6",
+      "function_entry": "adfd6",
+      "pic_base": "0xadfe3",
+      "table": "0xae01c",
+      "dispatch_load": "0xae010",
+      "index_register": "eax",
+      "entries": 6,
+      "length_inferred_from_valid_code_targets": false,
+      "targets": [
+        "0xae034",
+        "0xae034",
+        "0xae04b",
+        "0xae064",
+        "0xae077",
+        "0xae0ac"
+      ],
+      "missing_targets": []
+    },
+    {
+      "jump": "0xb5afb",
+      "function": "FUN_000b5a12",
+      "function_entry": "b5a12",
+      "pic_base": "0xb5a23",
+      "table": "0xb5b00",
+      "dispatch_load": "0xb5af2",
+      "index_register": "edx",
+      "entries": 5,
+      "length_inferred_from_valid_code_targets": true,
+      "targets": [
+        "0xb5b14",
+        "0xb5b71",
+        "0xb5bba",
+        "0xb5c0e",
+        "0xb5c94"
+      ],
+      "missing_targets": []
+    }
+  ],
+  "other_indirect_jumps": [
+    {
+      "pc": "0x1701",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x17d2",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x18ac",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x18d3",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1b62",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1bbc",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1bd2",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1c25",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1cdd",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x26f6",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x2c77",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x2c93",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x4e19",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x4e3b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x578c",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x57a4",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x6d00",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x6d39",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xb6a0",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xb7c0",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc563",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xce83",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xce92",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xd0b3",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xd421",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xd778",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1292e",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1299f",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x12b3b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x12bb3",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x12cb5",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x12f28",
+      "asm": "JMP EAX"
+    },
+    {
+      "pc": "0x131d5",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x132ca",
+      "asm": "JMP EAX"
+    },
+    {
+      "pc": "0x1356f",
+      "asm": "JMP EAX"
+    },
+    {
+      "pc": "0x1382c",
+      "asm": "JMP EAX"
+    },
+    {
+      "pc": "0x1492c",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x177be",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x17826",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x17a26",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x17f02",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x17f40",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x17fd6",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x18562",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x18634",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x188bd",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x18ecf",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x18ee4",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x19010",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x19370",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x19d3c",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x19f68",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x19f7b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1a300",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1a323",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1a396",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1a3c4",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1a4bf",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1aeb8",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1b09b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1cb3c",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1ddc2",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1dde4",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x1f78a",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x20182",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x2102a",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x25b36",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x25bd3",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x260f9",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x2794b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x2796c",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x30890",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x32b12",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x32c77",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x3313c",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x364ae",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x364c5",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x36522",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x36735",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x3eba3",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x3ec00",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x3efd4",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x3f217",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x40a0b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x40a36",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x40a58",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x40a7a",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x4340e",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x4347e",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x434a7",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x434c9",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x4cbbe",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x4d884",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x6dd61",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x6f640",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x6f6a5",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x6f72f",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x74619",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x765a4",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x77080",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x78187",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x7a282",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x7a31b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x7a354",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x806fa",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x8071f",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x813b8",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x85630",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x86ab9",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x87fb7",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x88011",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x8840b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x88721",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x88994",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x91705",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9226a",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x924d1",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x94c2e",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x94c7c",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x94c90",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x94ca7",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x94cbc",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x94cd0",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x94d0f",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x94d39",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x94e7d",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x95005",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x95024",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x950a0",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x953b5",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x953e1",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x95458",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x955a6",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x973b7",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x974da",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x97501",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x99a59",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x99a79",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9a722",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9b22b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9ceac",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9cf04",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9cf29",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9cf42",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9cfda",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9cff5",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9d03d",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9d169",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9d338",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9d352",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9d4be",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9d75c",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9df91",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9dff5",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9e814",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9f9a1",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9f9ce",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9fa67",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0x9fc69",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xa3aa2",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xa48d3",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xa4939",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xa4ac9",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xa63bd",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xa6856",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xa81d9",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xa8ccd",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xa90bb",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xa97f9",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xab7b9",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xac6ad",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xac989",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xad857",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xad928",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xad958",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xad97c",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xad9ac",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xad9c4",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xaddb0",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xae062",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xaea04",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc088e",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc08a8",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc0a0d",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc0ac7",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc0da5",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc12e8",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc12f6",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc149b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc17ca",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc18d6",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc1c23",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc1c87",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc1cf5",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc1d59",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc1dc7",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc1e35",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc1e99",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc1f07",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc1f6b",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc1fd9",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc203d",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc20a1",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc33d8",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc3834",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc3b9d",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc3c08",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc3c42",
+      "asm": "JMP ECX"
+    },
+    {
+      "pc": "0xc3c7e",
+      "asm": "JMP ECX"
+    }
+  ],
+  "unclassified_table_patterns": [],
+  "missing_target_count": 0,
+  "passed": true,
+  "checkpoint": "CP-032"
+}

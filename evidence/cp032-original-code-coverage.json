@@ -1,0 +1,157 @@
+{
+  "checkpoint": "CP-032",
+  "passed": true,
+  "scope": "Original internal code inventory and control targets recovered by Ghidra, byte decoding, C++ generation and independent metadata audits. This is not exhaustive behavior or sound equivalence proof.",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "code_recovery": "Three real original switch blocks were absent from the previous static port. Incorrect listing alignment had interpreted inline table data over their beginnings.",
+  "recovered_blocks": [
+    {
+      "entry": "0x184d4",
+      "original_function": "0x18360 / Kaja_c_vslot_244",
+      "switch": "0x1838d",
+      "case_indices": [
+        80
+      ],
+      "new_instructions": [
+        "0x184d4",
+        "0x184d7"
+      ]
+    },
+    {
+      "entry": "0x23f70",
+      "original_function": "0x23e36 / Kaja_c_vslot_228",
+      "switch": "0x23f48",
+      "case_indices": [
+        1
+      ],
+      "new_instructions": [
+        "0x23f70",
+        "0x23f73",
+        "0x23f78",
+        "0x23f7b"
+      ]
+    },
+    {
+      "entry": "0x54534",
+      "original_function": "0x54462 / FUN_00054462",
+      "switch": "0x544b8",
+      "case_indices": [
+        0,
+        1,
+        2,
+        3,
+        25
+      ],
+      "new_instructions": [
+        "0x54534",
+        "0x54539"
+      ]
+    }
+  ],
+  "added_instructions": [
+    {
+      "address": "184d4",
+      "length": 3,
+      "asm": "MOV EAX,dword ptr [ESI + 0xc]"
+    },
+    {
+      "address": "184d7",
+      "length": 4,
+      "asm": "MOV dword ptr [ESP + 0x8],EAX"
+    },
+    {
+      "address": "23f70",
+      "length": 3,
+      "asm": "MOV EAX,dword ptr [EBP + 0x8]"
+    },
+    {
+      "address": "23f73",
+      "length": 5,
+      "asm": "ADD EAX,0x38cc"
+    },
+    {
+      "address": "23f78",
+      "length": 3,
+      "asm": "MOV dword ptr [EBP + -0x70],EAX"
+    },
+    {
+      "address": "23f7b",
+      "length": 8,
+      "asm": "MOV dword ptr [ESP + 0xc],0x10"
+    },
+    {
+      "address": "54534",
+      "length": 5,
+      "asm": "MOV EAX,0x30"
+    },
+    {
+      "address": "54539",
+      "length": 5,
+      "asm": "JMP 0x00054479"
+    }
+  ],
+  "removed_misaligned_addresses": [
+    "184d3",
+    "184d9",
+    "23f6f",
+    "23f75",
+    "23f77",
+    "23f7d",
+    "23f7f",
+    "23f81"
+  ],
+  "all_other_existing_instructions_unchanged": true,
+  "corrected_instruction_count": 191379,
+  "compiled_label_count": 191379,
+  "fresh_ghidra_stream_matches_generation_exactly": true,
+  "corrected_input_sha256": "1982dac58e305b5773ce9f358ab3ae47da831466de124adb6be3044fca712a5b",
+  "generated_cpp_files_verified": 365,
+  "pc_lookup_entries": 833587,
+  "pc_lookup_mismatches": 0,
+  "functions": {
+    "internal_entries": 2845,
+    "missing": 0
+  },
+  "vtable_targets": {
+    "internal_targets": 1625,
+    "missing": 0
+  },
+  "unwind_entries": {
+    "records": 1890,
+    "missing": 0
+  },
+  "direct_control_edges": {
+    "edges": 26544,
+    "missing": 0
+  },
+  "switch_tables": {
+    "tables": 33,
+    "cases": 839,
+    "missing_targets": 0,
+    "conservative_inferred_lengths": [
+      "0x11302",
+      "0x23f48",
+      "0x4deb8",
+      "0x70cd6",
+      "0x8cbe1",
+      "0x916ba",
+      "0xb5afb"
+    ]
+  },
+  "instruction_length_disagreements_with_capstone": 0,
+  "fallthrough_classification": {
+    "nonreturning_exception_calls": 8,
+    "inline_table_data": 2,
+    "unresolved_executable": 0
+  },
+  "final_ghidra_decompiler_pass": {
+    "functions": 2845,
+    "missing_candidates": 0,
+    "conflicts": 0,
+    "failures": 0
+  },
+  "no_runtime_instruction_or_dsp_formula_approximation_added": true,
+  "exhaustive_future_computed_control_flow_proven": false,
+  "all_presets_and_host_paths_tested": false,
+  "machine_data_image_changed": false
+}

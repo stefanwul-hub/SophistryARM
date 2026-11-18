@@ -3,24 +3,32 @@
 import argparse,array,bisect,collections,gzip,hashlib,json,re
 from pathlib import Path
 from lift_pcode_cpp import emit,SHA
-def rows(path,additions=None):
+def rows(path,additions=None,exclusions=None):
+ excluded=set();found=set()
+ if exclusions:
+  correction=json.loads(exclusions.read_text())
+  if correction['original_sha256']!=SHA:raise ValueError('Wrong listing-correction provenance')
+  excluded={int(a,0) for a in correction['addresses']}
  extra={}
  if additions:
   for line in additions.read_bytes().splitlines(keepends=True):
    ins=json.loads(line);address=int(ins['address'],16)
    if address in extra:raise ValueError('Duplicate additional instruction')
+   if address in excluded:raise ValueError('An instruction cannot be both added and excluded')
    extra[address]=(line,ins)
  opener=gzip.open if path.suffix=='.gz' else open
  with opener(path,'rb') as f:
   for line in f:
    if line.strip():
     ins=json.loads(line);address=int(ins['address'],16)
+    if address in excluded:found.add(address);continue
     if address in extra:raise ValueError('Additional instruction overlaps base archive')
     for pc in sorted(list(extra)):
      if pc<address:yield extra.pop(pc)
     yield line,ins
  for pc in sorted(extra):yield extra[pc]
-def generate(source,output,chunk_size,layout=None,update=False,additions=None):
+ if found!=excluded:raise ValueError('Listing correction did not match the base instruction archive')
+def generate(source,output,chunk_size,layout=None,update=False,additions=None,exclusions=None):
  provenance=json.loads((source.parent/'provenance.json').read_text())
  if provenance['sha256']!=SHA:raise ValueError('Wrong original binary provenance')
  if chunk_size<16 or chunk_size>2048:raise ValueError('Choose 16..2048 instructions per unit')
@@ -28,7 +36,7 @@ def generate(source,output,chunk_size,layout=None,update=False,additions=None):
  if any(output.iterdir()) and not update:raise ValueError('Use a new, empty output directory')
  if update and (not layout or layout.resolve()!=(output/'manifest.json').resolve()):raise ValueError('Updates must reuse the existing output manifest layout')
  addresses=[];raw_hash=hashlib.sha256();last=-1;maxima={'register':0,'unique':0}
- for raw,ins in rows(source,additions):
+ for raw,ins in rows(source,additions,exclusions):
   address=int(ins['address'],16)
   if address<=last or address>=0x103000:raise ValueError('Unsorted, duplicate or import-stub address')
   addresses.append(address);last=address;raw_hash.update(raw)
@@ -81,7 +89,7 @@ def generate(source,output,chunk_size,layout=None,update=False,additions=None):
   if not update or not path.exists() or path.read_text()!=text:path.write_text(text)
   sizes.append(len(instructions))
  group=[];unit=0
- for index,(_,ins) in enumerate(rows(source,additions)):
+ for index,(_,ins) in enumerate(rows(source,additions,exclusions)):
   key=unit_for(int(ins['address'],16),index)
   if key!=unit:
    write_unit(unit,group);group=[];unit=key
@@ -120,6 +128,8 @@ for(;;){
  names.append('Dispatch.cpp')
  result={'scope':'Statically emitted detected internal instructions; emission is not whole-engine execution proof',
   'original_sha256':SHA,'input_raw_sha256':raw_hash.hexdigest(),'instruction_count':len(addresses),
+  'additional_instructions_filename':additions.name if additions else None,
+  'excluded_instruction_addresses':json.loads(exclusions.read_text())['addresses'] if exclusions else [],
   'pcode_operation_count':sum(counts.values()),'operation_counts':dict(counts),'compilation_units':units,
   'instructions_per_unit':sizes,'layout_starts':starts,'register_bytes_required':maxima['register'],'temporary_bytes_required':maxima['unique'],
   'pc_map_entries':len(pc_map),'x86_decoder_in_runtime':False,'terminal_guard_operations':guards,
@@ -129,5 +139,5 @@ for(;;){
  (output/'manifest.json').write_text(json.dumps(result,indent=2)+'\n')
  return result
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('source',type=Path);p.add_argument('output',type=Path);p.add_argument('--chunk-instructions',type=int,default=512);p.add_argument('--reuse-layout',type=Path);p.add_argument('--update',action='store_true');p.add_argument('--additions',type=Path);n=p.parse_args()
- r=generate(n.source,n.output,n.chunk_instructions,n.reuse_layout,n.update,n.additions);print(json.dumps({k:r[k] for k in ['instruction_count','pcode_operation_count','compilation_units','terminal_guard_operations']},indent=2))
+ p=argparse.ArgumentParser();p.add_argument('source',type=Path);p.add_argument('output',type=Path);p.add_argument('--chunk-instructions',type=int,default=512);p.add_argument('--reuse-layout',type=Path);p.add_argument('--update',action='store_true');p.add_argument('--additions',type=Path);p.add_argument('--exclude-addresses',type=Path);n=p.parse_args()
+ r=generate(n.source,n.output,n.chunk_instructions,n.reuse_layout,n.update,n.additions,n.exclude_addresses);print(json.dumps({k:r[k] for k in ['instruction_count','pcode_operation_count','compilation_units','terminal_guard_operations']},indent=2))

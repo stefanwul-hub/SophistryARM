@@ -1,0 +1,100 @@
+{
+  "checkpoint": "CP-031",
+  "scope": "Whitelisted facts from the received Mac report; no private preferences, paths, bank catalogue or registration data",
+  "report_sha256": "81ea0e0eb878f53841095fd4713d877123255ef0ee007f926bd2209b6899f4ca",
+  "tested_source_commit": "eeca148326f7d96d1059d37d0a264d50b194344e",
+  "installation_confirmed": true,
+  "script_exitcode": 0,
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  "local_editor_passed": true,
+  "remote_host_passed": true,
+  "audio_float_mode": {
+    "passed": true,
+    "multiply_cases": 8,
+    "nested_scopes": true,
+    "exception_restores_caller": true,
+    "inactive_scope_unchanged": true,
+    "caller_control_and_status_restored": true
+  },
+  "master_state_test_passed": true,
+  "main_vs_generators_pcm_exact": true,
+  "audio_comparisons": [
+    {
+      "candidate": "preflight-2",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "preflight-6",
+      "reference": "original-6",
+      "pcm_bytes": 3175200,
+      "pcm_sha256": "7d65849399b6ce47896a63b732eaad749254366ea044173e5e64fa75b1ea1315",
+      "byte_exact": true
+    },
+    {
+      "candidate": "registered-2",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "registered-6",
+      "reference": "original-6",
+      "pcm_bytes": 3175200,
+      "pcm_sha256": "7d65849399b6ce47896a63b732eaad749254366ea044173e5e64fa75b1ea1315",
+      "byte_exact": true
+    },
+    {
+      "candidate": "editor",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "remote-host",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "format-d4u-32-1-native",
+      "reference": "format-d4u-32-1-original",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "5cc84438dfdf931eabe02e047a9b5920a8e26f4a69c83296bdf0d195f04ecc8f",
+      "byte_exact": true
+    },
+    {
+      "candidate": "format-d4u-32-2-native",
+      "reference": "format-d4u-32-2-original",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    }
+  ],
+  "actual_daw_diagnostic": {
+    "wrapper_version": "SophistryARM CP-031",
+    "sample_rate": 48000,
+    "maximum_frames": 256,
+    "nonfinite_samples": 0,
+    "error": ""
+  },
+  "original_render_mode_applied": true,
+  "host_already_enabled_mode": true,
+  "user_observations": {
+    "cpu_difference_persists": true,
+    "reference": "CronoX 3.6.6 in Ableton Live 11",
+    "level_investigation_deprioritized_by_user": true,
+    "current_priority": "Complete original code integration before CPU optimization"
+  }
+}

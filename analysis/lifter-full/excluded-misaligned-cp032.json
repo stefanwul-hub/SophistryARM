@@ -1,0 +1,14 @@
+{
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "scope": "Remove incorrect listing alignment that overlapped recovered original switch blocks; machine bytes unchanged",
+  "addresses": [
+    "0x184d3",
+    "0x184d9",
+    "0x23f6f",
+    "0x23f75",
+    "0x23f77",
+    "0x23f7d",
+    "0x23f7f",
+    "0x23f81"
+  ]
+}
