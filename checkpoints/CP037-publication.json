@@ -1,0 +1,21 @@
+{
+  "checkpoint": "CP-037",
+  "source_commit": "ed090216afe2faf9058a5d3a5c2ea673d39da5ae",
+  "source_tree": "dd2af2584c197a1474cd1234e0933ebfa21a3f79",
+  "archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/ed090216afe2faf9058a5d3a5c2ea673d39da5ae",
+  "archive_bytes": 44706397,
+  "archive_sha256": "8620a385912dcaba8b46a3fd7c0c707105d6e55ee83ea481e5cceea6aa6232ef",
+  "verified_git_blobs": 4268,
+  "crc_and_blob_hashes_verified": true,
+  "main_modified": false,
+  "mac_execution_pending": true,
+  "publication_branch": "codex/sophistry-native-checkpoints",
+  "launcher": "Demarrer-Sophistry-CP037.command",
+  "launcher_commit": "0f53ef9bd972bdf4c7c610db7f7e89e660f47aac",
+  "launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/0f53ef9bd972bdf4c7c610db7f7e89e660f47aac/Demarrer-Sophistry-CP037.command",
+  "launcher_sha256": "5954dee6322cfdb66daeeb059fe6bb4ae69e6070f372a1dd3d336dabc88a5cd9",
+  "launcher_raw_content_verified": true,
+  "public_clock_host_evidence_is_whitelisted": true,
+  "full_synthetic_diagnostics_retained_locally_only": true,
+  "auval_or_mac_runtime_claimed": false
+}

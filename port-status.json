@@ -45,7 +45,7 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-037)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "CP037 prepared locally; immutable source and launcher publication verification pending",
+  "publication_status": "CP037 sources and pinned launcher published; source archive CRC and 4268 Git blob hashes verified, launcher raw content verified. Mac AU execution and CPU pending.",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -213,8 +213,7 @@
   "github_cp036_archive_sha256": "eeb473e7763aac402ef765994ed4e573c0c7d342f0f6c70730f987c23a8c8d8a",
   "github_cp036_archive_verified_blobs": 4245,
   "github_cp036_audit_url": "https://github.com/stefanwul-hub/SophistryARM/blob/c8f4215bddbb8e45419346f2722f4a2705a236f8/docs/CP036.md",
-  "cp036_final_metadata_publication_pending": true,
-  "cp036_final_metadata_block_reason": "Automatic approval review usage limit; source and evidence publication already succeeded",
+  "cp036_final_metadata_publication_pending": false,
   "cp037_native_monotonic_clock_in_production": true,
   "cp037_original_voice_policy_changed": false,
   "cp037_lifted_kernel_changed": false,
@@ -227,5 +226,14 @@
   "cp037_reuses_qualified_cp032_core_objects": true,
   "cp037_development_evidence": "evidence/cp037-development-checks.json",
   "cp037_voice_counts_available_in_diagnostic": true,
-  "cp037_no_hosted_runner_required": true
+  "cp037_no_hosted_runner_required": true,
+  "cp036_final_metadata_included_in_cp037_sources": true,
+  "github_cp037_source_commit": "ed090216afe2faf9058a5d3a5c2ea673d39da5ae",
+  "github_cp037_source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/ed090216afe2faf9058a5d3a5c2ea673d39da5ae",
+  "github_cp037_archive_sha256": "8620a385912dcaba8b46a3fd7c0c707105d6e55ee83ea481e5cceea6aa6232ef",
+  "github_cp037_archive_verified_blobs": 4268,
+  "github_cp037_launcher_commit": "0f53ef9bd972bdf4c7c610db7f7e89e660f47aac",
+  "github_cp037_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/0f53ef9bd972bdf4c7c610db7f7e89e660f47aac/Demarrer-Sophistry-CP037.command",
+  "github_cp037_launcher_sha256": "5954dee6322cfdb66daeeb059fe6bb4ae69e6070f372a1dd3d336dabc88a5cd9",
+  "github_cp037_launcher_verified": true
 }

@@ -8,5 +8,8 @@
   "steps_compared": 9897,
   "evidence": "evidence/cp037-development-checks.json",
   "private_mac_preferences_published": false,
-  "publication_verified": false
+  "publication_verified": true,
+  "source_commit": "ed090216afe2faf9058a5d3a5c2ea673d39da5ae",
+  "launcher_commit": "0f53ef9bd972bdf4c7c610db7f7e89e660f47aac",
+  "mac_execution_pending": true
 }

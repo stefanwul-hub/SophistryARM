@@ -8,6 +8,12 @@ Audio Unit ARM64 expérimental destiné à rouvrir les projets Sophistry 3.0.8 �
 
 ## Essayer CP037
 
+[Télécharger le lanceur CP037](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/0f53ef9bd972bdf4c7c610db7f7e89e660f47aac/Demarrer-Sophistry-CP037.command)
+
+```bash
+bash "$HOME/Downloads/Demarrer-Sophistry-CP037.command"
+```
+
 Le lanceur `Demarrer-Sophistry-CP037.command` décompacte les sources vérifiées, compile et valide sur votre Mac, puis installe le composant. Fermer Logic et Live et lancer le fichier téléchargé avec `bash`. Licence et banque valides sont réutilisées. Les objets CP032 compatibles peuvent réduire la compilation.
 
 Une référence CP032 est exigée. Cinq passages par version comparent CPU et audio avant remplacement ; un rapport médian CPU supérieur à 1,5 ou un WAV différent arrêtent l’installation. Les tests audio/Cocoa et auval avec restauration automatique restent obligatoires. Cela ne prouve pas encore une amélioration dans Live. [Détails](docs/CP037.md).
@@ -41,3 +47,5 @@ Identité AU `aumu/Sop3/LinP`, bundle `com.linplug.au.Sophistry`, version AU 3.0
 [Archive des sources et de l’audit CP035](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/fa4d1996589ebf9ddce702ea7a2b7274c90e7926) — aucun changement du composant CP032.
 
 [Archive des sources et de l’exploration CP036](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/c8f4215bddbb8e45419346f2722f4a2705a236f8) — composant CP032 inchangé.
+
+[Archive des sources CP037 vérifiée](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/ed090216afe2faf9058a5d3a5c2ea673d39da5ae) — SHA256 `8620a385912dcaba8b46a3fd7c0c707105d6e55ee83ea481e5cceea6aa6232ef`, 4268 fichiers vérifiés. [Journal de publication](checkpoints/CP037-publication.json).
