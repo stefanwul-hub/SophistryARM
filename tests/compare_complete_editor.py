@@ -159,7 +159,13 @@ def compare(engine,output):
     else:
      b.write(ctl+0xd4,b'\1');h.put(ctl+0xd8,spec['extra'][1]);b.write(values+36,struct.pack('<f',normalized(h.word(h.word(obj)+0x2b4),[obj,spec['extra'][0]])));entry=0x80cf0
    for y in range(-8,41,4):
-    for x in range(-8,41,4):b.write(point,struct.pack('<2i',x,y));knobs+=struct.pack('<f',min(1,max(0,normalized(entry,[ctl,point]))))
+    for x in range(-8,41,4):
+     b.write(point,struct.pack('<2i',x,y));n=normalized(entry,[ctl,point])
+     if kind=='Drawbar':
+      # The original helper 0x54594 sets CControlPl+0x73. Execute its
+      # original value conversion rather than treating raw hit Y as a value.
+      b.write(ctl+0x73,b'\1');b.write(values+16,struct.pack('<f',1-n));call(0x16a4,ctl,struct.unpack('<I',struct.pack('<f',n))[0]);n=struct.unpack('<f',b.read(values+12,4))[0]
+     knobs+=struct.pack('<f',min(1,max(0,n)))
   exact('-knobs.bin',knobs)
   restore(ROOT/'tests/fixtures/loop-preview.fxp')
   for tag,target in [(950,1024),(952,4096),(954,32000),(956,8000)]:

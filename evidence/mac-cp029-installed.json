@@ -1,0 +1,167 @@
+{
+  "checkpoint": "CP-029",
+  "scope": "Whitelisted facts independently read from the user Mac report. No private paths, preferences, registration or bank catalogue. CP030 not executed on Mac here.",
+  "report_sha256": "f05941fe9e6462587348a17e78e06821bafb91fe757081b8b240ca4a6ad8da05",
+  "tested_source_commit": "19b3bdea246534ba0b902d3435b48f5deb6bc9d0",
+  "installation": {
+    "checkpoint": "CP-029",
+    "system_installation_committed": true,
+    "rollback_completed_if_needed": true,
+    "validated_settings_retained": true,
+    "auval_and_registered_audio_passed": true,
+    "local_editor_and_audio_passed": true,
+    "remote_host_view_and_audio_passed": true,
+    "script_exitcode": 0,
+    "recovered_constructor_controls": 1067,
+    "mac_gui_review_complete": false,
+    "project_recall_verified": false,
+    "private_preferences_in_report": false
+  },
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  "installed_build": "29001",
+  "loaded_checkpoint": "SophistryARM CP-029",
+  "local_editor": {
+    "passed": true,
+    "error": null,
+    "parameter_count": 522,
+    "size": [
+      762,
+      477
+    ],
+    "generic_parameter_browser_present": false,
+    "generator_cases": 14,
+    "generator_cases_all_passed": true,
+    "full_loop_menu_roundtrips": 4,
+    "visible_generator_menu_aliases_passed": true,
+    "complete_editor": {
+      "passed": true,
+      "pages": 7,
+      "arpeggiator_binary_text_edit": true,
+      "effects": 72,
+      "auxiliary": 2,
+      "numeric_loop_markers": true,
+      "windows_sample_filename_display": true,
+      "modulation": 9,
+      "public_preset_restored": true
+    }
+  },
+  "remote_host": {
+    "passed": true,
+    "loaded_out_of_process": true,
+    "custom_view_created": true,
+    "parameter_change_passed": true,
+    "state_bank_roundtrip_exact": true,
+    "reported_checkpoint": "SophistryARM CP-029"
+  },
+  "native_original_editor_comparison": {
+    "passed": true,
+    "control_records": 852,
+    "maximum_normalized_ulp": 0,
+    "files_compared": 17,
+    "all_byte_exact": true
+  },
+  "audio": [
+    {
+      "route": "preflight-2",
+      "checks_passed": [
+        "candidate factory loads without installation",
+        "522 parameter IDs, names, units, ranges and defaults match original",
+        "596 original property-33 cases match, including clamping, current values and null strings",
+        "old vstdata restores and serialized AU state round-trips in memory",
+        "3 seconds of finite audible audio through AudioUnitRender",
+        "initialize, uninitialize and change between 2 and 6 channels",
+        "initialize/render at 22050/64, 96000/137, 48000/4096, 192000/4096"
+      ],
+      "channels": 2,
+      "render_frames": 132300,
+      "render_wall_seconds": 0.613525583,
+      "maximum_render_call_seconds": 0.004953292
+    },
+    {
+      "route": "registered-2",
+      "checks_passed": [
+        "expected candidate loads through system AU registry",
+        "522 parameter IDs, names, units, ranges and defaults match original",
+        "596 original property-33 cases match, including clamping, current values and null strings",
+        "old vstdata restores and serialized AU state round-trips in memory",
+        "3 seconds of finite audible audio through AudioUnitRender",
+        "initialize, uninitialize and change between 2 and 6 channels",
+        "initialize/render at 22050/64, 96000/137, 48000/4096, 192000/4096"
+      ],
+      "channels": 2,
+      "render_frames": 132300,
+      "render_wall_seconds": 0.606248083,
+      "maximum_render_call_seconds": 0.0038165
+    }
+  ],
+  "audio_comparisons": [
+    {
+      "candidate": "preflight-2",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "preflight-6",
+      "reference": "original-6",
+      "pcm_bytes": 3175200,
+      "pcm_sha256": "7d65849399b6ce47896a63b732eaad749254366ea044173e5e64fa75b1ea1315",
+      "byte_exact": true
+    },
+    {
+      "candidate": "registered-2",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "registered-6",
+      "reference": "original-6",
+      "pcm_bytes": 3175200,
+      "pcm_sha256": "7d65849399b6ce47896a63b732eaad749254366ea044173e5e64fa75b1ea1315",
+      "byte_exact": true
+    },
+    {
+      "candidate": "editor",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "remote-host",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "format-d4u-32-1-native",
+      "reference": "format-d4u-32-1-original",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "5cc84438dfdf931eabe02e047a9b5920a8e26f4a69c83296bdf0d195f04ecc8f",
+      "byte_exact": true
+    },
+    {
+      "candidate": "format-d4u-32-2-native",
+      "reference": "format-d4u-32-2-original",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    }
+  ],
+  "user_observations": {
+    "compilation_succeeded": true,
+    "crackles_in_generators_with_waveform_but_not_main": true,
+    "cpu_about_four_times_cronox3_reported_not_controlled_benchmark": true,
+    "cronox3_envelope_minimum_bottom_maximum_top": true
+  }
+}

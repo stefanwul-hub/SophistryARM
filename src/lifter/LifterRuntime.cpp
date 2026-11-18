@@ -28,8 +28,30 @@ static SlU ext80_to_ieee(SlU bits,unsigned fraction_bits,unsigned bias,unsigned 
     if(e>int(bias))return sign|infinity;
     return sign|(SlU64(e+int(bias))<<fraction_bits)|(rounded&fraction_mask);
 }
-SlU sl_ext80_to_f64(SlU bits){return ext80_to_ieee(bits,52,1023,11);}
-SlU sl_ext80_to_f32(SlU bits){return ext80_to_ieee(bits,23,127,8);}
+SlU sl_ext80_to_f64(SlU bits) {
+    const SlU64 significand=static_cast<SlU64>(bits);
+    const unsigned signexp=static_cast<unsigned>(bits>>64)&0xffff;
+    const unsigned exponent=(signexp&0x7fff)-15360u;
+    // FLD and generated IEEE arithmetic already have an exact binary64
+    // significand. Preserve all other encodings through the general path.
+    if(exponent-1u<2046u && (significand>>63) && !(significand&0x7ffu))
+        return (SlU64(signexp&0x8000u)<<48)|(SlU64(exponent)<<52)|
+               ((significand>>11)&0xfffffffffffffULL);
+    return ext80_to_ieee(bits,52,1023,11);
+}
+SlU sl_ext80_to_f32(SlU bits) {
+    const SlU64 significand=static_cast<SlU64>(bits);
+    const unsigned signexp=static_cast<unsigned>(bits>>64)&0xffff;
+    unsigned exponent=(signexp&0x7fff)-16256u;
+    if(exponent-1u<254u && (significand>>63)) {
+        SlU64 rounded=round_shift(significand,40);
+        if(rounded==0x1000000u){rounded>>=1;++exponent;}
+        const SlU32 sign=SlU32(signexp&0x8000u)<<16;
+        return sign|(exponent==255u?0x7f800000u:
+                    (SlU32(exponent)<<23)|SlU32(rounded&0x7fffffu));
+    }
+    return ext80_to_ieee(bits,23,127,8);
+}
 SlU sl_integer_to_ext80(SlU value,unsigned input_bits) {
     // All current instruction inputs are signed 32-bit integers (FLDZ/FLD1).
     // The integer path also handles signed 64-bit values without rounding via double.

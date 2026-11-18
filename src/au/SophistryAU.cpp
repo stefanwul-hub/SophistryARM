@@ -14,6 +14,8 @@
 #include <mutex>
 #include <sstream>
 #include <string>
+#include <thread>
+#include <type_traits>
 #include <vector>
 
 namespace {
@@ -37,6 +39,7 @@ bool usablePresetName(std::string name) {
   return name != "empty" && name != "default" && name != "defaut" &&
          name != "défaut";
 }
+struct EditorReadInterrupted {};
 std::string jsonText(const std::string &text) {
   std::string result = "\"";
   for (unsigned char c : text) {
@@ -131,6 +134,7 @@ HostedConfiguration configuration() {
 class SophistryAU final : public ausdk::MusicDeviceBase {
   using Base = ausdk::MusicDeviceBase;
   std::recursive_mutex mutex_;
+  std::uint64_t editorGeneration_ = 0;
   HostedConfiguration config_;
   sophistry::LegacyEngine engine_;
   std::vector<UInt32> parameters_;
@@ -173,6 +177,7 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
   }
   void loadChunk(const std::vector<std::uint8_t> &bytes, bool program,
                  bool countAttempt = true) {
+    ++editorGeneration_;
     const auto previousLabel =
         bytes == lastRestoredChunk_ && program == lastRestoredProgram_
             ? lastKnownPresetName_
@@ -227,9 +232,14 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
     return out.str();
   }
   template <class F> OSStatus guarded(F &&f) {
-    std::lock_guard<std::recursive_mutex> lock(mutex_);
+    std::unique_lock<std::recursive_mutex> lock(mutex_);
     try {
-      return f();
+      if constexpr (std::is_invocable_v<F, decltype(lock) &>)
+        return f(lock);
+      else
+        return f();
+    } catch (const EditorReadInterrupted &) {
+      return kAudioUnitErr_CannotDoInCurrentContext;
     } catch (const std::out_of_range &e) {
       if (lastError_.empty())
         lastError_ = e.what();
@@ -243,6 +253,12 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
         lastError_ = "Unknown native exception";
       return kAudioUnitErr_FailedInitialization;
     }
+  }
+  template <class F> OSStatus edited(F &&f) {
+    return guarded([&]() -> OSStatus {
+      ++editorGeneration_;
+      return f();
+    });
   }
 
 public:
@@ -312,7 +328,7 @@ public:
            f.mSampleRate >= 8000 && f.mSampleRate <= 384000;
   }
   OSStatus Initialize() override {
-    return guarded([&]() -> OSStatus {
+    return edited([&]() -> OSStatus {
       const auto &f = Output(0).GetStreamFormat();
       engine_.setAudioUnitOutputChannels(f.mChannelsPerFrame);
       engine_.setSampleRate(float(f.mSampleRate));
@@ -324,14 +340,14 @@ public:
     });
   }
   void Cleanup() override {
-    guarded([&]() -> OSStatus {
+    edited([&]() -> OSStatus {
       engine_.deactivate();
       activated_ = false;
       return noErr;
     });
   }
   OSStatus Reset(AudioUnitScope scope, AudioUnitElement element) override {
-    return guarded([&]() -> OSStatus {
+    return edited([&]() -> OSStatus {
       if (scope != kAudioUnitScope_Global && scope != kAudioUnitScope_Output)
         return OSStatus(kAudioUnitErr_InvalidScope);
       if (element)
@@ -400,7 +416,7 @@ public:
       return kAudioUnitErr_InvalidScope;
     if (element)
       return kAudioUnitErr_InvalidElement;
-    return guarded([&]() -> OSStatus {
+    return edited([&]() -> OSStatus {
       engine_.setAUParameter(id, value);
       Globals()->SetParameter(id, engine_.auParameter(id));
       return noErr;
@@ -594,16 +610,32 @@ public:
         return noErr;
       });
     }
-    if (id == sophistry::completeEditorProperty ||
-        id == sophistry::editorChoicesProperty ||
+    if (id == sophistry::completeEditorProperty) {
+      if (scope != kAudioUnitScope_Global || !data)
+        return kAudioUnitErr_InvalidPropertyValue;
+      return guarded(
+          [&](std::unique_lock<std::recursive_mutex> &lock) -> OSStatus {
+            const auto generation = editorGeneration_;
+            const auto snapshot = engine_.completeEditor(element, [&] {
+              // Never retain the engine across the entire panel's getter loop.
+              // Audio can run only after each original getter has fully
+              // returned.
+              lock.unlock();
+              std::this_thread::yield();
+              lock.lock();
+              if (generation != editorGeneration_)
+                throw EditorReadInterrupted{};
+            });
+            *static_cast<sophistry::CompleteEditorState *>(data) = snapshot;
+            return noErr;
+          });
+    }
+    if (id == sophistry::editorChoicesProperty ||
         id == sophistry::editorStringProperty) {
       if (scope != kAudioUnitScope_Global || !data)
         return kAudioUnitErr_InvalidPropertyValue;
       return guarded([&]() -> OSStatus {
-        if (id == sophistry::completeEditorProperty)
-          *static_cast<sophistry::CompleteEditorState *>(data) =
-              engine_.completeEditor(element);
-        else if (id == sophistry::editorChoicesProperty)
+        if (id == sophistry::editorChoicesProperty)
           *static_cast<sophistry::EditorChoices *>(data) =
               engine_.editorChoices(element);
         else {
@@ -722,7 +754,7 @@ public:
           sizeof(h) + h.pathBytes != bytes || path[h.pathBytes - 1] ||
           std::memchr(path, 0, h.pathBytes - 1))
         return kAudioUnitErr_InvalidPropertyValue;
-      return guarded([&]() -> OSStatus {
+      return edited([&]() -> OSStatus {
         engine_.editorFileOperation(h.tag, h.operation,
                                     {path, h.pathBytes - 1});
         syncParameters();
@@ -735,7 +767,7 @@ public:
         id == sophistry::editorActionProperty) {
       if (scope != kAudioUnitScope_Global || element || !data)
         return kAudioUnitErr_InvalidPropertyValue;
-      return guarded([&]() -> OSStatus {
+      return edited([&]() -> OSStatus {
         if (id == sophistry::editorActionProperty) {
           if (bytes != sizeof(sophistry::EditorAction))
             return kAudioUnitErr_InvalidPropertyValue;
@@ -770,7 +802,7 @@ public:
       auto edit = *static_cast<const sophistry::GeneratorControlEdit *>(data);
       if (edit.version != 1)
         return kAudioUnitErr_InvalidPropertyValue;
-      return guarded([&]() -> OSStatus {
+      return edited([&]() -> OSStatus {
         engine_.setEditorControl(edit.tag, edit.normalized);
         auto au = sophistry::recoveredAUParameter(edit.tag);
         if (edit.tag >= 213 && edit.tag <= 218)
@@ -794,7 +826,7 @@ public:
           *static_cast<const sophistry::GeneratorControlEdit *>(data);
       if (edit.version != 1)
         return kAudioUnitErr_InvalidPropertyValue;
-      return guarded([&]() -> OSStatus {
+      return edited([&]() -> OSStatus {
         engine_.setGeneratorControl(edit.tag, edit.normalized);
         const auto au = sophistry::generatorAUParameter(edit.tag);
         if (au != sophistry::noAUParameter)
@@ -812,7 +844,7 @@ public:
         id == sophistry::reloadStateProperty) {
       if (scope != kAudioUnitScope_Global || element || !data)
         return kAudioUnitErr_InvalidPropertyValue;
-      return guarded([&]() -> OSStatus {
+      return edited([&]() -> OSStatus {
         if (id == sophistry::reloadStateProperty) {
           if (bytes != sizeof(UInt32) ||
               *static_cast<const UInt32 *>(data) != 1 ||
@@ -940,7 +972,7 @@ public:
       CFStringRef key = *static_cast<CFStringRef const *>(data);
       if (!key || CFGetTypeID(key) != CFStringGetTypeID())
         return kAudioUnitErr_InvalidPropertyValue;
-      return guarded([&]() -> OSStatus {
+      return edited([&]() -> OSStatus {
         engine_.setPrivateRegistration(text(key));
         return noErr;
       });
@@ -989,7 +1021,7 @@ public:
     });
   }
   OSStatus RestoreState(CFPropertyListRef state) override {
-    return guarded([&]() -> OSStatus {
+    return edited([&]() -> OSStatus {
       ++restoreAttempts_;
       stateLoaded_ = false;
       lastRestoreStatus_ = kAudioUnitErr_InvalidPropertyValue;
@@ -1080,6 +1112,8 @@ public:
   OSStatus MIDIEvent(UInt32 status, UInt32 data1, UInt32 data2,
                      UInt32 offset) override {
     return guarded([&]() -> OSStatus {
+      if ((status & 0xf0) != 0x80 && (status & 0xf0) != 0x90)
+        ++editorGeneration_;
       if (!activated_)
         return OSStatus(kAudioUnitErr_Uninitialized);
       engine_.midi(UInt8(status), UInt8(data1 & 127), UInt8(data2 & 127),

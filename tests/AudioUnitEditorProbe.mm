@@ -8,11 +8,16 @@
 #import <AudioToolbox/AUCocoaUIView.h>
 #import <AudioToolbox/AudioToolbox.h>
 #include <algorithm>
+#include <array>
+#include <atomic>
+#include <chrono>
 #include <cmath>
 #include <cstring>
 #include <fstream>
 #include <memory>
 #include <mutex>
+#include <stdexcept>
+#include <thread>
 #include <vector>
 
 static NSDictionary *runtimeStatus(AudioUnit unit, OSStatus &result) {
@@ -570,6 +575,176 @@ static NSDictionary *originalEditorTests(NSView *view, AudioUnit unit,
   };
 }
 
+// One ordinary held note, not the discarded long-release stress scenario.
+static NSDictionary *uiPlaybackComparison(AudioComponent component,
+                                          NSString *loopPath) {
+  std::vector<std::vector<float>> takes;
+  NSMutableArray *observations = [NSMutableArray array];
+  NSString *error = nil;
+  for (unsigned page = 0; page < 2 && !error; ++page) {
+    AudioUnit unit = nullptr;
+    NSWindow *window = nil;
+    try {
+      auto require = [](OSStatus code) {
+        if (code)
+          throw std::runtime_error("UI/audio AU status " +
+                                   std::to_string(code));
+      };
+      require(AudioComponentInstanceNew(component, &unit));
+      AudioStreamBasicDescription format{44100,
+                                         kAudioFormatLinearPCM,
+                                         kAudioFormatFlagIsFloat |
+                                             kAudioFormatFlagIsPacked |
+                                             kAudioFormatFlagIsNonInterleaved,
+                                         4,
+                                         1,
+                                         4,
+                                         2,
+                                         32,
+                                         0};
+      require(AudioUnitSetProperty(unit, kAudioUnitProperty_StreamFormat,
+                                   kAudioUnitScope_Output, 0, &format,
+                                   sizeof(format)));
+      UInt32 maximum = 256;
+      require(AudioUnitSetProperty(
+          unit, kAudioUnitProperty_MaximumFramesPerSlice,
+          kAudioUnitScope_Global, 0, &maximum, sizeof(maximum)));
+      std::ifstream input(loopPath.UTF8String, std::ios::binary);
+      std::vector<char> fxp((std::istreambuf_iterator<char>(input)), {});
+      if (fxp.size() < 60)
+        throw std::runtime_error("Missing public Loop preset");
+      require(AudioUnitSetProperty(unit, sophistry::importProgramProperty,
+                                   kAudioUnitScope_Global, 0, fxp.data() + 60,
+                                   UInt32(fxp.size() - 60)));
+      require(AudioUnitInitialize(unit));
+      OSStatus stateStatus = 0;
+      if (![runtimeStatus(unit,
+                          stateStatus)[@"engine"][@"registration_accepted"]
+              boolValue] ||
+          stateStatus)
+        throw std::runtime_error("Original registration not accepted");
+      id<AUCocoaUIBase> factory =
+          [NSClassFromString(@"SophistryCocoaFactory") new];
+      NSView *view = [factory uiViewForAudioUnit:unit
+                                        withSize:NSMakeSize(762, 477)];
+      if (!view)
+        throw std::runtime_error("Missing comparison view");
+      window =
+          [[NSWindow alloc] initWithContentRect:NSMakeRect(30, 30, 762, 477)
+                                      styleMask:NSWindowStyleMaskTitled
+                                        backing:NSBackingStoreBuffered
+                                          defer:NO];
+      window.releasedWhenClosed = NO;
+      window.contentView = view;
+      [window orderFront:nil];
+      require(MusicDeviceMIDIEvent(unit, 0x90, 60, 100, 0));
+      constexpr unsigned blocks = 173;
+      std::vector<float> samples(blocks * 256 * 2);
+      std::atomic<bool> finished{false};
+      std::string workerError;
+      double maximumCall = 0;
+      unsigned late = 0;
+      std::thread worker([&] {
+        @autoreleasepool {
+          try {
+            struct List {
+              UInt32 count = 2;
+              AudioBuffer buffers[2];
+            } list;
+            std::array<std::array<float, 256>, 2> audio{};
+            const auto start = std::chrono::steady_clock::now();
+            for (unsigned i = 0; i < blocks; ++i) {
+              for (unsigned c = 0; c < 2; ++c)
+                list.buffers[c] = {1, 1024, audio[c].data()};
+              AudioTimeStamp time{};
+              time.mFlags = kAudioTimeStampSampleTimeValid;
+              time.mSampleTime = i * 256;
+              AudioUnitRenderActionFlags flags = 0;
+              const auto before = std::chrono::steady_clock::now();
+              require(
+                  AudioUnitRender(unit, &flags, &time, 0, 256,
+                                  reinterpret_cast<AudioBufferList *>(&list)));
+              const double seconds =
+                  std::chrono::duration<double>(
+                      std::chrono::steady_clock::now() - before)
+                      .count();
+              maximumCall = std::max(maximumCall, seconds);
+              late += seconds > 256. / 44100;
+              for (unsigned s = 0; s < 256; ++s)
+                for (unsigned c = 0; c < 2; ++c)
+                  samples[(i * 256 + s) * 2 + c] = audio[c][s];
+              std::this_thread::sleep_until(
+                  start +
+                  std::chrono::duration_cast<
+                      std::chrono::steady_clock::duration>(
+                      std::chrono::duration<double>((i + 1) * 256. / 44100)));
+            }
+          } catch (const std::exception &e) {
+            workerError = e.what();
+          }
+          finished.store(true, std::memory_order_release);
+        }
+      });
+      const auto start = std::chrono::steady_clock::now();
+      bool switched = false;
+      while (!finished.load(std::memory_order_acquire)) {
+        if (page && !switched &&
+            std::chrono::duration<double>(std::chrono::steady_clock::now() -
+                                          start)
+                    .count() > .1) {
+          NSButton *tab = [NSButton new];
+          tab.tag = 1;
+          [view selectTab:tab];
+          switched = true;
+        }
+        [NSRunLoop.currentRunLoop
+               runMode:NSDefaultRunLoopMode
+            beforeDate:[NSDate dateWithTimeIntervalSinceNow:.005]];
+      }
+      worker.join();
+      if (!workerError.empty())
+        throw std::runtime_error(workerError);
+      double peak = 0;
+      for (float v : samples) {
+        if (!std::isfinite(v))
+          throw std::runtime_error("Nonfinite UI playback");
+        peak = std::max(peak, std::abs(double(v)));
+      }
+      if (peak < .00001)
+        throw std::runtime_error("Silent UI playback");
+      takes.push_back(std::move(samples));
+      [observations addObject:@{
+        @"page" : page ? @"Main then Gen1+2" : @"Main",
+        @"frames" : @(blocks * 256),
+        @"peak" : @(peak),
+        @"maximum_render_call_seconds" : @(maximumCall),
+        @"observed_calls_over_deadline" : @(late)
+      }];
+      require(MusicDeviceMIDIEvent(unit, 0x80, 60, 0, 0));
+    } catch (const std::exception &e) {
+      error = [NSString stringWithUTF8String:e.what()];
+    }
+    [window close];
+    window.contentView = nil;
+    if (unit) {
+      AudioUnitUninitialize(unit);
+      AudioComponentInstanceDispose(unit);
+    }
+  }
+  const BOOL exact = takes.size() == 2 && takes[0].size() == takes[1].size() &&
+                     !memcmp(takes[0].data(), takes[1].data(),
+                             takes[0].size() * sizeof(float));
+  return @{
+    @"passed" : @(!error && exact),
+    @"audio_main_vs_generators_byte_exact" : @(exact),
+    @"observations" : observations,
+    @"error" : error ?: @"",
+    @"scope" : @"One ordinary note, 44100 Hz/256 frames, GUI and audio on "
+               @"different threads. Timing is observational; no "
+               @"hardware-dependent pass threshold."
+  };
+}
+
 int main(int argc, const char **argv) {
   @autoreleasepool {
     if (argc != 6)
@@ -591,6 +766,7 @@ int main(int argc, const char **argv) {
     NSDictionary *generatorAliases = @{};
     NSDictionary *mainButtons = @{};
     NSDictionary *originalEditor = @{};
+    NSDictionary *uiPlayback = @{};
     NSDictionary *completeEditor = @{};
     NSString *advertisedClass = @"";
     NSString *componentViewClass = @"";
@@ -892,6 +1068,15 @@ int main(int argc, const char **argv) {
                  [viewReport[@"generic_parameter_browser_present"] boolValue] ||
                  [viewReport[@"size"][0] unsignedIntValue] != 762 ||
                  [viewReport[@"main_dial_count"] unsignedIntValue] != 15 ||
+                 ![viewReport[@"preset_name_is_white"] boolValue] ||
+                 ![viewReport[@"editor_footer"]
+                     isEqualToString:[NSString stringWithUTF8String:
+                                                   sophistry::editorFooter]] ||
+                 ![[NSSet
+                     setWithArray:viewReport[@"white_preset_button_captions"]]
+                     isEqualToSet:[NSSet setWithArray:@[
+                       @"Prev", @"Load", @"Next", @"Save"
+                     ]]] ||
                  ![viewReport[@"background_images_loaded"] boolValue] ||
                  [viewReport[@"sprite_images_loaded"] unsignedIntValue] != 15 ||
                  ![viewReport[@"status"][@"state_loaded"] boolValue] ||
@@ -918,6 +1103,11 @@ int main(int argc, const char **argv) {
               }
               if (!screenshot)
                 failure = @"Cannot snapshot the native Cocoa view";
+            }
+            if (!failure) {
+              uiPlayback = uiPlaybackComparison(component, loopPath);
+              if (![uiPlayback[@"passed"] boolValue])
+                failure = @"Main/Gen1+2 concurrent UI audio comparison failed";
             }
             [testWindow close];
           }
@@ -954,6 +1144,7 @@ int main(int argc, const char **argv) {
       @"routing_mouse_cases" : routingCases,
       @"main_button_tests" : mainButtons,
       @"original_editor_tests" : originalEditor,
+      @"main_vs_generators_playback" : uiPlayback,
       @"complete_editor_tests" : completeEditor,
       @"generator_fresh_instance_recall" : generatorRecall,
       @"aupreset_imported" : @(aupreset),

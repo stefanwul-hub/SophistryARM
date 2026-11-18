@@ -1,0 +1,130 @@
+{
+  "passed": true,
+  "scope": "Original i386 execution vs statically translated C++; public data, no registration or musical audio",
+  "native": {
+    "passed": true,
+    "pages_and_modes": 104,
+    "unique_controls": 852,
+    "visible_generator_menu_transitions": 50,
+    "choice_lists": 1512,
+    "cooperative_getter_boundaries": 6327,
+    "file_dialogs": 12,
+    "file_roundtrips": 6,
+    "module_copy_paste": 3,
+    "key_hits": 3240,
+    "knob_positions": 676,
+    "pointer_kinds": 4,
+    "numeric_loop_edits": 4,
+    "sample_actions": 6,
+    "wrong_module_rejected": true,
+    "page_reads_leave_program_unchanged": true,
+    "musical_audio_tested": false
+  },
+  "control_records": 852,
+  "maximum_normalized_ulp": 0,
+  "files": [
+    {
+      "file": "-module643.mod",
+      "bytes": 48,
+      "sha256": "e6f217398d9140c5c68a10e988bcfa89dda43d5df6cc09ca7e6b7751e7973242",
+      "byte_exact": true
+    },
+    {
+      "file": "-module644.mod",
+      "bytes": 76,
+      "sha256": "7a0d839ff7db7459583071ce9328c2701af4d3ce042243976b063cfb8fb84b44",
+      "byte_exact": true
+    },
+    {
+      "file": "-module645.mod",
+      "bytes": 76,
+      "sha256": "c44cfdddeb9d8c8d83d68f9afeeac6214265988ecd88063a1449c786fd9c54f7",
+      "byte_exact": true
+    },
+    {
+      "file": "-module646.mod",
+      "bytes": 76,
+      "sha256": "9896aa088d6bdf4288d027a65bc5e50dba2642c3a83772cb89816bcd721487be",
+      "byte_exact": true
+    },
+    {
+      "file": "-module647.mod",
+      "bytes": 356,
+      "sha256": "05d2f42c07248c8d5d42d731b121257f5425b44ece01ffbfdaa51bd07974f791",
+      "byte_exact": true
+    },
+    {
+      "file": "-midi.mod",
+      "bytes": 7220,
+      "sha256": "d8b28e0e94830de1d2e029b39ed9444fcd95511a9ae92c4fc37c2d26319b630e",
+      "byte_exact": true
+    },
+    {
+      "file": "-actions.program",
+      "bytes": 21072,
+      "sha256": "f2ae4b35082db8ce78aa8585f3fd8b7e8e364298440e553910146736ee060d71",
+      "byte_exact": true
+    },
+    {
+      "file": "-keys.bin",
+      "bytes": 38880,
+      "sha256": "a23846ab111bc42e78806a7e1d7b5a706d83b3cc006c19fbeed9f8d667ed854d",
+      "byte_exact": true
+    },
+    {
+      "file": "-knobs.bin",
+      "bytes": 2704,
+      "sha256": "2265f6e5eed6b23b6523358e5722369f686287b1ec1bef65576e28f84a431e58",
+      "byte_exact": true
+    },
+    {
+      "file": "-loop-edited.program",
+      "bytes": 20920,
+      "sha256": "6a47a26cc966378e53ff91438555db1dd9bd7aa92e63d401bff7d09fbab3adff",
+      "byte_exact": true
+    },
+    {
+      "file": "-sample-action2.program",
+      "bytes": 20916,
+      "sha256": "fbaa2c1488f0244e468df5597896096a213aeb1edb41ed681e31c8767b78f033",
+      "byte_exact": true
+    },
+    {
+      "file": "-sample-action3.program",
+      "bytes": 20916,
+      "sha256": "4bdbe07666b4a7e8b052c0117750d1c6db9326001e1e5fda06c4febed7b69182",
+      "byte_exact": true
+    },
+    {
+      "file": "-sample-action4.program",
+      "bytes": 20904,
+      "sha256": "dbde3000b37ffaeb398d1ee9b5600ef07bcea9bc670af0c8457f0a3c108bc074",
+      "byte_exact": true
+    },
+    {
+      "file": "-sample-action41.program",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+      "byte_exact": true
+    },
+    {
+      "file": "-sample-action42.program",
+      "bytes": 21072,
+      "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+      "byte_exact": true
+    },
+    {
+      "file": "-sample-action43.program",
+      "bytes": 20960,
+      "sha256": "6d84690e4ffceb91104ba320dad3cb28fbd9589b5864a13be43c6cab1a53d233",
+      "byte_exact": true
+    },
+    {
+      "file": "-generator-aliases.bin",
+      "bytes": 1048200,
+      "sha256": "9772b12a4c1fcd30589f25af6cf926228698cef7845a6c299fd057e60afbccc8",
+      "byte_exact": true
+    }
+  ],
+  "mac_appkit_executed": false
+}

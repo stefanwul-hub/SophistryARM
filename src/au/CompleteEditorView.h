@@ -75,8 +75,18 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 - (NSMenu *)recoveredMenu;
 @end
 @implementation SophistryRecoveredNode
+- (BOOL)isOpaque {
+  return NO;
+}
 - (void)updateRecovered:(sophistry::RecoveredControl)c
                   value:(sophistry::EditorControlState)v {
+  auto old = self.state;
+  auto previous = self.recovered;
+  if (previous.key == c.key && previous.kind == c.kind && previous.x == c.x &&
+      previous.y == c.y && previous.width == c.width &&
+      previous.height == c.height && !memcmp(&old, &v.value, sizeof(old)) &&
+      self.originalNormalized == v.normalized)
+    return;
   self.recovered = c;
   self.useOriginalNormalized = YES;
   self.originalNormalized = v.normalized;
@@ -148,7 +158,8 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     }
   } else if (c.kind == K::Drawbar) {
     NSImage *im = self.sprite;
-    CGFloat amount = int((r.size.height - c.extra[0]) * n);
+    const float visual = c.extra[1] ? 1.f - n : n;
+    CGFloat amount = int((r.size.height - c.extra[0]) * visual);
     [im drawInRect:NSMakeRect(r.origin.x, r.origin.y, r.size.width,
                               amount + c.extra[0])
               fromRect:NSMakeRect(0, 0, r.size.width, amount + c.extra[0])
@@ -738,13 +749,20 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   UInt32 size = sizeof(state_);
   status_ = AudioUnitGetProperty(unit_, sophistry::completeEditorProperty,
                                  kAudioUnitScope_Global, _page, &state_, &size);
-  for (NSView *v in views_.allValues)
-    v.hidden = YES;
   if (status_ || size != sizeof(state_) || state_.version != 1 ||
       state_.count > state_.controls.size())
     return;
+  const auto oldPanels = layout_.panels;
   layout_ = sophistry::completeEditorLayout(
       _page, [&](unsigned tag) { return [self selection:tag]; });
+  bool backgroundChanged = oldPanels.size() != layout_.panels.size();
+  if (!backgroundChanged)
+    for (unsigned i = 0; i < oldPanels.size(); ++i) {
+      const auto &a = oldPanels[i], &b = layout_.panels[i];
+      backgroundChanged = backgroundChanged || a.id != b.id || a.x != b.x ||
+                          a.y != b.y || a.image != b.image;
+    }
+  NSMutableSet<NSNumber *> *active = [NSMutableSet set];
   using K = sophistry::RecoveredWidget;
   for (const auto &placed : layout_.controls) {
     auto c = placed.control;
@@ -756,6 +774,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     }
     if (c.kind == K::Label || c.kind == K::Licence)
       continue;
+    [active addObject:@(c.key)];
     NSView *v = views_[@(c.key)];
     auto value = [self control:c.tag];
     if (c.kind == K::Surround) {
@@ -853,7 +872,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
       else
         data.value.tag = c.tag;
       [n updateRecovered:c value:data];
-      n.sampleLabel = nil;
+      NSString *sampleLabel = nil;
       if (data.value.kind == 7 && c.tag != 648) {
         NSData *full = sophistryCompleteView::text(unit_, c.tag);
         std::string path;
@@ -862,14 +881,23 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
         else
           path.assign(data.value.text, strnlen(data.value.text, sizeof(data.value.text)));
         const auto name = sophistry::sampleDisplayName(path);
-        n.sampleLabel = sophistryCompleteView::string(name.c_str(), name.size());
-        n.toolTip = n.sampleLabel;
+        sampleLabel = sophistryCompleteView::string(name.c_str(), name.size());
+        n.toolTip = sampleLabel;
+      }
+      if ((sampleLabel || n.sampleLabel) &&
+          ![sampleLabel isEqualToString:n.sampleLabel]) {
+        n.sampleLabel = sampleLabel;
+        n.needsDisplay = YES;
       }
       n.sprite = c.image ? [self image:c.image] : nil;
       n.circular = [self selection:657] == 0;
       if (c.kind == K::Scrollbar) {
         auto second = [self control:c.extra[0]];
-        n.secondaryNormalized = second ? second->normalized : 1;
+        float span = second ? second->normalized : 1;
+        if (n.secondaryNormalized != span) {
+          n.secondaryNormalized = span;
+          n.needsDisplay = YES;
+        }
       }
     }
     if (!views_[@(c.key)]) {
@@ -878,9 +906,14 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     }
     if (![v isKindOfClass:SophistryRecoveredNode.class])
       v.frame = NSMakeRect(c.x, c.y, c.width, c.height);
-    v.hidden = NO;
+    if (v.hidden)
+      v.hidden = NO;
   }
-  self.needsDisplay = YES;
+  for (NSNumber *key in views_)
+    if (![active containsObject:key] && !views_[key].hidden)
+      views_[key].hidden = YES;
+  if (backgroundChanged || _page == 6)
+    self.needsDisplay = YES;
 }
 - (void)drawRect:(NSRect)dirty {
   for (auto &p : layout_.panels) {

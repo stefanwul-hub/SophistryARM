@@ -35,19 +35,33 @@
     return;
   [NSGraphicsContext saveGraphicsState];
   NSGraphicsContext.currentContext.shouldAntialias = NO;
+  NSBezierPath *path = nil;
+  unsigned previousColor = 0;
+  auto stroke = [&] {
+    if (path) {
+      [path stroke];
+      path = nil;
+    }
+  };
   for (unsigned i = 0; i < drawing_.count; ++i) {
     auto s = drawing_.lines[i];
     unsigned c = s.color;
-    [[NSColor colorWithCalibratedRed:(c & 255) / 255.0
-                               green:((c >> 8) & 255) / 255.0
-                                blue:((c >> 16) & 255) / 255.0
-                               alpha:((c >> 24) & 255) / 255.0] setStroke];
-    NSBezierPath *line = [NSBezierPath bezierPath];
-    line.lineWidth = 1;
-    [line moveToPoint:NSMakePoint(s.x1 + .5, s.y1 + .5)];
-    [line lineToPoint:NSMakePoint(s.x2 + .5, s.y2 + .5)];
-    [line stroke];
+    // Opaque independent subpaths can share one stroke. Keep translucent
+    // segments separate so overlaps retain their original compositing.
+    if (!path || c != previousColor || (c >> 24) != 255) {
+      stroke();
+      previousColor = c;
+      [[NSColor colorWithCalibratedRed:(c & 255) / 255.0
+                                 green:((c >> 8) & 255) / 255.0
+                                  blue:((c >> 16) & 255) / 255.0
+                                 alpha:((c >> 24) & 255) / 255.0] setStroke];
+      path = [NSBezierPath bezierPath];
+      path.lineWidth = 1;
+    }
+    [path moveToPoint:NSMakePoint(s.x1 + .5, s.y1 + .5)];
+    [path lineToPoint:NSMakePoint(s.x2 + .5, s.y2 + .5)];
   }
+  stroke();
   [NSGraphicsContext restoreGraphicsState];
 }
 - (NSDictionary *)report {

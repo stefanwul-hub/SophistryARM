@@ -42,7 +42,9 @@ for e in r['events']:
  elif k=='slider':
   tag=a[2];im=377 if a[5] else 376;w,h=(10,73) if a[5] else (19,86);x=a[3] if a[5] else a[3]-4
   value=[a[3]+6-17,a[4]-12-4,34,8] if a[6] else [0,0,0,0]
-  add('Drawbar',panel,tag,x,a[4],w,h,im,1,extra=(8 if a[5] else 10,0,0),value=value)
+  # Original helper 0x54594 sets CControlPl+0x73 to reverse both the displayed
+  # normalized value (0x16a4/0x1704) and the pointer result (0x1ce0).
+  add('Drawbar',panel,tag,x,a[4],w,h,im,1,extra=(8 if a[5] else 10,1,0),value=value)
  elif k=='horizontal-slider':add('HorizontalSlider',panel,a[2],a[3],a[4],65,11,374,33)
  elif k=='thin-slider':
   add('ThinSlider',panel,a[1],a[2],a[3],a[4],a[5],resources.get(a[11],0),1,extra=(10,13,0))

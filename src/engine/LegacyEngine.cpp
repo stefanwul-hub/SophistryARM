@@ -1706,6 +1706,11 @@ void LegacyEngine::restoreChunk(const std::vector<std::uint8_t> &chunk,
   if (n != chunk.size())
     throw std::runtime_error(
         "Original engine did not accept the complete state");
+  // Build static Loop paths during preset loading. Opening the generator
+  // page must not scan the sample while the audio thread is already playing.
+  for (unsigned g = 0; g < 2; ++g)
+    if (impl_->run(0x1d28c, {object, generatorTypeTag(g)}) == 3)
+      (void)editorDrawing(8 + g);
 }
 std::string LegacyEngine::presetName() {
   impl_->initialize();
@@ -1963,6 +1968,11 @@ void LegacyEngine::setEditorControl(U32 tag, float value) {
   impl_->editorParameter(tag, value);
 }
 CompleteEditorState LegacyEngine::completeEditor(unsigned page) {
+  return completeEditor(page, {});
+}
+CompleteEditorState
+LegacyEngine::completeEditor(unsigned page,
+                             const std::function<void()> &betweenControls) {
   impl_->initialize();
   CompleteEditorState state;
   state.page = page;
@@ -2000,6 +2010,10 @@ CompleteEditorState LegacyEngine::completeEditor(unsigned page) {
       std::memset(c.value.text, 0, sizeof(c.value.text));
       std::strncpy(c.value.text, text.c_str(), sizeof(c.value.text) - 1);
     }
+    // Every original getter has returned and its scratch result has been
+    // copied. A native host may release its lock at this safe boundary.
+    if (betweenControls)
+      betweenControls();
   }
   for (const auto &placed : layout.controls) {
     if (placed.control.kind != RecoveredWidget::Wave)
@@ -2207,8 +2221,12 @@ float LegacyEngine::editorKnob(unsigned key, int x, int y) {
     impl_->run(pointerEntry, {ctl, point});
     SlU bits = 0;
     std::memcpy(&bits, impl_->cpu->reg + 0x1100, 10);
-    const float result = sl_float<float>(sl_ext80_to_f32(bits));
+    float result = sl_float<float>(sl_ext80_to_f32(bits));
     std::memcpy(impl_->cpu->reg + 0x1100, previous.data(), previous.size());
+    // 0x54594 sets CControlPl+0x73; 0x1ce0 applies this inversion after
+    // the raw Drawbar hit test. The original constructor was previously lost.
+    if (c.kind == RecoveredWidget::Drawbar && c.extra[1])
+      result = 1.f - result;
     if (!std::isfinite(result))
       throw std::runtime_error("Invalid original pointer result");
     return std::clamp(result, 0.f, 1.f);

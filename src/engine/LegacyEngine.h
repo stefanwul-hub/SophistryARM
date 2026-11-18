@@ -80,6 +80,8 @@ public:
   void setEditorControl(std::uint32_t tag, float normalized);
   EditorDrawing editorDrawing(unsigned id);
   CompleteEditorState completeEditor(unsigned page);
+  CompleteEditorState
+  completeEditor(unsigned page, const std::function<void()> &betweenControls);
   EditorChoices editorChoices(std::uint32_t tag);
   std::string editorString(std::uint32_t tag);
   void setEditorString(std::uint32_t tag, const std::string &text);

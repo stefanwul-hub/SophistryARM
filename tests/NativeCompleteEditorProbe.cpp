@@ -44,13 +44,19 @@ int main(int argc, char **argv) {
     e.initialize();
     e.restoreChunk({fxp.begin() + 60, fxp.end()}, true);
     std::set<unsigned> seen;
-    unsigned pages = 0, choiceLists = 0;
+    unsigned pages = 0, choiceLists = 0, safeBoundaries = 0;
     std::ofstream metadata(prefix + "-metadata.json");
     metadata << std::setprecision(9) << "[";
     bool first = true;
     auto inspect = [&](unsigned page) {
       auto before = e.saveProgram();
       auto state = e.completeEditor(page);
+      auto interleaved = e.completeEditor(page, [&] {
+        (void)e.auParameter(134);
+        ++safeBoundaries;
+      });
+      require(!std::memcmp(&state, &interleaved, sizeof(state)),
+              "A completed UI getter boundary corrupted the snapshot");
       require(state.page == page && state.count > 0, "Empty original page");
       for (unsigned i = 0; i < state.count; ++i) {
         auto &c = state.controls[i];
@@ -359,6 +365,7 @@ int main(int argc, char **argv) {
               << ",\"unique_controls\":" << seen.size()
               << ",\"visible_generator_menu_transitions\":" << aliasTransitions
               << ",\"choice_lists\":" << choiceLists
+              << ",\"cooperative_getter_boundaries\":" << safeBoundaries
               << ",\"file_dialogs\":" << menus
               << ",\"file_roundtrips\":" << fileCount
               << ",\"module_copy_paste\":" << moduleEdits

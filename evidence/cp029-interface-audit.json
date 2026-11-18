@@ -57,5 +57,11 @@
   "envelope_direction": "minimum at top, maximum at bottom; unchanged",
   "generic_browser_removed": true,
   "host_generic_view_and_automation_parameter_contract_preserved": true,
-  "mac_cocoa_execution_cp029_pending": true
+  "mac_cocoa_execution_cp029_pending": true,
+  "envelope_direction_correction_cp030": {
+    "prior_raw_hit_test_claim_incomplete": true,
+    "reason": "Constructor 0x54594 sets CControlPl+0x73; original 0x16a4/0x1ce0 apply inversion omitted in the prior claim.",
+    "verified_direction": "minimum bottom, maximum top",
+    "evidence": "cp030-drawbar-recovery.json"
+  }
 }

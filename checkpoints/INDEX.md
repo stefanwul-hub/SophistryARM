@@ -29,3 +29,9 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-026 — affichages Main/Filter et Loop** : CP025 installé/auval/audio/actions confirmés ; getter/setter et tracés originaux raccordés, huit croix et forme d’onde exacte,136 modifications/cinq programmes exacts,ARM64/QEMU et six liens Mac stricts. Exécution Mac CP026 en attente. Voir [CP026](../docs/CP026.md).
 
 - **CP-027 — interface des constructeurs originaux** : 86 panneaux/1 067 définitions, effets/modulation/Loop/Arp/clavier/sorties/modules raccordés ; comparaisons i386, ARM64/QEMU et liens Mac stricts. Validation Mac CP027 en attente. Voir [CP027](../docs/CP027.md).
+
+- **CP-028 — sélecteurs Cocoa** : correction des menus et des alias de générateurs ; compilation et commandes essayées confirmées par l’utilisateur.
+
+- **CP-029 — interface sans navigateur générique** : largeur762, noms de fichiers, quatre menus Full Loop. Rapport Mac reçu à CP030 : installation/auval/Cocoa local et distant/huit comparaisons PCM exactes confirmés. L’ancien diagnostic du sens des tirettes est corrigé par CP030.
+
+- **CP-030 — Gen1+2, tirettes, CPU et lisibilité** : préparation Loop déplacée au chargement, verrou relâché entre getters complets, redessins réduits, chemins de conversion numérique exacts raccourcis. Drapeau original d’inversion récupéré pour41 Drawbar ; preset et quatre boutons blancs, nouveau pied de page. Comparaisons i386, Linux, ARM64/QEMU et huit liens Mac stricts réussis ; exécution Mac CP030 en attente. Voir [CP030](../docs/CP030.md).

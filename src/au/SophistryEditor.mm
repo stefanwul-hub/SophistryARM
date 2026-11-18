@@ -86,6 +86,46 @@ BOOL hasGenericBrowser(NSView *view) {
 }
 } // namespace
 
+@interface SophistryPresetButton : NSButton
+@end
+@implementation SophistryPresetButton
+- (void)drawRect:(NSRect)dirty {
+  NSRect face = NSInsetRect(self.bounds, 1, 1);
+  NSBezierPath *shape = [NSBezierPath bezierPathWithRoundedRect:face
+                                                        xRadius:2
+                                                        yRadius:2];
+  NSColor *top = [NSColor colorWithRed:.43 green:.47 blue:.58 alpha:1];
+  NSColor *bottom = [NSColor colorWithRed:.27 green:.31 blue:.42 alpha:1];
+  if (self.highlighted)
+    std::swap(top, bottom);
+  [[[NSGradient alloc] initWithStartingColor:top
+                                 endingColor:bottom] drawInBezierPath:shape
+                                                                angle:90];
+  NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
+  style.alignment = NSTextAlignmentCenter;
+  NSDictionary *attributes = @{
+    NSFontAttributeName : [NSFont systemFontOfSize:7
+                                            weight:NSFontWeightSemibold],
+    NSForegroundColorAttributeName : self.enabled ? NSColor.whiteColor
+                                                  : [NSColor colorWithWhite:1
+                                                                      alpha:.5],
+    NSParagraphStyleAttributeName : style
+  };
+  [self.title drawInRect:NSMakeRect(1, (self.bounds.size.height - 9) / 2,
+                                    self.bounds.size.width - 2, 10)
+          withAttributes:attributes];
+}
+@end
+static NSButton *presetButton(NSRect frame, NSString *title, id target,
+                              SEL action) {
+  auto *b = [SophistryPresetButton buttonWithTitle:title
+                                            target:target
+                                            action:action];
+  b.frame = frame;
+  b.bordered = NO;
+  return b;
+}
+
 #include "CompleteEditorView.h"
 #include "GeneratorView.h"
 
@@ -116,6 +156,7 @@ BOOL hasGenericBrowser(NSView *view) {
   NSTextField *preset_, *bank_, *message_, *activity_, *lcd_;
   NSSlider *master_;
   NSTextField *masterValue_;
+  NSTextField *footer_;
   NSTimer *timer_;
   NSString *lastJSON_;
   SophistryCompletePanel *complete_, *auxiliary_;
@@ -189,25 +230,25 @@ BOOL hasGenericBrowser(NSView *view) {
     [self addSubview:tab];
   }
   lcd_ = label(NSMakeRect(24, 226, 145, 33), @"", 10);
-  lcd_.textColor = [NSColor colorWithWhite:0.1 alpha:1];
+  lcd_.textColor = NSColor.whiteColor;
   [self addSubview:lcd_];
   [mainControls_ addObject:lcd_];
-  NSButton *load =
-      button(NSMakeRect(59, 265, 38, 15), @"", self, @selector(choosePreset:));
+  NSButton *load = presetButton(NSMakeRect(59, 265, 38, 15), @"Load", self,
+                                @selector(choosePreset:));
   load.bordered = NO;
   load.toolTip = @"Charger un preset FXP ou AU";
   [self addSubview:load];
   [mainControls_ addObject:load];
-  NSButton *save =
-      button(NSMakeRect(135, 265, 38, 15), @"", self, @selector(savePreset:));
+  NSButton *save = presetButton(NSMakeRect(135, 265, 38, 15), @"Save", self,
+                                @selector(savePreset:));
   save.bordered = NO;
   save.toolTip = @"Enregistrer le son au format AU";
   [self addSubview:save];
   [mainControls_ addObject:save];
-  previousPreset_ = button(NSMakeRect(21, 265, 38, 15), @"", self,
-                           @selector(previousPreset:));
-  nextPreset_ =
-      button(NSMakeRect(97, 265, 38, 15), @"", self, @selector(nextPreset:));
+  previousPreset_ = presetButton(NSMakeRect(21, 265, 38, 15), @"Prev", self,
+                                 @selector(previousPreset:));
+  nextPreset_ = presetButton(NSMakeRect(97, 265, 38, 15), @"Next", self,
+                             @selector(nextPreset:));
   for (NSButton *control in @[ previousPreset_, nextPreset_ ]) {
     control.bordered = NO;
     [self addSubview:control];
@@ -234,10 +275,9 @@ BOOL hasGenericBrowser(NSView *view) {
   activity_ = label(NSMakeRect(16, 446, 365, 18), @"", 10);
   for (NSView *v in @[ preset_, bank_, message_, activity_ ])
     [self addSubview:v];
-  [self addSubview:label(NSMakeRect(16, 465, 150, 11),
-                         [NSString
-                             stringWithUTF8String:sophistry::wrapperVersion],
-                         8)];
+  footer_ = label(NSMakeRect(16, 465, 730, 11),
+                  [NSString stringWithUTF8String:sophistry::editorFooter], 8);
+  [self addSubview:footer_];
   [self addSubview:button(NSMakeRect(523, 353, 109, 25), @"Charger un son…",
                           self, @selector(choosePreset:))];
   [self addSubview:button(NSMakeRect(638, 353, 109, 25), @"Banque de sons…",
@@ -719,7 +759,14 @@ BOOL hasGenericBrowser(NSView *view) {
 - (NSDictionary *)sophistryEditorReport {
   [self refresh:nil];
   NSUInteger images = [complete_ mainSpriteCount];
+  NSMutableArray *captions = [NSMutableArray array];
+  for (NSView *v in mainControls_)
+    if ([v isKindOfClass:SophistryPresetButton.class])
+      [captions addObject:((NSButton *)v).title];
   return @{
+    @"editor_footer" : footer_.stringValue,
+    @"preset_name_is_white" : @([lcd_.textColor isEqual:NSColor.whiteColor]),
+    @"white_preset_button_captions" : captions,
     @"parameter_count" : @(parameterIDs_.size()),
     @"main_dial_count" : @([complete_ mainDialCount]),
     @"background_images_loaded" : @(frame_ && panel_),

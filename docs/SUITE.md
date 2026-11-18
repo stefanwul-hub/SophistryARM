@@ -1,9 +1,9 @@
-# Suite après CP027
+# Suite après CP030
 
-L’implémentation des pages visibles récupérées dans les constructeurs est maintenant dans CP027 : [description](CP027.md). Les données, fichiers et routines testés sont comparés à l’original et sous ARM64/QEMU ; sept binaires Mac sont liés strictement. Les espaces réservés sans commandes dans l’original et la ressource 250 absente sont documentés.
+CP029 est confirmé par un rapport Mac complet : installation, auval, Cocoa local et distant, huit comparaisons PCM exactes. CP030 traite les craquements spécifiques à Gen1+2, corrige les tirettes et la lisibilité : [description et limites](CP030.md).
 
-La prochaine étape est le rapport Mac CP027 : installation/build27001/auval, parcours Cocoa des pages et variantes, saisies Loop, captures et comparaisons audio. Vérifier dans Logic et Live le rendu visuel, les gestes, les menus de modules et la sauvegarde/réouverture sur des copies de projets. Aucun nouveau preset ni numéro de licence n’est à demander pour lancer ces vérifications.
+La prochaine étape est le rapport Mac CP030 : compilation/build30001/auval, nouvel essai automatique Main/Gen1+2 et écoute dans les projets Logic/Live. Vérifier le sens des enveloppes et les textes blancs. Aucun nouveau preset ni numéro de licence n’est à demander. Le scénario DX Bass avec release extrême reste annulé.
 
-Étendre ensuite les comparaisons musicales avec la licence locale aux générateurs, effets, notes/vélocités, relâchements, pédale, pitch bend et tailles de buffers. Mesurer charge, mémoire et polyphonie dans les DAW. Les états exacts et les tests sélectionnés ne démontrent pas une identité sonore sur toutes les banques ou tous les chemins ; les écarts libm internes déjà consignés restent à surveiller.
+La traduction a encore un coût supérieur à du code source optimisé pour ARM. Ne pas déclarer la parité CPU ou la couverture de tous les sons sur la base des fixtures sélectionnées. Une comparaison future avec CronoX doit documenter preset, voix, effets, précision et mode d’exécution. Les erreurs de rappel ou craquements dans l’usage ordinaire restent prioritaires.
 
-Conserver la publication sur `codex/sophistry-native-checkpoints`, les archives/lanceurs épinglés et vérifiés, les preuves filtrées et le bundle Git autonome. Garder les préférences/licence/rapports bruts privés. Conserver la transaction d’installation et sa restauration.
+Conserver les archives/lanceurs épinglés sur codex/sophistry-native-checkpoints, leurs empreintes vérifiées et le bundle Git autonome. Garder licence/préférences/rapports bruts privés et conserver le rollback de l’installateur.
