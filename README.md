@@ -6,7 +6,7 @@ Audio Unit ARM64 expérimental pour rouvrir les projets Sophistry 3.0.8 à parti
 
 ## Télécharger et installer sur votre Mac
 
-[Télécharger le lanceur CP033](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/codex/sophistry-native-checkpoints/Demarrer-Sophistry-CP033.command), fermer Logic et Live, puis lancer :
+[Télécharger le lanceur CP033](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/d3478f4be0cc4bf01770f65006431a5d9ce4c233/Demarrer-Sophistry-CP033.command), fermer Logic et Live, puis lancer :
 
 ```bash
 bash "$HOME/Downloads/Demarrer-Sophistry-CP033.command"
