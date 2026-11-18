@@ -1,10 +1,10 @@
-# Sophistry — checkpoint CP032
+# Sophistry — CP033 en validation
 
 Audio Unit ARM64 expérimental pour rouvrir les projets Sophistry 3.0.8 à partir du code machine i386 fourni.
 
-**CP032 intègre trois blocs originaux qui manquaient : huit instructions ont été récupérées et traduites.** L’export Ghidra corrigé correspond exactement à l’entrée du générateur C++. Les2845 fonctions internes et les cibles de contrôle identifiées sont présentes. Les nouveaux tests reproduisent l’échec de l’ancienne version puis passent après correction. [Récupération, preuves et portée de l’audit](docs/CP032.md).
+**CP033 optimise le stockage intermédiaire de la traduction complète.** Les instructions originales restent dans le C++ de référence ; un passage vérifié prépare des variables locales avant compilation. Le prototype améliore les routines DSP sélectionnées sans écart de sortie ou d’état. La validation native ARM64 est en cours. [Détails et limites CP033](docs/CP033.md).
 
-Cette étape donne priorité à l’intégration du code original. L’optimisation CPU vient ensuite. Le mode flottant corrigé à CP031 était déjà activé par Live dans le diagnostic reçu. L’enquête de niveau est mise de côté à la demande de l’utilisateur.
+CP032 est confirmé fonctionnel sur le Mac de l’utilisateur ; son coût CPU reste élevé. Le téléchargement ci-dessous reste celui de CP032 pendant la préparation du paquet CP033.
 
 ## Télécharger et installer
 
@@ -20,7 +20,7 @@ Attendre **Installation CP032 confirmée**, puis vérifier **Sophistry ARM64 por
 
 ## Vérifications et limites
 
-Les1351nouveaux cas de code original, les références d’instructions et DSP précédentes, l’intégration AU et l’éditeur passent localement et sous ARM64/QEMU selon leur périmètre. Les binaires Mac sont liés strictement en ARM64. **CP032 reste à exécuter dans macOS et les DAW.** La couverture du code identifié ne constitue pas une validation de tous les presets et comportements possibles.
+Les1351nouveaux cas de code original, les références d’instructions et DSP précédentes, l’intégration AU et l’éditeur passent localement et sous ARM64/QEMU selon leur périmètre. Les binaires Mac sont liés strictement en ARM64. **CP032 est confirmé sur le Mac de l’utilisateur ; CP033 reste en validation.** La couverture du code identifié ne constitue pas une validation de tous les presets et comportements possibles.
 
 Identité `aumu/Sop3/LinP`, bundle `com.linplug.au.Sophistry`,522 paramètres, chunks et version AU 3.0.8 conservés ; build 32001. Les fonctions d’interface déjà disponibles et la sauvegarde `.aupreset`/modules`.MOD` restent en place.
 

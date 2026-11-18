@@ -39,3 +39,5 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-031 — enquête CPU et niveau** : CP030 résout les craquements Gen1+2 selon l’utilisateur. Rendu natif corrigé pour reproduire FTZ/DAZ original, état du thread restauré, Master comparé à l’i386. Tests Linux/ARM64/QEMU et neuf liens Mac stricts. Écarts CPU/niveau avec CronoX encore non résolus ; reproduction exhaustive non certifiée. [CP031](../docs/CP031.md).
 
 - **CP-032 — blocs originaux manquants intégrés** : trois blocs/huit instructions récupérés dans les octets originaux, huit alignements incorrects exclus. Inventaires et33 tables/839 choix complets ;1351nouveaux cas et références précédentes passent Linux/ARM64/QEMU. Neuf liens Mac stricts, exécution Mac en attente. Le code identifié correspond au nouvel export Ghidra ; l’optimisation CPU suit cette étape. [CP032](../docs/CP032.md).
+
+- **CP-033 — stockage local du moteur traduit** : prototype DSP comparatif exact, preuve des temporaires, registres/compteurs publiés aux sorties d’unités, comparaison CPU native entre CP032 et CP033 préparée. Validation complète et publication du lanceur en cours. [CP033](../docs/CP033.md).

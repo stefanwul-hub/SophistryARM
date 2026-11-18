@@ -1,0 +1,104 @@
+{
+  "checkpoint": "CP-032",
+  "scope": "Whitelisted facts independently read from the received Mac report; no private paths, registration or preferences",
+  "report_sha256": "a44b8ff30890905d12e086e7f53def603cb6678385a334b6a5919fbfb82b3ce0",
+  "tested_source_commit": "6859eaa4b3513b384ecab6bc6e5501174977dfb8",
+  "installation_confirmed": true,
+  "script_exitcode": 0,
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  "recovered_code": {
+    "scope": "isolated original instruction and recovered-branch fixtures",
+    "cases": 1351,
+    "compared_register_bytes": 49987,
+    "compared_memory_bytes": 768,
+    "passed": true,
+    "full_engine_tested": false
+  },
+  "selected_dsp": {
+    "scope": "selected statically lifted DSP",
+    "cases": 704,
+    "compared_bytes": 5420672,
+    "byte_mismatches": 0,
+    "output_buffer_byte_mismatches": 0,
+    "object_state_byte_mismatches": 0,
+    "math_calls": 201,
+    "math_mode": "recorded ABI responses",
+    "instruction_addresses_executed": 3113,
+    "fixture_valid": true,
+    "passed": true,
+    "full_synth_tested": false
+  },
+  "local_editor_passed": true,
+  "remote_host_passed": true,
+  "loaded_checkpoint": "SophistryARM CP-032",
+  "main_vs_generators_pcm_exact": true,
+  "audio_comparisons": [
+    {
+      "candidate": "preflight-2",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "preflight-6",
+      "reference": "original-6",
+      "pcm_bytes": 3175200,
+      "pcm_sha256": "7d65849399b6ce47896a63b732eaad749254366ea044173e5e64fa75b1ea1315",
+      "byte_exact": true
+    },
+    {
+      "candidate": "registered-2",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "registered-6",
+      "reference": "original-6",
+      "pcm_bytes": 3175200,
+      "pcm_sha256": "7d65849399b6ce47896a63b732eaad749254366ea044173e5e64fa75b1ea1315",
+      "byte_exact": true
+    },
+    {
+      "candidate": "editor",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "remote-host",
+      "reference": "original-2",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    },
+    {
+      "candidate": "format-d4u-32-1-native",
+      "reference": "format-d4u-32-1-original",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "5cc84438dfdf931eabe02e047a9b5920a8e26f4a69c83296bdf0d195f04ecc8f",
+      "byte_exact": true
+    },
+    {
+      "candidate": "format-d4u-32-2-native",
+      "reference": "format-d4u-32-2-original",
+      "pcm_bytes": 1058400,
+      "pcm_sha256": "f0c77a3b78e193438b0585c779c10714dfff23da433f5514af4cfc77362bb409",
+      "byte_exact": true
+    }
+  ],
+  "user_observations": {
+    "plugin_functions": true,
+    "cpu_still_abnormally_high": true,
+    "current_priority": "Reduce CPU while preserving original code and behavior"
+  }
+}
