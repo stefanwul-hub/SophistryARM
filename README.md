@@ -14,7 +14,7 @@ Cette étape donne priorité à l’intégration du code original. L’optimisat
 bash "$HOME/Downloads/Demarrer-Sophistry-CP032.command"
 ```
 
-Le lanceur télécharge l’archive immuable CP032 (lien après publication), vérifie son SHA-256, la décompacte, compile en ARM64, exécute les tests et auval puis remplace `/Library/Audio/Plug-Ins/Components/Sophistry.component`. L’ancien composant est restauré si une validation échoue. Licence et banque valides restent enregistrées localement.
+Le lanceur télécharge [l’archive immuable CP032](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/6859eaa4b3513b384ecab6bc6e5501174977dfb8), vérifie son SHA-256, la décompacte, compile en ARM64, exécute les tests et auval puis remplace `/Library/Audio/Plug-Ins/Components/Sophistry.component`. L’ancien composant est restauré si une validation échoue. Licence et banque valides restent enregistrées localement.
 
 Attendre **Installation CP032 confirmée**, puis vérifier **Sophistry ARM64 port OA 2026 (CP-032)** en bas à gauche. Le ZIP de rapports CP032 est créé automatiquement, y compris en cas d’échec. Les options `--choose-bank`, `--diagnose-only` et `--recenter-windows` restent disponibles.
 
