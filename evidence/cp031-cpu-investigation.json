@@ -1,0 +1,148 @@
+{
+  "scope": "Local Linux selected DSP fixture; alternating five runs each; 32 repeats of 704 reference cases per run; no full-synth, Mac or CronoX comparison",
+  "all_references_byte_exact": true,
+  "runs": [
+    {
+      "mode": "base",
+      "run": 0,
+      "timed_core_seconds": 2.589193151,
+      "seconds_by_entry": {
+        "0x32430": 0.57134276,
+        "0x38f48": 1.476380714,
+        "0x73fb0": 0.027694614,
+        "0x7a1ac": 0.078744639,
+        "0x8de6a": 0.066009906,
+        "0xaf2b2": 0.369020518
+      }
+    },
+    {
+      "mode": "noalias",
+      "run": 0,
+      "timed_core_seconds": 2.558809194,
+      "seconds_by_entry": {
+        "0x32430": 0.537016424,
+        "0x38f48": 1.491717242,
+        "0x73fb0": 0.027703114,
+        "0x7a1ac": 0.078061748,
+        "0x8de6a": 0.063126428,
+        "0xaf2b2": 0.361184238
+      }
+    },
+    {
+      "mode": "noalias",
+      "run": 1,
+      "timed_core_seconds": 2.485892827,
+      "seconds_by_entry": {
+        "0x32430": 0.516836628,
+        "0x38f48": 1.449584665,
+        "0x73fb0": 0.028754105,
+        "0x7a1ac": 0.08213399,
+        "0x8de6a": 0.064314645,
+        "0xaf2b2": 0.344268794
+      }
+    },
+    {
+      "mode": "base",
+      "run": 1,
+      "timed_core_seconds": 2.519857395,
+      "seconds_by_entry": {
+        "0x32430": 0.560444466,
+        "0x38f48": 1.424103188,
+        "0x73fb0": 0.026556735,
+        "0x7a1ac": 0.077750386,
+        "0x8de6a": 0.069761784,
+        "0xaf2b2": 0.361240836
+      }
+    },
+    {
+      "mode": "base",
+      "run": 2,
+      "timed_core_seconds": 2.452707479,
+      "seconds_by_entry": {
+        "0x32430": 0.521250612,
+        "0x38f48": 1.415217944,
+        "0x73fb0": 0.025330685,
+        "0x7a1ac": 0.076045051,
+        "0x8de6a": 0.063459381,
+        "0xaf2b2": 0.351403806
+      }
+    },
+    {
+      "mode": "noalias",
+      "run": 2,
+      "timed_core_seconds": 2.526253804,
+      "seconds_by_entry": {
+        "0x32430": 0.528710464,
+        "0x38f48": 1.475446114,
+        "0x73fb0": 0.028437889,
+        "0x7a1ac": 0.08137987,
+        "0x8de6a": 0.063166308,
+        "0xaf2b2": 0.349113159
+      }
+    },
+    {
+      "mode": "noalias",
+      "run": 3,
+      "timed_core_seconds": 2.435930842,
+      "seconds_by_entry": {
+        "0x32430": 0.518566556,
+        "0x38f48": 1.410918715,
+        "0x73fb0": 0.02701946,
+        "0x7a1ac": 0.076739804,
+        "0x8de6a": 0.066270938,
+        "0xaf2b2": 0.336415369
+      }
+    },
+    {
+      "mode": "base",
+      "run": 3,
+      "timed_core_seconds": 2.3140443520000002,
+      "seconds_by_entry": {
+        "0x32430": 0.476588749,
+        "0x38f48": 1.338302338,
+        "0x73fb0": 0.027669376,
+        "0x7a1ac": 0.073734657,
+        "0x8de6a": 0.060436255,
+        "0xaf2b2": 0.337312977
+      }
+    },
+    {
+      "mode": "base",
+      "run": 4,
+      "timed_core_seconds": 2.5773140900000002,
+      "seconds_by_entry": {
+        "0x32430": 0.552998333,
+        "0x38f48": 1.48176087,
+        "0x73fb0": 0.030187891,
+        "0x7a1ac": 0.082968386,
+        "0x8de6a": 0.065398958,
+        "0xaf2b2": 0.363999652
+      }
+    },
+    {
+      "mode": "noalias",
+      "run": 4,
+      "timed_core_seconds": 2.708894504,
+      "seconds_by_entry": {
+        "0x32430": 0.597943215,
+        "0x38f48": 1.567296808,
+        "0x73fb0": 0.035019746,
+        "0x7a1ac": 0.077318396,
+        "0x8de6a": 0.065502463,
+        "0xaf2b2": 0.365813876
+      }
+    }
+  ],
+  "median_seconds": {
+    "base": 2.519857395,
+    "noalias": 2.526253804
+  },
+  "median_samwt_seconds": {
+    "base": 1.424103188,
+    "noalias": 1.475446114
+  },
+  "checkpoint": "CP-031",
+  "candidate_shipped": false,
+  "decision": "Discarded: no reliable improvement in alternating repeated runs. No noalias or coverage-off generated units are shipped.",
+  "gprof_scope": "Separate selected-fixture sampling placed most samples in SamWT and sample normalization/buffer units. It is not a full-synth or Mac CPU measurement."
+}

@@ -1,0 +1,334 @@
+{
+  "checkpoint": "CP-031",
+  "passed": true,
+  "scope": "Original-render mode audit, physical Linux SSE, ARM64/QEMU, original i386 Master restoration, native AU lifecycle and strict Mac ARM64 links. CP031 macOS runtime and licensed audio comparison not executed here.",
+  "source_sha256": {
+    "Diagnostiquer-Sophistry.command": "09132fd9d75b0080213d2d410b9e44fe314524586a1eb605b1b31b6b6bed05e8",
+    "Installer-ARM64.command": "48b8a3e117fb3a9c11b1f0833fc9ea54534eddd75d9842ee11ebc96a6f3d0221",
+    "scripts/build-audio-unit.sh": "52c2a7af9ede87bebd86892f919e4064b8217bb18029136d56dbf9933c572ab5",
+    "scripts/build-native-engine.sh": "3b72aef7be559f65df38ed056c5aa2931e354f3278935c5d9a51785ed57cc410",
+    "src/au/Info.plist": "6cbc0bdbdf1602cd2d8d9f1f2240baabb9df25d65dd5753f78f0f07e18f00bb7",
+    "src/au/SophistryAU.cpp": "96d29246decf5569222af7a5aacbc696de337aab505648e39bf5d44b396c5e55",
+    "src/au/SophistryProperties.h": "e7002ba2be5aca3144640b2ab8a30f1a458a27e87e209f8c543f22dc51f65a3c",
+    "src/engine/AudioFloatMode.h": "25f247f7307fd6f2d29d70b4d89940d81eb13d320ceddb56e409ac21ecd4da6c",
+    "src/engine/LegacyEngine.cpp": "ddeb2607a4d115a09e57eae48476b20a51e5ee811771f8a3345c5d37a0de8476",
+    "tests/AudioFloatModeProbe.cpp": "8cbafc022811f7ecb8512ad4a58ee848226b957032b03b09384ce84faecbd640",
+    "tests/MasterVolumeProbe.cpp": "29d3a9b73af860c2a91fe62e93f48f273f6cd2f83abd01e6c3c73a58607cac34",
+    "tests/NativeAUBridgeProbe.cpp": "09ef7258d89679614d7c1694cf632775d23575b3131025e7d8012f5f16f5aee0"
+  },
+  "native_float_mode": {
+    "x86_64": {
+      "passed": true,
+      "multiply_cases": 8,
+      "nested_scopes": true,
+      "exception_restores_caller": true,
+      "inactive_scope_unchanged": true,
+      "caller_control_and_status_restored": true
+    },
+    "arm64": {
+      "passed": true,
+      "multiply_cases": 8,
+      "nested_scopes": true,
+      "exception_restores_caller": true,
+      "inactive_scope_unchanged": true,
+      "caller_control_and_status_restored": true
+    }
+  },
+  "native_au_bridge": {
+    "x86_64": {
+      "passed": true,
+      "native_float_state_restored": true,
+      "parameter_records": 522,
+      "reinitialization_cycles": 8,
+      "channels": [
+        2,
+        6
+      ],
+      "sample_rates": [
+        22050,
+        44100,
+        48000,
+        96000,
+        192000
+      ],
+      "licensed_musical_audio_tested": false
+    },
+    "arm64": {
+      "passed": true,
+      "native_float_state_restored": true,
+      "parameter_records": 522,
+      "reinitialization_cycles": 8,
+      "channels": [
+        2,
+        6
+      ],
+      "sample_rates": [
+        22050,
+        44100,
+        48000,
+        96000,
+        192000
+      ],
+      "licensed_musical_audio_tested": false
+    }
+  },
+  "master_volume_state": {
+    "x86_64": {
+      "passed": true,
+      "musical_audio_tested": false,
+      "initial_master_db": -6,
+      "fxp_master_db": 0,
+      "program_saved_master_db": 0,
+      "master_before_program_restore_db": -12,
+      "master_after_program_restore_db": 0,
+      "bank_saved_master_db": 0,
+      "master_before_bank_restore_db": -12,
+      "master_after_bank_restore_db": 0,
+      "program_bytes": 21072,
+      "bank_bytes": 22040
+    },
+    "arm64": {
+      "passed": true,
+      "musical_audio_tested": false,
+      "initial_master_db": -6,
+      "fxp_master_db": 0,
+      "program_saved_master_db": 0,
+      "master_before_program_restore_db": -12,
+      "master_after_program_restore_db": 0,
+      "bank_saved_master_db": 0,
+      "master_before_bank_restore_db": -12,
+      "master_after_bank_restore_db": 0,
+      "program_bytes": 21072,
+      "bank_bytes": 22040
+    }
+  },
+  "original_master_comparison": {
+    "passed": true,
+    "scope": "Original Sophistry i386 state/parameter operations compared to native C++; not a CronoX or licensed audio level comparison",
+    "original": {
+      "initial_master_db": -6.0,
+      "fxp_master_db": 0.0,
+      "master_after_program_restore_db": 0.0,
+      "master_after_bank_restore_db": 0.0,
+      "program_bytes": 21072,
+      "bank_bytes": 22040
+    },
+    "all_fields_match_native": true
+  },
+  "native_editor": {
+    "passed": true,
+    "pages_and_modes": 104,
+    "unique_controls": 852,
+    "visible_generator_menu_transitions": 50,
+    "choice_lists": 1512,
+    "cooperative_getter_boundaries": 6327,
+    "file_dialogs": 12,
+    "file_roundtrips": 6,
+    "module_copy_paste": 3,
+    "key_hits": 3240,
+    "knob_positions": 676,
+    "pointer_kinds": 4,
+    "numeric_loop_edits": 4,
+    "sample_actions": 6,
+    "wrong_module_rejected": true,
+    "page_reads_leave_program_unchanged": true,
+    "musical_audio_tested": false
+  },
+  "editor_original_reference": "complete-editor-cp030.json; 17 CP031 native outputs match its original-verified hashes",
+  "arm64_editor_comparisons": {
+    "passed": true,
+    "architecture": "Linux ARM64 under QEMU; no CoreAudio/AppKit",
+    "files": [
+      {
+        "file": "editor-actions.program",
+        "bytes": 21072,
+        "sha256": "f2ae4b35082db8ce78aa8585f3fd8b7e8e364298440e553910146736ee060d71",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-generator-aliases.bin",
+        "bytes": 1048200,
+        "sha256": "9772b12a4c1fcd30589f25af6cf926228698cef7845a6c299fd057e60afbccc8",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-keys.bin",
+        "bytes": 38880,
+        "sha256": "a23846ab111bc42e78806a7e1d7b5a706d83b3cc006c19fbeed9f8d667ed854d",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-knobs.bin",
+        "bytes": 2704,
+        "sha256": "2265f6e5eed6b23b6523358e5722369f686287b1ec1bef65576e28f84a431e58",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-loop-edited.program",
+        "bytes": 20920,
+        "sha256": "6a47a26cc966378e53ff91438555db1dd9bd7aa92e63d401bff7d09fbab3adff",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-midi.mod",
+        "bytes": 7220,
+        "sha256": "d8b28e0e94830de1d2e029b39ed9444fcd95511a9ae92c4fc37c2d26319b630e",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module643.mod",
+        "bytes": 48,
+        "sha256": "e6f217398d9140c5c68a10e988bcfa89dda43d5df6cc09ca7e6b7751e7973242",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module644.mod",
+        "bytes": 76,
+        "sha256": "7a0d839ff7db7459583071ce9328c2701af4d3ce042243976b063cfb8fb84b44",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module645.mod",
+        "bytes": 76,
+        "sha256": "c44cfdddeb9d8c8d83d68f9afeeac6214265988ecd88063a1449c786fd9c54f7",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module646.mod",
+        "bytes": 76,
+        "sha256": "9896aa088d6bdf4288d027a65bc5e50dba2642c3a83772cb89816bcd721487be",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-module647.mod",
+        "bytes": 356,
+        "sha256": "05d2f42c07248c8d5d42d731b121257f5425b44ece01ffbfdaa51bd07974f791",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action2.program",
+        "bytes": 20916,
+        "sha256": "fbaa2c1488f0244e468df5597896096a213aeb1edb41ed681e31c8767b78f033",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action3.program",
+        "bytes": 20916,
+        "sha256": "4bdbe07666b4a7e8b052c0117750d1c6db9326001e1e5fda06c4febed7b69182",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action4.program",
+        "bytes": 20904,
+        "sha256": "dbde3000b37ffaeb398d1ee9b5600ef07bcea9bc670af0c8457f0a3c108bc074",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action41.program",
+        "bytes": 21072,
+        "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action42.program",
+        "bytes": 21072,
+        "sha256": "f0331943621b8a3aed132cf90b62f12c2da9df4cbc12f855cd01534f003e9e88",
+        "byte_exact_to_x86_64_native_and_original": true
+      },
+      {
+        "file": "editor-sample-action43.program",
+        "bytes": 20960,
+        "sha256": "6d84690e4ffceb91104ba320dad3cb28fbd9589b5864a13be43c6cab1a53d233",
+        "byte_exact_to_x86_64_native_and_original": true
+      }
+    ]
+  },
+  "mac_arm64_strict_links": [
+    {
+      "name": "Sophistry",
+      "architecture": "arm64",
+      "bytes": 31300880,
+      "sha256": "4cbbbe2513b773873f665dff8482b6103e62045a91ca0b8d4b6a7b4ff7d877c5",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitEditorProbe",
+      "architecture": "arm64",
+      "bytes": 1342800,
+      "sha256": "dc797dbf702008d6b0dd6458ed1b8fb08e841df779ebeb18951e4714a70271e9",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitRemoteHostProbe",
+      "architecture": "arm64",
+      "bytes": 1269264,
+      "sha256": "e3ead858d2ff1ec5254243f81d7d2a7717a84ca23022216ce58e92a48bf7ef23",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "AudioUnitFactoryProbe",
+      "architecture": "arm64",
+      "bytes": 1364544,
+      "sha256": "45e0d8a578cdbe1d96eea3eb9a3bd54196f0837231c0106dc6c3486a71620ebd",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "InstalledAUInspector",
+      "architecture": "arm64",
+      "bytes": 572336,
+      "sha256": "ced0559fed7cc2d4f903621e51bfaa5ba25a66c0683e286efd3870dde88027ff",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "NativeAUBridgeProbe",
+      "architecture": "arm64",
+      "bytes": 30569776,
+      "sha256": "c2ceef8d95a29989295663a3f5902ca1c34c890f0632f0f49133e5fe16b6f6ea",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "NativeCompleteEditorProbe",
+      "architecture": "arm64",
+      "bytes": 30688160,
+      "sha256": "b56d725b96ac95812b42c8ad6be45528bcf3e6c82691a0a340396c9f7fbb0fa8",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "AudioFloatModeProbe",
+      "architecture": "arm64",
+      "bytes": 395664,
+      "sha256": "9dd9bedfc82ce767f1f2a74c5dca0ee1d592e3d6b1b4578b7a1a0d3889a753ff",
+      "strict_link_no_dynamic_lookup": true
+    },
+    {
+      "name": "MasterVolumeProbe",
+      "architecture": "arm64",
+      "bytes": 30560384,
+      "sha256": "62e7b18c18b5135ab9750ff00e41a7daf9302072ad7dabc4b8dfc84787c7711c",
+      "strict_link_no_dynamic_lookup": true
+    }
+  ],
+  "au_identity": {
+    "type": "aumu",
+    "subtype": "Sop3",
+    "manufacturer": "LinP",
+    "version": 196616,
+    "build": "31001"
+  },
+  "runtime_and_all_lifted_units_unchanged": true,
+  "selected_dsp_fixture_reference_reused": "CP030 selected DSP/primitive and conversion tests; those source files are unchanged",
+  "cp030_user_feedback": {
+    "gen12_crackles_resolved": true,
+    "cpu_about_four_times_cronox_reported": true,
+    "lower_output_level_reported": true,
+    "full_mac_validation_zip_received": false
+  },
+  "mac_cp031_auval_executed": false,
+  "mac_cp031_cocoa_executed": false,
+  "mac_cp031_licensed_audio_executed": false,
+  "cronox_cpu_parity_proven": false,
+  "cronox_output_level_cause_identified": false,
+  "gain_compensation_added": false,
+  "dx_extreme_release_test_resumed": false,
+  "standard_au_validation_and_rollback_preserved": true
+}

@@ -1,6 +1,7 @@
 // Regression checks for the guest AU bridge, executable without Apple
 // frameworks. Without a licence these checks establish lifecycle/ABI behavior,
 // not synthesis.
+#include "../src/engine/AudioFloatMode.h"
 #include "../src/engine/LegacyEngine.h"
 #include <algorithm>
 #include <array>
@@ -102,12 +103,29 @@ int main(int argc, char **argv) {
       transport.samplePosition = 0;
       engine.midi(0x90, 60, 100);
       engine.setTransport(transport);
+      const auto floatState = sophistry::nativeAudioFloatState();
+      auto checkFloatState = [&] {
+        const auto current = sophistry::nativeAudioFloatState();
+        if (current.control != floatState.control ||
+            current.status != floatState.status)
+          throw std::runtime_error("Render changed caller floating state");
+      };
       engine.process(pointers.data(), spec[0], 1);
+      checkFloatState();
       transport.samplePosition = 1;
       transport.beat += 1.0 / spec[1] * 137 / 60;
       engine.setTransport(transport);
       engine.midi(0x80, 60, 0, spec[2] - 1);
+      // MIDI/transport updates may change the caller's exception status.
+      const auto secondFloatState = sophistry::nativeAudioFloatState();
       engine.process(pointers.data(), spec[0], spec[2]);
+      const auto afterRender = sophistry::nativeAudioFloatState();
+      if (afterRender.control != secondFloatState.control ||
+          afterRender.status != secondFloatState.status ||
+          engine.diagnosticJson().find(
+              "\"original_render_denormal_mode_applied\":true") ==
+              std::string::npos)
+        throw std::runtime_error("Original float mode integration failed");
       for (auto &b : buffers)
         for (float v : b)
           if (!std::isfinite(v))
@@ -116,8 +134,9 @@ int main(int argc, char **argv) {
       engine.deactivate();
       ++cycles;
     }
-    std::cout << "{\"passed\":true,\"parameter_records\":" << parameters
-              << ",\"reinitialization_cycles\":" << cycles
+    std::cout << "{\"passed\":true,\"native_float_state_restored\":true,"
+                 "\"parameter_records\":"
+              << parameters << ",\"reinitialization_cycles\":" << cycles
               << ",\"channels\":[2,6],\"sample_rates\":[22050,44100,48000,"
                  "96000,192000],"
                  "\"licensed_musical_audio_tested\":false}\n";

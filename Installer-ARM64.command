@@ -1,5 +1,5 @@
 #!/bin/bash
-# CP-030: test installation with original registration, verified backup and rollback.
+# CP-031: test installation with original registration, verified backup and rollback.
 set +x
 set -euo pipefail
 umask 077
@@ -102,7 +102,7 @@ collect(){
   done
   printf '%s\n' "$result" > "$REPORT/script-exitcode.txt"
   printf '%s\n' "$stage" > "$REPORT/last-stage.txt"
-  printf '{"checkpoint":"CP-030","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"local_editor_and_audio_passed":%s,"remote_host_view_and_audio_passed":%s,"script_exitcode":%s,"recovered_constructor_controls":1067,"mac_gui_review_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
+  printf '{"checkpoint":"CP-031","system_installation_committed":%s,"rollback_completed_if_needed":%s,"validated_settings_retained":%s,"auval_and_registered_audio_passed":%s,"local_editor_and_audio_passed":%s,"remote_host_view_and_audio_passed":%s,"script_exitcode":%s,"recovered_constructor_controls":1067,"mac_gui_review_complete":false,"project_recall_verified":false,"private_preferences_in_report":false}\n' \
     "$(if [[ "$committed" -eq 1 ]]; then echo true;else echo false;fi)" "$rollback_ok" \
     "$(if [[ "$settings_confirmed" -eq 1 ]]; then echo true;else echo false;fi)" \
     "$(if [[ "${auval_passed:-0}" -eq 1 && "${registered_audio_passed:-0}" -eq 1 ]]; then echo true;else echo false;fi)" \
@@ -110,15 +110,15 @@ collect(){
     "$(if [[ "${remote_host_passed:-0}" -eq 1 ]]; then echo true;else echo false;fi)" \
     "$result" > "$REPORT/result.json"
   if [[ "$result" -ne 0 ]]; then
-    printf '%s\n' "Installation CP030 non confirmée : $stage (code $result)."
+    printf '%s\n' "Installation CP031 non confirmée : $stage (code $result)."
     if [[ "$installation_started" -eq 1 && "$committed" -eq 0 && "$rollback_ok" == true ]]; then
-      echo 'Le composant précédent a été restauré : la nouvelle interface CP030 n’est donc pas installée.'
+      echo 'Le composant précédent a été restauré : la nouvelle interface CP031 n’est donc pas installée.'
     elif [[ "$installation_started" -eq 0 ]]; then
       echo 'Le composant installé auparavant a été conservé.'
       echo 'Les corrections de cette tentative ne sont pas installées ; Logic et Live affichent encore la version précédente.'
     fi
   fi
-  archive="$ROOT/Sophistry-rapports-CP030-$STAMP.zip"
+  archive="$ROOT/Sophistry-rapports-CP031-$STAMP.zip"
   (cd "$REPORT"; /usr/bin/zip -q "$archive" ./*.json ./*.txt ./*.log ./*.wav ./*.png 2>/dev/null || true)
   printf '\n%s\n' "Rapports : $archive"
   printf '%s\n' "Restauration autonome : $PRIVATE/Restaurer-Sophistry.command"
@@ -131,7 +131,7 @@ collect(){
 trap collect EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
-echo 'Sophistry CP-030 — installation de test ARM64 avec sauvegarde et validation AU'
+echo 'Sophistry CP-031 — installation de test ARM64 avec sauvegarde et validation AU'
 echo 'Cette version affiche le nom des samples sans les anciens chemins Windows. Testez des copies de vos projets.'
 /usr/bin/sw_vers
 /usr/bin/uname -m
@@ -149,6 +149,10 @@ stage='replays et régression du moteur AU'
 "$BUILD/NativeBankDiagnosticsProbe" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$ROOT/reference/Samples" "$ROOT/work/unavailable-bank-fixture" > "$REPORT/bank-diagnostics.json" 2> "$REPORT/bank-diagnostics.log"
 stage='équivalence numérique des conversions flottantes'
 "$BUILD/FloatConversionProbe" > "$REPORT/float-conversions.json" 2> "$REPORT/float-conversions.log"
+stage='fidélité du mode flottant du rendu original'
+"$BUILD/AudioFloatModeProbe" > "$REPORT/audio-float-mode.json" 2> "$REPORT/audio-float-mode.log"
+stage='restauration du volume Master original'
+"$BUILD/MasterVolumeProbe" "$ROOT/reference/Presets/lightgarden 02 BT.FXP" "$ROOT/reference/Samples" > "$REPORT/master-volume.json" 2> "$REPORT/master-volume.log"
 stage='validation PCM avec la référence Core Audio native'
 "$BUILD/PcmConversionProbe" > "$REPORT/pcm-conversion.json" 2> "$REPORT/pcm-conversion.log"
 stage='vérification des images des générateurs'
@@ -271,14 +275,14 @@ except subprocess.TimeoutExpired:
 if result.returncode: raise SystemExit(result.returncode)
 r=json.load(open(sys.argv[2]))
 if not (r['current_checkpoint_loaded'] and r['cocoa_property_available'] and r['registered_matches']==1):
-    raise SystemExit('L’inspection finale ne confirme pas la version CP030 et sa propriété Cocoa.')
+    raise SystemExit('L’inspection finale ne confirme pas la version CP031 et sa propriété Cocoa.')
 PY
 stage='confirmation de l’installation vérifiée'
 /usr/bin/sudo -- "$SYSTEM_PYTHON" "$PRIVATE/ComponentTransaction.py" commit --transaction "$TRANSACTION" > "$REPORT/component-commit.json" 2>&1
 committed=1
 stage='installation de test terminée'
 echo 'Le candidat ARM64 est installé dans /Library/Audio/Plug-Ins/Components/Sophistry.component.'
-echo 'Installation CP030 confirmée : auval, éditeur local, hôte séparé avec vue système et comparaisons audio passent.'
-echo 'Après réouverture de Logic/Live, vérifiez la mention SophistryARM CP-030 en bas de l’éditeur.'
+echo 'Installation CP031 confirmée : auval, éditeur local, hôte séparé avec vue système et comparaisons audio passent.'
+echo 'Après réouverture de Logic/Live, vérifiez la mention SophistryARM CP-031 en bas de l’éditeur.'
 echo 'Le rappel sonore des projets et la fenêtre relayée par Logic/Live restent à vérifier sur des copies.'
 exit 0

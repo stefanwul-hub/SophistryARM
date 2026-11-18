@@ -1,3 +1,5 @@
+> Document historique des étapes CP006–CP008. Pour le port AU actuel, ses 191379instructions émises et ses limites de couverture, lire [CP031](CP031.md). Les restrictions et résultats ci-dessous décrivent ces premières étapes.
+
 # Traduction statique sélectionnée — CP-008
 
 ## Provenance et méthode

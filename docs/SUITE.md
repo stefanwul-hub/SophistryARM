@@ -1,9 +1,9 @@
-# Suite après CP030
+# Suite après CP031
 
-CP029 est confirmé par un rapport Mac complet : installation, auval, Cocoa local et distant, huit comparaisons PCM exactes. CP030 traite les craquements spécifiques à Gen1+2, corrige les tirettes et la lisibilité : [description et limites](CP030.md).
+CP030 a supprimé les craquements de Gen1+2 selon le retour utilisateur. CP031 corrige un réglage flottant du rendu original et ajoute des contrôles du Master : [description](CP031.md).
 
-La prochaine étape est le rapport Mac CP030 : compilation/build30001/auval, nouvel essai automatique Main/Gen1+2 et écoute dans les projets Logic/Live. Vérifier le sens des enveloppes et les textes blancs. Aucun nouveau preset ni numéro de licence n’est à demander. Le scénario DX Bass avec release extrême reste annulé.
+La prochaine étape est le rapport Mac CP031 et un diagnostic pris dans le DAW après lecture du preset comparé. Lire le Master réel et `host_denormal_mode_already_enabled`. Si l’hôte appliquait déjà le mode flottant, cette correction ne suffit pas à expliquer le surcoût CPU. Ne pas annoncer un gain global chiffré sans mesure.
 
-La traduction a encore un coût supérieur à du code source optimisé pour ARM. Ne pas déclarer la parité CPU ou la couverture de tous les sons sur la base des fixtures sélectionnées. Une comparaison future avec CronoX doit documenter preset, voix, effets, précision et mode d’exécution. Les erreurs de rappel ou craquements dans l’usage ordinaire restent prioritaires.
+Il faut encore connaître le preset, la version de CronoX et les conditions de comparaison pour expliquer l’écart de niveau. Aucun boost de volume arbitraire n’est prévu. L’original de référence reste Sophistry3.0.8 fourni, et une reproduction exhaustive n’est pas certifiée.
 
-Conserver les archives/lanceurs épinglés sur codex/sophistry-native-checkpoints, leurs empreintes vérifiées et le bundle Git autonome. Garder licence/préférences/rapports bruts privés et conserver le rollback de l’installateur.
+Conserver les validations, références audio, auval et rollback, les lanceurs épinglés et vérifiés, les preuves filtrées et le bundle Git autonome. Le scénario DX Bass avec release extrême reste annulé.

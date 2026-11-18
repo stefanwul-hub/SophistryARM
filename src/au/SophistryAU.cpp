@@ -221,6 +221,7 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
         << ",\"maximum_frames\":" << GetMaxFramesPerSlice()
         << ",\"render_calls\":" << renderCalls_
         << ",\"maximum_output\":" << maximumOutput_
+        << ",\"master_volume_db\":" << engine_.auParameter(134)
         << ",\"nonfinite_samples\":" << nonfiniteSamples_
         << ",\"bank_bookmark_available\":"
         << (config_.bankAccess ? "true" : "false")

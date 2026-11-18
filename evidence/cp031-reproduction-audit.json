@@ -1,0 +1,37 @@
+{
+  "checkpoint": "CP-031",
+  "entire_original_code_reproduction_certified": false,
+  "detected_original_instructions_emitted": 191379,
+  "compiled_instruction_units": 364,
+  "original_architecture": "i386 (32-bit), plus PPC in supplied bundle",
+  "implementation": "Static C++ execution of recovered internal code, with native host/platform and Cocoa adaptations",
+  "terminal_guard_instruction_addresses": [
+    "12fb8",
+    "23f4c",
+    "4debc",
+    "4dec0"
+  ],
+  "known_limits": [
+    "All possible DSP/preset/MIDI/host paths are not proven covered",
+    "Host operating-system calls have native adapters",
+    "Full x86 floating exception/control behavior is not modeled",
+    "Reserved Enhanced panels have no recovered usable editor",
+    "No general FXP export UI"
+  ],
+  "reference_scope": "The reference binary is supplied Sophistry 3.0.8, not the user-installed CronoX binary",
+  "original_render_float_mode": {
+    "entry": "0xa7014",
+    "save": "0xa7022",
+    "enable": "0xa7034",
+    "restore": "0xa73e4",
+    "x86_mxcsr_mask": "0x8040",
+    "arm64_mapping": "FPCR.FZ bit24, with caller FPCR/FPSR restored",
+    "source_sha256": {
+      "analysis/ghidra/functions/000a7014_FUN_000a7014.c": "0b991942b65b6e69aa1d6fc80de06ffac2531af099a64382213bde2789b7a08c"
+    },
+    "previous_native_mode_adaptation_missing": true,
+    "unicorn_reference_caveat": "Unicorn 2.1.4 reproduced DAZ input handling but not FTZ output flushing in dedicated MULSS/MULSD tests; physical SSE and ARM64/QEMU are used for those expected results."
+  },
+  "remaining_cpu_cause_not_fully_identified": true,
+  "lower_level_vs_cronox_not_resolved": true
+}

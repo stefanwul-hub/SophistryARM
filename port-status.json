@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-030",
+  "checkpoint": "CP-031",
   "original_version": "3.0.8",
   "original_architectures": [
     "ppc",
@@ -16,8 +16,8 @@
   "native_audio_unit_available": true,
   "native_ui_available": true,
   "install_allowed": true,
-  "arm64_scope": "CP030 source/runtime/UI changes differentially checked on native Linux and ARM64/QEMU; eight Mac ARM64 binaries strictly linked. CP030 AppKit/auval/licensed audio execution pending on user Mac.",
-  "next_work": "Receive CP030 Mac report and confirm ordinary Main/Gen1+2 playback, corrected upward envelope faders and white preset captions; assess remaining CPU cost without resuming canceled DX Bass extreme-release stress.",
+  "arm64_scope": "CP031 float mode and Master tests pass on native Linux and ARM64/QEMU; nine strict Mac ARM64 links. macOS runtime pending.",
+  "next_work": "Receive CP031 Mac report and actual DAW diagnostic, identify exact CronoX/preset/host comparison conditions; investigate remaining CPU and level differences without the canceled extreme-release scenario.",
   "cp030_work_in_progress": false,
   "cp030_build": "30001",
   "cp030_mac_execution_pending": true,
@@ -40,12 +40,12 @@
   "cp029_mac_evidence": "evidence/mac-cp029-installed.json",
   "cp029_audio_comparisons_byte_exact": 8,
   "current_au_version": 196616,
-  "current_build": "30001",
-  "wrapper_version": "SophistryARM CP-030",
-  "editor_footer": "Sophistry ARM64 port OA 2026 (CP-030)",
+  "current_build": "31001",
+  "wrapper_version": "SophistryARM CP-031",
+  "editor_footer": "Sophistry ARM64 port OA 2026 (CP-031)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "Source archive and pinned launcher published, downloaded and verified.",
+  "publication_status": "CP031 sources prepared; publication pending.",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -59,5 +59,18 @@
   "github_cp030_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/80afd66fd049bb45ea5764c21a2b3eaf67c62945/Demarrer-Sophistry-CP030.command",
   "github_cp030_launcher_commit": "80afd66fd049bb45ea5764c21a2b3eaf67c62945",
   "github_cp030_launcher_sha256": "27a7e231aab87ed3c19321230a2752a408056b5d68a046fcb33f9b2d1f86d5b1",
-  "github_cp030_launcher_verified": true
+  "github_cp030_launcher_verified": true,
+  "cp030_user_gen12_crackles_resolved": true,
+  "cp030_full_mac_report_received": false,
+  "cp031_native_render_float_mode_fixed": true,
+  "cp031_mac_execution_pending": true,
+  "cp031_build": "31001",
+  "cp031_reproduction_audit": "evidence/cp031-reproduction-audit.json",
+  "cp031_development_evidence": "evidence/cp031-development-checks.json",
+  "cp031_cpu_investigation": "evidence/cp031-cpu-investigation.json",
+  "cp031_global_cpu_difference_resolved": false,
+  "cp031_cronox_level_difference_resolved": false,
+  "cp031_gain_compensation_added": false,
+  "cp031_lifted_units_or_numeric_runtime_changed": false,
+  "complete_original_reproduction_certified": false
 }

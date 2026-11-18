@@ -1,4 +1,5 @@
 #include "LegacyEngine.h"
+#include "AudioFloatMode.h"
 #include "../lifter/LifterRuntime.h"
 #include "GuestAllocator.h"
 #include "LegacyImageData.h"
@@ -95,6 +96,7 @@ struct LegacyEngine::Impl {
   float drawX = 0, drawY = 0;
   bool drawPoint = false;
   U32 editorRevision = 0;
+  bool renderFloatModeApplied = false, renderFloatModeWasAlreadyEnabled = false;
   struct DrawingCache {
     std::vector<U32> key;
     EditorDrawing drawing;
@@ -2514,6 +2516,11 @@ void LegacyEngine::midi(std::uint8_t status, std::uint8_t data1,
   impl_->dispatch(25, 0, 0, impl_->events);
 }
 void LegacyEngine::process(float *const *outputs, U32 channels, U32 frames) {
+  ScopedOriginalAudioFloatMode floatMode(impl_->config.audioUnitMode);
+  if (impl_->config.audioUnitMode) {
+    impl_->renderFloatModeApplied = true;
+    impl_->renderFloatModeWasAlreadyEnabled = floatMode.wasAlreadyEnabled();
+  }
   impl_->prepareBuffers();
   if (!outputs || channels != outputChannels() || frames < 1 ||
       frames > impl_->blockSize)
@@ -2593,6 +2600,10 @@ std::string LegacyEngine::diagnosticJson() const {
     << ",\"heap_reused_blocks\":" << impl_->arena.reusedBlocks()
     << ",\"initialized\":" << (impl_->initialized ? "true" : "false")
     << ",\"active\":" << (impl_->active ? "true" : "false")
+    << ",\"original_render_denormal_mode_applied\":"
+    << (impl_->renderFloatModeApplied ? "true" : "false")
+    << ",\"host_denormal_mode_already_enabled\":"
+    << (impl_->renderFloatModeWasAlreadyEnabled ? "true" : "false")
     << ",\"registration_check_exercised\":"
     << (impl_->active ? "true" : "false") << ",\"registration_accepted\":"
     << (registrationAccepted() ? "true" : "false")
