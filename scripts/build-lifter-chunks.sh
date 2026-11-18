@@ -11,13 +11,6 @@ if [[ ! -f "$SOURCE/manifest.json" || ! -f "$SOURCE/Dispatch.cpp" ]]; then
   exit 2
 fi
 mkdir -p "$DEST"
-if [[ "$(uname -s)" == Darwin ]]; then
-  sophistry_python="$(/usr/bin/xcrun --find python3)"
-else
-  sophistry_python="${SOPHISTRY_PYTHON:-python3}"
-fi
-"$sophistry_python" "$ROOT/scripts/optimize_lifted_cpp.py" "$SOURCE" "$DEST/optimized" > "$DEST/storage-optimization.json"
-SOURCE="$DEST/optimized"
 flags=(-std=c++17 -O2 -g0 -ffp-contract=off -fno-fast-math -fno-exceptions -fno-rtti -fPIC -I"$ROOT/src/lifter")
 if [[ "$(uname -s)" == Darwin ]]; then
   compiler=(/usr/bin/xcrun clang++)
@@ -43,7 +36,7 @@ wait_batch(){
 for source in "${sources[@]}"; do
   name="$(basename "$source" .cpp)"
   object="$DEST/$name.o";objects+=("$object")
-  key="$( { printf '%s\n' "${compiler[*]}" "${flags[*]}" "$compiler_version"; cat "$ROOT/src/lifter/LifterRuntime.h" "$ROOT/src/lifter/OptimizedLifter.h" "$source"; } | shasum -a 256 | awk '{print $1}')"
+  key="$( { printf '%s\n' "${compiler[*]}" "${flags[*]}" "$compiler_version"; cat "$ROOT/src/lifter/LifterRuntime.h" "$source"; } | shasum -a 256 | awk '{print $1}')"
   if [[ -f "$object" && -f "$object.compile.sha256" && "$(cat "$object.compile.sha256")" == "$key" ]]; then
     completed=$((completed+1))
     continue
@@ -64,5 +57,4 @@ if [[ "${#pids[@]}" -gt 0 ]]; then wait_batch; fi
 "${compiler[@]}" "${flags[@]}" "${shared[@]}" "${objects[@]}" -o "$library"
 "${compiler[@]}" "${flags[@]}" "${objects[@]}" "$ROOT/tests/LiftedProbeMain.cpp" -o "$DEST/LiftedProbe"
 "${compiler[@]}" "${flags[@]}" "${objects[@]}" "$ROOT/tests/InstructionProbeMain.cpp" -o "$DEST/InstructionProbe"
-"${compiler[@]}" "${flags[@]}" "${objects[@]}" "$ROOT/tests/StorageOptimizationProbe.cpp" -o "$DEST/StorageOptimizationProbe"
 printf '%s\n' "$library" "$DEST/LiftedProbe" "$DEST/InstructionProbe"

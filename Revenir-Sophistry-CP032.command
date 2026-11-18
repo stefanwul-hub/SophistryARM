@@ -13,17 +13,17 @@ if [[ "$(uname -m)" != arm64 ]]; then
   echo 'Un Mac Apple Silicon est nécessaire.' >&2
   exit 2
 fi
-COMMIT='63fdae177535c81efb1cabd4413b9661e138798a'
-SHA256='ab4e491f9bcff35324aa696eb225d4f1c92300f73a42dd9f36aa2328dce3fc52'
-BASE="${SOPHISTRY_WORKSPACE:-$HOME/Documents/SophistryARM-CP033}"
+COMMIT='6859eaa4b3513b384ecab6bc6e5501174977dfb8'
+SHA256='0fa3d52b58c753ba5b2cee5dbc6cd13d5099191f78b18812e2274ceff0661d0a'
+BASE="${SOPHISTRY_WORKSPACE:-$HOME/Documents/SophistryARM-CP032}"
 mkdir -p "$BASE"
-ARCHIVE="$BASE/Sophistry-CP033-sources.zip"
+ARCHIVE="$BASE/Sophistry-CP032-sources.zip"
 SOURCE="$BASE/SophistryARM-$COMMIT"
 valid_archive(){
   [[ -f "$1" ]] && [[ "$(/usr/bin/shasum -a 256 "$1" | /usr/bin/awk '{print $1}')" == "$SHA256" ]]
 }
 if ! valid_archive "$ARCHIVE"; then
-  printf '%s\n' 'Téléchargement du checkpoint CP-033 (~44 Mo)…'
+  printf '%s\n' 'Téléchargement du checkpoint CP-032 (~44 Mo)…'
   /usr/bin/curl --fail --location --retry 2 --connect-timeout 20 \
     "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/$COMMIT" \
     --output "$ARCHIVE.part"
@@ -33,7 +33,7 @@ if ! valid_archive "$ARCHIVE"; then
   fi
   mv "$ARCHIVE.part" "$ARCHIVE"
 fi
-if [[ ! -f "$SOURCE/.sophistry-cp033-source" ]] || [[ "$(cat "$SOURCE/.sophistry-cp033-source")" != "$SHA256" ]]; then
+if [[ ! -f "$SOURCE/.sophistry-cp032-source" ]] || [[ "$(cat "$SOURCE/.sophistry-cp032-source")" != "$SHA256" ]]; then
   if [[ -e "$SOURCE" ]]; then
     SOURCE="$SOURCE-$(date -u +%Y%m%dT%H%M%SZ)"
   fi
@@ -42,7 +42,7 @@ if [[ ! -f "$SOURCE/.sophistry-cp033-source" ]] || [[ "$(cat "$SOURCE/.sophistry
   [[ -f "$STAGING/SophistryARM-$COMMIT/Installer-ARM64.command" ]]
   mv "$STAGING/SophistryARM-$COMMIT" "$SOURCE"
   rmdir "$STAGING"
-  printf '%s\n' "$SHA256" > "$SOURCE/.sophistry-cp033-source"
+  printf '%s\n' "$SHA256" > "$SOURCE/.sophistry-cp032-source"
 fi
 printf '%s\n' "Sources et checkpoints conservés dans : $SOURCE"
 if [[ "${1:-}" == --diagnose-only ]]; then

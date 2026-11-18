@@ -1,0 +1,137 @@
+{
+  "checkpoint": "CP-034",
+  "functional_baseline": "CP-032",
+  "original_executable_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "source_baseline": "1a32688cce7017bc40a6085563a0aa82edb08639",
+  "no_new_dsp_optimization": true,
+  "code_inventory": {
+    "instructions": 191379,
+    "function_entries": 2845,
+    "vtable_targets": 1625,
+    "direct_control_targets": 26544,
+    "unwind_entries": 1890,
+    "switch_tables": 33,
+    "passed": true,
+    "limits": "Identified entries and control targets, not exhaustive semantic equivalence"
+  },
+  "differential_original_execution": {
+    "scope": "Selected statically lifted saturation, filter, sample preparation and Schrader routines; not full DSP engine or AU",
+    "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+    "cases": 704,
+    "compared_audio_samples": 283968,
+    "compared_bytes": 5420672,
+    "continuous_schrader_frames": 132300,
+    "continuous_schrader_sample_rate": 44100,
+    "bit_exact_audio_and_object_state": true,
+    "mismatches": [],
+    "native_executed_instruction_addresses": 3113,
+    "exported_instructions": 3242,
+    "shared_host_math_calls_in_original": 201,
+    "shared_host_math_calls_in_lift": 201,
+    "sample_source": "BT_cronox18.wav",
+    "normalized_mono_sample_sha256": "cf7940bfc1476eac3260c85d7c76fb81d999557d6530ab60b8d2896c37472da3",
+    "schrader_64_tables_sha256": "f2964fc5943ec618d0095caf13401b01d106e70b5eae1df0185abd85a6efad75",
+    "x86_runtime_decoder_in_lift": false,
+    "host_math_note": "Both executions use Python math.log10/math.pow and a no-op free for host-owned buffers through explicit ABI adapters; original Apple libm and file decoder have not been executed",
+    "architecture_executed": "Linux x86_64 C++ build",
+    "apple_silicon_executed": false,
+    "project_reopening_tested": false
+  },
+  "frozen_primitive_replay": {
+    "scope": "isolated original instruction and recovered-branch fixtures",
+    "cases": 11635,
+    "compared_register_bytes": 146749,
+    "compared_memory_bytes": 0,
+    "passed": true,
+    "full_engine_tested": false
+  },
+  "frozen_recovered_code_replay": {
+    "scope": "isolated original instruction and recovered-branch fixtures",
+    "cases": 1351,
+    "compared_register_bytes": 49987,
+    "compared_memory_bytes": 768,
+    "passed": true,
+    "full_engine_tested": false
+  },
+  "platform_probes": "cp034-platform-contracts.json",
+  "floating_point_inventory": {
+    "x87_mnemonic_counts": {
+      "FLD": 142,
+      "FSTP": 453,
+      "FLDZ": 32,
+      "FLD1": 2,
+      "FST": 4
+    },
+    "x87_arithmetic_instructions_detected": 0,
+    "arithmetic_input_bytes": [
+      4,
+      8
+    ],
+    "x87_storage_conversion_differs_from_full_x87_arithmetic": true
+  },
+  "render_call_path": {
+    "native_au_process_calls_in_render_body": 1,
+    "original_au_entry_calls_in_engine_process_body": 1,
+    "original_au_entry": "0xa7014",
+    "scope": "Static direct-call path; not a trace or count of internal DSP voice processing"
+  },
+  "platform_fidelity_findings": [
+    {
+      "finding": "Production configuration retains deterministicTestHost=true",
+      "source": "src/au/SophistryAU.cpp",
+      "evidence": "configuration explicitly sets deterministicTestHost=true",
+      "status": "Confirmed platform modeling difference; no runtime correction applied"
+    },
+    {
+      "finding": "mach_absolute_time advances by 1000 synthetic ticks per query, not elapsed host time; timebase ratio is fixed 1/1",
+      "source": "src/engine/LegacyEngine.cpp",
+      "original_timer_function": "0x2e1c0",
+      "confirmed_original_callers": [
+        "0xe7ae",
+        "0x200ee",
+        "0x2037e"
+      ],
+      "impact": "Original time-dependent control and MIDI bookkeeping can observe modeled time. Impact on current CPU usage has not been established.",
+      "status": "Confirmed adapter limitation; no runtime correction applied"
+    },
+    {
+      "finding": "Native AU timestamp hostTime is passed through while the modeled guest timebase is fixed",
+      "source": [
+        "src/au/SophistryAU.cpp",
+        "src/engine/LegacyEngine.cpp"
+      ],
+      "impact": "Apple Silicon host tick units require explicit contract review; no measured timing or CPU fix claimed",
+      "status": "Contract review item"
+    },
+    {
+      "finding": "Mathematical imports use current native or shared test math, not the original Apple i386 libm",
+      "source": "src/engine/LegacyEngine.cpp",
+      "impact": "Shared-adapter byte-exact comparisons certify internal code for those inputs, not every historical OS library result",
+      "status": "Known reference scope limit"
+    },
+    {
+      "finding": "libSystem dlopen is modeled as unavailable in global teardown setup",
+      "original_function": "0xed6",
+      "impact": "Original destructor-registration setup has no complete native equivalent in this adapter; no DSP fast-path absence shown",
+      "status": "Known lifecycle limit"
+    }
+  ],
+  "performance_evidence": {
+    "cp033_regression": "mac-cp033-regression.json",
+    "per_instruction_tracking_preserved": true,
+    "original_instruction_count": 191379,
+    "emitted_pcode_operation_count": 758490,
+    "generic_value_width_bits": 128,
+    "virtual_register_and_temporary_state": true,
+    "memory_checks_preserved": true,
+    "conclusion": "Static ARM64 compilation retains virtual x86 state and instruction bookkeeping. This adds work; it is not proof of missing DSP code or a quantitative explanation of the full CP032/CronoX CPU gap."
+  },
+  "conclusions": {
+    "identified_dsp_routine_missing": false,
+    "exhaustive_all_preset_sound_equivalence_proven": false,
+    "cronox_cpu_parity_proven": false,
+    "new_runtime_semantic_correction_applied": false,
+    "runtime_restored_exactly_to_cp032": true,
+    "mac_validation_remains_local": true
+  }
+}

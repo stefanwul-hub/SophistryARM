@@ -1,0 +1,20 @@
+{
+  "checkpoint": "CP-034",
+  "functional_baseline": "CP-032",
+  "purpose": "Withdraw CP033, restore exact CP032 and examine concordance without special optimization",
+  "source_restore_complete": true,
+  "concordance_audit_complete_with_stated_scope": true,
+  "no_new_runtime_correction_or_optimization": true,
+  "user_mac_restore_pending": true,
+  "validation_on_user_mac": true,
+  "hosted_runner_required": false,
+  "evidence": [
+    "evidence/cp034-restored-baseline.json",
+    "evidence/cp034-concordance-audit.json",
+    "evidence/cp034-platform-contracts.json",
+    "evidence/cp034-floating-instructions.json",
+    "evidence/mac-cp033-regression.json"
+  ],
+  "current_component_build": 32001,
+  "current_component_checkpoint": "CP-032"
+}

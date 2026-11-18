@@ -1,7 +1,9 @@
-# Suite après CP033
+# Suite après CP034
 
-Installer CP033 sur le Mac avec le lanceur automatique et conserver le rapport. Vérifier `storage-state.json` (six cas), les replays, les comparaisons audio et auval. Si CP032 était installé, `cpu-comparison.json` fournit la mesure du thread audio avant/après ; le comparer aussi à l’usage réel dans Logic et Live.
+Revenir au composant CP032 avec `Revenir-Sophistry-CP032.command`, fermer Logic et Live pendant l’installation, puis vérifier le pied de page CP-032 et le résultat du lanceur. La compilation, les tests audio et auval restent locaux sur le Mac. Le dossier de travail CP032 et les préférences valides sont réutilisés.
 
-Le gain d’environ 45 % mesuré sur le prototype concerne des routines DSP sélectionnées, pas le synthétiseur complet ni CronoX. Reprendre le profilage à partir du résultat réel sur le Mac si le coût reste élevé.
+CP033 est retiré : son rapport mesure un coût de rendu 3,306 fois plus élevé que CP032. Ne pas le réinstaller depuis un ancien lien et ne pas reprendre ses optimisations dans cette restauration.
 
-Les contrôles de limites, le suivi d’exécution et les 191379 instructions identifiées restent présents. Conserver l’identité AU, les anciens états et la fidélité sonore. Le niveau reste classé sauf défaut DSP démontré ; le stress DX Bass avec release extrême reste annulé.
+L’audit CP034 conserve un retour fonctionnel exact à CP032 et des contrôles de concordance réussis. La fidélité des adaptateurs système reste à examiner, notamment l’horloge simulée et les unités des timestamps AU. Aucun lien causal avec le surcoût CPU CP032/CronoX n’est démontré. Ne pas annoncer une équivalence exhaustive du moteur sur la seule base d’un inventaire ou de comparaisons ciblées.
+
+L’utilisateur demande d’examiner la concordance sans optimisation particulière. Conserver cette priorité et l’identité AU. Le niveau reste classé sauf défaut DSP démontré ; le stress DX Bass avec release extrême reste annulé.

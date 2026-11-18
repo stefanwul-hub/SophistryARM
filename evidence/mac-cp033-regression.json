@@ -1,0 +1,148 @@
+{
+  "checkpoint": "CP-033",
+  "scope": "Whitelisted received Mac performance regression facts; no private bank, paths or registration data",
+  "report_sha256": "445633909efc8b49526ec68832f0d8b2a11fe465545068a2cf78efc63fc6b688",
+  "measured_cpu": {
+    "scope": "Five alternating isolated-process native AU runs per checkpoint; public Lightgarden preset, one note, 44100 Hz/256 frames. Not a DAW meter or CronoX benchmark.",
+    "executed": true,
+    "runs": [
+      {
+        "checkpoint": "SophistryARM CP-032",
+        "trial": 0,
+        "render_thread_cpu_seconds": 0.6221307090000001,
+        "render_call_wall_seconds": 0.624777002,
+        "maximum_render_call_seconds": 0.002077167,
+        "render_calls": 517,
+        "audio_byte_exact": true
+      },
+      {
+        "checkpoint": "SophistryARM CP-033",
+        "trial": 0,
+        "render_thread_cpu_seconds": 2.05781196,
+        "render_call_wall_seconds": 2.066064234,
+        "maximum_render_call_seconds": 0.005280041,
+        "render_calls": 517,
+        "audio_byte_exact": true
+      },
+      {
+        "checkpoint": "SophistryARM CP-033",
+        "trial": 1,
+        "render_thread_cpu_seconds": 2.0528319580000023,
+        "render_call_wall_seconds": 2.061256503000001,
+        "maximum_render_call_seconds": 0.005403541,
+        "render_calls": 517,
+        "audio_byte_exact": true
+      },
+      {
+        "checkpoint": "SophistryARM CP-032",
+        "trial": 1,
+        "render_thread_cpu_seconds": 0.6213982870000007,
+        "render_call_wall_seconds": 0.6244055689999998,
+        "maximum_render_call_seconds": 0.001998208,
+        "render_calls": 517,
+        "audio_byte_exact": true
+      },
+      {
+        "checkpoint": "SophistryARM CP-032",
+        "trial": 2,
+        "render_thread_cpu_seconds": 0.623528334000002,
+        "render_call_wall_seconds": 0.6263958699999996,
+        "maximum_render_call_seconds": 0.002038792,
+        "render_calls": 517,
+        "audio_byte_exact": true
+      },
+      {
+        "checkpoint": "SophistryARM CP-033",
+        "trial": 2,
+        "render_thread_cpu_seconds": 2.055037649999997,
+        "render_call_wall_seconds": 2.062820415000002,
+        "maximum_render_call_seconds": 0.005393166,
+        "render_calls": 517,
+        "audio_byte_exact": true
+      },
+      {
+        "checkpoint": "SophistryARM CP-033",
+        "trial": 3,
+        "render_thread_cpu_seconds": 2.054345418,
+        "render_call_wall_seconds": 2.0626441310000017,
+        "maximum_render_call_seconds": 0.0053385,
+        "render_calls": 517,
+        "audio_byte_exact": true
+      },
+      {
+        "checkpoint": "SophistryARM CP-032",
+        "trial": 3,
+        "render_thread_cpu_seconds": 0.6207315859999992,
+        "render_call_wall_seconds": 0.6237870009999998,
+        "maximum_render_call_seconds": 0.00215225,
+        "render_calls": 517,
+        "audio_byte_exact": true
+      },
+      {
+        "checkpoint": "SophistryARM CP-032",
+        "trial": 4,
+        "render_thread_cpu_seconds": 0.6210398370000008,
+        "render_call_wall_seconds": 0.6241518779999995,
+        "maximum_render_call_seconds": 0.002149292,
+        "render_calls": 517,
+        "audio_byte_exact": true
+      },
+      {
+        "checkpoint": "SophistryARM CP-033",
+        "trial": 4,
+        "render_thread_cpu_seconds": 2.0514023909999985,
+        "render_call_wall_seconds": 2.05880388,
+        "maximum_render_call_seconds": 0.005675125,
+        "render_calls": 517,
+        "audio_byte_exact": true
+      }
+    ],
+    "median_render_thread_cpu_seconds": {
+      "baseline": 0.6213982870000007,
+      "candidate": 2.054345418
+    },
+    "median_cpu_reduction_percent": -230.600431474958,
+    "median_speedup": 0.30247994400326333,
+    "wave_sha256": "741004e2ba6e97745945d9efd4b692ac4c35477afc4bb0ee6d70da1fb85fc905",
+    "all_audio_byte_exact": true,
+    "performance_is_observation_not_installation_gate": true,
+    "passed": true
+  },
+  "installed_despite_regression": true,
+  "auval": {
+    "identity": "aumu/Sop3/LinP",
+    "auval_executed": true,
+    "exitcode": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  "gui_audio_observations": {
+    "audio_main_vs_generators_byte_exact": true,
+    "passed": true,
+    "scope": "One ordinary note, 44100 Hz/256 frames, GUI and audio on different threads. Timing is observational; no hardware-dependent pass threshold.",
+    "observations": [
+      {
+        "frames": 44288,
+        "maximum_render_call_seconds": 0.006673,
+        "observed_calls_over_deadline": 1,
+        "peak": 0.16537685692310333,
+        "page": "Main"
+      },
+      {
+        "frames": 44288,
+        "maximum_render_call_seconds": 0.006080333,
+        "observed_calls_over_deadline": 1,
+        "peak": 0.16537685692310333,
+        "page": "Main then Gen1+2"
+      }
+    ],
+    "error": ""
+  },
+  "user_reported_live_cpu_percent": {
+    "cp033": 200,
+    "cp032_maximum": 30,
+    "cronox3": 7
+  },
+  "live_percentages_are_user_observations_not_factory_benchmark_measurements": true,
+  "decision": "Withdraw CP033; return to byte-identical CP032"
+}

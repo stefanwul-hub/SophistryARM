@@ -1,0 +1,293 @@
+{
+  "x87_mnemonic_counts": {
+    "FLD": 142,
+    "FSTP": 453,
+    "FLDZ": 32,
+    "FLD1": 2,
+    "FST": 4
+  },
+  "x87_examples": [
+    {
+      "pc": "19e2",
+      "asm": "FLD dword ptr [EAX + 0x4]"
+    },
+    {
+      "pc": "19f4",
+      "asm": "FLD dword ptr [EAX + 0xc]"
+    },
+    {
+      "pc": "1a12",
+      "asm": "FLD dword ptr [EAX + 0x4]"
+    },
+    {
+      "pc": "1af8",
+      "asm": "FLD dword ptr [EDX + EAX*0x8 + 0xc]"
+    },
+    {
+      "pc": "1e40",
+      "asm": "FSTP dword ptr [EBP + -0x2c]"
+    },
+    {
+      "pc": "2f28",
+      "asm": "FSTP dword ptr [EBP + -0x4c]"
+    },
+    {
+      "pc": "3050",
+      "asm": "FLD qword ptr [EBP + -0x68]"
+    },
+    {
+      "pc": "3053",
+      "asm": "FSTP qword ptr [ESI + 0x32b3ac]"
+    },
+    {
+      "pc": "3c7a",
+      "asm": "FSTP dword ptr [EAX]"
+    },
+    {
+      "pc": "4165",
+      "asm": "FSTP dword ptr [EBP + -0x2c]"
+    },
+    {
+      "pc": "5824",
+      "asm": "FLD dword ptr [EBP + -0x8]"
+    },
+    {
+      "pc": "586b",
+      "asm": "FLD dword ptr [EBP + -0x8]"
+    },
+    {
+      "pc": "587c",
+      "asm": "FLD dword ptr [EBP + -0x8]"
+    },
+    {
+      "pc": "5953",
+      "asm": "FSTP qword ptr [EBP + -0x20]"
+    },
+    {
+      "pc": "5a8e",
+      "asm": "FSTP qword ptr [EBP + -0x28]"
+    },
+    {
+      "pc": "5ac9",
+      "asm": "FLD dword ptr [EBP + -0x3c]"
+    },
+    {
+      "pc": "5afc",
+      "asm": "FSTP dword ptr [EBP + -0x1c]"
+    },
+    {
+      "pc": "5c28",
+      "asm": "FSTP dword ptr [EBP + -0x7c]"
+    },
+    {
+      "pc": "5c76",
+      "asm": "FSTP qword ptr [EBP + -0x50]"
+    },
+    {
+      "pc": "5cb2",
+      "asm": "FSTP qword ptr [EBP + -0x58]"
+    },
+    {
+      "pc": "5f28",
+      "asm": "FSTP dword ptr [EBP + -0x1c]"
+    },
+    {
+      "pc": "6321",
+      "asm": "FLDZ"
+    },
+    {
+      "pc": "658e",
+      "asm": "FLDZ"
+    },
+    {
+      "pc": "67ae",
+      "asm": "FSTP dword ptr [EDI + ESI*0x4 + 0x594]"
+    },
+    {
+      "pc": "6a8f",
+      "asm": "FLD dword ptr [ESI + EAX*0x4 + 0x594]"
+    },
+    {
+      "pc": "758d",
+      "asm": "FSTP dword ptr [EBP + -0x3c]"
+    },
+    {
+      "pc": "7a24",
+      "asm": "FLD dword ptr [EBP + -0x14]"
+    },
+    {
+      "pc": "7bd1",
+      "asm": "FSTP qword ptr [EBP + -0x60]"
+    },
+    {
+      "pc": "7c15",
+      "asm": "FSTP dword ptr [EBP + -0x4c]"
+    },
+    {
+      "pc": "7c6a",
+      "asm": "FSTP dword ptr [EBP + -0x48]"
+    }
+  ],
+  "float_arithmetic_widths": [
+    {
+      "op": "FLOAT_SUB",
+      "input_bytes": [
+        8,
+        8
+      ],
+      "output_bytes": 8,
+      "count": 564
+    },
+    {
+      "op": "FLOAT_NAN",
+      "input_bytes": [
+        4
+      ],
+      "output_bytes": 1,
+      "count": 1026
+    },
+    {
+      "op": "FLOAT_EQUAL",
+      "input_bytes": [
+        4,
+        4
+      ],
+      "output_bytes": 1,
+      "count": 513
+    },
+    {
+      "op": "FLOAT_LESS",
+      "input_bytes": [
+        4,
+        4
+      ],
+      "output_bytes": 1,
+      "count": 634
+    },
+    {
+      "op": "FLOAT_NAN",
+      "input_bytes": [
+        8
+      ],
+      "output_bytes": 1,
+      "count": 730
+    },
+    {
+      "op": "FLOAT_EQUAL",
+      "input_bytes": [
+        8,
+        8
+      ],
+      "output_bytes": 1,
+      "count": 365
+    },
+    {
+      "op": "FLOAT_LESS",
+      "input_bytes": [
+        8,
+        8
+      ],
+      "output_bytes": 1,
+      "count": 457
+    },
+    {
+      "op": "FLOAT_ADD",
+      "input_bytes": [
+        8,
+        8
+      ],
+      "output_bytes": 8,
+      "count": 824
+    },
+    {
+      "op": "FLOAT_MULT",
+      "input_bytes": [
+        8,
+        8
+      ],
+      "output_bytes": 8,
+      "count": 1217
+    },
+    {
+      "op": "FLOAT_DIV",
+      "input_bytes": [
+        8,
+        8
+      ],
+      "output_bytes": 8,
+      "count": 104
+    },
+    {
+      "op": "FLOAT_LESSEQUAL",
+      "input_bytes": [
+        8,
+        8
+      ],
+      "output_bytes": 1,
+      "count": 2
+    },
+    {
+      "op": "FLOAT_ADD",
+      "input_bytes": [
+        4,
+        4
+      ],
+      "output_bytes": 4,
+      "count": 919
+    },
+    {
+      "op": "FLOAT_MULT",
+      "input_bytes": [
+        4,
+        4
+      ],
+      "output_bytes": 4,
+      "count": 1522
+    },
+    {
+      "op": "FLOAT_DIV",
+      "input_bytes": [
+        4,
+        4
+      ],
+      "output_bytes": 4,
+      "count": 156
+    },
+    {
+      "op": "FLOAT_SUB",
+      "input_bytes": [
+        4,
+        4
+      ],
+      "output_bytes": 4,
+      "count": 686
+    },
+    {
+      "op": "FLOAT_LESSEQUAL",
+      "input_bytes": [
+        4,
+        4
+      ],
+      "output_bytes": 1,
+      "count": 5
+    },
+    {
+      "op": "FLOAT_SQRT",
+      "input_bytes": [
+        4
+      ],
+      "output_bytes": 4,
+      "count": 1
+    },
+    {
+      "op": "FLOAT_NOTEQUAL",
+      "input_bytes": [
+        4,
+        4
+      ],
+      "output_bytes": 1,
+      "count": 1
+    }
+  ],
+  "x87_arithmetic_examples": {}
+}

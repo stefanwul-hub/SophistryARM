@@ -1,0 +1,106 @@
+{
+  "scope": "Isolated actual original i386 feature-selection and time-conversion routines versus the unmodified CP032 C++ lift, with identical controlled platform inputs",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "feature_function": "0xae8a0",
+  "time_function": "0x2e1c0",
+  "feature_cases": [
+    {
+      "x86_features": 0,
+      "x86_additional_features": 0,
+      "original_result": 0,
+      "lifted_result": 0,
+      "exact": true
+    },
+    {
+      "x86_features": 67108864,
+      "x86_additional_features": 0,
+      "original_result": 100,
+      "lifted_result": 100,
+      "exact": true
+    },
+    {
+      "x86_features": 0,
+      "x86_additional_features": 1,
+      "original_result": 101,
+      "lifted_result": 101,
+      "exact": true
+    },
+    {
+      "x86_features": 67108864,
+      "x86_additional_features": 1,
+      "original_result": 101,
+      "lifted_result": 101,
+      "exact": true
+    }
+  ],
+  "time_cases": [
+    {
+      "numerator": 1,
+      "denominator": 1,
+      "ticks": 1000,
+      "original_milliseconds": 0,
+      "lifted_milliseconds": 0,
+      "exact": true
+    },
+    {
+      "numerator": 1,
+      "denominator": 1,
+      "ticks": 2000,
+      "original_milliseconds": 0,
+      "lifted_milliseconds": 0,
+      "exact": true
+    },
+    {
+      "numerator": 1,
+      "denominator": 1,
+      "ticks": 5000,
+      "original_milliseconds": 0,
+      "lifted_milliseconds": 0,
+      "exact": true
+    },
+    {
+      "numerator": 1,
+      "denominator": 1,
+      "ticks": 1000000,
+      "original_milliseconds": 1,
+      "lifted_milliseconds": 1,
+      "exact": true
+    },
+    {
+      "numerator": 1,
+      "denominator": 1,
+      "ticks": 1000000000,
+      "original_milliseconds": 1000,
+      "lifted_milliseconds": 1000,
+      "exact": true
+    },
+    {
+      "numerator": 1,
+      "denominator": 1,
+      "ticks": 1234567890123,
+      "original_milliseconds": 1234567,
+      "lifted_milliseconds": 1234567,
+      "exact": true
+    },
+    {
+      "numerator": 125,
+      "denominator": 3,
+      "ticks": 24000000,
+      "original_milliseconds": 1000,
+      "lifted_milliseconds": 1000,
+      "exact": true
+    },
+    {
+      "numerator": 125,
+      "denominator": 3,
+      "ticks": 48000000,
+      "original_milliseconds": 2000,
+      "lifted_milliseconds": 2000,
+      "exact": true
+    }
+  ],
+  "production_feature_mode": 101,
+  "production_synthetic_clock_first_queries_return_zero_milliseconds": true,
+  "shared_inputs_do_not_establish_production_adapter_fidelity": true,
+  "passed": true
+}

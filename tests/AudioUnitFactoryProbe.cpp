@@ -16,17 +16,10 @@
 #include <set>
 #include <sstream>
 #include <stdexcept>
-#include <time.h>
 #include <vector>
 
 namespace {
 constexpr UInt32 registrationProperty = 0x53705267;
-double threadCpuSeconds() {
-  timespec value{};
-  if (clock_gettime(CLOCK_THREAD_CPUTIME_ID, &value))
-    throw std::runtime_error("Cannot read render-thread CPU clock");
-  return double(value.tv_sec) + double(value.tv_nsec) * 1e-9;
-}
 std::string quote(const std::string &s) {
   std::ostringstream o;
   o << '"';
@@ -180,15 +173,12 @@ int main(int argc, char **argv) {
   std::filesystem::path bundlePath, statePath, contractPath, prefix;
   bool privateInput = false, registered = false, discoverOnly = false;
   UInt32 channels = 2;
-  UInt32 renderBlock = 512, renderCalls = 0;
-  std::string expectedWrapperVersion = sophistry::wrapperVersion;
   std::string stage = "arguments", error;
   std::vector<std::string> passed;
   std::vector<double> peaks, rms;
   UInt32 frames = 132300, rendered = 0;
   bool audible = false;
   double renderSeconds = 0, maximumRenderCallSeconds = 0;
-  double renderCallSeconds = 0, renderThreadCpuSeconds = 0;
   std::string engineError, engineDiagnostics;
   Unit unit;
   CFBundleRef bundle = nullptr;
@@ -215,14 +205,6 @@ int main(int argc, char **argv) {
         prefix = next();
       else if (a == "--channels")
         channels = UInt32(std::stoul(next()));
-      else if (a == "--render-block-size")
-        renderBlock = UInt32(std::stoul(next()));
-      else if (a == "--expected-version") {
-        expectedWrapperVersion = next();
-        if (expectedWrapperVersion != sophistry::wrapperVersion &&
-            expectedWrapperVersion != "SophistryARM CP-032")
-          throw std::runtime_error("Unsupported comparison checkpoint");
-      }
       else if (a == "--registration-from-stdin")
         privateInput = true;
       else
@@ -232,7 +214,7 @@ int main(int argc, char **argv) {
         (registered && !bundlePath.empty()) || (registered && privateInput) ||
         (discoverOnly && !registered) || statePath.empty() ||
         contractPath.empty() || prefix.empty() ||
-        (channels != 2 && channels != 6) || renderBlock < 64 || renderBlock > 512)
+        (channels != 2 && channels != 6))
       throw std::runtime_error(
           "Required: --bundle --state --contract --output-prefix [--channels "
           "2|6] [--registration-from-stdin]");
@@ -264,7 +246,7 @@ int main(int argc, char **argv) {
       if (!factory)
         throw std::runtime_error("Missing SophistryAUFactory");
       component = AudioComponentRegister(
-          &desc, CFSTR("LinPlug: Sophistry native candidate"), 0x00030008,
+          &desc, CFSTR("LinPlug: Sophistry CP018 candidate"), 0x00030008,
           factory);
       if (!component)
         throw std::runtime_error("Process-local component registration failed");
@@ -272,9 +254,9 @@ int main(int argc, char **argv) {
     stage = "create instance";
     check(AudioComponentInstanceNew(component, &unit.value),
           "Create AU instance");
-    if (diagnostic(unit.value, 0x53705672) != expectedWrapperVersion)
+    if (diagnostic(unit.value, 0x53705672) != sophistry::wrapperVersion)
       throw std::runtime_error(
-          "Loaded component is not the expected checkpoint");
+          "Loaded component is not the expected CP-021 candidate");
     if (discoverOnly) {
       const std::string result = "{\"system_registry_used\":true,\"expected_"
                                  "native_candidate_loaded\":true}\n";
@@ -410,7 +392,7 @@ int main(int argc, char **argv) {
     CFTypeRef build =
         CFDictionaryGetValue(savedDictionary, CFSTR("SophistryARMVersion"));
     if (!build || CFGetTypeID(build) != CFStringGetTypeID() ||
-        text(static_cast<CFStringRef>(build)) != expectedWrapperVersion) {
+        text(static_cast<CFStringRef>(build)) != sophistry::wrapperVersion) {
       CFRelease(saved);
       throw std::runtime_error(
           "Standard AU state checkpoint marker is missing");
@@ -439,8 +421,8 @@ int main(int argc, char **argv) {
     check(MusicDeviceMIDIEvent(unit.value, 0x90, 60, 100, 0), "Note on");
     const auto renderStart = std::chrono::steady_clock::now();
     stage = "AU audio render";
-    for (UInt32 at = 0; at < frames; at += renderBlock) {
-      UInt32 n = std::min(renderBlock, frames - at);
+    for (UInt32 at = 0; at < frames; at += 512) {
+      UInt32 n = std::min(UInt32(512), frames - at);
       if (at <= 88200 && 88200 < at + n)
         check(MusicDeviceMIDIEvent(unit.value, 0x80, 60, 0, 88200 - at),
               "Note off");
@@ -452,16 +434,13 @@ int main(int argc, char **argv) {
       timestamp.mFlags = kAudioTimeStampSampleTimeValid;
       AudioUnitRenderActionFlags flags = 0;
       const auto callStart = std::chrono::steady_clock::now();
-      const double cpuStart = threadCpuSeconds();
       check(AudioUnitRender(unit.value, &flags, &timestamp, 0, n, abl),
             "Render");
-      renderThreadCpuSeconds += threadCpuSeconds() - cpuStart;
-      const double callSeconds = std::chrono::duration<double>(
-          std::chrono::steady_clock::now() - callStart).count();
-      renderCallSeconds += callSeconds;
-      ++renderCalls;
       maximumRenderCallSeconds =
-          std::max(maximumRenderCallSeconds, callSeconds);
+          std::max(maximumRenderCallSeconds,
+                   std::chrono::duration<double>(
+                       std::chrono::steady_clock::now() - callStart)
+                       .count());
       if (abl->mNumberBuffers != channels)
         throw std::runtime_error("Changed output buffer count");
       for (UInt32 c = 0; c < channels; ++c) {
@@ -556,11 +535,6 @@ int main(int argc, char **argv) {
          << ",\"render_frames\":" << rendered
          << ",\"signal_above_minus_100_dbfs\":" << (audible ? "true" : "false")
          << ",\"render_wall_seconds\":" << renderSeconds
-         << ",\"render_call_wall_seconds\":" << renderCallSeconds
-         << ",\"render_thread_cpu_seconds\":" << renderThreadCpuSeconds
-         << ",\"render_block_size\":" << renderBlock
-         << ",\"render_calls\":" << renderCalls
-         << ",\"expected_checkpoint\":" << quote(expectedWrapperVersion)
          << ",\"maximum_render_call_seconds\":" << maximumRenderCallSeconds
          << ",\"checks_passed\":[";
   for (std::size_t i = 0; i < passed.size(); ++i) {
