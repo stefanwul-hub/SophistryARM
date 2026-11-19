@@ -2,6 +2,20 @@
 
 **CP038 applique une compensation globale de +6 dB à tous les sons, anciens projets compris.** Master, automatismes et niveaux sauvegardés restent à leurs valeurs d’origine. Le noyau DSP CP037 est conservé. [Détails et validation](docs/CP038.md).
 
+[Télécharger le lanceur CP038](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/36336cf3c0acf5ad3ac9d024b63f55282d3c58e0/Demarrer-Sophistry-CP038.command)
+
+Fermer Logic et Live, puis :
+
+```bash
+bash "$HOME/Downloads/Demarrer-Sophistry-CP038.command"
+```
+
+Pour recueillir ensuite les piles CPU sans installation :
+
+```bash
+bash "$HOME/Downloads/Demarrer-Sophistry-CP038.command" --profile-only
+```
+
 Le rapport Mac CP037 confirme auval, l’interface et huit comparaisons audio exactes. Le CPU reste équivalent à CP032 : ratio médian 1,00143 (+0,14 %) dans le test à une note. La cause du surcoût face à CronoX reste à identifier. Un mode de profilage recueille désormais les piles CPU sur le composant installé.
 
 Audio Unit ARM64 expérimental destiné à rouvrir les projets Sophistry 3.0.8 à partir de son code machine i386.
@@ -57,3 +71,5 @@ Identité AU `aumu/Sop3/LinP`, bundle `com.linplug.au.Sophistry`, version AU 3.0
 [Archive des sources et de l’exploration CP036](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/c8f4215bddbb8e45419346f2722f4a2705a236f8) — composant CP032 inchangé.
 
 [Archive des sources CP037 vérifiée](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/ed090216afe2faf9058a5d3a5c2ea673d39da5ae) — SHA256 `8620a385912dcaba8b46a3fd7c0c707105d6e55ee83ea481e5cceea6aa6232ef`, 4268 fichiers vérifiés. [Journal de publication](checkpoints/CP037-publication.json).
+
+[Archive des sources CP038 vérifiée](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/4c24b4bf01d9cc8c2fb266cc8cec026aa8ff84fb) — SHA256 `e142fbefc6dc70eab0c99f6f8d94119ad421a64ae8160a6e437818551bdf5d5b`, 4287 fichiers vérifiés. [Journal de publication](checkpoints/CP038-publication.json).

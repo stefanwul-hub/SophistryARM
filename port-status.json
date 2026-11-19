@@ -45,7 +45,7 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-038)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "CP038 prepared locally; source archive and launcher verification pending",
+  "publication_status": "CP038 source archive and pinned launcher published and verified; Mac validation and CPU stacks pending",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -246,5 +246,14 @@
   "cp038_engine_and_kernel_unchanged": true,
   "cp038_mac_execution_pending": true,
   "cp038_profile_existing_component_without_install": true,
-  "cp038_development_evidence": "evidence/cp038-development-checks.json"
+  "cp038_development_evidence": "evidence/cp038-development-checks.json",
+  "github_cp038_source_commit": "4c24b4bf01d9cc8c2fb266cc8cec026aa8ff84fb",
+  "github_cp038_source_archive": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/4c24b4bf01d9cc8c2fb266cc8cec026aa8ff84fb",
+  "github_cp038_archive_sha256": "e142fbefc6dc70eab0c99f6f8d94119ad421a64ae8160a6e437818551bdf5d5b",
+  "github_cp038_archive_verified_blobs": 4287,
+  "github_cp038_launcher_commit": "36336cf3c0acf5ad3ac9d024b63f55282d3c58e0",
+  "github_cp038_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/36336cf3c0acf5ad3ac9d024b63f55282d3c58e0/Demarrer-Sophistry-CP038.command",
+  "github_cp038_launcher_sha256": "104385a6c3ba81ad9c290ffb8b6f9388dfd08e4d248241b19cc0d6222b4fc615",
+  "github_cp038_launcher_verified": true,
+  "cp038_original_master_metadata_unchanged": true
 }

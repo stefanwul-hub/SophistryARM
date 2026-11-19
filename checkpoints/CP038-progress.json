@@ -8,5 +8,7 @@
   "cpu_problem_resolved": false,
   "mac_execution_pending": true,
   "development_checks_passed": true,
-  "publication_verified": false
+  "publication_verified": true,
+  "source_commit": "4c24b4bf01d9cc8c2fb266cc8cec026aa8ff84fb",
+  "launcher_commit": "36336cf3c0acf5ad3ac9d024b63f55282d3c58e0"
 }

@@ -1,0 +1,22 @@
+{
+  "checkpoint": "CP-038",
+  "source_commit": "4c24b4bf01d9cc8c2fb266cc8cec026aa8ff84fb",
+  "source_tree": "f5cb04b01716f5ce9a8d085e29d1a9e3a793df76",
+  "archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/4c24b4bf01d9cc8c2fb266cc8cec026aa8ff84fb",
+  "archive_sha256": "e142fbefc6dc70eab0c99f6f8d94119ad421a64ae8160a6e437818551bdf5d5b",
+  "archive_bytes": 44731265,
+  "verified_git_blobs": 4287,
+  "crc_and_blob_hashes_verified": true,
+  "mac_execution_pending": true,
+  "publication_branch": "codex/sophistry-native-checkpoints",
+  "launcher": "Demarrer-Sophistry-CP038.command",
+  "launcher_commit": "36336cf3c0acf5ad3ac9d024b63f55282d3c58e0",
+  "launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/36336cf3c0acf5ad3ac9d024b63f55282d3c58e0/Demarrer-Sophistry-CP038.command",
+  "launcher_sha256": "104385a6c3ba81ad9c290ffb8b6f9388dfd08e4d248241b19cc0d6222b4fc615",
+  "launcher_raw_content_verified": true,
+  "requested_global_output_gain_db": 6,
+  "original_master_defaults_preserved": true,
+  "old_projects_receive_output_gain": true,
+  "private_report_or_attachment_identifiers_published": false,
+  "mac_auval_or_runtime_claimed": false
+}
