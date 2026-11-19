@@ -1,7 +1,7 @@
-# Suite après CP037
+# Suite après CP038
 
-CP032 reste la référence de comparaison. CP037 corrige l’horloge fournie aux routines originales de voix et conserve leur code. Les contrôles de développement passent ; aucune baisse du CPU Live n’est encore mesurée.
+Valider la compensation globale +6 dB sur le Mac avec les valeurs Master et les projets existants conservés. CP038 ne change pas le défaut Master et ne réintroduit pas les optimisations CP033.
 
-Examiner le rapport Mac CP037 : comparaison CPU/audio CP032 avant copie, référence originale, auval et éditeur. Vérifier ensuite dans Live les voix occupées, maintenues et par partie avec le diagnostic et un jeu similaire. Ne pas réécrire arbitrairement l’allocation ni forcer une limite.
+Le rapport CP037 confirme l’installation/audio/auval, sans gain CPU notable. Recueillir les piles via le lanceur CP038 --profile-only (composant37ou38), puis examiner les fonctions chaudes et les comptes de voix avant de choisir une correction de concordance. Aucun profil Mac nouveau n’est déjà acquis.
 
-Le service périodique CP035 et les autres adaptations restent à examiner selon ces résultats. Aucune fuite illimitée, parité CronoX ou équivalence exhaustive du son démontrée. Niveau et stress extrême DX Bass classés.
+Ne pas reprendre le stress DX Bass ni forcer la politique de voix. Toute publication de résultats doit se limiter aux faits utiles, sans rapports bruts, préférences, chemins privés ou clés. Aucun runner GitHub nécessaire.

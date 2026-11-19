@@ -1,0 +1,43 @@
+{
+  "scope": "Production gain helper over actual CP037 reference audio; not execution of the new AU on macOS",
+  "gain_db": 6,
+  "checks": [
+    {
+      "fixture": "original-2.wav",
+      "execution": "Linux x86_64",
+      "samples_compared": 264600,
+      "matches_exact_float32_gain": true
+    },
+    {
+      "fixture": "original-2.wav",
+      "execution": "ARM64 Linux/QEMU",
+      "samples_compared": 264600,
+      "matches_exact_float32_gain": true
+    },
+    {
+      "fixture": "original-6.wav",
+      "execution": "Linux x86_64",
+      "samples_compared": 793800,
+      "matches_exact_float32_gain": true
+    },
+    {
+      "fixture": "original-6.wav",
+      "execution": "ARM64 Linux/QEMU",
+      "samples_compared": 793800,
+      "matches_exact_float32_gain": true
+    },
+    {
+      "fixture": "format-d4u-32-1-original.wav",
+      "execution": "Linux x86_64",
+      "samples_compared": 264600,
+      "matches_exact_float32_gain": true
+    },
+    {
+      "fixture": "format-d4u-32-1-original.wav",
+      "execution": "ARM64 Linux/QEMU",
+      "samples_compared": 264600,
+      "matches_exact_float32_gain": true
+    }
+  ],
+  "passed": true
+}

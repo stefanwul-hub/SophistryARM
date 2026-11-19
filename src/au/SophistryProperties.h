@@ -1,8 +1,8 @@
 #pragma once
 #include <cstdint>
 namespace sophistry {
-constexpr char wrapperVersion[] = "SophistryARM CP-037";
-constexpr char editorFooter[] = "Sophistry ARM64 port OA 2026 (CP-037)";
+constexpr char wrapperVersion[] = "SophistryARM CP-038";
+constexpr char editorFooter[] = "Sophistry ARM64 port OA 2026 (CP-038)";
 // Private editor properties are for a view with a local AU handle.
 // Flat bytes avoid sharing object pointers, but the macOS remote proxy may
 // reject these IDs. Host-side remote tests must use public AU properties.

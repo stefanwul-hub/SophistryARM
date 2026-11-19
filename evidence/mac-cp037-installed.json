@@ -1,0 +1,21 @@
+{
+  "checkpoint": "CP-037 Mac report received at CP038",
+  "system_installation_committed": true,
+  "auval_and_registered_audio_passed": true,
+  "local_editor_and_audio_passed": true,
+  "remote_host_view_and_audio_passed": true,
+  "script_exitcode": 0,
+  "audio_pair_comparisons_byte_exact": 8,
+  "cpu_scope": "Five alternating isolated-process native AU runs per checkpoint; public Lightgarden preset, one note, 44100 Hz/256 frames. Not a DAW meter or CronoX benchmark.",
+  "median_render_thread_cpu_seconds": {
+    "baseline": 0.622680071,
+    "candidate": 0.6235721529999998
+  },
+  "candidate_to_cp032_cpu_ratio": 1.0014326490304517,
+  "difference_percent": 0.14326490304517048,
+  "reused_cp032_objects": 366,
+  "occupied_voices_after_note_off_in_one_note_fixture": 0,
+  "voice_counters_consistent": true,
+  "global_cpu_problem_resolved": false,
+  "private_report_or_preferences_published": false
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "musical_audio_tested": false,
+  "initial_master_db": -6,
+  "fxp_master_db": 0,
+  "program_saved_master_db": 0,
+  "master_before_program_restore_db": -12,
+  "master_after_program_restore_db": 0,
+  "bank_saved_master_db": 0,
+  "master_before_bank_restore_db": -12,
+  "master_after_bank_restore_db": 0,
+  "program_bytes": 21072,
+  "bank_bytes": 22040,
+  "saved_level_recall_checks": 6
+}

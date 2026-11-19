@@ -1,0 +1,18 @@
+{
+  "checkpoint": "CP-038",
+  "scope": "Linux native and ARM64/QEMU gain execution; strict Mach-O cross-linking, not macOS AU execution",
+  "gain_float_samples_compared": 2646000,
+  "gain_replay_cases": 6,
+  "master_saved_level_recall_checks": 6,
+  "wav_gain_reference_tests_passed": 8,
+  "cpu_regression_guard_tests_passed": 5,
+  "profiling_controller_lifecycle_tests_passed": 8,
+  "cp032_cache_reuse_tests_passed": 7,
+  "mach_o_arm64_binaries_strictly_linked": 17,
+  "auval_cp038_executed": false,
+  "mac_cp038_licensed_audio_or_live_cpu_tested": false,
+  "gain_target": "All AU output channels, +6 dB including old projects",
+  "new_master_default_shipped": false,
+  "original_master_parameter_defaults_preserved": true,
+  "passed": true
+}

@@ -1,0 +1,181 @@
+{
+  "scope": "Strict ARM64 Mach-O cross-compilation/link validation, not execution on macOS",
+  "binaries": [
+    {
+      "binary": "Sophistry",
+      "bytes": 31301184,
+      "sha256": "3047cff2813573f6c7cf5fd97f5b69d5b8c55b5dc38e1851a1b29682144ec548",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "MonotonicClockProbe",
+      "bytes": 1232752,
+      "sha256": "9d0b936f0e0acd941a64f9612f4d9cdc90b95c18acca375ebcbea0bbe87fe0f6",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "NativeEngineProbe",
+      "bytes": 30587840,
+      "sha256": "afef84523b478f748258ab63e6a0d6549ea65ba061250e6011bb9ff9b0d85419",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "NativeAUBridgeProbe",
+      "bytes": 30570352,
+      "sha256": "016f8853766eace144fa33c7320d9ffd93a3906f6ecd402437ec1341ceb749b6",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "NativeBankDiagnosticsProbe",
+      "bytes": 30570944,
+      "sha256": "4217e28caed7cee6f2356d997f825c1550506b975e63bee12368ee64de29a4cd",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "NativePresetCycleProbe",
+      "bytes": 30570448,
+      "sha256": "43e4bc7ee1fa5996a0b89f9619ce1425614c3d1bcd32b7b9b99a920d4fdbceab",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "NativeGeneratorProbe",
+      "bytes": 30586080,
+      "sha256": "65d03361fed03d1851a21716f5671f76a227fcb89ff1a46324e2c85af6ed4637",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "NativeEditorProbe",
+      "bytes": 30586256,
+      "sha256": "dfdcb74cdd9e28298a7438addbcb420973684fffeab90bdf7c93cbfe7375cc43",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "NativeCompleteEditorProbe",
+      "bytes": 30688624,
+      "sha256": "3e57b712ea8ec5c20f4fa50e944d97ad8ad25e98e1c8bf522743ec83fc33eeb2",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "NativeClockHostProbe",
+      "bytes": 30568912,
+      "sha256": "aebf154c76522021cd7b494f07576c4af25eddf8556e8e746910cd3f63bdfd2a",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "ConfigureSophistry",
+      "bytes": 30590336,
+      "sha256": "18a45d52b451a31fd29a1ab10af03b9fb3a28b155dc772fe5057ebab41a5a270",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "AudioUnitEditorProbe",
+      "bytes": 1342800,
+      "sha256": "9d8b9b469826f2fd46b5749e4520cfea3fe02293b7bb6fe0571db6fef209e9d0",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": []
+    },
+    {
+      "binary": "AudioUnitRemoteHostProbe",
+      "bytes": 1269264,
+      "sha256": "43186ba580cee1011089f889a60d320145c5abfd416f5cfc3a74f09db95bcf70",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": []
+    },
+    {
+      "binary": "InstalledAUInspector",
+      "bytes": 572336,
+      "sha256": "b11108a9efe42cbc3f4403daeee3cbaed0160ee97f285aa25475566bf59eec6f",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": []
+    },
+    {
+      "binary": "OutputGainProbe",
+      "bytes": 1232272,
+      "sha256": "9fc108dc8312941c8410a7bf61348e2543f6f6e8d9bbcbfdc733c07956619c2b",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": []
+    },
+    {
+      "binary": "MasterVolumeProbe",
+      "bytes": 30560832,
+      "sha256": "17e86ae968750198c29e69d088b621e09aa3f1369fd043de707eaafd9063d970",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": [
+        "_mach_absolute_time",
+        "_mach_timebase_info"
+      ]
+    },
+    {
+      "binary": "AudioUnitFactoryProbe",
+      "bytes": 1401728,
+      "sha256": "cbf079b08073c2368f122a5dda03f55b613d2c5c73bdc96b5fcd1d50c6a039ce",
+      "mach_o_arm64": true,
+      "strict_link_passed": true,
+      "native_mach_clock_imports": []
+    }
+  ],
+  "count": 17,
+  "apple_silicon_runtime_tested": false,
+  "auval_executed": false,
+  "passed": true
+}

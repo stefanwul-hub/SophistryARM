@@ -1,6 +1,7 @@
 #include "../engine/LegacyEngine.h"
 #include "BankAccess.h"
 #include "SophistryProperties.h"
+#include "OutputGain.h"
 #include <AudioUnitSDK/AUPlugInDispatch.h>
 #include <AudioUnitSDK/MusicDeviceBase.h>
 #include <algorithm>
@@ -222,6 +223,7 @@ class SophistryAU final : public ausdk::MusicDeviceBase {
         << ",\"render_calls\":" << renderCalls_
         << ",\"maximum_output\":" << maximumOutput_
         << ",\"master_volume_db\":" << engine_.auParameter(134)
+        << ",\"output_compensation_db\":" << sophistry::outputGainDb
         << ",\"nonfinite_samples\":" << nonfiniteSamples_
         << ",\"bank_bookmark_available\":"
         << (config_.bankAccess ? "true" : "false")
@@ -1175,6 +1177,7 @@ public:
       ++renderCalls_;
       for (UInt32 c = 0; c < buffers.mNumberBuffers; ++c)
         for (UInt32 i = 0; i < frames; ++i) {
+          output[c][i] = sophistry::compensatedOutput(output[c][i]);
           const double sample = output[c][i];
           if (std::isfinite(sample))
             maximumOutput_ = std::max(maximumOutput_, std::fabs(sample));

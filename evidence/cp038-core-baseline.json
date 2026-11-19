@@ -1,0 +1,10 @@
+{
+  "checkpoint": "CP-038",
+  "baseline_commit": "85898b0ea4391ac34ea7bdf85f99df4c77e6c1ae",
+  "scope": "Translated DSP and engine adapter source identity against validated CP037; requested gain added only at AU output",
+  "files_checked": 387,
+  "all_byte_identical": true,
+  "master_parameters_and_serialization_unchanged": true,
+  "kernel_optimization_added": false,
+  "passed": true
+}

@@ -1,6 +1,7 @@
 // Exercise the compiled AU factory in this process, without system
 // installation.
 #include "../src/au/SophistryProperties.h"
+#include "../src/au/OutputGain.h"
 #include <AudioToolbox/AudioToolbox.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <algorithm>
@@ -16,6 +17,7 @@
 #include <set>
 #include <sstream>
 #include <stdexcept>
+#include <thread>
 #include <time.h>
 #include <vector>
 
@@ -181,12 +183,16 @@ int main(int argc, char **argv) {
   bool privateInput = false, registered = false, discoverOnly = false;
   UInt32 channels = 2;
   UInt32 renderBlock = 512, renderCalls = 0;
+  UInt32 profileNotes = 0;
+  std::filesystem::path profileReady, profileGo;
+  std::string profileWarmDiagnostics;
   std::string expectedWrapperVersion = sophistry::wrapperVersion;
   std::string stage = "arguments", error;
   std::vector<std::string> passed;
   std::vector<double> peaks, rms;
   UInt32 frames = 132300, rendered = 0;
   bool audible = false;
+  float initialMasterDb = 0;
   double renderSeconds = 0, maximumRenderCallSeconds = 0;
   double renderCallSeconds = 0, renderThreadCpuSeconds = 0;
   std::string engineError, engineDiagnostics;
@@ -217,9 +223,16 @@ int main(int argc, char **argv) {
         channels = UInt32(std::stoul(next()));
       else if (a == "--render-block-size")
         renderBlock = UInt32(std::stoul(next()));
+      else if (a == "--profile-notes")
+        profileNotes = UInt32(std::stoul(next()));
+      else if (a == "--profile-ready-file")
+        profileReady = next();
+      else if (a == "--profile-go-file")
+        profileGo = next();
       else if (a == "--expected-version") {
         expectedWrapperVersion = next();
         if (expectedWrapperVersion != sophistry::wrapperVersion &&
+            expectedWrapperVersion != "SophistryARM CP-037" &&
             expectedWrapperVersion != "SophistryARM CP-032")
           throw std::runtime_error("Unsupported comparison checkpoint");
       }
@@ -236,6 +249,16 @@ int main(int argc, char **argv) {
       throw std::runtime_error(
           "Required: --bundle --state --contract --output-prefix [--channels "
           "2|6] [--registration-from-stdin]");
+    if ((profileNotes != 0 && profileNotes != 1 && profileNotes != 4) ||
+        (profileNotes && (profileReady.empty() || profileGo.empty() ||
+                          discoverOnly || privateInput || channels != 2)) ||
+        (!profileNotes && (!profileReady.empty() || !profileGo.empty())))
+      throw std::runtime_error("Profiling requires 1 or 4 notes and ready/go files");
+    if (profileNotes) {
+      if (std::filesystem::exists(profileReady) || std::filesystem::exists(profileGo))
+        throw std::runtime_error("Profiling control files must be fresh");
+      frames = 20 * 44100;
+    }
     if (prefix.has_parent_path())
       std::filesystem::create_directories(prefix.parent_path());
     AudioComponentDescription desc{0x61756d75, 0x536f7033, 0x4c696e50, 0, 0};
@@ -351,8 +374,9 @@ int main(int argc, char **argv) {
                                   v, 0),
             "Set parameter");
     }
-    passed.push_back(
-        "522 parameter IDs, names, units, ranges and defaults match original");
+    check(AudioUnitGetParameter(unit.value, 134, kAudioUnitScope_Global, 0,
+                               &initialMasterDb), "Initial Master volume");
+    passed.push_back("522 parameter IDs, names, units, ranges and defaults match original");
     stage = "parameter value to string property";
     UInt32 textSize = 0;
     Boolean textWritable = true;
@@ -428,7 +452,7 @@ int main(int argc, char **argv) {
     configure(unit.value, channels);
     check(AudioUnitInitialize(unit.value), "Initialize render");
     restore(unit.value, state);
-    std::vector<std::vector<float>> audio(channels, std::vector<float>(frames)),
+    std::vector<std::vector<float>> audio(channels, std::vector<float>(profileNotes ? 0 : frames)),
         buffers(channels, std::vector<float>(512));
     std::vector<std::uint8_t> storage(sizeof(AudioBufferList) +
                                       (channels - 1) * sizeof(AudioBuffer));
@@ -436,12 +460,14 @@ int main(int argc, char **argv) {
     abl->mNumberBuffers = channels;
     peaks.assign(channels, 0);
     rms.assign(channels, 0);
-    check(MusicDeviceMIDIEvent(unit.value, 0x90, 60, 100, 0), "Note on");
+    const std::array<UInt32, 4> notes{60, 64, 67, 72};
+    for (UInt32 i = 0; i < (profileNotes ? profileNotes : 1); ++i)
+      check(MusicDeviceMIDIEvent(unit.value, 0x90, notes[i], 100, 0), "Note on");
     const auto renderStart = std::chrono::steady_clock::now();
     stage = "AU audio render";
     for (UInt32 at = 0; at < frames; at += renderBlock) {
       UInt32 n = std::min(renderBlock, frames - at);
-      if (at <= 88200 && 88200 < at + n)
+      if (!profileNotes && at <= 88200 && 88200 < at + n)
         check(MusicDeviceMIDIEvent(unit.value, 0x80, 60, 0, 88200 - at),
               "Note off");
       for (UInt32 c = 0; c < channels; ++c) {
@@ -475,10 +501,28 @@ int main(int argc, char **argv) {
             throw std::runtime_error("Non-finite audio");
           peaks[c] = std::max(peaks[c], std::fabs(v));
           rms[c] += v * v;
-          audio[c][at + i] = float(v);
+          if (!profileNotes)
+            audio[c][at + i] = float(v);
         }
       }
       rendered += n;
+      if (profileNotes && at == 0) {
+        // Warm the actual render path before the external sampler attaches.
+        // Control/diagnostic work happens outside the measured AU calls.
+        profileWarmDiagnostics = diagnostic(unit.value, 0x53704469);
+        {
+          std::ofstream ready(profileReady);
+          ready << "First audio buffer rendered\n";
+          if (!ready)
+            throw std::runtime_error("Cannot signal profiling readiness");
+        }
+        const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(30);
+        while (!std::filesystem::exists(profileGo)) {
+          if (std::chrono::steady_clock::now() >= deadline)
+            throw std::runtime_error("External profiling controller did not start");
+          std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        }
+      }
     }
     renderSeconds = std::chrono::duration<double>(
                         std::chrono::steady_clock::now() - renderStart)
@@ -487,12 +531,13 @@ int main(int argc, char **argv) {
       v = std::sqrt(v / frames);
     audible = std::any_of(peaks.begin(), peaks.end(),
                           [](double v) { return v > 1e-5; });
-    wave(prefix.string() + ".wav", audio, frames);
+    if (!profileNotes)
+      wave(prefix.string() + ".wav", audio, frames);
     if (!audible)
       throw std::runtime_error(
           "Rendered output stays below -100 dBFS; check local registration");
-    passed.push_back(
-        "3 seconds of finite audible audio through AudioUnitRender");
+    passed.push_back(profileNotes ? "20 seconds of finite audible held-note audio for CPU sampling"
+                                 : "3 seconds of finite audible audio through AudioUnitRender");
     engineDiagnostics = diagnostic(unit.value, 0x53704469);
     stage = "reset after render";
     check(AudioUnitReset(unit.value, kAudioUnitScope_Global, 0), "Reset");
@@ -554,6 +599,11 @@ int main(int argc, char **argv) {
          << ",\"private_registration_input\":"
          << (privateInput ? "true" : "false") << ",\"channels\":" << channels
          << ",\"render_frames\":" << rendered
+         << ",\"initial_master_db\":" << initialMasterDb
+         << ",\"output_compensation_db\":"
+         << (expectedWrapperVersion == sophistry::wrapperVersion ? sophistry::outputGainDb : 0.0f)
+         << ",\"profile_note_count\":" << profileNotes
+         << ",\"profile_warm_engine_diagnostics_json\":" << quote(profileWarmDiagnostics)
          << ",\"signal_above_minus_100_dbfs\":" << (audible ? "true" : "false")
          << ",\"render_wall_seconds\":" << renderSeconds
          << ",\"render_call_wall_seconds\":" << renderCallSeconds

@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "requested_gain_db": 6,
+  "checked_samples": 108,
+  "float32_gain_bits": 1073702081,
+  "clipping_added": false,
+  "master_parameter_modified": false
+}

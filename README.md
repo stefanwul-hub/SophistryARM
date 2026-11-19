@@ -1,22 +1,30 @@
-# Sophistry — CP037 : horloge native et réutilisation des voix
+# Sophistry — CP038 : sortie +6 dB et profilage CPU
 
-**CP037 fournit l’horloge Mach native aux routines originales de voix**, en conservant le noyau DSP CP032. Les 9897 étapes différentielles passent. Le diagnostic affiche maintenant les voix occupées et maintenues par partie. La baisse du CPU Live reste à mesurer sur le Mac. [Correction et limites CP037](docs/CP037.md).
+**CP038 applique une compensation globale de +6 dB à tous les sons, anciens projets compris.** Master, automatismes et niveaux sauvegardés restent à leurs valeurs d’origine. Le noyau DSP CP037 est conservé. [Détails et validation](docs/CP038.md).
+
+Le rapport Mac CP037 confirme auval, l’interface et huit comparaisons audio exactes. Le CPU reste équivalent à CP032 : ratio médian 1,00143 (+0,14 %) dans le test à une note. La cause du surcoût face à CronoX reste à identifier. Un mode de profilage recueille désormais les piles CPU sur le composant installé.
 
 Audio Unit ARM64 expérimental destiné à rouvrir les projets Sophistry 3.0.8 à partir de son code machine i386.
 
 **CP033 est retiré.** Le rapport Mac mesure un coût CPU du rendu multiplié par **3,31** par rapport à CP032, malgré un audio identique. CP034 rétablit exactement les sources, les tests et l’installateur CP032. Aucune nouvelle optimisation DSP n’est introduite. [Audit et limites](docs/CP034.md).
 
-## Essayer CP037
+## Utiliser CP038
 
-[Télécharger le lanceur CP037](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/0f53ef9bd972bdf4c7c610db7f7e89e660f47aac/Demarrer-Sophistry-CP037.command)
+Télécharger `Demarrer-Sophistry-CP038.command`, fermer Logic et Live, puis :
 
 ```bash
-bash "$HOME/Downloads/Demarrer-Sophistry-CP037.command"
+bash "$HOME/Downloads/Demarrer-Sophistry-CP038.command"
 ```
 
-Le lanceur `Demarrer-Sophistry-CP037.command` décompacte les sources vérifiées, compile et valide sur votre Mac, puis installe le composant. Fermer Logic et Live et lancer le fichier téléchargé avec `bash`. Licence et banque valides sont réutilisées. Les objets CP032 compatibles peuvent réduire la compilation.
+Le lanceur décompacte, compile en ARM64 avec les objets CP032 compatibles, compare CPU et audio avec la compensation demandée, valide auval/Cocoa et installe avec sauvegarde et restauration automatique. Licence et banque valides restent enregistrées.
 
-Une référence CP032 est exigée. Cinq passages par version comparent CPU et audio avant remplacement ; un rapport médian CPU supérieur à 1,5 ou un WAV différent arrêtent l’installation. Les tests audio/Cocoa et auval avec restauration automatique restent obligatoires. Cela ne prouve pas encore une amélioration dans Live. [Détails](docs/CP037.md).
+Pour recueillir seulement les piles CPU du composant CP037 ou CP038 installé :
+
+```bash
+bash "$HOME/Downloads/Demarrer-Sophistry-CP038.command" --profile-only
+```
+
+Ce mode compile uniquement le petit hôte de mesure, sans réinstaller le plugin. [Procédure et limites](docs/CP038.md).
 
 ## Revenir à CP032 sur votre Mac
 
@@ -28,7 +36,7 @@ bash "$HOME/Downloads/Revenir-Sophistry-CP032.command"
 
 Le lanceur est identique au lanceur CP032 déjà vérifié. Il utilise [l’archive originale CP032](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/6859eaa4b3513b384ecab6bc6e5501174977dfb8), contrôle son SHA-256 et retrouve le dossier `~/Documents/SophistryARM-CP032` pour réutiliser les sources et objets valides existants. Il compile en ARM64, exécute les tests audio et auval sur votre Mac, sauvegarde le composant précédent puis installe dans `/Library/Audio/Plug-Ins/Components/Sophistry.component`. Un échec de validation déclenche la restauration du composant précédent. Aucun runner GitHub n’est requis.
 
-Attendre **Installation CP032 confirmée**, puis vérifier **Sophistry ARM64 port OA 2026 (CP-032)** dans l’interface. CP034 désigne l’audit et la sauvegarde ; le composant reste volontairement CP032, build 32001. Licence et banque valides restent enregistrées localement. La restauration sur votre Mac reste à confirmer.
+Attendre **Installation CP032 confirmée**, puis vérifier **Sophistry ARM64 port OA 2026 (CP-032)** dans l’interface. Le lanceur de retour conserve CP032/build32001 comme solution de repli. Licence et banque valides restent enregistrées localement. CP037 est confirmé installé sur le Mac ; CP038 reste à valider.
 
 ## Ce que l’audit établit
 

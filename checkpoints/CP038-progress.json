@@ -1,0 +1,12 @@
+{
+  "checkpoint": "CP-038",
+  "build": "38001",
+  "requested_global_output_gain_db": 6,
+  "original_master_default_preserved": true,
+  "old_projects_receive_gain": true,
+  "new_dsp_optimization": false,
+  "cpu_problem_resolved": false,
+  "mac_execution_pending": true,
+  "development_checks_passed": true,
+  "publication_verified": false
+}
