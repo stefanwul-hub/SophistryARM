@@ -75,3 +75,5 @@ Identité AU `aumu/Sop3/LinP`, bundle `com.linplug.au.Sophistry`, version AU 3.0
 [Archive des sources CP037 vérifiée](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/ed090216afe2faf9058a5d3a5c2ea673d39da5ae) — SHA256 `8620a385912dcaba8b46a3fd7c0c707105d6e55ee83ea481e5cceea6aa6232ef`, 4268 fichiers vérifiés. [Journal de publication](checkpoints/CP037-publication.json).
 
 [Archive des sources CP038 vérifiée](https://codeload.github.com/stefanwul-hub/SophistryARM/zip/4c24b4bf01d9cc8c2fb266cc8cec026aa8ff84fb) — SHA256 `e142fbefc6dc70eab0c99f6f8d94119ad421a64ae8160a6e437818551bdf5d5b`, 4287 fichiers vérifiés. [Journal de publication](checkpoints/CP038-publication.json).
+
+[Audit CP039 publié](https://github.com/stefanwul-hub/SophistryARM/blob/ff09999a58d371486826ea4920a324a59bc880b9/docs/CP039.md) — composant CP038 conservé ; sources de production inchangées.

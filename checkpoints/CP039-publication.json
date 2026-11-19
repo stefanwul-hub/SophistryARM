@@ -1,0 +1,15 @@
+{
+  "checkpoint": "CP-039",
+  "component_retained": "CP-038/build38001",
+  "source_commit": "ff09999a58d371486826ea4920a324a59bc880b9",
+  "source_tree": "1bc6fbf8aaea17620e94ff4b9d778f8d9bc53f21",
+  "source_tree_verified_against_local_checkpoint": true,
+  "publication_branch": "codex/sophistry-native-checkpoints",
+  "audit_url": "https://github.com/stefanwul-hub/SophistryARM/blob/ff09999a58d371486826ea4920a324a59bc880b9/docs/CP039.md",
+  "source_archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/ff09999a58d371486826ea4920a324a59bc880b9",
+  "source_archive_downloaded_and_verified": false,
+  "production_files_unchanged": true,
+  "new_installer_required": false,
+  "raw_private_reports_or_metadata_published": false,
+  "native_translation_scope_question_pending": true
+}

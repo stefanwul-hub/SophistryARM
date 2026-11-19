@@ -8,5 +8,6 @@
   "main_thread_profiles_analyzed": 2,
   "development_checks_passed": true,
   "translation_scope_clarification_pending": true,
-  "publication_verified": false
+  "publication_verified": true,
+  "source_commit": "ff09999a58d371486826ea4920a324a59bc880b9"
 }
