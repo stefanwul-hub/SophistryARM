@@ -51,3 +51,5 @@ L’historique Git est conservé dans `Sophistry-history.bundle`. Le projet Ghid
 - **CP-037 — horloge native** : noyau/politique de voix CP032 conservés ; comptes de voix au diagnostic. 9897 étapes originales/C++ exactes, 96 chargements et 16 liens Mac ARM64 stricts passent. Cache CP032 qualifié et garde CPU/audio avant copie. auval, projets et CPU Live à vérifier sur le Mac. [CP037](../docs/CP037.md).
 
 - **CP-038 — sortie globale +6 dB et profilage CPU** : demande utilisateur appliquée à tous les sons/projets ; Master et noyau conservés. Rapport CP037 validé, CPU inchangé (+0,14 %). Gain exact sur 2646000 échantillons Linux/ARM64-QEMU et 17 liens Mac ARM64 stricts ; nouvelle sonde des piles CPU sans installation. Validation Mac CP038 en attente. [CP038](../docs/CP038.md).
+
+- **CP-039 — analyse des piles CPU, composant CP038 conservé** : gain+6/auval/Cocoa confirmés sur Mac ; voix attendues1/4. Principaux blocs Reverb2/OscAnalog3, suivi d’instructions et routage visibles.60cas originaux/C++ du traitement Reverb2 exacts, parseur à agrégats vérifié. Aucune optimisation ni modification de production. [CP039](../docs/CP039.md).

@@ -1,0 +1,21 @@
+{
+  "checkpoint": "CP-038",
+  "system_installation_committed": true,
+  "auval_and_registered_audio_passed": true,
+  "local_editor_and_audio_passed": true,
+  "remote_host_view_and_audio_passed": true,
+  "script_exitcode": 0,
+  "requested_output_gain_db": 6,
+  "wrapped_au_gain_comparisons_exact": 6,
+  "raw_engine_audio_comparisons_byte_exact": 2,
+  "original_master_default_preserved": true,
+  "master_program_and_bank_level_recall_checks": 6,
+  "median_render_thread_cpu_seconds": {
+    "baseline": 0.6240320680000004,
+    "candidate": 0.6186415419999992
+  },
+  "candidate_to_cp032_cpu_ratio": 0.9913617804654211,
+  "cpu_test_scope": "Five alternating isolated-process native AU runs per checkpoint; public Lightgarden preset, one note, 44100 Hz/256 frames. Not a DAW meter or CronoX benchmark.",
+  "new_cpu_optimization_shipped": false,
+  "private_report_or_metadata_exported": false
+}

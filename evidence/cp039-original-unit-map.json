@@ -1,0 +1,505 @@
+{
+  "scope": "Original public i386 PC ranges mapped from generated unit source; original function candidates inferred from adjacent Ghidra entry intervals. Native profile offsets do not identify exact original PCs without native code mapping.",
+  "units": [
+    {
+      "compiled_unit": "sl_unit_0115",
+      "original_pc_min": "0x38aa6",
+      "original_pc_max": "0x3935a",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0x38a88",
+          "name": "SamLoop_c_vslot_62"
+        },
+        {
+          "entry": "0x38abc",
+          "name": "SamLoop_c_vslot_64"
+        },
+        {
+          "entry": "0x38aee",
+          "name": "SamLoop_c_vslot_63"
+        },
+        {
+          "entry": "0x38b22",
+          "name": "FUN_00038b22"
+        },
+        {
+          "entry": "0x38b98",
+          "name": "SamWT_c_vslot_0"
+        },
+        {
+          "entry": "0x38bb4",
+          "name": "SamWT_c_vslot_1"
+        },
+        {
+          "entry": "0x38be2",
+          "name": "FUN_00038be2"
+        },
+        {
+          "entry": "0x38c18",
+          "name": "SamWT_c_vslot_6"
+        },
+        {
+          "entry": "0x38f48",
+          "name": "SamWT_c_vslot_61"
+        },
+        {
+          "entry": "0x39354",
+          "name": "SamWT_c_vslot_31"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0132",
+      "original_pc_min": "0x426d3",
+      "original_pc_max": "0x4302d",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0x426a4",
+          "name": "FUN_000426a4"
+        },
+        {
+          "entry": "0x42b6e",
+          "name": "FUN_00042b6e"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0208",
+      "original_pc_min": "0x74034",
+      "original_pc_max": "0x748e3",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0x73fb0",
+          "name": "Satur_c_vslot_56"
+        },
+        {
+          "entry": "0x742fa",
+          "name": "Satur_c_vslot_31"
+        },
+        {
+          "entry": "0x7436a",
+          "name": "FUN_0007436a"
+        },
+        {
+          "entry": "0x7450c",
+          "name": "FilterFree_c_vslot_0"
+        },
+        {
+          "entry": "0x74528",
+          "name": "FilterFree_c_vslot_1"
+        },
+        {
+          "entry": "0x74556",
+          "name": "FilterFree_c_vslot_53"
+        },
+        {
+          "entry": "0x745da",
+          "name": "FUN_000745da"
+        },
+        {
+          "entry": "0x7461c",
+          "name": "FilterFree_c_vslot_6"
+        },
+        {
+          "entry": "0x748be",
+          "name": "FilterFree_c_vslot_27"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0210",
+      "original_pc_min": "0x75302",
+      "original_pc_max": "0x75e34",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0x74ba6",
+          "name": "FilterFree_c_vslot_56"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0216",
+      "original_pc_min": "0x79106",
+      "original_pc_max": "0x79bd0",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0x7909c",
+          "name": "FUN_0007909c"
+        },
+        {
+          "entry": "0x795d2",
+          "name": "FUN_000795d2"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0219",
+      "original_pc_min": "0x7ae96",
+      "original_pc_max": "0x7bb78",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0x7ae4a",
+          "name": "OscAnalog3_c_vslot_60"
+        },
+        {
+          "entry": "0x7b800",
+          "name": "OscAnalog3_c_vslot_62"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0220",
+      "original_pc_min": "0x7bb7c",
+      "original_pc_max": "0x7c570",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0x7b800",
+          "name": "OscAnalog3_c_vslot_62"
+        },
+        {
+          "entry": "0x7bec6",
+          "name": "FUN_0007bec6"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0228",
+      "original_pc_min": "0x803da",
+      "original_pc_max": "0x80b4d",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0x8032a",
+          "name": "Pan_c_vslot_56"
+        },
+        {
+          "entry": "0x80724",
+          "name": "FUN_00080724"
+        },
+        {
+          "entry": "0x80750",
+          "name": "FUN_00080750"
+        },
+        {
+          "entry": "0x80756",
+          "name": "FUN_00080756"
+        },
+        {
+          "entry": "0x80800",
+          "name": "FUN_00080800"
+        },
+        {
+          "entry": "0x8080a",
+          "name": "FUN_0008080a"
+        },
+        {
+          "entry": "0x80816",
+          "name": "FUN_00080816"
+        },
+        {
+          "entry": "0x80824",
+          "name": "FUN_00080824"
+        },
+        {
+          "entry": "0x80850",
+          "name": "CDrawbarPl_vslot_0"
+        },
+        {
+          "entry": "0x8086c",
+          "name": "CDrawbarPl_vslot_1"
+        },
+        {
+          "entry": "0x8089a",
+          "name": "CDrawbarPl_vslot_72"
+        },
+        {
+          "entry": "0x808d4",
+          "name": "FUN_000808d4"
+        },
+        {
+          "entry": "0x80a0a",
+          "name": "CDrawbarPl_vslot_4"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0244",
+      "original_pc_min": "0x87dc4",
+      "original_pc_max": "0x886c4",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0x87d52",
+          "name": "DelayPingPong_c_vslot_0"
+        },
+        {
+          "entry": "0x87e20",
+          "name": "DelayPingPong_c_vslot_1"
+        },
+        {
+          "entry": "0x87ef6",
+          "name": "DelayPingPongR_c_vslot_53"
+        },
+        {
+          "entry": "0x87fa2",
+          "name": "DelayPingPongR_c_vslot_2"
+        },
+        {
+          "entry": "0x87fa8",
+          "name": "DelayPingPongR_c_vslot_3"
+        },
+        {
+          "entry": "0x87fba",
+          "name": "DelayPingPongR_c_vslot_6"
+        },
+        {
+          "entry": "0x884a6",
+          "name": "DelayPingPongR_c_vslot_56"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0259",
+      "original_pc_min": "0x8fcee",
+      "original_pc_max": "0x907ac",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0x8fc36",
+          "name": "FUN_0008fc36"
+        },
+        {
+          "entry": "0x8ff9c",
+          "name": "FUN_0008ff9c"
+        },
+        {
+          "entry": "0x90362",
+          "name": "FUN_00090362"
+        },
+        {
+          "entry": "0x9078a",
+          "name": "FUN_0009078a"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0338",
+      "original_pc_min": "0xb72e7",
+      "original_pc_max": "0xb7aef",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0xb725a",
+          "name": "Reverb2_c_vslot_1"
+        },
+        {
+          "entry": "0xb73a6",
+          "name": "FUN_000b73a6"
+        },
+        {
+          "entry": "0xb799e",
+          "name": "Reverb2R_c_vslot_56"
+        },
+        {
+          "entry": "0xb79d6",
+          "name": "Reverb2R_c_vslot_40"
+        }
+      ]
+    },
+    {
+      "compiled_unit": "sl_unit_0342",
+      "original_pc_min": "0xc104e",
+      "original_pc_max": "0xc1541",
+      "translated_instructions": 512,
+      "candidate_original_functions": [
+        {
+          "entry": "0xc1042",
+          "name": "CMenuFileList_vslot_91"
+        },
+        {
+          "entry": "0xc1050",
+          "name": "CMenuFileList_vslot_41"
+        },
+        {
+          "entry": "0xc1122",
+          "name": "FUN_000c1122"
+        },
+        {
+          "entry": "0xc112a",
+          "name": "FUN_000c112a"
+        },
+        {
+          "entry": "0xc114c",
+          "name": "CModulFramePl_vslot_21"
+        },
+        {
+          "entry": "0xc115a",
+          "name": "CModulFramePl_vslot_51"
+        },
+        {
+          "entry": "0xc1166",
+          "name": "CModulFramePl_vslot_52"
+        },
+        {
+          "entry": "0xc117c",
+          "name": "CModulFramePl_vslot_53"
+        },
+        {
+          "entry": "0xc1188",
+          "name": "CModulFramePl_vslot_55"
+        },
+        {
+          "entry": "0xc1196",
+          "name": "CModulFramePl_vslot_56"
+        },
+        {
+          "entry": "0xc11a2",
+          "name": "CModulFramePl_vslot_41"
+        },
+        {
+          "entry": "0xc1218",
+          "name": "Note_c_vslot_4"
+        },
+        {
+          "entry": "0xc122e",
+          "name": "Note_c_vslot_0"
+        },
+        {
+          "entry": "0xc1246",
+          "name": "Note_c_vslot_1"
+        },
+        {
+          "entry": "0xc1266",
+          "name": "Note_c_vslot_2"
+        },
+        {
+          "entry": "0xc128c",
+          "name": "Note_c_vslot_3"
+        },
+        {
+          "entry": "0xc1294",
+          "name": "Note_c_vslot_5"
+        },
+        {
+          "entry": "0xc12b8",
+          "name": "Note_c_vslot_6"
+        },
+        {
+          "entry": "0xc12dc",
+          "name": "Note_c_vslot_9"
+        },
+        {
+          "entry": "0xc12ea",
+          "name": "Note_c_vslot_10"
+        },
+        {
+          "entry": "0xc12f8",
+          "name": "Note_c_vslot_7"
+        },
+        {
+          "entry": "0xc1350",
+          "name": "Note_c_vslot_8"
+        },
+        {
+          "entry": "0xc13a4",
+          "name": "Tool_c_vslot_0"
+        },
+        {
+          "entry": "0xc13c6",
+          "name": "Tool_c_vslot_1"
+        },
+        {
+          "entry": "0xc13fa",
+          "name": "FUN_000c13fa"
+        },
+        {
+          "entry": "0xc1402",
+          "name": "FUN_000c1402"
+        },
+        {
+          "entry": "0xc1458",
+          "name": "Envelope_c_vslot_2"
+        },
+        {
+          "entry": "0xc145e",
+          "name": "Envelope_c_vslot_3"
+        },
+        {
+          "entry": "0xc1464",
+          "name": "Envelope_c_vslot_5"
+        },
+        {
+          "entry": "0xc146a",
+          "name": "Envelope_c_vslot_6"
+        },
+        {
+          "entry": "0xc1470",
+          "name": "Envelope_c_vslot_25"
+        },
+        {
+          "entry": "0xc1478",
+          "name": "Envelope_c_vslot_26"
+        },
+        {
+          "entry": "0xc14a0",
+          "name": "Envelope_c_vslot_27"
+        },
+        {
+          "entry": "0xc14a8",
+          "name": "Envelope_c_vslot_28"
+        },
+        {
+          "entry": "0xc14c6",
+          "name": "Envelope_c_vslot_29"
+        },
+        {
+          "entry": "0xc14cc",
+          "name": "Envelope_c_vslot_31"
+        },
+        {
+          "entry": "0xc14d2",
+          "name": "Envelope_c_vslot_34"
+        },
+        {
+          "entry": "0xc14d8",
+          "name": "Envelope_c_vslot_36"
+        },
+        {
+          "entry": "0xc14de",
+          "name": "Part_c_vslot_37"
+        },
+        {
+          "entry": "0xc14e4",
+          "name": "Envelope_c_vslot_51"
+        },
+        {
+          "entry": "0xc1500",
+          "name": "Envelope_c_vslot_52"
+        },
+        {
+          "entry": "0xc1514",
+          "name": "SamLoop_c_vslot_57"
+        },
+        {
+          "entry": "0xc1526",
+          "name": "SamLoop_c_vslot_58"
+        },
+        {
+          "entry": "0xc1538",
+          "name": "SamWT_c_vslot_62"
+        },
+        {
+          "entry": "0xc1540",
+          "name": "SamWT_c_vslot_63"
+        }
+      ]
+    }
+  ]
+}

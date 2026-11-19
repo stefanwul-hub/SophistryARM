@@ -1,0 +1,619 @@
+{
+  "checkpoint": "CP-039",
+  "component": "CP-038",
+  "scope": "Main-thread aggregate counts and isolated AU timings; not a CronoX comparison, not raw stacks",
+  "runs": [
+    {
+      "midi_notes_held": 1,
+      "audio_seconds": 20,
+      "sample_rate": 44100,
+      "render_block_size": 256,
+      "render_calls": 3446,
+      "render_thread_cpu_seconds": 4.154380822999999,
+      "render_call_wall_seconds": 4.325928182999998,
+      "voice_count_after_first_buffer": 1,
+      "voice_count_at_render_end": 1,
+      "voice_counters_consistent": true,
+      "aggregate": {
+        "scope": "Exclusive samples on the main rendering thread; idle worker threads excluded. Unit time includes actual DSP and translation support, not solely overhead.",
+        "main_thread_samples": 2522,
+        "exclusive_samples_conserved": true,
+        "compiled_units": [
+          {
+            "compiled_unit": "sl_unit_0338",
+            "exclusive_samples": 544,
+            "main_thread_percent": 21.570182394924664
+          },
+          {
+            "compiled_unit": "sl_unit_0220",
+            "exclusive_samples": 307,
+            "main_thread_percent": 12.172878667724028
+          },
+          {
+            "compiled_unit": "sl_unit_0219",
+            "exclusive_samples": 197,
+            "main_thread_percent": 7.811260904044409
+          },
+          {
+            "compiled_unit": "sl_unit_0132",
+            "exclusive_samples": 160,
+            "main_thread_percent": 6.3441712926249005
+          },
+          {
+            "compiled_unit": "sl_unit_0216",
+            "exclusive_samples": 98,
+            "main_thread_percent": 3.8858049167327517
+          },
+          {
+            "compiled_unit": "sl_unit_0342",
+            "exclusive_samples": 89,
+            "main_thread_percent": 3.528945281522601
+          },
+          {
+            "compiled_unit": "sl_unit_0244",
+            "exclusive_samples": 86,
+            "main_thread_percent": 3.409992069785884
+          },
+          {
+            "compiled_unit": "sl_unit_0210",
+            "exclusive_samples": 82,
+            "main_thread_percent": 3.2513877874702617
+          },
+          {
+            "compiled_unit": "sl_unit_0259",
+            "exclusive_samples": 72,
+            "main_thread_percent": 2.8548770816812055
+          },
+          {
+            "compiled_unit": "sl_unit_0228",
+            "exclusive_samples": 71,
+            "main_thread_percent": 2.8152260111023
+          },
+          {
+            "compiled_unit": "sl_unit_0115",
+            "exclusive_samples": 64,
+            "main_thread_percent": 2.53766851704996
+          },
+          {
+            "compiled_unit": "sl_unit_0133",
+            "exclusive_samples": 43,
+            "main_thread_percent": 1.704996034892942
+          },
+          {
+            "compiled_unit": "sl_unit_0226",
+            "exclusive_samples": 41,
+            "main_thread_percent": 1.6256938937351308
+          },
+          {
+            "compiled_unit": "sl_unit_0344",
+            "exclusive_samples": 41,
+            "main_thread_percent": 1.6256938937351308
+          },
+          {
+            "compiled_unit": "sl_unit_0347",
+            "exclusive_samples": 40,
+            "main_thread_percent": 1.5860428231562251
+          },
+          {
+            "compiled_unit": "sl_unit_0208",
+            "exclusive_samples": 31,
+            "main_thread_percent": 1.2291831879460746
+          },
+          {
+            "compiled_unit": "sl_unit_0188",
+            "exclusive_samples": 25,
+            "main_thread_percent": 0.9912767644726408
+          },
+          {
+            "compiled_unit": "sl_unit_0238",
+            "exclusive_samples": 12,
+            "main_thread_percent": 0.47581284694686754
+          },
+          {
+            "compiled_unit": "sl_unit_0240",
+            "exclusive_samples": 12,
+            "main_thread_percent": 0.47581284694686754
+          },
+          {
+            "compiled_unit": "sl_unit_0245",
+            "exclusive_samples": 11,
+            "main_thread_percent": 0.43616177636796194
+          },
+          {
+            "compiled_unit": "sl_unit_0086",
+            "exclusive_samples": 10,
+            "main_thread_percent": 0.3965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0340",
+            "exclusive_samples": 7,
+            "main_thread_percent": 0.2775574940523394
+          },
+          {
+            "compiled_unit": "sl_unit_0239",
+            "exclusive_samples": 6,
+            "main_thread_percent": 0.23790642347343377
+          },
+          {
+            "compiled_unit": "sl_unit_0345",
+            "exclusive_samples": 5,
+            "main_thread_percent": 0.19825535289452814
+          },
+          {
+            "compiled_unit": "sl_unit_0027",
+            "exclusive_samples": 4,
+            "main_thread_percent": 0.1586042823156225
+          },
+          {
+            "compiled_unit": "sl_unit_0028",
+            "exclusive_samples": 3,
+            "main_thread_percent": 0.11895321173671689
+          },
+          {
+            "compiled_unit": "sl_unit_0085",
+            "exclusive_samples": 3,
+            "main_thread_percent": 0.11895321173671689
+          },
+          {
+            "compiled_unit": "sl_unit_0096",
+            "exclusive_samples": 3,
+            "main_thread_percent": 0.11895321173671689
+          },
+          {
+            "compiled_unit": "sl_unit_0007",
+            "exclusive_samples": 2,
+            "main_thread_percent": 0.07930214115781126
+          },
+          {
+            "compiled_unit": "sl_unit_0093",
+            "exclusive_samples": 2,
+            "main_thread_percent": 0.07930214115781126
+          },
+          {
+            "compiled_unit": "sl_unit_0189",
+            "exclusive_samples": 2,
+            "main_thread_percent": 0.07930214115781126
+          },
+          {
+            "compiled_unit": "sl_unit_0211",
+            "exclusive_samples": 2,
+            "main_thread_percent": 0.07930214115781126
+          },
+          {
+            "compiled_unit": "sl_unit_0308",
+            "exclusive_samples": 2,
+            "main_thread_percent": 0.07930214115781126
+          },
+          {
+            "compiled_unit": "sl_unit_0004",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0037",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0050",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0057",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0089",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0101",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0123",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0124",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0181",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0194",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0207",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0212",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0217",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0307",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0320",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0203",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.03965107057890563
+          },
+          {
+            "compiled_unit": "sl_unit_0209",
+            "exclusive_samples": 0,
+            "main_thread_percent": 0.0
+          },
+          {
+            "compiled_unit": "sl_unit_0215",
+            "exclusive_samples": 0,
+            "main_thread_percent": 0.0
+          },
+          {
+            "compiled_unit": "sl_unit_0223",
+            "exclusive_samples": 0,
+            "main_thread_percent": 0.0
+          },
+          {
+            "compiled_unit": "sl_unit_0224",
+            "exclusive_samples": 0,
+            "main_thread_percent": 0.0
+          }
+        ],
+        "instruction_bookkeeping": {
+          "exclusive_samples": 162,
+          "main_thread_percent": 6.423473433782712
+        },
+        "compiled_unit_dispatch": {
+          "exclusive_samples": 77,
+          "main_thread_percent": 3.0531324345757334
+        },
+        "string_comparisons": {
+          "exclusive_samples": 138,
+          "main_thread_percent": 5.471847739888977
+        },
+        "host_import_binding": {
+          "all": {
+            "exclusive_samples": 158,
+            "main_thread_percent": 6.26486915146709
+          },
+          "name_comparisons": {
+            "exclusive_samples": 122,
+            "main_thread_percent": 4.837430610626487
+          },
+          "editor_router": {
+            "exclusive_samples": 25,
+            "main_thread_percent": 0.9912767644726408
+          }
+        },
+        "original_audio_process_inclusive_samples": 2515,
+        "au_render_inclusive_samples": 2520,
+        "raw_thread_ids_native_addresses_and_paths_exported": false
+      }
+    },
+    {
+      "midi_notes_held": 4,
+      "audio_seconds": 20,
+      "sample_rate": 44100,
+      "render_block_size": 256,
+      "render_calls": 3446,
+      "render_thread_cpu_seconds": 10.536954759999961,
+      "render_call_wall_seconds": 10.731224043999992,
+      "voice_count_after_first_buffer": 4,
+      "voice_count_at_render_end": 4,
+      "voice_counters_consistent": true,
+      "aggregate": {
+        "scope": "Exclusive samples on the main rendering thread; idle worker threads excluded. Unit time includes actual DSP and translation support, not solely overhead.",
+        "main_thread_samples": 2524,
+        "exclusive_samples_conserved": true,
+        "compiled_units": [
+          {
+            "compiled_unit": "sl_unit_0220",
+            "exclusive_samples": 494,
+            "main_thread_percent": 19.572107765451666
+          },
+          {
+            "compiled_unit": "sl_unit_0219",
+            "exclusive_samples": 291,
+            "main_thread_percent": 11.52931854199683
+          },
+          {
+            "compiled_unit": "sl_unit_0338",
+            "exclusive_samples": 219,
+            "main_thread_percent": 8.676703645007924
+          },
+          {
+            "compiled_unit": "sl_unit_0216",
+            "exclusive_samples": 194,
+            "main_thread_percent": 7.68621236133122
+          },
+          {
+            "compiled_unit": "sl_unit_0210",
+            "exclusive_samples": 133,
+            "main_thread_percent": 5.269413629160064
+          },
+          {
+            "compiled_unit": "sl_unit_0115",
+            "exclusive_samples": 112,
+            "main_thread_percent": 4.437400950871632
+          },
+          {
+            "compiled_unit": "sl_unit_0228",
+            "exclusive_samples": 103,
+            "main_thread_percent": 4.080824088748019
+          },
+          {
+            "compiled_unit": "sl_unit_0132",
+            "exclusive_samples": 63,
+            "main_thread_percent": 2.4960380348652933
+          },
+          {
+            "compiled_unit": "sl_unit_0208",
+            "exclusive_samples": 60,
+            "main_thread_percent": 2.3771790808240887
+          },
+          {
+            "compiled_unit": "sl_unit_0342",
+            "exclusive_samples": 60,
+            "main_thread_percent": 2.3771790808240887
+          },
+          {
+            "compiled_unit": "sl_unit_0188",
+            "exclusive_samples": 42,
+            "main_thread_percent": 1.6640253565768621
+          },
+          {
+            "compiled_unit": "sl_unit_0259",
+            "exclusive_samples": 30,
+            "main_thread_percent": 1.1885895404120443
+          },
+          {
+            "compiled_unit": "sl_unit_0244",
+            "exclusive_samples": 27,
+            "main_thread_percent": 1.06973058637084
+          },
+          {
+            "compiled_unit": "sl_unit_0226",
+            "exclusive_samples": 22,
+            "main_thread_percent": 0.8716323296354992
+          },
+          {
+            "compiled_unit": "sl_unit_0133",
+            "exclusive_samples": 20,
+            "main_thread_percent": 0.7923930269413629
+          },
+          {
+            "compiled_unit": "sl_unit_0347",
+            "exclusive_samples": 20,
+            "main_thread_percent": 0.7923930269413629
+          },
+          {
+            "compiled_unit": "sl_unit_0344",
+            "exclusive_samples": 12,
+            "main_thread_percent": 0.4754358161648177
+          },
+          {
+            "compiled_unit": "sl_unit_0238",
+            "exclusive_samples": 10,
+            "main_thread_percent": 0.39619651347068147
+          },
+          {
+            "compiled_unit": "sl_unit_0086",
+            "exclusive_samples": 8,
+            "main_thread_percent": 0.31695721077654515
+          },
+          {
+            "compiled_unit": "sl_unit_0239",
+            "exclusive_samples": 8,
+            "main_thread_percent": 0.31695721077654515
+          },
+          {
+            "compiled_unit": "sl_unit_0027",
+            "exclusive_samples": 6,
+            "main_thread_percent": 0.23771790808240886
+          },
+          {
+            "compiled_unit": "sl_unit_0043",
+            "exclusive_samples": 6,
+            "main_thread_percent": 0.23771790808240886
+          },
+          {
+            "compiled_unit": "sl_unit_0240",
+            "exclusive_samples": 6,
+            "main_thread_percent": 0.23771790808240886
+          },
+          {
+            "compiled_unit": "sl_unit_0245",
+            "exclusive_samples": 5,
+            "main_thread_percent": 0.19809825673534073
+          },
+          {
+            "compiled_unit": "sl_unit_0025",
+            "exclusive_samples": 4,
+            "main_thread_percent": 0.15847860538827258
+          },
+          {
+            "compiled_unit": "sl_unit_0037",
+            "exclusive_samples": 4,
+            "main_thread_percent": 0.15847860538827258
+          },
+          {
+            "compiled_unit": "sl_unit_0189",
+            "exclusive_samples": 4,
+            "main_thread_percent": 0.15847860538827258
+          },
+          {
+            "compiled_unit": "sl_unit_0340",
+            "exclusive_samples": 4,
+            "main_thread_percent": 0.15847860538827258
+          },
+          {
+            "compiled_unit": "sl_unit_0211",
+            "exclusive_samples": 3,
+            "main_thread_percent": 0.11885895404120443
+          },
+          {
+            "compiled_unit": "sl_unit_0227",
+            "exclusive_samples": 3,
+            "main_thread_percent": 0.11885895404120443
+          },
+          {
+            "compiled_unit": "sl_unit_0028",
+            "exclusive_samples": 2,
+            "main_thread_percent": 0.07923930269413629
+          },
+          {
+            "compiled_unit": "sl_unit_0085",
+            "exclusive_samples": 2,
+            "main_thread_percent": 0.07923930269413629
+          },
+          {
+            "compiled_unit": "sl_unit_0212",
+            "exclusive_samples": 2,
+            "main_thread_percent": 0.07923930269413629
+          },
+          {
+            "compiled_unit": "sl_unit_0237",
+            "exclusive_samples": 2,
+            "main_thread_percent": 0.07923930269413629
+          },
+          {
+            "compiled_unit": "sl_unit_0345",
+            "exclusive_samples": 2,
+            "main_thread_percent": 0.07923930269413629
+          },
+          {
+            "compiled_unit": "sl_unit_0007",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0008",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0052",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0093",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0096",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0101",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0124",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0209",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0213",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0223",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0224",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0261",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0320",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0321",
+            "exclusive_samples": 1,
+            "main_thread_percent": 0.039619651347068144
+          },
+          {
+            "compiled_unit": "sl_unit_0218",
+            "exclusive_samples": 0,
+            "main_thread_percent": 0.0
+          }
+        ],
+        "instruction_bookkeeping": {
+          "exclusive_samples": 188,
+          "main_thread_percent": 7.448494453248811
+        },
+        "compiled_unit_dispatch": {
+          "exclusive_samples": 84,
+          "main_thread_percent": 3.3280507131537242
+        },
+        "string_comparisons": {
+          "exclusive_samples": 205,
+          "main_thread_percent": 8.12202852614897
+        },
+        "host_import_binding": {
+          "all": {
+            "exclusive_samples": 228,
+            "main_thread_percent": 9.033280507131538
+          },
+          "name_comparisons": {
+            "exclusive_samples": 184,
+            "main_thread_percent": 7.290015847860539
+          },
+          "editor_router": {
+            "exclusive_samples": 34,
+            "main_thread_percent": 1.3470681458003169
+          }
+        },
+        "original_audio_process_inclusive_samples": 2521,
+        "au_render_inclusive_samples": 2523,
+        "raw_thread_ids_native_addresses_and_paths_exported": false
+      }
+    }
+  ],
+  "private_paths_ids_native_addresses_and_file_fingerprints_exported": false
+}

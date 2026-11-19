@@ -1,0 +1,712 @@
+{
+  "checkpoint": "CP-039",
+  "scope": "Compare the original Reverb2 processing body with its unchanged static lift.\n\nSynthetic stereo ports are explicit virtual callbacks. This tests the original\ncomb/allpass arithmetic, ring buffers and modulation state, not AU routing,\nprivate presets, registration, whole-synth audio or CPU performance.",
+  "original_sha256": "17239b5c4055557877635cabd0a37668016ca2a61f90c1773de7c0c2e10b6b12",
+  "original_process_entry": "0xb73a6",
+  "cases": [
+    {
+      "frames": 0,
+      "modulated": 0,
+      "allpass": 0,
+      "signal": "impulse",
+      "seed": 39000,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 0,
+      "allpass": 0,
+      "signal": "noise",
+      "seed": 39001,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 0,
+      "allpass": 1,
+      "signal": "impulse",
+      "seed": 39002,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 0,
+      "allpass": 1,
+      "signal": "noise",
+      "seed": 39003,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 0,
+      "allpass": 4,
+      "signal": "impulse",
+      "seed": 39004,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 0,
+      "allpass": 4,
+      "signal": "noise",
+      "seed": 39005,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 1,
+      "allpass": 0,
+      "signal": "impulse",
+      "seed": 39006,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 1,
+      "allpass": 0,
+      "signal": "noise",
+      "seed": 39007,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 1,
+      "allpass": 1,
+      "signal": "impulse",
+      "seed": 39008,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 1,
+      "allpass": 1,
+      "signal": "noise",
+      "seed": 39009,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 1,
+      "allpass": 4,
+      "signal": "impulse",
+      "seed": 39010,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 0,
+      "modulated": 1,
+      "allpass": 4,
+      "signal": "noise",
+      "seed": 39011,
+      "blocks": [
+        0
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 0,
+      "allpass": 0,
+      "signal": "impulse",
+      "seed": 39012,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 0,
+      "allpass": 0,
+      "signal": "noise",
+      "seed": 39013,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 0,
+      "allpass": 1,
+      "signal": "impulse",
+      "seed": 39014,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 0,
+      "allpass": 1,
+      "signal": "noise",
+      "seed": 39015,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 0,
+      "allpass": 4,
+      "signal": "impulse",
+      "seed": 39016,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 0,
+      "allpass": 4,
+      "signal": "noise",
+      "seed": 39017,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 1,
+      "allpass": 0,
+      "signal": "impulse",
+      "seed": 39018,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 1,
+      "allpass": 0,
+      "signal": "noise",
+      "seed": 39019,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 1,
+      "allpass": 1,
+      "signal": "impulse",
+      "seed": 39020,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 1,
+      "allpass": 1,
+      "signal": "noise",
+      "seed": 39021,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 1,
+      "allpass": 4,
+      "signal": "impulse",
+      "seed": 39022,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 1,
+      "modulated": 1,
+      "allpass": 4,
+      "signal": "noise",
+      "seed": 39023,
+      "blocks": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 0,
+      "allpass": 0,
+      "signal": "impulse",
+      "seed": 39024,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 0,
+      "allpass": 0,
+      "signal": "noise",
+      "seed": 39025,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 0,
+      "allpass": 1,
+      "signal": "impulse",
+      "seed": 39026,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 0,
+      "allpass": 1,
+      "signal": "noise",
+      "seed": 39027,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 0,
+      "allpass": 4,
+      "signal": "impulse",
+      "seed": 39028,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 0,
+      "allpass": 4,
+      "signal": "noise",
+      "seed": 39029,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 1,
+      "allpass": 0,
+      "signal": "impulse",
+      "seed": 39030,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 1,
+      "allpass": 0,
+      "signal": "noise",
+      "seed": 39031,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 1,
+      "allpass": 1,
+      "signal": "impulse",
+      "seed": 39032,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 1,
+      "allpass": 1,
+      "signal": "noise",
+      "seed": 39033,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 1,
+      "allpass": 4,
+      "signal": "impulse",
+      "seed": 39034,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 7,
+      "modulated": 1,
+      "allpass": 4,
+      "signal": "noise",
+      "seed": 39035,
+      "blocks": [
+        7
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 0,
+      "allpass": 0,
+      "signal": "impulse",
+      "seed": 39036,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 0,
+      "allpass": 0,
+      "signal": "noise",
+      "seed": 39037,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 0,
+      "allpass": 1,
+      "signal": "impulse",
+      "seed": 39038,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 0,
+      "allpass": 1,
+      "signal": "noise",
+      "seed": 39039,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 0,
+      "allpass": 4,
+      "signal": "impulse",
+      "seed": 39040,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 0,
+      "allpass": 4,
+      "signal": "noise",
+      "seed": 39041,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 1,
+      "allpass": 0,
+      "signal": "impulse",
+      "seed": 39042,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 1,
+      "allpass": 0,
+      "signal": "noise",
+      "seed": 39043,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 1,
+      "allpass": 1,
+      "signal": "impulse",
+      "seed": 39044,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 1,
+      "allpass": 1,
+      "signal": "noise",
+      "seed": 39045,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 1,
+      "allpass": 4,
+      "signal": "impulse",
+      "seed": 39046,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 64,
+      "modulated": 1,
+      "allpass": 4,
+      "signal": "noise",
+      "seed": 39047,
+      "blocks": [
+        64
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 0,
+      "allpass": 0,
+      "signal": "impulse",
+      "seed": 39048,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 0,
+      "allpass": 0,
+      "signal": "noise",
+      "seed": 39049,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 0,
+      "allpass": 1,
+      "signal": "impulse",
+      "seed": 39050,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 0,
+      "allpass": 1,
+      "signal": "noise",
+      "seed": 39051,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 0,
+      "allpass": 4,
+      "signal": "impulse",
+      "seed": 39052,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 0,
+      "allpass": 4,
+      "signal": "noise",
+      "seed": 39053,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 1,
+      "allpass": 0,
+      "signal": "impulse",
+      "seed": 39054,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 1,
+      "allpass": 0,
+      "signal": "noise",
+      "seed": 39055,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 1,
+      "allpass": 1,
+      "signal": "impulse",
+      "seed": 39056,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 1,
+      "allpass": 1,
+      "signal": "noise",
+      "seed": 39057,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 1,
+      "allpass": 4,
+      "signal": "impulse",
+      "seed": 39058,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "frames": 256,
+      "modulated": 1,
+      "allpass": 4,
+      "signal": "noise",
+      "seed": 39059,
+      "blocks": [
+        1,
+        7,
+        64,
+        184
+      ],
+      "passed": true
+    }
+  ],
+  "case_count": 60,
+  "differential_process_calls": 96,
+  "output_float32_samples_compared": 7872,
+  "object_and_delay_buffer_state_bytes_compared": 522624,
+  "production_code_modified": false,
+  "whole_synth_or_cpu_performance_tested": false,
+  "mismatches": [],
+  "passed": true
+}

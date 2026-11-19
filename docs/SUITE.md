@@ -1,7 +1,7 @@
-# Suite après CP038
+# Suite après CP039
 
-Valider la compensation globale +6 dB sur le Mac avec les valeurs Master et les projets existants conservés. CP038 ne change pas le défaut Master et ne réintroduit pas les optimisations CP033.
+CP038 est installé et son gain global +6 dB est validé, avec les réglages Master conservés. Aucun nouvel installateur CP039.
 
-Le rapport CP037 confirme l’installation/audio/auval, sans gain CPU notable. Recueillir les piles via le lanceur CP038 --profile-only (composant37ou38), puis examiner les fonctions chaudes et les comptes de voix avant de choisir une correction de concordance. Aucun profil Mac nouveau n’est déjà acquis.
+Les captures CPU montrent les voix attendues (1/4) et un coût dans les blocs DSP traduits. Réverbération et oscillateurs sont prioritaires ; le suivi par instruction et les comparaisons de noms d’imports ont aussi un coût mesurable. Ne pas assimiler tout le temps des blocs à du seul surcoût.
 
-Ne pas reprendre le stress DX Bass ni forcer la politique de voix. Toute publication de résultats doit se limiter aux faits utiles, sans rapports bruts, préférences, chemins privés ou clés. Aucun runner GitHub nécessaire.
+Soixante cas de Reverb2 original/C++ passent. Une clarification a été demandée sur la consigne de suspension des optimisations avant une traduction C++ plus directe d’une seule routine. Tant que l’autorisation n’est pas reçue, poursuivre l’audit uniquement. Garder CP038/gain6 et ses paramètres, exclure CP033, aucun stress DX Bass. Captures et identifiants privés hors Git.

@@ -1,0 +1,12 @@
+{
+  "checkpoint": "CP-039",
+  "baseline_commit": "65f2fe1833f92ab7d04f8740c41e6a7b5644a764",
+  "scope": "All production source, existing scripts and installer/profile controllers compared against installed CP038",
+  "files_checked": 443,
+  "all_byte_identical": true,
+  "component_build_retained": "38001",
+  "output_compensation_db_retained": 6,
+  "master_defaults_or_saved_values_changed": false,
+  "new_optimization_applied": false,
+  "passed": true
+}

@@ -1,5 +1,5 @@
 {
-  "checkpoint": "CP-038",
+  "checkpoint": "CP-039",
   "original_version": "3.0.8",
   "original_architectures": [
     "ppc",
@@ -16,8 +16,8 @@
   "native_audio_unit_available": true,
   "native_ui_available": true,
   "install_allowed": true,
-  "arm64_scope": "CP038 global AU output compensation, 17 strict ARM64 Mach-O cross-links; Mac execution pending",
-  "next_work": "Validate CP038 global +6 dB and collect --profile-only Mac stacks to identify CPU cost; no DSP optimization yet",
+  "arm64_scope": "Existing CP038 ARM64 component confirmed on user Mac; CP039 adds analysis and original i386 versus C++ Reverb2 tests only",
+  "next_work": "Await scope clarification before changing translation; otherwise continue fidelity audit of hot DSP functions. CP038 stays installed.",
   "cp030_work_in_progress": false,
   "cp030_build": "30001",
   "cp030_mac_execution_pending": true,
@@ -45,7 +45,7 @@
   "editor_footer": "Sophistry ARM64 port OA 2026 (CP-038)",
   "generic_parameter_browser_present": false,
   "publication_branch": "codex/sophistry-native-checkpoints",
-  "publication_status": "CP038 source archive and pinned launcher published and verified; Mac validation and CPU stacks pending",
+  "publication_status": "CP039 audit prepared locally; checkpoint publication pending",
   "remaining_ui_limits": [
     "No usable Enhanced editor recovered for reserved panels70/71/82..86",
     "No direct general FXP export; AU save and MOD modules remain available"
@@ -106,7 +106,7 @@
   "github_cp032_launcher_commit": "bbac4a3781b090fb20b76fcb00eae999ea06c378",
   "github_cp032_launcher_sha256": "012575e97ef7bfce5d1d9deef936db3d05f45eba0910d19b826c1e2f267ff7b0",
   "github_cp032_launcher_verified": true,
-  "last_confirmed_user_mac_checkpoint": "CP-037",
+  "last_confirmed_user_mac_checkpoint": "CP-038",
   "cp032_mac_evidence": "evidence/mac-cp032-installed.json",
   "cp033_build": "33001",
   "cp033_storage_optimization_implemented": true,
@@ -129,7 +129,7 @@
   "github_cp033_launcher_commit": "d3478f4be0cc4bf01770f65006431a5d9ce4c233",
   "github_cp033_launcher_sha256": "3ed816052044e73a41e3787160a7438ad6b3fce90ec384f5dc5b32ede27f5bca",
   "github_cp033_launcher_verified": true,
-  "functional_checkpoint": "CP-038 candidate; CP-037 confirmed on user Mac",
+  "functional_checkpoint": "CP-038 confirmed installed; CP039 analysis only",
   "cp033_withdrawn": true,
   "cp033_installation_report_received": true,
   "cp033_mac_cpu_regression_ratio": 3.30600431474958,
@@ -244,7 +244,7 @@
   "cp038_master_defaults_changed": false,
   "cp038_master_values_or_automation_rewritten": false,
   "cp038_engine_and_kernel_unchanged": true,
-  "cp038_mac_execution_pending": true,
+  "cp038_mac_execution_pending": false,
   "cp038_profile_existing_component_without_install": true,
   "cp038_development_evidence": "evidence/cp038-development-checks.json",
   "github_cp038_source_commit": "4c24b4bf01d9cc8c2fb266cc8cec026aa8ff84fb",
@@ -255,5 +255,16 @@
   "github_cp038_launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/36336cf3c0acf5ad3ac9d024b63f55282d3c58e0/Demarrer-Sophistry-CP038.command",
   "github_cp038_launcher_sha256": "104385a6c3ba81ad9c290ffb8b6f9388dfd08e4d248241b19cc0d6222b4fc615",
   "github_cp038_launcher_verified": true,
-  "cp038_original_master_metadata_unchanged": true
+  "cp038_original_master_metadata_unchanged": true,
+  "cp038_installation_confirmed": true,
+  "cp038_mac_evidence": "evidence/mac-cp038-installed.json",
+  "cp038_cpu_ratio_vs_cp032": 0.9913617804654211,
+  "cp038_global_output_gain_validated_on_mac": true,
+  "cp039_production_code_changed": false,
+  "cp039_reverb_differential_cases": 60,
+  "cp039_reverb_process_calls": 96,
+  "cp039_reverb_state_bytes_compared": 522624,
+  "cp039_profile_voice_counts_match": true,
+  "cp039_profile_raw_data_published": false,
+  "cp039_new_native_translation_scope_awaits_user_choice": true
 }

@@ -1,0 +1,23 @@
+{
+  "checkpoint": "CP-039",
+  "scope": "Analysis of supplied CP038 Mac validation/profiling and original i386 versus unchanged C++ synthetic Reverb2 execution",
+  "component_cp038_mac_installation_confirmed": true,
+  "wrapped_gain_comparisons_exact": 6,
+  "raw_engine_audio_comparisons_exact": 2,
+  "profile_note_counts": [
+    1,
+    4
+  ],
+  "profile_voice_counts_match": true,
+  "exclusive_profile_counts_conserved": true,
+  "profile_summary_tests_passed": 3,
+  "original_reverb_cases_passed": 60,
+  "original_reverb_process_calls_compared": 96,
+  "original_reverb_output_samples_compared": 7872,
+  "original_reverb_state_bytes_compared": 522624,
+  "full_behavior_equivalence_or_cronox_cpu_parity_proven": false,
+  "production_code_changed": false,
+  "native_translation_change_authorized": false,
+  "scope_clarification_requested": true,
+  "passed": true
+}

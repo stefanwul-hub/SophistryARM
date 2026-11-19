@@ -1,4 +1,6 @@
-# Sophistry — CP038 : sortie +6 dB et profilage CPU
+# Sophistry — CP039 : analyse CPU, composant CP038 conservé
+
+**CP039 confirme CP038 installé et le gain global de +6 dB validé sur le Mac.** Les captures montrent une puis quatre voix attendues ; le temps se concentre dans les blocs DSP traduits. Le corps de traitement Reverb2 passe 60 nouveaux cas de comparaison avec les instructions originales. Aucune modification du composant dans ce checkpoint. [Analyse CP039](docs/CP039.md).
 
 **CP038 applique une compensation globale de +6 dB à tous les sons, anciens projets compris.** Master, automatismes et niveaux sauvegardés restent à leurs valeurs d’origine. Le noyau DSP CP037 est conservé. [Détails et validation](docs/CP038.md).
 
@@ -16,7 +18,7 @@ Pour recueillir ensuite les piles CPU sans installation :
 bash "$HOME/Downloads/Demarrer-Sophistry-CP038.command" --profile-only
 ```
 
-Le rapport Mac CP037 confirme auval, l’interface et huit comparaisons audio exactes. Le CPU reste équivalent à CP032 : ratio médian 1,00143 (+0,14 %) dans le test à une note. La cause du surcoût face à CronoX reste à identifier. Un mode de profilage recueille désormais les piles CPU sur le composant installé.
+Le rapport Mac CP038 confirme auval, l’interface, six comparaisons audio avec le gain demandé et deux comparaisons du moteur brut. Le CPU reste proche de CP032 : ratio médian 0,99136 dans le test à une note. Les captures CPU reçues sont analysées dans CP039 ; elles ne démontrent pas encore la cause complète du facteur observé face à CronoX.
 
 Audio Unit ARM64 expérimental destiné à rouvrir les projets Sophistry 3.0.8 à partir de son code machine i386.
 
