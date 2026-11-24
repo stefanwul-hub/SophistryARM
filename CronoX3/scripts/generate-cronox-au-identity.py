@@ -16,7 +16,7 @@ component={'name':'LinPlug: '+c['display_name'],'description':'CronoX 3 ARM64 co
 info={'CFBundleDevelopmentRegion':'English','CFBundleExecutable':c['executable'],
  'CFBundleIdentifier':c['bundle_identifier'],'CFBundleInfoDictionaryVersion':'6.0',
  'CFBundleName':c['bundle_name'],'CFBundlePackageType':'BNDL',
- 'CFBundleShortVersionString':'3.6.6','CFBundleVersion':'1001',
+ 'CFBundleShortVersionString':'3.6.6','CFBundleVersion':c.get('build_version','1001'),
  'LSMinimumSystemVersion':'11.0','AudioComponents':[component]}
 (ROOT/'src/au/Info.plist').write_bytes(plistlib.dumps(info,sort_keys=False))
 def fourcc(value):return hex(int.from_bytes(value.encode('ascii'),'big'))+'u'

@@ -21,6 +21,8 @@ struct LegacyEngineConfig {
   // Native monotonic ticks and timebase for an actual AU host. Kept separate
   // from deterministic wall-clock/random inputs used by existing references.
   bool nativeMonotonicClock = false;
+  // Optional clock for deterministic run-loop callback tests (CF absolute seconds).
+  std::function<double()> runLoopClock;
   bool useLocalMacPreferences = false;
   bool recycleFreedBlocks = false;
   bool audioUnitMode = false;
@@ -63,6 +65,10 @@ public:
   LegacyEngine(const LegacyEngine &) = delete;
   LegacyEngine &operator=(const LegacyEngine &) = delete;
   void initialize();
+  // Caller serializes this with all engine calls; invoke on a control thread.
+  std::uint32_t serviceTimers();
+  // Executes the original destructor, then makes this instance unusable.
+  void shutdown();
   void restoreChunk(const std::vector<std::uint8_t> &chunk, bool program);
   std::string presetName();
   // Rebuild the read-only asset index after a local bank selection. The

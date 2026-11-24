@@ -1,0 +1,63 @@
+{
+  "checkpoint_tested": "CRX001",
+  "source_commit": "e8eca92d1b51bc4e5d754d2880880bd8593cbf9d",
+  "reported_platform": "macOS 15.7.2 / arm64",
+  "compiler": "Apple clang 17.0.0",
+  "exit_code": 0,
+  "mach_o_arm64_probes": 4,
+  "results": {
+    "public-preset.json": {
+      "project": "CronoX 3",
+      "original_au_bridge": true,
+      "parameters": 522,
+      "program_roundtrip": true,
+      "program_bytes": 20928,
+      "rendered_frames": 2048,
+      "finite_audio": true,
+      "sound_fidelity_verified": false,
+      "macos_auval_executed": false
+    },
+    "original-au-bridge.json": {
+      "project": "CronoX 3",
+      "original_au_bridge": true,
+      "parameters": 522,
+      "program_roundtrip": true,
+      "program_bytes": 20928,
+      "rendered_frames": 2048,
+      "finite_audio": true,
+      "sound_fidelity_verified": false,
+      "macos_auval_executed": false
+    },
+    "string-abi.json": {
+      "scope": "32-bit libstdc++ guest string ABI contract",
+      "checks": 14,
+      "passed": true
+    },
+    "engine-boot.json": {
+      "project": "CronoX 3 ARM64",
+      "engine_initialized": true,
+      "program_bytes": 20928,
+      "output_channels": 6,
+      "au_tested": false
+    },
+    "instruction-replay.json": {
+      "scope": "isolated original instruction and recovered-branch fixtures",
+      "cases": 6228,
+      "compared_register_bytes": 99648,
+      "compared_memory_bytes": 0,
+      "passed": true,
+      "full_engine_tested": false
+    }
+  },
+  "nonempty_compilation_logs": [
+    {
+      "file": "LegacyEngine.o.compile.log",
+      "warnings": 2,
+      "errors": 0
+    }
+  ],
+  "apple_au_host_tested": false,
+  "auval_executed": false,
+  "existing_plugins_untouched": true,
+  "private_paths_and_user_preferences_omitted": true
+}

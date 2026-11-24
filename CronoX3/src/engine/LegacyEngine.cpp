@@ -7,9 +7,12 @@
 #include "MonotonicClock.h"
 #include "GuestStdString.h"
 #include "GuestCocoaRegistry.h"
+#include "PreferenceDomains.h"
 #include <algorithm>
 #include <array>
 #include <cctype>
+#include <cerrno>
+#include <sys/stat.h>
 #include <chrono>
 #include <cmath>
 #include <codecvt>
@@ -171,6 +174,7 @@ struct LegacyEngine::Impl {
   struct Timer {
     double delay = 0, interval = 0;
     U32 callback = 0, data = 0;
+    bool scheduled = false, valid = true;
   };
   U32 eventLoop = 0;
   std::map<U32, U32> upps;
@@ -287,7 +291,20 @@ struct LegacyEngine::Impl {
     config.assetDirectories = directories;
     assetOpenResults.clear();
   }
-  ~Impl() { sl_destroy(cpu); }
+  ~Impl() {
+    try { shutdown(); } catch (...) { /* Explicit shutdown reports errors. */ }
+    sl_destroy(cpu);
+  }
+  bool disposed = false;
+  U64 timerCallbacks = 0;
+  double runLoopTime() const {
+    if(config.runLoopClock) return config.runLoopClock();
+    return (monotonicClock.native() || !config.deterministicTestHost)
+      ? std::chrono::duration<double>(std::chrono::system_clock::now().time_since_epoch()).count()-978307200.0
+      : double(epoch)-978307200.0;
+  }
+  U32 serviceTimers();
+  void shutdown();
   void bounds(U32 at, std::size_t n) const {
     if (at > cpu->memory_size || n > cpu->memory_size - at)
       throw std::runtime_error("Guest memory range exceeded");
@@ -587,19 +604,20 @@ U32 LegacyEngine::Impl::preference(const std::string &key,
   if (config.useLocalMacPreferences) {
     CFStringRef k =
         CFStringCreateWithCString(nullptr, key.c_str(), kCFStringEncodingUTF8);
-    CFStringRef app = CFStringCreateWithCString(nullptr, application.c_str(),
-                                                kCFStringEncodingUTF8);
-    if (!k || !app) {
+    if (!k) {
       if (k)
         CFRelease(k);
-      if (app)
-        CFRelease(app);
       throw std::runtime_error("Cannot construct local preference key");
     }
-    CFPropertyListRef v = CFPreferencesCopyValue(
-        k, app, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+    CFPropertyListRef v = nullptr;
+    for (const auto& domain : preferenceReadDomains(application)) {
+      CFStringRef app = CFStringCreateWithCString(nullptr, domain.c_str(), kCFStringEncodingUTF8);
+      if (!app) { CFRelease(k); throw std::runtime_error("Invalid preference domain"); }
+      v = CFPreferencesCopyValue(k, app, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+      CFRelease(app);
+      if (v) break;
+    }
     CFRelease(k);
-    CFRelease(app);
     if (v) {
       if (CFGetTypeID(v) != CFStringGetTypeID()) {
         CFRelease(v);
@@ -760,9 +778,7 @@ void LegacyEngine::Impl::service(U32 pc) {
   } else if(name=="_OSMemoryBarrier")__atomic_thread_fence(__ATOMIC_SEQ_CST);
   else if(name=="_CFAbsoluteTimeGetCurrent") {
     hasFloat=true;
-    fp=(monotonicClock.native()||!config.deterministicTestHost)
-      ?std::chrono::duration<double>(std::chrono::system_clock::now().time_since_epoch()).count()-978307200.0
-      :double(epoch)-978307200.0;
+    fp=runLoopTime();
   }
   else if(name=="_CFRunLoopTimerCreate") {
     const double first=read<double>(sp+8),interval=read<double>(sp+16);
@@ -778,9 +794,11 @@ void LegacyEngine::Impl::service(U32 pc) {
     result=eventLoop;
   } else if(name=="_CFRunLoopAddTimer"||name=="_CFRunLoopRemoveTimer") {
     if(!timers.count(arg(1)))throw std::runtime_error("Unknown original CF timer");
+    auto& timer=timers.at(arg(1));
+    timer.scheduled=timer.valid && name=="_CFRunLoopAddTimer";
   } else if(name=="_CFRunLoopTimerInvalidate") {
     auto timer=timers.find(arg(0));
-    if(timer!=timers.end())timer->second.interval=0;
+    if(timer!=timers.end()) { timer->second.valid=false;timer->second.scheduled=false; }
   }
   else if (editorPlatformService(name, sp, result)) {
     // Modern Cocoa owns the chooser; original module IO continues below it.
@@ -1192,6 +1210,36 @@ void LegacyEngine::Impl::service(U32 pc) {
     if (arg(3))
       zero(arg(3), 80);
     result = U32(-43);
+  } else if (name == "_stat") {
+    struct stat status{};
+    std::filesystem::path path=string(arg(0));
+    int rc=::stat(path.c_str(),&status);
+    int failure=errno;
+    if(rc && failure==ENOENT) {
+      const auto asset=resolveAsset(path.string());
+      if(!asset.empty()) { rc=::stat(asset.c_str(),&status);failure=errno; }
+    }
+    result=U32(rc);
+    if(rc) {
+      if(!errnoPointer)errnoPointer=allocate(4);
+      put(errnoPointer,U32(failure));
+    } else {
+      // The imported non-INODE64 Darwin i386 stat ABI is 96 bytes.
+      const U32 out=arg(1);zero(out,96);
+      put(out,U32(status.st_dev));put(out+4,U32(status.st_ino));
+      put(out+8,std::uint16_t(status.st_mode));put(out+10,std::uint16_t(status.st_nlink));
+      put(out+12,U32(status.st_uid));put(out+16,U32(status.st_gid));put(out+20,U32(status.st_rdev));
+#ifdef __APPLE__
+      put(out+24,U32(status.st_atimespec.tv_sec));put(out+28,U32(status.st_atimespec.tv_nsec));
+      put(out+32,U32(status.st_mtimespec.tv_sec));put(out+36,U32(status.st_mtimespec.tv_nsec));
+      put(out+40,U32(status.st_ctimespec.tv_sec));put(out+44,U32(status.st_ctimespec.tv_nsec));
+#else
+      put(out+24,U32(status.st_atim.tv_sec));put(out+28,U32(status.st_atim.tv_nsec));
+      put(out+32,U32(status.st_mtim.tv_sec));put(out+36,U32(status.st_mtim.tv_nsec));
+      put(out+40,U32(status.st_ctim.tv_sec));put(out+44,U32(status.st_ctim.tv_nsec));
+#endif
+      put(out+48,U64(status.st_size));put(out+56,U64(status.st_blocks));put(out+64,U32(status.st_blksize));
+    }
   } else if (name == "_opendir") {
     if (!errnoPointer)
       errnoPointer = allocate(4);
@@ -1667,6 +1715,7 @@ void LegacyEngine::Impl::service(U32 pc) {
   reg(0x10, currentSp + 4 + extraPop);
 }
 void LegacyEngine::Impl::initialize() {
+  if (disposed) throw std::runtime_error("The original engine has been shut down");
   if (initialized)
     return;
   for (std::size_t i = 0; i < legacy_initializer_count; ++i)
@@ -1754,10 +1803,59 @@ void LegacyEngine::Impl::setAUFormat() {
     throw std::runtime_error("Original AU rejected its stream format");
 }
 
+std::uint32_t LegacyEngine::Impl::serviceTimers() {
+  if (!initialized || disposed) return 0;
+  const double now = runLoopTime();
+  if (!std::isfinite(now)) throw std::runtime_error("Invalid run-loop clock");
+  std::vector<U32> due;
+  for (const auto& timer : timers)
+    if (timer.second.scheduled && timer.second.valid && timer.second.delay <= now)
+      due.push_back(timer.first);
+  U32 fired = 0;
+  for (U32 token : due) {
+    auto at = timers.find(token);
+    if (at == timers.end() || !at->second.valid || !at->second.scheduled || at->second.delay > now) continue;
+    const auto timer = at->second;
+    // Core Foundation coalesces missed periodic firings. It does not replay
+    // an unbounded backlog when a host's control thread was occupied.
+    if (timer.interval > 0) {
+      at->second.delay += (std::floor((now-timer.delay)/timer.interval)+1.0)*timer.interval;
+      if (at->second.delay <= now) at->second.delay = std::nextafter(now, std::numeric_limits<double>::infinity());
+    } else { at->second.valid=false;at->second.scheduled=false; }
+    if (timer.callback) {
+      run(timer.callback, {token, timer.data});
+      ++fired;++timerCallbacks;
+    }
+    // The callback may invalidate/release this timer or start a new one.
+  }
+  return fired;
+}
+void LegacyEngine::Impl::shutdown() {
+  if (disposed) return;
+  disposed=true;
+  if (!initialized) return;
+  initialized=false;
+  if (active) {
+    if (config.audioUnitMode) run(0xc213e,{outer});
+    else dispatch(12,0,0);
+    active=false;
+  }
+  // D1 (non-deleting destructor): storage belongs to this address arena.
+  run(config.audioUnitMode ? 0x9ecb2 : 0x57a86,
+      {config.audioUnitMode ? outer : object});
+  while (!guestExitCallbacks.empty()) {
+    const auto callback=guestExitCallbacks.back();guestExitCallbacks.pop_back();
+    run(callback[0],{callback[1]});
+  }
+  timers.clear();initialized=false;disposed=true;
+}
+
 LegacyEngine::LegacyEngine(LegacyEngineConfig config)
     : impl_(new Impl(std::move(config))) {}
 LegacyEngine::~LegacyEngine() = default;
 void LegacyEngine::initialize() { impl_->initialize(); }
+std::uint32_t LegacyEngine::serviceTimers() { return impl_->serviceTimers(); }
+void LegacyEngine::shutdown() { impl_->shutdown(); }
 void LegacyEngine::restoreChunk(const std::vector<std::uint8_t> &chunk,
                                 bool program) {
   impl_->initialize();
@@ -2555,10 +2653,10 @@ void LegacyEngine::persistValidatedRegistration() {
     if (!value)
       throw std::runtime_error("Cannot encode local registration preference");
     CFPreferencesSetValue(CFSTR("KajaSysGlo"), value,
-                          CFSTR("com.linplug.CronoX3"),
+                          CFSTR("com.linplug.CronoX3.ARMTest"),
                           kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
     CFRelease(value);
-    if (!CFPreferencesSynchronize(CFSTR("com.linplug.CronoX3"),
+    if (!CFPreferencesSynchronize(CFSTR("com.linplug.CronoX3.ARMTest"),
                                   kCFPreferencesCurrentUser,
                                   kCFPreferencesAnyHost))
       throw std::runtime_error(
@@ -2735,6 +2833,9 @@ std::string LegacyEngine::diagnosticJson() const {
     << ",\"voice_activity\":" << impl_->voiceActivityJson()
     << ",\"initialized\":" << (impl_->initialized ? "true" : "false")
     << ",\"active\":" << (impl_->active ? "true" : "false")
+    << ",\"timer_callbacks\":" << impl_->timerCallbacks
+    << ",\"timers_registered\":" << impl_->timers.size()
+    << ",\"disposed\":" << (impl_->disposed ? "true" : "false")
     << ",\"original_render_denormal_mode_applied\":"
     << (impl_->renderFloatModeApplied ? "true" : "false")
     << ",\"host_denormal_mode_already_enabled\":"

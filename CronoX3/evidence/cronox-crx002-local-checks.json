@@ -1,0 +1,43 @@
+{
+  "checkpoint": "CRX002",
+  "original_kernel_changed_since_crx001": false,
+  "source_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "native_au_runtime_tested_on_mac": false,
+  "auval_executed": false,
+  "sound_fidelity_verified": false,
+  "transaction_regression_tests": 14,
+  "results": {
+    "linux_run_loop": {
+      "passed": true,
+      "original_timer_callbacks": 6,
+      "rendered_frames": 6144,
+      "bank_roundtrip_bytes": 22060,
+      "original_destructor_executed": true,
+      "global_destructors_executed": true,
+      "comparison_preferences_isolated": true
+    },
+    "linux_control_thread": {
+      "passed": true,
+      "background_original_callbacks": 6,
+      "rendered_frames": 16640,
+      "reinitialized_at_48000": true,
+      "original_shutdown_executed": true
+    },
+    "arm64_qemu_run_loop": {
+      "passed": true,
+      "original_timer_callbacks": 6,
+      "rendered_frames": 6144,
+      "bank_roundtrip_bytes": 22060,
+      "original_destructor_executed": true,
+      "global_destructors_executed": true,
+      "comparison_preferences_isolated": true
+    },
+    "arm64_qemu_control_thread": {
+      "passed": true,
+      "background_original_callbacks": 17,
+      "rendered_frames": 16640,
+      "reinitialized_at_48000": true,
+      "original_shutdown_executed": true
+    }
+  }
+}

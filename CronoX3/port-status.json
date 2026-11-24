@@ -1,6 +1,6 @@
 {
   "project": "CronoX 3 ARM64",
-  "checkpoint": "CRX001",
+  "checkpoint": "CRX002",
   "original_version": "3.6.6",
   "original_architectures": [
     "i386",
@@ -23,8 +23,8 @@
   "experimental_sophistry_cp040_reused": false,
   "original_named_text_symbols": 3174,
   "ghidra_detected_instructions": 211282,
-  "native_audio_unit_available": false,
-  "installation_enabled": false,
+  "native_audio_unit_available": true,
+  "installation_enabled": true,
   "auval_executed": false,
   "output_gain_policy": "Original CronoX DSP gain, unity AU output compensation",
   "native_kernel_compiled_linux": true,
@@ -44,10 +44,10 @@
   "original_au_bridge_is_not_native_au": true,
   "editor_bindings_available": false,
   "remaining_work": [
-    "CronoX 3.6.6 original UI ABI and controls",
-    "Native AU factory/build/installation/auval",
-    "Full render and original-versus-port audio comparison",
-    "Original timer lifecycle integration"
+    "User macOS AU factory, Cocoa, installed auval and audio tests for CRX002",
+    "CronoX 3.6.6 original UI ABI, panels and controls",
+    "Original-versus-port audio and CPU comparison in Logic and Live",
+    "Original AU identity restoration after user validation"
   ],
   "original_audio_unit": {
     "type": "aumu",
@@ -60,5 +60,17 @@
   "original_identity_reserved_until_validation": true,
   "native_kernel_compiled_arm64": true,
   "arm64_instruction_replay_cases": 6228,
-  "original_au_bridge_arm64_qemu_passed": true
+  "original_au_bridge_arm64_qemu_passed": true,
+  "native_audio_unit_status": "Source/build candidate for user macOS validation; not yet runtime-validated",
+  "original_preference_writes_isolated": true,
+  "original_license_read_fallback": true,
+  "original_timer_lifecycle_integrated": true,
+  "original_destructors_integrated": true,
+  "comparison_cocoa_view_available": true,
+  "original_cocoa_panels_complete": false,
+  "native_au_macho_arm64_cross_link_passed": true,
+  "crx001_user_macos_tests_passed": true,
+  "transaction_regression_checks": 14,
+  "sound_fidelity_verified": false,
+  "macos_au_host_tested": false
 }

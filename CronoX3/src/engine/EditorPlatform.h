@@ -153,7 +153,8 @@ bool LegacyEngine::Impl::editorPlatformService(const std::string &name, U32 sp,
     if (config.useLocalMacPreferences) {
       auto k = CFStringCreateWithCString(nullptr, key.c_str(),
                                          kCFStringEncodingUTF8);
-      auto app = CFStringCreateWithCString(nullptr, application.c_str(),
+      const auto writeDomain = preferenceWriteDomain(application);
+      auto app = CFStringCreateWithCString(nullptr, writeDomain.c_str(),
                                            kCFStringEncodingUTF8);
       auto v = CFStringCreateWithCString(nullptr, text.c_str(),
                                          kCFStringEncodingUTF8);
@@ -172,7 +173,7 @@ bool LegacyEngine::Impl::editorPlatformService(const std::string &name, U32 sp,
     result = 1;
 #ifdef __APPLE__
     if (config.useLocalMacPreferences) {
-      const auto application = cfString(arg(0));
+      const auto application = preferenceWriteDomain(cfString(arg(0)));
       auto app = CFStringCreateWithCString(nullptr, application.c_str(),
                                            kCFStringEncodingUTF8);
       if (app) {

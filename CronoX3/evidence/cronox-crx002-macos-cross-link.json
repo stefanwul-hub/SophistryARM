@@ -1,0 +1,27 @@
+{
+  "checkpoint": "CRX002",
+  "scope": "ARM64 Mach-O cross-compilation and strict link; no macOS execution",
+  "core_units": 413,
+  "binaries": [
+    {
+      "binary": "CronoX3ARMTest",
+      "bytes": 34665120,
+      "sha256": "f741ae4b1e5c3a8dba20600a7e7d5ad6c3cec9958c32ba81b05eb8097002f99c",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXComparisonProbe-macos",
+      "bytes": 1230048,
+      "sha256": "15845e6d0b4bba810964be005cf7f42e2aa75eccf442f2eda173e2ac1d1a3987",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    }
+  ],
+  "original_sdk_sources_unchanged": true,
+  "exports_isolated": true,
+  "auval_executed": false,
+  "macos_runtime_executed": false,
+  "sound_fidelity_verified": false,
+  "passed": true
+}

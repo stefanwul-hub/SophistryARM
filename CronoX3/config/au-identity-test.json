@@ -19,5 +19,6 @@
   "restore_original_au_identity_after_user_validation": true,
   "native_sample_preferences_domain": "com.linplug.CronoX3.ARMTest",
   "original_license_read_domain": "com.linplug.CronoX3",
-  "original_preferences_overwrite_allowed": false
+  "original_preferences_overwrite_allowed": false,
+  "build_version": "2001"
 }

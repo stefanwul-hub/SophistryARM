@@ -1,0 +1,16 @@
+{
+  "source_commit": "e8eca92d1b51bc4e5d754d2880880bd8593cbf9d",
+  "base_commit": "ff07585c53d20371362ba5071d6b58183634bfae",
+  "original_root_entries_preserved": 46,
+  "launcher_commit": "e32a3d320ff593b681812086a8a82f8ed8dbe7f3",
+  "checkpoint": "CRX001",
+  "publication_directory": "CronoX3",
+  "branch": "codex/sophistry-native-checkpoints",
+  "source_archive_sha256": "23606fa8ab160e0ad48046e13700a1b04fca445af0096a9e0d2a160a7b9f9630",
+  "launcher_download_crc_and_bytes_verified": true,
+  "launcher_zip_sha256": "970bd2f159dccb74b0447050116b0c6bf238a737283d858b9dfc43da5dcd76f9",
+  "comparison_au_subtype": "CrT3",
+  "original_au_subtype": "CrX3",
+  "native_macos_audio_unit_available": false,
+  "next_step": "Mac engine report, then original CronoX UI bindings / native comparison AU / timer and preferences integration"
+}
