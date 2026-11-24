@@ -1,0 +1,254 @@
+{
+  "chunk_bytes": 900000,
+  "files": [
+    {
+      "path": "analysis/cronox/pcode/instructions.jsonl.gz",
+      "bytes": 4710092,
+      "sha256": "000936c283470f4c243a9590bdef0b217b527b2baf30e243cfd6fb9df98efb50",
+      "parts": [
+        {
+          "path": "sources/payload-parts/008-000.part",
+          "bytes": 900000,
+          "sha256": "693a5970bcb600fa5b8b7bd7942bd7c6c0b55e9d7fa1a9b24a4d0a2d65ddc037"
+        },
+        {
+          "path": "sources/payload-parts/008-001.part",
+          "bytes": 900000,
+          "sha256": "3f367d3bb5eaa090db1f24fb38367228623f40856249a42eac2cf7304f8ac862"
+        },
+        {
+          "path": "sources/payload-parts/008-002.part",
+          "bytes": 900000,
+          "sha256": "0fb78ad914b606c39ab0e6f34767bfda154ccebd1e3786a0fd21b1c922a388b0"
+        },
+        {
+          "path": "sources/payload-parts/008-003.part",
+          "bytes": 900000,
+          "sha256": "786c2348efc5dac031bb7d810a20af202c828ed833b49c3d88e2344c6f2594ed"
+        },
+        {
+          "path": "sources/payload-parts/008-004.part",
+          "bytes": 900000,
+          "sha256": "a435c4c7d7efc39e3689f1999afaf50496fdb26f29ade56fcf5bbe17c4a504fd"
+        },
+        {
+          "path": "sources/payload-parts/008-005.part",
+          "bytes": 210092,
+          "sha256": "8d058a4f8448548a1b0cd2b7072e2fd244accd720ae99a2e4562e4b599200e3d"
+        }
+      ]
+    },
+    {
+      "path": "checkpoints/cronox/Decompilation-CRX001.tar.gz",
+      "bytes": 1232663,
+      "sha256": "cdadf822d5b442a44ac6afae515da8dc9a09c8d0aa21bed27d0e06277841243b",
+      "parts": [
+        {
+          "path": "sources/payload-parts/013-000.part",
+          "bytes": 900000,
+          "sha256": "62ba70028a775279c1493dc62cec6b23b8e0a669c2a6090bb0d033ca012e050f"
+        },
+        {
+          "path": "sources/payload-parts/013-001.part",
+          "bytes": 332663,
+          "sha256": "9e82e20fb72b272658f49428dfb8fe032d5665df5d24393d78e3f460b1021237"
+        }
+      ]
+    },
+    {
+      "path": "checkpoints/cronox/Ghidra-CRX001.zip",
+      "bytes": 8165013,
+      "sha256": "514cd2ddd2a0700844b661b9896bcca717bf641400c9ac8a1a9456c3a1c79381",
+      "parts": [
+        {
+          "path": "sources/payload-parts/014-000.part",
+          "bytes": 900000,
+          "sha256": "9037c537bda25f6a7c53a5063a4c5031e9a3a72b499f0a2581aadefd284f8cfe"
+        },
+        {
+          "path": "sources/payload-parts/014-001.part",
+          "bytes": 900000,
+          "sha256": "085b2bae193a5c69bc09550ae0c8ba4a451a3ee2b22eb754b6dd4bf89c31c4ac"
+        },
+        {
+          "path": "sources/payload-parts/014-002.part",
+          "bytes": 900000,
+          "sha256": "46ff08d786965f39694ce928cd7f2b7545c07fa281b6103194e7e59957d1c397"
+        },
+        {
+          "path": "sources/payload-parts/014-003.part",
+          "bytes": 900000,
+          "sha256": "85520ebeeeeca6de94c41bdac2300ee2c85f0fe89b1d6a5fb6a2a136bc5ca651"
+        },
+        {
+          "path": "sources/payload-parts/014-004.part",
+          "bytes": 900000,
+          "sha256": "636314353dddfce08eaa54ba39166ee7319a72b021be4a88bbb8d33f32dd7434"
+        },
+        {
+          "path": "sources/payload-parts/014-005.part",
+          "bytes": 900000,
+          "sha256": "a1fdb5ea96c67e171d8bb1997864cdcd23ad2ce77ff5f1b8de3ce69351e37d8f"
+        },
+        {
+          "path": "sources/payload-parts/014-006.part",
+          "bytes": 900000,
+          "sha256": "a7f83ffde4d983cd579ac7fba0ea56edcc05ec662db784e0e86fae3c2d8a95aa"
+        },
+        {
+          "path": "sources/payload-parts/014-007.part",
+          "bytes": 900000,
+          "sha256": "16b306c9e748f950523f5a9de892daac71b03359a6a1374e26e364a46fe1c856"
+        },
+        {
+          "path": "sources/payload-parts/014-008.part",
+          "bytes": 900000,
+          "sha256": "32cd1a803e3969ebef2eede341b57f1062d6a08a46950010e3ebbf87d5adfb76"
+        },
+        {
+          "path": "sources/payload-parts/014-009.part",
+          "bytes": 65013,
+          "sha256": "16d95015574b4974d73ee99d9fb0aebc1c73721ed3954ae3b596ba8de87c4ac4"
+        }
+      ]
+    },
+    {
+      "path": "reference/CronoX3.component.zip",
+      "bytes": 4558045,
+      "sha256": "a456eb4d417d3534c5b3bd77ce00c06c8be83a4a73b9ba239e0cc94ce92c9b30",
+      "parts": [
+        {
+          "path": "sources/payload-parts/023-000.part",
+          "bytes": 900000,
+          "sha256": "db18adac6d70c8b915e6699ea60bca19563461a854d43e857d633d92cfea5615"
+        },
+        {
+          "path": "sources/payload-parts/023-001.part",
+          "bytes": 900000,
+          "sha256": "c7d4eebcd085ea3f4fcd98e34b4f7123fb1a816e50e501311445bd7e2a1d6f04"
+        },
+        {
+          "path": "sources/payload-parts/023-002.part",
+          "bytes": 900000,
+          "sha256": "1d5fe3abd93b3e36cb954757aed93ddacbcd63fdd7eb58ec5b36b905e474c207"
+        },
+        {
+          "path": "sources/payload-parts/023-003.part",
+          "bytes": 900000,
+          "sha256": "657d6b4c43657ae967c09a33a82a82afad90c4c38c7d0f437a476d776a796490"
+        },
+        {
+          "path": "sources/payload-parts/023-004.part",
+          "bytes": 900000,
+          "sha256": "ee023d8c7310bbf271b74fe71eca2f01a74d848b7a9e0d28b01d66d29931dd3d"
+        },
+        {
+          "path": "sources/payload-parts/023-005.part",
+          "bytes": 58045,
+          "sha256": "48f241d5ade0d728330ca626373b9c03d8287a25838c3d6df75a34c1f1a40341"
+        }
+      ]
+    },
+    {
+      "path": "reference/CronoX3.i386",
+      "bytes": 1578640,
+      "sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+      "parts": [
+        {
+          "path": "sources/payload-parts/024-000.part",
+          "bytes": 900000,
+          "sha256": "eed7bf56d675eeafbfc4619bb22e4c635ec95e19b6d1d82e7c1c02dcefbaa22d"
+        },
+        {
+          "path": "sources/payload-parts/024-001.part",
+          "bytes": 678640,
+          "sha256": "3d24be3820fe93d073d8706c6ef426aea0d6b91f98f0d49bad9887c9b1c6d787"
+        }
+      ]
+    },
+    {
+      "path": "reference/Samples/BT_cronox18.wav",
+      "bytes": 1342752,
+      "sha256": "f8bf92f3e7c568de3244e059490782190f0917493120f7414fb95c5622c20050",
+      "parts": [
+        {
+          "path": "sources/payload-parts/027-000.part",
+          "bytes": 900000,
+          "sha256": "c59c87116283fdad13dff80cdd1c8d5ff3032dea3b4db3f37a3ffa4a2070727a"
+        },
+        {
+          "path": "sources/payload-parts/027-001.part",
+          "bytes": 442752,
+          "sha256": "b3fd6daf30759a7bb5f0a3a288263999bb461012d05509e7eeedcabe75de68cc"
+        }
+      ]
+    },
+    {
+      "path": "sources/cronox-kernel-cpp.tar.gz",
+      "bytes": 10001885,
+      "sha256": "0897c74f4f6c41b6afe716fff9986cb4d8c507306af420416afd043e88a45c61",
+      "parts": [
+        {
+          "path": "sources/payload-parts/036-000.part",
+          "bytes": 900000,
+          "sha256": "516ebc7d01030df84822c50288f5a631f236314e43e7d06f3bdafb2cebf5bbc4"
+        },
+        {
+          "path": "sources/payload-parts/036-001.part",
+          "bytes": 900000,
+          "sha256": "a814b4392cfcc65e969e70343d7900fa3cfbf890f2423521994566625b03c4a3"
+        },
+        {
+          "path": "sources/payload-parts/036-002.part",
+          "bytes": 900000,
+          "sha256": "807fadd41d5a9623a767f445f8e26fc92e30fc79ca935ad0e982518f5f8eeffb"
+        },
+        {
+          "path": "sources/payload-parts/036-003.part",
+          "bytes": 900000,
+          "sha256": "6006ced9fd97bb518013fd9eecba3bfda3441d635c60c0a8dccaa1fe23db4298"
+        },
+        {
+          "path": "sources/payload-parts/036-004.part",
+          "bytes": 900000,
+          "sha256": "cbe929041aea8b450a21c10e8dafdb111b08619738fd1d4838c627e0a90e2795"
+        },
+        {
+          "path": "sources/payload-parts/036-005.part",
+          "bytes": 900000,
+          "sha256": "40da4d7f83518cb2983a80b00c4a7914d0514647ff726234e1c69f7d892120b8"
+        },
+        {
+          "path": "sources/payload-parts/036-006.part",
+          "bytes": 900000,
+          "sha256": "61a897ba701b7b75206b58123ff7556e4d09b456be61d5c637c7cab6e1fb1305"
+        },
+        {
+          "path": "sources/payload-parts/036-007.part",
+          "bytes": 900000,
+          "sha256": "bd4bb3d9491333ae94f42bbc4e90747a0752b123a26ec3769a0f3ac29dddf41c"
+        },
+        {
+          "path": "sources/payload-parts/036-008.part",
+          "bytes": 900000,
+          "sha256": "af14965e9ad946f23e6adc66e8c14ec77ee0adb1c39c27a460632a8071b75366"
+        },
+        {
+          "path": "sources/payload-parts/036-009.part",
+          "bytes": 900000,
+          "sha256": "ab83a1f20dced0b9d20a3a0be041dd2cd17804503639c03bd516aca551a4d028"
+        },
+        {
+          "path": "sources/payload-parts/036-010.part",
+          "bytes": 900000,
+          "sha256": "218ac4fb96a5de2140aa55b9b4c03c37fe97ed4f42fe4d857b527b3e03f29b62"
+        },
+        {
+          "path": "sources/payload-parts/036-011.part",
+          "bytes": 101885,
+          "sha256": "675a253c27b2aef023b7ca0974acbef3a7a6e11202bf3e60d118db9fbd34f6b9"
+        }
+      ]
+    }
+  ]
+}

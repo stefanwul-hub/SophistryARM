@@ -1,0 +1,46 @@
+{
+  "project": "CronoX 3 ARM64",
+  "original_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "reference": "Original i386 SQRT machine instructions executed by Unicorn, default MXCSR nearest-even",
+  "sites": [
+    {
+      "address": "0x95795",
+      "asm": "SQRTSD XMM1,XMM0",
+      "width_bits": 64,
+      "cases": 1038
+    },
+    {
+      "address": "0x9a819",
+      "asm": "SQRTSS XMM1,XMM2",
+      "width_bits": 32,
+      "cases": 1038
+    },
+    {
+      "address": "0x9b489",
+      "asm": "SQRTSD XMM6,XMM4",
+      "width_bits": 64,
+      "cases": 1038
+    },
+    {
+      "address": "0x9b4ca",
+      "asm": "SQRTSD XMM2,XMM3",
+      "width_bits": 64,
+      "cases": 1038
+    },
+    {
+      "address": "0x9b50a",
+      "asm": "SQRTSD XMM7,XMM0",
+      "width_bits": 64,
+      "cases": 1038
+    },
+    {
+      "address": "0x9b540",
+      "asm": "SQRTSD XMM5,XMM1",
+      "width_bits": 64,
+      "cases": 1038
+    }
+  ],
+  "cases": 6228,
+  "fixtures_sha256": "d277f7b8c589f17290812c81c32f8a592dcc0c557cfb921a117607cd2a78655f",
+  "native_or_arm64_replay_executed": false
+}

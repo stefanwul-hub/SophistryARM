@@ -1,0 +1,20 @@
+{
+  "project": "CronoX 3 ARM64",
+  "original_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "detected_instructions": 211282,
+  "compiled_labels": 211282,
+  "missing_labels": [],
+  "extra_labels": [],
+  "unique_symbol_function_entries": 3174,
+  "missing_named_function_entries": [],
+  "rtti_classes": 126,
+  "vtable_address_points": 146,
+  "unique_internal_vtable_targets": 1784,
+  "missing_vtable_targets": [],
+  "unresolved_direct_edges": [],
+  "capstone_length_disagreements": [],
+  "generated_files_verified": 414,
+  "generated_file_hash_errors": [],
+  "inventory_is_not_exhaustive_behavior_proof": true,
+  "passed": true
+}

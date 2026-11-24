@@ -1,0 +1,72 @@
+[
+  {
+    "type": "STR ",
+    "id": 1000,
+    "size": 18,
+    "hex": "114c696e506c75673a2043726f6e6f582033",
+    "text": "LinPlug: CronoX 3"
+  },
+  {
+    "type": "STR ",
+    "id": 1001,
+    "size": 36,
+    "hex": "234c696e506c75672043726f6e6f5820332053616d706c652053796e74686573697a6572",
+    "text": "LinPlug CronoX 3 Sample Synthesizer"
+  },
+  {
+    "type": "STR ",
+    "id": 2000,
+    "size": 25,
+    "hex": "184c696e506c75673a2043726f6e6f58203320456469746f72",
+    "text": "LinPlug: CronoX 3 Editor"
+  },
+  {
+    "type": "STR ",
+    "id": 2001,
+    "size": 37,
+    "hex": "244c696e506c75672043726f6e6f5820332053796e74682056697375616c20456469746f72",
+    "text": "LinPlug CronoX 3 Synth Visual Editor"
+  },
+  {
+    "type": "dlle",
+    "id": 1000,
+    "size": 14,
+    "hex": "415543726f6e6f58456e74727900"
+  },
+  {
+    "type": "dlle",
+    "id": 2000,
+    "size": 20,
+    "hex": "4c504155436172626f6e56696577456e74727900"
+  },
+  {
+    "type": "thng",
+    "id": 1000,
+    "size": 82,
+    "hex": "61756d75437258334c696e5000000000000000000000000000005354522003e85354522003e9000000000000000306060000000900000000000210000000646c6c6503e8000610000000646c6c6503e80008",
+    "name": "LinPlug: CronoX 3",
+    "component": {
+      "type": "aumu",
+      "subtype": "CrX3",
+      "manufacturer": "LinP"
+    },
+    "flags": 0,
+    "flags_mask": 0,
+    "version": "0x30606"
+  },
+  {
+    "type": "thng",
+    "id": 2000,
+    "size": 82,
+    "hex": "61757677437258334c696e5000000000000000000000000000005354522007d05354522007d1000000000000000306060000000900000000000210000000646c6c6507d0000610000000646c6c6507d00008",
+    "name": "LinPlug: CronoX 3 Editor",
+    "component": {
+      "type": "auvw",
+      "subtype": "CrX3",
+      "manufacturer": "LinP"
+    },
+    "flags": 0,
+    "flags_mask": 0,
+    "version": "0x30606"
+  }
+]

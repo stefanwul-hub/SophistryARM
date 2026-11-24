@@ -1,0 +1,8 @@
+{
+  "file": "Ghidra-CRX001.zip",
+  "sha256": "514cd2ddd2a0700844b661b9896bcca717bf641400c9ac8a1a9456c3a1c79381",
+  "bytes": 8165013,
+  "zip_crc_verified": true,
+  "language": "x86:LE:32:default",
+  "original_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969"
+}

@@ -1,0 +1,23 @@
+{
+  "profile": "comparison",
+  "display_name": "CronoX 3 ARM Test",
+  "component_type": "aumu",
+  "component_subtype": "CrT3",
+  "manufacturer": "LinP",
+  "bundle_identifier": "com.linplug.au.CronoX3.ARMTest",
+  "bundle_name": "CronoX 3 ARM Test",
+  "executable": "CronoX3ARMTest",
+  "factory_function": "CronoX3ARMTestAUFactory",
+  "cocoa_factory_class": "CronoX3ARMTestCocoaFactory",
+  "installation_directory": "/Library/Audio/Plug-Ins/Components",
+  "component_filename": "CronoX 3 ARM Test.component",
+  "original_component_subtype": "CrX3",
+  "original_bundle_identifier": "com.linplug.au.CronoX3",
+  "original_component_filename": "CronoX 3.component",
+  "original_replacement_allowed": false,
+  "legacy_vst_state_uid": "Crx3",
+  "restore_original_au_identity_after_user_validation": true,
+  "native_sample_preferences_domain": "com.linplug.CronoX3.ARMTest",
+  "original_license_read_domain": "com.linplug.CronoX3",
+  "original_preferences_overwrite_allowed": false
+}

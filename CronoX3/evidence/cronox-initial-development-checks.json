@@ -1,0 +1,97 @@
+{
+  "project": "CronoX 3 ARM64",
+  "original_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "kernel": {
+    "compilation_units": 413,
+    "detected_original_instructions": 211282,
+    "pcode_operations": 786267,
+    "native_linux_shared_library_compiled": true,
+    "library_sha256": "68e5fc8ecd1af09368c8446cbe6bf429be647bba6b2d199fc45c2695f6e6c4f4"
+  },
+  "instruction_replay": {
+    "scope": "isolated original instruction and recovered-branch fixtures",
+    "cases": 6228,
+    "compared_register_bytes": 99648,
+    "compared_memory_bytes": 0,
+    "passed": true,
+    "full_engine_tested": false
+  },
+  "sqrt64_helper": {
+    "linux_cases": 5190,
+    "arm64_qemu_cases": 5190,
+    "bit_mismatches": 0
+  },
+  "guest_string_abi": {
+    "linux_checks": 14,
+    "arm64_qemu_checks": 14,
+    "passed": true
+  },
+  "native_audio_unit_available": false,
+  "macos_auval_executed": false,
+  "sound_fidelity_of_whole_synth_certified": false,
+  "sophistry_definitive_checkpoint": "CP038",
+  "passed_for_declared_scope": true,
+  "engine_boot": {
+    "project": "CronoX 3 ARM64",
+    "engine_initialized": true,
+    "program_bytes": 20928,
+    "output_channels": 6,
+    "au_tested": false
+  },
+  "original_au_bridge_linux": {
+    "project": "CronoX 3",
+    "original_au_bridge": true,
+    "parameters": 522,
+    "program_roundtrip": true,
+    "program_bytes": 20928,
+    "rendered_frames": 2048,
+    "finite_audio": true,
+    "sound_fidelity_verified": false,
+    "macos_auval_executed": false
+  },
+  "public_preset_load_linux": {
+    "project": "CronoX 3",
+    "original_au_bridge": true,
+    "parameters": 522,
+    "program_roundtrip": true,
+    "program_bytes": 20928,
+    "rendered_frames": 2048,
+    "finite_audio": true,
+    "sound_fidelity_verified": false,
+    "macos_auval_executed": false
+  },
+  "whole_kernel_arm64_build": "passed: all 413 generated units, dispatcher, runtime and host compiled for aarch64-linux-musl",
+  "arm64_runtime": "QEMU aarch64, ELF/Linux; not an Apple AudioComponent host",
+  "arm64_instruction_replay": {
+    "scope": "isolated original instruction and recovered-branch fixtures",
+    "cases": 6228,
+    "compared_register_bytes": 99648,
+    "compared_memory_bytes": 0,
+    "passed": true,
+    "full_engine_tested": false
+  },
+  "original_au_bridge_arm64_qemu": {
+    "project": "CronoX 3",
+    "original_au_bridge": true,
+    "parameters": 522,
+    "program_roundtrip": true,
+    "program_bytes": 20928,
+    "rendered_frames": 2048,
+    "finite_audio": true,
+    "sound_fidelity_verified": false,
+    "macos_auval_executed": false
+  },
+  "public_preset_load_arm64_qemu": {
+    "project": "CronoX 3",
+    "original_au_bridge": true,
+    "parameters": 522,
+    "program_roundtrip": true,
+    "program_bytes": 20928,
+    "rendered_frames": 2048,
+    "finite_audio": true,
+    "sound_fidelity_verified": false,
+    "macos_auval_executed": false
+  },
+  "comparison_audio_unit_identity": "aumu/CrT3/LinP",
+  "original_audio_unit_replacement_allowed": false
+}
