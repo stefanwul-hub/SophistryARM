@@ -1,0 +1,17 @@
+CronoX 3 ARM Test — CRX002
+
+Décompressez ce petit ZIP puis ouvrez Demarrer-CronoX-CRX002.command.
+Quittez Logic/Live pendant l’installation puis rouvrez-les.
+Le lanceur télécharge et vérifie les sources, réutilise le cache CRX001,
+compile en ARM64, teste le candidat, exécute auval et installe uniquement :
+/Library/Audio/Plug-Ins/Components/CronoX 3 ARM Test.component
+
+L’original CronoX CrX3 et Sophistry CP038 restent en place.
+Cherchez « CronoX 3 ARM Test » dans Logic/Live. La vue est encore compacte :
+Load, Prev/Next, Save .aupreset, Banque de sons et Copier le diagnostic.
+Les panneaux d’origine ne sont pas encore raccordés.
+
+Comparez le même preset sur l’original et la version ARM avec les mêmes
+notes, réglages et niveaux. La conformité sonore reste à valider.
+Envoyez ensuite le ZIP CronoX3-rapports-CRX002-… créé sur le Bureau.
+Ne transmettez pas votre licence.
