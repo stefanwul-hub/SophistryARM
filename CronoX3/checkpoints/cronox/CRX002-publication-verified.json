@@ -1,0 +1,20 @@
+{
+  "checkpoint": "CRX002",
+  "source_commit": "d811b6cfc65813450d64a00177bde7b7f3c93be7",
+  "launcher_commit": "460c5d3c7dfa978562ad0fede0956e600d13ef5e",
+  "launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/460c5d3c7dfa978562ad0fede0956e600d13ef5e/CronoX3/Demarrer-CronoX-CRX002.zip",
+  "launcher_download_sha256": "7a7166166f656ea7c80258f44de1ed0e7806b676ec1abe18b731b75dcb6bc952",
+  "launcher_download_bytes": 1811,
+  "download_crc_and_contents_verified": true,
+  "original_root_entries_preserved": 46,
+  "source_archive_sha256": "0731b4700dd3da883f6a0391037a43ca1d1935f4c871d8f2fe0a259afac5e269",
+  "source_archive_files_verified": 156,
+  "fresh_source_preparation_passed": true,
+  "transaction_tests_passed": 14,
+  "comparison_identity": "aumu/CrT3/LinP",
+  "original_identity": "aumu/CrX3/LinP",
+  "sophistry_frozen_at": "CP038",
+  "macos_auval_executed": false,
+  "macos_au_runtime_validated": false,
+  "sound_fidelity_verified": false
+}
