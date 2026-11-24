@@ -1,0 +1,34 @@
+{
+  "source_commit": "e8eca92d1b51bc4e5d754d2880880bd8593cbf9d",
+  "archive_url": "https://codeload.github.com/stefanwul-hub/SophistryARM/zip/e8eca92d1b51bc4e5d754d2880880bd8593cbf9d",
+  "archive_bytes": 74426968,
+  "archive_sha256": "23606fa8ab160e0ad48046e13700a1b04fca445af0096a9e0d2a160a7b9f9630",
+  "zip_crc_verified": true,
+  "cronox_files_verified": 101,
+  "all_published_file_hashes_verified": true,
+  "original_component_replacement_allowed": false,
+  "checkpoint": "CRX001",
+  "scope": "Native ARM64 engine development tests, not an installable Audio Unit",
+  "launcher_zip_sha256": "970bd2f159dccb74b0447050116b0c6bf238a737283d858b9dfc43da5dcd76f9",
+  "launcher_command_sha256": "1d72621aac4147a90f41a8870019de18fe4647c09fda20241ceef679101ad9c6",
+  "package_reconstruction": {
+    "source_commit": "e8eca92d1b51bc4e5d754d2880880bd8593cbf9d",
+    "standalone_package_reconstruction_passed": true,
+    "generated_kernel_files_verified": 415,
+    "comparison_identity_verified": true,
+    "original_replacement_allowed": false,
+    "macos_execution_performed": false,
+    "prepare_stdout": "415 fichiers du noyau v\u00e9rifi\u00e9s ; 413 unit\u00e9s de traduction statique.\nImage, imports et initialisateurs originaux v\u00e9rifi\u00e9s.\n",
+    "identity_stdout": "Identit\u00e9 de comparaison v\u00e9rifi\u00e9e : aumu/CrT3/LinP ; original CrX3 conserv\u00e9.\n"
+  },
+  "comparison_component": {
+    "type": "aumu",
+    "subtype": "CrT3",
+    "manufacturer": "LinP",
+    "bundle_id": "com.linplug.au.CronoX3.ARMTest",
+    "filename": "CronoX 3 ARM Test.component"
+  },
+  "original_component_retained": true,
+  "sophistry_checkpoint_retained": "CP038",
+  "macos_auval_executed": false
+}
