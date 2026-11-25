@@ -1,0 +1,8 @@
+{
+  "threshold_windows_and_last_signal": true,
+  "missing_or_silent_measurement_rejected": true,
+  "identical_bank_fingerprints_checked": true,
+  "known_fourfold_cpu_ratio": true,
+  "macos_runtime_executed": false,
+  "passed": true
+}

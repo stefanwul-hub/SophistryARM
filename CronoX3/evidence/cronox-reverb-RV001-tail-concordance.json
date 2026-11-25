@@ -1,0 +1,41 @@
+{
+  "scope": "Isolated original scheduling, exact-zero DSP callback; not a full preset audio/CPU test",
+  "original_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "original_x86_64_sha256": "cd47ed1062207db0b4d862bf3fd0291e99c8d0fd77608ec60af6cb266ad834de",
+  "cases": 81,
+  "all_counters_and_virtual_render_calls_bit_equal": true,
+  "original_countdown_formula": "1.4*(RevTime + predelay_seconds), folded predelay <=0.125s",
+  "full_plugin_preset_reproduced": false,
+  "macos_cpu_measured": false,
+  "discrepancy_with_user_observation_explained": false,
+  "passed": true,
+  "examples": [
+    {
+      "rate": 44100,
+      "frames": 256,
+      "decay": 0.1,
+      "predelay_ms": 25.0,
+      "initial_countdown": 7717,
+      "rendered_tail_blocks": 31,
+      "seconds": 0.1799546485260771
+    },
+    {
+      "rate": 44100,
+      "frames": 256,
+      "decay": 2.0,
+      "predelay_ms": 25.0,
+      "initial_countdown": 125023,
+      "rendered_tail_blocks": 489,
+      "seconds": 2.838639455782313
+    },
+    {
+      "rate": 44100,
+      "frames": 256,
+      "decay": 5.0,
+      "predelay_ms": 25.0,
+      "initial_countdown": 310243,
+      "rendered_tail_blocks": 1212,
+      "seconds": 7.035646258503402
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+CronoX — diagnostic réverbération RV001
+
+Ce diagnostic ne remplace et ne recompile aucun plugin. Fermez Logic et Live,
+puis double-cliquez sur Diagnostiquer-CronoX-Reverbe-RV001.command.
+Choisissez le preset Breath and Butter.FXP, dans Pads / Airy pads de votre banque.
+Un .aupreset CronoX contenant ce même son est également accepté.
+
+Xcode compile seulement deux petits hôtes : ARM64 pour CrT3 et Intel/Rosetta
+pour l'original CrX3. Les deux composants doivent être installés et enregistrés
+avec leur licence habituelle. Aucune clé ne vous est demandée par ce script.
+
+Le même état AU est utilisé pour les deux versions, à 44100 Hz / 256 samples,
+120 BPM, accord MIDI 60/64/67, vélocité 100, tenu environ une seconde.
+Chaque essai dure environ 32 secondes : avant les notes, pendant le son, puis
+pendant la release et la fin de réverbération. Deux essais par architecture :
+réverbération active et coupée. La polyphonie et le preset sur disque ne changent
+pas. Pas de fenêtre d'éditeur, de sortie sur les haut-parleurs ni de DAW ouverte.
+Une cinquième séquence ARM collecte les piles de calcul avec l'outil Apple sample,
+séparément, pour ne pas fausser les quatre mesures CPU.
+
+Comptez environ trois minutes, davantage si le moteur dépasse le temps réel.
+Le ZIP à transmettre apparaît sur le Bureau : CronoX3-reverbe-RV001-....zip.
+Il contient des mesures CPU, peak/RMS et voix par tranche d'environ 100 ms,
+ainsi que les piles de calcul. Les valeurs CPU sont un temps de rendu divisé
+par le temps audio ; ce ne sont pas directement les pourcentages du vu-mètre Live.
+
+L'état AU intermédiaire reste dans un dossier privé temporaire, supprimé à la
+fin. Il n'est pas ajouté au rapport, ni les clés, préférences ou bookmarks.
+Les traces numériques distinguent le zéro exact et plusieurs seuils (-60, -90,
+-120 dBFS) ; le « silence » perçu ou affiché par un hôte n'est pas supposé identique.
+Une sonde silencieuse ou chargée hors du processus est signalée comme invalide.
+
+RV001 est un outil de recherche, pas une correction CPU. La compilation croisée
+et le lien des deux architectures sont vérifiés dans l'environnement de développement.
+L'exécution de cet outil sous macOS reste à confirmer sur votre Mac.

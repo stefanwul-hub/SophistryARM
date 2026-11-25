@@ -1,0 +1,20 @@
+{
+  "diagnostic": "RV001",
+  "binaries": [
+    {
+      "architecture": "arm64",
+      "bytes": 95376,
+      "sha256": "eb6698451c5b813d744483ae425298c6d56d69754888665ab87744eb17dcab4a",
+      "strict_macho_link_passed": true
+    },
+    {
+      "architecture": "x86_64",
+      "bytes": 52472,
+      "sha256": "68262daacc8a887d101ac3016f2fba6180c7440264e0af9747567df5f56ba4a6",
+      "strict_macho_link_passed": true
+    }
+  ],
+  "source_sha256": "e6aa8e2a77815bdb4981315ee14978564d05271f18e7ae84744c63590d18cdeb",
+  "macos_runtime_executed": false,
+  "passed": true
+}

@@ -44,8 +44,8 @@
   "original_au_bridge_is_not_native_au": true,
   "editor_bindings_available": true,
   "remaining_work": [
-    "Mac validation of CRX011 Matrix categories and original arpeggiator display, Cocoa and auval",
-    "Resume saved CPU research after UI publication; reverb and long-release overload remains unresolved",
+    "Identify reverb CPU/tail discrepancy versus installed Intel original using RV001 paired traces and stacks",
+    "Investigate full-synth natural voice retirement and long-release workload as indicated by measurements",
     "Restore original AU identity only after final validation"
   ],
   "original_audio_unit": {
@@ -60,7 +60,7 @@
   "native_kernel_compiled_arm64": true,
   "arm64_instruction_replay_cases": 6228,
   "original_au_bridge_arm64_qemu_passed": true,
-  "native_audio_unit_status": "CRX011 original Matrix/arp interface candidate; macOS validation pending",
+  "native_audio_unit_status": "CRX011 Matrix/arp accepted by user; reverb CPU unresolved; RV001 standalone diagnostic pending Mac execution",
   "original_preference_writes_isolated": true,
   "original_license_read_fallback": true,
   "original_timer_lifecycle_integrated": true,
@@ -86,17 +86,17 @@
   "registration_diagnostics_are_optional": true,
   "macos_candidate_checkpoint": "CRX004",
   "last_auval_checkpoint": "CRX003",
-  "current_checkpoint_macos_runtime_tested": false,
+  "current_checkpoint_macos_runtime_tested": true,
   "native_au_macos_runtime_validated": false,
   "accepted_audio_reference": "CRX005",
   "accepted_audio_reference_user_validated": true,
   "original_ui_panels": 86,
   "original_ui_recorded_controls": 1072,
   "original_ui_pngs": 110,
-  "accepted_ui_reference": "CRX010",
+  "accepted_ui_reference": "CRX011",
   "accepted_ui_reference_user_validated": true,
   "original_ui_control_tags": 877,
-  "last_user_accepted_host_checkpoint": "CRX010",
+  "last_user_accepted_host_checkpoint": "CRX011",
   "last_user_accepted_auval_checkpoint": "CRX005",
   "loop_markers_and_numeric_edits_implemented": true,
   "original_loop_graphics_fixture_paths_verified": true,
@@ -119,5 +119,11 @@
   "arpeggiator_original_draw_cases_verified": 180,
   "arpeggiator_original_draw_operations_verified": 11520,
   "cpu_research_separate_checkpoint": "1cb8ea00334f09584b38b5fe7764c1e2ff0836d6",
-  "cpu_changes_in_this_release": false
+  "cpu_changes_in_this_release": false,
+  "crx011_matrix_arp_user_accepted": true,
+  "reverb_tail_scheduler_isolated_cases": 81,
+  "reverb_tail_i386_x86_64_and_static_cpp_equal": true,
+  "reverb_whole_preset_cpu_reproduced": false,
+  "rv001_diagnostic_macos_executed": false,
+  "rv001_changes_production_component": false
 }

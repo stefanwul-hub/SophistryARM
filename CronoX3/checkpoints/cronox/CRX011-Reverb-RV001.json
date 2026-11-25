@@ -1,0 +1,31 @@
+{
+  "checkpoint": "CRX011 + standalone RV001 research diagnostic",
+  "production_base_commit": "caf61ae5b730122354e820c6da87143ab20331cb",
+  "user_accepted_crx011_matrix_and_arpeggiator": true,
+  "production_component_changed": false,
+  "original_component_changed": false,
+  "sophistry_cp038_frozen": true,
+  "cpu_issue_resolved": false,
+  "user_case": "Breath and Butter, Pads / Airy pads, three notes, CPU persists ~7 s after audible silence only in ARM; original ~4x cheaper",
+  "tail_test": {
+    "source": "analysis/cronox/compare_reverb_tail.py",
+    "backends": ["Original i386/Unicorn", "Original x86_64/Unicorn", "static i386-to-C++ kernel/Linux"],
+    "cases": 81,
+    "identical_counters_and_render_callbacks": true,
+    "callback_is_exact_zero_stub": true,
+    "full_preset_audio_test": false,
+    "macos_cpu_test": false
+  },
+  "standalone_diagnostic": {
+    "directory": "diagnostics/reverb-RV001",
+    "installed_component_required": "CRX011 CrT3 and original CrX3",
+    "cross_compilation_and_strict_link": ["arm64", "x86_64"],
+    "macos_execution_pending": true,
+    "plugin_compilation_required": false,
+    "component_installation_required": false,
+    "shared_bank_is_temporary_private_and_not_reported": true,
+    "licence_values_reported": false,
+    "profile_is_separate_from_four_timing_trials": true
+  },
+  "publication_scope": "CronoX3/ only; preserve all other repository root entries"
+}
