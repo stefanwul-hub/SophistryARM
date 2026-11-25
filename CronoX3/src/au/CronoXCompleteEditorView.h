@@ -2,6 +2,7 @@
 #pragma once
 #include "../engine/CronoXLoopDisplay.h"
 #include "../engine/CompleteEditorControls.h"
+#include "../engine/RecoveredModulation.h"
 #include "CronoXGeneratorView.h"
 #include "SampleDisplay.h"
 namespace cronoxCompleteView {
@@ -54,6 +55,14 @@ inline BOOL file(AudioUnit unit, unsigned tag, unsigned operation,
 inline void drawText(NSString *s, NSRect rect, CGFloat size,
                      NSColor *color = NSColor.whiteColor, NSInteger alignment = 1) {
   cronoxGeneratorView::text(s, rect, size, color, alignment);
+}
+inline NSArray<NSMenuItem*>* menuLeaves(NSMenu* menu) {
+  NSMutableArray<NSMenuItem*>* result=[NSMutableArray array];
+  for(NSMenuItem* item in menu.itemArray) {
+    if(item.submenu)[result addObjectsFromArray:menuLeaves(item.submenu)];
+    else [result addObject:item];
+  }
+  return result;
 }
 } // namespace cronoxCompleteView
 @class CronoX3RecoveredNode;
@@ -116,6 +125,10 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   float n = std::clamp(self.originalNormalized, 0.f, 1.f);
   NSString *value =
       cronoxCompleteView::string(self.state.text, sizeof(self.state.text));
+  if(cronox::modulation::destination(c.tag)) {
+    const auto label=cronox::modulation::menuText(self.state.text);
+    value=cronoxCompleteView::string(label.c_str(),label.size());
+  }
   if (c.kind == K::Gator) {
     NSData *bytes = cronoxCompleteView::text(self.audioUnit, c.tag);
     auto *data = static_cast<const unsigned char *>(bytes.bytes);
@@ -267,6 +280,25 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     return nil;
   }
   NSMenu *menu = [NSMenu new];
+  if(cronox::modulation::destination(c.tag)) {
+    std::vector<std::string> labels;
+    for(unsigned i=0;i<choices.count;++i)labels.emplace_back(choices.labels[i].data(),strnlen(choices.labels[i].data(),choices.labels[i].size()));
+    auto add=[&](NSMenu* target,const std::string& label,unsigned index) {
+      NSString* title=[cronoxCompleteView::string(label.c_str(),label.size()) stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+      NSMenuItem* item=[[NSMenuItem alloc] initWithTitle:title action:@selector(chooseRecovered:) keyEquivalent:@""];
+      item.tag=self.state.minimum+index;item.target=self;item.state=item.tag==self.state.value?NSControlStateValueOn:NSControlStateValueOff;
+      [target addItem:item];return item;
+    };
+    for(const auto& group:cronox::modulation::menu(labels)) {
+      if(group.children.empty()){add(menu,group.text,group.first);continue;}
+      NSString* title=[cronoxCompleteView::string(group.text.c_str(),group.text.size()) stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+      NSMenuItem* parent=[[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
+      NSMenu* children=[[NSMenu alloc] initWithTitle:title];
+      for(const auto& child:group.children)if(add(children,child.text,child.value).state==NSControlStateValueOn)parent.state=NSControlStateValueOn;
+      parent.submenu=children;[menu addItem:parent];
+    }
+    return menu;
+  }
   for (unsigned i = 0; i < choices.count; ++i) {
     NSString *title = [cronoxCompleteView::string(choices.labels[i].data(),
                                                      choices.labels[i].size())
@@ -440,12 +472,14 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 @interface CronoX3ArpeggiatorView : NSView
 @property AudioUnit audioUnit;
 @property(weak) id<CronoX3RecoveredOwner> owner;
+@property NSImage* indicatorImage;
 - (void)refresh;
 - (NSDictionary *)report;
 @end
 @implementation CronoX3ArpeggiatorView {
   NSData *sequence_;
   OSStatus status_;
+  NSTimer* progressTimer_;
 }
 - (BOOL)isFlipped {
   return YES;
@@ -458,54 +492,43 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   sequence_ = d;
 }
 - (NSDictionary *)report {
-  return @{@"status" : @(status_), @"sequence_bytes" : @(sequence_.length)};
+  return @{@"status" : @(status_), @"sequence_bytes" : @(sequence_.length),@"columns":@4,@"rows":@8,@"indicator_bitmap":@306,@"indicator_loaded":@(_indicatorImage!=nil),@"displayed_value_columns":@4,@"refresh_ms":@20};
 }
+- (void)viewDidMoveToWindow {
+  [super viewDidMoveToWindow];[progressTimer_ invalidate];progressTimer_=nil;
+  if(self.window){__weak CronoX3ArpeggiatorView* weak=self;
+    progressTimer_=[NSTimer timerWithTimeInterval:.020 repeats:YES block:^(NSTimer*){if(weak&&!weak.hiddenOrHasHiddenAncestor)[weak refresh];}];
+    [NSRunLoop.mainRunLoop addTimer:progressTimer_ forMode:NSRunLoopCommonModes];[self refresh];
+  }
+}
+- (void)dealloc {[progressTimer_ invalidate];}
 - (void)drawRect:(NSRect)dirty {
   if (status_)
     return;
   auto *b = static_cast<const unsigned char *>(sequence_.bytes);
-  CGFloat w = self.bounds.size.width / 4, h = self.bounds.size.height / 8;
-  for (unsigned col = 0; col < 4; ++col)
-    for (unsigned row = 0; row < 8; ++row) {
-      unsigned i = col * 8 + row;
-      NSColor *color =
-          i < unsigned(b[1] - 1) ? NSColor.whiteColor : NSColor.grayColor;
-      NSString *velocity =
-          b[3 + 2 * i] == 1 ? @"Off"
-          : b[3 + 2 * i] == 129
-              ? @"Tie"
-              : [NSString stringWithFormat:@"%03u", unsigned(b[3 + 2 * i] - 1)];
-      if (i == unsigned(b[0] - 1)) {
-        [[NSColor colorWithRed:.55 green:.75 blue:.65 alpha:.6] setFill];
-        NSRectFill(NSMakeRect(col * w, row * h, 6, h));
-      }
-      cronoxCompleteView::drawText(
-          [NSString stringWithFormat:@"%03u", unsigned(b[2 + 2 * i] - 1)],
-          NSMakeRect(col * w + 8, row * h, w / 2 - 8, h), 11, color);
-      cronoxCompleteView::drawText(
-          velocity, NSMakeRect(col * w + w / 2, row * h, w / 2, h), 11, color);
-    }
+  for(const auto& cell:cronox::modulation::arpeggiator(b)) {
+    [_indicatorImage drawInRect:NSMakeRect(cell.x,cell.y,8,12)
+      fromRect:NSMakeRect(0,_indicatorImage.size.height-cell.sourceY-12,8,12)
+      operation:NSCompositingOperationSourceOver fraction:1 respectFlipped:YES hints:nil];
+    CGFloat gray=(cell.color&255)/255.;
+    cronoxCompleteView::drawText(cronoxCompleteView::string(cell.text.data(),cell.text.size()),
+      NSMakeRect(cell.x+8,cell.y,31,13),11,[NSColor colorWithDeviceWhite:gray alpha:1]);
+  }
 }
 - (void)mouseDown:(NSEvent *)down {
   if (status_)
     return;
   NSPoint p = [self convertPoint:down.locationInWindow fromView:nil];
-  CGFloat w = self.bounds.size.width / 4, h = self.bounds.size.height / 8;
-  int col = std::clamp(int(p.x / w), 0, 3),
-      row = std::clamp(int(p.y / h), 0, 7), step = col * 8 + row;
-  BOOL velocity = (p.x - col * w) > w / 2;
-  NSUInteger at = 2 + 2 * step + velocity;
+  const unsigned step=cronox::modulation::step(int(p.x),int(p.y));
+  NSUInteger at = 3 + 2 * step;
   const auto *before = static_cast<const unsigned char *>(sequence_.bytes);
   int initial = before[at] - 1;
-  NSPoint origin = down.locationInWindow;
   NSEvent *event = down;
   for (;;) {
     int value =
         (down.modifierFlags & NSEventModifierFlagOption)
-            ? (velocity ? 100 : 60)
-            : std::clamp(initial +
-                             int((event.locationInWindow.y - origin.y) / 2),
-                         0, velocity ? 128 : 127);
+            ? 100
+            : std::clamp(initial+int((int(step%8)*13+6-[self convertPoint:event.locationInWindow fromView:nil].y)/2),0,128);
     NSMutableData *d = [sequence_ mutableCopy];
     static_cast<unsigned char *>(d.mutableBytes)[at] = value + 1;
     if (cronoxCompleteView::text(_audioUnit, 648, d)) {
@@ -517,6 +540,14 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     if (!event || event.type == NSEventTypeLeftMouseUp)
       break;
   }
+}
+- (void)scrollWheel:(NSEvent*)event {
+  [self refresh];if(status_)return;
+  NSPoint p=[self convertPoint:event.locationInWindow fromView:nil];
+  NSUInteger at=3+2*cronox::modulation::step(int(p.x),int(p.y));
+  NSMutableData* d=[sequence_ mutableCopy];auto* bytes=static_cast<unsigned char*>(d.mutableBytes);
+  bytes[at]=std::clamp(int(bytes[at])-1+(event.scrollingDeltaY>0?1:-1),0,128)+1;
+  if(cronoxCompleteView::text(_audioUnit,648,d)){[self.owner changed:self];[self refresh];}
 }
 @end
 
@@ -914,6 +945,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
         arp = [CronoX3ArpeggiatorView new];
         arp.audioUnit = unit_;
         arp.owner = self;
+        arp.indicatorImage=[self image:306];
         v = arp;
       }
       [arp refresh];
@@ -1220,7 +1252,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
                    (node.state.maximum - node.state.minimum));
         BOOL found = NO;
         unsigned modules = 0, generator = sophistry::generatorForTypeTag(tag);
-        for (NSMenuItem *item in menu.itemArray) {
+        for (NSMenuItem *item in cronoxCompleteView::menuLeaves(menu)) {
           if ([item.representedObject isKindOfClass:NSNumber.class]) {
             if (generator < 4 &&
                 [item.representedObject unsignedIntValue] == 643 + generator)
@@ -1260,7 +1292,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 - (NSDictionary *)report {
   NSMutableArray *controls = [NSMutableArray array],
                  *panels = [NSMutableArray array],
-                 *waves = [NSMutableArray array];
+                 *waves = [NSMutableArray array], *arps=[NSMutableArray array],*destinations=[NSMutableArray array];
   BOOL bounds = YES, images = YES, pixelSizes = YES;
   for (auto &p : layout_.panels) {
     NSImage *image = [self image:p.image];
@@ -1278,6 +1310,12 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
       bounds = bounds && NSContainsRect(self.bounds, v.frame);
       if ([v isKindOfClass:CronoX3RecoveredNode.class]) {
         auto *n = (CronoX3RecoveredNode *)v;
+        if(cronox::modulation::destination(n.state.tag)) {
+          NSMenu* menu=[n recoveredMenu];unsigned categories=0;BOOL clean=YES;
+          for(NSMenuItem* item in menu.itemArray)if(item.submenu)++categories;
+          for(NSMenuItem* item in cronoxCompleteView::menuLeaves(menu))clean=clean&&![item.title containsString:@"$"];
+          [destinations addObject:@{@"tag":@(n.state.tag),@"categories":@(categories),@"destinations":@(cronoxCompleteView::menuLeaves(menu).count),@"internal_markers_hidden":@(clean)}];
+        }
         images = images && (!n.spec.image || n.sprite);
         pixelSizes = pixelSizes &&
                      (!n.spec.image ||
@@ -1301,6 +1339,11 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
       }
       if ([v isKindOfClass:CronoX3OriginalDrawing.class])
         [waves addObject:[(CronoX3OriginalDrawing *)v report]];
+      if([v isKindOfClass:CronoX3ArpeggiatorView.class]) {
+        auto* arp=(CronoX3ArpeggiatorView*)v;[arps addObject:[arp report]];
+        images=images&&arp.indicatorImage!=nil;
+        pixelSizes=pixelSizes&&cronoxGeneratorView::originalPixelSize(arp.indicatorImage);
+      }
     }
   return @{
     @"status" : @(status_),
@@ -1308,6 +1351,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     @"controls" : controls,
     @"panels" : panels,
     @"drawings" : waves,
+    @"arpeggiators":arps,@"modulation_destinations":destinations,
     @"effect_titles" : [effectTitles_.labels valueForKey:@"text"]?:@[],
     @"effect_title_overlay_ignores_mouse" : @YES,
     @"active_controls_in_bounds" : @(bounds),

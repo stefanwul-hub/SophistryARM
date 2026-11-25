@@ -1,0 +1,54 @@
+{
+  "checkpoint": "CRX011",
+  "original_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "menu_routine": "0x8f70 CMenuWithSub::fill",
+  "original_categories": 16,
+  "original_destinations": 58,
+  "category_names": [
+    "Gen 1",
+    "Gen 2",
+    "Gen 3",
+    "Gen 4",
+    "Filter 1",
+    "Filter 2",
+    "Main",
+    "Matrix",
+    "LFOSpeed",
+    "Loop 1",
+    "Loop 2",
+    "Amp-Env",
+    "Fil1-Env",
+    "Fil2-Env",
+    "Mod1-Env",
+    "Mod2-Env"
+  ],
+  "menu_sha256": "f0d37bbd53c24d975623f1c2b86bf8c05569ab5f72c920f2b3d506e5cf921c7b",
+  "arpeggiator_routine": "0xa62f2 CStepSeqPl::draw",
+  "arpeggiator_cases": 180,
+  "arpeggiator_operations": 11520,
+  "indicator_bitmap": 306,
+  "bitmap_dimensions": [
+    8,
+    24
+  ],
+  "cell_size": [
+    56,
+    13
+  ],
+  "indicator_rect": [
+    16,
+    0,
+    8,
+    12
+  ],
+  "value_rect": [
+    24,
+    0,
+    31,
+    13
+  ],
+  "displayed_bytes": "velocity/off/tie at 3 + 2*step; original flag108=false, flag109=true",
+  "macos_ui_executed": false,
+  "menu_fnv64": "cfd70229ae74d452",
+  "arpeggiator_fnv64": "846b5a5e40732608"
+}

@@ -67,7 +67,7 @@ int main(int argc,char** argv){@autoreleasepool {
   [NSApplication sharedApplication];[NSApp setActivationPolicy:NSApplicationActivationPolicyProhibited];
   AudioUnit unit=nullptr,fresh=nullptr;CFBundleRef bundle=nullptr;CFDictionaryRef before=nullptr;
   NSString* output=nil;NSString* stage=@"arguments";NSView* view=nil;NSURL* menuFixture=nil;
-  NSMutableDictionary* report=[NSMutableDictionary dictionaryWithDictionary:@{@"checkpoint":@"CRX010",@"subtype":@"CrT3",@"passed":@NO,@"sound_fidelity_verified":@NO}];
+  NSMutableDictionary* report=[NSMutableDictionary dictionaryWithDictionary:@{@"checkpoint":@"CRX011",@"subtype":@"CrT3",@"passed":@NO,@"sound_fidelity_verified":@NO}];
   @try {
    try {
     bool registered=false;NSString* bundlePath=nil;NSString* preset=nil;unsigned channels=2;
@@ -91,7 +91,7 @@ int main(int argc,char** argv){@autoreleasepool {
     }
     stage=@"create instance";check(AudioComponentInstanceNew(component,&unit),"Create instance");
     CFStringRef version=nullptr;UInt32 versionBytes=sizeof(version);check(AudioUnitGetProperty(unit,0x53705672,kAudioUnitScope_Global,0,&version,&versionBytes),"Build version");
-    if(!version||!CFEqual(version,CFSTR("CronoX3ARM CRX-010")))throw std::runtime_error("An unexpected comparison build was loaded");CFRelease(version);
+    if(!version||!CFEqual(version,CFSTR("CronoX3ARM CRX-011")))throw std::runtime_error("An unexpected comparison build was loaded");CFRelease(version);
     stage=@"AU parameters";UInt32 bytes=0;Boolean writable=false;check(AudioUnitGetPropertyInfo(unit,kAudioUnitProperty_ParameterList,kAudioUnitScope_Global,0,&bytes,&writable),"Parameter count");
     if(bytes!=522*sizeof(UInt32))throw std::runtime_error("Original AU parameter count differs");std::vector<UInt32> ids(522);check(AudioUnitGetProperty(unit,kAudioUnitProperty_ParameterList,kAudioUnitScope_Global,0,ids.data(),&bytes),"Parameter IDs");
     for(UInt32 id:ids){AudioUnitParameterInfo info{};UInt32 size=sizeof(info);check(AudioUnitGetProperty(unit,kAudioUnitProperty_ParameterInfo,kAudioUnitScope_Global,id,&info,&size),"Parameter info");float value=0;check(AudioUnitGetParameter(unit,id,kAudioUnitScope_Global,0,&value),"Parameter value");if(!std::isfinite(value)||info.minValue>info.maxValue)throw std::runtime_error("Invalid original AU metadata");if(info.flags&kAudioUnitParameterFlag_CFNameRelease){if(info.cfNameString)CFRelease(info.cfNameString);}}
@@ -134,8 +134,8 @@ int main(int argc,char** argv){@autoreleasepool {
     NSDictionary* browser=editor[@"preset_browser"];
     if([browser[@"font_points"] intValue]!=12||![browser[@"rgb"] isEqual:@[@210,@210,@210]]||[browser[@"bank_top"] intValue]!=228||[browser[@"preset_top"] intValue]!=244||[browser[@"row_height"] intValue]!=15)
       throw std::runtime_error("Bank/preset style differs from original createMenuFileList");
-    if(![editor[@"original_font_available"] boolValue] || ![editor[@"footer"] isEqual:@"CronoX 3 ARM64 port OA 2026 . CRX010"])
-      throw std::runtime_error("Original font or CRX010 footer differs");
+    if(![editor[@"original_font_available"] boolValue] || ![editor[@"footer"] isEqual:@"CronoX 3 ARM64 port OA 2026 . CRX011"])
+      throw std::runtime_error("Original font or CRX011 footer differs");
     if(![editor[@"bank_and_preset_centered"] boolValue] || [editor[@"footer_font_size"] doubleValue]!=9 || [editor[@"footer_top"] doubleValue]!=487)
       throw std::runtime_error("Bank/preset alignment or footer geometry differs");
     NSArray* buttons=editor[@"utility_buttons"];
@@ -150,6 +150,12 @@ int main(int argc,char** argv){@autoreleasepool {
         throw std::runtime_error("Original editor page or image check failed");
     }
     report[@"original_editor_pages"]=pages;
+    NSDictionary* modulation=pages[5];
+    if([modulation[@"modulation_destinations"] count]!=10||[modulation[@"arpeggiators"] count]!=1)throw std::runtime_error("Original Matrix or arpeggiator views missing");
+    for(NSDictionary* menu in modulation[@"modulation_destinations"])
+      if([menu[@"categories"] intValue]!=16||[menu[@"destinations"] intValue]!=58||![menu[@"internal_markers_hidden"] boolValue])throw std::runtime_error("Matrix categories or labels differ from original");
+    NSDictionary* arp=[modulation[@"arpeggiators"] firstObject];
+    if([arp[@"columns"] intValue]!=4||[arp[@"displayed_value_columns"] intValue]!=4||![arp[@"indicator_loaded"] boolValue]||[arp[@"indicator_bitmap"] intValue]!=306)throw std::runtime_error("Original arp columns or indicator missing");
     stage=@"initialize";setup(unit,channels);
     stage=@"render";Audio audio=render(unit,channels,view);wave([output stringByAppendingPathExtension:@"wav"],audio);
     if(!audio.keyboardObserved)throw std::runtime_error("Played notes were not reflected in the original keyboard view");report[@"played_notes_reach_keyboard"]=@YES;

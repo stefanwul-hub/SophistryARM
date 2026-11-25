@@ -1,6 +1,6 @@
 {
   "project": "CronoX 3 ARM64",
-  "checkpoint": "CRX010",
+  "checkpoint": "CRX011",
   "original_version": "3.6.6",
   "original_architectures": [
     "i386",
@@ -44,9 +44,9 @@
   "original_au_bridge_is_not_native_au": true,
   "editor_bindings_available": true,
   "remaining_work": [
-    "Run CRX010 Cocoa optional-path/menu/keyboard/audio checks and auval on user Mac",
-    "Exhaustive original-versus-port comparison remains unverified",
-    "Restore original AU identity only after final user validation"
+    "Mac validation of CRX011 Matrix categories and original arpeggiator display, Cocoa and auval",
+    "Resume saved CPU research after UI publication; reverb and long-release overload remains unresolved",
+    "Restore original AU identity only after final validation"
   ],
   "original_audio_unit": {
     "type": "aumu",
@@ -60,7 +60,7 @@
   "native_kernel_compiled_arm64": true,
   "arm64_instruction_replay_cases": 6228,
   "original_au_bridge_arm64_qemu_passed": true,
-  "native_audio_unit_status": "CRX010 candidate fixes CRX009 absent optional Cocoa path; macOS execution pending",
+  "native_audio_unit_status": "CRX011 original Matrix/arp interface candidate; macOS validation pending",
   "original_preference_writes_isolated": true,
   "original_license_read_fallback": true,
   "original_timer_lifecycle_integrated": true,
@@ -93,10 +93,10 @@
   "original_ui_panels": 86,
   "original_ui_recorded_controls": 1072,
   "original_ui_pngs": 110,
-  "accepted_ui_reference": "CRX008",
+  "accepted_ui_reference": "CRX010",
   "accepted_ui_reference_user_validated": true,
   "original_ui_control_tags": 877,
-  "last_user_accepted_host_checkpoint": "CRX008",
+  "last_user_accepted_host_checkpoint": "CRX010",
   "last_user_accepted_auval_checkpoint": "CRX005",
   "loop_markers_and_numeric_edits_implemented": true,
   "original_loop_graphics_fixture_paths_verified": true,
@@ -113,5 +113,11 @@
   "last_macos_attempt_exit_code": 134,
   "last_macos_attempt_copy_reached": false,
   "crx009_optional_cocoa_path_failure_fixed": true,
-  "objective_c_probe_errors_structured": true
+  "objective_c_probe_errors_structured": true,
+  "matrix_original_categories": 16,
+  "matrix_original_destinations": 58,
+  "arpeggiator_original_draw_cases_verified": 180,
+  "arpeggiator_original_draw_operations_verified": 11520,
+  "cpu_research_separate_checkpoint": "1cb8ea00334f09584b38b5fe7764c1e2ff0836d6",
+  "cpu_changes_in_this_release": false
 }

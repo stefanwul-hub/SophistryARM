@@ -1,25 +1,18 @@
-# CronoX 3 ARM64 — CRX010
+# CronoX 3 ARM64 — CRX011
 
-CRX010 corrige l’arrêt Cocoa de CRX009 quand un emplacement de banques ou de samples n’a pas encore été enregistré. Les chemins absents restent facultatifs ; il n’est pas nécessaire de supprimer vos préférences.
+CRX011 corrige les deux points d’interface demandés, d’après l’exécution du code original :
 
-Les fonctions récupérées dans CRX009 sont conservées :
+- Matrix : les dix menus de destinations retrouvent leurs 16 catégories et leurs 58 choix. Les caractères `$` internes sont remplacés comme dans l’original. Les numéros de paramètres et l’automation sont conservés.
+- Arpeggiator : quatre colonnes de huit valeurs, chacune précédée des indicateurs originaux. Le triangle vert utilise le bitmap 306 d’origine, avec ses deux états et ses coordonnées exactes. Les valeurs supplémentaires de notre ancienne vue sont supprimées ; les affichages numériques, Off/Tie, couleurs, clics et défilement reprennent les règles originales. La progression est actualisée toutes les 20 ms quand la vue est visible.
 
-- Main : cliquer sur le nom de banque ouvre les banques ; cliquer sur le nom du preset ouvre les presets de cette banque. Le tri sans distinction de casse, les noms sans extension et le chargement du premier preset après changement de banque suivent les routines originales.
-- Les deux lignes utilisent les rectangles et la ligne de base d’origine, Helvetica 12 points et le gris `#D2D2D2`. Elles restent centrées.
-- Le clavier suit les notes actives du moteur, y compris les accords. Les images et raccords entre touches proviennent de `CKeyboard2::drawKeys` ; 4 354 combinaisons ont été comparées à l’exécution du code original.
+Quitter Logic et Live, décompacter `Demarrer-CronoX-CRX011.zip`, puis ouvrir `Demarrer-CronoX-CRX011.command`. Le lanceur télécharge les sources épinglées et contrôlées, conserve le projet/cache dans `~/CronoX3-ARM64/projet`, compile pour ARM64 et lance les tests d’interface, de rendu et `auval -v aumu CrT3 LinP`. Le rapport ZIP est créé sur le Bureau. L’installation conserve ou restaure la version ARM Test précédente si une étape échoue.
 
-Quitter Logic et Live, décompacter `Demarrer-CronoX-CRX010.zip`, puis ouvrir `Demarrer-CronoX-CRX010.command`. Le lanceur vérifie les sources épinglées, conserve le projet/cache dans `~/CronoX3-ARM64/projet`, compile pour ARM64 et teste les commandes, boucles, menus, clavier, vue Cocoa et rendu audio. Il installe avec sauvegarde transactionnelle et exécute `auval -v aumu CrT3 LinP`. Les rapports ZIP sont créés sur le Bureau. En cas d’échec, la version ARM Test précédente est conservée ou restaurée.
+Composant **CronoX 3 ARM Test**, identité **aumu/CrT3/LinP**, bundle `com.linplug.au.CronoX3.ARMTest`, fichier `/Library/Audio/Plug-Ins/Components/CronoX 3 ARM Test.component`. L’original **CrX3** et **Sophistry CP038** restent conservés. Les identifiants de l’original seront rétablis après validation finale pour la restauration des anciens projets.
 
-Si les banques ne sont pas proposées automatiquement, cliquer sur le nom de banque puis **Choisir le dossier des banques…** et sélectionner le dossier contenant les sous-dossiers de presets. Ce choix est conservé dans les préférences ARM Test. Le bouton **Banque de sons…** conserve sa fonction de choix de la banque de samples. Les menus acceptent les FXP et les états AU déjà pris en charge par l’importeur.
+Les corrections antérieures de gain (+6 dB avant Master), de boucles, de banques/presets et de clavier sont conservées. Le moteur audio et ses 413 unités traduites sont inchangés. Cette publication porte sur l’interface ; les recherches sur la consommation CPU sont sauvegardées séparément pour la suite.
 
-Composant **CronoX 3 ARM Test**, identité **aumu/CrT3/LinP**, bundle `com.linplug.au.CronoX3.ARMTest`, fichier `/Library/Audio/Plug-Ins/Components/CronoX 3 ARM Test.component`. CronoX original **CrX3** et **Sophistry CP038** sont préservés. Les identifiants d’origine seront rétablis après validation finale pour rouvrir les anciens projets. Les états de test restent identifiés CrT3.
+Vérifications : les menus sont comparés aux routines CMenuWithSub originales ; 180 états d’arpégiateur donnent les mêmes 11 520 opérations de dessin (textes, couleurs et découpes du bitmap). Les dix menus et leurs associations de paramètres passent le test C++. Les 28 régressions et le script sous Bash 3.2 passent. Compilation et lien strict Mach-O ARM64 réussis, 110 images et trois exports isolés vérifiés. **L’exécution Cocoa/auval de CRX011 et la vérification visuelle dans vos hôtes restent à faire sur votre Mac.**
 
-Le gain de **+6 dB avant le Master**, les corrections du Loop Sampler, le cache de forme d’onde, les noms d’effets et le pied de CRX008 sont conservés. Les 413 unités du moteur audio traduit sont inchangées. Le clavier lit la table de notes originale sans la modifier. Le chemin du preset est conservé dans les nouveaux états AU pour retrouver les menus ; il n’est pas ajouté au diagnostic copié. Un ancien état sans ce chemin conserve son audio et cherche sa banque dans le catalogue configuré.
+Les tests Cocoa de l’installeur contrôlent aussi les catégories, le nombre de destinations et le chargement du bitmap d’arpégiateur. Aucun nouveau test de charge CPU n’est lancé par cet installeur.
 
-Préférences de test : `com.linplug.CronoX3.ARMTest`, avec lecture possible de la licence originale sans écriture dans `com.linplug.CronoX3`. Aucune clé ni préférence privée ne doit être transmise ou publiée.
-
-Le rapport Mac CRX009 confirme le passage des tests C++, des accords, des boucles et des temporisateurs. La vue Cocoa s’est ensuite arrêtée sur la conversion d’un chemin vide, avant la copie du composant. CRX010 ajoute un contrôle des chemins `nil`/vides et du repli vers le dossier du preset dans la vraie sonde Cocoa. Les exceptions Objective-C y produisent désormais un rapport d’échec structuré.
-
-Vérifications CRX010 : 28 régressions et script Bash 3.2 réussis ; compilation et lien strict Mach-O ARM64 réussis, 110 images et trois exports vérifiés. Le moteur audio, le catalogue, la typographie et les découpes du clavier restent inchangés. **L’exécution Cocoa et auval de CRX010 reste à effectuer sur votre Mac.**
-
-Reprise : `CRX_REPRISE.md`, `cronox-status.json`, `evidence/cronox-crx010-*.json` et `checkpoints/cronox/`. CRX008 reste disponible comme point de retour.
+Reprise : `CRX_REPRISE.md`, `cronox-status.json`, `evidence/cronox-crx011-*.json` et `checkpoints/cronox/`. Préférences de test : `com.linplug.CronoX3.ARMTest`. Ne pas transmettre de clé de licence ni de préférences privées.

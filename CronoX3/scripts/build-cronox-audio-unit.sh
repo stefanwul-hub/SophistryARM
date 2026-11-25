@@ -61,7 +61,7 @@ mv "$bundle/Contents/MacOS/CronoX3ARMTest.pending" "$bundle/Contents/MacOS/Crono
  -framework AudioToolbox -framework CoreFoundation -o "$DEST/CronoXRegistrationProbe" \
  > "$DEST/registration-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/CronoXRegistrationProbe" -verify_arch arm64
-for probe in CronoXRunLoopProbe CronoXControlThreadProbe CronoXEditorProbe; do
+for probe in CronoXRunLoopProbe CronoXControlThreadProbe CronoXEditorProbe CronoXModulationProbe; do
  "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -g0 -ffp-contract=off -fno-fast-math \
   "$ROOT/tests/$probe.cpp" "$ROOT/work/cronox-engine/LegacyEngine.o" "$ROOT/work/cronox-engine/LegacyImageData.o" \
   "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \

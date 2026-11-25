@@ -1,0 +1,36 @@
+{
+  "checkpoint": "CRX011",
+  "scope": "Original-machine UI captures and C++ replay; Python and mocked Bash build; no macOS execution",
+  "modulation": {
+    "passed": true,
+    "original_menus": 10,
+    "original_categories": 160,
+    "original_destinations": 580,
+    "original_arp_frames": 180,
+    "original_draw_operations": 11520,
+    "all_capture_hashes_identical": true,
+    "program_unchanged_by_ui_reads": true,
+    "macos_ui_executed": false
+  },
+  "python_regression_tests": 28,
+  "python_regressions_passed": true,
+  "build_shell": {
+    "scope": "Build shell orchestration with mocked Apple tools only",
+    "bash": "GNU bash, version 3.2.0(2)-release (x86_64-unknown-linux-gnu)",
+    "baseline_failure_reproduced": false,
+    "cold_compilation_units": 14,
+    "cpp_and_objcpp_flags_preserved": true,
+    "empty_compiler_arguments": 0,
+    "paths_with_spaces_passed": true,
+    "warm_object_cache_reused": true,
+    "single_source_invalidation_passed": true,
+    "macos_execution": false,
+    "auval_executed": false,
+    "passed": true
+  },
+  "original_kernel_sha256": "0897c74f4f6c41b6afe716fff9986cb4d8c507306af420416afd043e88a45c61",
+  "cpu_changes_in_release": false,
+  "macos_runtime_executed": false,
+  "auval_executed": false,
+  "passed": true
+}

@@ -1,0 +1,76 @@
+{
+  "checkpoint": "CRX011",
+  "scope": "ARM64 Mach-O cross-compilation and strict link; no macOS execution",
+  "core_units": 413,
+  "binaries": [
+    {
+      "binary": "CronoX3ARMTest",
+      "bytes": 35276944,
+      "sha256": "e0b15fa41388c5216f9bda9a6f2e8b088766d1e4d06c8bf98d9d0f257bec170d",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXComparisonProbe-macos",
+      "bytes": 1394016,
+      "sha256": "fcb98ae5c92d9b09c56ca27057330dac81a1ad553ae7611203042766cf10e0d6",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXRegistrationProbe-macos",
+      "bytes": 482880,
+      "sha256": "b36512513ab94e87eb56dfdb7aecbba9a9812a78d0e0628c1a96530035c8706c",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXEditorProbe-macos",
+      "bytes": 34742320,
+      "sha256": "8481c32368030f5cbad7edd7cecc7d7e101c7591bd3215edacda5f2243692d8a",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXCorrectionsProbe-macos",
+      "bytes": 34641744,
+      "sha256": "b3aca719834bad372f298b9b8386b82bb703a7ec61e703dc9c977abaa2e27ca3",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXLoopSamplerProbe-macos",
+      "bytes": 34644448,
+      "sha256": "6ece16fe9826ac7149de6f3d6d94a52f717eb7c538c71201c7e6bdf86c7cb575",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXBrowserKeyboardProbe-macos",
+      "bytes": 34661120,
+      "sha256": "b8dacf04fd500b3696290625584ff322508a324371139f9f895f4a4974f1215c",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXModulationProbe-macos",
+      "bytes": 34642768,
+      "sha256": "264d8f7e91878725fa3a378481acb884d61aea364bffcb7e84321f2724b8238d",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    }
+  ],
+  "original_sdk_sources_unchanged": true,
+  "exports_isolated": true,
+  "auval_executed": false,
+  "macos_runtime_executed": false,
+  "sound_fidelity_verified": false,
+  "passed": true,
+  "cpu_changes_in_release": false,
+  "unchanged_core_and_engine_objects_reused": true
+}

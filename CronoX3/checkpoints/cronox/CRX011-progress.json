@@ -1,0 +1,14 @@
+{
+  "checkpoint": "CRX011 UI release preparation",
+  "base_local": "cff3a84080cb73b6e0a4a25cad55f11c1fa2036d",
+  "completed": [
+    "Original Matrix menus and arp graphics implemented and replay-verified",
+    "ARM64 build and installer checks prepared",
+    "CPU research isolated on its own local checkpoint"
+  ],
+  "remaining": [
+    "Publish verified pinned UI source archive and launcher",
+    "User Mac validation"
+  ],
+  "cpu_research_checkpoint": "1cb8ea00334f09584b38b5fe7764c1e2ff0836d6"
+}

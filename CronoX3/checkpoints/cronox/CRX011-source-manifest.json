@@ -1,0 +1,177 @@
+{
+  "checkpoint": "CRX011",
+  "publication_directory": "CronoX3",
+  "base_remote_commit": "76b7745c8a25c25b8f271e21dbd171ddfa95db74",
+  "files": [
+    {
+      "path": "CRX_REPRISE.md",
+      "bytes": 44803,
+      "sha256": "0ebdace9300a3580789bc9c8a337afd6c0e87cebbdcad3120849c2a158dca336",
+      "git_blob": "ffa085153475dd3ed3b56e7a3ebe4b92252c40e5",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "Installer-CronoX-CRX011.command",
+      "bytes": 8492,
+      "sha256": "9785643d83dd0f27ecfefb73d86a068c96e89e43af1fe1104985652d9b645f42",
+      "git_blob": "a29939a0b21cf84671d013e0792e8d1c26af4570",
+      "mode": "100755",
+      "changed": true
+    },
+    {
+      "path": "README.md",
+      "bytes": 2924,
+      "sha256": "531af607e541e793fb82dac92d3b7ebad98a98bd9bdec907eaf5fa413e12eadc",
+      "git_blob": "59daf7c4b056f5364e6707a822a30422b25bab9a",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "analysis/cronox/recover_modulation.py",
+      "bytes": 6065,
+      "sha256": "ccd0411abb01d75b1cbcce56bad47798a5077cfa9d66cc2e980e0710451b9d46",
+      "git_blob": "8d7d0be6ace821e89d23a6a2498be39f89c545b1",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "checkpoints/cronox/CRX011-progress.json",
+      "bytes": 500,
+      "sha256": "e77bd860b8d15ab18460349bd45a3106ddbba6a3e4ab543f6c190b5c4786b17f",
+      "git_blob": "3061bde708747adcc35b703f10d3882afd9356d7",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "config/au-identity-test.json",
+      "bytes": 1003,
+      "sha256": "4a59aff13e239b066a216df2877be8a849b7127f567d91ae5cbeed50708b6b52",
+      "git_blob": "9a874eeb117deb45c90b361a4cf97b37c1998430",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "cronox-status.json",
+      "bytes": 5260,
+      "sha256": "ad4ad94ddca1c4112ba2cd75726c67af805594b393925882d1ea302bd75fa805",
+      "git_blob": "4cb6eecee06dc36a4ce8106ce16d4b044f7b32c5",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx010-user-acceptance.json",
+      "bytes": 384,
+      "sha256": "6caa4a5b15dec8943a15a55c047eab66038f73c9cd5a7276bd76ff03ba7285b9",
+      "git_blob": "ceda03c49a640ff6c3ababfe1feec956c4b06cfe",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx011-local-checks.json",
+      "bytes": 1268,
+      "sha256": "c55eac0cabbf65c4d6b74ab33a87fb3abb5b3619c0d732f6a044a8157db4a733",
+      "git_blob": "f8669ac671b8051f2ebd80f647c716098192b5cb",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx011-macos-cross-link.json",
+      "bytes": 2513,
+      "sha256": "08e2f8a590667604c149e3e812a5c3dca6942bf9779d738b7fb0ae24c1477b3f",
+      "git_blob": "b6ac6c1f56795dff2c4c486ff96c363e839eccc2",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx011-modulation-recovery.json",
+      "bytes": 1109,
+      "sha256": "5da491a62ee9c420345ca78304fb8003476412b28f35eaae12a6362d4bcb0a6d",
+      "git_blob": "587f02b9977f91ef9fb366100cc919c12b18e46e",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "scripts/build-cronox-audio-unit.sh",
+      "bytes": 5454,
+      "sha256": "4be54bf899e2ec4e4b64a0ea153fa00ff3a15d8bc91df3e0d1ab99d1ce7e2e1c",
+      "git_blob": "dbffecd752fd8af21fba6508cc21e9663483b881",
+      "mode": "100755",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoX3ARMTestEditor.mm",
+      "bytes": 25960,
+      "sha256": "70c545b67261140eab9e051f9b6db57f1e2e407be761865b6efeccaf8bc83c17",
+      "git_blob": "51da1a4fdf17b718e9beac23b671db862e2eae90",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoXCompleteEditorView.h",
+      "bytes": 59557,
+      "sha256": "803a35c837691edb61a81316d1743f26ea0d12240f475f20cb24fa09fd0cb026",
+      "git_blob": "40eed8e84202d9673fdd4402edeb347f73dc3e42",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/Info.plist",
+      "bytes": 1227,
+      "sha256": "bb57e3a042c1f8b5d06e9476d4511057885ffa15b56a87c04f3cb7db7def243f",
+      "git_blob": "89370c510eca162b869c1246160cbcd51f9e7b46",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/SophistryProperties.h",
+      "bytes": 2672,
+      "sha256": "201252c07e5d198218214069c3839dac398e2d7e79e0043648b3ecc09f4c0522",
+      "git_blob": "f5be63d4ba5d02d00ac425f91045765a4fe714bf",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/engine/RecoveredModulation.h",
+      "bytes": 2406,
+      "sha256": "35514515afa6bbad75cb15a83814e5daba3638bc4b34ed7c4498a2a70e27aa8f",
+      "git_blob": "d7b316c67c67b401f327a4391195775cf5cb3b25",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/CronoXComparisonProbe.mm",
+      "bytes": 21558,
+      "sha256": "adc7eb2519e1fb77b0193b6775580e3ef293a1ddf7c7719485ed05990b832e46",
+      "git_blob": "b761467099999db87138509113699c5b1bab7569",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/CronoXModulationProbe.cpp",
+      "bytes": 3146,
+      "sha256": "adb91d994a54818be3f9ce3119d8992eb32886a4ef6f955bd7feb3c87ef62891",
+      "git_blob": "b1bbea68e534765f2ec09f0de45ed9ad0bf1806d",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/fixtures/cronox-modulation-destinations.json",
+      "bytes": 1279,
+      "sha256": "c8c8d8e25ff9860612e95b638534d482d833e05941d23ea4690a515e19754047",
+      "git_blob": "68082087cfa3be1069f8f1fa2d4e81a8bb29aaa0",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/test_cronox_registration_diagnostics.py",
+      "bytes": 6958,
+      "sha256": "b085dacfcc32b0895cf9dd93aa7587924efc2ae82837873f3a5315806358b14c",
+      "git_blob": "5eb2a41d6137e360ff6e4c52f8f7974e8618adcb",
+      "mode": "100644",
+      "changed": true
+    }
+  ],
+  "self_manifest_excluded": true,
+  "scope": "Original Matrix categories and arpeggiator UI; CPU work excluded"
+}
