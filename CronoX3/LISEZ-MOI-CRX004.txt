@@ -1,0 +1,22 @@
+CronoX 3 ARM Test — CRX004
+
+CRX003 a compilé et passé les tests du véritable candidat AU sur votre Mac :
+interface, 522 paramètres, audio et rappel d’état. Auval n’a ensuite pas
+trouvé CrT3 dans le registre système ; le candidat non validé a été retiré.
+
+CRX004 ajoute une détection du composant installé avant auval : notification
+du dossier, catalogue, essais dans des processus neufs et attente de la bonne
+version, limitée à 30 secondes. Auval et les rendus restent obligatoires.
+Un échec fournit maintenant des diagnostics ciblés sur le registre,
+les permissions, l’architecture et la signature du composant.
+
+Quittez Logic/Live, décompressez ce ZIP puis ouvrez
+Demarrer-CronoX-CRX004.command.
+Le lanceur télécharge les sources vérifiées et réutilise votre cache.
+Seul /Library/Audio/Plug-Ins/Components/CronoX 3 ARM Test.component est ciblé.
+Votre CronoX original CrX3 et Sophistry CP038 restent en place. Le DSP est inchangé.
+
+Envoyez le ZIP CronoX3-rapports-CRX004-… créé sur le Bureau.
+La validation système et la conformité sonore restent à confirmer.
+Les panneaux graphiques originaux restent à raccorder.
+Ne transmettez pas votre licence.
