@@ -1,0 +1,85 @@
+{
+  "checkpoint": "CRX009",
+  "report_zip_sha256": "dd97327ef834b4d464b1d0c1b061949d2c98394b346b6795c94fd76e53bee03c",
+  "macos": "15.7.2",
+  "architecture": "arm64",
+  "compiler": "Apple clang 17.0.0",
+  "installation_stage": "pr\u00e9validation du candidat",
+  "exit_code": 134,
+  "system_installation_committed": false,
+  "component_copy_reached": false,
+  "previous_component_preserved": true,
+  "auval_executed": false,
+  "candidate_cocoa_passed": false,
+  "cause": {
+    "exception": "NSInvalidArgumentException",
+    "reason": "NSString fileSystemRepresentation cannot convert an empty string",
+    "origin": "CronoX3ARMTestEditorView catalogBanks; optional preset/sample root preference conversion"
+  },
+  "public_runtime_checks": {
+    "browser-keyboard.json": {
+      "passed": true,
+      "original_keyboard_chord_masks": 4354,
+      "original_capture_hash_matches": true,
+      "original_manager_notes_read_only": true,
+      "released_notes_up": true,
+      "original_bank_filter_order_and_labels": true,
+      "selected_bank_isolated": true,
+      "macos_ui_executed": false
+    },
+    "editor-bindings.json": {
+      "passed": true,
+      "pages_and_modes": 107,
+      "unique_tags": 863,
+      "choice_reads": 2576,
+      "safe_boundaries": 6329,
+      "original_drawings": 10,
+      "edit_cases": 15,
+      "program_unchanged_by_ui_reads": true,
+      "macos_ui_executed": false
+    },
+    "loop-sampler.json": {
+      "passed": true,
+      "original_extrema_columns_bit_equal": 164,
+      "original_zoom_scroll_views": 4,
+      "complete_original_wave_paths_bit_equal": true,
+      "loop_start_end_markers": true,
+      "numeric_and_graphical_edits": true,
+      "marker_edits_reuse_sample_envelope": true,
+      "waveform_safe_boundaries": 164,
+      "rendered_at_zoom_boundaries": 316,
+      "original_full_wave_replay_ms": 19.7812,
+      "largest_zoom_read_section_ms": 0.795458,
+      "timings_are_machine_local": true,
+      "macos_host": true,
+      "macos_ui_executed": false
+    },
+    "run-loop.json": {
+      "passed": true,
+      "original_timer_callbacks": 6,
+      "rendered_frames": 6144,
+      "bank_roundtrip_bytes": 22060,
+      "original_destructor_executed": true,
+      "global_destructors_executed": true,
+      "comparison_preferences_isolated": true
+    },
+    "control-thread.json": {
+      "passed": true,
+      "background_original_callbacks": 6,
+      "rendered_frames": 16640,
+      "reinitialized_at_48000": true,
+      "original_shutdown_executed": true
+    },
+    "crx009-corrections.json": {
+      "passed": true,
+      "pre_master_signal_cases": 54,
+      "unaffected_other_volume_controls": 15,
+      "master_and_serialized_state_preserved": true,
+      "original_sampler_filename": true,
+      "sampler_font_fields": 16,
+      "font_family": "Helvetica",
+      "gain_conversions": 21,
+      "macos_ui_executed": false
+    }
+  }
+}

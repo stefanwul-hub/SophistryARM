@@ -1,0 +1,73 @@
+{
+  "checkpoint": "CRX010",
+  "scope": "ARM64 Mach-O cross-compilation and strict link; no macOS execution",
+  "core_units": 413,
+  "binaries": [
+    {
+      "binary": "CronoX3ARMTest",
+      "bytes": 35257696,
+      "sha256": "d1b2fe015bde5b420c5c817a47c055f7d3d44ecfa211983303a8d4b4b27cac77",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXComparisonProbe-macos",
+      "bytes": 1393920,
+      "sha256": "d8d75e1233a44ae50ab985360188e7023e82ca4a9eeabd66cb3dc5430d696d3e",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXRegistrationProbe-macos",
+      "bytes": 482880,
+      "sha256": "0a551780db1d6fedb192b4599a289347f2e0377dd45a7ba09d1df49189bc8b68",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXEditorProbe-macos",
+      "bytes": 34742320,
+      "sha256": "8481c32368030f5cbad7edd7cecc7d7e101c7591bd3215edacda5f2243692d8a",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXCorrectionsProbe-macos",
+      "bytes": 34641744,
+      "sha256": "b3aca719834bad372f298b9b8386b82bb703a7ec61e703dc9c977abaa2e27ca3",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXLoopSamplerProbe-macos",
+      "bytes": 34644448,
+      "sha256": "6ece16fe9826ac7149de6f3d6d94a52f717eb7c538c71201c7e6bdf86c7cb575",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXBrowserKeyboardProbe-macos",
+      "bytes": 34661120,
+      "sha256": "b8dacf04fd500b3696290625584ff322508a324371139f9f895f4a4974f1215c",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    }
+  ],
+  "original_sdk_sources_unchanged": true,
+  "exports_isolated": true,
+  "auval_executed": false,
+  "macos_runtime_executed": false,
+  "sound_fidelity_verified": false,
+  "passed": true,
+  "unchanged_engine_and_cpp_probe_objects_reused_from": "CRX009",
+  "changed_units_compiled": [
+    "CronoX3ARMTestAU.cpp",
+    "CronoX3ARMTestEditor.mm",
+    "CronoXComparisonProbe.mm",
+    "CronoXRegistrationProbe.cpp"
+  ]
+}

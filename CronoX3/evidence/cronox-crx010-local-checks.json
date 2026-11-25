@@ -1,0 +1,32 @@
+{
+  "checkpoint": "CRX010",
+  "scope": "Python regressions and mocked build shell; new Cocoa path regression compiled, not executed on macOS",
+  "passed": true,
+  "python_regression_tests": 28,
+  "python_regressions_passed": true,
+  "build_shell": {
+    "scope": "Build shell orchestration with mocked Apple tools only",
+    "bash": "GNU bash, version 3.2.0(2)-release (x86_64-unknown-linux-gnu)",
+    "baseline_failure_reproduced": false,
+    "cold_compilation_units": 14,
+    "cpp_and_objcpp_flags_preserved": true,
+    "empty_compiler_arguments": 0,
+    "paths_with_spaces_passed": true,
+    "warm_object_cache_reused": true,
+    "single_source_invalidation_passed": true,
+    "macos_execution": false,
+    "auval_executed": false,
+    "passed": true
+  },
+  "cocoa_path_regression_cases": [
+    "nil optional location",
+    "empty NSString location",
+    "nonempty path with spaces",
+    "public preset fallback without configured roots"
+  ],
+  "cocoa_path_regression_runtime_executed": false,
+  "macos_runtime_executed": false,
+  "auval_executed": false,
+  "original_engine_and_dsp_unchanged": true,
+  "core_archive_sha256": "0897c74f4f6c41b6afe716fff9986cb4d8c507306af420416afd043e88a45c61"
+}

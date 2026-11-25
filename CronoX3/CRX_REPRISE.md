@@ -1,3 +1,19 @@
+# Reprise CronoX — CRX010
+
+Rapport CRX009 du Mac (macOS 15.7.2, Apple clang 17 arm64) reçu le 25 novembre 2026. Compilation, identité CrT3, 110 images, tests C++ d’interface, accords, boucles, gain, temporisateurs et destruction passent. La prévalidation Cocoa lève NSInvalidArgumentException dans `catalogBanks` : « NSString fileSystemRepresentation: Cannot form file system representation of empty string ». Une préférence facultative absente devient @"" dans `crxPreference`, puis est convertie sans garde. Arrêt 134 avant toute transaction de copie ; aucun auval CRX009 exécuté, version installée précédente conservée. Le rapport brut reste privé ; résumé sans chemins personnels dans `evidence/cronox-crx009-user-report.json`.
+
+Correctif : `src/au/CronoXCocoaPaths.h` retourne un std::filesystem::path vide pour nil/@"" avant d’appeler fileSystemRepresentation. Utilisé pour les deux racines facultatives et la source dans catalogBanks, ainsi que le chemin de repli du bookmark à l’ouverture. Le catalogue existant peut alors inférer le dossier du preset ou proposer « Choisir le dossier des banques… ». Aucun effacement de préférences ni changement de licence, DSP, gain, tri, typographie ou dessin du clavier.
+
+La vraie sonde `CronoXComparisonProbe` vérifie nil, @"", un chemin avec espaces et le repli vers le dossier du preset sans racines configurées. Elle conserve les sélections NSMenu, le style, l’animation, le rappel, les rendus et les contrôles de non-modification des préférences originales. Un @catch Objective-C enregistre nom/raison et étape dans le JSON au lieu d’un abort sans rapport. Il laisse le résultat en échec ; aucun contrôle n’est retiré ou considéré comme réussi sur exception. Ces contrôles Cocoa sont compilés pour ARM64 mais attendent leur exécution réelle sur le Mac.
+
+Versions : wrapper `CronoX3ARM CRX-010`, pied `CronoX 3 ARM64 port OA 2026 . CRX010`, bundle build 10001. Garder aumu/CrT3/LinP, le composant CronoX 3 ARM Test, l’original CrX3 et Sophistry CP038. Les 413 unités du noyau et LegacyEngine sont inchangés ; archive SHA256 `0897c74f4f6c41b6afe716fff9986cb4d8c507306af420416afd043e88a45c61`. Le cache local Mac est conservé ; pas de recompilation volontaire des 413 unités.
+
+Contrôles de développement CRX010 : 28 régressions et vrai script sous Bash 3.2 avec outils Apple simulés verts. Composant et sondes compilés/liés strictement en Mach-O ARM64 ;110 images et trois exports isolés vérifiés. Les objets des sondes C++ inchangées sont réutilisés du checkpoint9 pour ce contrôle de lien. Ne pas confondre cette compilation avec une exécution Cocoa/auval CRX010. Prochaine étape : lancer le nouveau ZIP épinglé sur le Mac et obtenir le rapport ; vérifier ensuite menus et clavier dans Logic/Live. Référence UI acceptée CRX008, audio acceptée CRX005, dernier checkpoint local CRX009 `113ca5f0cb94a244ba80320196a7d49a53c9e116`.
+
+Publication seulement sous CronoX3/, branche codex/sophistry-native-checkpoints. Préserver les 46 entrées racine hors CronoX3. Source, lanceur et vérification publiés séparément ; archive téléchargée comparée aux blobs Git, CRC et modes. Checkpoint local et bundle incrémental à enregistrer en fin de session. Preuves `evidence/cronox-crx010-local-checks.json`, `cronox-crx010-macos-cross-link.json` et résumé Mac CRX009.
+
+---
+
 # Reprise CronoX — CRX009
 
 Demande du 25 novembre 2026 : menus sur les lignes banque/preset, position et typographie originales, clavier suivant les notes jouées. L’utilisateur accueille CRX008 puis demande ces trois corrections ; aucun nouveau rapport automatique n’est fourni. Référence locale de retour : `d4b6c6f42e373beff2fa6732cc82606ddf9f414f`. Conserver `aumu/CrT3/LinP`, l’original `CrX3`, le gain avant Master +6 dB et Sophistry définitif CP038. Publier uniquement sous `CronoX3/`.

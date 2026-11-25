@@ -1,6 +1,6 @@
 {
   "project": "CronoX 3 ARM64",
-  "checkpoint": "CRX009",
+  "checkpoint": "CRX010",
   "original_version": "3.6.6",
   "original_architectures": [
     "i386",
@@ -44,7 +44,7 @@
   "original_au_bridge_is_not_native_au": true,
   "editor_bindings_available": true,
   "remaining_work": [
-    "Mac validation of CRX009 menu selection, style, played-note animation, Cocoa and auval",
+    "Run CRX010 Cocoa optional-path/menu/keyboard/audio checks and auval on user Mac",
     "Exhaustive original-versus-port comparison remains unverified",
     "Restore original AU identity only after final user validation"
   ],
@@ -60,7 +60,7 @@
   "native_kernel_compiled_arm64": true,
   "arm64_instruction_replay_cases": 6228,
   "original_au_bridge_arm64_qemu_passed": true,
-  "native_audio_unit_status": "CRX009 ARM64 source/build candidate; macOS execution pending",
+  "native_audio_unit_status": "CRX010 candidate fixes CRX009 absent optional Cocoa path; macOS execution pending",
   "original_preference_writes_isolated": true,
   "original_license_read_fallback": true,
   "original_timer_lifecycle_integrated": true,
@@ -72,7 +72,7 @@
   "transaction_regression_checks": 14,
   "sound_fidelity_verified": false,
   "macos_au_host_tested": true,
-  "previous_macos_attempt": "CRX004 native candidate passed; diagnostic collector lacked os.listxattr and aborted before discovery; rollback completed",
+  "previous_macos_attempt": "CRX009 C++ checks passed; Cocoa prevalidation aborted on empty NSString fileSystemRepresentation before component copy",
   "build_script_bash32_empty_array_fix": true,
   "original_kernel_changed_since_crx001": false,
   "macos_candidate_au_tested": true,
@@ -108,5 +108,10 @@
   "original_bank_preset_style_recovered": true,
   "original_keyboard_chords_verified": 4354,
   "keyboard_reads_original_held_note_table": true,
-  "preset_source_location_persisted": true
+  "preset_source_location_persisted": true,
+  "last_macos_attempt_checkpoint": "CRX009",
+  "last_macos_attempt_exit_code": 134,
+  "last_macos_attempt_copy_reached": false,
+  "crx009_optional_cocoa_path_failure_fixed": true,
+  "objective_c_probe_errors_structured": true
 }

@@ -1,0 +1,120 @@
+{
+  "checkpoint": "CRX010",
+  "publication_directory": "CronoX3",
+  "base_remote_commit": "3460e2887d652d04f7fb90961ac8e0a67b9cf34d",
+  "files": [
+    {
+      "path": "CRX_REPRISE.md",
+      "bytes": 39858,
+      "sha256": "af1f5b770beaaa72b152b822de990245911811a247c6bbfc188af33be07f049b",
+      "git_blob": "4def0c4be7d9859424fb20137d3a4663dafae164",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "Installer-CronoX-CRX010.command",
+      "bytes": 8352,
+      "sha256": "2fb04b3acec406f943b8857e6341067476b308b734b8830ccdabd58964abb0b0",
+      "git_blob": "3fe82ac626c5a2e849e4c35c93759a176abff412",
+      "mode": "100755",
+      "changed": true
+    },
+    {
+      "path": "README.md",
+      "bytes": 3928,
+      "sha256": "b5178fe48abfb891724133344e0fca6b284f1ff5de6aaa134a420680f22ea415",
+      "git_blob": "a19833627c8f72b1335a9eeb579a33fa6d254297",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "config/au-identity-test.json",
+      "bytes": 1003,
+      "sha256": "ab0ba2ca9571f9e2bb8689d40b92fbece5d0945c1056a61fd9ea8b11b9dfa779",
+      "git_blob": "b8bf89de35ef3d48ecbf88677400b567adc9aae1",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "cronox-status.json",
+      "bytes": 4918,
+      "sha256": "bee77d3332cf9684fdc5ce21406c3420aacd7a4e2a4c50348582ca0a7a13c2b4",
+      "git_blob": "2f6af7b3dd1a317469a369af335fc8dd4d6b3ef9",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx009-user-report.json",
+      "bytes": 2883,
+      "sha256": "ad92de01ef9c16258054c4f1b3ac3b9d65d4c4fca265a49c7b2f6a37dee27c5a",
+      "git_blob": "a26ebcabbd7620487552673e4670106855249f8f",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx010-local-checks.json",
+      "bytes": 1198,
+      "sha256": "38433718f44da90ff62fa2b55c2768898025a1494716125a1a1f9154d2930e0c",
+      "git_blob": "9594a8aaf7ebe13951317d3717953111f9350b17",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx010-macos-cross-link.json",
+      "bytes": 2370,
+      "sha256": "464c7973304d594bf37a897a46d811819c8a8c41ec7c77cb8c57354675af41d4",
+      "git_blob": "4abfaf9bcb33475b6c06628db6107cf679aa30ab",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoX3ARMTestEditor.mm",
+      "bytes": 25960,
+      "sha256": "abe6fb251b94d7f3cc5de8195868c1c6d380c79832e0d82297ba01ceebb0097f",
+      "git_blob": "570d73b2c998b6667c0d3dd9931686299e3cc985",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoXCocoaPaths.h",
+      "bytes": 434,
+      "sha256": "6358d21bffe4be1e28a82dbb5ce33b75a391e518065e110cc91e90effe0702e5",
+      "git_blob": "4dd9e4b8170940de5812dc401e8c134917874f23",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/Info.plist",
+      "bytes": 1227,
+      "sha256": "2895d6a2f42b1ec86cc3f4cea0aa8b3dffff0fe26e622c8d6144654e3696095e",
+      "git_blob": "e185b478856087b91fc9725f17ae50f2f458222a",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/SophistryProperties.h",
+      "bytes": 2672,
+      "sha256": "028071270dd609a4c88617e750ee078662ef2a5f0ca68f28ed6970ef499a381b",
+      "git_blob": "23e725194047c36b37b3dfba4e5ada6b2aa649e3",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/CronoXComparisonProbe.mm",
+      "bytes": 20769,
+      "sha256": "f92850db771ad40042af4cb55933fb75c15ca2a81ee64cf8c30c6943aecb42ab",
+      "git_blob": "f4214e9bee8761aa6b1b232dbbaaf5748f9a23ba",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/test_cronox_registration_diagnostics.py",
+      "bytes": 6952,
+      "sha256": "e9282bc1847055b061d494f4f2accbc77b7af69c1699fd9525716abf5380891e",
+      "git_blob": "5f921aa04b4b90b1f25d4c7b76f662bb66959639",
+      "mode": "100644",
+      "changed": true
+    }
+  ],
+  "self_manifest_excluded": true
+}

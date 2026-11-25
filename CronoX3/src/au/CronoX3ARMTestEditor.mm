@@ -5,6 +5,7 @@
 #include "CronoXIdentity.h"
 #include "CronoXPresetNames.h"
 #include "CronoXPresetCatalog.h"
+#include "CronoXCocoaPaths.h"
 #import <AppKit/AppKit.h>
 #import <AudioToolbox/AUCocoaUIView.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -109,7 +110,7 @@ NSURL* crxURL(const std::filesystem::path& p) {std::error_code e;return p.empty(
   name_=crxMenu(NSMakeRect(27,244,138,15),self,@selector(showPresetMenu:));[self addSubview:name_];[browser_ addObject:name_];
   NSString* path=crxPreference(CFSTR("CronoX3ARMPresetRoot"));
   CFPropertyListRef bookmark=CFPreferencesCopyValue(CFSTR("CronoX3ARMPresetBookmark"),CFSTR("com.linplug.CronoX3.ARMTest"),kCFPreferencesCurrentUser,kCFPreferencesAnyHost);
-  if(bookmark&&CFGetTypeID(bookmark)==CFDataGetTypeID())libraryAccess_=sophistryMac::openBankBookmark((CFDataRef)bookmark,path.fileSystemRepresentation);
+  if(bookmark&&CFGetTypeID(bookmark)==CFDataGetTypeID())libraryAccess_=sophistryMac::openBankBookmark((CFDataRef)bookmark,cronox::cocoa::path(path).c_str());
   if(bookmark)CFRelease(bookmark);
   const SEL actions[]={@selector(previous:),@selector(load:),@selector(next:),@selector(save:)};
   NSArray* titles=@[@"Prev",@"Load",@"Next",@"Save"];
@@ -117,7 +118,7 @@ NSURL* crxURL(const std::filesystem::path& p) {std::error_code e;return p.empty(
     NSButton* b=crxButton(NSMakeRect(21+38*i,265,38,15),@"",self,actions[i]);
     b.bordered=NO;b.toolTip=titles[i];[self addSubview:b];[browser_ addObject:b];
   }
-  [self addSubview:crxLabel(NSMakeRect(10,487,305,16),@"CronoX 3 ARM64 port OA 2026 . CRX009",9)];
+  [self addSubview:crxLabel(NSMakeRect(10,487,305,16),@"CronoX 3 ARM64 port OA 2026 . CRX010",9)];
   [self addSubview:crxButton(NSMakeRect(320,487,132,24),@"Charger un son…",self,@selector(load:))];
   [self addSubview:crxButton(NSMakeRect(458,487,132,24),@"Banque de sons…",self,@selector(bank:))];
   [self addSubview:crxButton(NSMakeRect(596,487,156,24),@"Copier le diagnostic",self,@selector(diagnostic:))];
@@ -226,9 +227,8 @@ NSURL* crxURL(const std::filesystem::path& p) {std::error_code e;return p.empty(
   current_=url;selectedBank_=url.URLByDeletingLastPathComponent;emptyBank_=NO;[self refresh];return YES;
 }
 - (NSArray<NSURL*>*)catalogBanks {
-  const char* current=current_?current_.path.fileSystemRepresentation:"";
-  auto root=cronox::catalog::root(libraryOverride_?libraryOverride_.path.fileSystemRepresentation:crxPreference(CFSTR("CronoX3ARMPresetRoot")).fileSystemRepresentation,
-                                crxPreference(CFSTR("CronoX3ARMSampleRoot")).fileSystemRepresentation,current);
+  auto root=cronox::catalog::root(cronox::cocoa::path(libraryOverride_?libraryOverride_.path:crxPreference(CFSTR("CronoX3ARMPresetRoot"))),
+                                cronox::cocoa::path(crxPreference(CFSTR("CronoX3ARMSampleRoot"))),cronox::cocoa::path(current_.path));
   library_=crxURL(root);NSMutableArray<NSURL*>* banks=[NSMutableArray array];
   for(const auto& folder:cronox::catalog::banks(root)) [banks addObject:crxURL(folder)];
   if(!selectedBank_&&current_)selectedBank_=current_.URLByDeletingLastPathComponent;
