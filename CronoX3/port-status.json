@@ -1,6 +1,6 @@
 {
   "project": "CronoX 3 ARM64",
-  "checkpoint": "CRX004",
+  "checkpoint": "CRX005",
   "original_version": "3.6.6",
   "original_architectures": [
     "i386",
@@ -44,7 +44,7 @@
   "original_au_bridge_is_not_native_au": true,
   "editor_bindings_available": false,
   "remaining_work": [
-    "User macOS AU factory, Cocoa, installed auval and audio tests for CRX004",
+    "User macOS AU factory, Cocoa, installed auval and audio tests for CRX005",
     "CronoX 3.6.6 original UI ABI, panels and controls",
     "Original-versus-port audio and CPU comparison in Logic and Live",
     "Original AU identity restoration after user validation"
@@ -73,7 +73,7 @@
   "transaction_regression_checks": 14,
   "sound_fidelity_verified": false,
   "macos_au_host_tested": true,
-  "previous_macos_attempt": "CRX003 direct native AU passed; auval could not find registered CrT3; rolled back",
+  "previous_macos_attempt": "CRX004 native candidate passed; diagnostic collector lacked os.listxattr and aborted before discovery; rollback completed",
   "build_script_bash32_empty_array_fix": true,
   "original_kernel_changed_since_crx001": false,
   "macos_candidate_au_tested": true,
@@ -82,5 +82,10 @@
   "macos_candidate_audio_passed": true,
   "registered_macos_au_validated": false,
   "auval_passed": false,
-  "registration_wait_added": true
+  "registration_wait_added": true,
+  "apple_python_optional_xattr_api_handled": true,
+  "registration_diagnostics_are_optional": true,
+  "macos_candidate_checkpoint": "CRX004",
+  "last_auval_checkpoint": "CRX003",
+  "current_checkpoint_macos_runtime_tested": false
 }

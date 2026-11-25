@@ -1,0 +1,31 @@
+{
+  "checkpoint": "CRX005",
+  "scope": "Apple Python API portability and mandatory AU validation flow; not execution of an installed AU on macOS",
+  "diagnostic_regression_test_methods": 8,
+  "all_diagnostic_regressions_passed": true,
+  "missing_os_listxattr_reproduced": true,
+  "native_xattr_names_fallback_tested": true,
+  "full_collector_without_python_xattr_api_passed": true,
+  "old_installer_premature_abort_reproduced": true,
+  "optional_diagnostic_error_allows_discovery_and_auval": true,
+  "mandatory_discovery_and_auval_failures_still_abort": true,
+  "installer_validation_flow_bash": "GNU Bash 3.2.0",
+  "build_orchestration": {
+    "scope": "Build shell orchestration with mocked Apple tools only",
+    "bash": "GNU bash, version 3.2.0(2)-release (x86_64-unknown-linux-gnu)",
+    "baseline_failure_reproduced": false,
+    "cold_compilation_units": 14,
+    "cpp_and_objcpp_flags_preserved": true,
+    "empty_compiler_arguments": 0,
+    "paths_with_spaces_passed": true,
+    "warm_object_cache_reused": true,
+    "single_source_invalidation_passed": true,
+    "macos_execution": false,
+    "auval_executed": false,
+    "passed": true
+  },
+  "original_kernel_changed_since_crx001": false,
+  "current_checkpoint_macos_runtime_tested": false,
+  "current_checkpoint_auval_passed": false,
+  "sound_fidelity_verified": false
+}

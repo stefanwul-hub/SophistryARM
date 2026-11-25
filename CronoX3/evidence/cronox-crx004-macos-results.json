@@ -1,0 +1,59 @@
+{
+  "checkpoint_tested": "CRX004",
+  "reported_platform": "macOS 15.7.2 / arm64",
+  "installation": {
+    "checkpoint": "CRX004",
+    "identity": "aumu/CrT3/LinP",
+    "exit_code": 1,
+    "system_installation_committed": false,
+    "rollback_performed": true,
+    "auval_passed": false,
+    "candidate_factory_passed": true,
+    "stage": "d\u00e9tection du composant install\u00e9",
+    "original_component_targeted": false,
+    "original_panels_complete": false,
+    "sound_fidelity_verified": false,
+    "private_preferences_in_report": false
+  },
+  "candidate": {
+    "subtype": "CrT3",
+    "parameters": 522,
+    "preset_name": "unknown",
+    "fresh_instance_state_recall": true,
+    "original_preferences_preserved": true,
+    "original_registration_preserved": true,
+    "render_cpu_seconds": 0.052175625,
+    "stage": "completed",
+    "sample_rate": 44100,
+    "sound_fidelity_verified": false,
+    "peak": 0.015165881253778934,
+    "original_registration_accepted": true,
+    "frames": 8192,
+    "channels": 2,
+    "editor": {
+      "height": 220,
+      "comparison_view": true,
+      "width": 600,
+      "subtype": "CrT3",
+      "original_panel_recovery_complete": false
+    },
+    "render_cpu_ratio": 0.280877082824707,
+    "checkpoint": "CRX004",
+    "passed": true,
+    "rms": 0.0038460589565814697,
+    "original_registered_count_before": 1
+  },
+  "rollback": {
+    "new_candidate_retained_outside_components": true,
+    "previous_component_restored": false,
+    "rollback_completed": true
+  },
+  "failure": {
+    "script": "scripts/diagnose-cronox-registration.py",
+    "exception": "AttributeError",
+    "message": "module 'os' has no attribute 'listxattr'"
+  },
+  "system_discovery_executed": false,
+  "auval_executed": false,
+  "private_paths_and_preferences_omitted": true
+}

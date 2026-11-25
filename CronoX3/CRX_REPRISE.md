@@ -1,4 +1,4 @@
-# Reprise CronoX 3 ARM64 — CRX004
+# Reprise CronoX 3 ARM64 — CRX005
 
 Décisions utilisateur : Sophistry définitif = CP038 ; développer CronoX 3.6.6 séparément et publier uniquement sous `CronoX3/` dans le dépôt existant, branche `codex/sophistry-native-checkpoints`. Ne pas reprendre l’expérience CP040. Ne jamais remplacer les fichiers Sophistry ni pousser ce worktree directement sur cette branche : ses chemins racine doivent être préfixés `CronoX3/` pour la publication.
 
@@ -81,3 +81,23 @@ Rapport privé CRX003 : compilation et prévalidation réelle macOS réussies. A
 CRX004 reprend le principe de détection bornée déjà présent dans l’installeur Sophistry CP038 : toucher seulement le nouveau bundle et le dossier Components après copie, redémarrer AudioComponentRegistrar de l’utilisateur, interroger le catalogue et tester CrT3 dans des processus neufs avant auval. Le scanner peut être asynchrone ; ce diagnostic de course reste à confirmer sur le Mac. `CronoXRegistrationProbe` n’appelle jamais AudioComponentRegister ni CFBundleLoadExecutable ; il exige un composant unique du registre système et vérifie sa version via SpVr. `wait-cronox-registration.py` réessaie absence/version ancienne pendant 30 s, pas les doublons/erreurs de factory. Aucun succès de découverte ne remplace auval et les rendus enregistrés.
 
 Diagnostics de registre : métadonnées installées, permissions de la chaîne de dossiers, architecture, signature, présence de quarantaine (sans valeur), lignes du catalogue limitées à CronoX ; sur échec, journal macOS filtré sur le nom/identifiant CrT3. Les rapports restent privés. Ne pas supprimer de cache Audio Unit global ou écrire dans les préférences de l’original. Les instructions du DSP restent inchangées depuis CRX001.
+
+
+## Publication CRX004 vérifiée
+
+Source `fc8500c095dfead0ea884ebc3a5a6007814f2cf7` ; archive SHA256 `d4127496b5fc27241bef6bd3f738bb320292fa3df7acb8eafe3f5dfb8e9edcdb` (74 634 765 octets). Les 181 fichiers CronoX ont été vérifiés contre les blobs Git ; CRC et permissions exécutables vérifiés. Les cinq tests de détection sont verts depuis la copie publique. Le composant, la sonde Cocoa et la nouvelle sonde de registre compilent et s’assemblent strictement en Mach-O ARM64. Le noyau traduit n’a pas changé.
+
+Lanceur `a18cde516ee12e7301ff772420dc449217e27c95`, fichier `CronoX3/Demarrer-CronoX-CRX004.zip` ; SHA256 `7dca971142f038af5277c0822b08dd789933012ee8dea571d65c1f6b903ad5f7` (1 957 octets). Téléchargement direct comparé octet par octet ; CRC et permission du .command vérifiés. Commit de métadonnées `7e7b9aec0a1b6d4c312b248a84997bcb104966e8`. Les 46 entrées racine hors CronoX3 sont préservées.
+
+Prochaine étape : rapport CRX004 du Mac. Vérifier d’abord registration-initial.json, discovery-*.json et registration-result.json, puis auval et les rendus enregistrés. Si la détection manque encore, analyser registration-failure.json (permissions, architecture, signature, catalogue et journal ciblé), sans conclure automatiquement à un problème DSP. CRX003 est le dernier candidat réellement exécuté sur le Mac : il passe en chargement direct mais n’est pas installé après son rollback. Ne pas déclarer CRX004 validé avant le rapport.
+
+
+## CRX005 — diagnostic Python Apple, 25 novembre 2026
+
+Le rapport CRX004 valide à nouveau le candidat natif local (522 paramètres, vue Cocoa, son, rappel, licence originale acceptée et préférences originales préservées). Le collecteur `diagnose-cronox-registration.py` s’arrête sur AttributeError : Python Apple n’expose pas `os.listxattr`. registration-initial.json est vide ; aucune sonde de découverte ni auval n’a ensuite été exécutée. Le rollback retire le candidat non confirmé. Ne pas considérer ce rapport comme une preuve d’échec de l’attente CRX004.
+
+Correction CRX005 : getattr pour l’API optionnelle, repli sur `/usr/bin/xattr` en ne lisant que les noms (aucune valeur d’attribut exportée), valeur inconnue sur erreur. La collecte initiale est entourée d’un if non bloquant et son stderr est conservé dans registration-initial.log. La détection de la bonne version, auval et les rendus enregistrés restent strictement nécessaires pour confirmer l’installation. Aucune nouvelle modification DSP.
+
+Huit tests `test_cronox_registration_diagnostics.py` couvrent l’absence effective de l’API dans un module os simulé, le repli natif, les erreurs/absences et le collecteur complet ; les mêmes tests exécutent le vrai bloc de l’installeur sous Bash 3.2 avec injection de résultats de processus. L’ancien arrêt prématuré est reproduit, la collecte facultative échouée laisse passer détection et auval, et une erreur de détection/auval reste bloquante. Aucun composant système n’est installé par ces tests.
+
+Garder CrT3, CrX3 original et Sophistry CP038. Le nom de preset « unknown » et les panneaux originaux restent à reprendre après l’installation système validée. Ne pas annoncer la correction du registre comme confirmée avant le prochain rapport Mac.

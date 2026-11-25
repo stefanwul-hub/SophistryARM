@@ -13,6 +13,17 @@ def command(args,limit=15):
     except (OSError,subprocess.TimeoutExpired) as error:
         return {'error':type(error).__name__}
 
+def quarantine_present(path):
+    # Apple Python does not necessarily expose the Linux xattr os API.
+    # Query names through the native tool if it is absent; never export values.
+    reader=getattr(os,'listxattr',None)
+    if reader is not None:
+        try:return 'com.apple.quarantine' in reader(path)
+        except OSError:return None
+    result=command(['/usr/bin/xattr',str(path)],limit=5)
+    if result.get('exit_code')!=0:return None
+    return 'com.apple.quarantine' in result.get('stdout','').splitlines()
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--logs',action='store_true');args=parser.parse_args()
     if sys.platform!='darwin':parser.error('macOS required')
@@ -21,7 +32,7 @@ def main():
     for path in [Path('/Library'),Path('/Library/Audio'),Path('/Library/Audio/Plug-Ins'),TARGET.parent,TARGET,TARGET/'Contents',binary.parent,binary]:
         try:
             s=path.stat();out['paths'].append({'path':str(path),'mode':oct(stat.S_IMODE(s.st_mode)),
-                'uid':s.st_uid,'gid':s.st_gid,'quarantine_present':'com.apple.quarantine' in os.listxattr(path)})
+                'uid':s.st_uid,'gid':s.st_gid,'quarantine_present':quarantine_present(path)})
         except OSError as error:out['paths'].append({'path':str(path),'error':type(error).__name__})
     try:
         with (TARGET/'Contents/Info.plist').open('rb') as f:info=plistlib.load(f)

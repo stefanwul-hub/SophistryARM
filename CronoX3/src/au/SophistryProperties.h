@@ -1,8 +1,8 @@
 #pragma once
 #include <cstdint>
 namespace sophistry {
-constexpr char wrapperVersion[] = "CronoX3ARM CRX-004";
-constexpr char editorFooter[] = "CronoX 3 ARM Test (CRX004)";
+constexpr char wrapperVersion[] = "CronoX3ARM CRX-005";
+constexpr char editorFooter[] = "CronoX 3 ARM Test (CRX005)";
 // Private editor properties are for a view with a local AU handle.
 // Flat bytes avoid sharing object pointers, but the macOS remote proxy may
 // reject these IDs. Host-side remote tests must use public AU properties.
