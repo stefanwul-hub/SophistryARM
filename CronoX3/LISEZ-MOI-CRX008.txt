@@ -1,0 +1,20 @@
+CronoX 3 ARM64 — CRX008
+
+Quittez Logic et Live, décompactez le ZIP puis ouvrez Demarrer-CronoX-CRX008.command.
+Le script télécharge les sources vérifiées, garde le cache de compilation,
+compile en ARM64 et lance les tests C++, Loop Sampler, Cocoa, audio et auval.
+Il installe CronoX 3 ARM Test.component dans /Library/Audio/Plug-Ins/Components,
+avec sauvegarde et récupération de la version ARM Test précédente en cas d’échec.
+CronoX original CrX3 et Sophistry CP038 sont conservés. Rapport ZIP sur le Bureau.
+
+Correctifs : repères et édition graphique/numérique des boucles, calcul/cache
+de forme d’onde, banque et preset sur deux lignes centrées, noms d’effets
+non coupés, pied à 9 points abaissé. Gain avant Master +6 dB conservé.
+Cliquer sur les valeurs Sample S / Loop S / Loop E / X-Fade ouvre la saisie.
+
+Compilation/lien ARM64 et tests de développement vérifiés. Cocoa et auval
+CRX008 seront exécutés par le script sur votre Mac. Les gestes et l’absence
+de saccades dans vos projets Logic/Live restent à confirmer sur votre machine.
+
+Sources épinglées : e250230bc37fa6f5cc910e0c6a7c5c8fafaf5a28
+SHA256 archive source : 364337f095f7a4c8f99fd6c35dc50d0e52b4628c79b5484cd9c5ade735b32c33
