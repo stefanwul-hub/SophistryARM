@@ -1,0 +1,28 @@
+{
+  "checkpoint": "CRX011 + standalone RV002 diagnostic fix",
+  "local_base_commit": "a2dac561babd494691dd3a023317be074007762d",
+  "previous_public_checkpoint": "f07b01dfbf71616dbf8ef725a4e2faa0b03e0fc9",
+  "received_report": "RV001 on macOS 15.7.2 / M1 Ultra",
+  "received_report_status": {
+    "arm64_and_x86_64_compilation_passed": true,
+    "arm64_host_started": true,
+    "failed_before_au_creation": true,
+    "cpu_measurements_started": false,
+    "error": "Expected a chunk-based CronoX FXP"
+  },
+  "root_cause": "RV001 read FPCh version at byte12 as if it were the AU subtype; the VST file ID is at16 (Crx3), distinct from AU CrX3",
+  "fix": "Shared C++ FPCh structural parser matching the working CRX011 editor; keep opaque payload validation in the existing engine",
+  "real_reference_fxp_parser_test_passed": true,
+  "malformed_inputs_rejected": 67,
+  "address_and_undefined_behavior_sanitizers_passed": true,
+  "strict_macho_link_passed": ["arm64", "x86_64"],
+  "rv002_macos_runtime_executed": false,
+  "audio_measurement_protocol_changed": false,
+  "production_plugin_changed": false,
+  "rv001_sources_or_zip_modified": false,
+  "original_component_changed": false,
+  "sophistry_cp038_frozen": true,
+  "cpu_issue_resolved": false,
+  "private_report_or_au_state_published": false,
+  "publication_scope": "CronoX3/ only; preserve all other root entries"
+}

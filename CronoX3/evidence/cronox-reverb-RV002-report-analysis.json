@@ -1,0 +1,17 @@
+{
+  "report_sha256": "e63988026acb462cd2d11590293729b29e0eda39763062f66097d66ffc3cc4ab",
+  "diagnostic_received": "RV001",
+  "macos_version": "15.7.2",
+  "processor": "Apple M1 Ultra",
+  "two_probe_compilations_succeeded": true,
+  "arm_host_started": true,
+  "selected_preset_filename": "not recorded by RV001",
+  "failure_stage": "FXP header validation before AU creation",
+  "error": "Expected a chunk-based CronoX FXP",
+  "cpu_measurements_started": false,
+  "cpu_results_available": false,
+  "root_cause": "RV001 compared the version at byte12 to AU subtype CrX3; real FXP version=1, VST ID Crx3 is at byte16",
+  "original_kaja_constructor_address": "0x4a420",
+  "cpu_issue_resolved": false,
+  "private_report_or_au_state_published": false
+}

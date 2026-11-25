@@ -1,0 +1,23 @@
+{
+  "diagnostic": "RV002",
+  "fxp_parser": {
+    "passed": true,
+    "real_reference_fxp_loaded": true,
+    "rv001_failure_reproduced": true,
+    "version_offset": 12,
+    "vst_id_offset": 16,
+    "reference_vst_id": "Crx3",
+    "reference_payload_bytes": 20640,
+    "malformed_or_truncated_inputs_rejected": 67,
+    "engine_audio_or_macos_executed": false
+  },
+  "address_and_undefined_behavior_sanitizers_passed": true,
+  "real_reference_fxp_sha256": "5594ad2761e37f6944ce460b160dc66a039c710632c9b79a2f9ad2798585f01c",
+  "preparation_failure_from_received_report_summarized_correctly": true,
+  "synthetic_cpu_ratio_and_silence_windows_passed": true,
+  "different_input_banks_reject_cpu_comparison": true,
+  "bash32_syntax_checked": true,
+  "macos_runtime_executed": false,
+  "production_component_changed": false,
+  "passed": true
+}
