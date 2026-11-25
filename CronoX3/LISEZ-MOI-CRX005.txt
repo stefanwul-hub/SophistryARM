@@ -1,0 +1,20 @@
+CronoX 3 ARM Test — CRX005
+
+CRX004 a passé les tests du candidat AU (interface, paramètres, audio et état),
+puis son diagnostic Python s’est arrêté : os.listxattr est absent du Python Apple.
+La détection et auval n’ont donc pas été lancés lors de cette tentative.
+
+CRX005 corrige ce diagnostic : repli sur l’outil natif xattr, sans exporter
+les valeurs d’attributs. La collecte est désormais facultative ; une erreur
+est enregistrée mais laisse les contrôles indispensables se poursuivre.
+La détection de la bonne version, auval et les rendus enregistrés restent
+obligatoires avant confirmation. Le DSP est inchangé et le cache est réutilisé.
+
+Quittez Logic/Live, décompressez ce ZIP puis ouvrez
+Demarrer-CronoX-CRX005.command.
+Seul /Library/Audio/Plug-Ins/Components/CronoX 3 ARM Test.component est ciblé.
+Votre CronoX original CrX3 et Sophistry CP038 restent en place.
+
+Envoyez le ZIP CronoX3-rapports-CRX005-… créé sur le Bureau.
+L’inscription dans le registre macOS et la validation AU restent à confirmer.
+Ne transmettez pas votre licence.
