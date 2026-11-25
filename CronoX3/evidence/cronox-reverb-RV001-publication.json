@@ -1,0 +1,39 @@
+{
+  "diagnostic": "RV001",
+  "local_source_commit": "a97d35942436893ab6f4cae13894e10549d08fb7",
+  "remote_source_commit": "b4d7ab36d36d4bde40a574b243dd46a4e951feaf",
+  "branch": "codex/sophistry-native-checkpoints",
+  "download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/b4d7ab36d36d4bde40a574b243dd46a4e951feaf/CronoX3/Diagnostiquer-CronoX-Reverbe-RV001.zip",
+  "archive_bytes": 12167,
+  "archive_sha256": "7d5f23022b6dc3c5e972f8458c0f0e3ccf0a65d5925c3ab1cfe9501617becf18",
+  "downloaded_zip_crc_contents_modes_and_sha256_verified": true,
+  "publication_tree": {
+    "base_root": "abb037e49ce45e1bdf90b84e49b8e4150764562d",
+    "new_root": "6de3c65a38f8879a700f0ed2f0e5ae478fe58be0",
+    "unrelated_root_entries_preserved": 46,
+    "files_before": 296,
+    "files_after": 307,
+    "only_expected_files_changed": true,
+    "changed_files": [
+      "CRX_REPRISE.md",
+      "Diagnostiquer-CronoX-Reverbe-RV001.zip",
+      "analysis/cronox/compare_reverb_tail.py",
+      "checkpoints/cronox/CRX011-Reverb-RV001.json",
+      "cronox-status.json",
+      "diagnostics/reverb-RV001/CronoXReverbProbe.mm",
+      "diagnostics/reverb-RV001/Diagnostiquer-CronoX-Reverbe-RV001.command",
+      "diagnostics/reverb-RV001/LIRE-MOI.txt",
+      "diagnostics/reverb-RV001/summarize.py",
+      "evidence/cronox-reverb-RV001-cross-link.json",
+      "evidence/cronox-reverb-RV001-numeric-report-checks.json",
+      "evidence/cronox-reverb-RV001-package.json",
+      "evidence/cronox-reverb-RV001-tail-concordance.json"
+    ],
+    "unchanged_production_plugin": true
+  },
+  "production_component_checkpoint": "CRX011",
+  "production_source_or_dsp_changed": false,
+  "macos_diagnostic_execution_pending": true,
+  "cpu_issue_resolved": false,
+  "licence_keys_or_private_au_states_published": false
+}
