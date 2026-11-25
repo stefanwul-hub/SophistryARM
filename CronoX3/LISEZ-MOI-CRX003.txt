@@ -1,0 +1,19 @@
+CronoX 3 ARM Test — CRX003
+
+Ce correctif règle l’arrêt « extra[*]: unbound variable » du script CRX002
+avec le Bash 3.2 fourni par macOS. Le DSP est inchangé.
+
+Quittez Logic/Live, décompressez ce ZIP et lancez
+Demarrer-CronoX-CRX003.command.
+Le lanceur télécharge et vérifie les sources, conserve le cache CRX001/CRX002,
+compile en ARM64, teste le candidat, installe ARM Test, exécute auval et
+les rendus de contrôle. Il confirme seulement après les validations.
+
+Seul /Library/Audio/Plug-Ins/Components/CronoX 3 ARM Test.component est ciblé.
+Votre CronoX original CrX3 et Sophistry CP038 restent en place.
+La vue compacte de comparaison propose Load, Prev/Next, Save, Banque de sons
+et Copier le diagnostic. Les panneaux originaux restent à raccorder.
+
+Envoyez le ZIP CronoX3-rapports-CRX003-… créé sur le Bureau.
+La validation AU et la conformité sonore restent à confirmer sur votre Mac.
+Ne transmettez pas votre licence.
