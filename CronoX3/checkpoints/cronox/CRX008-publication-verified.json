@@ -1,0 +1,25 @@
+{
+  "checkpoint": "CRX008",
+  "source_commit": "e250230bc37fa6f5cc910e0c6a7c5c8fafaf5a28",
+  "launcher_commit": "a754ba8cd6bf05458ba352540e681a3fa7a82f7d",
+  "download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/a754ba8cd6bf05458ba352540e681a3fa7a82f7d/CronoX3/Demarrer-CronoX-CRX008.zip",
+  "launcher_bytes": 2005,
+  "launcher_sha256": "ec3b29753406fad6dc324896fa29e8c7c102e45d38b3dbc61f76de522f218073",
+  "downloaded_launcher_bytes_match_local": true,
+  "launcher_crc_and_executable_mode_verified": true,
+  "source_archive_verification": {
+    "source_commit": "e250230bc37fa6f5cc910e0c6a7c5c8fafaf5a28",
+    "zip_sha256": "364337f095f7a4c8f99fd6c35dc50d0e52b4628c79b5484cd9c5ade735b32c33",
+    "bytes": 74913136,
+    "all_crc_verified": true,
+    "cronox_files_compared": 247,
+    "all_git_blob_hashes_verified": true,
+    "executable_modes_verified": true,
+    "unrelated_root_entries_preserved": 46
+  },
+  "source_and_launcher_trees_verified": true,
+  "sophistry_root_entries_preserved": 46,
+  "macos_crx008_runtime_executed": false,
+  "auval_crx008_executed": false,
+  "passed": true
+}
