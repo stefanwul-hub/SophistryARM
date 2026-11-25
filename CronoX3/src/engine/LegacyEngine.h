@@ -26,6 +26,9 @@ struct LegacyEngineConfig {
   bool useLocalMacPreferences = false;
   bool recycleFreedBlocks = false;
   bool audioUnitMode = false;
+  // Constant calibration before the original Master multiplication. Raw dB,
+  // normalized automation and serialized presets remain original.
+  float preMasterGainDb = 0;
   std::uint32_t audioUnitOutputChannels = 2;
   bool collectDiagnostics = true;
   bool recursiveAssetSearch = false;

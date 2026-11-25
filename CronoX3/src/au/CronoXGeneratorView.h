@@ -1,6 +1,8 @@
 // Included by CronoX3Editor.mm; Objective-C++/ARC only.
 #pragma once
 #include "../engine/GeneratorControls.h"
+#include "CronoXTypography.h"
+#import <CoreText/CoreText.h>
 
 namespace cronoxGeneratorView {
 inline NSString *string(const char *bytes, std::size_t capacity) {
@@ -46,18 +48,27 @@ inline BOOL originalPixelSize(NSImage *image) {
                           NSMakeSize(rep.pixelsWide, rep.pixelsHigh));
   return NO;
 }
-inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
-  NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
-  style.alignment = NSTextAlignmentCenter;
-  style.lineBreakMode = NSLineBreakByTruncatingMiddle;
-  [s drawInRect:r
-      withAttributes:@{
-        NSFontAttributeName : [NSFont systemFontOfSize:size
-                                                weight:NSFontWeightMedium],
-        NSForegroundColorAttributeName : color,
-        NSParagraphStyleAttributeName : style
-      }];
+inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color,
+                 NSInteger alignment = 1) {
+  if(!s.length || r.size.width<=0 || r.size.height<=0) return;
+  // Match CDrawContext::drawStringUTF8(rect) 0xc1a44: an explicit baseline,
+  // plain Helvetica, and clipping to the original rectangle. No small system font.
+  CTFontRef font=CTFontCreateWithName(CFSTR("Helvetica"),size,nullptr);
+  NSDictionary* attributes=@{(__bridge id)kCTFontAttributeName:(__bridge id)font,
+    (__bridge id)kCTForegroundColorAttributeName:(__bridge id)color.CGColor};
+  NSAttributedString* str=[[NSAttributedString alloc] initWithString:s attributes:attributes];
+  CTLineRef line=CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)str);
+  CFRelease(font);
+  CGFloat width=CGFloat(CTLineGetTypographicBounds(line,nullptr,nullptr,nullptr));
+  CGFloat x=alignment==0?NSMinX(r):alignment==2?NSMaxX(r)-width:std::floor(NSMidX(r)-width*.5);
+  CGFloat baseline=NSMaxY(r)-std::floor(r.size.height*.5)+std::floor(size*.5)-1;
+  CGContextRef context=NSGraphicsContext.currentContext.CGContext;
+  CGContextSaveGState(context);CGContextClipToRect(context,NSRectToCGRect(r));
+  CGContextTranslateCTM(context,x,baseline);CGContextScaleCTM(context,1,-1);
+  CGContextSetTextMatrix(context,CGAffineTransformIdentity);CGContextSetTextPosition(context,0,0);
+  CTLineDraw(line,context);CGContextRestoreGState(context);CFRelease(line);
 }
+
 } // namespace cronoxGeneratorView
 
 @interface CronoX3GeneratorNode : NSControl
@@ -196,7 +207,7 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
         respectFlipped:YES
                  hints:nil];
     if (_spec.widget == W::Dial && _spec.valueOffset)
-      cronoxGeneratorView::text(value, [self valueRect], 8,
+      cronoxGeneratorView::text(value, [self valueRect], 11,
                                    _spec.darkValue ? [NSColor colorWithWhite:0.1
                                                                        alpha:1]
                                                    : [NSColor colorWithRed:0.99
@@ -208,15 +219,15 @@ inline void text(NSString *s, NSRect r, CGFloat size, NSColor *color) {
     [[NSBezierPath bezierPathWithRoundedRect:r xRadius:3 yRadius:3] fill];
     cronoxGeneratorView::text(
         value.length ? value : @"—", NSInsetRect(r, 3, 1),
-        r.size.height > 13 ? 9 : 8, NSColor.whiteColor);
+        11, NSColor.whiteColor);
   } else {
     NSRect text = r;
     if (_spec.widget == W::Step) {
       text.size.width = MAX(18, r.size.width - 25);
-      cronoxGeneratorView::text(value, text, r.size.height > 13 ? 9 : 8,
+      cronoxGeneratorView::text(value, text, 11,
                                    [NSColor colorWithWhite:0.08 alpha:1]);
     } else
-      cronoxGeneratorView::text(value, text, 9, NSColor.whiteColor);
+      cronoxGeneratorView::text(value, text, 11, NSColor.whiteColor);
   }
 }
 - (void)mouseDown:(NSEvent *)down {

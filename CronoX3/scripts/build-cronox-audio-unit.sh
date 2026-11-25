@@ -41,7 +41,7 @@ cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/Audi
  "$ROOT/work/cronox-engine/LegacyEngine.o" "$ROOT/work/cronox-engine/LegacyImageData.o" "${objects[@]}" \
  "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o \
  -Wl,-exported_symbols_list,"$ROOT/src/au/CronoX3ARMTest.exports" \
- -lobjc -framework AppKit -framework Foundation -framework AudioToolbox -framework CoreAudio -framework CoreFoundation -framework CoreMIDI \
+ -lobjc -framework AppKit -framework CoreText -framework Foundation -framework AudioToolbox -framework CoreAudio -framework CoreFoundation -framework CoreMIDI \
  -o "$bundle/Contents/MacOS/CronoX3ARMTest.pending"
 mv "$bundle/Contents/MacOS/CronoX3ARMTest.pending" "$bundle/Contents/MacOS/CronoX3ARMTest"
 /usr/bin/plutil -lint "$bundle/Contents/Info.plist"
@@ -54,7 +54,7 @@ mv "$bundle/Contents/MacOS/CronoX3ARMTest.pending" "$bundle/Contents/MacOS/Crono
 /bin/chmod 755 "$bundle/Contents/MacOS/CronoX3ARMTest"
 /usr/bin/codesign --verify --strict "$bundle"
 "${compiler[@]}" "${flags[@]}" -fobjc-arc "$ROOT/tests/CronoXComparisonProbe.mm" \
- -framework AppKit -framework Foundation -framework AudioToolbox -framework CoreFoundation \
+ -framework AppKit -framework CoreText -framework Foundation -framework AudioToolbox -framework CoreFoundation \
  -o "$DEST/CronoXComparisonProbe" > "$DEST/comparison-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/CronoXComparisonProbe" -verify_arch arm64
 "${compiler[@]}" "${flags[@]}" "$ROOT/tests/CronoXRegistrationProbe.cpp" \
@@ -68,4 +68,9 @@ for probe in CronoXRunLoopProbe CronoXControlThreadProbe CronoXEditorProbe; do
   -o "$DEST/$probe" > "$DEST/$probe.compile.log" 2>&1
  /usr/bin/lipo "$DEST/$probe" -verify_arch arm64
 done
+"${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -g0 -ffp-contract=off -fno-fast-math \
+ "$ROOT/tests/CronoXCorrectionsProbe.cpp" "$ROOT/work/cronox-engine/LegacyImageData.o" \
+ "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \
+ -o "$DEST/CronoXCorrectionsProbe" > "$DEST/CronoXCorrectionsProbe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/CronoXCorrectionsProbe" -verify_arch arm64
 printf '%s\n' "$bundle" "$DEST/CronoXComparisonProbe"

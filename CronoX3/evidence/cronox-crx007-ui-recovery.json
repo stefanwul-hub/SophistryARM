@@ -1,0 +1,63 @@
+{
+  "checkpoint": "CRX007",
+  "original_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "original_panels": 86,
+  "recorded_controls": 1072,
+  "original_selectors": 19,
+  "unique_control_tags": 877,
+  "original_pngs": 110,
+  "parameter_definitions": 918,
+  "protected_serial_tag": 766,
+  "protected_serial_in_snapshots": false,
+  "archive": "checkpoints/cronox/UI-Recovery-CRX007.tar.gz",
+  "archive_sha256": "1a5029321ae3dbb5093e7124c352de123e660994cedfdd77cbb06d3c49aeb4d9",
+  "ui_native_adaptation": true,
+  "carbon_code_used_for_native_views": false,
+  "original_dsp_kernel_changed": false,
+  "audio_gain_changed": true,
+  "macos_ui_runtime_validated": false,
+  "remaining": [
+    "Mac validation and visual/interaction review",
+    "Original preset folder/category browser is replaced by native FXP/AU file selection",
+    "Original AU replacement identifiers remain disabled"
+  ],
+  "sample_name_labels": {
+    "count": 16,
+    "tags": [
+      [
+        841,
+        842,
+        843,
+        844,
+        845,
+        846,
+        847,
+        848
+      ],
+      [
+        889,
+        890,
+        891,
+        892,
+        893,
+        894,
+        895,
+        896
+      ]
+    ],
+    "constructor": "0x847a CLabelPl",
+    "table_constructor": "0x77ae4 createGenSamTable",
+    "font": "Helvetica 10",
+    "attachment": "0x29984 createGeneralPl",
+    "prior_recording_error": "CRX006 intercepted 0x898a instead of 0x847a, omitting all sixteen label constructors"
+  },
+  "original_font_initializer": "0x1f80",
+  "font_point_sizes": {
+    "Big": 14,
+    "Normal": 12,
+    "Small": 11,
+    "Smaller": 10,
+    "VerySmall": 9
+  },
+  "text_baseline_and_clipping_source": "0xc1a44 CDrawContext::drawStringUTF8"
+}

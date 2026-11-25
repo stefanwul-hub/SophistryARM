@@ -2,6 +2,7 @@
 #include "BankAccess.h"
 #include "SophistryProperties.h"
 #include "OutputGain.h"
+#include "CronoXPresetNames.h"
 #include "CronoXIdentity.h"
 #include <atomic>
 #include <condition_variable>
@@ -32,17 +33,7 @@ constexpr AudioUnitPropertyID diagnosticsProperty =
 constexpr AudioUnitPropertyID wrapperVersionProperty = 0x53705672; // SpVr.
 constexpr UInt32 sophistrySubtype = cronox::identity::subtype, cronoSubtype = cronox::identity::originalSubtype,
                  linplug = 0x4c696e50;
-bool usablePresetName(std::string name) {
-  const auto begin = name.find_first_not_of(" \t\r\n");
-  if (begin == std::string::npos)
-    return false;
-  name = name.substr(begin, name.find_last_not_of(" \t\r\n") - begin + 1);
-  for (char &c : name)
-    if (c >= 'A' && c <= 'Z')
-      c += 32;
-  return name != "empty" && name != "default" && name != "defaut" &&
-         name != "défaut";
-}
+bool usablePresetName(const std::string& name) { return cronox::usablePresetName(name); }
 struct EditorReadInterrupted {};
 std::string jsonText(const std::string &text) {
   std::string result = "\"";
@@ -90,6 +81,7 @@ HostedConfiguration configuration() {
   HostedConfiguration result;
   auto &c = result.engine;
   c.audioUnitMode = true;
+  c.preMasterGainDb = sophistry::outputGainDb;
   c.useLocalMacPreferences = true;
   c.recycleFreedBlocks = true;
   c.collectDiagnostics = false;
@@ -222,7 +214,7 @@ class CronoX3ARMTestAU final : public ausdk::MusicDeviceBase {
     engine_.restoreChunk(bytes, program);
     syncParameters();
     lastKnownPresetName_ = engine_.presetName();
-    if ((lastKnownPresetName_.empty() || lastKnownPresetName_ == "empty") &&
+    if (!usablePresetName(lastKnownPresetName_) &&
         !previousLabel.empty())
       lastKnownPresetName_ = previousLabel;
     syncPresetLabel();

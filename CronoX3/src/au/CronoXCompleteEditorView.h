@@ -51,8 +51,8 @@ inline BOOL file(AudioUnit unit, unsigned tag, unsigned operation,
                                UInt32(bytes.size()));
 }
 inline void drawText(NSString *s, NSRect rect, CGFloat size,
-                     NSColor *color = NSColor.whiteColor) {
-  cronoxGeneratorView::text(s, rect, size, color);
+                     NSColor *color = NSColor.whiteColor, NSInteger alignment = 1) {
+  cronoxGeneratorView::text(s, rect, size, color, alignment);
 }
 } // namespace cronoxCompleteView
 @class CronoX3RecoveredNode;
@@ -126,7 +126,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     }
   } else if (c.kind == K::Dial || c.kind == K::Toggle || c.kind == K::HorizontalSlider)
     [super drawRect:dirty];
-  else if (c.kind == K::Step) {
+  else if (c.kind == K::Step && !c.valueRect[2]) {
     NSRect text = r;
     text.size.width = MAX(1, r.size.width - 30);
     cronoxCompleteView::drawText(value, text, 9,
@@ -203,22 +203,22 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
                respectFlipped:YES
                         hints:nil];
     // Type names and the small Copy/Paste triangles are already in their skins.
-    if (sophistry::generatorForTypeTag(c.tag) == 4 &&
+    if (!cronox::typography::hiddenMenuValue(c.tag) && sophistry::generatorForTypeTag(c.tag) == 4 &&
         !(c.tag >= 639 && c.tag <= 647))
       cronoxCompleteView::drawText(
           [value stringByTrimmingCharactersInSet:NSCharacterSet
                                                      .whitespaceCharacterSet],
-          NSInsetRect(r, 2, 0), 8);
+          NSInsetRect(r, 2, 0), cronox::typography::textSize(c));
   } else if (c.kind == K::Text || c.kind == K::Display) {
-    if (self.state.kind == 7 && c.tag != 648)
-      value = self.sampleLabel ?: @"";
-    cronoxCompleteView::drawText(value, r, r.size.height <= 11 ? 7 : 9);
+    if (self.state.kind == 7 && c.tag != 648 && !cronox::typography::sampleFilename(c.tag))
+      value = self.sampleLabel ?: value;
+    cronoxCompleteView::drawText(value, r, cronox::typography::textSize(c), NSColor.whiteColor, cronox::typography::sampleFilename(c.tag)?0:1);
   }
   if (c.valueRect[2] > 0) {
     NSRect text = NSMakeRect(c.valueRect[0] - self.frame.origin.x,
                              c.valueRect[1] - self.frame.origin.y,
                              c.valueRect[2], c.valueRect[3]);
-    cronoxCompleteView::drawText(value, text, 7,
+    cronoxCompleteView::drawText(value, text, 11,
                                     c.extra[0] && c.kind == K::Dial
                                         ? [NSColor colorWithWhite:.1 alpha:1]
                                         : [NSColor colorWithRed:.99
@@ -478,9 +478,9 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
       }
       cronoxCompleteView::drawText(
           [NSString stringWithFormat:@"%03u", unsigned(b[2 + 2 * i] - 1)],
-          NSMakeRect(col * w + 8, row * h, w / 2 - 8, h), 7, color);
+          NSMakeRect(col * w + 8, row * h, w / 2 - 8, h), 11, color);
       cronoxCompleteView::drawText(
-          velocity, NSMakeRect(col * w + w / 2, row * h, w / 2, h), 7, color);
+          velocity, NSMakeRect(col * w + w / 2, row * h, w / 2, h), 11, color);
     }
 }
 - (void)mouseDown:(NSEvent *)down {
@@ -907,7 +907,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
           path.assign(static_cast<const char *>(full.bytes), full.length);
         else
           path.assign(data.value.text, strnlen(data.value.text, sizeof(data.value.text)));
-        const auto name = sophistry::sampleDisplayName(path);
+        const auto name = cronox::typography::sampleFilename(c.tag) ? std::string(data.value.text,strnlen(data.value.text,sizeof(data.value.text))) : sophistry::sampleDisplayName(path);
         sampleLabel = cronoxCompleteView::string(name.c_str(), name.size());
         n.toolTip = sampleLabel;
       }
@@ -962,7 +962,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
               drawInRect:NSMakeRect(c.x + placed.offsetX, c.y + placed.offsetY,
                                     c.width, c.height)
           withAttributes:@{
-            NSFontAttributeName : [NSFont systemFontOfSize:7],
+            NSFontAttributeName : [NSFont fontWithName:@"Helvetica" size:11],
             NSForegroundColorAttributeName : NSColor.whiteColor,
             NSParagraphStyleAttributeName : style
           }];

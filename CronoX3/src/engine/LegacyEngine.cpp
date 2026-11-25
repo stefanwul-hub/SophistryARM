@@ -103,6 +103,10 @@ struct LegacyEngine::Impl {
   float drawX = 0, drawY = 0;
   bool drawPoint = false;
   U32 editorRevision = 0;
+  U32 masterGainParameter = 0;
+  double preMasterGain = 1;
+  U64 masterGainConversions = 0;
+  void refreshMasterGain();
   bool renderFloatModeApplied = false, renderFloatModeWasAlreadyEnabled = false;
   struct DrawingCache {
     std::vector<U32> key;
@@ -214,6 +218,9 @@ struct LegacyEngine::Impl {
     if (config.guestMemoryBytes < 64u * 1024u * 1024u ||
         config.guestMemoryBytes > 0x70000000u)
       throw std::runtime_error("Invalid guest memory size");
+    if (config.preMasterGainDb != 0 && config.preMasterGainDb != 6)
+      throw std::runtime_error("Unsupported CronoX calibration gain");
+    preMasterGain = std::pow(10.0, double(config.preMasterGainDb)/20.0);
     cpu = sl_create(config.guestMemoryBytes);
     if (!cpu)
       throw std::bad_alloc();
@@ -1684,9 +1691,15 @@ void LegacyEngine::Impl::service(U32 pc) {
       fp = f32 ? double(std::log10(float(a))) : std::log10(a);
     else if (op == "exp")
       fp = f32 ? double(std::exp(float(a))) : std::exp(a);
-    else if (op == "pow")
-      fp = f32 ? double(std::pow(float(a), float(number(1))))
-               : std::pow(a, number(1));
+    else if (op == "pow") {
+      fp = f32 ? double(std::pow(float(a), float(number(1)))) : std::pow(a,number(1));
+      // Original Parameter_c::setValue: call at 0x1330c, return0x13311,
+      // EDI is this, followed by fstp [edi+0xc]. Only the Master coefficient
+      // receives the requested constant gain; all other pow calls remain original.
+      if (!f32 && masterGainParameter && word(sp)==0x13311 && reg(0x1c)==masterGainParameter) {
+        fp *= preMasterGain; ++masterGainConversions;
+      }
+    }
     else if (op == "sqrt")
       fp = f32 ? double(std::sqrt(float(a))) : std::sqrt(a);
     else if (op == "floor")
@@ -1717,6 +1730,14 @@ void LegacyEngine::Impl::service(U32 pc) {
   cpu->pc = word(currentSp);
   reg(0x10, currentSp + 4 + extraPop);
 }
+void LegacyEngine::Impl::refreshMasterGain() {
+  if (config.preMasterGainDb == 0) return;
+  const U32 parameter=run(0x1b16e,{object,134});
+  if (!parameter || word(word(parameter+0x10))!=5)
+    throw std::runtime_error("Original Master volume definition changed");
+  masterGainParameter=parameter;
+  run(0x131e8,{parameter,word(parameter+0x14)});
+}
 void LegacyEngine::Impl::initialize() {
   if (disposed) throw std::runtime_error("The original engine has been shut down");
   if (initialized)
@@ -1743,6 +1764,7 @@ void LegacyEngine::Impl::initialize() {
     dispatch(0);
   }
   initialized = true;
+  refreshMasterGain();
   if (!config.privateRegistration.empty()) {
     if (config.useLocalMacPreferences)
       throw std::runtime_error(
@@ -1890,6 +1912,8 @@ void LegacyEngine::restoreChunk(const std::vector<std::uint8_t> &chunk,
   if (n != chunk.size())
     throw std::runtime_error(
         "Original engine did not accept the complete state");
+  impl_->refreshMasterGain();
+  ++impl_->editorRevision;
   // Original CronoX drawing bindings are ported independently of state restore.
 }
 std::string LegacyEngine::presetName() {
@@ -1897,7 +1921,14 @@ std::string LegacyEngine::presetName() {
   const U32 p = 0x5dc000;
   impl_->zero(p, 512);
   impl_->dispatch(5, 0, 0, p);
-  return impl_->string(p, 512);
+  auto name=impl_->string(p,512);
+  if(name.empty() || name=="unknown") {
+    // The original getProgramNameIndexed names the preset-file browser. Raw AU
+    // and FXP chunk restore need not populate it. PrgName is the original field618.
+    const auto embedded=impl_->editorText(0x1c6cc,618);
+    if(!embedded.empty())return embedded;
+  }
+  return name;
 }
 void LegacyEngine::setAssetDirectories(
     const std::vector<std::string> &directories) {
@@ -2189,10 +2220,12 @@ LegacyEngine::completeEditor(unsigned page,
     auto &c = state.controls[state.count++];
     c = impl_->editorControl(tag);
     c.value.auParameter = recoveredAUParameter(tag);
-    if (c.value.kind == 7) {
+    if (c.value.kind == 7 && !((tag>=841 && tag<=848)||(tag>=889 && tag<=896))) {
       const auto text = editorString(tag);
-      std::memset(c.value.text, 0, sizeof(c.value.text));
-      std::strncpy(c.value.text, text.c_str(), sizeof(c.value.text) - 1);
+      if (!text.empty()) {
+        std::memset(c.value.text, 0, sizeof(c.value.text));
+        std::strncpy(c.value.text, text.c_str(), sizeof(c.value.text) - 1);
+      }
     }
     // Every original getter has returned and its scratch result has been
     // copied. A native host may release its lock at this safe boundary.
@@ -2762,6 +2795,8 @@ std::string LegacyEngine::diagnosticJson() const {
     << ",\"voice_activity\":" << impl_->voiceActivityJson()
     << ",\"initialized\":" << (impl_->initialized ? "true" : "false")
     << ",\"active\":" << (impl_->active ? "true" : "false")
+    << ",\"pre_master_gain_db\":" << impl_->config.preMasterGainDb
+    << ",\"pre_master_gain_conversions\":" << impl_->masterGainConversions
     << ",\"timer_callbacks\":" << impl_->timerCallbacks
     << ",\"timers_registered\":" << impl_->timers.size()
     << ",\"disposed\":" << (impl_->disposed ? "true" : "false")

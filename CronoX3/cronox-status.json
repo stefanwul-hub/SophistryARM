@@ -1,6 +1,6 @@
 {
   "project": "CronoX 3 ARM64",
-  "checkpoint": "CRX006",
+  "checkpoint": "CRX007",
   "original_version": "3.6.6",
   "original_architectures": [
     "i386",
@@ -26,7 +26,7 @@
   "native_audio_unit_available": true,
   "installation_enabled": true,
   "auval_executed": false,
-  "output_gain_policy": "Original CronoX DSP gain, unity AU output compensation",
+  "output_gain_policy": "Fixed +6 dB at original Master coefficient conversion; displayed/raw/normalized Master preserved; unity AU buffer gain",
   "native_kernel_compiled_linux": true,
   "translated_compilation_units": 413,
   "compiled_original_instructions": 211282,
@@ -44,7 +44,7 @@
   "original_au_bridge_is_not_native_au": true,
   "editor_bindings_available": true,
   "remaining_work": [
-    "Mac validation of CRX006 Cocoa interface and interactions",
+    "Mac validation of CRX007 corrections, Cocoa, audio and auval",
     "Exhaustive original-versus-port comparison remains unverified",
     "Native preset file selection replaces original folder/category browser",
     "Restore original AU identity only after final user validation"
@@ -92,6 +92,11 @@
   "accepted_audio_reference": "CRX005",
   "accepted_audio_reference_user_validated": true,
   "original_ui_panels": 86,
-  "original_ui_recorded_controls": 1056,
-  "original_ui_pngs": 110
+  "original_ui_recorded_controls": 1072,
+  "original_ui_pngs": 110,
+  "accepted_ui_reference": "CRX006",
+  "accepted_ui_reference_user_validated": true,
+  "original_ui_control_tags": 877,
+  "last_user_accepted_host_checkpoint": "CRX006",
+  "last_user_accepted_auval_checkpoint": "CRX005"
 }

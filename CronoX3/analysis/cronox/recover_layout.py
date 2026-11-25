@@ -89,8 +89,10 @@ def callback(pc):
   events.append({'pc':hex(pc),'kind':'pm','panel':panel_number(a[1]),'tag':a[2],'rects':[rectangle(ptr) for ptr in a[3:7]],'args':list(a[:16])})
  elif pc==0x29068:
   selectors.append({'tag':a[1],'parent':a[2],'children':[signed(i) for i in a[3:27] if i not in (0xffffffff,0)]})
- elif pc in [0x9dd5c,0x9c77c,0xa6d70,0xb0d1e,0x9aa16,0x898a]:
-  value=a[0];put(value,vtable);widgets[value]={'kind':{0x9dd5c:'waveform',0x9c77c:'scrollbar',0xa6d70:'arpeggiator',0xb0d1e:'keyboard',0x9aa16:'surround',0x898a:'text'}[pc],'rect':rectangle(a[1]),'tag':a[3]};events.append({'pc':hex(pc),'panel':None,**widgets[value],'widget':value,'args':list(a[:16])})
+ elif pc in [0x9dd5c,0x9c77c,0xa6d70,0xb0d1e,0x9aa16,0x847a]:
+  # CLabelPl is 0x847a in this image. 0x898a belongs to another widget;
+  # using it lost the sample-table labels before createGeneralPl attached them.
+  value=a[0];put(value,vtable);widgets[value]={'kind':{0x9dd5c:'waveform',0x9c77c:'scrollbar',0xa6d70:'arpeggiator',0xb0d1e:'keyboard',0x9aa16:'surround',0x847a:'text'}[pc],'rect':rectangle(a[1]),'tag':a[3]};events.append({'pc':hex(pc),'panel':None,**widgets[value],'widget':value,'args':list(a[:16])})
  elif pc==0x2986a:
   tags=[word(a[2]+4*i) for i in range(a[3])];events.append({'pc':hex(pc),'kind':'attach','panel':panel_number(a[4]),'widget':a[1],'tags':tags})
  elif pc==0x29984:events.append({'pc':hex(pc),'kind':'attach','panel':panel_number(a[3]),'widget':a[1],'tags':[a[2]]})
@@ -108,7 +110,7 @@ def callback(pc):
 
 def recover(output):
  global capturing_style
- hooks=[0x2ba34,0x28030,0x2914c,0x291ea,0x286cc,stub,stub+16,stub+32,0x1c6cc,0x8072c,0x2a154,0x73fe6,0x27f70,0x2c3cc,0x29068,0x9dd5c,0x9c77c,0xa6d70,0xb0d1e,0x9aa16,0x898a,0x2986a,0x29984,0xd7ac,0x9dc92,0x743c6,0x742e0,0x2b6c2,0x2b7f8,0x2b3e6,0x7c058,0x2b36a,0x29d1c,0x2abc0,0x74d4c,0x2bcb2,0x29b8c,0x2abc0,0x29bf8,0x7acba,0x2aa3e,0x2aee6,0x2b8fc,0x2b1f8,0x2bba6,0x2b456,0x2b658]
+ hooks=[0x2ba34,0x28030,0x2914c,0x291ea,0x286cc,stub,stub+16,stub+32,0x1c6cc,0x8072c,0x2a154,0x73fe6,0x27f70,0x2c3cc,0x29068,0x9dd5c,0x9c77c,0xa6d70,0xb0d1e,0x9aa16,0x847a,0x2986a,0x29984,0xd7ac,0x9dc92,0x743c6,0x742e0,0x2b6c2,0x2b7f8,0x2b3e6,0x7c058,0x2b36a,0x29d1c,0x2abc0,0x74d4c,0x2bcb2,0x29b8c,0x2abc0,0x29bf8,0x7acba,0x2aa3e,0x2aee6,0x2b8fc,0x2b1f8,0x2bba6,0x2b456,0x2b658]
  for pc in dict.fromkeys(hooks):b.hook(pc,callback)
  for i in range(0,0x200,4):put(vtable+i,stub+16)
  for i in range(0,0x600,4):put(0x6f0800+i,stub+16)

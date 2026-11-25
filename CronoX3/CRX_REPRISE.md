@@ -1,3 +1,21 @@
+# Reprise CronoX — CRX007
+
+Le 25 novembre 2026, l’utilisateur confirme que CRX006 fonctionne et que l’interface s’affiche. Les sept corrections demandées sont traitées dans CRX007. Référence audio acceptée : CRX005 ; référence d’interface acceptée : CRX006 (a3a09d3e8e8bb59d548924525730f733c574022a). Sophistry reste définitivement CP038. Toujours publier uniquement sous CronoX3/, garder aumu/CrT3/LinP et préserver l’original CrX3.
+
+Gain : +6 dB fixe demandé AVANT le Master, sans déplacer sa valeur affichée, son automation ni ses données sérialisées. Le paramètre Master est le tag 134. La routine originale Parameter_c::setValue 0x131e8 appelle pow à 0x1330c (retour 0x13311, EDI=this) puis stocke le coefficient float à+0xc. L’adaptateur mathématique multiplie seulement ce résultat pour l’objet Master par 10^(6/20). Les getParaVol 0x1418a/0x15aa2 restent originaux ; les autres volumes et les 413 unités traduites ne changent pas. Aucun second gain sur les buffers AU. refreshMasterGain réapplique cette conversion à l’initialisation et au rappel d’état, sans double multiplication.
+
+Nom : le dispatch VST5 peut renvoyer unknown lorsque le navigateur Carbon n’est pas rempli. Lire le nom PrgName 618 via getParaDispStr 0x1c6cc ; pour les FXP FPCh utiliser aussi le nom de 28 octets à l’offset 28 du header et PresentPreset. unknown est traité comme un nom absent. Le nom natif est conservé dans l’état AU et vérifié après rappel dans une nouvelle instance.
+
+Sampler : erreur de capture CRX006, adresse CLabelPl fausse (0x898a). Le constructeur correct est 0x847a ; l’exécution de createGenSamTable 0x77ae4 suivie de createGeneralPl 0x29984 récupère les 16 labels manquants : tags 841–848,889–896, panneaux 26/27. Le layout comporte maintenant 1072 contrôles et 877 tags distincts. Leur texte vient du formateur original (getLeaf) et non du chemin brut. Colonnes File alignées à gauche, Helvetica 10.
+
+Police : initialisation originale 0x1f80, Helvetica plain 9/10/11/12/14 points suivant le type et la hauteur. Le dessin CoreText reproduit la ligne de base, l’alignement et le clipping de drawStringUTF8 rect 0xc1a44. Pas de libellé off superposé aux boutons bitmap Chord 612 / ECS 610 ; leurs menus conservent leurs choix et fonctionnement. Boutons utilitaires y 487, h 24, centre 499 entre le clavier fin 477 et le bas 521. Pied exact : CronoX 3 ARM64 port OA 2026 . CRX007.
+
+Tests : CronoXCorrectionsProbe compare les coefficients originaux sans gain/avec +6 dB, 54 signaux, 15 autres volumes, l’état programme et la banque AU identiques, un vrai paramètre filename et les 16 polices. CronoXEditorProbe couvre 107 configurations, 863 tags, 15 éditions et 10 dessins. La sonde Cocoa vérifie le nom FXP, le rappel, le pied, Helvetica et le centrage des boutons. L’installeur CRX007 exécute ces sondes puis le rendu et auval. Les tests de développement et le lien strict Mach-O ARM64 sont effectués ici ; Cocoa/auval CRX007 restent à exécuter sur le Mac utilisateur. Ne pas les annoncer validés sans retour.
+
+Reproduction : archive checkpoints/cronox/UI-Recovery-CRX007.tar.gz ; scripts analysis/cronox/recover_layout.py puis normalize_layout.py. Preuves evidence/cronox-crx007-{local-checks,ui-recovery,macos-cross-link}.json. Les points historiques ci-dessous décrivent leur version respective ; CRX007 les remplace pour le gain, la police et les champs du sampler. Le navigateur dossiers/catégories original reste remplacé par le choix natif FXP/AU ; aucune équivalence sonore exhaustive n’est revendiquée.
+
+---
+
 # Reprise CronoX — CRX006
 
 Référence audio acceptée par l’utilisateur : CRX005 ; tag local `final/cronox-crx005-audio-validated`. L’original CrX3 et Sophistry CP038 restent préservés. L’identifiant de comparaison CrT3 est conservé.

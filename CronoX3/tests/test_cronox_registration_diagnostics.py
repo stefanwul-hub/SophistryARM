@@ -87,13 +87,14 @@ sys.exit(code)
         self.assertEqual(code,0);self.assertTrue(completed)
         self.assertIn('wait-cronox-registration.py',names);self.assertIn('run-cronox-auval.py',names)
 
-    def test_crx006_keeps_mandatory_registration_and_validation_checks(self):
-        for discovery,auval,success in [(0,0,True),(3,0,False),(0,2,False)]:
-            with self.subTest(discovery=discovery,auval=auval):
-                code,completed,names=self.flow('Installer-CronoX-CRX006.command',discovery=discovery,auval=auval)
-                self.assertEqual(code==0,success)
-                self.assertIn('wait-cronox-registration.py',names)
-                if discovery==0:self.assertIn('run-cronox-auval.py',names)
+    def test_current_builds_keep_mandatory_registration_and_validation_checks(self):
+        for version in ('006','007'):
+            for discovery,auval,success in [(0,0,True),(3,0,False),(0,2,False)]:
+                with self.subTest(version=version,discovery=discovery,auval=auval):
+                    code,completed,names=self.flow('Installer-CronoX-CRX'+version+'.command',discovery=discovery,auval=auval)
+                    self.assertEqual(code==0,success)
+                    self.assertIn('wait-cronox-registration.py',names)
+                    if discovery==0:self.assertIn('run-cronox-auval.py',names)
 
     def test_required_discovery_failure_still_aborts(self):
         code,completed,names=self.flow('Installer-CronoX-CRX005.command',discovery=3)

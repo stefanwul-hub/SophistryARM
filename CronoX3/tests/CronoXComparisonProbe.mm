@@ -2,6 +2,7 @@
 // values or raw AU banks are written to the report.
 #include "../src/au/CronoXIdentity.h"
 #include "../src/au/SophistryProperties.h"
+#include "../src/au/CronoXPresetNames.h"
 #import <AppKit/AppKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <AudioToolbox/AUCocoaUIView.h>
@@ -56,7 +57,7 @@ int main(int argc,char** argv){@autoreleasepool {
   [NSApplication sharedApplication];[NSApp setActivationPolicy:NSApplicationActivationPolicyProhibited];
   AudioUnit unit=nullptr,fresh=nullptr;CFBundleRef bundle=nullptr;CFDictionaryRef before=nullptr;
   NSString* output=nil;NSString* stage=@"arguments";NSView* view=nil;
-  NSMutableDictionary* report=[NSMutableDictionary dictionaryWithDictionary:@{@"checkpoint":@"CRX006",@"subtype":@"CrT3",@"passed":@NO,@"sound_fidelity_verified":@NO}];
+  NSMutableDictionary* report=[NSMutableDictionary dictionaryWithDictionary:@{@"checkpoint":@"CRX007",@"subtype":@"CrT3",@"passed":@NO,@"sound_fidelity_verified":@NO}];
   try {
     bool registered=false;NSString* bundlePath=nil;NSString* preset=nil;unsigned channels=2;
     for(int i=1;i<argc;++i){std::string arg=argv[i];auto value=[&](){if(++i>=argc)throw std::runtime_error("Missing argument value");return [NSString stringWithUTF8String:argv[i]];};if(arg=="--registered")registered=true;else if(arg=="--bundle")bundlePath=value();else if(arg=="--preset")preset=value();else if(arg=="--output")output=value();else if(arg=="--channels")channels=unsigned([value() intValue]);else throw std::runtime_error("Unknown probe option");}
@@ -73,7 +74,7 @@ int main(int argc,char** argv){@autoreleasepool {
     }
     stage=@"create instance";check(AudioComponentInstanceNew(component,&unit),"Create instance");
     CFStringRef version=nullptr;UInt32 versionBytes=sizeof(version);check(AudioUnitGetProperty(unit,0x53705672,kAudioUnitScope_Global,0,&version,&versionBytes),"Build version");
-    if(!version||!CFEqual(version,CFSTR("CronoX3ARM CRX-006")))throw std::runtime_error("An unexpected comparison build was loaded");CFRelease(version);
+    if(!version||!CFEqual(version,CFSTR("CronoX3ARM CRX-007")))throw std::runtime_error("An unexpected comparison build was loaded");CFRelease(version);
     stage=@"AU parameters";UInt32 bytes=0;Boolean writable=false;check(AudioUnitGetPropertyInfo(unit,kAudioUnitProperty_ParameterList,kAudioUnitScope_Global,0,&bytes,&writable),"Parameter count");
     if(bytes!=522*sizeof(UInt32))throw std::runtime_error("Original AU parameter count differs");std::vector<UInt32> ids(522);check(AudioUnitGetProperty(unit,kAudioUnitProperty_ParameterList,kAudioUnitScope_Global,0,ids.data(),&bytes),"Parameter IDs");
     for(UInt32 id:ids){AudioUnitParameterInfo info{};UInt32 size=sizeof(info);check(AudioUnitGetProperty(unit,kAudioUnitProperty_ParameterInfo,kAudioUnitScope_Global,id,&info,&size),"Parameter info");float value=0;check(AudioUnitGetParameter(unit,id,kAudioUnitScope_Global,0,&value),"Parameter value");if(!std::isfinite(value)||info.minValue>info.maxValue)throw std::runtime_error("Invalid original AU metadata");if(info.flags&kAudioUnitParameterFlag_CFNameRelease){if(info.cfNameString)CFRelease(info.cfNameString);}}
@@ -85,6 +86,13 @@ int main(int argc,char** argv){@autoreleasepool {
     if(!view||![view respondsToSelector:@selector(loadPresetURL:)]||view.frame.size.height>600)throw std::runtime_error("Original comparison view unavailable");
     if(![view loadPresetURL:[NSURL fileURLWithPath:preset]])throw std::runtime_error("The comparison view could not load the public FXP");
     report[@"editor"]=[view cronoxComparisonReport];
+    NSDictionary* editor=report[@"editor"];
+    if(![editor[@"original_font_available"] boolValue] || ![editor[@"footer"] isEqual:@"CronoX 3 ARM64 port OA 2026 . CRX007"])
+      throw std::runtime_error("Original font or CRX007 footer differs");
+    NSArray* buttons=editor[@"utility_buttons"];
+    if(buttons.count!=3)throw std::runtime_error("Utility buttons unavailable");
+    for(NSDictionary* button in buttons)if(std::abs([button[@"center_y"] doubleValue]-499)>0.01)
+      throw std::runtime_error("Utility buttons are not vertically centered");
     stage=@"original editor pages";
     NSArray* pages=[view cronoxEditorPagesReport];
     if(pages.count!=7)throw std::runtime_error("Original editor pages unavailable");
@@ -97,6 +105,13 @@ int main(int argc,char** argv){@autoreleasepool {
     stage=@"render";Audio audio=render(unit,channels);wave([output stringByAppendingPathExtension:@"wav"],audio);
     report[@"frames"]=@(audio.frames);report[@"channels"]=@(channels);report[@"sample_rate"]=@44100;report[@"peak"]=@(audio.peak);report[@"rms"]=@(std::sqrt(audio.squared/(audio.frames*channels)));report[@"render_cpu_seconds"]=@(audio.cpu);report[@"render_cpu_ratio"]=@(audio.cpu/(audio.frames/44100.0));
     NSDictionary* runtime=status(unit);NSString* name=runtime[@"preset_name"];report[@"preset_name"]=name?:@"";report[@"original_registration_accepted"]=runtime[@"engine"][@"registration_accepted"]?:@NO;
+    NSData* file=[NSData dataWithContentsOfFile:preset];const auto header=cronox::fxpProgramName(file.bytes,file.length);
+    NSString* expected=[[NSString alloc] initWithBytes:header.data() length:header.size() encoding:NSUTF8StringEncoding];
+    if(!expected)expected=[[NSString alloc] initWithBytes:header.data() length:header.size() encoding:NSMacOSRomanStringEncoding];
+    if(!cronox::usablePresetName(name.UTF8String?:"") || (expected.length && ![name isEqual:expected]) || ![editor[@"preset_name"] isEqual:name])
+      throw std::runtime_error("Loaded preset name differs from the original FXP header");
+    if([runtime[@"engine"][@"pre_master_gain_db"] doubleValue]!=6)
+      throw std::runtime_error("Expected +6 dB before Master");
     stage=@"fresh instance state recall";CFPropertyListRef state=save(unit);auto dict=static_cast<CFDictionaryRef>(state);SInt32 subtype=0;CFNumberRef number=static_cast<CFNumberRef>(CFDictionaryGetValue(dict,CFSTR("subtype")));if(!number||!CFNumberGetValue(number,kCFNumberSInt32Type,&subtype)||UInt32(subtype)!=cronox::identity::subtype)throw std::runtime_error("Saved comparison AU identity differs");
     check(AudioComponentInstanceNew(component,&fresh),"Create recall instance");restore(fresh,state);CFRelease(state);
     NSDictionary* recalled=status(fresh);if(![recalled[@"preset_name"] isEqual:name])throw std::runtime_error("Restored preset name differs");
