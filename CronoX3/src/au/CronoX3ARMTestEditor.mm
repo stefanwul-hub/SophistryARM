@@ -4,6 +4,7 @@
 #include "SophistryProperties.h"
 #include "CronoXIdentity.h"
 #include "CronoXPresetNames.h"
+#include "CronoXPresetCatalog.h"
 #import <AppKit/AppKit.h>
 #import <AudioToolbox/AUCocoaUIView.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -48,16 +49,45 @@ NSString* crxError(AudioUnit unit,OSStatus status) {
 }
 namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
 #include "CronoXCompleteEditorView.h"
+// CMenuFileList / createMenuFileList: Helvetica 12, RGB(210,210,210),
+// rect y=191/207 + Main panel y=37, height=14+1. Draw with the original baseline.
+@interface CronoX3PresetMenuField : NSTextField
+@end
+@implementation CronoX3PresetMenuField
+- (BOOL)isFlipped{return YES;}
+- (void)drawRect:(NSRect)dirty {cronoxGeneratorView::text(self.stringValue,self.bounds,12,self.textColor,1);}
+- (void)mouseDown:(NSEvent*)event {[NSApp sendAction:self.action to:self.target from:self];}
+@end
+namespace {
+CronoX3PresetMenuField* crxMenu(NSRect frame,id target,SEL action) {
+ auto* field=[[CronoX3PresetMenuField alloc] initWithFrame:frame];
+ field.stringValue=@"- - -";field.font=[NSFont fontWithName:@"Helvetica" size:12];
+ field.textColor=[NSColor colorWithDeviceRed:210./255 green:210./255 blue:210./255 alpha:1];
+ field.bordered=NO;field.drawsBackground=NO;field.editable=NO;field.selectable=NO;
+ field.alignment=NSTextAlignmentCenter;field.target=target;field.action=action;return field;
+}
+NSString* crxPreference(CFStringRef key) {
+ CFPropertyListRef raw=CFPreferencesCopyValue(key,CFSTR("com.linplug.CronoX3.ARMTest"),kCFPreferencesCurrentUser,kCFPreferencesAnyHost);
+ NSString* result=raw&&CFGetTypeID(raw)==CFStringGetTypeID()?[(__bridge NSString*)raw copy]:@"";if(raw)CFRelease(raw);return result;
+}
+NSURL* crxURL(const std::filesystem::path& p) {std::error_code e;return p.empty()?nil:[NSURL fileURLWithFileSystemRepresentation:p.c_str() isDirectory:std::filesystem::is_directory(p,e) relativeToURL:nil];}
+}
 @interface CronoX3ARMTestEditorView : NSView
 - (instancetype)initWithAudioUnit:(AudioUnit)unit;
 - (BOOL)loadPresetURL:(NSURL*)url;
 - (NSDictionary*)cronoxComparisonReport;
 - (NSArray*)cronoxEditorPagesReport;
+- (NSMenu*)bankMenu;
+- (NSMenu*)presetMenu;
+- (NSDictionary*)presetBrowserReport;
+- (void)setPresetLibraryURL:(NSURL*)root persist:(BOOL)persist;
+- (NSDictionary*)cronoxKeyboardReport;
 @end
 @implementation CronoX3ARMTestEditorView {
   AudioUnit unit_;
   NSTextField* name_;NSTextField* bank_;NSTextField* activity_;NSTextField* notice_;
-  NSURL* current_;NSTimer* refresh_;
+  NSURL* current_;NSURL* library_;NSURL* libraryOverride_;NSURL* selectedBank_;BOOL emptyBank_;NSTimer* refresh_;
+  std::shared_ptr<sophistryMac::BankAccess> libraryAccess_;
   NSImage* originalFrame_;
   CronoX3CompletePanel *root_,*panel_,*bottom_;
   NSMutableArray<NSView*>* browser_;
@@ -75,15 +105,19 @@ namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
   bottom_=[[CronoX3CompletePanel alloc] initWithAudioUnit:unit bundle:bundle];
   bottom_.page=8;bottom_.frame=NSMakeRect(0,348,762,129);bottom_.changeTarget=self;[self addSubview:bottom_];
   browser_=[NSMutableArray array];
-  bank_=crxLabel(NSMakeRect(27,228,138,14),@"—",11);bank_.alignment=NSTextAlignmentCenter;[self addSubview:bank_];[browser_ addObject:bank_];
-  name_=crxLabel(NSMakeRect(27,242,138,14),@"…",11);name_.alignment=NSTextAlignmentCenter;[self addSubview:name_];[browser_ addObject:name_];
+  bank_=crxMenu(NSMakeRect(27,228,138,15),self,@selector(showBankMenu:));[self addSubview:bank_];[browser_ addObject:bank_];
+  name_=crxMenu(NSMakeRect(27,244,138,15),self,@selector(showPresetMenu:));[self addSubview:name_];[browser_ addObject:name_];
+  NSString* path=crxPreference(CFSTR("CronoX3ARMPresetRoot"));
+  CFPropertyListRef bookmark=CFPreferencesCopyValue(CFSTR("CronoX3ARMPresetBookmark"),CFSTR("com.linplug.CronoX3.ARMTest"),kCFPreferencesCurrentUser,kCFPreferencesAnyHost);
+  if(bookmark&&CFGetTypeID(bookmark)==CFDataGetTypeID())libraryAccess_=sophistryMac::openBankBookmark((CFDataRef)bookmark,path.fileSystemRepresentation);
+  if(bookmark)CFRelease(bookmark);
   const SEL actions[]={@selector(previous:),@selector(load:),@selector(next:),@selector(save:)};
   NSArray* titles=@[@"Prev",@"Load",@"Next",@"Save"];
   for(unsigned i=0;i<4;++i){
     NSButton* b=crxButton(NSMakeRect(21+38*i,265,38,15),@"",self,actions[i]);
     b.bordered=NO;b.toolTip=titles[i];[self addSubview:b];[browser_ addObject:b];
   }
-  [self addSubview:crxLabel(NSMakeRect(10,487,305,16),@"CronoX 3 ARM64 port OA 2026 . CRX008",9)];
+  [self addSubview:crxLabel(NSMakeRect(10,487,305,16),@"CronoX 3 ARM64 port OA 2026 . CRX009",9)];
   [self addSubview:crxButton(NSMakeRect(320,487,132,24),@"Charger un son…",self,@selector(load:))];
   [self addSubview:crxButton(NSMakeRect(458,487,132,24),@"Banque de sons…",self,@selector(bank:))];
   [self addSubview:crxButton(NSMakeRect(596,487,156,24),@"Copier le diagnostic",self,@selector(diagnostic:))];
@@ -126,7 +160,12 @@ namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
       preset=[(__bridge NSString*)value.presetName copy];CFRelease(value.presetName);
     }
   }
-  name_.stringValue=cronox::usablePresetName(preset.UTF8String?:"")?preset:@"état initial";
+  std::array<char,sophistry::presetSourceBytes> source{};UInt32 sourceBytes=UInt32(source.size());
+  if(!AudioUnitGetProperty(unit_,sophistry::presetSourceProperty,kAudioUnitScope_Global,0,source.data(),&sourceBytes)&&source[0]) {
+    NSURL* url=[NSURL fileURLWithFileSystemRepresentation:source.data() isDirectory:NO relativeToURL:nil];
+    if(![url.path isEqual:current_.path]){current_=url;selectedBank_=url.URLByDeletingLastPathComponent;emptyBank_=NO;}
+  }
+  name_.stringValue=emptyBank_?@"- - -":cronox::usablePresetName(preset.UTF8String?:"")?preset:@"- - -";
   NSString* bank=[s[@"preset_bank_name"] isKindOfClass:NSString.class]?s[@"preset_bank_name"]:@"";
   if(!bank.length) {
     CFPropertyListRef saved=CFPreferencesCopyValue(CFSTR("CronoX3ARMSampleRoot"),CFSTR("com.linplug.CronoX3.ARMTest"),kCFPreferencesCurrentUser,kCFPreferencesAnyHost);
@@ -176,11 +215,90 @@ namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
   std::array<char,sophistry::presetBankNameBytes> existing{};UInt32 bankBytes=UInt32(existing.size());
   bool hasBank=!AudioUnitGetProperty(unit_,sophistry::presetBankNameProperty,kAudioUnitScope_Global,0,existing.data(),&bankBytes)&&existing[0];
   if(importedName.length||!hasBank) {
-    const char* label=url.URLByDeletingLastPathComponent.lastPathComponent.UTF8String;
+    const auto bankLabel=cronox::catalog::label(url.URLByDeletingLastPathComponent.path.fileSystemRepresentation);
+    const char* label=bankLabel.c_str();
     result=AudioUnitSetProperty(unit_,sophistry::presetBankNameProperty,kAudioUnitScope_Global,0,label,UInt32(std::strlen(label)+1));
     if(result){notice_.stringValue=crxError(unit_,result);return NO;}
   }
-  current_=url;[self refresh];return YES;
+  const char* source=url.path.fileSystemRepresentation;
+  result=AudioUnitSetProperty(unit_,sophistry::presetSourceProperty,kAudioUnitScope_Global,0,source,UInt32(std::strlen(source)+1));
+  if(result){notice_.stringValue=crxError(unit_,result);return NO;}
+  current_=url;selectedBank_=url.URLByDeletingLastPathComponent;emptyBank_=NO;[self refresh];return YES;
+}
+- (NSArray<NSURL*>*)catalogBanks {
+  const char* current=current_?current_.path.fileSystemRepresentation:"";
+  auto root=cronox::catalog::root(libraryOverride_?libraryOverride_.path.fileSystemRepresentation:crxPreference(CFSTR("CronoX3ARMPresetRoot")).fileSystemRepresentation,
+                                crxPreference(CFSTR("CronoX3ARMSampleRoot")).fileSystemRepresentation,current);
+  library_=crxURL(root);NSMutableArray<NSURL*>* banks=[NSMutableArray array];
+  for(const auto& folder:cronox::catalog::banks(root)) [banks addObject:crxURL(folder)];
+  if(!selectedBank_&&current_)selectedBank_=current_.URLByDeletingLastPathComponent;
+  std::error_code bankError;if(selectedBank_&&!std::filesystem::is_directory(selectedBank_.path.fileSystemRepresentation,bankError))selectedBank_=nil;
+  if(!selectedBank_)for(NSURL* folder in banks) {
+    auto label=cronox::catalog::label(folder.path.fileSystemRepresentation);
+    if([cronoxCompleteView::string(label.c_str(),label.size()) isEqual:bank_.stringValue]) {selectedBank_=folder;break;}
+  }
+  if(!selectedBank_&&banks.count)selectedBank_=banks.firstObject;
+  if(selectedBank_&&![banks containsObject:selectedBank_]&&cronox::catalog::useful(selectedBank_.path.fileSystemRepresentation))[banks addObject:selectedBank_];
+  return banks;
+}
+- (NSMenu*)bankMenu {
+  NSMenu* menu=[[NSMenu alloc] initWithTitle:@"Banques"];menu.autoenablesItems=NO;
+  for(NSURL* folder in [self catalogBanks]) {
+    auto label=cronox::catalog::label(folder.path.fileSystemRepresentation);
+    NSMenuItem* item=[[NSMenuItem alloc] initWithTitle:cronoxCompleteView::string(label.c_str(),label.size()) action:@selector(selectBank:) keyEquivalent:@""];
+    item.target=self;item.representedObject=folder;item.state=[folder.path isEqual:selectedBank_.path]?NSControlStateValueOn:NSControlStateValueOff;[menu addItem:item];
+  }
+  if(!menu.numberOfItems){NSMenuItem* none=[[NSMenuItem alloc] initWithTitle:@"- - -" action:nil keyEquivalent:@""];none.enabled=NO;[menu addItem:none];}
+  [menu addItem:NSMenuItem.separatorItem];
+  NSMenuItem* choose=[[NSMenuItem alloc] initWithTitle:@"Choisir le dossier des banques…" action:@selector(choosePresetRoot:) keyEquivalent:@""];choose.target=self;[menu addItem:choose];return menu;
+}
+- (NSMenu*)presetMenu {
+  (void)[self catalogBanks];NSMenu* menu=[[NSMenu alloc] initWithTitle:@"Presets"];menu.autoenablesItems=NO;
+  if(selectedBank_)for(const auto& path:cronox::catalog::presets(selectedBank_.path.fileSystemRepresentation)) {
+    auto label=cronox::catalog::label(path);NSMenuItem* item=[[NSMenuItem alloc] initWithTitle:cronoxCompleteView::string(label.c_str(),label.size()) action:@selector(selectPreset:) keyEquivalent:@""];
+    item.target=self;item.representedObject=crxURL(path);item.state=[((NSURL*)item.representedObject).path isEqual:current_.path]?NSControlStateValueOn:NSControlStateValueOff;[menu addItem:item];
+  }
+  if(!menu.numberOfItems){NSMenuItem* none=[[NSMenuItem alloc] initWithTitle:@"- - -" action:nil keyEquivalent:@""];none.enabled=NO;[menu addItem:none];}
+  return menu;
+}
+- (void)showBankMenu:(id)sender {[[self bankMenu] popUpMenuPositioningItem:nil atLocation:NSMakePoint(0,bank_.bounds.size.height) inView:bank_];}
+- (void)showPresetMenu:(id)sender {[[self presetMenu] popUpMenuPositioningItem:nil atLocation:NSMakePoint(0,name_.bounds.size.height) inView:name_];}
+- (void)selectPreset:(NSMenuItem*)item {
+  if([item.representedObject isKindOfClass:NSURL.class]&&![self loadPresetURL:item.representedObject])[self failure:notice_.stringValue];
+}
+- (void)selectBank:(NSMenuItem*)item {
+  NSURL* url=item.representedObject;if(![url isKindOfClass:NSURL.class])return;
+  auto files=cronox::catalog::presets(url.path.fileSystemRepresentation);
+  // Original Synth::setInsBnk 0x1e89c resets the program index and loads its first file.
+  if(!files.empty()){if(![self loadPresetURL:crxURL(files.front())])[self failure:notice_.stringValue];return;}
+  auto label=cronox::catalog::label(url.path.fileSystemRepresentation);
+  OSStatus status=AudioUnitSetProperty(unit_,sophistry::presetBankNameProperty,kAudioUnitScope_Global,0,label.c_str(),UInt32(label.size()+1));
+  const char empty=0;if(!status)status=AudioUnitSetProperty(unit_,sophistry::presetSourceProperty,kAudioUnitScope_Global,0,&empty,1);
+  if(status){[self failure:crxError(unit_,status)];return;}
+  selectedBank_=url;current_=nil;emptyBank_=YES;[self refresh];
+}
+- (void)choosePresetRoot:(id)sender {
+  NSOpenPanel* panel=[NSOpenPanel openPanel];panel.title=@"Dossier contenant les banques de presets";
+  panel.canChooseDirectories=YES;panel.canChooseFiles=NO;panel.allowsMultipleSelection=NO;panel.directoryURL=library_;
+  if([panel runModal]!=NSModalResponseOK)return;
+  [self setPresetLibraryURL:panel.URL persist:YES];[self showBankMenu:bank_];
+}
+- (void)setPresetLibraryURL:(NSURL*)root persist:(BOOL)persist {
+  library_=root;libraryOverride_=root;
+  if(!persist)return;
+  CFDataRef bookmark=sophistryMac::createBankBookmark((__bridge CFURLRef)root);
+  if(bookmark){libraryAccess_=sophistryMac::openBankBookmark(bookmark,root.path.fileSystemRepresentation);
+    CFPreferencesSetValue(CFSTR("CronoX3ARMPresetBookmark"),bookmark,CFSTR("com.linplug.CronoX3.ARMTest"),kCFPreferencesCurrentUser,kCFPreferencesAnyHost);CFRelease(bookmark);}
+  CFPreferencesSetValue(CFSTR("CronoX3ARMPresetRoot"),(__bridge CFStringRef)root.path,CFSTR("com.linplug.CronoX3.ARMTest"),kCFPreferencesCurrentUser,kCFPreferencesAnyHost);
+  CFPreferencesSynchronize(CFSTR("com.linplug.CronoX3.ARMTest"),kCFPreferencesCurrentUser,kCFPreferencesAnyHost);
+}
+- (NSDictionary*)cronoxKeyboardReport {return [bottom_ keyboardReport];}
+- (NSDictionary*)presetBrowserReport {
+  NSMutableArray* banks=[NSMutableArray array],*presets=[NSMutableArray array];
+  for(NSMenuItem* item in [self bankMenu].itemArray)if([item.representedObject isKindOfClass:NSURL.class])[banks addObject:item.title];
+  for(NSMenuItem* item in [self presetMenu].itemArray)if([item.representedObject isKindOfClass:NSURL.class])[presets addObject:item.title];
+  CGFloat red=0,green=0,blue=0,alpha=0;[bank_.textColor getRed:&red green:&green blue:&blue alpha:&alpha];
+  return @{@"banks":banks,@"presets":presets,@"font_points":@(bank_.font.pointSize),@"rgb":@[@(std::lround(red*255)),@(std::lround(green*255)),@(std::lround(blue*255))],@"bank_top":@(bank_.frame.origin.y),@"preset_top":@(name_.frame.origin.y),@"row_height":@(bank_.frame.size.height),@"original_baseline":@YES,@"bank_click_selector":NSStringFromSelector(bank_.action),@"preset_click_selector":NSStringFromSelector(name_.action)};
 }
 - (void)load:(id)sender {
   NSOpenPanel* panel=[NSOpenPanel openPanel];panel.title=@"Charger un son CronoX 3";
@@ -190,7 +308,9 @@ namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
 }
 - (void)navigate:(NSInteger)direction {
   if(!current_){[self load:nil];return;}
-  NSURL* next=sophistryPresetBrowser::adjacent(sophistryPresetBrowser::directory(current_.URLByDeletingLastPathComponent),current_,direction);
+  auto files=cronox::catalog::presets(std::filesystem::path(current_.URLByDeletingLastPathComponent.path.fileSystemRepresentation));
+  NSMutableArray<NSURL*>* ordered=[NSMutableArray array];for(const auto& p:files)[ordered addObject:crxURL(p)];
+  NSURL* next=sophistryPresetBrowser::adjacent(ordered,current_,direction);
   if(next){if(![self loadPresetURL:next])[self failure:notice_.stringValue];}else [self load:nil];
 }
 - (void)previous:(id)sender {[self navigate:-1];}
@@ -242,7 +362,7 @@ namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
       footer=[(NSTextField*)v stringValue];footerSize=[(NSTextField*)v font].pointSize;footerY=v.frame.origin.y;
     }
   }
-  return @{@"comparison_view":@YES,@"original_panels_available":@YES,@"original_panel_recovery_complete":@NO,@"subtype":@"CrT3",@"width":@(self.frame.size.width),@"height":@(self.frame.size.height),@"preset_name":name_.stringValue,@"preset_bank_name":bank_.stringValue,@"bank_and_preset_centered":@(bank_.alignment==NSTextAlignmentCenter&&name_.alignment==NSTextAlignmentCenter&&bank_.frame.origin.y<name_.frame.origin.y),@"original_font_available":@([NSFont fontWithName:@"Helvetica" size:11]!=nil),@"font_family":@"Helvetica",@"footer":footer,@"footer_font_size":@(footerSize),@"footer_top":@(footerY),@"utility_buttons":buttons,@"main":[panel_ report],@"shell":[root_ report],@"bottom":[bottom_ report]};
+  return @{@"comparison_view":@YES,@"original_panels_available":@YES,@"original_panel_recovery_complete":@NO,@"subtype":@"CrT3",@"width":@(self.frame.size.width),@"height":@(self.frame.size.height),@"preset_name":name_.stringValue,@"preset_browser":[self presetBrowserReport],@"preset_bank_name":bank_.stringValue,@"bank_and_preset_centered":@(bank_.alignment==NSTextAlignmentCenter&&name_.alignment==NSTextAlignmentCenter&&bank_.frame.origin.y<name_.frame.origin.y),@"original_font_available":@([NSFont fontWithName:@"Helvetica" size:11]!=nil),@"font_family":@"Helvetica",@"footer":footer,@"footer_font_size":@(footerSize),@"footer_top":@(footerY),@"utility_buttons":buttons,@"main":[panel_ report],@"shell":[root_ report],@"bottom":[bottom_ report]};
 }
 @end
 @interface CronoX3ARMTestCocoaFactory : NSObject <AUCocoaUIBase>

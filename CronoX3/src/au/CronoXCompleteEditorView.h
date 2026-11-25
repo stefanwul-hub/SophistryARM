@@ -550,14 +550,18 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 }
 @end
 
-#include "../engine/RecoveredKeyboard.h"
+#include "../engine/RecoveredKeyboardChords.h"
 @interface CronoX3RecoveredKeyboard : NSView
 @property AudioUnit audioUnit;
 @property NSImage *whiteImage;
 @property NSImage *blackImage;
+- (void)refreshNotes;
+- (NSDictionary*)keyboardReport;
 @end
 @implementation CronoX3RecoveredKeyboard {
   int pressed_;
+  sophistry::EditorKeyboardState notes_;
+  NSTimer* notesTimer_;
 }
 - (instancetype)initWithFrame:(NSRect)frame {
   if ((self = [super initWithFrame:frame]))
@@ -567,10 +571,28 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 - (BOOL)isFlipped {
   return YES;
 }
+- (void)refreshNotes {
+  sophistry::EditorKeyboardState state;UInt32 bytes=sizeof(state);
+  if(!AudioUnitGetProperty(_audioUnit,sophistry::keyboardStateProperty,kAudioUnitScope_Global,0,&state,&bytes)&&bytes==sizeof(state)&&state.version==1&&std::memcmp(&state,&notes_,sizeof(state))) {
+    notes_=state;self.needsDisplay=YES;
+  }
+}
+- (void)viewDidMoveToWindow {
+  [super viewDidMoveToWindow];[notesTimer_ invalidate];notesTimer_=nil;
+  if(self.window){__weak CronoX3RecoveredKeyboard* weak=self;
+    notesTimer_=[NSTimer timerWithTimeInterval:.020 repeats:YES block:^(NSTimer*){if(weak&&!weak.hiddenOrHasHiddenAncestor)[weak refreshNotes];}];
+    [NSRunLoop.mainRunLoop addTimer:notesTimer_ forMode:NSRunLoopCommonModes];[self refreshNotes];
+  }
+}
+- (void)dealloc {[notesTimer_ invalidate];}
+- (NSDictionary*)keyboardReport {
+  [self refreshNotes];NSMutableArray* active=[NSMutableArray array];
+  for(unsigned n=0;n<128;++n)if(notes_.velocity[n])[active addObject:@(n)];
+  return @{@"active_notes":active,@"original_chord_slices":@72,@"refresh_ms":@20};
+}
 - (void)drawRect:(NSRect)dirty {
-  unsigned state =
-      pressed_ >= 36 && pressed_ <= 96 ? unsigned(pressed_ - 35) : 0;
-  for (const auto &b : sophistry::recoveredKeyboard(state)) {
+  auto keys=notes_.velocity;if(pressed_>=0&&pressed_<128)keys[pressed_]=127;
+  for (const auto &b : sophistry::recoveredKeyboardChord(keys)) {
     NSImage *im = b.image == 382 ? _whiteImage : _blackImage;
     [im drawInRect:NSMakeRect(b.left, b.top, b.right - b.left, b.bottom - b.top)
               fromRect:NSMakeRect(b.sourceX,
@@ -725,6 +747,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 - (BOOL)setText:(unsigned)tag value:(NSString *)value;
 - (void)fileCommand:(unsigned)tag operation:(unsigned)operation;
 - (void)midiCommand:(NSPopUpButton *)sender;
+- (NSDictionary*)keyboardReport;
 @end
 @implementation CronoX3CompletePanel {
   AudioUnit unit_;
@@ -849,6 +872,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
         keyboard.blackImage = [self image:383];
         v = keyboard;
       }
+      [keyboard refreshNotes];
     } else if (c.kind == K::XY) {
       auto y = [self control:c.extra[0]];
       if (!value || !y)
@@ -1227,6 +1251,11 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
       }
     }
   return NO;
+}
+- (NSDictionary*)keyboardReport {
+  for(NSView* v in views_.allValues)if(!v.hidden&&[v isKindOfClass:CronoX3RecoveredKeyboard.class])
+    return [(CronoX3RecoveredKeyboard*)v keyboardReport];
+  return @{@"active_notes":@[],@"view_available":@NO};
 }
 - (NSDictionary *)report {
   NSMutableArray *controls = [NSMutableArray array],

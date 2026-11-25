@@ -1,0 +1,14 @@
+{
+  "checkpoint": "CRX009",
+  "original_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "routine": "0xae772 CKeyboard2::drawKeys",
+  "slices": 72,
+  "old_single_note_states_compared": 62,
+  "all_adjacent_note_combinations_captured": true,
+  "original_chord_masks_compared": 4354,
+  "all_blits_identical": true,
+  "ordered_blit_u32_fnv64": "daac17be44d82b53",
+  "duration_seconds": 5.739744947000872,
+  "header_sha256": "ae343c2a7dcd12565ac02d34adc71548971df682f853b883ee5b55edf3040004",
+  "macos_ui_executed": false
+}

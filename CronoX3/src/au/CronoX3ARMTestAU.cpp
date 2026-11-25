@@ -165,7 +165,7 @@ class CronoX3ARMTestAU final : public ausdk::MusicDeviceBase {
   double previousSample_ = 0;
   bool rendered_ = false;
   std::string lastError_;
-  std::string lastKnownPresetName_,lastKnownBankName_;
+  std::string lastKnownPresetName_,lastKnownBankName_,lastKnownPresetSource_;
   std::vector<std::uint8_t> lastRestoredChunk_;
   bool lastRestoredProgram_ = false, stateLoaded_ = false;
   std::uint64_t restoreAttempts_ = 0, notesReceived_ = 0, renderCalls_ = 0;
@@ -205,6 +205,7 @@ class CronoX3ARMTestAU final : public ausdk::MusicDeviceBase {
             ? lastKnownPresetName_
             : std::string();
     const auto previousBank=bytes==lastRestoredChunk_&&program==lastRestoredProgram_?lastKnownBankName_:std::string();
+    const auto previousSource=bytes==lastRestoredChunk_&&program==lastRestoredProgram_?lastKnownPresetSource_:std::string();
     lastRestoredChunk_ = bytes;
     lastRestoredProgram_ = program;
     if (countAttempt)
@@ -216,6 +217,7 @@ class CronoX3ARMTestAU final : public ausdk::MusicDeviceBase {
     syncParameters();
     lastKnownPresetName_ = engine_.presetName();
     lastKnownBankName_=previousBank;
+    lastKnownPresetSource_=previousSource;
     if (!usablePresetName(lastKnownPresetName_) &&
         !previousLabel.empty())
       lastKnownPresetName_ = previousLabel;
@@ -486,6 +488,11 @@ public:
   OSStatus GetPropertyInfo(AudioUnitPropertyID id, AudioUnitScope scope,
                            AudioUnitElement element, UInt32 &bytes,
                            bool &writable) override {
+    if(id==sophistry::keyboardStateProperty || id==sophistry::presetSourceProperty) {
+      if(scope!=kAudioUnitScope_Global||element)return kAudioUnitErr_InvalidScope;
+      writable=id==sophistry::presetSourceProperty;
+      bytes=writable?sophistry::presetSourceBytes:sizeof(sophistry::EditorKeyboardState);return noErr;
+    }
     if(id==sophistry::presetBankNameProperty) {
       if(scope!=kAudioUnitScope_Global||element)return kAudioUnitErr_InvalidScope;
       bytes=sophistry::presetBankNameBytes;writable=true;return noErr;
@@ -618,6 +625,14 @@ public:
   }
   OSStatus GetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, void *data) override {
+    if(id==sophistry::keyboardStateProperty || id==sophistry::presetSourceProperty) {
+      if(scope!=kAudioUnitScope_Global||element||!data)return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]()->OSStatus {
+        if(id==sophistry::keyboardStateProperty)*static_cast<sophistry::EditorKeyboardState*>(data)=engine_.editorKeyboardState();
+        else {std::memset(data,0,sophistry::presetSourceBytes);std::memcpy(data,lastKnownPresetSource_.data(),std::min<std::size_t>(lastKnownPresetSource_.size(),sophistry::presetSourceBytes-1));}
+        return noErr;
+      });
+    }
     if(id==sophistry::presetBankNameProperty) {
       if(scope!=kAudioUnitScope_Global||element||!data)return kAudioUnitErr_InvalidPropertyValue;
       return guarded([&]()->OSStatus {
@@ -790,6 +805,12 @@ public:
   OSStatus SetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, const void *data,
                        UInt32 bytes) override {
+    if(id==sophistry::presetSourceProperty) {
+      if(scope!=kAudioUnitScope_Global||element||!data||!bytes||bytes>sophistry::presetSourceBytes)return kAudioUnitErr_InvalidPropertyValue;
+      const auto path=static_cast<const char*>(data);
+      if(path[bytes-1]||std::memchr(path,0,bytes-1))return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]()->OSStatus{lastKnownPresetSource_.assign(path,bytes-1);PropertyChanged(kAudioUnitProperty_ClassInfo,kAudioUnitScope_Global,0);return noErr;});
+    }
     if(id==sophistry::presetBankNameProperty) {
       if(scope!=kAudioUnitScope_Global||element||!data||!bytes||bytes>sophistry::presetBankNameBytes)return kAudioUnitErr_InvalidPropertyValue;
       const auto label=static_cast<const char*>(data);
@@ -1069,6 +1090,11 @@ public:
         if(!bank)return OSStatus(-108);
         CFDictionarySetValue(dict,CFSTR("CronoX3ARMBankName"),bank);CFRelease(bank);
       }
+      if(!lastKnownPresetSource_.empty()) {
+        CFStringRef source=CFStringCreateWithCString(nullptr,lastKnownPresetSource_.c_str(),kCFStringEncodingUTF8);
+        if(!source)return OSStatus(-108);
+        CFDictionarySetValue(dict,CFSTR("CronoX3ARMPresetSource"),source);CFRelease(source);
+      }
       // A small vendor metadata field in the standard AU state identifies the
       // code loaded by a remote host without relying on a private property.
       // No runtime status, private settings or bookmark is serialized here.
@@ -1133,6 +1159,7 @@ public:
       };
       const auto originalLabel = savedName(CFSTR("CronoX3ARMPresetName"));
       lastKnownBankName_=savedName(CFSTR("CronoX3ARMBankName"));
+      lastKnownPresetSource_=savedName(CFSTR("CronoX3ARMPresetSource"));
       const auto hostLabel = savedName(CFSTR("name"));
       if (usablePresetName(originalLabel))
         lastKnownPresetName_ = originalLabel;

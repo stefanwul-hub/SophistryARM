@@ -100,6 +100,7 @@ public:
   void setEditorString(std::uint32_t tag, const std::string &text);
   void editorAction(unsigned key);
   EditorKeyHit editorKeyHit(unsigned x, unsigned y);
+  EditorKeyboardState editorKeyboardState();
   float editorKnob(unsigned key, int x, int y);
   EditorFileInfo editorFileInfo(std::uint32_t tag, unsigned operation);
   void editorFileOperation(std::uint32_t tag, unsigned operation,

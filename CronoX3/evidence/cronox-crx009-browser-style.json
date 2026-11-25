@@ -1,0 +1,49 @@
+{
+  "checkpoint": "CRX009",
+  "original_binary_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "routines": {
+    "createFileEdits": "0x7850c",
+    "createMenuFileList": "0x2b456",
+    "editor_constructor": "0x72ec0",
+    "fill_menu": "0x856a",
+    "file_display_label": "0x306d8",
+    "disk_catalog": "0xc4ac",
+    "file_sort": "0x302a0",
+    "bank_select_first_preset": "0x1e89c"
+  },
+  "bank_tag": 635,
+  "preset_tag": 636,
+  "main_offset": [
+    0,
+    37
+  ],
+  "bank_rect": [
+    27,
+    228,
+    138,
+    15
+  ],
+  "preset_rect": [
+    27,
+    244,
+    138,
+    15
+  ],
+  "font": "Helvetica",
+  "font_points": 12,
+  "rgb": [
+    210,
+    210,
+    210
+  ],
+  "text_alignment": "center",
+  "text_baseline": "Original drawText/drawStringUTF8 rectangle convention",
+  "menu_order": "case-insensitive bytewise lexical",
+  "display_labels": "filename without extension",
+  "native_import_extensions": [
+    "fxp",
+    "aupreset"
+  ],
+  "original_kernel_changed": false,
+  "macos_ui_executed": false
+}

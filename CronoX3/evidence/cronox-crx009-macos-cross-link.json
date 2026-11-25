@@ -1,0 +1,66 @@
+{
+  "checkpoint": "CRX009",
+  "scope": "ARM64 Mach-O cross-compilation and strict link; no macOS execution",
+  "core_units": 413,
+  "binaries": [
+    {
+      "binary": "CronoX3ARMTest",
+      "bytes": 35257696,
+      "sha256": "7d73516f7e7a9c4b9f7fdce10957e6e15fd15cf6d91ee60c10036a8c2034dd40",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXComparisonProbe-macos",
+      "bytes": 1248528,
+      "sha256": "38f2255406342f9627b9aec31dd912804b7a45a2e963436e90f7d0b05336c3d7",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXRegistrationProbe-macos",
+      "bytes": 482896,
+      "sha256": "d47cf0205bfb324b8621a5399430ece93601585f3b06e130c789ed3e2af5d8bb",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXEditorProbe-macos",
+      "bytes": 34742320,
+      "sha256": "8481c32368030f5cbad7edd7cecc7d7e101c7591bd3215edacda5f2243692d8a",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXCorrectionsProbe-macos",
+      "bytes": 34641744,
+      "sha256": "b3aca719834bad372f298b9b8386b82bb703a7ec61e703dc9c977abaa2e27ca3",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXLoopSamplerProbe-macos",
+      "bytes": 34644448,
+      "sha256": "6ece16fe9826ac7149de6f3d6d94a52f717eb7c538c71201c7e6bdf86c7cb575",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXBrowserKeyboardProbe-macos",
+      "bytes": 34661120,
+      "sha256": "b8dacf04fd500b3696290625584ff322508a324371139f9f895f4a4974f1215c",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "derived_binary_removed_after_hashing": true
+    }
+  ],
+  "original_sdk_sources_unchanged": true,
+  "exports_isolated": true,
+  "auval_executed": false,
+  "macos_runtime_executed": false,
+  "sound_fidelity_verified": false,
+  "passed": true
+}

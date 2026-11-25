@@ -4,6 +4,11 @@
 #include <set>
 #include <stdexcept>
 namespace sophistry {
+struct EditorKeyboardState {
+  std::uint32_t version=1;
+  std::array<std::uint8_t,128> velocity{};
+};
+static_assert(sizeof(EditorKeyboardState)==132);
 struct CompleteEditorState {
   std::uint32_t version = 1, page = 0, count = 0, selectionCount = 0;
   struct Selection {

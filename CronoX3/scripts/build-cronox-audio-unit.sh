@@ -68,7 +68,7 @@ for probe in CronoXRunLoopProbe CronoXControlThreadProbe CronoXEditorProbe; do
   -o "$DEST/$probe" > "$DEST/$probe.compile.log" 2>&1
  /usr/bin/lipo "$DEST/$probe" -verify_arch arm64
 done
-for probe in CronoXCorrectionsProbe CronoXLoopSamplerProbe; do
+for probe in CronoXCorrectionsProbe CronoXLoopSamplerProbe CronoXBrowserKeyboardProbe; do
 "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -g0 -ffp-contract=off -fno-fast-math \
  "$ROOT/tests/$probe.cpp" "$ROOT/work/cronox-engine/LegacyImageData.o" \
  "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \

@@ -2387,6 +2387,21 @@ EditorKeyHit LegacyEngine::editorKeyHit(unsigned x, unsigned y) {
     throw std::runtime_error("Original keyboard rejected coordinates");
   return {1, impl_->word(result + 4), impl_->word(result + 8)};
 }
+EditorKeyboardState LegacyEngine::editorKeyboardState() {
+  impl_->initialize();EditorKeyboardState out;
+  // PolyNoteTable_c: noteOn 0x33c0a / noteOff 0x335ac. State 1 holds
+  // a played note; state 2 is its release. Note and velocity are at +12/+16.
+  const U32 manager=object+0x3880,table=impl_->word(manager+8),count=impl_->word(manager+12);
+  if(count>4096 || (count&&!table))throw std::runtime_error("Invalid original note table");
+  impl_->data(table,count*36);
+  for(U32 i=0;i<count;++i) {
+    const U32 p=table+36*i;
+    if(impl_->word(p)!=1)continue;
+    const U32 note=impl_->word(p+12),velocity=impl_->word(p+16);
+    if(note<128)out.velocity[note]=std::max(out.velocity[note],std::uint8_t(std::min(velocity,127u)));
+  }
+  return out;
+}
 float LegacyEngine::editorKnob(unsigned key, int x, int y) {
   const auto &controls = recoveredControls();
   if (key >= controls.size() || !originalPointerKind(controls[key].kind) ||

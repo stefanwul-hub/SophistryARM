@@ -1,0 +1,216 @@
+{
+  "checkpoint": "CRX009",
+  "publication_directory": "CronoX3",
+  "base_remote_commit": "68043dd074cfd611c812749b33ad44d6fb282a3d",
+  "files": [
+    {
+      "path": "CRX_REPRISE.md",
+      "bytes": 36451,
+      "sha256": "0c334968544129d69c4c36f9c652d4696afb43d39fc49ac2e99653089f9bc986",
+      "git_blob": "3e49ec2f8d071d746245824e9e54d8b02bf59ce1",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "Installer-CronoX-CRX009.command",
+      "bytes": 8352,
+      "sha256": "427c16c19e3cda176d69c2cadd448d2c976296a7652fa8e34340a0143a128735",
+      "git_blob": "585c8e87320f9691467b3b54d8ff86462f978360",
+      "mode": "100755",
+      "changed": true
+    },
+    {
+      "path": "README.md",
+      "bytes": 3486,
+      "sha256": "b85bfc1bb51d976a6b42f8b6ec352ad418076a39382a85bf882bef87f910dc64",
+      "git_blob": "3945ca85173693d7cea25781b2a5955b7f6e716a",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "analysis/cronox/recover_keyboard_chords.py",
+      "bytes": 4545,
+      "sha256": "dc9f04f0fcaa9e9798fc68b62f94f15e3386dd3f1aeb0033493890f1ba08e505",
+      "git_blob": "ce1fff43498673237b774206e4084f72520c7c3c",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "config/au-identity-test.json",
+      "bytes": 1002,
+      "sha256": "781e28e7e3e4c75baca65e65aa380ad499dd264fea1ef317a0c4b49373d1e10f",
+      "git_blob": "5afd54c4ee0b0f09c064014536fc6592ab0e5053",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "cronox-status.json",
+      "bytes": 4680,
+      "sha256": "1f44a05e12ff3d4b00700f9380137766a9615958de0f14b68ab3f79ecdd18ff8",
+      "git_blob": "2e4cea60c572c422c3bcb26ce4215b555300e7de",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx008-user-acceptance.json",
+      "bytes": 387,
+      "sha256": "98648f9011cf3d817ad65059d7b93e973a6505dd2ead435e1199c9da0999e444",
+      "git_blob": "386f226bd99e501b0cd747b9168433f6156dadf3",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx009-browser-style.json",
+      "bytes": 1032,
+      "sha256": "a6a14e33797a889b3d56a4d19e79fe302a8493e5b236bf2bc0869cb68c3c7897",
+      "git_blob": "f53e3e6b15d41ceb94a8c51346ab6b46e802756d",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx009-keyboard-recovery.json",
+      "bytes": 554,
+      "sha256": "45fe2de064c6a1b637103e59cb7afad878a7883ac064887d8f06c8e4ce21444a",
+      "git_blob": "a9582fc7059d1f4fc6f491322c61df7f089b039a",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx009-local-checks.json",
+      "bytes": 2453,
+      "sha256": "a45a4ccc6a26360ebc3e793b0ba370d7c7b24334493c6f79ebd0db016ddb0557",
+      "git_blob": "7e5337655ac41a711a9a6cf6bd48b72f57a88fd2",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx009-macos-cross-link.json",
+      "bytes": 2144,
+      "sha256": "c7ea5ded3d243f265ae03268fb6f1910dbc1842b59f770a65181d1d5ed90cce8",
+      "git_blob": "24ab72df3c30de562cf016dee83c7b41687c1523",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "scripts/build-cronox-audio-unit.sh",
+      "bytes": 5432,
+      "sha256": "be2a0a8e8cadba9b6ab33f7ece276cae96585ba399dc8a01e72ab65ca8a5876b",
+      "git_blob": "36a8c8fc2fa83b2bee907a340cb0e9ce7f74bd2f",
+      "mode": "100755",
+      "changed": true
+    },
+    {
+      "path": "scripts/create-cronox-browser-fixture.py",
+      "bytes": 635,
+      "sha256": "61413ca353f24ee898b98b84771f86b4d2f20cb57af457d570a4ed0c5bef8360",
+      "git_blob": "e8ea3413ec2e4915494f5e8eda02e9562b67b009",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoX3ARMTestAU.cpp",
+      "bytes": 55864,
+      "sha256": "059874e2075b720c345c96926535f41f35519646bac0fe5d11440bab238222b2",
+      "git_blob": "71020a20f0c0bef04702ee56046cdc8606add02d",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoX3ARMTestEditor.mm",
+      "bytes": 26006,
+      "sha256": "f47de6fc986e224ce0fbd085719a0ca7356f8a5b3ac18201a18a126cd41c5362",
+      "git_blob": "6defe63a76272b90f2d8287bc29881c81a30b27b",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoXCompleteEditorView.h",
+      "bytes": 56142,
+      "sha256": "85716f4d9e4c19b81675f6715fa03bb71602d2f9c9dce8ed6958a59ff8d84e9f",
+      "git_blob": "a4c2cb41187580f08fc9851b32cfa7f8f7fac4b3",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoXPresetCatalog.h",
+      "bytes": 2806,
+      "sha256": "e3e218e42a844cc1ad04e6dda1f1c6a7e29e3b9a2f805148f074f23e4d6f26a8",
+      "git_blob": "ea0ddca6501afab074277eb058a0ed27d43f5d3e",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/Info.plist",
+      "bytes": 1226,
+      "sha256": "8ee9b8f81a858070ade19a22161f50a02054bbcfabfac44e11b497aac9e9ab33",
+      "git_blob": "744b0b27e09507cfa5444250892addbeb20455e6",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/SophistryProperties.h",
+      "bytes": 2672,
+      "sha256": "bfd127f684abc4b67eac635ad6fcfd97c1150f54ab0cbfb8ceb5b647d837db66",
+      "git_blob": "b868c6a3e7e53c6638186bbe9a46a18e176d1271",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/engine/CompleteEditorControls.h",
+      "bytes": 6097,
+      "sha256": "e215769f6789011c8189307021f77e0fc1c3ba82ff7e44f0124190a216e3f812",
+      "git_blob": "dba5b236290458d2c29a0fdd0e8491e86ac85f79",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/engine/LegacyEngine.cpp",
+      "bytes": 116881,
+      "sha256": "e162cab4b0c2953299ae914cf15b4fc224241434f45af9cd932996e561729d96",
+      "git_blob": "edc3ce39f53eb527a91d91fba94be094f1579633",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/engine/LegacyEngine.h",
+      "bytes": 5810,
+      "sha256": "7b391c3169670fd7b5a27dca2e610258b369f6df11a629c153555d1e273184b8",
+      "git_blob": "8e5348961e36428fb29545bee99b57794d7d08a4",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/engine/RecoveredKeyboardChords.h",
+      "bytes": 3909,
+      "sha256": "ae343c2a7dcd12565ac02d34adc71548971df682f853b883ee5b55edf3040004",
+      "git_blob": "85719842074007ed7a6efcba756211a122d45aae",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/CronoXBrowserKeyboardProbe.cpp",
+      "bytes": 3994,
+      "sha256": "c41ec37e61ece46ada948d1a5d801c0b75da2617f2f475253ed542bd47e73e7f",
+      "git_blob": "cc5d3abfc8b7fe08525c042dcf17d740959976e8",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/CronoXComparisonProbe.mm",
+      "bytes": 19958,
+      "sha256": "341c8ad120fbe4206ed4fee6450002a9805425d2ff2217f84356390b9ad7fbd2",
+      "git_blob": "d26ce9901349f11922a9a09f96020d880b6efde8",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/test_cronox_registration_diagnostics.py",
+      "bytes": 6946,
+      "sha256": "32deed4a656764dfd886874f671582b8c4e73f2e7724905787649e84130d5ad7",
+      "git_blob": "bde6cd5832959d6b5659766030b23a8c3cf85ab7",
+      "mode": "100644",
+      "changed": true
+    }
+  ],
+  "self_manifest_excluded": true
+}
