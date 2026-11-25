@@ -1,0 +1,22 @@
+{
+  "checkpoint": "CRX003",
+  "source_commit": "83f3d437eada4fc2cb6b859b2cbcd213583d9c6a",
+  "launcher_commit": "fc9a2bf82ab44794f929c41f336ccfca0304095a",
+  "launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/fc9a2bf82ab44794f929c41f336ccfca0304095a/CronoX3/Demarrer-CronoX-CRX003.zip",
+  "launcher_download_sha256": "c8a4784696cb80172e1d80e797e0c1f3fc4520aea3c126d354208de2d0214b03",
+  "launcher_download_bytes": 1852,
+  "download_crc_and_contents_verified": true,
+  "source_archive_sha256": "b99f152f4b8478e7447ae43444f72ae2723e641494048b4db34170e46f1ed7c4",
+  "source_archive_files_verified": 167,
+  "original_root_entries_preserved": 46,
+  "old_bash32_failure_reproduced": true,
+  "published_build_script_bash32_regression_passed": true,
+  "native_arm64_cross_link_passed": true,
+  "original_kernel_changed_since_crx001": false,
+  "comparison_au_subtype": "CrT3",
+  "original_au_subtype": "CrX3",
+  "sophistry_frozen_at": "CP038",
+  "macos_auval_executed": false,
+  "macos_au_runtime_validated": false,
+  "sound_fidelity_verified": false
+}
