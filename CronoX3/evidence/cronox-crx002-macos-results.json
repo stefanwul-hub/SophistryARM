@@ -1,0 +1,20 @@
+{
+  "checkpoint_tested": "CRX002",
+  "reported_platform": "macOS 15.7.2 / arm64",
+  "exit_code": 1,
+  "failed_stage": "compilation",
+  "failure": {
+    "script": "scripts/build-cronox-audio-unit.sh",
+    "line": 22,
+    "message": "extra[*]: unbound variable"
+  },
+  "core_build_completed": true,
+  "engine_probe_binaries_built": true,
+  "native_au_build_started": false,
+  "candidate_factory_tested": false,
+  "system_installation_committed": false,
+  "auval_executed": false,
+  "original_components_untouched": true,
+  "nonfatal_engine_compilation_warnings": 2,
+  "private_paths_and_preferences_omitted": true
+}

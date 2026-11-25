@@ -1,0 +1,1274 @@
+{
+  "project": "CronoX 3 ARM64",
+  "checkpoint": "CRX003",
+  "publication_directory": "CronoX3",
+  "sophistry_root_untouched": true,
+  "native_au_installable": true,
+  "native_au_macos_runtime_validated": false,
+  "files": [
+    {
+      "path": "CRX_REPRISE.md",
+      "bytes": 11881,
+      "sha256": "b07de7fd79308254014274d2614541fd754e45603975645fb9e99ba98155f323",
+      "git_blob": "0f1c65ebcf76770ac69966be9258aa7788357202",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "Compiler-et-tester-CronoX.command",
+      "bytes": 3116,
+      "sha256": "eb89473a977e3cfe8452c5e64fe1b46b103edb060611c3d70ef7e378514304a5",
+      "git_blob": "5e5c441e6c400ed3f52dfbbb18bd968f2a709371",
+      "reuse_existing_blob": false,
+      "mode": "100755"
+    },
+    {
+      "path": "Installer-CronoX-CRX003.command",
+      "bytes": 6310,
+      "sha256": "c5e20e014e7585124821d17406d534154191dfce7e4baed69bc4d8fce318162e",
+      "git_blob": "19151a380d31655b68eb08b369bafaa528d2e50b",
+      "reuse_existing_blob": false,
+      "mode": "100755"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4762,
+      "sha256": "f0fe499f86582eee2a73033d663f08949050cb71cda29f39feedaaa2eb6c9424",
+      "git_blob": "b372e63405d8ecf6ef05944050b749eef26b581d",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "REPRISE.md",
+      "bytes": 539,
+      "sha256": "af67e64c59acb787d860e8d957e4f898adb96c8587809eebc697b0cf060bdfc2",
+      "git_blob": "259ffecf00488c38bd0f2e6d4497a031941ce8b0",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "analysis/cronox/audit_inventory.py",
+      "bytes": 4388,
+      "sha256": "93bfab9e350f311dcd16b90e7857121d808c1ab448c129b6a6b9a6110cf43942",
+      "git_blob": "6856e45b359ee4f192813c077cd3cbc2f9289312",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "analysis/cronox/generate_sqrt_fixtures.py",
+      "bytes": 3169,
+      "sha256": "90665c5dd501aae33bb82f5c8cbce028cdcd9b1bef70112be7f541833b68a831",
+      "git_blob": "74b70ca3116f7e89e4e69339ef7d832c719ec5c9",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "analysis/cronox/macho.json",
+      "bytes": 541249,
+      "sha256": "c556ad1a56df1f77770285e8b4ab69394d10bdf9152dd233d2836a287f07d887",
+      "git_blob": "1ed124c97f3e7ef36678a97da5ef5ee399be06f7",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "analysis/cronox/pcode/functions.json",
+      "bytes": 137553,
+      "sha256": "be1e27d29db5c844aaab844b0226e64c28fc4a390ab7c4163ebe1f965c74fd2e",
+      "git_blob": "6b00d2e974fb1c284e95bf1222b895c4e5ace576",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "analysis/cronox/pcode/provenance.json",
+      "bytes": 158,
+      "sha256": "744385443e5645146070b84522eb0c79005295f7b7a045485f42c620e66f37bf",
+      "git_blob": "89af843aa919afc11447190cd0b199430a70c678",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "analysis/cronox/resources.json",
+      "bytes": 1810,
+      "sha256": "76d24ede80f8e76e56b8ca1e8dca80ddfe6da6d74d023f48ede96538376cf8a8",
+      "git_blob": "6f9e2f7b922e0301cb52d4092b9ddb0775d93c80",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "analysis/cronox/vtable-layouts.json",
+      "bytes": 175878,
+      "sha256": "a8a48f4c3e05a73aad418ee737e364c9a592424ae21b6c20e66a30a606059c6c",
+      "git_blob": "b5afbaf88a6332aa72dffa6cecba2dc382a3381c",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "analysis/cronox/vtables.json",
+      "bytes": 200930,
+      "sha256": "df4e711354dac7484c3e6cca3ff1a6d69088c60117208e5fc6a8904603705926",
+      "git_blob": "019c61d285900a509aaff6e309ce9ea591859284",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "checkpoints/cronox/CRX001-remote.json",
+      "bytes": 830,
+      "sha256": "e3ea123968240065db9d85dde97d465f32e5e1473dfcb45ccddd0c129f0f38cc",
+      "git_blob": "7117d57ff076fa8fe93598117d04ee7085b5a043",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "checkpoints/cronox/CRX001-source-manifest.json",
+      "bytes": 29058,
+      "sha256": "6ffdf4de0710d803f7a2699f90f9830c178a2d9cec4109bc5f8139f0d2e7b75d",
+      "git_blob": "1b7a21b880d8ca29520eeea09144cc8bff2ff03f",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "checkpoints/cronox/CRX002-publication-verified.json",
+      "bytes": 973,
+      "sha256": "3c09b8f1931bc9158ecd52f8c39cc2b5aa4664f47b495dd0c1199aa37eb6f572",
+      "git_blob": "40fe3eebbb3297f2198572e1e9e45abbff4b8f81",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "checkpoints/cronox/CRX002-remote.json",
+      "bytes": 1277,
+      "sha256": "7fceab999aeb8fbb23eb6f0ca46a4c9254b308aacb8dcde3385a2bc5cf868f87",
+      "git_blob": "6d4f6151e20dc26e2978bcac21d2b1ac40b0480e",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "checkpoints/cronox/CRX002-source-manifest.json",
+      "bytes": 44646,
+      "sha256": "b81973b3b49b5b0eade2b611c69da7610c613ed2ce6a6d98673a0533a0e95a22",
+      "git_blob": "6f798ecd40aa08a23df3fc0c7fad2874008569a1",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "checkpoints/cronox/ghidra-backup.json",
+      "bytes": 291,
+      "sha256": "68a1fe6a328515ab3c0eb870d6394de3f4e1811fb80d28da940a1e2a1fe4a9e9",
+      "git_blob": "8b5dc83242370a75ed8c9be27190550567966b89",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "config/au-identity-test.json",
+      "bytes": 1002,
+      "sha256": "874fbf11670b103ae046ed1fadc87d030e6ecf69947bf2c23e03fe9fc4ecca79",
+      "git_blob": "d4a7a80408d1185c4d64e7f09aa00311248e8a84",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "cronox-status.json",
+      "bytes": 3122,
+      "sha256": "0b78517e726466fd99e3fe64f984ab2bde508af7d4ebe5acc944a2297774d9f5",
+      "git_blob": "50e9afabbfdb33df3a9ddae38a73e9bb3d8ba77e",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-code-inventory.json",
+      "bytes": 659,
+      "sha256": "3475b293503419b716ce6a51925045973dce95843f31bc0f8df0c87c51541958",
+      "git_blob": "b3a55818b866e50ddbf67a0be7b3a053e31df944",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-crx001-macos-results.json",
+      "bytes": 1767,
+      "sha256": "25da7fc26e32e4835598f8c7b0843d87b96226c060606ada61931a634306fd95",
+      "git_blob": "e90080e6543f6ab78f6f0143d046452cccd81120",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-crx002-local-checks.json",
+      "bytes": 1351,
+      "sha256": "457c489a2d323a3798a938eef83170ac65b1e311f7183ea39a49c1cc031aa17e",
+      "git_blob": "6b4c295b5446ef3f28b9972d41c47c709e886308",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-crx002-macos-cross-link.json",
+      "bytes": 783,
+      "sha256": "d4915f31a4fd3ce041cd997a275aebb595e192bbf5d9738b7e4a537cac566c7f",
+      "git_blob": "12055256d1c24a294fae335506835ea0e2af4ea7",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-crx002-macos-results.json",
+      "bytes": 614,
+      "sha256": "e3f9e188a279f7c5d671d21a46ca98e8d42442ca80cd771be7301866af84e49c",
+      "git_blob": "003cd5b2b274b3b3fdb07ab2415bb0d488407449",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-crx003-build-script-checks.json",
+      "bytes": 1597,
+      "sha256": "c419def730c6b46cb7f396485d2d4bc1fb563d9cd580ddadc625f0db8a0b46bc",
+      "git_blob": "4fb80e9d50d8e4184e1a0dafca313719323ec332",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-crx003-macos-cross-link.json",
+      "bytes": 783,
+      "sha256": "21053cf9dab722dfabcd64981954965ecc2e1be9bd66ebec44b599ed79cca345",
+      "git_blob": "a1b2b4b567592a4f415df544eea89a721a18f5e6",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-image-provenance.json",
+      "bytes": 629,
+      "sha256": "e90516f2bbd4895949332625774cff332396c5274d85ba83ceab94bc2a067987",
+      "git_blob": "8dac7ee7739dc87feb3eeb84703d33e8e1169133",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-initial-development-checks.json",
+      "bytes": 3019,
+      "sha256": "afeb786d6f9119b9a738e32626ada5038a861470d52e0d83195231fd0ae14dcd",
+      "git_blob": "ac1cd28f2d1de3e7a179655439fdea352f676ed5",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-sqrt-instructions.fixtures",
+      "bytes": 622812,
+      "sha256": "d277f7b8c589f17290812c81c32f8a592dcc0c557cfb921a117607cd2a78655f",
+      "git_blob": "e4dac13b8897c010a9c4f9fcf4bf3e6b0d5a8308",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/cronox-sqrt-reference.json",
+      "bytes": 1104,
+      "sha256": "858be4dfa53f66ff46a7965849cc6ee0c965b4ba511c60e4323c5baecd8f66ca",
+      "git_blob": "70d41643ef5183306ee5e16fe1f61b8fc8ef79bc",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "port-status.json",
+      "bytes": 3122,
+      "sha256": "0b78517e726466fd99e3fe64f984ab2bde508af7d4ebe5acc944a2297774d9f5",
+      "git_blob": "50e9afabbfdb33df3a9ddae38a73e9bb3d8ba77e",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "reference/Presets/Lightgarden 02 BT.aupreset",
+      "bytes": 30950,
+      "sha256": "98c0da68c974a943341410828b7a792bb0635949bb5316c8cb56c6e405b4e238",
+      "git_blob": "cf280b1a83e939cbec64708c67c4850b292a3978",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "reference/Presets/lightgarden 02 BT.FXP",
+      "bytes": 20700,
+      "sha256": "5594ad2761e37f6944ce460b160dc66a039c710632c9b79a2f9ad2798585f01c",
+      "git_blob": "7bf89ba97fb6ee6da5cc9ac9fd4e76468c26a38a",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/build-cronox-audio-unit.sh",
+      "bytes": 4542,
+      "sha256": "d02566c5a4e096f87bece961885644c2f97e9de364d5a81487668e6170f4b7bf",
+      "git_blob": "b985a466f9e1ab4cb4ca24827d03d9bbb8a1e409",
+      "reuse_existing_blob": false,
+      "mode": "100755"
+    },
+    {
+      "path": "scripts/build-cronox-engine.sh",
+      "bytes": 2068,
+      "sha256": "36a9635a984eadb6d9309ec38c0009e21cc4e2f332b134dfac7d27bef4ce6cd7",
+      "git_blob": "00c3f892455e459aa289bfb74c87f0ee1d32a505",
+      "reuse_existing_blob": false,
+      "mode": "100755"
+    },
+    {
+      "path": "scripts/build-lifter-chunks.sh",
+      "bytes": 2624,
+      "sha256": "9eafd60db7507811ffa8c822d1d683596b16a6515938f1dd293188685e9188d4",
+      "git_blob": "b392d02346bd6e9d23568fe0a6121456afb2f07e",
+      "reuse_existing_blob": false,
+      "mode": "100755"
+    },
+    {
+      "path": "scripts/cronox_component_transaction.py",
+      "bytes": 14416,
+      "sha256": "d4004b4320d5e9893cf33a3b8d3debc287f01d78c2ab171d93e096610ec9fc5d",
+      "git_blob": "5c3817a6ffcc7fd0a50152241fe669d6be7fc75a",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/generate-cronox-au-identity.py",
+      "bytes": 2523,
+      "sha256": "c7f925f9b38a7519a42ef33832baaf5e583b3c57c3f6e8862a35eae2ce38c312",
+      "git_blob": "30cb87ff4685c5f148167353eb4dcf72100d47b8",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/generate_legacy_image_cpp.py",
+      "bytes": 2597,
+      "sha256": "c3ca7150950f239f8ba4076fd5599e2b29ca623247c58c4e832e162205d2f1b1",
+      "git_blob": "a4d2fd0f782d7e74ab2e6f7985a5ca83eb69bbce",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/legacy_image.py",
+      "bytes": 5280,
+      "sha256": "31fc6e01724d805397a68b220b5c1a9b5521bb02dcb5a8b8ca6e71bbe6edbd63",
+      "git_blob": "b8aa312cf67494dff221c4da227612425e12244f",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/lift_pcode_chunks.py",
+      "bytes": 8583,
+      "sha256": "daf6fb47637ea66c2bd64c958f46051e9f646d88e8fd3de50e22a142dfaaad4c",
+      "git_blob": "0afcdd5313b4271dc65490d6c89b5108422cedf6",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/lift_pcode_cpp.py",
+      "bytes": 9737,
+      "sha256": "0036f229815c738f18b6dafbf5c9a8fd1dfad24370fb2cc67679dd620ac024bd",
+      "git_blob": "b8179790a9b098aff265e102ccb476e7a0cb19e2",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/prepare-cronox-source.py",
+      "bytes": 2549,
+      "sha256": "a200f9491940a3e3912dfa8ad9bd103b3a4cad142c146ad45ecedb4e25bdddc9",
+      "git_blob": "6bffbb59b6a9edb265472c58ac49c8a1a7a38ad2",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/run-cronox-auval.py",
+      "bytes": 891,
+      "sha256": "73aa74dec22e8ae17a089e3d20182d9db7507d7ffe4945fac56d41ae85dc869c",
+      "git_blob": "75ed9eefb69382c0c34c850436c45ca360816e31",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/verify-cronox-bundle.py",
+      "bytes": 1759,
+      "sha256": "73e30cb3f2f2523a73daa3995a8a0011be24b8bc4b26c3b957e4c6016ec1364b",
+      "git_blob": "79f2ce6e077ad870fc90ffeccf82a6e8849c1655",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/cronox-kernel-cpp.json",
+      "bytes": 62121,
+      "sha256": "fa3121043619745344b6fb09789f7f2ac0794146d64fcae2f688783df0f60a4f",
+      "git_blob": "e087d586e0be02eb12338fd19dad15d1a160c0a0",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts.json",
+      "bytes": 9068,
+      "sha256": "fb4096dec50b7f2e1ff1a4824013f9f4c8ccc0c04073b95830465aad0626e30d",
+      "git_blob": "4cf780ba349f7dda9ff9025f14fbcba119961aca",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/008-000.part",
+      "bytes": 900000,
+      "sha256": "693a5970bcb600fa5b8b7bd7942bd7c6c0b55e9d7fa1a9b24a4d0a2d65ddc037",
+      "git_blob": "9057f6ef9f7a9a7ac47fba2ad2d0c3328816ae54",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/008-001.part",
+      "bytes": 900000,
+      "sha256": "3f367d3bb5eaa090db1f24fb38367228623f40856249a42eac2cf7304f8ac862",
+      "git_blob": "e5a1948f6b2dcc0228a4dce36c42bf8d5120a8a5",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/008-002.part",
+      "bytes": 900000,
+      "sha256": "0fb78ad914b606c39ab0e6f34767bfda154ccebd1e3786a0fd21b1c922a388b0",
+      "git_blob": "4a172a92d8749ecfee6a9310d3e689ec0f6ef0ab",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/008-003.part",
+      "bytes": 900000,
+      "sha256": "786c2348efc5dac031bb7d810a20af202c828ed833b49c3d88e2344c6f2594ed",
+      "git_blob": "25b1a32fc615aa5eda6a357cde032910348bd0be",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/008-004.part",
+      "bytes": 900000,
+      "sha256": "a435c4c7d7efc39e3689f1999afaf50496fdb26f29ade56fcf5bbe17c4a504fd",
+      "git_blob": "e73954b2eda556d04caba90105c8fd466d3b9bad",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/008-005.part",
+      "bytes": 210092,
+      "sha256": "8d058a4f8448548a1b0cd2b7072e2fd244accd720ae99a2e4562e4b599200e3d",
+      "git_blob": "3d332c81d25e6ad6214474bd0e45622895aa985b",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/013-000.part",
+      "bytes": 900000,
+      "sha256": "62ba70028a775279c1493dc62cec6b23b8e0a669c2a6090bb0d033ca012e050f",
+      "git_blob": "07c4d41a1f0fc691e896f078ca9276211c21479f",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/013-001.part",
+      "bytes": 332663,
+      "sha256": "9e82e20fb72b272658f49428dfb8fe032d5665df5d24393d78e3f460b1021237",
+      "git_blob": "b763354de6c0aa0380c1e0b6cba1ac652826d6eb",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/014-000.part",
+      "bytes": 900000,
+      "sha256": "9037c537bda25f6a7c53a5063a4c5031e9a3a72b499f0a2581aadefd284f8cfe",
+      "git_blob": "72f1ff099f585b7a74999edb8253e584efaf2530",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/014-001.part",
+      "bytes": 900000,
+      "sha256": "085b2bae193a5c69bc09550ae0c8ba4a451a3ee2b22eb754b6dd4bf89c31c4ac",
+      "git_blob": "24a08dc53e579babe89aefd8bfabc5774629c1b0",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/014-002.part",
+      "bytes": 900000,
+      "sha256": "46ff08d786965f39694ce928cd7f2b7545c07fa281b6103194e7e59957d1c397",
+      "git_blob": "faa2d67c8987f37b0661a6c673192c3ceb098020",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/014-003.part",
+      "bytes": 900000,
+      "sha256": "85520ebeeeeca6de94c41bdac2300ee2c85f0fe89b1d6a5fb6a2a136bc5ca651",
+      "git_blob": "e2a4f1b8395ab9c59790914cc77dd962f567d1c6",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/014-004.part",
+      "bytes": 900000,
+      "sha256": "636314353dddfce08eaa54ba39166ee7319a72b021be4a88bbb8d33f32dd7434",
+      "git_blob": "e98dad841e77c9810c903f9e32af6c56380e8692",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/014-005.part",
+      "bytes": 900000,
+      "sha256": "a1fdb5ea96c67e171d8bb1997864cdcd23ad2ce77ff5f1b8de3ce69351e37d8f",
+      "git_blob": "3405e388ad3469951bdafed2f26473b4325c04d6",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/014-006.part",
+      "bytes": 900000,
+      "sha256": "a7f83ffde4d983cd579ac7fba0ea56edcc05ec662db784e0e86fae3c2d8a95aa",
+      "git_blob": "12f239035d0f3f82fa603a4199cdb29f82bf6ab1",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/014-007.part",
+      "bytes": 900000,
+      "sha256": "16b306c9e748f950523f5a9de892daac71b03359a6a1374e26e364a46fe1c856",
+      "git_blob": "db0081bf2d92bd9afbeafcdf33e36ce73102cbc7",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/014-008.part",
+      "bytes": 900000,
+      "sha256": "32cd1a803e3969ebef2eede341b57f1062d6a08a46950010e3ebbf87d5adfb76",
+      "git_blob": "a2f73e73b9c41927e78b738bb981511b92aae6db",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/014-009.part",
+      "bytes": 65013,
+      "sha256": "16d95015574b4974d73ee99d9fb0aebc1c73721ed3954ae3b596ba8de87c4ac4",
+      "git_blob": "7a1fbe6b6247fd87d2dd5b9db82d16742d915c22",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/023-000.part",
+      "bytes": 900000,
+      "sha256": "db18adac6d70c8b915e6699ea60bca19563461a854d43e857d633d92cfea5615",
+      "git_blob": "e8aa16fb7fb770a0b0d93c5324be00ff260a980a",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/023-001.part",
+      "bytes": 900000,
+      "sha256": "c7d4eebcd085ea3f4fcd98e34b4f7123fb1a816e50e501311445bd7e2a1d6f04",
+      "git_blob": "2566ada781b14a89d1584cdbe5f01d60e4fcf2bd",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/023-002.part",
+      "bytes": 900000,
+      "sha256": "1d5fe3abd93b3e36cb954757aed93ddacbcd63fdd7eb58ec5b36b905e474c207",
+      "git_blob": "c00c2e63bd2d7cf993b2dc81dfb9bd5ad61cfa01",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/023-003.part",
+      "bytes": 900000,
+      "sha256": "657d6b4c43657ae967c09a33a82a82afad90c4c38c7d0f437a476d776a796490",
+      "git_blob": "bf9cf54f1ece6f3c4d2e3ded90f2892052d58463",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/023-004.part",
+      "bytes": 900000,
+      "sha256": "ee023d8c7310bbf271b74fe71eca2f01a74d848b7a9e0d28b01d66d29931dd3d",
+      "git_blob": "f6eaa242784586bbf23b833b145899e9f7269802",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/023-005.part",
+      "bytes": 58045,
+      "sha256": "48f241d5ade0d728330ca626373b9c03d8287a25838c3d6df75a34c1f1a40341",
+      "git_blob": "e655b7e7cbe62e22f03ab460890e16f40aa5597c",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/024-000.part",
+      "bytes": 900000,
+      "sha256": "eed7bf56d675eeafbfc4619bb22e4c635ec95e19b6d1d82e7c1c02dcefbaa22d",
+      "git_blob": "9569bc76c457005171f9459a5d985be87d0d412a",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/024-001.part",
+      "bytes": 678640,
+      "sha256": "3d24be3820fe93d073d8706c6ef426aea0d6b91f98f0d49bad9887c9b1c6d787",
+      "git_blob": "4f143111deb6569a64a259ba5186b1a641aa1dfc",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/027-000.part",
+      "bytes": 900000,
+      "sha256": "c59c87116283fdad13dff80cdd1c8d5ff3032dea3b4db3f37a3ffa4a2070727a",
+      "git_blob": "adc999e22cd19930a9dfc9b0fb3143027a1adbec",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/027-001.part",
+      "bytes": 442752,
+      "sha256": "b3fd6daf30759a7bb5f0a3a288263999bb461012d05509e7eeedcabe75de68cc",
+      "git_blob": "31b0d1111a6092f1586866dcc016fa690b2b7d9e",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-000.part",
+      "bytes": 900000,
+      "sha256": "516ebc7d01030df84822c50288f5a631f236314e43e7d06f3bdafb2cebf5bbc4",
+      "git_blob": "85a0528fa826fffc10b81a8041bd429c2974c8d6",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-001.part",
+      "bytes": 900000,
+      "sha256": "a814b4392cfcc65e969e70343d7900fa3cfbf890f2423521994566625b03c4a3",
+      "git_blob": "b746184f2c57cf5dc8d61f6a93c14480b1182eab",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-002.part",
+      "bytes": 900000,
+      "sha256": "807fadd41d5a9623a767f445f8e26fc92e30fc79ca935ad0e982518f5f8eeffb",
+      "git_blob": "f558f7e81011201b5d2bf067bda10a0c38c9ca26",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-003.part",
+      "bytes": 900000,
+      "sha256": "6006ced9fd97bb518013fd9eecba3bfda3441d635c60c0a8dccaa1fe23db4298",
+      "git_blob": "bfbb833004a991e4cc0b216c0a93d05d09d0f31a",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-004.part",
+      "bytes": 900000,
+      "sha256": "cbe929041aea8b450a21c10e8dafdb111b08619738fd1d4838c627e0a90e2795",
+      "git_blob": "ac284d57062c305e11a47f0ed4ff4f14313495e4",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-005.part",
+      "bytes": 900000,
+      "sha256": "40da4d7f83518cb2983a80b00c4a7914d0514647ff726234e1c69f7d892120b8",
+      "git_blob": "be344933b3fc0240ffffbde5f9f60244774eaada",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-006.part",
+      "bytes": 900000,
+      "sha256": "61a897ba701b7b75206b58123ff7556e4d09b456be61d5c637c7cab6e1fb1305",
+      "git_blob": "7dff77792d0269e07533a10be40f587a53b0fb1d",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-007.part",
+      "bytes": 900000,
+      "sha256": "bd4bb3d9491333ae94f42bbc4e90747a0752b123a26ec3769a0f3ac29dddf41c",
+      "git_blob": "db34243e1dcdb6a1bf1e2df9d0451d1bcee83779",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-008.part",
+      "bytes": 900000,
+      "sha256": "af14965e9ad946f23e6adc66e8c14ec77ee0adb1c39c27a460632a8071b75366",
+      "git_blob": "c34130bacf67f7315173caef61e3c2fe200b98d0",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-009.part",
+      "bytes": 900000,
+      "sha256": "ab83a1f20dced0b9d20a3a0be041dd2cd17804503639c03bd516aca551a4d028",
+      "git_blob": "380ccefb8da35205376f2ae384f3f641dd832a95",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-010.part",
+      "bytes": 900000,
+      "sha256": "218ac4fb96a5de2140aa55b9b4c03c37fe97ed4f42fe4d857b527b3e03f29b62",
+      "git_blob": "f48b8b347b02aaaccf692946bd1aeeb53aa175a4",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "sources/payload-parts/036-011.part",
+      "bytes": 101885,
+      "sha256": "675a253c27b2aef023b7ca0974acbef3a7a6e11202bf3e60d118db9fbd34f6b9",
+      "git_blob": "6204711dbcb56a0b7f50ca7c50857947032b78dc",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/au/BankAccess.h",
+      "bytes": 2561,
+      "sha256": "c557b4336a00823edd557a2d6d9a7a910b077500c0c7c7b8f76674e339c672a0",
+      "git_blob": "469c6c5bc5f10ee5a425276f3435083a132c59c0",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/au/CronoX3ARMTest.exports",
+      "bytes": 111,
+      "sha256": "ae6f5a1cefddb9e5bf4f70f633cf0091799f4281be330985fc66a506d27a3a83",
+      "git_blob": "f53e1f18643c03307b9a1c94c1c8446e640c435e",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/au/CronoX3ARMTestAU.cpp",
+      "bytes": 53561,
+      "sha256": "924dc7a809246699be3726550773c19d57e4cb11b1483fc66abb0f027eb1a149",
+      "git_blob": "2f34e3e7e2d6dff2d6330a7c4b9c4a4f68abc88a",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/au/CronoX3ARMTestEditor.mm",
+      "bytes": 10766,
+      "sha256": "52bbb0f7ab5b0d8fffa69a8819289cee1191a7ccabc18f040853c69a66ae3a8b",
+      "git_blob": "b500211c25b1e52b3ebce8b54961d563b2628297",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/au/CronoXIdentity.h",
+      "bytes": 775,
+      "sha256": "1209571998a6980a9b6ddbfb902c74c66bdb4414b3c21437e3c3b84bd865df12",
+      "git_blob": "517eb9897157594de57f3c81a15e39ece96c65a0",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/au/Info.plist",
+      "bytes": 1226,
+      "sha256": "399c6d08457053adf72b5265d80850908ddd032264d429cc9e548e5e3fb2351d",
+      "git_blob": "4db0a9a5e9713d8080930997e4b71b8bee2b6dd8",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/au/OutputGain.h",
+      "bytes": 377,
+      "sha256": "792682bbc47fc06fefa8793e5027b72fc933ac61d05c7461a9ec4de9ec70a74d",
+      "git_blob": "20b756f43df3a64cc0df6bf726f9d9d01c6c1168",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/au/PresetBrowser.h",
+      "bytes": 5464,
+      "sha256": "0d27c20a073bde0ab6c0ba070f7dd8ad715ec70ee5279001a731298359dead6b",
+      "git_blob": "f8a2c3add5c91bec275a3eb91825729a15353ef2",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/au/SophistryProperties.h",
+      "bytes": 2261,
+      "sha256": "0c2324d2a42291629abc80fd0422b95bf564aa5246584fe979f5bea5ac45202d",
+      "git_blob": "b782dc879493bca7e93e084a39ae20c4f046827f",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/AudioFloatMode.h",
+      "bytes": 2104,
+      "sha256": "25f247f7307fd6f2d29d70b4d89940d81eb13d320ceddb56e409ac21ecd4da6c",
+      "git_blob": "34008cadcc43badc22e317a0c21393e2aaabbe77",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/CompleteEditorControls.h",
+      "bytes": 5547,
+      "sha256": "9b1443dee04dec739028980acc8023cadc1cf387504b070aded0e68c32d9c36b",
+      "git_blob": "23154b614fe6337f225fc6c33d5925fcda13bebd",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/EditorControls.h",
+      "bytes": 4376,
+      "sha256": "90a5cdc96200155bfa9540914006bcf3a7b0370011e9b1b81d3d0e31a833cb6d",
+      "git_blob": "91277f3a53e6c9b36feb680d94438a36826b0a9a",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/EditorPlatform.h",
+      "bytes": 11761,
+      "sha256": "78299ec49e6fffd43fdb080ceca5ffb5834df6144adc58877949a77ee7bf5fa0",
+      "git_blob": "7d5c4fc45b680dd813bb5cbd3c2260240dbc93fa",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/GeneratorControls.h",
+      "bytes": 6479,
+      "sha256": "68be5660c86a5213465dd7b698306131308030446d4fadbc4ac61afe8866fb4b",
+      "git_blob": "45d400bf278c399002fa144350ac209d3045357c",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/GuestAllocator.h",
+      "bytes": 4529,
+      "sha256": "dead851605425fb32de4c6108b701eec4678d532106ead9627638e99ee6d5bcc",
+      "git_blob": "614679742f97a90afa95279f13f017c7d4a00d9c",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/GuestCocoaRegistry.h",
+      "bytes": 4723,
+      "sha256": "3db710996ec2333a6c341d67b87291f1cf94605e8b9460779980502d36320fda",
+      "git_blob": "741b3fdd758c24ac576e3a1f77e98faa896734ee",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/GuestStdString.h",
+      "bytes": 5863,
+      "sha256": "6bef2d513074ae317d8261e0cfe233a369a57bbfc32cd5d634a2c2eb7050bf75",
+      "git_blob": "ab3434910c97d94374a90d21a7de6256e5857db5",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/LegacyEngine.cpp",
+      "bytes": 113809,
+      "sha256": "eabeedd7c0027a24299f7f33bd42777a3f671ea26f1433a2aefc34fc48f6afe9",
+      "git_blob": "dfc98db96b0dbe11b170707aefbace0e8534cb1a",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/LegacyEngine.h",
+      "bytes": 5504,
+      "sha256": "988bd154f0b216f71333308051377744ae98ad8176813a02b8f686070f9ed32f",
+      "git_blob": "db3384976cb80e9d5f106f5e9dca4dd51d4a9600",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/LegacyImageData.h",
+      "bytes": 495,
+      "sha256": "dd10a072cf6de8e11298ccdb7182db0a22dcbf181e0f8e3563a7bc9e0dce1f8e",
+      "git_blob": "7560848122e677757b490a7b301b22a0ee92f5a0",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/LegacyImageData.json",
+      "bytes": 629,
+      "sha256": "e90516f2bbd4895949332625774cff332396c5274d85ba83ceab94bc2a067987",
+      "git_blob": "8dac7ee7739dc87feb3eeb84703d33e8e1169133",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/MonotonicClock.h",
+      "bytes": 2026,
+      "sha256": "855b442f8f96aaf2c36697613b1c8922c4f158b58bd85cb344c0b35a4af4ebd9",
+      "git_blob": "1cebd276c695dec1f81207e2d5af7e9ffa987d03",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/PcmConversion.h",
+      "bytes": 5257,
+      "sha256": "df36f25f4fd2f9eb6eb2b23ae7699964590733b8a84110a3206feeaa56eab710",
+      "git_blob": "ce65966db8d0a18339cda781ff364e27211dcfe3",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/PreferenceDomains.h",
+      "bytes": 817,
+      "sha256": "1222fdd95fd28676cd57d610703e0536854943ac3833cfd79851c4fa4a4a0a1f",
+      "git_blob": "35567942e993c5ede61a0e4923c6ebbb448e8dfe",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/RecoveredEditorLayout.h",
+      "bytes": 101622,
+      "sha256": "0cc72a2d8011cd373eb08cb1c0c3952f430b86f521b3db235ee8319d94b6b9ac",
+      "git_blob": "80ad6f45c034175d387f3d8afde63d60f0270ad9",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/engine/RecoveredKeyboard.h",
+      "bytes": 105010,
+      "sha256": "8e613635e4347f9a381fc45314b08087a9f67e9b2e94bff9e06448d37a5bec12",
+      "git_blob": "32bf549248045722afbdfb217c13f465266f433b",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "src/lifter/LifterRuntime.cpp",
+      "bytes": 8996,
+      "sha256": "f1a8569d6be15dcdeeefce6c19259f16f330cca85a67db8973f895a6bc8b5883",
+      "git_blob": "72424eef15f4391d7c3218749a3bbc3bf891b60b",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "src/lifter/LifterRuntime.h",
+      "bytes": 3806,
+      "sha256": "52cfb08d36cc7e60e13e35305d726dc61533ad24fc86207a4aed112d878b4b32",
+      "git_blob": "75fc2bad8e9a16854375209bf6d526e28087070e",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/CronoXAUBridgeProbe.cpp",
+      "bytes": 3079,
+      "sha256": "88ad638f8df61cb9c8e1253f3d120cde94ab10b1e206e11576db9572589096d6",
+      "git_blob": "93275d523981fcb47bd2bcdffd3db2f7cd41270b",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/CronoXBootProbe.cpp",
+      "bytes": 643,
+      "sha256": "b27955cf10bef3f9e6e62775f5521c50407038495d5474d9ecf10417767b5f7e",
+      "git_blob": "9b3340ab4684556070162382334d77539b21fe51",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/CronoXBuildScriptProbe.py",
+      "bytes": 7433,
+      "sha256": "e807f5451ed23a2f8f92fa44d22b0200021d4d9476a27535908ec2ce1cf168f9",
+      "git_blob": "ce022c53272b50b789b9ed2bfc0a3050a4944889",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/CronoXComparisonProbe.mm",
+      "bytes": 12906,
+      "sha256": "f4c12d9013622c71f7c8acd3165ebd216d9ba03f99d914a1048dca947e286969",
+      "git_blob": "dc0bf49cee5c2e289ded82f3aac21820a1ee61ff",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/CronoXControlThreadProbe.cpp",
+      "bytes": 2206,
+      "sha256": "965693bdbc66d0d554527abebee550a7cc73b6e08a3ca2fb6745a1026c2d9d97",
+      "git_blob": "8d9bc4ea0395e73ccfda0175337ffe0cf78384de",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/CronoXRunLoopProbe.cpp",
+      "bytes": 2646,
+      "sha256": "83576ac6354a197da0c673e2d5294fbe737e3fba442f820c8b077ac62b9ef55c",
+      "git_blob": "c87eb2f6f3e67271f114d2f4a6503c08779136f3",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/CronoXSqrtProbe.cpp",
+      "bytes": 817,
+      "sha256": "7d13c0335c9d1836388e8c1a0cd1dde53c885479109b610fe56a60d225905541",
+      "git_blob": "1935dc2d846883b880e6e4166a31f788fef6d1a6",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/GuestStdStringProbe.cpp",
+      "bytes": 3133,
+      "sha256": "7271cd04c0044051d68901cc5d8d77b956bdb9264cb712a85e9df1e7ce7c3109",
+      "git_blob": "7041ff164b9b95c46f5ada7f1285d54e14dfea3b",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/InstructionProbeMain.cpp",
+      "bytes": 3227,
+      "sha256": "e5dfcb5005c1dbec7aa23d2d6b1a2beada24aa14896963c0a5228862fcbf1dcf",
+      "git_blob": "c7633319edc14a8672bb177c6026f57403aadcd3",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/LiftedProbeMain.cpp",
+      "bytes": 6941,
+      "sha256": "2e0bd281e74648661be16c83e553d107262b4c9d27334bd35afd50f09da7c53e",
+      "git_blob": "4003a70e07c2965b1c1de40fbd04bc04760730a3",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_cronox_component_transaction.py",
+      "bytes": 9874,
+      "sha256": "f8ddb81fade7ac424f39fa8e45ca48ae98a0aea377c8c57dbc4e03a7963b7b3e",
+      "git_blob": "a3899c19bbae1572424878dd233c4ddf125796b7",
+      "reuse_existing_blob": false,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/LICENSE.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "git_blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUBase.h",
+      "bytes": 28040,
+      "sha256": "793e3f2ffa69a32d481399c61394a313310fce01d6511bb9f51f1bc5e0340464",
+      "git_blob": "ce57bcceab982e02318c1b2c95dfb0cf486da3bc",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUBuffer.h",
+      "bytes": 5277,
+      "sha256": "5f736a59740b8cdcc963e04aeee0d9df6a0e901bcb79874f578249c5b56a9b2a",
+      "git_blob": "bc9f3b99a1757ca7f787d0629f2aca4a83b63c79",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUConfig.h",
+      "bytes": 3062,
+      "sha256": "b8b91bfecc005781c2a30077b16052d0b6f4cf0799a6dac2341d865498cc4fc1",
+      "git_blob": "34a7384001bac6d81dbf0c5d695303912416e11b",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUEffectBase.h",
+      "bytes": 6811,
+      "sha256": "4bfd511ab319247e23159121a4485df08732e7eb3ec443bb2b3afaca39aee1a0",
+      "git_blob": "ad1c77f6d7a1512c4bf67ece88ad14c7598ee1ad",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUInputElement.h",
+      "bytes": 3119,
+      "sha256": "6c20f080129d7ca0d2e4b8cdbe793d27bb78cab09858ebc30b7d9ad5e160130e",
+      "git_blob": "87cbbbb7c34af5a64fb085c6f0bba111bf6e9856",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUMIDIBase.h",
+      "bytes": 5665,
+      "sha256": "04461e3d840cbbc8da0acab8f84c5a505e1055b88979851ef767e5a3e519a486",
+      "git_blob": "5ec56d42e173876e23cc1637fdc07c0e74c5084e",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUMIDIEffectBase.h",
+      "bytes": 1493,
+      "sha256": "ec9f4640865aac519957d5135de4a9493abf2aa5549c44f0b6117a9966c0ed24",
+      "git_blob": "0e8d5715e7eaea7500b46d802af0889d3faf07b3",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUMIDIUtility.h",
+      "bytes": 396,
+      "sha256": "30310c3af63c2621d6b513bc5a856b03c1750a60b19f1eff99dc27e1c385f8d2",
+      "git_blob": "5323b3224372b56c15866d402d8c37faaa43b062",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUOutputElement.h",
+      "bytes": 1048,
+      "sha256": "7d762ec65b6d54d6c15195841bfb5b6d50cf164a1c05f6694eb6e42bf3b83ca0",
+      "git_blob": "bd096c3c13fb9db5bf6714a2a6e1dc0d6ccfc6fa",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUPlugInDispatch.h",
+      "bytes": 3918,
+      "sha256": "415e80302c43cb943b158c686c6acdc72b9fdcce5efdc02984a054e7fd9a02bc",
+      "git_blob": "724873b735e72cf772962ebd7d3d93d7fb2d2fff",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUScopeElement.h",
+      "bytes": 13553,
+      "sha256": "e3da5a1525a40f7d1a1cef1af82a246a841371e692ee4f8d58bfbd794788e0e9",
+      "git_blob": "28014036a554feb0c96f9c8c6411e916e10832d9",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUSilentTimeout.h",
+      "bytes": 1183,
+      "sha256": "b3a1c2b57ef25a38c27c93331535037fe9f30bcc9c3644d361c6ffb5cf5017e5",
+      "git_blob": "419133c0e88fe1a4972cdaddf3e777355204e8ff",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUThreadSafeList.h",
+      "bytes": 7977,
+      "sha256": "4fbf3fc4d5a6c7f48f878c3b9e17680f7dbbd60a81094708a573c1474b2041c2",
+      "git_blob": "709952d78563183fdf9cfed74bad0819d1f5cef7",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AUUtility.h",
+      "bytes": 19527,
+      "sha256": "c5cca92b4c734c6308cd7c0e103dac69d92088d502f23502aa8bf2ebf00709f4",
+      "git_blob": "9a5f46c8e6e99b64e99b1d7afbb0cf1d42b0aa28",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/AudioUnitSDK.h",
+      "bytes": 891,
+      "sha256": "6ce87f6d6fff20d2e014eb0cde048e1749ac5096b2966a412da2332ee4aa97d9",
+      "git_blob": "ff0a4516bcda5e560ed991d01a58d8fc2c866603",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/ComponentBase.h",
+      "bytes": 5822,
+      "sha256": "fb513ffca9ff4db0717c86e37dce28e4cef37eb6f3abe368b64f54465181cd49",
+      "git_blob": "a7813ddbd29eac8949d7b18bed2809944927308d",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/include/AudioUnitSDK/MusicDeviceBase.h",
+      "bytes": 2126,
+      "sha256": "fd651add5937a6bfb0ecd7fc2c152f3c47a0eac3084d279854e64f6cf13ad85b",
+      "git_blob": "2262b1eab16bb56f86f75babf2eedc980c92e501",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/AUBase.cpp",
+      "bytes": 68340,
+      "sha256": "3c6cf77ecd708da0c34dd4ed38bf88fdcb9fdb8451906ced698a8c2138e26ed4",
+      "git_blob": "cb63a117b7c842ed4ee45e6c013c12e6259a4bba",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/AUBuffer.cpp",
+      "bytes": 5865,
+      "sha256": "5d2927a0d05b220bd50f4dcdd381e0b064f92660140224f4fd0ff8461e6e85a3",
+      "git_blob": "4f97ef07f1b6fe32125cc73058aa27a15b906831",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/AUBufferAllocator.cpp",
+      "bytes": 309,
+      "sha256": "ec732361ba7c0cb8e2967990ff6c6768437f78231c7d411f0c081960b61c407f",
+      "git_blob": "14fcf5fbf85af1c23d24a26fedb2b5f601a496a7",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/AUEffectBase.cpp",
+      "bytes": 13278,
+      "sha256": "9c323a5462bc77e4a9afe8e22490fbf2d66ff1cdf8a6bfca94094073038f633c",
+      "git_blob": "625fd90ac490ff5bf125f334c857fa999ca3cf0a",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/AUInputElement.cpp",
+      "bytes": 2307,
+      "sha256": "f8339398ba213b8201c44870e7105355ab58093c20ac12a784bf6f91c545d260",
+      "git_blob": "e0838a4789abf12e07209d75e1c09c38efd4731f",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/AUMIDIBase.cpp",
+      "bytes": 8586,
+      "sha256": "ade0f27b5810315abb5cdb356d7570ffb9f863f9d77eb792698b00174f1c63c3",
+      "git_blob": "5bd6223246ed479179384f571de5f052c969d5fe",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/AUMIDIEffectBase.cpp",
+      "bytes": 1604,
+      "sha256": "b195791e6de15f8466e970fd9e16595816364b8c5a1696c88e337f18aca91163",
+      "git_blob": "66ce65d483fd1a5eec3b8612a8f56419bc89266f",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/AUOutputElement.cpp",
+      "bytes": 705,
+      "sha256": "050ec9a6ce891bed4d1cea1b50a562a15b98825d080e86c5c86005ff4d1704ae",
+      "git_blob": "35dc36946833690b363f324f9952f899b8b3740a",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/AUPlugInDispatch.cpp",
+      "bytes": 22262,
+      "sha256": "dde7ecec1fc094bd8cc38ad4c4e909f62b9744e13a91c16559d3292e68fb2f7b",
+      "git_blob": "1dd856feb4c37aa2ec9f82c8c57ae6eeecdc67f6",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/AUScopeElement.cpp",
+      "bytes": 14240,
+      "sha256": "395aa2c66a9a0028de88e23ca74c54101000c50ba18f200ae7782530e94c3b6f",
+      "git_blob": "9675afc5c5681683cb351ce14e8579e94203d09d",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/ComponentBase.cpp",
+      "bytes": 2374,
+      "sha256": "21e5cd0241b5c0d4cab3191da4d79736fa53035d8c85d8097767ea0b3eaf51dd",
+      "git_blob": "998560627465853b0694e2221676d24d4c97831b",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    },
+    {
+      "path": "third_party/AudioUnitSDK/src/AudioUnitSDK/MusicDeviceBase.cpp",
+      "bytes": 3190,
+      "sha256": "a665ed8df9fd1993419b3fb501deae31db6913e707235f723cb3abe6b1a3621a",
+      "git_blob": "7ee141b4f2efc11ce53cf6cf4ea9c0d3893983f6",
+      "reuse_existing_blob": true,
+      "mode": "100644"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "checkpoint": "CRX003",
+  "failure_fixed": "Bash 3.2 empty array under nounset",
+  "original_kernel_changed_since_crx001": false,
+  "macos_runtime_tested": false,
+  "auval_executed": false,
+  "sound_fidelity_verified": false,
+  "tests": {
+    "bash32": {
+      "scope": "Build shell orchestration with mocked Apple tools only",
+      "bash": "GNU bash, version 3.2.0(2)-release (x86_64-unknown-linux-gnu)",
+      "baseline_failure_reproduced": true,
+      "cold_compilation_units": 14,
+      "cpp_and_objcpp_flags_preserved": true,
+      "empty_compiler_arguments": 0,
+      "paths_with_spaces_passed": true,
+      "warm_object_cache_reused": true,
+      "single_source_invalidation_passed": true,
+      "macos_execution": false,
+      "auval_executed": false,
+      "passed": true
+    },
+    "bash5": {
+      "scope": "Build shell orchestration with mocked Apple tools only",
+      "bash": "GNU bash, version 5.2.37(1)-release (x86_64-pc-linux-gnu)",
+      "baseline_failure_reproduced": false,
+      "cold_compilation_units": 14,
+      "cpp_and_objcpp_flags_preserved": true,
+      "empty_compiler_arguments": 0,
+      "paths_with_spaces_passed": true,
+      "warm_object_cache_reused": true,
+      "single_source_invalidation_passed": true,
+      "macos_execution": false,
+      "auval_executed": false,
+      "passed": true
+    }
+  },
+  "bash32_source": {
+    "url": "https://ftp.gnu.org/gnu/bash/bash-3.2.tar.gz",
+    "sha256": "26c99025b59e30779300b68adb764f824974d267a4d7cc1b347d14a2393f9fb4",
+    "purpose": "Reproduce macOS-family shell semantics on Linux, not macOS execution"
+  }
+}

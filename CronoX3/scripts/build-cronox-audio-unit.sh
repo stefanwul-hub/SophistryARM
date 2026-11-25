@@ -18,10 +18,13 @@ objects=()
 for source in "$ROOT/third_party/AudioUnitSDK/src/AudioUnitSDK/"*.cpp "$ROOT/src/au/CronoX3ARMTestAU.cpp" "$ROOT/src/au/CronoX3ARMTestEditor.mm"; do
  name="$(basename "$source")";name="${name%.*}"
  object="$DEST/sdk/$name.o";objects+=("$object")
- extra=();if [[ "$source" == *.mm ]]; then extra=(-fobjc-arc);fi
- key="$( { printf '%s\n' "${compiler[*]}" "${flags[*]}" "${extra[*]}" "$version" "$headers";cat "$source"; } | shasum -a 256 | awk '{print $1}')"
+ # macOS /bin/bash 3.2 treats an empty array as unset under `set -u`.
+ # Keep a populated argument array for both C++ and Objective-C++ sources.
+ source_flags=("${flags[@]}")
+ if [[ "$source" == *.mm ]]; then source_flags+=(-fobjc-arc);fi
+ key="$( { printf '%s\n' "${compiler[*]}" "${source_flags[*]}" "$version" "$headers";cat "$source"; } | shasum -a 256 | awk '{print $1}')"
  if [[ ! -s "$object" || ! -f "$object.compile.sha256" || "$(cat "$object.compile.sha256")" != "$key" ]]; then
-  "${compiler[@]}" "${flags[@]}" "${extra[@]}" -c "$source" -o "$object.pending" > "$object.compile.log" 2>&1
+  "${compiler[@]}" "${source_flags[@]}" -c "$source" -o "$object.pending" > "$object.compile.log" 2>&1
   mv "$object.pending" "$object";printf '%s\n' "$key" > "$object.compile.sha256"
  fi
 done

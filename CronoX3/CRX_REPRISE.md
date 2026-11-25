@@ -1,4 +1,4 @@
-# Reprise CronoX 3 ARM64 — CRX002
+# Reprise CronoX 3 ARM64 — CRX003
 
 Décisions utilisateur : Sophistry définitif = CP038 ; développer CronoX 3.6.6 séparément et publier uniquement sous `CronoX3/` dans le dépôt existant, branche `codex/sophistry-native-checkpoints`. Ne pas reprendre l’expérience CP040. Ne jamais remplacer les fichiers Sophistry ni pousser ce worktree directement sur cette branche : ses chemins racine doivent être préfixés `CronoX3/` pour la publication.
 
@@ -41,3 +41,23 @@ La publication CRX002 inclut un manifeste source séparé et un lanceur épingl�
 Contrôles CRX002 supplémentaires : `tests/CronoXComparisonProbe.mm` exerce la factory native et Cocoa, les 522 paramètres, le chargement FXP par la vue, les sorties 2/6 canaux, le rappel dans une instance neuve et la réinitialisation 48 kHz. Il vérifie aussi que les préférences originales et le nombre de composants CrX3 n’ont pas changé, sans exporter leur contenu. Ces contrôles doivent être exécutés sur le Mac de l’utilisateur par l’installeur ; la compilation croisée ne remplace pas cette exécution.
 
 Les objets SDK sont inchangés depuis CP038 ; aucun code DSP Sophistry n’est réutilisé à la place de CronoX. La liste d’export natif comporte uniquement la factory CrT3 et sa classe/metaclasse Cocoa. Ne pas l’élargir aux symboles `sl_*`, `sophistry::*` ou SDK : cela risquerait une coalescence dyld avec les autres plugins.
+
+
+## Publication CRX002 vérifiée
+
+Source : `d811b6cfc65813450d64a00177bde7b7f3c93be7` ; archive SHA256 `0731b4700dd3da883f6a0391037a43ca1d1935f4c871d8f2fe0a259afac5e269` (74 571 897 octets). Les 156 fichiers CronoX de l’archive ont été vérifiés contre leurs blobs Git, ainsi que les CRC et permissions exécutables. Préparation des sources et 14 tests transactionnels repassés depuis l’archive publique.
+
+Lanceur : commit `460c5d3c7dfa978562ad0fede0956e600d13ef5e`, fichier `CronoX3/Demarrer-CronoX-CRX002.zip`, SHA256 `7a7166166f656ea7c80258f44de1ed0e7806b676ec1abe18b731b75dcb6bc952` (1 811 octets). Son téléchargement direct a été comparé octet par octet à l’original local. La branche distante se termine au commit d’enregistrement `e02b18b9b8e012aff62fd03542605c91cfccb470`. Les 46 entrées racine hors CronoX3 sont préservées.
+
+Prochaine étape : attendre le rapport CRX002 du Mac. Il doit valider la factory/Cocoa, le rappel d’état et l’audio en stéréo/six canaux, puis auval et l’installation CrT3. Vérifier ensuite les comparaisons son/CPU de l’utilisateur avant de poursuivre les panneaux originaux et avant d’autoriser CrX3. Ne pas déclarer ces validations faites sur la base de la compilation croisée.
+
+
+## CRX003 — correction du 25 novembre 2026
+
+Le rapport utilisateur CRX002 confirme un arrêt du script `scripts/build-cronox-audio-unit.sh`, ligne 22 : `extra[*]: unbound variable`. Le noyau et les sondes C++ ont compilé ; aucun AU n’a été construit, enregistré, testé ni installé par cette tentative. Les deux avertissements codecvt ne sont pas la cause. Ne pas demander à l’utilisateur de changer son shell ni de supprimer son cache.
+
+Cause : Bash 3.2 de macOS traite le tableau vide `extra=()` comme non défini avec `set -u`. Correction : créer `source_flags` à partir des options communes toujours présentes, puis y ajouter `-fobjc-arc` uniquement pour les fichiers `.mm`. Aucune option vide n’est passée au compilateur. Le DSP, son runtime et les 413 unités générées restent inchangés.
+
+Le test `tests/CronoXBuildScriptProbe.py` exécute le vrai script dans un dossier avec espaces en redirigeant seulement les outils Apple vers des doubles de test. Il vérifie le passage C++/Objective-C++, les arguments, l’ARC, la réutilisation du cache et l’invalidation d’une seule source. GNU Bash 3.2 est compilé localement depuis l’archive GNU pour reproduire l’erreur originale et vérifier la correction ; ce test ne compile pas un AU et ne remplace pas auval. Les tests de transaction et preuves de compilation ARM64 CRX002 restent applicables ; seule la version affichée et le marqueur de contrôle de la sonde deviennent CRX003.
+
+Garder CrT3 et le nom CronoX 3 ARM Test. La prochaine tentative utilisera `Demarrer-CronoX-CRX003.command` et produira un ZIP `CronoX3-rapports-CRX003-…`. L’original CrX3 et Sophistry CP038 ne doivent jamais être ciblés.

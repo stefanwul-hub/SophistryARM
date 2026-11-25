@@ -1,6 +1,6 @@
 {
   "project": "CronoX 3 ARM64",
-  "checkpoint": "CRX002",
+  "checkpoint": "CRX003",
   "original_version": "3.6.6",
   "original_architectures": [
     "i386",
@@ -44,7 +44,7 @@
   "original_au_bridge_is_not_native_au": true,
   "editor_bindings_available": false,
   "remaining_work": [
-    "User macOS AU factory, Cocoa, installed auval and audio tests for CRX002",
+    "User macOS AU factory, Cocoa, installed auval and audio tests for CRX003",
     "CronoX 3.6.6 original UI ABI, panels and controls",
     "Original-versus-port audio and CPU comparison in Logic and Live",
     "Original AU identity restoration after user validation"
@@ -72,5 +72,8 @@
   "crx001_user_macos_tests_passed": true,
   "transaction_regression_checks": 14,
   "sound_fidelity_verified": false,
-  "macos_au_host_tested": false
+  "macos_au_host_tested": false,
+  "previous_macos_attempt": "CRX002 stopped before native AU compilation: Bash 3.2 empty-array expansion",
+  "build_script_bash32_empty_array_fix": true,
+  "original_kernel_changed_since_crx001": false
 }
