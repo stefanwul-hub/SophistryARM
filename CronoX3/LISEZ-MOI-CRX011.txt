@@ -1,0 +1,23 @@
+CronoX 3 ARM64 — CRX011
+
+Cette livraison corrige l’interface d’après les routines originales :
+- Matrix : 16 catégories et 58 destinations ; disparition des caractères $ internes.
+- Arpeggiator : quatre colonnes de huit valeurs et les indicateurs verts originaux,
+  avec le bitmap, les coordonnées, les états et le rythme de rafraîchissement repris.
+
+Quittez Logic et Live, décompactez le ZIP puis ouvrez Demarrer-CronoX-CRX011.command.
+Le script télécharge les sources vérifiées, conserve le cache de compilation,
+compile en ARM64 et lance les tests C++, menus/arpégiateur, Cocoa, audio et auval.
+Il installe CronoX 3 ARM Test.component dans /Library/Audio/Plug-Ins/Components,
+avec sauvegarde et récupération de la version ARM Test précédente en cas d’échec.
+Le rapport ZIP est créé sur le Bureau.
+
+Le moteur audio, les réglages de voix et la réverbération restent ceux de CRX010.
+Les recherches CPU sont sauvegardées séparément pour la prochaine étape.
+CronoX original CrX3 et Sophistry CP038 sont conservés.
+
+Compilation/lien ARM64 et tests de développement vérifiés.
+Les tests Cocoa et auval CRX011 restent à exécuter par le script sur votre Mac.
+
+Sources épinglées : 8226a182b6414461276748c3b48eb4868612f543
+SHA256 archive source : 0c26b7cdc2776b707e782cc581002b027805a45f079382b20d80e7b831ce3e6d
