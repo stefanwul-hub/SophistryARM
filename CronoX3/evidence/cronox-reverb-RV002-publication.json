@@ -1,0 +1,43 @@
+{
+  "diagnostic": "RV002",
+  "local_source_commit": "52c0e878830af1a374be0951f076bb220a9aad63",
+  "remote_source_commit": "d2c45e64e20a6cf1e166292d1a00c1d27ff5cdc7",
+  "branch": "codex/sophistry-native-checkpoints",
+  "download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/d2c45e64e20a6cf1e166292d1a00c1d27ff5cdc7/CronoX3/Diagnostiquer-CronoX-Reverbe-RV002.zip",
+  "archive_bytes": 13932,
+  "archive_sha256": "4bacc4bf533e47ac8dd72ce3160f11659080c4309b93a9e1d42e454202646448",
+  "downloaded_zip_crc_contents_modes_and_sha256_verified": true,
+  "publication_tree": {
+    "base_root": "c066aa0cfdc8439dbfd2b49e78b1eec03ea56ea5",
+    "new_root": "91ad4932480356bbba99a46e350025e8907af1d5",
+    "unrelated_root_entries_preserved": 46,
+    "only_expected_files_changed": true,
+    "changed_files": [
+      "CRX_REPRISE.md",
+      "Diagnostiquer-CronoX-Reverbe-RV002.zip",
+      "checkpoints/cronox/CRX011-Reverb-RV002.json",
+      "cronox-status.json",
+      "diagnostics/reverb-RV002/CronoXFxpHeader.h",
+      "diagnostics/reverb-RV002/CronoXReverbProbe.mm",
+      "diagnostics/reverb-RV002/Diagnostiquer-CronoX-Reverbe-RV002.command",
+      "diagnostics/reverb-RV002/LIRE-MOI.txt",
+      "diagnostics/reverb-RV002/summarize.py",
+      "evidence/cronox-reverb-RV002-checks.json",
+      "evidence/cronox-reverb-RV002-cross-link.json",
+      "evidence/cronox-reverb-RV002-package.json",
+      "evidence/cronox-reverb-RV002-report-analysis.json",
+      "tests/CronoXReverbFxpProbe.cpp"
+    ],
+    "unchanged_production_plugin": true,
+    "unchanged_rv001": true,
+    "private_report_published": false
+  },
+  "fixed_defect": "RV001 compared FXP version@12 to AU subtype; RV002 reads VST ID@16 separately, following the working editor's structural import checks",
+  "real_reference_fxp_parser_and_67_malformed_inputs_tested": true,
+  "two_probe_architectures_cross_compiled_and_strict_linked": true,
+  "rv001_received_report_has_no_cpu_measurements": true,
+  "rv002_macos_execution_pending": true,
+  "production_plugin_changed": false,
+  "cpu_issue_resolved": false,
+  "private_report_or_au_state_published": false
+}
