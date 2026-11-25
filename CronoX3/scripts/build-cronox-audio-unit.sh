@@ -56,6 +56,10 @@ mv "$bundle/Contents/MacOS/CronoX3ARMTest.pending" "$bundle/Contents/MacOS/Crono
  -framework AppKit -framework Foundation -framework AudioToolbox -framework CoreFoundation \
  -o "$DEST/CronoXComparisonProbe" > "$DEST/comparison-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/CronoXComparisonProbe" -verify_arch arm64
+"${compiler[@]}" "${flags[@]}" "$ROOT/tests/CronoXRegistrationProbe.cpp" \
+ -framework AudioToolbox -framework CoreFoundation -o "$DEST/CronoXRegistrationProbe" \
+ > "$DEST/registration-probe.compile.log" 2>&1
+/usr/bin/lipo "$DEST/CronoXRegistrationProbe" -verify_arch arm64
 for probe in CronoXRunLoopProbe CronoXControlThreadProbe; do
  "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -g0 -ffp-contract=off -fno-fast-math \
   "$ROOT/tests/$probe.cpp" "$ROOT/work/cronox-engine/LegacyEngine.o" "$ROOT/work/cronox-engine/LegacyImageData.o" \

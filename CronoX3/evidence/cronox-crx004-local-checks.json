@@ -1,0 +1,32 @@
+{
+  "checkpoint": "CRX004",
+  "scope": "Registry discovery orchestration regression and native compilation; no installed Mac AU validation",
+  "registration_wait_unittest_methods": 5,
+  "registration_wait_tests_passed": true,
+  "bash32_build_orchestration": {
+    "scope": "Build shell orchestration with mocked Apple tools only",
+    "bash": "GNU bash, version 3.2.0(2)-release (x86_64-unknown-linux-gnu)",
+    "baseline_failure_reproduced": false,
+    "cold_compilation_units": 14,
+    "cpp_and_objcpp_flags_preserved": true,
+    "empty_compiler_arguments": 0,
+    "paths_with_spaces_passed": true,
+    "warm_object_cache_reused": true,
+    "single_source_invalidation_passed": true,
+    "macos_execution": false,
+    "auval_executed": false,
+    "passed": true
+  },
+  "previous_uploaded_mac_render_verified": {
+    "frames": 8192,
+    "channels": 2,
+    "sample_rate": 44100,
+    "peak": 0.015165881253778934,
+    "rms": 0.0038460589565814433,
+    "finite_audio": true
+  },
+  "original_kernel_changed_since_crx001": false,
+  "macos_crx004_runtime_tested": false,
+  "auval_passed": false,
+  "sound_fidelity_verified": false
+}

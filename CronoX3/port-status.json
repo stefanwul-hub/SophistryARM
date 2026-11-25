@@ -1,6 +1,6 @@
 {
   "project": "CronoX 3 ARM64",
-  "checkpoint": "CRX003",
+  "checkpoint": "CRX004",
   "original_version": "3.6.6",
   "original_architectures": [
     "i386",
@@ -25,7 +25,7 @@
   "ghidra_detected_instructions": 211282,
   "native_audio_unit_available": true,
   "installation_enabled": true,
-  "auval_executed": false,
+  "auval_executed": true,
   "output_gain_policy": "Original CronoX DSP gain, unity AU output compensation",
   "native_kernel_compiled_linux": true,
   "translated_compilation_units": 413,
@@ -44,7 +44,7 @@
   "original_au_bridge_is_not_native_au": true,
   "editor_bindings_available": false,
   "remaining_work": [
-    "User macOS AU factory, Cocoa, installed auval and audio tests for CRX003",
+    "User macOS AU factory, Cocoa, installed auval and audio tests for CRX004",
     "CronoX 3.6.6 original UI ABI, panels and controls",
     "Original-versus-port audio and CPU comparison in Logic and Live",
     "Original AU identity restoration after user validation"
@@ -72,8 +72,15 @@
   "crx001_user_macos_tests_passed": true,
   "transaction_regression_checks": 14,
   "sound_fidelity_verified": false,
-  "macos_au_host_tested": false,
-  "previous_macos_attempt": "CRX002 stopped before native AU compilation: Bash 3.2 empty-array expansion",
+  "macos_au_host_tested": true,
+  "previous_macos_attempt": "CRX003 direct native AU passed; auval could not find registered CrT3; rolled back",
   "build_script_bash32_empty_array_fix": true,
-  "original_kernel_changed_since_crx001": false
+  "original_kernel_changed_since_crx001": false,
+  "macos_candidate_au_tested": true,
+  "macos_candidate_cocoa_tested": true,
+  "macos_candidate_state_recall_passed": true,
+  "macos_candidate_audio_passed": true,
+  "registered_macos_au_validated": false,
+  "auval_passed": false,
+  "registration_wait_added": true
 }

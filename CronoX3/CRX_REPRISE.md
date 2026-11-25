@@ -1,4 +1,4 @@
-# Reprise CronoX 3 ARM64 — CRX003
+# Reprise CronoX 3 ARM64 — CRX004
 
 Décisions utilisateur : Sophistry définitif = CP038 ; développer CronoX 3.6.6 séparément et publier uniquement sous `CronoX3/` dans le dépôt existant, branche `codex/sophistry-native-checkpoints`. Ne pas reprendre l’expérience CP040. Ne jamais remplacer les fichiers Sophistry ni pousser ce worktree directement sur cette branche : ses chemins racine doivent être préfixés `CronoX3/` pour la publication.
 
@@ -61,3 +61,23 @@ Cause : Bash 3.2 de macOS traite le tableau vide `extra=()` comme non défini av
 Le test `tests/CronoXBuildScriptProbe.py` exécute le vrai script dans un dossier avec espaces en redirigeant seulement les outils Apple vers des doubles de test. Il vérifie le passage C++/Objective-C++, les arguments, l’ARC, la réutilisation du cache et l’invalidation d’une seule source. GNU Bash 3.2 est compilé localement depuis l’archive GNU pour reproduire l’erreur originale et vérifier la correction ; ce test ne compile pas un AU et ne remplace pas auval. Les tests de transaction et preuves de compilation ARM64 CRX002 restent applicables ; seule la version affichée et le marqueur de contrôle de la sonde deviennent CRX003.
 
 Garder CrT3 et le nom CronoX 3 ARM Test. La prochaine tentative utilisera `Demarrer-CronoX-CRX003.command` et produira un ZIP `CronoX3-rapports-CRX003-…`. L’original CrX3 et Sophistry CP038 ne doivent jamais être ciblés.
+
+
+## Publication CRX003 vérifiée
+
+Source `83f3d437eada4fc2cb6b859b2cbcd213583d9c6a` ; archive SHA256 `b99f152f4b8478e7447ae43444f72ae2723e641494048b4db34170e46f1ed7c4` (74 600 892 octets). Les 167 fichiers CronoX de cette archive ont été comparés aux blobs Git, avec vérification des CRC et des permissions exécutables. Le test du script publié repasse sous GNU Bash 3.2, reproduit l’ancien échec puis valide le correctif, les options et le cache. Le nouvel AU et sa sonde Cocoa compilent et s’assemblent strictement en Mach-O ARM64.
+
+Lanceur `fc9a2bf82ab44794f929c41f336ccfca0304095a`, fichier `CronoX3/Demarrer-CronoX-CRX003.zip` ; SHA256 `c8a4784696cb80172e1d80e797e0c1f3fc4520aea3c126d354208de2d0214b03` (1 852 octets). Le téléchargement direct a été vérifié octet par octet, ainsi que ses CRC et la permission d’exécution du .command. Commit de métadonnées `f32e387d5994721af1919cd6701af39017c9ddd9`. Les 46 entrées racine hors CronoX3 restent inchangées.
+
+Prochaine étape : attendre le rapport CRX003 du Mac. Il doit enfin dépasser la compilation et valider le vrai AU, la vue Cocoa, les rendus, le rappel et auval. Aucun AU n’a encore été exécuté avec succès sur macOS ; ne pas déduire la conformité sonore ou CPU des tests de scripts et de la compilation croisée. Le cache du noyau, CrX3 et Sophistry CP038 sont conservés.
+
+
+## CRX004 — registre AU, 25 novembre 2026
+
+Rapport privé CRX003 : compilation et prévalidation réelle macOS réussies. AU ARM64, vue Cocoa 600×220, 522 paramètres, MIDI/rendu 8 192 trames, rappel d’état dans une instance neuve, préférences et inscription CrX3 préservées. Temporisateurs, destruction et réinitialisation 48 kHz passent. Le nom du son de test est « unknown » : conserver ce point pour la reprise des libellés après la validation système ; ne pas prétendre à un nom de preset restauré fidèlement ni à une comparaison sonore avec l’original.
+
+Échec suivant : auval dit « didn't find the component » (code 2) immédiatement après la copie de CrT3 et le redémarrage du registre. Aucune erreur DSP ou factory locale. Le candidat est correctement conservé hors Components par rollback ; aucun précédent ARM Test n’était installé. Original CrX3 et Sophistry CP038 préservés.
+
+CRX004 reprend le principe de détection bornée déjà présent dans l’installeur Sophistry CP038 : toucher seulement le nouveau bundle et le dossier Components après copie, redémarrer AudioComponentRegistrar de l’utilisateur, interroger le catalogue et tester CrT3 dans des processus neufs avant auval. Le scanner peut être asynchrone ; ce diagnostic de course reste à confirmer sur le Mac. `CronoXRegistrationProbe` n’appelle jamais AudioComponentRegister ni CFBundleLoadExecutable ; il exige un composant unique du registre système et vérifie sa version via SpVr. `wait-cronox-registration.py` réessaie absence/version ancienne pendant 30 s, pas les doublons/erreurs de factory. Aucun succès de découverte ne remplace auval et les rendus enregistrés.
+
+Diagnostics de registre : métadonnées installées, permissions de la chaîne de dossiers, architecture, signature, présence de quarantaine (sans valeur), lignes du catalogue limitées à CronoX ; sur échec, journal macOS filtré sur le nom/identifiant CrT3. Les rapports restent privés. Ne pas supprimer de cache Audio Unit global ou écrire dans les préférences de l’original. Les instructions du DSP restent inchangées depuis CRX001.

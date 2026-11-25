@@ -61,7 +61,7 @@ NSString* crxError(AudioUnit unit,OSStatus status) {
   self=[super initWithFrame:NSMakeRect(0,0,600,220)];if(!self)return nil;
   unit_=unit;
   [self addSubview:crxLabel(NSMakeRect(18,14,410,24),@"CronoX 3 ARM Test",19)];
-  [self addSubview:crxLabel(NSMakeRect(503,18,80,18),@"CRX003",11)];
+  [self addSubview:crxLabel(NSMakeRect(503,18,80,18),@"CRX004",11)];
   name_=crxLabel(NSMakeRect(18,52,564,28),@"Son : …",16);[self addSubview:name_];
   [self addSubview:crxButton(NSMakeRect(18,92,72,28),@"Prev",self,@selector(previous:))];
   [self addSubview:crxButton(NSMakeRect(98,92,112,28),@"Load…",self,@selector(load:))];
