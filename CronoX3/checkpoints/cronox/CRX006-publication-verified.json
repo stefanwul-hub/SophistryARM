@@ -1,0 +1,26 @@
+{
+  "checkpoint": "CRX006",
+  "source": {
+    "source_commit": "2af4f3a456eb21a5ea7073464385c6a0e356699d",
+    "zip_sha256": "d6b7da9efa7ff01c4458ccff07c7d47b6e5e6aff5bb740759a345f8427e0d1c8",
+    "bytes": 74804064,
+    "all_crc_verified": true,
+    "cronox_files_compared": 219,
+    "all_git_blob_hashes_verified": true,
+    "executable_modes_verified": true,
+    "unrelated_root_entries_preserved": 46
+  },
+  "launcher_commit": "9922137b27ead027ea6759b205194b7a6323ffc0",
+  "launcher_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/9922137b27ead027ea6759b205194b7a6323ffc0/CronoX3/Demarrer-CronoX-CRX006.zip",
+  "launcher_zip_sha256": "1571cd27f0a143b0b210c3a90e13a5ab8ada86e9b32a160f5a93a4376e60b5e6",
+  "launcher_zip_bytes": 1865,
+  "launcher_downloaded_and_compared": true,
+  "launcher_crc_and_executable_mode_verified": true,
+  "bash_3_2_syntax_passed": true,
+  "sophistry_root_entries_preserved": 46,
+  "original_cronox_identity_preserved": true,
+  "macos_runtime_validated": false,
+  "auval_executed": false,
+  "accepted_audio_reference": "CRX005",
+  "source_audio_fidelity_exhaustive": false
+}
