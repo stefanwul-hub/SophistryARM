@@ -17,6 +17,7 @@
 @interface NSView (CronoXComparisonProbe)
 - (BOOL)loadPresetURL:(NSURL*)url;
 - (NSDictionary*)cronoxComparisonReport;
+- (NSArray*)cronoxEditorPagesReport;
 @end
 namespace {
 void check(OSStatus value,const char* action){if(value)throw std::runtime_error(std::string(action)+": "+std::to_string(value));}
@@ -55,7 +56,7 @@ int main(int argc,char** argv){@autoreleasepool {
   [NSApplication sharedApplication];[NSApp setActivationPolicy:NSApplicationActivationPolicyProhibited];
   AudioUnit unit=nullptr,fresh=nullptr;CFBundleRef bundle=nullptr;CFDictionaryRef before=nullptr;
   NSString* output=nil;NSString* stage=@"arguments";NSView* view=nil;
-  NSMutableDictionary* report=[NSMutableDictionary dictionaryWithDictionary:@{@"checkpoint":@"CRX005",@"subtype":@"CrT3",@"passed":@NO,@"sound_fidelity_verified":@NO}];
+  NSMutableDictionary* report=[NSMutableDictionary dictionaryWithDictionary:@{@"checkpoint":@"CRX006",@"subtype":@"CrT3",@"passed":@NO,@"sound_fidelity_verified":@NO}];
   try {
     bool registered=false;NSString* bundlePath=nil;NSString* preset=nil;unsigned channels=2;
     for(int i=1;i<argc;++i){std::string arg=argv[i];auto value=[&](){if(++i>=argc)throw std::runtime_error("Missing argument value");return [NSString stringWithUTF8String:argv[i]];};if(arg=="--registered")registered=true;else if(arg=="--bundle")bundlePath=value();else if(arg=="--preset")preset=value();else if(arg=="--output")output=value();else if(arg=="--channels")channels=unsigned([value() intValue]);else throw std::runtime_error("Unknown probe option");}
@@ -72,7 +73,7 @@ int main(int argc,char** argv){@autoreleasepool {
     }
     stage=@"create instance";check(AudioComponentInstanceNew(component,&unit),"Create instance");
     CFStringRef version=nullptr;UInt32 versionBytes=sizeof(version);check(AudioUnitGetProperty(unit,0x53705672,kAudioUnitScope_Global,0,&version,&versionBytes),"Build version");
-    if(!version||!CFEqual(version,CFSTR("CronoX3ARM CRX-005")))throw std::runtime_error("An unexpected comparison build was loaded");CFRelease(version);
+    if(!version||!CFEqual(version,CFSTR("CronoX3ARM CRX-006")))throw std::runtime_error("An unexpected comparison build was loaded");CFRelease(version);
     stage=@"AU parameters";UInt32 bytes=0;Boolean writable=false;check(AudioUnitGetPropertyInfo(unit,kAudioUnitProperty_ParameterList,kAudioUnitScope_Global,0,&bytes,&writable),"Parameter count");
     if(bytes!=522*sizeof(UInt32))throw std::runtime_error("Original AU parameter count differs");std::vector<UInt32> ids(522);check(AudioUnitGetProperty(unit,kAudioUnitProperty_ParameterList,kAudioUnitScope_Global,0,ids.data(),&bytes),"Parameter IDs");
     for(UInt32 id:ids){AudioUnitParameterInfo info{};UInt32 size=sizeof(info);check(AudioUnitGetProperty(unit,kAudioUnitProperty_ParameterInfo,kAudioUnitScope_Global,id,&info,&size),"Parameter info");float value=0;check(AudioUnitGetParameter(unit,id,kAudioUnitScope_Global,0,&value),"Parameter value");if(!std::isfinite(value)||info.minValue>info.maxValue)throw std::runtime_error("Invalid original AU metadata");if(info.flags&kAudioUnitParameterFlag_CFNameRelease){if(info.cfNameString)CFRelease(info.cfNameString);}}
@@ -81,9 +82,17 @@ int main(int argc,char** argv){@autoreleasepool {
     NSBundle* ui=[NSBundle bundleWithURL:(__bridge NSURL*)cocoa.mCocoaAUViewBundleLocation];if(!ui||![ui load])throw std::runtime_error("Cocoa bundle cannot load");
     Class type=NSClassFromString((__bridge NSString*)cocoa.mCocoaAUViewClass[0]);id<AUCocoaUIBase> factory=[[type alloc] init];
     view=[factory uiViewForAudioUnit:unit withSize:NSMakeSize(600,220)];CFRelease(cocoa.mCocoaAUViewBundleLocation);CFRelease(cocoa.mCocoaAUViewClass[0]);
-    if(!view||![view respondsToSelector:@selector(loadPresetURL:)]||view.frame.size.height>600)throw std::runtime_error("Compact comparison view unavailable");
+    if(!view||![view respondsToSelector:@selector(loadPresetURL:)]||view.frame.size.height>600)throw std::runtime_error("Original comparison view unavailable");
     if(![view loadPresetURL:[NSURL fileURLWithPath:preset]])throw std::runtime_error("The comparison view could not load the public FXP");
     report[@"editor"]=[view cronoxComparisonReport];
+    stage=@"original editor pages";
+    NSArray* pages=[view cronoxEditorPagesReport];
+    if(pages.count!=7)throw std::runtime_error("Original editor pages unavailable");
+    for(NSDictionary* page in pages) {
+      if([page[@"status"] intValue] || ![page[@"controls"] count] || ![page[@"sprites_loaded"] boolValue] || ![page[@"image_dimensions_match_original_pixels"] boolValue])
+        throw std::runtime_error("Original editor page or image check failed");
+    }
+    report[@"original_editor_pages"]=pages;
     stage=@"initialize";setup(unit,channels);
     stage=@"render";Audio audio=render(unit,channels);wave([output stringByAppendingPathExtension:@"wav"],audio);
     report[@"frames"]=@(audio.frames);report[@"channels"]=@(channels);report[@"sample_rate"]=@44100;report[@"peak"]=@(audio.peak);report[@"rms"]=@(std::sqrt(audio.squared/(audio.frames*channels)));report[@"render_cpu_seconds"]=@(audio.cpu);report[@"render_cpu_ratio"]=@(audio.cpu/(audio.frames/44100.0));

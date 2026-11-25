@@ -1,0 +1,24 @@
+{
+  "checkpoint": "CRX006",
+  "original_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "original_panels": 86,
+  "recorded_controls": 1056,
+  "original_selectors": 19,
+  "unique_control_tags": 861,
+  "original_pngs": 110,
+  "parameter_definitions": 918,
+  "protected_serial_tag": 766,
+  "protected_serial_in_snapshots": false,
+  "archive": "checkpoints/cronox/UI-Recovery-CRX006.tar.gz",
+  "archive_sha256": "9bb43b2c416a38fea3f1ee97ef860ef4aa994d457e359adc24fb3e1bbd260154",
+  "ui_native_adaptation": true,
+  "carbon_code_used_for_native_views": false,
+  "original_dsp_kernel_changed": false,
+  "audio_gain_changed": false,
+  "macos_ui_runtime_validated": false,
+  "remaining": [
+    "Mac validation and visual/interaction review",
+    "Original preset folder/category browser is replaced by native FXP/AU file selection",
+    "Original AU replacement identifiers remain disabled"
+  ]
+}

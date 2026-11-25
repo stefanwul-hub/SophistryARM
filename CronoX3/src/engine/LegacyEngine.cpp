@@ -112,6 +112,7 @@ struct LegacyEngine::Impl {
   std::map<unsigned, DrawingCache> drawings;
   EditorControlState editorControl(U32 tag);
   float editorNormalized(U32 tag);
+  std::string editorText(U32 entry, U32 tag);
   std::string voiceActivityJson();
   std::map<U32, U32> attributes;
   struct Mutex {
@@ -802,6 +803,8 @@ void LegacyEngine::Impl::service(U32 pc) {
   }
   else if (editorPlatformService(name, sp, result)) {
     // Modern Cocoa owns the chooser; original module IO continues below it.
+  } else if (activeDrawing && name == "_CGContextTranslateCTM") {
+    result = 0; // subpixel placement is represented by the native drawing view
   } else if (activeDrawing && (name == "_CGContextBeginPath" ||
                                name == "_CGContextMoveToPoint" ||
                                name == "_CGContextAddLineToPoint" ||
@@ -819,7 +822,7 @@ void LegacyEngine::Impl::service(U32 pc) {
         if (activeDrawing->count >= activeDrawing->lines.size())
           throw std::runtime_error("Original preview exceeds line capacity");
         activeDrawing->lines[activeDrawing->count++] = {drawX, drawY, x, y,
-                                                        word(0x5b0240)};
+                                                        word(0x5b0238)};
       }
       drawX = x;
       drawY = y;
@@ -2066,40 +2069,51 @@ void LegacyEngine::setGeneratorControl(U32 tag, float normalized) {
   // automation list, including voice updates and the original edited flag.
   impl_->run(0x1cc86, {object, tag, bits32(normalized)});
 }
+std::string LegacyEngine::Impl::editorText(U32 entry, U32 tag) {
+  constexpr U32 buffer = 0x5d6000;
+  U32 ctor = 0, dtor = 0;
+  for (const auto &item : imports) {
+    if (item.second == "__ZNSsC1Ev") ctor = item.first;
+    if (item.second == "__ZNSsD1Ev") dtor = item.first;
+  }
+  if (!ctor || !dtor) throw std::runtime_error("Original string ABI missing");
+  run(ctor, {buffer});
+  try {
+    run(entry, {object, tag, buffer});
+    auto result = string(word(buffer), editorStringBytes);
+    run(dtor, {buffer});
+    return result;
+  } catch (...) { run(dtor, {buffer}); throw; }
+}
 float LegacyEngine::Impl::editorNormalized(U32 tag) {
   std::array<std::uint8_t, 128> previous{};
   std::memcpy(previous.data(), cpu->reg + 0x1100, previous.size());
-  run(word(word(object) + 0x2b4), {object, tag});
+  run(0x1c5f2, {object, tag, 0}); // Synth::getParameterCore, current UI part
   SlU bits = 0;
   std::memcpy(&bits, cpu->reg + 0x1100, 10);
   const float value = sl_float<float>(sl_ext80_to_f32(bits));
   std::memcpy(cpu->reg + 0x1100, previous.data(), previous.size());
-  if (!std::isfinite(value))
-    throw std::runtime_error("Invalid original normalized editor value");
+  if (!std::isfinite(value)) throw std::runtime_error("Invalid original editor value");
   return std::clamp(value, 0.f, 1.f);
 }
 EditorControlState LegacyEngine::Impl::editorControl(U32 tag) {
+  if (tag == 766 || tag >= word(object + 0xcf10))
+    throw std::out_of_range("Protected or unknown CronoX control");
   EditorControlState r;
   auto &c = r.value;
-  c.tag = tag;
-  c.auParameter = editorAUParameter(tag);
-  constexpr U32 info = 0x5d2200, text = 0x5d4000;
-  zero(info, 28);
-  run(0x1ce0e, {object, tag, info});
-  c.kind = word(info);
-  c.minimum = I32(word(info + 4));
-  c.maximum = I32(word(info + 8));
-  c.defaultValue = I32(word(info + 12));
-  c.decimals = word(info + 20);
-  c.curve = read<float>(info + 24);
-  zero(text, 4096);
-  run(0x1d640, {object, tag, text});
-  std::strncpy(c.name, string(text, 4096).c_str(), sizeof(c.name) - 1);
-  zero(text, 4096);
-  run(0x1d532, {object, tag, text, sizeof(c.text) - 1});
-  std::strncpy(c.text, string(text, 4096).c_str(), sizeof(c.text) - 1);
-  c.value = I32(run(0x1d28c, {object, tag}));
-  r.normalized = editorNormalized(tag);
+  c.tag = tag; c.auParameter = recoveredAUParameter(tag);
+  const U32 parameter = run(0x1b16e, {object, tag});
+  const U32 def = parameter ? word(parameter + 0x10) : 0;
+  if (!def) throw std::out_of_range("No original CronoX parameter definition");
+  c.kind = word(def); c.minimum = I32(word(def + 12));
+  c.maximum = I32(word(def + 16)); c.defaultValue = I32(word(def + 20));
+  c.decimals = read<std::int16_t>(def + 36); c.curve = read<float>(def + 24);
+  if (auto name = word(def + 4))
+    std::strncpy(c.name, string(name).c_str(), sizeof(c.name) - 1);
+  const auto text = editorText(0x1c6cc, tag); // original display formatter
+  std::strncpy(c.text, text.c_str(), sizeof(c.text) - 1);
+  c.value = I32(run(0x1ade8, {object, tag}));
+  r.normalized = c.kind == 7 ? 0.f : editorNormalized(tag);
   return r;
 }
 EditorPanelState LegacyEngine::editorPanel(unsigned panel) {
@@ -2131,9 +2145,8 @@ EditorPanelState LegacyEngine::editorPanel(unsigned panel) {
   return r;
 }
 void LegacyEngine::setEditorControl(U32 tag, float value) {
-  throw std::runtime_error("CronoX 3.6.6 editor bindings are not available in CRX001");
   impl_->initialize();
-  if ((!isEditorControl(tag) && !completeControlEditable(tag)) ||
+  if (!completeControlEditable(tag) ||
       !std::isfinite(value) || value < 0 || value > 1)
     throw std::out_of_range("Invalid original editor control");
   impl_->editorParameter(tag, value);
@@ -2144,7 +2157,6 @@ CompleteEditorState LegacyEngine::completeEditor(unsigned page) {
 CompleteEditorState
 LegacyEngine::completeEditor(unsigned page,
                              const std::function<void()> &betweenControls) {
-  throw std::runtime_error("CronoX 3.6.6 editor bindings are not available in CRX001");
   impl_->initialize();
   CompleteEditorState state;
   state.page = page;
@@ -2152,7 +2164,7 @@ LegacyEngine::completeEditor(unsigned page,
   for (auto tag : completeSelectionTags()) {
     if (state.selectionCount >= state.selections.size())
       throw std::runtime_error("Original page selector capacity exceeded");
-    auto value = I32(impl_->run(0x1d28c, {object, tag}));
+    auto value = I32(impl_->run(0x1ade8, {object, tag}));
     values[tag] = value;
     state.selections[state.selectionCount++] = {tag, value};
   }
@@ -2190,7 +2202,7 @@ LegacyEngine::completeEditor(unsigned page,
   for (const auto &placed : layout.controls) {
     if (placed.control.kind != RecoveredWidget::Wave)
       continue;
-    const unsigned g = placed.control.tag - 812;
+    const unsigned g = placed.control.tag - 815;
     if (g > 1)
       continue;
     auto drawing = editorDrawing(8 + g);
@@ -2203,124 +2215,92 @@ LegacyEngine::completeEditor(unsigned page,
   return state;
 }
 EditorChoices LegacyEngine::editorChoices(U32 tag) {
-  throw std::runtime_error("CronoX 3.6.6 editor bindings are not available in CRX001");
   impl_->initialize();
-  if (!completeControlReadable(tag))
-    throw std::out_of_range("Unknown editor choice parameter");
-  constexpr U32 info = 0x5d2200;
-  impl_->zero(info, 28);
-  impl_->run(0x1ce0e, {object, tag, info});
-  const auto kind = impl_->word(info);
-  const I32 lo = I32(impl_->word(info + 4)), hi = I32(impl_->word(info + 8));
-  const auto labels = impl_->word(info + 16), width = impl_->word(info + 20);
+  if (!completeControlReadable(tag)) throw std::out_of_range("Unknown editor choice");
+  const U32 parameter = impl_->run(0x1b16e, {object, tag});
+  const U32 def = parameter ? impl_->word(parameter + 0x10) : 0;
   EditorChoices out;
-  if (kind != 2 || !labels || !width || width > 320 || hi < lo ||
-      U64(hi - lo + 1) > out.labels.size())
-    return out;
+  if (!def || (impl_->word(def) != 2 && impl_->word(def) != 6)) return out;
+  const I32 lo = I32(impl_->word(def + 12)), hi = I32(impl_->word(def + 16));
+  const U32 labels = impl_->word(def + 28);
+  const I32 width = impl_->read<std::int16_t>(def + 36);
+  if (!labels || width < 1 || width > 320 || hi < lo || U64(hi - lo + 1) > out.labels.size()) return out;
   for (I32 i = lo; i <= hi; ++i) {
-    auto raw = impl_->data(labels + U32(i - lo) * width, width);
+    const auto *raw = impl_->data(labels + U32(i - lo) * width, width);
     const auto length = std::min<std::size_t>(width, out.labels[0].size() - 1);
     std::memcpy(out.labels[out.count++].data(), raw, length);
   }
   return out;
 }
 std::string LegacyEngine::editorString(U32 tag) {
-  throw std::runtime_error("CronoX 3.6.6 editor bindings are not available in CRX001");
   impl_->initialize();
-  if (!completeControlReadable(tag))
-    throw std::out_of_range("Unknown editor string parameter");
-  constexpr U32 buffer = 0x5d6000;
-  impl_->zero(buffer, editorStringBytes);
-  impl_->run(0x1ceb2, {object, tag, buffer});
-  return impl_->string(buffer, editorStringBytes);
+  if (!completeControlReadable(tag)) throw std::out_of_range("Unknown editor string");
+  return impl_->editorText(0x1af8a, tag);
 }
 void LegacyEngine::setEditorString(U32 tag, const std::string &text) {
-  throw std::runtime_error("CronoX 3.6.6 editor bindings are not available in CRX001");
   impl_->initialize();
-  if (!completeControlStringEditable(tag) || text.size() >= 320 ||
-      text.find('\0') != std::string::npos)
+  if (!completeControlStringEditable(tag) || text.size() >= 320 || text.find('\0') != std::string::npos)
     throw std::out_of_range("Invalid original editor text edit");
-  constexpr U32 buffer = 0x5d6000;
-  impl_->zero(buffer, editorStringBytes);
-  impl_->write(buffer, text.data(), text.size());
-  auto metadata = impl_->editorControl(tag).value;
-  if (metadata.kind == 7 || metadata.kind == 2)
-    impl_->run(0x1cf16, {object, tag, buffer});
-  else {
-    // The original string setter only accepts string/enumeration parameters.
-    // Native text entry converts display units to a raw integer; the original
-    // Param setter and normalized getter supply its curve and quantization.
-    constexpr U32 out = 0x5d1900;
-    impl_->run(0x1cb52, {object, tag, out, out + 4, out + 8});
-    const U32 module = impl_->word(out), index = impl_->word(out + 4),
-              part = impl_->word(out + 8);
-    if (!module || I32(index) < 0)
-      throw std::runtime_error("No original numeric parameter");
-    const U32 store = impl_->word(module + 0x120);
-    const U32 parameter =
-        impl_->word(impl_->word(store + 0x1c) + 4 * part) + 0x70 * index;
-    const I32 previous = metadata.value;
-    auto raw = [&](I32 v) { impl_->run(0x109c8, {parameter, U32(v)}); };
-    char *end = nullptr;
-    const double parsed = std::strtod(text.c_str(), &end);
-    const bool digits = end && end != text.c_str();
-    while (end && std::isspace(static_cast<unsigned char>(*end)))
-      ++end;
-    I32 target = previous;
-    bool found = digits && !*end && std::isfinite(parsed);
-    if (found) {
-      const double scale = metadata.kind == 1 && metadata.decimals <= 9
-                               ? std::pow(10.0, metadata.decimals)
-                               : 1;
-      target = I32(std::llround(std::clamp(
-          parsed * scale, double(metadata.minimum), double(metadata.maximum))));
-    }
-    float normalized = 0;
+  const U32 parameter = impl_->run(0x1b16e, {object, tag});
+  const U32 definition = parameter ? impl_->word(parameter + 0x10) : 0;
+  const U32 kind = definition ? impl_->word(definition) : 0;
+  if (definition && kind != 7 && kind != 2 && kind != 6) {
+    const auto metadata = impl_->editorControl(tag).value;
+    char *end = nullptr; const double parsed = std::strtod(text.c_str(), &end);
+    while (end && std::isspace(static_cast<unsigned char>(*end))) ++end;
+    const bool numeric = end && end != text.c_str() && !*end && std::isfinite(parsed);
+    double scale = kind == 5 ? 5.0 : double(impl_->word(definition + 40));
+    const U32 unit = impl_->word(definition + 8);
+    if (kind != 5 && (!metadata.decimals || (metadata.decimals == 2 && unit && impl_->read<char>(unit) == '%'))) scale = 1;
+    if (!(scale > 0)) scale = 1;
+    I32 target = metadata.value; bool found = numeric;
+    if (numeric) target = I32(std::llround(std::clamp(parsed * scale, double(metadata.minimum), double(metadata.maximum))));
+    const U32 previous = impl_->word(parameter + 0x14); float normalized = 0;
     try {
-      if (!found && std::int64_t(metadata.maximum) - metadata.minimum <= 255) {
-        auto trimmed = [](std::string s) {
-          while (!s.empty() &&
-                 std::isspace(static_cast<unsigned char>(s.back())))
-            s.pop_back();
-          auto p = s.find_first_not_of(" \t\r\n");
-          return lower(p == std::string::npos ? std::string() : s.substr(p));
+      if (!found && std::int64_t(metadata.maximum)-metadata.minimum < 256) {
+        auto trim = [](std::string value) {
+          auto begin=value.find_first_not_of(" \t\r\n"), end=value.find_last_not_of(" \t\r\n");
+          return lower(begin==std::string::npos?std::string():value.substr(begin,end-begin+1));
         };
-        for (I32 v = metadata.minimum; v <= metadata.maximum; ++v) {
-          raw(v);
-          impl_->zero(buffer, editorStringBytes);
-          impl_->run(0x1d532, {object, tag, buffer, 127});
-          if (trimmed(impl_->string(buffer)) == trimmed(text)) {
-            target = v;
-            found = true;
-            break;
-          }
+        for (I32 value=metadata.minimum;value<=metadata.maximum;++value) {
+          impl_->put(parameter+0x14,U32(value));
+          if(trim(impl_->editorText(0x1c6cc,tag))==trim(text)) { target=value;found=true;break; }
         }
       }
-      if (!found)
-        throw std::out_of_range("Invalid numeric editor text");
-      raw(target);
-      normalized = impl_->editorNormalized(tag);
-      raw(previous);
-    } catch (...) {
-      raw(previous);
-      throw;
-    }
-    impl_->editorParameter(tag, normalized);
+      if (!found) throw std::out_of_range("Invalid original numeric display value");
+      // Only read the original normalization with a temporary raw value; the
+      // original internal setter applies the final edit and its notifications.
+      impl_->put(parameter+0x14,U32(target)); normalized=impl_->editorNormalized(tag);
+      impl_->put(parameter+0x14,previous);
+    } catch (...) { impl_->put(parameter+0x14,previous);throw; }
+    impl_->editorParameter(tag,normalized);return;
   }
+  constexpr U32 buffer = 0x5d6000;
+  U32 ctor = 0, dtor = 0;
+  for (const auto &entry : impl_->imports) {
+    if (entry.second == "__ZNSsC1EPKcRKSaIcE") ctor = entry.first;
+    if (entry.second == "__ZNSsD1Ev") dtor = entry.first;
+  }
+  if (!ctor || !dtor) throw std::runtime_error("Original string ABI missing");
+  impl_->string(buffer + 0x100, text);
+  impl_->run(ctor, {buffer, buffer + 0x100, 0});
+  try { impl_->run(0x1b07a, {object, tag, buffer}); }
+  catch (...) { impl_->run(dtor, {buffer}); throw; }
+  impl_->run(dtor, {buffer});
   ++impl_->editorRevision;
 }
 void LegacyEngine::editorAction(unsigned key) {
-  throw std::runtime_error("CronoX 3.6.6 editor bindings are not available in CRX001");
   impl_->initialize();
   const auto &controls = recoveredControls();
   if (key >= controls.size() || controls[key].kind != RecoveredWidget::Action)
     throw std::out_of_range("Unknown original editor action");
   const auto &c = controls[key];
+  if (c.extra[0] == 94) return;
   const auto previous = impl_->editorConfirmation;
   impl_->editorConfirmation = c.extra[0] == 4 || c.extra[0] == 43;
   U32 handled = 0;
   try {
-    handled = impl_->run(0x4de48, {object, U32(c.extra[0]), U32(c.extra[1]),
+    handled = impl_->run(0x4c206, {object, U32(c.extra[0]), U32(c.extra[1]),
                                    U32(c.extra[2]), 0});
   } catch (...) {
     impl_->editorConfirmation = previous;
@@ -2341,116 +2321,64 @@ void LegacyEngine::editorFileOperation(U32 tag, unsigned operation,
   impl_->performEditorFile(tag, operation, path);
 }
 EditorKeyHit LegacyEngine::editorKeyHit(unsigned x, unsigned y) {
-  throw std::runtime_error("CronoX 3.6.6 editor bindings are not available in CRX001");
   impl_->initialize();
   if (x >= 648 || y >= 95)
     throw std::out_of_range("Outside original keyboard");
   constexpr U32 keyboard = 0x5a0000, result = 0x5a0800;
   impl_->zero(keyboard, 0x900);
-  for (auto [offset, value] : std::array<std::pair<U32, U32>, 6>{{{0x4dc, 126},
-                                                                  {0x4b8, 3},
-                                                                  {0x4c8, 18},
-                                                                  {0x4d0, 10},
-                                                                  {0x4d4, 60},
-                                                                  {0x4d8, 13}}})
+  for (auto [offset, value] : std::array<std::pair<U32, U32>, 6>{{{0x508, 126},
+                                                                  {0x4d8, 3},
+                                                                  {0x4f4, 18},
+                                                                  {0x4fc, 10},
+                                                                  {0x500, 60},
+                                                                  {0x504, 13}}})
     impl_->put(keyboard + offset, value);
-  if (!impl_->run(0x942d0, {keyboard, x, y, result}))
+  if (!impl_->run(0xb0a94, {keyboard, x, y, result}))
     throw std::runtime_error("Original keyboard rejected coordinates");
-  return {1, impl_->word(result + 8), impl_->word(result + 12)};
+  return {1, impl_->word(result + 4), impl_->word(result + 8)};
 }
 float LegacyEngine::editorKnob(unsigned key, int x, int y) {
-  throw std::runtime_error("CronoX 3.6.6 editor bindings are not available in CRX001");
   const auto &controls = recoveredControls();
   if (key >= controls.size() || !originalPointerKind(controls[key].kind) ||
       x < -512 || x > 511 || y < -512 || y > 511)
-    throw std::out_of_range("Invalid original knob coordinates");
-  impl_->initialize();
-  const auto &c = controls[key];
-  constexpr U32 knob = 0x59c000, rect = knob + 0x200, point = knob + 0x220;
-  U32 pointerEntry = 0x05a12;
-  if (c.kind != RecoveredWidget::Dial) {
-    constexpr U32 ctl = 0x59c400, values = ctl + 0x200;
-    impl_->zero(ctl, 0x300);
-    impl_->put(ctl + 16, U32(c.width));
-    impl_->put(ctl + 20, U32(c.height));
-    impl_->put(ctl + 0x90, values);
-    impl_->put(values + 12, impl_->editorNormalized(c.tag));
-    impl_->put(ctl + 0xc8, U32(c.width));
-    impl_->put(ctl + 0xcc, U32(c.height));
-    if (c.kind == RecoveredWidget::Drawbar) {
-      impl_->put(ctl + 0xc4, U32(c.extra[0] / 2));
-      impl_->put(ctl + 0xcc, U32(c.height - c.extra[0] / 2));
-      pointerEntry = 0x8089a;
-    } else if (c.kind == RecoveredWidget::ThinSlider) {
-      impl_->put(ctl + 0xd8, std::uint8_t(1));
-      impl_->put(ctl + 0xdc, U32(c.extra[0]));
-      impl_->put(ctl + 0xe0, U32(c.extra[1]));
-      pointerEntry = 0x08b04;
-    } else {
-      impl_->put(ctl + 0xd4, std::uint8_t(1));
-      impl_->put(ctl + 0xd8, U32(c.extra[1]));
-      impl_->put(values + 36, impl_->editorNormalized(c.extra[0]));
-      pointerEntry = 0x80cf0;
-    }
-    impl_->put(point, I32(x));
-    impl_->put(point + 4, I32(y));
-    std::array<std::uint8_t, 128> previous{};
-    std::memcpy(previous.data(), impl_->cpu->reg + 0x1100, previous.size());
-    impl_->run(pointerEntry, {ctl, point});
-    SlU bits = 0;
-    std::memcpy(&bits, impl_->cpu->reg + 0x1100, 10);
-    float result = sl_float<float>(sl_ext80_to_f32(bits));
-    std::memcpy(impl_->cpu->reg + 0x1100, previous.data(), previous.size());
-    // 0x54594 sets CControlPl+0x73; 0x1ce0 applies this inversion after
-    // the raw Drawbar hit test. The original constructor was previously lost.
-    if (c.kind == RecoveredWidget::Drawbar && c.extra[1])
-      result = 1.f - result;
-    if (!std::isfinite(result))
-      throw std::runtime_error("Invalid original pointer result");
-    return std::clamp(result, 0.f, 1.f);
+    throw std::out_of_range("Invalid original pointer coordinates");
+  impl_->initialize(); const auto &c = controls[key];
+  constexpr U32 ctl = 0x59c000, values = ctl + 0x300, point = ctl + 0x400;
+  impl_->zero(ctl, 0x500);
+  impl_->put(ctl + 16, U32(c.width)); impl_->put(ctl + 20, U32(c.height));
+  impl_->put(ctl + 0x94, values); impl_->put(ctl + 0xc4, U32(2));
+  impl_->put(values + 4, impl_->editorNormalized(c.tag));
+  impl_->put(values + 12, impl_->editorNormalized(c.tag));
+  impl_->put(ctl + 0xe8, U32(c.width)); impl_->put(ctl + 0xec, U32(c.height));
+  U32 entry = 0x0a216; // original CMIKnob::valueFromPointCir
+  if (c.kind == RecoveredWidget::Dial) {
+    impl_->put(ctl + 0xf8, float(360.0 / (300.0 * 6.283185307179586)));
+    impl_->put(ctl + 0xfc, 2.618f);
+    impl_->put(ctl + 0xd5, std::uint8_t(c.image == 357));
+  } else if (c.kind == RecoveredWidget::Drawbar) {
+    impl_->put(ctl + 0xe4, U32(c.extra[0] / 2));
+    impl_->put(ctl + 0xec, U32(c.height - c.extra[0] / 2)); entry = 0x9c1f8;
+  } else if (c.kind == RecoveredWidget::ThinSlider) {
+    impl_->put(ctl + 0xf8, std::uint8_t(1));
+    // CSliderPl applies relative motion; Cocoa supplies absolute track coordinates.
+    impl_->put(ctl + 0xa8, U32(0)); impl_->put(values + 4, 0.f);
+    entry = 0xb854;
+  } else {
+    impl_->put(ctl + 0xf8, std::uint8_t(1)); impl_->put(ctl + 0xfc, U32(c.extra[1]));
+    impl_->put(values + 36, impl_->editorNormalized(c.extra[0])); entry = 0x9c3e0;
   }
-  if (!impl_->word(knob)) {
-    impl_->zero(knob, 0x300);
-    impl_->put(rect + 8, U32(c.width));
-    impl_->put(rect + 12, U32(c.height));
-    impl_->run(0x05886, {knob, rect, 0, c.tag, 0, 0, bits32(300.f), 0});
-    // The original constructor owns this value array; retain it until engine
-    // destruction. The drawing/hit-test object never becomes a Carbon view.
-  }
-  impl_->put(knob + 8, U32(0));
-  impl_->put(knob + 12, U32(0));
-  impl_->put(knob + 16, U32(c.width));
-  impl_->put(knob + 20, U32(c.height));
-  impl_->put(knob + 0xb5, std::uint8_t(c.image == 357));
-  const auto normalized = impl_->editorNormalized(c.tag);
-  const U32 originalValues = impl_->word(knob + 0x90);
-  auto metadata = impl_->editorControl(c.tag).value;
-  float defaultValue = metadata.minimum < metadata.maximum
-                           ? float(metadata.defaultValue - metadata.minimum) /
-                                 float(metadata.maximum - metadata.minimum)
-                           : .5f;
-  if (std::abs(metadata.curve) > .01f)
-    defaultValue =
-        float(std::log(std::exp(double(metadata.curve)) * double(defaultValue) -
-                       double(defaultValue) + 1.0)) /
-        metadata.curve;
-  impl_->put(originalValues + 4, defaultValue);
-  impl_->put(originalValues + 12, normalized);
-  impl_->put(point, I32(x));
-  impl_->put(point + 4, I32(y));
+  impl_->put(point, I32(x)); impl_->put(point + 4, I32(y));
   std::array<std::uint8_t, 128> previous{};
   std::memcpy(previous.data(), impl_->cpu->reg + 0x1100, previous.size());
-  impl_->run(0x05a12, {knob, point});
-  SlU bits = 0;
-  std::memcpy(&bits, impl_->cpu->reg + 0x1100, 10);
-  const float result = sl_float<float>(sl_ext80_to_f32(bits));
+  impl_->run(entry, {ctl, point, 1});
+  SlU bits = 0; std::memcpy(&bits, impl_->cpu->reg + 0x1100, 10);
+  float result = sl_float<float>(sl_ext80_to_f32(bits));
   std::memcpy(impl_->cpu->reg + 0x1100, previous.data(), previous.size());
-  if (!std::isfinite(result))
-    throw std::runtime_error("Invalid original knob result");
-  return result;
+  if (c.kind == RecoveredWidget::Drawbar && c.extra[1]) result = 1.f - result;
+  if (!std::isfinite(result)) throw std::runtime_error("Invalid original pointer result");
+  return std::clamp(result, 0.f, 1.f);
 }
 EditorDrawing LegacyEngine::editorDrawing(unsigned id) {
-  throw std::runtime_error("CronoX 3.6.6 editor bindings are not available in CRX001");
   impl_->initialize();
   if (id > 9)
     throw std::out_of_range("Unknown original drawing");
@@ -2468,18 +2396,18 @@ EditorDrawing LegacyEngine::editorDrawing(unsigned id) {
     out.width = out.height = xy.size;
   } else {
     const U32 g = id - 8;
-    wave = impl_->word(object + 0x32b070 + 4 * g);
+    wave = impl_->word(object + 0x67920c + 4 * g);
     out.width = 316;
     out.height = 92;
-    if (!wave || !impl_->word(wave + 0x21c) ||
-        I32(impl_->word(wave + 0x210)) < 1000 || !impl_->word(wave + 0x22c))
+    if (!wave || !impl_->word(wave + 0x210) ||
+        I32(impl_->word(wave + 0x20c)) < 1000 || !impl_->word(wave + 0x21c))
       return out;
-    out.sourceFrames = impl_->word(wave + 0x22c);
-    out.sampleRate = impl_->word(wave + 0x210);
-    key.insert(key.end(), {wave, impl_->word(wave + 0x21c), out.sourceFrames,
+    out.sourceFrames = impl_->word(wave + 0x21c);
+    out.sampleRate = impl_->word(wave + 0x20c);
+    key.insert(key.end(), {wave, impl_->word(wave + 0x210), out.sourceFrames,
                            out.sampleRate});
-    const unsigned tags[] = {812 + g, 814 + g, 816 + g,
-                             832 + g, 946 + g, 948 + g};
+    const unsigned tags[] = {815 + g, 817 + g, 819 + g,
+                             835 + g, 949 + g, 951 + g};
     for (unsigned i = 0; i < 6; ++i)
       normalized[i] = impl_->editorNormalized(tags[i]);
   }
@@ -2489,17 +2417,18 @@ EditorDrawing LegacyEngine::editorDrawing(unsigned id) {
   if (cached != impl_->drawings.end() && cached->second.key == key)
     return cached->second.drawing;
   impl_->zero(ctl, 0x3000);
+  impl_->put(ctl, U32(0x125168)); // original sample display vtable
   impl_->put(ctl + 8, U32(0));
   impl_->put(ctl + 12, U32(0));
   impl_->put(ctl + 16, out.width);
   impl_->put(ctl + 20, out.height);
-  impl_->put(ctl + 0x90, values);
-  impl_->put(ctl + 0xa4, U32(6));
+  impl_->put(ctl + 0x94, values);
+  impl_->put(ctl + 0xc4, U32(6));
   for (unsigned i = 0; i < 6; ++i)
     impl_->put(values + i * 24 + 12, normalized[i]);
-  impl_->put(ctl + 0xc4, U32(0xfff0f0f0));
-  impl_->put(ctx + 0x3c, U32(1));
-  impl_->put(ctx + 0x40, U32(0xfff0f0f0));
+  impl_->put(ctl + 0xe4, U32(0xfff0f0f0));
+  impl_->put(ctx + 0x34, U32(1));
+  impl_->put(ctx + 0x38, U32(0xfff0f0f0));
   struct Scope {
     Impl *p;
     ~Scope() { p->activeDrawing = nullptr; }
@@ -2509,21 +2438,21 @@ EditorDrawing LegacyEngine::editorDrawing(unsigned id) {
     const I32 x = I32(normalized[0] * (float(out.width) * 0.9999f));
     const I32 y = I32(out.height) -
                   I32(normalized[1] * (float(out.height) * 0.9999f)) - 1;
-    impl_->run(0x729d2, {ctl, ctx, U32(x), U32(y), 1});
-    impl_->run(0x729d2, {ctl, ctx, U32(x), U32(y), 0});
+    impl_->run(0x940c6, {ctl, ctx, U32(x), U32(y), 1});
+    impl_->run(0x940c6, {ctl, ctx, U32(x), U32(y), 0});
   } else {
-    impl_->put(ctl + 0xb0, out.width);
-    impl_->put(ctl + 0xc8, object + 0x32b070 + (id - 8) * 4);
-    impl_->put(ctl + 0xd0, U32(0x5b1000));
-    impl_->put(ctl + 0xd4, U32(0x5b2000));
-    impl_->put(ctl + 0xd8, std::uint8_t(1));
-    impl_->put(ctl + 0xdc, float(out.sampleRate));
-    impl_->put(ctl + 0xe0, out.sourceFrames);
-    impl_->put(ctl + 0xe8, float(out.sourceFrames) / out.sampleRate);
-    impl_->put(ctl + 0xbc, U32(0xfff0f5f0));
-    impl_->put(ctl + 0xc0, U32(0xff646464));
-    impl_->put(ctl + 0xc4, U32(0xff7df578));
-    impl_->run(0x81258, {ctl, 0x5b3000, 0x5b3010});
+    impl_->put(ctl + 0xdc, out.width);
+    impl_->put(ctl + 0xf4, object + 0x67920c + (id - 8) * 4);
+    impl_->put(ctl + 0x100, U32(0x5b1000));
+    impl_->put(ctl + 0xfc, U32(0x5b2000));
+    impl_->put(ctl + 0x104, std::uint8_t(1));
+    impl_->put(ctl + 0x108, float(out.sampleRate));
+    impl_->put(ctl + 0x10c, out.sourceFrames);
+    impl_->put(ctl + 0x114, float(out.sourceFrames) / out.sampleRate);
+    impl_->put(ctl + 0xe8, U32(0xfff0f5f0));
+    impl_->put(ctl + 0xec, U32(0xff646464));
+    impl_->put(ctl + 0xf0, U32(0xff7df578));
+    impl_->run(0x9d0f6, {ctl, 0x5b3000, 0x5b3010});
     float first = impl_->read<float>(0x5b3000),
           span = impl_->read<float>(0x5b3010) - first;
     viewportFirst = first;
@@ -2532,7 +2461,7 @@ EditorDrawing LegacyEngine::editorDrawing(unsigned id) {
     impl_->put(rect + 4, U32(0));
     impl_->put(rect + 8, out.width);
     impl_->put(rect + 12, out.height);
-    impl_->run(0x8231e, {ctl, ctx, rect, bits32(first), bits32(span)});
+    impl_->run(0x9d83c, {ctl, ctx, rect, bits32(first), bits32(span)});
   }
   impl_->drawings[id] = {std::move(key), out, viewportFirst, viewportSpan};
   return out;

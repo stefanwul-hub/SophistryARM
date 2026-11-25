@@ -1,3 +1,21 @@
+# CronoX 3 ARM64 — CRX006
+
+CRX005 a été validé sur le Mac de l’utilisateur : Audio Unit, son, chargement de plusieurs presets et comparaison favorable avec CronoX 3 original. Cette comparaison reste non exhaustive. Cette version reste la référence audio et le point de retour.
+
+CRX006 ajoute les sept pages de l’interface dorée d’origine : Main, Gen 1+2, Gen 3+4, Filters, Effects, Modulation et Settings, ainsi que le clavier et la vue 5.1. Les panneaux, sprites, coordonnées, sélecteurs et styles proviennent de l’exécution enregistrée des constructeurs i386 de CronoX 3.6.6. Les valeurs, courbes, menus, commandes et dessins utilisent les routines originales traduites en C++. Les vues et gestes sont adaptés en Cocoa. Les 413 unités du noyau DSP et la politique de gain CRX005 sont conservées.
+
+L’interface propose les formes d’onde et leurs marqueurs, les commandes +/−, les enveloppes, les matrices XY, l’arpégiateur et le Gator. Le choix de fichiers FXP/AU et les boutons Prev/Load/Next/Save remplacent le navigateur de dossiers/catégories d’origine. La saisie de licence reste dans la configuration locale de l’installateur ; elle n’est pas exposée dans les contrôles ni dans les rapports.
+
+Le composant reste **CronoX 3 ARM Test**, identifiant **aumu/CrT3/LinP**, installé dans `/Library/Audio/Plug-Ins/Components/CronoX 3 ARM Test.component`. Il cohabite avec CronoX 3 original. Sophistry CP038 est figé.
+
+Ouvrir `Demarrer-CronoX-CRX006.command` depuis son ZIP télécharge les sources épinglées, vérifie leur empreinte, conserve le cache de compilation, lance la compilation ARM64, les tests des commandes, la prévalidation Cocoa/audio, puis l’installation transactionnelle et `auval`. En cas d’échec, ARM Test précédent est conservé ou restauré. Les rapports ZIP sont créés sur le Bureau. Quitter Logic et Live avant l’installation.
+
+Vérifications de développement : 107 configurations de pages/modes, séquences et dessins originaux, absence de modification du preset par les lectures de l’interface, compilation et lien Mach-O ARM64. **L’exécution Cocoa et `auval` de CRX006 doivent encore être effectués sur Mac.** Les gestes et la disposition restent à contrôler visuellement dans Logic et Live ; la présence de ces tests ne prouve pas une équivalence exhaustive avec l’original.
+
+Reprise : `CRX_REPRISE.md`, `evidence/cronox-crx006-ui-recovery.json`, `evidence/cronox-crx006-local-checks.json` et `checkpoints/cronox/UI-Recovery-CRX006.tar.gz`.
+
+---
+
 # CronoX 3 ARM64 — CRX005
 
 Premier Audio Unit de comparaison pour le portage de CronoX 3.6.6. Sophistry reste définitivement à CP038. Les publications CronoX sont uniquement dans `CronoX3/`, branche `codex/sophistry-native-checkpoints` du dépôt SophistryARM.

@@ -1,3 +1,17 @@
+# Reprise CronoX — CRX006
+
+Référence audio acceptée par l’utilisateur : CRX005 ; tag local `final/cronox-crx005-audio-validated`. L’original CrX3 et Sophistry CP038 restent préservés. L’identifiant de comparaison CrT3 est conservé.
+
+Interface CRX006 : constructeurs originaux 0x72ec0 / 0x7f530 enregistrés, 86 panneaux, 1056 contrôles placés, 19 sélecteurs, 110 PNG originaux. Schéma de paramètres réel (967 emplacements, 918 définitions examinées hors clé), chaînes std::string ABI 32 bits. Aucune adresse de contrôle Sophistry n’a été réactivée sans remplacement : les anciens accès `generatorPanel` et `editorPanel` restent bloqués. La vue utilise le nouveau completeEditor.
+
+Entrées principales : getParaPtr 0x1b16e ; getParaVal 0x1ade8 ; getParameterCore 0x1c5f2 (part UI) ; setParameterIntern 0x22066 ; getParaDispStr 0x1c6cc ; getParaString 0x1af8a ; setParaString 0x1b07a ; processGUICmd 0x4c206. Descripteurs : Synth+0xc610, stride52, total+0xcf10. Sérial protégé : tag766. ModuleManager+0x3fc4, handlePartFileIO0xd37f4 ; rappel arp lorsque l’éditeur Carbon absent supprime ce callback.
+
+Dessins : XY drawLine0x940c6 ; pointeurs LoopSample Synth+0x67920c ; waveform getStartEndDisplayed0x9d0f6 / drawSample0x9d83c. Cache conservé ; lectures terminées avant de rendre la main au thread audio. Les widgets Cocoa possèdent des noms Objective-C CronoX3 distincts de Sophistry, et seuls les trois symboles du factory sont exportés.
+
+Récupération reproductible : `analysis/cronox/recover_layout.py` puis `analysis/cronox/normalize_layout.py`. Entrées brutes, schéma et sonde de recherche archivés dans UI-Recovery-CRX006.tar.gz. Les images sont extraites par prepare-cronox-source.py depuis l’archive originale vérifiée, sans dépendre des images bleues de Sophistry.
+
+Validation CRX006 : lire les preuves locales et de lien croisé, puis obtenir le rapport Mac de l’installateur. Le test Cocoa parcourt les sept pages et contrôle les propriétés/images. Le test C++ contrôle 107 configurations et les commandes particulières. Il ne faut pas déclarer Cocoa/auval CRX006 validés avant le retour Mac. Le navigateur de fichiers de presets est une adaptation native ; ce n’est pas une copie complète de l’ancien navigateur dossiers/catégories. L’équivalence sonore exhaustive n’est pas démontrée.
+
 # Reprise CronoX 3 ARM64 — CRX005
 
 Décisions utilisateur : Sophistry définitif = CP038 ; développer CronoX 3.6.6 séparément et publier uniquement sous `CronoX3/` dans le dépôt existant, branche `codex/sophistry-native-checkpoints`. Ne pas reprendre l’expérience CP040. Ne jamais remplacer les fichiers Sophistry ni pousser ce worktree directement sur cette branche : ses chemins racine doivent être préfixés `CronoX3/` pour la publication.
@@ -101,3 +115,19 @@ Correction CRX005 : getattr pour l’API optionnelle, repli sur `/usr/bin/xattr`
 Huit tests `test_cronox_registration_diagnostics.py` couvrent l’absence effective de l’API dans un module os simulé, le repli natif, les erreurs/absences et le collecteur complet ; les mêmes tests exécutent le vrai bloc de l’installeur sous Bash 3.2 avec injection de résultats de processus. L’ancien arrêt prématuré est reproduit, la collecte facultative échouée laisse passer détection et auval, et une erreur de détection/auval reste bloquante. Aucun composant système n’est installé par ces tests.
 
 Garder CrT3, CrX3 original et Sophistry CP038. Le nom de preset « unknown » et les panneaux originaux restent à reprendre après l’installation système validée. Ne pas annoncer la correction du registre comme confirmée avant le prochain rapport Mac.
+
+
+## Publication CRX005 vérifiée
+
+Source `3dbb3354f032029eae7d3e1d9471495e4e914d54` ; archive SHA256 `4d864ee3ff53dd63198eb310976b13825549741fdd0b8ace705f1ecc6cd25dae` (74 666 039 octets). Les 192 fichiers CronoX sont vérifiés contre les blobs Git ; CRC et permissions vérifiés. Les huit tests du diagnostic et du vrai bloc d’installation repassent depuis l’archive publique sous Bash 3.2, notamment sans os.listxattr et avec diagnostic défaillant. Le composant, la sonde Cocoa et la sonde de registre compilent et s’assemblent en Mach-O ARM64. DSP inchangé.
+
+Lanceur `80e6b882a45a4032c1a392513a6948ac088264d4`, fichier `CronoX3/Demarrer-CronoX-CRX005.zip` ; SHA256 `11591ccf15c9e3c8e89da426d0598983883933e3e2ba9cc45629352a6c70d882` (1 898 octets). Téléchargement direct vérifié octet par octet, CRC et permission du .command vérifiés. Commit de métadonnées `8f623a3b1b429dc79ece9a14bce6d27293e58f95`. Les 46 entrées racine hors CronoX3 sont préservées.
+
+Prochaine étape : rapport CRX005 du Mac. L’attente du registre n’a toujours pas été testée après le candidat local (CRX004 arrêté avant elle). Examiner registration-initial.json/log, discovery-*.json, registration-result.json puis auval et les rendus enregistrés. La collecte est facultative ; la détection/auval/rendus restent obligatoires pour confirmer. Ne pas déclarer le registre ou la conformité sonore validés avant les résultats Mac. Garder les questions de nom FXP « unknown » et de panneaux graphiques pour la suite après installation validée.
+
+
+## Validation CRX005 confirmée par l’utilisateur — interface autorisée
+
+Le 25 novembre 2026, l’utilisateur confirme : plugin validé, lancé et audible ; plusieurs presets chargés avec succès ; comparaison avec CronoX original concluante mais non exhaustive. Il autorise de passer à l’interface. Cette confirmation remplace l’attente du rapport CRX005 ; aucun nouveau ZIP automatique n’est fourni. Ne pas présenter cette écoute comme une preuve exhaustive ou bit à bit.
+
+Conserver CRX005 comme référence audio stable. Garder CrT3 et le nom ARM Test pendant le travail de l’interface pour les comparaisons ; ne pas rétablir CrX3 sans phase de restauration explicite. Sophistry reste CP038. L’interface originale CronoX 3.6.6 a des offsets et tags différents : ne pas enlever les garde-fous hérités de Sophistry sans vérifier les fonctions et tables correspondantes.

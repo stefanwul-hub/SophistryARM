@@ -33,6 +33,7 @@ mkdir -p "$bundle/Contents/MacOS" "$bundle/Contents/Resources"
 cp "$ROOT/src/au/Info.plist" "$bundle/Contents/Info.plist"
 /usr/bin/ditto "$ROOT/reference/Samples" "$bundle/Contents/Resources/Samples"
 /usr/bin/ditto "$ROOT/reference/Presets" "$bundle/Contents/Resources/Presets"
+/usr/bin/ditto "$ROOT/reference/CronoX3Images" "$bundle/Contents/Resources/OriginalImages"
 cp "$ROOT/third_party/AudioUnitSDK/LICENSE.txt" "$bundle/Contents/Resources/AudioUnitSDK-LICENSE.txt"
 # Keep sl_*, LegacyEngine and SDK weak definitions private to this image so
 # that Sophistry CP038 and this AU can coexist without symbol coalescing.
@@ -60,7 +61,7 @@ mv "$bundle/Contents/MacOS/CronoX3ARMTest.pending" "$bundle/Contents/MacOS/Crono
  -framework AudioToolbox -framework CoreFoundation -o "$DEST/CronoXRegistrationProbe" \
  > "$DEST/registration-probe.compile.log" 2>&1
 /usr/bin/lipo "$DEST/CronoXRegistrationProbe" -verify_arch arm64
-for probe in CronoXRunLoopProbe CronoXControlThreadProbe; do
+for probe in CronoXRunLoopProbe CronoXControlThreadProbe CronoXEditorProbe; do
  "${compiler[@]}" -std=c++17 -arch arm64 -mmacosx-version-min=11.0 -O2 -g0 -ffp-contract=off -fno-fast-math \
   "$ROOT/tests/$probe.cpp" "$ROOT/work/cronox-engine/LegacyEngine.o" "$ROOT/work/cronox-engine/LegacyImageData.o" \
   "$CORE/LifterRuntime.o" "$CORE/Dispatch.o" "$CORE"/Unit*.o -framework CoreFoundation \

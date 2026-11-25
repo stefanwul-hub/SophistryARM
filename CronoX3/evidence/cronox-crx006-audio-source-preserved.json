@@ -1,0 +1,19 @@
+{
+  "checkpoint": "CRX006",
+  "dsp_kernel_archive_sha256": "0897c74f4f6c41b6afe716fff9986cb4d8c507306af420416afd043e88a45c61",
+  "translated_units_unchanged": 413,
+  "audio_sections": [
+    {
+      "section": "AU state and parameters",
+      "sha256": "384479b899c2e49fcac31bfa0738eeaaac03396e94f8e9b2f1e77e2e06bc1381",
+      "unchanged_from_crx005": true
+    },
+    {
+      "section": "audio lifecycle, transport, render",
+      "sha256": "a688d72176fa44989b261c98649b3004f1596da64eba1e862173fc11a02d9c85",
+      "unchanged_from_crx005": true
+    }
+  ],
+  "output_gain_h_unchanged": true,
+  "scope": "Source comparison of unchanged DSP and AU render sections; no exhaustive sound fidelity claim"
+}

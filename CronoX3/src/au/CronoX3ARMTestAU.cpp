@@ -491,7 +491,7 @@ public:
   OSStatus GetPropertyInfo(AudioUnitPropertyID id, AudioUnitScope scope,
                            AudioUnitElement element, UInt32 &bytes,
                            bool &writable) override {
-    if (id == sophistry::editorKnobProperty || id == sophistry::editorFileInfoProperty || id == sophistry::editorFileProperty || id == sophistry::editorKeyHitProperty || id == sophistry::editorActionProperty || id == sophistry::editorTextEditProperty || id == sophistry::editorStringProperty || id == sophistry::editorChoicesProperty || id == sophistry::completeEditorProperty || id == sophistry::editorDrawingProperty || id == sophistry::editorPanelProperty || id == sophistry::editorEditProperty || id == sophistry::generatorPanelProperty || id == sophistry::generatorEditProperty) return kAudioUnitErr_InvalidProperty;
+    if (id == sophistry::editorPanelProperty || id == sophistry::generatorPanelProperty || id == sophistry::generatorEditProperty) return kAudioUnitErr_InvalidProperty;
     if (id == sophistry::editorKnobProperty) {
       const auto key = element & 2047;
       if (scope != kAudioUnitScope_Global || element >> 31 ||
@@ -533,7 +533,7 @@ public:
         return kAudioUnitErr_InvalidScope;
       writable = id == sophistry::editorTextEditProperty ||
                  id == sophistry::editorActionProperty;
-      if ((id == sophistry::completeEditorProperty && element > 8) ||
+      if ((id == sophistry::completeEditorProperty && element > 9) ||
           (writable && element) ||
           (!writable && id != sophistry::completeEditorProperty &&
            !sophistry::completeControlReadable(element)))
@@ -619,7 +619,7 @@ public:
   }
   OSStatus GetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, void *data) override {
-    if (id == sophistry::editorKnobProperty || id == sophistry::editorFileInfoProperty || id == sophistry::editorFileProperty || id == sophistry::editorKeyHitProperty || id == sophistry::editorActionProperty || id == sophistry::editorTextEditProperty || id == sophistry::editorStringProperty || id == sophistry::editorChoicesProperty || id == sophistry::completeEditorProperty || id == sophistry::editorDrawingProperty || id == sophistry::editorPanelProperty || id == sophistry::editorEditProperty || id == sophistry::generatorPanelProperty || id == sophistry::generatorEditProperty) return kAudioUnitErr_InvalidProperty;
+    if (id == sophistry::editorPanelProperty || id == sophistry::generatorPanelProperty || id == sophistry::generatorEditProperty) return kAudioUnitErr_InvalidProperty;
     if (id == sophistry::editorKnobProperty) {
       if (scope != kAudioUnitScope_Global || !data || element >> 31)
         return kAudioUnitErr_InvalidPropertyValue;
@@ -781,7 +781,7 @@ public:
   OSStatus SetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, const void *data,
                        UInt32 bytes) override {
-    if (id == sophistry::editorKnobProperty || id == sophistry::editorFileInfoProperty || id == sophistry::editorFileProperty || id == sophistry::editorKeyHitProperty || id == sophistry::editorActionProperty || id == sophistry::editorTextEditProperty || id == sophistry::editorStringProperty || id == sophistry::editorChoicesProperty || id == sophistry::completeEditorProperty || id == sophistry::editorDrawingProperty || id == sophistry::editorPanelProperty || id == sophistry::editorEditProperty || id == sophistry::generatorPanelProperty || id == sophistry::generatorEditProperty) return kAudioUnitErr_InvalidProperty;
+    if (id == sophistry::editorPanelProperty || id == sophistry::generatorPanelProperty || id == sophistry::generatorEditProperty) return kAudioUnitErr_InvalidProperty;
     if (id == sophistry::editorFileProperty) {
       if (scope != kAudioUnitScope_Global || element || !data ||
           bytes < sizeof(sophistry::EditorFileRequest) + 2)
@@ -849,7 +849,7 @@ public:
           syncParameters(); // choosing an FX type can exchange another slot
         else if (au != sophistry::noAUParameter)
           Globals()->SetParameter(au, engine_.auParameter(au));
-        else if (edit.tag == 780 || edit.tag == 781 ||
+        else if (edit.tag == 783 || edit.tag == 784 ||
                  sophistry::generatorForTypeTag(edit.tag) < 4 ||
                  (edit.tag >= 639 && edit.tag <= 647) || edit.tag == 610)
           syncParameters();

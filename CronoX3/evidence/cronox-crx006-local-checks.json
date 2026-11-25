@@ -1,0 +1,76 @@
+{
+  "checkpoint": "CRX006",
+  "editor_bindings": {
+    "passed": true,
+    "pages_and_modes": 107,
+    "unique_tags": 847,
+    "choice_reads": 2576,
+    "safe_boundaries": 6281,
+    "original_drawings": 10,
+    "edit_cases": 15,
+    "program_unchanged_by_ui_reads": true,
+    "macos_ui_executed": false
+  },
+  "build_shell": {
+    "scope": "Build shell orchestration with mocked Apple tools only",
+    "bash": "GNU bash, version 3.2.0(2)-release (x86_64-unknown-linux-gnu)",
+    "baseline_failure_reproduced": false,
+    "cold_compilation_units": 14,
+    "cpp_and_objcpp_flags_preserved": true,
+    "empty_compiler_arguments": 0,
+    "paths_with_spaces_passed": true,
+    "warm_object_cache_reused": true,
+    "single_source_invalidation_passed": true,
+    "macos_execution": false,
+    "auval_executed": false,
+    "passed": true
+  },
+  "python_installation_regression_tests": 28,
+  "bash_3_2_syntax_passed": true,
+  "original_images": 110,
+  "arm64_cross_link": {
+    "checkpoint": "CRX006",
+    "scope": "ARM64 Mach-O cross-compilation and strict link; no macOS execution",
+    "core_units": 413,
+    "binaries": [
+      {
+        "binary": "CronoX3ARMTest",
+        "bytes": 35308944,
+        "sha256": "c898fda99c92fe82b78d2209af58b4a4ca695dbac7bd667cb7a8a7fe3ade521f",
+        "arm64_mach_o": true,
+        "strict_link_passed": true
+      },
+      {
+        "binary": "CronoXComparisonProbe-macos",
+        "bytes": 1230384,
+        "sha256": "3b5de878317387c90a75c11f6468f482a5f2459b2a2f2f36638adf1ad35d1f2b",
+        "arm64_mach_o": true,
+        "strict_link_passed": true
+      },
+      {
+        "binary": "CronoXRegistrationProbe-macos",
+        "bytes": 482880,
+        "sha256": "110eb1b3018cd6115de7578946d59adb0a2e0aecfb387cc14311e8fd05b1fa06",
+        "arm64_mach_o": true,
+        "strict_link_passed": true
+      },
+      {
+        "binary": "CronoXEditorProbe-macos",
+        "bytes": 34724576,
+        "sha256": "d9d8181df3cd6162dd23d3e94009300561524590a7d25d66cc8588a78b611527",
+        "arm64_mach_o": true,
+        "strict_link_passed": true
+      }
+    ],
+    "original_sdk_sources_unchanged": true,
+    "exports_isolated": true,
+    "auval_executed": false,
+    "macos_runtime_executed": false,
+    "sound_fidelity_verified": false,
+    "passed": true
+  },
+  "macos_execution": false,
+  "auval_executed": false,
+  "original_versus_port_audio_fidelity_exhaustive": false,
+  "passed": true
+}

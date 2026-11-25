@@ -191,7 +191,6 @@ bool LegacyEngine::Impl::editorPlatformService(const std::string &name, U32 sp,
 EditorFileInfo LegacyEngine::Impl::performEditorFile(U32 tag,
                                                      unsigned operation,
                                                      const std::string &path) {
-  throw std::runtime_error("CronoX editor file commands are not enabled in CRX001");
   if (!editorFileCommand(tag, operation))
     throw std::out_of_range("Unknown original editor file command");
   if (path.find('\0') != std::string::npos || path.size() >= 256 ||
@@ -230,22 +229,11 @@ EditorFileInfo LegacyEngine::Impl::performEditorFile(U32 tag,
   } scope{*this};
   // The original persists the last File IO menu choice in its program chunk.
   // An information query must restore that choice without executing it again.
-  U32 menuObject = 0, menuIndex = 0, menuPart = 0, previousChoice = 0;
-  if (path.empty()) {
-    previousChoice = run(0x1d28c, {object, tag});
-    constexpr U32 target = 0x5d1900;
-    run(0x1cb52, {object, tag, target, target + 4, target + 8});
-    menuObject = word(target);
-    menuIndex = word(target + 4);
-    menuPart = word(target + 8);
-  }
+  const U32 parameter = path.empty() ? run(0x1b16e, {object, tag}) : 0;
+  const U32 previousChoice = parameter ? word(parameter + 0x14) : 0;
   const auto alerts = loadAlerts.size();
   editorParameter(tag, float(operation) / (tag == 610 ? 6 : 4));
-  if (menuObject) {
-    const U32 store = word(menuObject + 0x120),
-              part = word(word(store + 0x1c) + 4 * menuPart);
-    run(0x109c8, {part + 0x70 * menuIndex, previousChoice});
-  }
+  if (parameter) put(parameter + 0x14, previousChoice);
   if (!path.empty()) {
     if (loadAlerts.size() != alerts)
       throw std::runtime_error(
@@ -264,26 +252,20 @@ void LegacyEngine::Impl::editorParameter(U32 tag, float value) {
   U32 module = 0, part = 0;
   if (tag == 647) {
     constexpr U32 out = 0x5d1b00;
-    run(0x1cb52, {object, tag, out, out + 4, out + 8});
-    module = word(out);
-    part = word(out + 8);
+    run(0x1acac, {object, tag, out, out+4, out+8});
+    module = word(out); part = word(out+8);
   }
   const bool previous = editorConfirmation;
   editorConfirmation = tag == 610 && (value == .5f || value == 1.f);
   try {
-    run(0x1cc86, {object, tag, bits32(value)});
-    // The old editor drove the StepSeq module command callback. Its template
-    // suppresses Envelope notifications without that editor. Dispatch this
-    // explicit menu gesture to the very same original ModuleManager routine.
-    if (module && !read<std::uint8_t>(module + 0x15c)) {
-      constexpr U32 name = 0x5d1a00;
-      string(name, "Arpeggiator");
-      run(0xb5a12,
-          {object + 0x44f4, module, part, run(0x1d28c, {object, tag}), name});
+    run(0x22066, {object, tag, bits32(value)});
+    // StepSeq suppresses this callback without its old editor. Forward the
+    // explicit menu gesture to its original ModuleManager, with the resolved part.
+    if (module && !read<std::uint8_t>(module+0x168)) {
+      constexpr U32 name = 0x5d1a00; string(name,"Arpeggiator");
+      run(0xd37f4, {object+0x3fc4,module,part,run(0x1ade8,{object,tag}),name});
     }
-  } catch (...) {
-    editorConfirmation = previous;
-    throw;
-  }
+  } catch (...) { editorConfirmation = previous; throw; }
   editorConfirmation = previous;
+  ++editorRevision;
 }

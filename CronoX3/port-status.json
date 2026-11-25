@@ -1,6 +1,6 @@
 {
   "project": "CronoX 3 ARM64",
-  "checkpoint": "CRX005",
+  "checkpoint": "CRX006",
   "original_version": "3.6.6",
   "original_architectures": [
     "i386",
@@ -25,7 +25,7 @@
   "ghidra_detected_instructions": 211282,
   "native_audio_unit_available": true,
   "installation_enabled": true,
-  "auval_executed": true,
+  "auval_executed": false,
   "output_gain_policy": "Original CronoX DSP gain, unity AU output compensation",
   "native_kernel_compiled_linux": true,
   "translated_compilation_units": 413,
@@ -42,12 +42,12 @@
   "original_au_bridge_linux_passed": true,
   "public_fxp_loaded_linux": true,
   "original_au_bridge_is_not_native_au": true,
-  "editor_bindings_available": false,
+  "editor_bindings_available": true,
   "remaining_work": [
-    "User macOS AU factory, Cocoa, installed auval and audio tests for CRX005",
-    "CronoX 3.6.6 original UI ABI, panels and controls",
-    "Original-versus-port audio and CPU comparison in Logic and Live",
-    "Original AU identity restoration after user validation"
+    "Mac validation of CRX006 Cocoa interface and interactions",
+    "Exhaustive original-versus-port comparison remains unverified",
+    "Native preset file selection replaces original folder/category browser",
+    "Restore original AU identity only after final user validation"
   ],
   "original_audio_unit": {
     "type": "aumu",
@@ -87,5 +87,11 @@
   "registration_diagnostics_are_optional": true,
   "macos_candidate_checkpoint": "CRX004",
   "last_auval_checkpoint": "CRX003",
-  "current_checkpoint_macos_runtime_tested": false
+  "current_checkpoint_macos_runtime_tested": false,
+  "native_au_macos_runtime_validated": false,
+  "accepted_audio_reference": "CRX005",
+  "accepted_audio_reference_user_validated": true,
+  "original_ui_panels": 86,
+  "original_ui_recorded_controls": 1056,
+  "original_ui_pngs": 110
 }

@@ -39,3 +39,19 @@ expected_image=json.loads((ROOT/'evidence/cronox-image-provenance.json').read_te
 actual_image=generate(ROOT/'reference/CronoX3.i386',ROOT/'src/engine')
 if actual_image!=expected_image:raise SystemExit('Image et imports CronoX différents de la référence')
 print('Image, imports et initialisateurs originaux vérifiés.')
+
+# These are the original CronoX PNGs, not the Sophistry skin.
+import zipfile
+images=json.loads((ROOT/'sources/cronox-original-images.json').read_text())
+original=ROOT/'reference/CronoX3.component.zip'
+if hashlib.sha256(original.read_bytes()).hexdigest()!=images['original_archive_sha256']:
+ raise SystemExit('Archive graphique CronoX altérée')
+image_dir=ROOT/'reference/CronoX3Images';image_dir.mkdir(parents=True,exist_ok=True)
+with zipfile.ZipFile(original) as source:
+ for spec in images['images']:
+  if Path(spec['name']).name!=spec['name']:raise SystemExit('Nom graphique interdit')
+  raw=source.read(spec['archive_path'])
+  if len(raw)!=spec['bytes'] or hashlib.sha256(raw).hexdigest()!=spec['sha256']:raise SystemExit('Image originale altérée')
+  target=image_dir/spec['name']
+  if not target.is_file() or target.read_bytes()!=raw:target.write_bytes(raw)
+print(str(len(images['images']))+' images originales CronoX vérifiées.')

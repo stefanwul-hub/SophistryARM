@@ -62,7 +62,7 @@ inline std::set<unsigned> completeSelectionTags() {
 }
 inline CompleteEditorLayout
 completeEditorLayout(unsigned page, const std::function<int(unsigned)> &value) {
-  if (page > 8)
+  if (page > 9)
     throw std::out_of_range("Unknown original editor page");
   CompleteEditorLayout result;
   auto originalPanel = [](unsigned id) -> const RecoveredPanel * {
@@ -89,7 +89,9 @@ completeEditorLayout(unsigned page, const std::function<int(unsigned)> &value) {
         append(child->id, x + child->x, y + child->y);
     }
   };
-  append(page + 1, 0, 0);
+  if (page == 9) {
+    for (const auto &c : recoveredControls()) if (c.panel == 0) result.controls.push_back({c,0,0});
+  } else append(page + 1, 0, 0);
   if (page == 4) {
     for (unsigned slot = 0; slot < 4; ++slot) {
       int type = std::clamp(value(215 + slot), 0, 11);
@@ -118,10 +120,11 @@ inline bool originalPointerKind(RecoveredWidget k) {
          k == RecoveredWidget::ThinSlider || k == RecoveredWidget::Scrollbar;
 }
 inline bool completeControlEditable(unsigned tag) {
-  if (tag == 765)
+  if (tag == 766)
     return false;
-  if (tag >= 643 && tag <= 646)
+  if (tag >= 643 && tag <= 647)
     return true;
+  if (completeSelectionTags().count(tag)) return true;
   for (const auto &c : recoveredControls())
     if (c.tag == tag) {
       auto k = c.kind;
@@ -129,7 +132,7 @@ inline bool completeControlEditable(unsigned tag) {
           k == RecoveredWidget::Toggle || k == RecoveredWidget::Radio ||
           k == RecoveredWidget::Menu || k == RecoveredWidget::Drawbar ||
           k == RecoveredWidget::HorizontalSlider ||
-          k == RecoveredWidget::ThinSlider || k == RecoveredWidget::Text ||
+          k == RecoveredWidget::ThinSlider || k == RecoveredWidget::Gator || k == RecoveredWidget::Text ||
           k == RecoveredWidget::Scrollbar)
         return true;
       if (k == RecoveredWidget::XY)
@@ -140,18 +143,18 @@ inline bool completeControlEditable(unsigned tag) {
          (tag >= 940 && tag <= 957) || tag == 610;
 }
 inline bool completeControlStringEditable(unsigned tag) {
-  if (tag == 765)
+  if (tag == 766)
     return false;
-  if (tag == 648)
-    return true; // Original arpeggiator sequence bytes.
+  if (tag == 648 || (tag >= 953 && tag <= 958))
+    return true; // Original arpeggiator bytes and loop-marker display aliases.
   for (const auto &c : recoveredControls())
     if (c.tag == tag &&
-        (c.kind == RecoveredWidget::File || c.kind == RecoveredWidget::Text))
+        (c.kind == RecoveredWidget::File || c.kind == RecoveredWidget::Text || c.kind == RecoveredWidget::Step || c.kind == RecoveredWidget::Gator))
       return true;
   return false;
 }
 inline bool completeControlReadable(unsigned tag) {
-  if (tag == 765)
+  if (tag == 766)
     return false;
   if (tag == 648 || (tag >= 523 && tag <= 578))
     return true;

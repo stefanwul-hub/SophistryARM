@@ -1,5 +1,4 @@
-// Compact comparison view. All sound generation and AU parameters come from
-// the unchanged original CronoX engine; original 3.6.6 panel recovery continues.
+// Original CronoX 3.6.6 panels with native Cocoa controls and translated getters/setters.
 #include "BankAccess.h"
 #include "PresetBrowser.h"
 #include "SophistryProperties.h"
@@ -46,32 +45,53 @@ NSString* crxError(AudioUnit unit,OSStatus status) {
   return [NSString stringWithFormat:@"Code Audio Unit : %d",int(status)];
 }
 }
+namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
+#include "CronoXCompleteEditorView.h"
 @interface CronoX3ARMTestEditorView : NSView
 - (instancetype)initWithAudioUnit:(AudioUnit)unit;
 - (BOOL)loadPresetURL:(NSURL*)url;
 - (NSDictionary*)cronoxComparisonReport;
+- (NSArray*)cronoxEditorPagesReport;
 @end
 @implementation CronoX3ARMTestEditorView {
   AudioUnit unit_;
   NSTextField* name_;NSTextField* activity_;NSTextField* notice_;
   NSURL* current_;NSTimer* refresh_;
+  NSImage* originalFrame_;
+  CronoX3CompletePanel *root_,*panel_,*bottom_;
+  NSMutableArray<NSView*>* browser_;
+  unsigned page_,bottomPage_;
 }
 - (BOOL)isFlipped {return YES;}
 - (instancetype)initWithAudioUnit:(AudioUnit)unit {
-  self=[super initWithFrame:NSMakeRect(0,0,600,220)];if(!self)return nil;
-  unit_=unit;
-  [self addSubview:crxLabel(NSMakeRect(18,14,410,24),@"CronoX 3 ARM Test",19)];
-  [self addSubview:crxLabel(NSMakeRect(503,18,80,18),@"CRX005",11)];
-  name_=crxLabel(NSMakeRect(18,52,564,28),@"Son : …",16);[self addSubview:name_];
-  [self addSubview:crxButton(NSMakeRect(18,92,72,28),@"Prev",self,@selector(previous:))];
-  [self addSubview:crxButton(NSMakeRect(98,92,112,28),@"Load…",self,@selector(load:))];
-  [self addSubview:crxButton(NSMakeRect(218,92,72,28),@"Next",self,@selector(next:))];
-  [self addSubview:crxButton(NSMakeRect(298,92,112,28),@"Save…",self,@selector(save:))];
-  [self addSubview:crxButton(NSMakeRect(18,130,175,28),@"Banque de sons…",self,@selector(bank:))];
-  [self addSubview:crxButton(NSMakeRect(205,130,205,28),@"Copier le diagnostic",self,@selector(diagnostic:))];
-  activity_=crxLabel(NSMakeRect(18,172,564,18),@"",11);[self addSubview:activity_];
-  notice_=crxLabel(NSMakeRect(18,194,564,18),@"",11);notice_.textColor=NSColor.lightGrayColor;[self addSubview:notice_];
+  self=[super initWithFrame:NSMakeRect(0,0,762,521)];if(!self)return nil;
+  unit_=unit;page_=0;bottomPage_=8;NSBundle* bundle=[NSBundle bundleForClass:self.class];
+  originalFrame_=cronoxGeneratorView::image(bundle,128);
+  root_=[[CronoX3CompletePanel alloc] initWithAudioUnit:unit bundle:bundle];
+  root_.page=9;root_.frame=NSMakeRect(0,0,762,477);root_.changeTarget=self;[self addSubview:root_];
+  panel_=[[CronoX3CompletePanel alloc] initWithAudioUnit:unit bundle:bundle];
+  panel_.page=0;panel_.changeTarget=self;[self addSubview:panel_];
+  bottom_=[[CronoX3CompletePanel alloc] initWithAudioUnit:unit bundle:bundle];
+  bottom_.page=8;bottom_.frame=NSMakeRect(0,348,762,129);bottom_.changeTarget=self;[self addSubview:bottom_];
+  browser_=[NSMutableArray array];
+  name_=crxLabel(NSMakeRect(24,229,145,31),@"…",10);[self addSubview:name_];[browser_ addObject:name_];
+  const SEL actions[]={@selector(previous:),@selector(load:),@selector(next:),@selector(save:)};
+  NSArray* titles=@[@"Prev",@"Load",@"Next",@"Save"];
+  for(unsigned i=0;i<4;++i){
+    NSButton* b=crxButton(NSMakeRect(21+38*i,265,38,15),@"",self,actions[i]);
+    b.bordered=NO;b.toolTip=titles[i];[self addSubview:b];[browser_ addObject:b];
+  }
+  [self addSubview:crxLabel(NSMakeRect(10,481,165,16),@"CronoX 3 ARM Test · CRX006",10)];
+  [self addSubview:crxButton(NSMakeRect(320,477,132,24),@"Charger un son…",self,@selector(load:))];
+  [self addSubview:crxButton(NSMakeRect(458,477,132,24),@"Banque de sons…",self,@selector(bank:))];
+  [self addSubview:crxButton(NSMakeRect(596,477,156,24),@"Copier le diagnostic",self,@selector(diagnostic:))];
+  activity_=crxLabel(NSMakeRect(10,503,370,16),@"",9);[self addSubview:activity_];
+  notice_=crxLabel(NSMakeRect(385,503,367,16),@"",9);notice_.textColor=NSColor.lightGrayColor;[self addSubview:notice_];
   [self refresh];return self;
+}
+- (void)completeChanged:(id)sender { [self refresh]; }
+- (void)completeSelectPage:(NSNumber*)page {
+  cronoxCompleteView::edit(unit_,603,float(std::clamp(page.intValue,0,6))/6);[self refresh];
 }
 - (void)dealloc {[refresh_ invalidate];}
 - (void)viewDidMoveToWindow {
@@ -83,8 +103,19 @@ NSString* crxError(AudioUnit unit,OSStatus status) {
 }
 - (void)drawRect:(NSRect)dirty {
   [[NSColor colorWithRed:.13 green:.15 blue:.18 alpha:1] setFill];NSRectFill(self.bounds);
+  [originalFrame_ drawInRect:NSMakeRect(0,0,762,477) fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1 respectFlipped:YES hints:nil];
 }
 - (void)refresh {
+  sophistry::CompleteEditorState shell;UInt32 shellBytes=sizeof(shell);
+  if(!AudioUnitGetProperty(unit_,sophistry::completeEditorProperty,kAudioUnitScope_Global,9,&shell,&shellBytes)) {
+    for(unsigned i=0;i<shell.selectionCount;++i) {
+      if(shell.selections[i].tag==603)page_=std::clamp(shell.selections[i].value,0,6);
+      if(shell.selections[i].tag==604)bottomPage_=7+std::clamp(shell.selections[i].value,0,1);
+    }
+  }
+  root_.page=9;panel_.page=page_;bottom_.page=bottomPage_;
+  [root_ refresh];[panel_ refresh];[bottom_ refresh];
+  for(NSView* v in browser_)v.hidden=page_!=0;
   NSDictionary* s=crxStatus(unit_);
   NSString* preset=[s[@"preset_name"] isKindOfClass:NSString.class]?s[@"preset_name"]:@"";
   if(!preset.length) {
@@ -93,7 +124,7 @@ NSString* crxError(AudioUnit unit,OSStatus status) {
       preset=[(__bridge NSString*)value.presetName copy];CFRelease(value.presetName);
     }
   }
-  name_.stringValue=[@"Son : " stringByAppendingString:preset.length?preset:@"état initial"];
+  name_.stringValue=preset.length?preset:@"état initial";
   float master=0;BOOL hasMaster=!AudioUnitGetParameter(unit_,134,kAudioUnitScope_Global,0,&master);
   double peak=[s[@"maximum_output"] doubleValue];
   NSString* level=peak>0?[NSString stringWithFormat:@"%.1f dBFS",20*std::log10(peak)]:@"silence";
@@ -171,8 +202,16 @@ NSString* crxError(AudioUnit unit,OSStatus status) {
   [NSPasteboard.generalPasteboard clearContents];[NSPasteboard.generalPasteboard setString:text forType:NSPasteboardTypeString];
   notice_.stringValue=@"Diagnostic copié.";
 }
+- (NSArray*)cronoxEditorPagesReport {
+  unsigned original=page_;NSMutableArray* pages=[NSMutableArray array];
+  for(unsigned page=0;page<7;++page) {
+    [self completeSelectPage:@(page)];
+    [pages addObject:[panel_ report]];
+  }
+  [self completeSelectPage:@(original)];return pages;
+}
 - (NSDictionary*)cronoxComparisonReport {
-  return @{@"comparison_view":@YES,@"original_panel_recovery_complete":@NO,@"subtype":@"CrT3",@"width":@(self.frame.size.width),@"height":@(self.frame.size.height)};
+  return @{@"comparison_view":@YES,@"original_panels_available":@YES,@"original_panel_recovery_complete":@NO,@"subtype":@"CrT3",@"width":@(self.frame.size.width),@"height":@(self.frame.size.height),@"main":[panel_ report],@"shell":[root_ report],@"bottom":[bottom_ report]};
 }
 @end
 @interface CronoX3ARMTestCocoaFactory : NSObject <AUCocoaUIBase>

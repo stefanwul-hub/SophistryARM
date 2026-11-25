@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>3.6.6</string>
 	<key>CFBundleVersion</key>
-	<string>5001</string>
+	<string>6001</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>11.0</string>
 	<key>AudioComponents</key>

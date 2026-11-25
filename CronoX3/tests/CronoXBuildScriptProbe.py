@@ -63,13 +63,13 @@ def main():
         project = Path(temporary) / 'source with spaces'
         tools = project / 'tools'
         tools.mkdir(parents=True)
-        for directory in ['scripts', 'src/au', 'src/engine', 'config',
+        for directory in ['scripts', 'src/au', 'src/engine', 'config', 'sources',
                           'third_party/AudioUnitSDK/include',
                           'third_party/AudioUnitSDK/src/AudioUnitSDK',
-                          'reference/Presets', 'reference/Samples']:
+                          'reference/Presets', 'reference/Samples', 'reference/CronoX3Images']:
             (project / directory).mkdir(parents=True, exist_ok=True)
         for name in ['scripts/generate-cronox-au-identity.py',
-                     'scripts/verify-cronox-bundle.py', 'config/au-identity-test.json',
+                     'scripts/verify-cronox-bundle.py', 'config/au-identity-test.json', 'sources/cronox-original-images.json',
                      'src/au/CronoX3ARMTestAU.cpp', 'src/au/CronoX3ARMTestEditor.mm',
                      'src/au/CronoX3ARMTest.exports', 'third_party/AudioUnitSDK/LICENSE.txt']:
             shutil.copyfile(root / name, project / name)
@@ -77,8 +77,10 @@ def main():
             shutil.copyfile(path, project / 'third_party/AudioUnitSDK/src/AudioUnitSDK' / path.name)
         for directory in ['src/au', 'src/engine', 'third_party/AudioUnitSDK/include']:
             (project / directory / 'fixture.h').write_text('// Header dependency fixture\n')
-        for directory in ['reference/Presets', 'reference/Samples']:
+        for directory in ['reference/Presets', 'reference/Samples', 'reference/CronoX3Images']:
             (project / directory / 'fixture.txt').write_text('Resource copy fixture\n')
+        for image in (root/'reference/CronoX3Images').glob('*.png'):
+            shutil.copyfile(image,project/'reference/CronoX3Images'/image.name)
         (project / 'scripts/build-cronox-engine.sh').write_text('''#!/bin/bash
 set -eu
 mkdir -p "$1" "$2"

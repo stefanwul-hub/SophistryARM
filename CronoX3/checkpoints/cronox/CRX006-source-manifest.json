@@ -1,0 +1,339 @@
+{
+  "checkpoint": "CRX006",
+  "publication_directory": "CronoX3",
+  "base_remote_commit": "8f623a3b1b429dc79ece9a14bce6d27293e58f95",
+  "files": [
+    {
+      "path": "CRX_REPRISE.md",
+      "bytes": 23543,
+      "sha256": "3a990d091aedc693d7a4a7d55e33777bf5e07c20ca05f655cdc9818bcf9c13ec",
+      "git_blob": "550de3d60564b42f0f4be947a2202ad4d2cb028b",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "Installer-CronoX-CRX006.command",
+      "bytes": 7593,
+      "sha256": "d047f2e3f18c806e6e206e204a51b66b3ff0c5e0c38271010b23ce54ddd03455",
+      "git_blob": "2974b994fb8ccb9606c5768d9f08edeb12d03d8d",
+      "mode": "100755",
+      "changed": true
+    },
+    {
+      "path": "README.md",
+      "bytes": 9184,
+      "sha256": "d433c5f168b9689cd6240e917fa4efb75c551be6554807991e893e23bef1b0fe",
+      "git_blob": "a6d573510c571fe84fd6eff9b37f63000fc5f95a",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "analysis/cronox/normalize_layout.py",
+      "bytes": 7516,
+      "sha256": "6b389ec7c1a90729df4746725382d5eff08de6e4919ba8a072da8fda15034578",
+      "git_blob": "8b6da7543bf8a36f0515d6ada173c86638cb54e5",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "analysis/cronox/recover_layout.py",
+      "bytes": 9465,
+      "sha256": "09e8245e74e790078a13151ba348fc4e576dc7348f95a8483aa0a199178bf2e2",
+      "git_blob": "94fb26999efb09cb22e89193a37c825b526fcdf2",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "checkpoints/cronox/UI-Recovery-CRX006.tar.gz",
+      "bytes": 50598,
+      "sha256": "9bb43b2c416a38fea3f1ee97ef860ef4aa994d457e359adc24fb3e1bbd260154",
+      "git_blob": "8b7b71d518787702d39afe3fefcbf2492de1881b",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "config/au-identity-test.json",
+      "bytes": 1002,
+      "sha256": "ddfe222f693e107daa43c1f01d93a6532535bb818fafa52b7d5a655aa7c738df",
+      "git_blob": "20e4e742be4921377e4f0ea595825a4d1d2144c9",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "cronox-status.json",
+      "bytes": 3907,
+      "sha256": "70c1de60c6b71039158e7e53be97105ac6f903c4e23c8e510990100924b2c31c",
+      "git_blob": "4c6ba669ac3ca2c84f99324e3ddb0acc02023011",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx005-user-acceptance.json",
+      "bytes": 529,
+      "sha256": "cd687ae53d82d9915e0ed6ce901e9f40344b35eef81892ee5abca5ed695c35ee",
+      "git_blob": "00978fe996cb30320367395516751f858fc1401c",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx006-audio-source-preserved.json",
+      "bytes": 699,
+      "sha256": "55b336468af12e4440adef0253b7485756ade267973fff51aca20789bedcf3e9",
+      "git_blob": "c6aae4b3d43b556f3888bee1d32f5142a9553530",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx006-local-checks.json",
+      "bytes": 2417,
+      "sha256": "31701fb0c602791a410fbda4d4edfeb8b3f58a75561fa9a0e547f48e9454001d",
+      "git_blob": "e9d9e1e675f036e3c4e0f31735d3424dffd2048f",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx006-macos-cross-link.json",
+      "bytes": 1239,
+      "sha256": "d5e09a6f3de5083617314568c572ad792f2c8c24a88399db2b5e2aca460bf0f7",
+      "git_blob": "e835933cc5c02ddd2d6322e3e9e3cfd52fb6a32b",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "evidence/cronox-crx006-ui-recovery.json",
+      "bytes": 924,
+      "sha256": "31f85c71dcf5ef1d9064b9dfd8aaaffb8e4fac8b03ddc6431f65333ff207a23b",
+      "git_blob": "dc45d99bca41606c42873a37c84a435e8fdd6f2d",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "port-status.json",
+      "bytes": 3907,
+      "sha256": "70c1de60c6b71039158e7e53be97105ac6f903c4e23c8e510990100924b2c31c",
+      "git_blob": "4c6ba669ac3ca2c84f99324e3ddb0acc02023011",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "scripts/build-cronox-audio-unit.sh",
+      "bytes": 4926,
+      "sha256": "24ba289372e30c1622b26d4b824ed5bee70de6f2c0ebb12dfdf49b18b2de7c94",
+      "git_blob": "28098bd5f77f2df3e8cda8ae00444878bfc4a7df",
+      "mode": "100755",
+      "changed": true
+    },
+    {
+      "path": "scripts/compare_audio.py",
+      "bytes": 2739,
+      "sha256": "618fb55ed89226a47de0e450ab29213b9434a8ac1a19cd82d13742c59a4cf4cf",
+      "git_blob": "89503e8f88ef9ef4ff364c50a107b136c5221817",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "scripts/prepare-cronox-source.py",
+      "bytes": 3491,
+      "sha256": "08cf90ff97cb239c1cb36e3f184bada0768f82dc437fa8a3bcd21dc7abc7a2ea",
+      "git_blob": "1ecab83ef30cb3e71692c2793a35600bb1ee12a3",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "scripts/verify-cronox-bundle.py",
+      "bytes": 2172,
+      "sha256": "a3fd65aa052e6b6792cf56d7e5979a81d6a237df28ec465104913981ba506e6c",
+      "git_blob": "2a9f8d2f76d156392c46246794340d75654a927c",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "sources/cronox-original-images.json",
+      "bytes": 29086,
+      "sha256": "2310a4dd43c605a6e2c93cb90d689f4b8ba00335c8adc54b9044b240abf287c4",
+      "git_blob": "c09b4c5edde7660c3f6ee9e7993245b00495300e",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoX3ARMTestAU.cpp",
+      "bytes": 52202,
+      "sha256": "1da7ff5fcf09ce880b8de8404ac41c193d6e277a51a2666322fb2b760ff9b20d",
+      "git_blob": "44ce602bccf3777efff6123d7a0eeff652eee335",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoX3ARMTestEditor.mm",
+      "bytes": 13028,
+      "sha256": "439392c0fbd91fafbeda8402dba30df6ab5c96263d1a9a5be047d544bda736b6",
+      "git_blob": "19cfc8bc9142da72113426f7c91a2e3ad2c99973",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoXCompleteEditorView.h",
+      "bytes": 52214,
+      "sha256": "60c3ffe699d21c0f6307d8f1a31bff0553703fc5e94703eab641d9ee5bfddbaf",
+      "git_blob": "258063f4e9ed0881bab672232dab160794a074c1",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoXGeneratorView.h",
+      "bytes": 19431,
+      "sha256": "f5901e296b87eed4a82dbd33cb88a3090a7827ab050ef988a648f9cc2d3179d4",
+      "git_blob": "60573601683a37457cd199c24599354e0f0d1dc1",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/CronoXOriginalEditorView.h",
+      "bytes": 11627,
+      "sha256": "cb596b7f61440d64255bac9ef04d1dea74fb6ea270c6e1e67ab110f4f2eb41d3",
+      "git_blob": "f7b2d901aeb68270ec2a3aa18100e908d6d26400",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/Info.plist",
+      "bytes": 1226,
+      "sha256": "720b41a8f1e960fd9fc1afe5f701621155acfc90f3a2f10bf78c4f2ab1bb7281",
+      "git_blob": "323679ff636ff00299cd455cfcba1af2487f7c88",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/SampleDisplay.h",
+      "bytes": 419,
+      "sha256": "484c118662578117cedad855061c904d8ca3d96de6bd0eca48e9a670e90dab88",
+      "git_blob": "06b1713289215ca96d9397dc633060fac1e44ee9",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/au/SophistryProperties.h",
+      "bytes": 2261,
+      "sha256": "79405f83ce57c574a9e7e7a7a1fcc853867ca9769200be91702e0e7797c3a641",
+      "git_blob": "f043917a2c440c0d3734750174a72854214add02",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/engine/CompleteEditorControls.h",
+      "bytes": 5883,
+      "sha256": "af8fa9d643d9a1a7b0aa221a5f59610bf167bf0676e42f551e109fcbb628e45d",
+      "git_blob": "3a2cd9fe13c92fac983a0240eb495ddc91edfb9d",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/engine/EditorPlatform.h",
+      "bytes": 11232,
+      "sha256": "08d097b8ff39432127a1a5a5a4f7921dafa0c67b20b381ad9aa59014a87e7ba3",
+      "git_blob": "b6da2991eb567d571338fc37980b01e59f1311cf",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/engine/GeneratorControls.h",
+      "bytes": 6471,
+      "sha256": "9f8d91a54896625256d658cacd718b879d0c537e3ddbf85f4de0f85e78ed3561",
+      "git_blob": "26aa81bc229c7692c0adf1938e8cb40d558a3bfa",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/engine/LegacyEngine.cpp",
+      "bytes": 112069,
+      "sha256": "d61f7af01368e510da4eb7455f391fa4654402b4de1689ab6c2a80e6ec34341c",
+      "git_blob": "1189ba29f1b46924f45d48f9de3c763c93dd48ca",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "src/engine/RecoveredEditorLayout.h",
+      "bytes": 101546,
+      "sha256": "744a2d7cf0956d02e9714b791b29ece33d823b5009d28cce57eb5a6088770d15",
+      "git_blob": "a64423921114f01bb609179547983af0782cc5f2",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/CronoXBuildScriptProbe.py",
+      "bytes": 7686,
+      "sha256": "d2b841f10e029ada9aa3a88778dd22b89988425493a567752f14e38b572c004b",
+      "git_blob": "6499964459b77df4e8515d239f961f413b0b7773",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/CronoXComparisonProbe.mm",
+      "bytes": 13456,
+      "sha256": "3f374a3feed80e721687dc47e9335ff12d994cf158e31f064da5ddaf222b5b13",
+      "git_blob": "5b76ebbc63cd23cb2e86db80893c8cdaa2059a86",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/CronoXEditorProbe.cpp",
+      "bytes": 4777,
+      "sha256": "c907bd8639f84f6f38779fd60ef981fc98acbd15ec3ebc9a20673fc99a44dca8",
+      "git_blob": "aa42e40b3ec42d058a833bd595eb8fd7cab3a876",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/compare_lifted_dsp.py",
+      "bytes": 17960,
+      "sha256": "70f9f0986c3b23cac442b043c93fc18aa651e2d24c6b2c4797b063fdb875913d",
+      "git_blob": "5723e8278f1a33cfe1c6d99ac75e23ecc73aab4a",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/pcm_reference.py",
+      "bytes": 2905,
+      "sha256": "82606bc8cb9bb9ad3433c8f6e3484d02e8f93f803f38fc574b3965ab51adff24",
+      "git_blob": "a52cf43ddf4ff3ad66366b6ef22b8a06c99f6423",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/probe_au_layout.py",
+      "bytes": 4032,
+      "sha256": "7b1c34e65158b3c1f3e8a29dc94c16b63bec5158169ad8b66fe38e0d3304d4bc",
+      "git_blob": "31b272227e667e440685c3d9aaed508c23a74709",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/probe_au_render.py",
+      "bytes": 8942,
+      "sha256": "2d593aa31f6a895d2fd90d5e55f9bf212c12bc3a4932917bb5583dd0822af8d2",
+      "git_blob": "c26661c38ee7557509e9c1004be6f8d0ee7d3b64",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/probe_engine_initialization.py",
+      "bytes": 43374,
+      "sha256": "143032dddae8b5cbc2f10f83676afed0809c652ee5f61d7eb843063af0662aae",
+      "git_blob": "bb2ad6472b354176e03dee971d82f9e9944278e4",
+      "mode": "100644",
+      "changed": true
+    },
+    {
+      "path": "tests/test_cronox_registration_diagnostics.py",
+      "bytes": 6841,
+      "sha256": "691742d43ddbfcd0a2e00ad8c241bf8fa8f4608681b75c0142b34c473b132256",
+      "git_blob": "3a954120189c5c65d314be9c7f5875157f3ee46f",
+      "mode": "100644",
+      "changed": true
+    }
+  ],
+  "preserves_prior_remote_files": true,
+  "sophistry_root_untouched": true,
+  "macos_runtime_validated": false,
+  "accepted_audio_reference": "CRX005"
+}
