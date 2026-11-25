@@ -1,0 +1,13 @@
+CronoX 3 ARM Test — CRX006
+
+Quittez Logic et Live. Décompactez ce ZIP, puis ouvrez Demarrer-CronoX-CRX006.command.
+Le lanceur télécharge les sources vérifiées, conserve le cache existant, compile en ARM64, teste les commandes et l’interface, puis lance l’installation transactionnelle et auval.
+Le composant original CrX3 et Sophistry CP038 sont conservés. Seul ARM Test CrT3 est mis à jour.
+
+CRX006 ajoute les sept pages dorées originales, les commandes des générateurs/filtres/effets, les formes d’onde, le clavier, le Gator et l’arpégiateur.
+Le choix de fichiers FXP/AU remplace le navigateur de dossiers/catégories d’origine. L’interface doit encore être vérifiée sur votre Mac.
+Les rapports ZIP sont enregistrés sur le Bureau.
+
+Référence audio validée par l’utilisateur : CRX005.
+Source CRX006 : 2af4f3a456eb21a5ea7073464385c6a0e356699d
+Archive SHA-256 : d6b7da9efa7ff01c4458ccff07c7d47b6e5e6aff5bb740759a345f8427e0d1c8
