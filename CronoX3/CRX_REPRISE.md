@@ -1,3 +1,25 @@
+# Reprise CronoX — CRX008
+
+L’utilisateur accueille les modifications CRX007 et demande cinq corrections : boucles graphiques/numériques, saccades du Loop Sampler pendant les gestes, banque et preset sur deux lignes centrées, libellés d’effets non coupés, pied réduit et abaissé. Référence d’interface : CRX007, commit local `9effbfb72cd1cc123bba34c2ce5f9a199b3229cc`. Conserver `aumu/CrT3/LinP`, l’original `CrX3` et Sophistry CP038. Publier uniquement sous `CronoX3/`.
+
+Loop Sampler : `createLopEdits` (0x78c3e) relie les slots 0..5 à 815/817/819/835/949/951 (+1 pour Gen 2). Les champs 953..960 affichent Sample S, Loop S, Loop E et X-Fade. Les vrais paramètres 815..820, 835/836 sont désormais éditables. La saisie utilise `Parameter_c::setValue` (0x131e8), puis rétablit les 28 octets de l’objet avant le setter original avec notifications. Modifier temporairement raw+0x14 ne recalculait pas normalized+8 et laissait la saisie sans effet. Limites et zero crossings restent originaux.
+
+Tracés : `drawSample` (0x9d83c) appelle `getMaxMin` (0x9c8c4) puis `drawAllMinMax` (0x9d58c). `draw` (0x9d9ae) appelle ensuite `drawLoopPoints` (0x9cbb6), étape manquante rétablie. Le calcul des extrema différentiels, mode 1 explicite de createLopEdits, est extrait en C++ natif dans `CronoXLoopDisplay.h`. Le cache dépend du sample, de sa révision, du zoom et du défilement. Les positions changent les couleurs et repères, toujours peints par les routines originales, sans relire le sample. Une modification étrangère à la forme d’onde ne détruit plus ce cache. Les 413 unités audio sont inchangées.
+
+Concurrence : `editorDrawing` accepte une frontière après chaque colonne terminée. Le wrapper relâche le mutex audio puis contrôle `editorGeneration`. Il reconstruit le scratch du dessin après les frontières. Aucun verrou n’est relâché au milieu d’une routine originale. Cocoa conserve le dernier tracé terminé en cas de lecture interrompue. Le nouveau test intercale 316 rendus aux frontières d’un changement de zoom.
+
+Gestes : sélection et conversion tirées de `onMouseDown` (0x9d33e) / `onMouseMoved` (0x9d21e). Distance minimale, égalité préférant le dernier repère, règle directionnelle des débuts confondus, bande supérieure de 12 px pour le crossfade ; conversion par la fenêtre visible et la durée du sample. La vue écrit les vrais paramètres et relit les valeurs dans le moteur original.
+
+Main : banque/dossier du FXP en première ligne (y=228), preset en seconde (y=242), Helvetica 11 centrée. Le nom est conservé dans `CronoX3ARMBankName` et transmis par CxBn en UTF-8 plat, 512 octets. Les anciens états sans ce champ utilisent le nom du dossier de sons configuré en repli. Ne pas inventer une banque absente de l’état. Le navigateur dossiers/catégories original reste adapté en choix de fichiers natif.
+
+Effets Main : tags 579..584, rectangles originaux 64x11. Les textes Helvetica 11 sont peints en dernier dans une couche transparente, assez large et laissant passer les clics. Les zones de sélection sont conservées. Pied : Helvetica 9 comme l’activité, y=487 comme le haut des boutons. Texte exact : `CronoX 3 ARM64 port OA 2026 . CRX008`.
+
+Tests : `CronoXLoopSamplerProbe` compare 164 colonnes d’extrema et les tracés complets à l’exécution originale, identiques bit à bit sur quatre vues zoom/défilement. Il vérifie les repères, éditions, cache et frontières audio. Initialiser/activer l’AU ; utiliser saveBank pour ses états plutôt que mélanger les sauvegardes programme VST et le cycle AU. Pas de licence ni de préférences privées, pas de comparaison sonore exhaustive. La sonde Cocoa contrôle les lignes centrées, le rappel de banque et le pied. Les tests existants passent : 107 configurations, gain, Bash 3.2 et 28 régressions. Lien strict Mach-O ARM64 réussi pour le composant et cinq sondes ; 110 images et trois symboles exportés vérifiés. Cocoa, auval et les manipulations/audio CRX008 dans Logic et Live attendent le retour Mac.
+
+Disposition de référence : `checkpoints/cronox/UI-Recovery-CRX007.tar.gz` (1072 contrôles, 86 panneaux). Preuves : `evidence/cronox-crx008-local-checks.json`, `cronox-crx008-loop-port.json`, `cronox-crx008-macos-cross-link.json`. Archive du noyau SHA256 inchangée ; gain avant Master +6 dB conservé de CRX007. Installation transactionnelle, cache de compilation conservé.
+
+---
+
 # Reprise CronoX — CRX007
 
 Le 25 novembre 2026, l’utilisateur confirme que CRX006 fonctionne et que l’interface s’affiche. Les sept corrections demandées sont traitées dans CRX007. Référence audio acceptée : CRX005 ; référence d’interface acceptée : CRX006 (a3a09d3e8e8bb59d548924525730f733c574022a). Sophistry reste définitivement CP038. Toujours publier uniquement sous CronoX3/, garder aumu/CrT3/LinP et préserver l’original CrX3.

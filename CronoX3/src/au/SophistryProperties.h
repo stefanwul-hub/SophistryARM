@@ -1,8 +1,8 @@
 #pragma once
 #include <cstdint>
 namespace sophistry {
-constexpr char wrapperVersion[] = "CronoX3ARM CRX-007";
-constexpr char editorFooter[] = "CronoX 3 ARM64 port OA 2026 . CRX007";
+constexpr char wrapperVersion[] = "CronoX3ARM CRX-008";
+constexpr char editorFooter[] = "CronoX 3 ARM64 port OA 2026 . CRX008";
 // Private editor properties are for a view with a local AU handle.
 // Flat bytes avoid sharing object pointers, but the macOS remote proxy may
 // reject these IDs. Host-side remote tests must use public AU properties.
@@ -12,6 +12,8 @@ constexpr std::uint32_t runtimeStatusProperty =
     0x53705374; // SpSt, fixed-size zero-padded UTF-8 JSON
 constexpr std::uint32_t importProgramProperty =
     0x53705072; // SpPr, raw program chunk, 1..1048576 bytes
+constexpr std::uint32_t presetBankNameProperty = 0x4378426e; // CxBn, flat UTF-8 preset-folder label.
+constexpr unsigned presetBankNameBytes=512;
 struct BankLocationHeader {
   std::uint32_t version = 1, pathBytes = 0, bookmarkBytes = 0;
 };

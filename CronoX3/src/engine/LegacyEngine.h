@@ -91,6 +91,7 @@ public:
   EditorPanelState editorPanel(unsigned panel);
   void setEditorControl(std::uint32_t tag, float normalized);
   EditorDrawing editorDrawing(unsigned id);
+  EditorDrawing editorDrawing(unsigned id,const std::function<void()> &betweenColumns);
   CompleteEditorState completeEditor(unsigned page);
   CompleteEditorState
   completeEditor(unsigned page, const std::function<void()> &betweenControls);

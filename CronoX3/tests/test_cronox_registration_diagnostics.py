@@ -88,7 +88,7 @@ sys.exit(code)
         self.assertIn('wait-cronox-registration.py',names);self.assertIn('run-cronox-auval.py',names)
 
     def test_current_builds_keep_mandatory_registration_and_validation_checks(self):
-        for version in ('006','007'):
+        for version in ('006','007','008'):
             for discovery,auval,success in [(0,0,True),(3,0,False),(0,2,False)]:
                 with self.subTest(version=version,discovery=discovery,auval=auval):
                     code,completed,names=self.flow('Installer-CronoX-CRX'+version+'.command',discovery=discovery,auval=auval)

@@ -1,5 +1,6 @@
 // Cocoa widgets placed from the executed original i386 constructors.
 #pragma once
+#include "../engine/CronoXLoopDisplay.h"
 #include "../engine/CompleteEditorControls.h"
 #include "CronoXGeneratorView.h"
 #include "SampleDisplay.h"
@@ -69,6 +70,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 @property(weak) id<CronoX3RecoveredOwner> owner;
 @property BOOL circular;
 @property float secondaryNormalized;
+@property BOOL overlayMenuTitle;
 @property(copy) NSString *sampleLabel;
 - (void)updateRecovered:(sophistry::RecoveredControl)control
                   value:(sophistry::EditorControlState)value;
@@ -203,7 +205,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
                respectFlipped:YES
                         hints:nil];
     // Type names and the small Copy/Paste triangles are already in their skins.
-    if (!cronox::typography::hiddenMenuValue(c.tag) && sophistry::generatorForTypeTag(c.tag) == 4 &&
+    if (!self.overlayMenuTitle && !cronox::typography::hiddenMenuValue(c.tag) && sophistry::generatorForTypeTag(c.tag) == 4 &&
         !(c.tag >= 639 && c.tag <= 647))
       cronoxCompleteView::drawText(
           [value stringByTrimmingCharactersInSet:NSCharacterSet
@@ -350,6 +352,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     return;
   }
   if (c.kind == K::Display) {
+    if(sophistry::cronoxLoop::displayAlias(c.tag))[self.owner textNode:self];
     return;
   }
   if (c.kind == K::Text && event.clickCount > 1) {
@@ -521,7 +524,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 @property sophistry::CompleteEditorState::Viewport viewport;
 @property unsigned generator;
 @property(weak) id<CronoX3RecoveredOwner> owner;
-@property std::array<int, 3> markers;
+@property std::array<float, 3> markers;
 @end
 @implementation CronoX3LoopDrawing
 - (void)mouseDown:(NSEvent *)down {
@@ -529,25 +532,15 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   if (!v.frames || v.span <= 0)
     return;
   NSPoint p = [self convertPoint:down.locationInWindow fromView:nil];
-  float frame =
-      float((v.first + p.x / self.bounds.size.width * v.span) * v.rate);
-  unsigned marker = 0;
-  for (unsigned i = 1; i < 3; ++i)
-    if (std::abs(frame - self.markers[i]) <
-        std::abs(frame - self.markers[marker]))
-      marker = i;
+  const float duration=float(v.frames)/v.rate;
+  const float position=(v.first+float(p.x/self.bounds.size.width)*v.span)/duration;
+  unsigned marker=sophistry::cronoxLoop::hit(position,float(p.y),self.markers);
   NSEvent *event = down;
   for (;;) {
     NSPoint q = [self convertPoint:event.locationInWindow fromView:nil];
-    int at = std::clamp(
-        int((v.first + q.x / self.bounds.size.width * v.span) * v.rate), 0,
-        int(v.frames - 1));
-    NSString *s = [NSString stringWithFormat:@"%d", at];
-    if (cronoxCompleteView::text(self.audioUnit,
-                                    953 + 2 * marker + self.generator,
-                                    [s dataUsingEncoding:NSUTF8StringEncoding]))
+    const float value=sophistry::cronoxLoop::drag(v.first,v.span,duration,float(q.x),float(self.bounds.size.width),marker,self.markers[1]);
+    if (cronoxCompleteView::edit(self.audioUnit,sophistry::cronoxLoop::parameter(self.generator,marker),value))
       [self.owner changed:self];
-    [self refresh];
     [self displayIfNeeded];
     event = [self.window nextEventMatchingMask:NSEventMaskLeftMouseDragged |
                                                NSEventMaskLeftMouseUp];
@@ -704,6 +697,21 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
 }
 @end
 
+// Original Main type menus retain their original hit rectangles. Paint their
+// labels last in a transparent layer, so longer names can extend over controls.
+@interface CronoX3EffectTitles : NSView
+@property(copy) NSArray<NSDictionary*>* labels;
+@end
+@implementation CronoX3EffectTitles
+- (BOOL)isFlipped{return YES;}
+- (BOOL)isOpaque{return NO;}
+- (NSView*)hitTest:(NSPoint)point{return nil;}
+- (void)drawRect:(NSRect)dirty {
+  for(NSDictionary* label in self.labels)
+    cronoxCompleteView::drawText(label[@"text"],[label[@"rect"] rectValue],11,NSColor.whiteColor,1);
+}
+@end
+
 @interface CronoX3CompletePanel : NSView <CronoX3RecoveredOwner>
 @property unsigned page;
 @property(weak) id changeTarget;
@@ -726,6 +734,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   sophistry::CompleteEditorLayout layout_;
   NSMutableDictionary<NSNumber *, NSView *> *views_;
   NSMutableDictionary<NSNumber *, NSImage *> *images_;
+  CronoX3EffectTitles* effectTitles_;
 }
 - (BOOL)isFlipped {
   return YES;
@@ -737,6 +746,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   bundle_ = bundle;
   views_ = [NSMutableDictionary dictionary];
   images_ = [NSMutableDictionary dictionary];
+  effectTitles_=[CronoX3EffectTitles new];[self addSubview:effectTitles_];
   return self;
 }
 - (NSImage *)image:(unsigned)number {
@@ -789,6 +799,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
                           a.y != b.y || a.image != b.image;
     }
   NSMutableSet<NSNumber *> *active = [NSMutableSet set];
+  NSMutableArray* effectLabels=[NSMutableArray array];
   using K = sophistry::RecoveredWidget;
   for (const auto &placed : layout_.controls) {
     auto c = placed.control;
@@ -865,11 +876,11 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
       wave.drawingID = 8 + g;
       wave.generator = g;
       wave.viewport = state_.waveforms[g];
-      std::array<int, 3> markers{};
+      std::array<float, 3> markers{};
       for (unsigned i = 0; i < 3; ++i) {
         auto m = [self control:953 + g + 2 * i];
         if (m)
-          markers[i] = m->value.value;
+          markers[i] = m->normalized;
       }
       wave.markers = markers;
       [wave refresh];
@@ -898,7 +909,14 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
         data = *value;
       else
         data.value.tag = c.tag;
+      n.overlayMenuTitle=_page==0&&c.tag>=579&&c.tag<=584;
       [n updateRecovered:c value:data];
+      if(n.overlayMenuTitle) {
+        NSString* text=[cronoxCompleteView::string(data.value.text,sizeof(data.value.text)) stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+        const CGFloat measured=[text sizeWithAttributes:@{NSFontAttributeName:[NSFont fontWithName:@"Helvetica" size:11]}].width;
+        const CGFloat width=MAX(CGFloat(c.width),std::ceil(measured)+4);
+        [effectLabels addObject:@{@"tag":@(c.tag),@"text":text,@"rect":[NSValue valueWithRect:NSMakeRect(c.x+(c.width-width)/2,c.y,width,c.height)],@"glyph_width":@(measured),@"available_width":@(width)}];
+      }
       NSString *sampleLabel = nil;
       if (data.value.kind == 7 && c.tag != 648) {
         NSData *full = cronoxCompleteView::text(unit_, c.tag);
@@ -939,6 +957,8 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   for (NSNumber *key in views_)
     if (![active containsObject:key] && !views_[key].hidden)
       views_[key].hidden = YES;
+  effectTitles_.labels=effectLabels;effectTitles_.frame=self.bounds;effectTitles_.needsDisplay=YES;
+  [self addSubview:effectTitles_ positioned:NSWindowAbove relativeTo:nil];
   if (backgroundChanged || _page == 6)
     self.needsDisplay = YES;
 }
@@ -1118,6 +1138,8 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
   NSAlert *a = [NSAlert new];
   a.messageText =
       cronoxCompleteView::string(node.state.name, sizeof(node.state.name));
+  if(sophistry::cronoxLoop::displayAlias(node.state.tag))
+    a.messageText=@[@"Sample S",@"Loop S",@"Loop E",@"X-Fade"][(node.state.tag-953)/2];
   NSTextField *field =
       [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 220, 24)];
   field.stringValue =
@@ -1196,7 +1218,8 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     if (!v.hidden && [v isKindOfClass:CronoX3RecoveredNode.class]) {
       auto *n = (CronoX3RecoveredNode *)v;
       if (n.state.tag == tag &&
-          n.recovered.kind == sophistry::RecoveredWidget::Text) {
+          (n.recovered.kind == sophistry::RecoveredWidget::Text ||
+           (n.recovered.kind == sophistry::RecoveredWidget::Display&&sophistry::cronoxLoop::displayAlias(tag)))) {
         BOOL ok = cronoxCompleteView::text(
             unit_, tag, [value dataUsingEncoding:NSUTF8StringEncoding]);
         [self changed:nil];
@@ -1232,6 +1255,7 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
                       cronoxGeneratorView::originalPixelSize(n.sprite));
         [controls addObject:@{
           @"tag" : @(n.state.tag),
+          @"editable_loop_display" : @(sophistry::cronoxLoop::displayAlias(n.state.tag)),
           @"kind" : @(int(n.recovered.kind)),
           @"value" : @(n.state.value),
           @"normalized" : @(n.originalNormalized),
@@ -1255,6 +1279,8 @@ inline void drawText(NSString *s, NSRect rect, CGFloat size,
     @"controls" : controls,
     @"panels" : panels,
     @"drawings" : waves,
+    @"effect_titles" : [effectTitles_.labels valueForKey:@"text"]?:@[],
+    @"effect_title_overlay_ignores_mouse" : @YES,
     @"active_controls_in_bounds" : @(bounds),
     @"sprites_loaded" : @(images),
     @"image_dimensions_match_original_pixels" : @(pixelSizes),

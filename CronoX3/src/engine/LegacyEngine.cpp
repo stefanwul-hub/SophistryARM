@@ -1,4 +1,5 @@
 #include "LegacyEngine.h"
+#include "CronoXLoopDisplay.h"
 #include "AudioFloatMode.h"
 #include "../lifter/LifterRuntime.h"
 #include "GuestAllocator.h"
@@ -102,7 +103,13 @@ struct LegacyEngine::Impl {
   EditorDrawing *activeDrawing = nullptr;
   float drawX = 0, drawY = 0;
   bool drawPoint = false;
-  U32 editorRevision = 0;
+  U32 editorRevision = 0, waveformRevision = 0;
+  U64 waveformEnvelopeBuilds = 0, waveformEnvelopeCacheHits = 0;
+  struct EnvelopeCache {
+    std::vector<U32> key;
+    std::array<std::array<float,2>,316> columns{};
+  };
+  std::map<unsigned,EnvelopeCache> envelopes;
   U32 masterGainParameter = 0;
   double preMasterGain = 1;
   U64 masterGainConversions = 0;
@@ -1914,6 +1921,7 @@ void LegacyEngine::restoreChunk(const std::vector<std::uint8_t> &chunk,
         "Original engine did not accept the complete state");
   impl_->refreshMasterGain();
   ++impl_->editorRevision;
+  ++impl_->waveformRevision;
   // Original CronoX drawing bindings are ported independently of state restore.
 }
 std::string LegacyEngine::presetName() {
@@ -2238,7 +2246,7 @@ LegacyEngine::completeEditor(unsigned page,
     const unsigned g = placed.control.tag - 815;
     if (g > 1)
       continue;
-    auto drawing = editorDrawing(8 + g);
+    auto drawing = editorDrawing(8 + g,betweenControls);
     if (drawing.sourceFrames) {
       const auto &cached = impl_->drawings.at(8 + g);
       state.waveforms[g] = {cached.first, cached.span, drawing.sourceFrames,
@@ -2274,6 +2282,9 @@ void LegacyEngine::setEditorString(U32 tag, const std::string &text) {
   impl_->initialize();
   if (!completeControlStringEditable(tag) || text.size() >= 320 || text.find('\0') != std::string::npos)
     throw std::out_of_range("Invalid original editor text edit");
+  // 953..960 are numeric display aliases. Edit the underlying original
+  // sample/loop/crossfade parameter, whose normalization depends on sample size.
+  tag=cronoxLoop::aliasParameter(tag);
   const U32 parameter = impl_->run(0x1b16e, {object, tag});
   const U32 definition = parameter ? impl_->word(parameter + 0x10) : 0;
   const U32 kind = definition ? impl_->word(definition) : 0;
@@ -2288,7 +2299,10 @@ void LegacyEngine::setEditorString(U32 tag, const std::string &text) {
     if (!(scale > 0)) scale = 1;
     I32 target = metadata.value; bool found = numeric;
     if (numeric) target = I32(std::llround(std::clamp(parsed * scale, double(metadata.minimum), double(metadata.maximum))));
-    const U32 previous = impl_->word(parameter + 0x14); float normalized = 0;
+    std::array<std::uint8_t,28> previous{};
+    std::memcpy(previous.data(),impl_->data(parameter,previous.size()),previous.size());
+    auto restore=[&]{impl_->put(parameter,previous);};
+    float normalized = 0;
     try {
       if (!found && std::int64_t(metadata.maximum)-metadata.minimum < 256) {
         auto trim = [](std::string value) {
@@ -2296,16 +2310,17 @@ void LegacyEngine::setEditorString(U32 tag, const std::string &text) {
           return lower(begin==std::string::npos?std::string():value.substr(begin,end-begin+1));
         };
         for (I32 value=metadata.minimum;value<=metadata.maximum;++value) {
-          impl_->put(parameter+0x14,U32(value));
+          impl_->run(0x131e8,{parameter,U32(value)});
           if(trim(impl_->editorText(0x1c6cc,tag))==trim(text)) { target=value;found=true;break; }
         }
       }
       if (!found) throw std::out_of_range("Invalid original numeric display value");
-      // Only read the original normalization with a temporary raw value; the
-      // original internal setter applies the final edit and its notifications.
-      impl_->put(parameter+0x14,U32(target)); normalized=impl_->editorNormalized(tag);
-      impl_->put(parameter+0x14,previous);
-    } catch (...) { impl_->put(parameter+0x14,previous);throw; }
+      // setValue computes the original cached normalized value (+8). Changing
+      // only raw (+0x14) left that cache unchanged and made text edits no-ops.
+      // Restore the complete parameter before applying the notifying setter.
+      impl_->run(0x131e8,{parameter,U32(target)});normalized=impl_->editorNormalized(tag);
+      restore();
+    } catch (...) { restore();throw; }
     impl_->editorParameter(tag,normalized);return;
   }
   constexpr U32 buffer = 0x5d6000;
@@ -2321,6 +2336,7 @@ void LegacyEngine::setEditorString(U32 tag, const std::string &text) {
   catch (...) { impl_->run(dtor, {buffer}); throw; }
   impl_->run(dtor, {buffer});
   ++impl_->editorRevision;
+  ++impl_->waveformRevision;
 }
 void LegacyEngine::editorAction(unsigned key) {
   impl_->initialize();
@@ -2343,6 +2359,7 @@ void LegacyEngine::editorAction(unsigned key) {
   if (!handled)
     throw std::runtime_error("Original editor command was not handled");
   ++impl_->editorRevision;
+  ++impl_->waveformRevision;
 }
 EditorFileInfo LegacyEngine::editorFileInfo(U32 tag, unsigned operation) {
   return impl_->performEditorFile(tag, operation, {});
@@ -2412,91 +2429,96 @@ float LegacyEngine::editorKnob(unsigned key, int x, int y) {
   return std::clamp(result, 0.f, 1.f);
 }
 EditorDrawing LegacyEngine::editorDrawing(unsigned id) {
+  return editorDrawing(id,{});
+}
+EditorDrawing LegacyEngine::editorDrawing(unsigned id,const std::function<void()>& betweenColumns) {
   impl_->initialize();
-  if (id > 9)
-    throw std::out_of_range("Unknown original drawing");
+  if(id>9)throw std::out_of_range("Unknown original drawing");
   EditorDrawing out;
-  float viewportFirst = 0, viewportSpan = 0;
-  constexpr U32 ctl = 0x5b0000, ctx = 0x5b0200, values = 0x5b0400,
-                rect = 0x5b0300;
-  std::vector<U32> key{impl_->editorRevision};
-  U32 wave = 0;
-  std::array<float, 6> normalized{};
-  if (id < 8) {
-    auto xy = id < 6 ? editorXY(0)[id] : editorXY(1)[id - 6];
-    normalized[0] = impl_->editorNormalized(xy.xTag);
-    normalized[1] = impl_->editorNormalized(xy.yTag);
-    out.width = out.height = xy.size;
+  float viewportFirst=0,viewportSpan=0;
+  constexpr U32 ctl=0x5b0000,ctx=0x5b0200,values=0x5b0400,rect=0x5b0300;
+  std::vector<U32> key{id<8?impl_->editorRevision:impl_->waveformRevision};
+  U32 wave=0,samples=0;
+  std::array<float,6> normalized{};
+  if(id<8) {
+    auto xy=id<6?editorXY(0)[id]:editorXY(1)[id-6];
+    normalized[0]=impl_->editorNormalized(xy.xTag);normalized[1]=impl_->editorNormalized(xy.yTag);
+    out.width=out.height=xy.size;
   } else {
-    const U32 g = id - 8;
-    wave = impl_->word(object + 0x67920c + 4 * g);
-    out.width = 316;
-    out.height = 92;
-    if (!wave || !impl_->word(wave + 0x210) ||
-        I32(impl_->word(wave + 0x20c)) < 1000 || !impl_->word(wave + 0x21c))
-      return out;
-    out.sourceFrames = impl_->word(wave + 0x21c);
-    out.sampleRate = impl_->word(wave + 0x20c);
-    key.insert(key.end(), {wave, impl_->word(wave + 0x210), out.sourceFrames,
-                           out.sampleRate});
-    const unsigned tags[] = {815 + g, 817 + g, 819 + g,
-                             835 + g, 949 + g, 951 + g};
-    for (unsigned i = 0; i < 6; ++i)
-      normalized[i] = impl_->editorNormalized(tags[i]);
+    const U32 g=id-8;wave=impl_->word(object+0x67920c+4*g);
+    out.width=316;out.height=92;
+    if(!wave || !(samples=impl_->word(wave+0x210)) ||
+       I32(impl_->word(wave+0x20c))<1000 || !impl_->word(wave+0x21c))return out;
+    out.sourceFrames=impl_->word(wave+0x21c);out.sampleRate=impl_->word(wave+0x20c);
+    key.insert(key.end(),{wave,samples,out.sourceFrames,out.sampleRate});
+    const unsigned tags[]={815+g,817+g,819+g,835+g,949+g,951+g};
+    for(unsigned i=0;i<6;++i)normalized[i]=impl_->editorNormalized(tags[i]);
   }
-  for (auto n : normalized)
-    key.push_back(bits32(n));
-  auto cached = impl_->drawings.find(id);
-  if (cached != impl_->drawings.end() && cached->second.key == key)
-    return cached->second.drawing;
-  impl_->zero(ctl, 0x3000);
-  impl_->put(ctl, U32(0x125168)); // original sample display vtable
-  impl_->put(ctl + 8, U32(0));
-  impl_->put(ctl + 12, U32(0));
-  impl_->put(ctl + 16, out.width);
-  impl_->put(ctl + 20, out.height);
-  impl_->put(ctl + 0x94, values);
-  impl_->put(ctl + 0xc4, U32(6));
-  for (unsigned i = 0; i < 6; ++i)
-    impl_->put(values + i * 24 + 12, normalized[i]);
-  impl_->put(ctl + 0xe4, U32(0xfff0f0f0));
-  impl_->put(ctx + 0x34, U32(1));
-  impl_->put(ctx + 0x38, U32(0xfff0f0f0));
-  struct Scope {
-    Impl *p;
-    ~Scope() { p->activeDrawing = nullptr; }
-  } scope{impl_.get()};
-  impl_->activeDrawing = &out;
-  if (id < 8) {
-    const I32 x = I32(normalized[0] * (float(out.width) * 0.9999f));
-    const I32 y = I32(out.height) -
-                  I32(normalized[1] * (float(out.height) * 0.9999f)) - 1;
-    impl_->run(0x940c6, {ctl, ctx, U32(x), U32(y), 1});
-    impl_->run(0x940c6, {ctl, ctx, U32(x), U32(y), 0});
+  for(auto n:normalized)key.push_back(bits32(n));
+  auto cached=impl_->drawings.find(id);
+  if(cached!=impl_->drawings.end()&&cached->second.key==key)return cached->second.drawing;
+  auto control=[&] {
+    impl_->zero(ctl,0x3000);impl_->put(ctl,U32(0x125168));
+    impl_->put(ctl+16,out.width);impl_->put(ctl+20,out.height);
+    impl_->put(ctl+0x94,values);impl_->put(ctl+0xc4,U32(6));
+    for(unsigned i=0;i<6;++i)impl_->put(values+i*24+12,normalized[i]);
+    impl_->put(ctl+0xe4,U32(0xfff0f0f0));impl_->put(ctx+0x34,U32(1));impl_->put(ctx+0x38,U32(0xfff0f0f0));
+    if(id>=8) {
+      impl_->put(ctl+0xdc,out.width);impl_->put(ctl+0xf4,object+0x67920c+(id-8)*4);
+      impl_->put(ctl+0x100,U32(0x5b1000));impl_->put(ctl+0xfc,U32(0x5b2000));
+      impl_->put(ctl+0x104,std::uint8_t(1)); // createLopEdits explicitly selects differential display.
+      impl_->put(ctl+0x108,float(out.sampleRate));impl_->put(ctl+0x10c,out.sourceFrames);
+      impl_->put(ctl+0x114,float(out.sourceFrames)/out.sampleRate);
+      impl_->put(ctl+0xe8,U32(0xfff5f0f0));impl_->put(ctl+0xec,U32(0xff646464));impl_->put(ctl+0xf0,U32(0xff7df578));
+      impl_->put(rect+8,out.width);impl_->put(rect+12,out.height);
+    }
+  };
+  control();
+  if(id>=8) {
+    impl_->run(0x9d0f6,{ctl,0x5b3000,0x5b3010});
+    viewportFirst=impl_->read<float>(0x5b3000);viewportSpan=impl_->read<float>(0x5b3010)-viewportFirst;
+    const std::vector<U32> envelopeKey{impl_->waveformRevision,wave,samples,out.sourceFrames,out.sampleRate,
+                                      bits32(normalized[4]),bits32(normalized[5])};
+    Impl::EnvelopeCache envelope;
+    const auto previous=impl_->envelopes.find(id);
+    if(previous!=impl_->envelopes.end()&&previous->second.key==envelopeKey) {
+      envelope=previous->second;++impl_->waveformEnvelopeCacheHits;
+    } else {
+      envelope.key=envelopeKey;
+      // 0x9d83c pixel traversal with 0x9c8c4's exact differential extrema.
+      // Native UI arithmetic avoids replaying a sample-length instruction loop
+      // under the audio mutex. Each completed column is a safe yield boundary.
+      float first=float(out.sampleRate)*viewportFirst;
+      const float last=float(out.sourceFrames)-1.f,step=viewportSpan/float(out.width);
+      if(first<last)for(unsigned x=0;x<out.width;++x) {
+        const float next=first+float(out.sampleRate)*step;
+        envelope.columns[x]=cronoxLoop::column(first,std::min(next,last),[&](int index) {
+          if(index<0 || U32(index)>=out.sourceFrames)throw std::runtime_error("Original waveform index out of range");
+          return impl_->read<float>(samples+U32(index)*4);
+        });
+        if(betweenColumns)betweenColumns();
+        if(next>=last)break;
+        first=next;
+      }
+      impl_->envelopes[id]=envelope;++impl_->waveformEnvelopeBuilds;
+    }
+    // A yielding caller may have used the original scratch region for another
+    // completed getter. Rebuild the drawing adapter only after all yields.
+    control();
+    for(unsigned x=0;x<out.width;++x) {
+      impl_->put(0x5b1000+x*4,envelope.columns[x][0]);impl_->put(0x5b2000+x*4,envelope.columns[x][1]);
+    }
+  }
+  struct Scope {Impl* p;~Scope(){p->activeDrawing=nullptr;}} scope{impl_.get()};
+  impl_->activeDrawing=&out;
+  if(id<8) {
+    const I32 x=I32(normalized[0]*(float(out.width)*.9999f)),y=I32(out.height)-I32(normalized[1]*(float(out.height)*.9999f))-1;
+    impl_->run(0x940c6,{ctl,ctx,U32(x),U32(y),1});impl_->run(0x940c6,{ctl,ctx,U32(x),U32(y),0});
   } else {
-    impl_->put(ctl + 0xdc, out.width);
-    impl_->put(ctl + 0xf4, object + 0x67920c + (id - 8) * 4);
-    impl_->put(ctl + 0x100, U32(0x5b1000));
-    impl_->put(ctl + 0xfc, U32(0x5b2000));
-    impl_->put(ctl + 0x104, std::uint8_t(1));
-    impl_->put(ctl + 0x108, float(out.sampleRate));
-    impl_->put(ctl + 0x10c, out.sourceFrames);
-    impl_->put(ctl + 0x114, float(out.sourceFrames) / out.sampleRate);
-    impl_->put(ctl + 0xe8, U32(0xfff0f5f0));
-    impl_->put(ctl + 0xec, U32(0xff646464));
-    impl_->put(ctl + 0xf0, U32(0xff7df578));
-    impl_->run(0x9d0f6, {ctl, 0x5b3000, 0x5b3010});
-    float first = impl_->read<float>(0x5b3000),
-          span = impl_->read<float>(0x5b3010) - first;
-    viewportFirst = first;
-    viewportSpan = span;
-    impl_->put(rect, U32(0));
-    impl_->put(rect + 4, U32(0));
-    impl_->put(rect + 8, out.width);
-    impl_->put(rect + 12, out.height);
-    impl_->run(0x9d83c, {ctl, ctx, rect, bits32(first), bits32(span)});
+    impl_->run(0x9d58c,{ctl,ctx,rect,bits32(viewportFirst),bits32(viewportSpan)});
+    impl_->run(0x9cbb6,{ctl,ctx,bits32(viewportFirst),bits32(viewportSpan)});
   }
-  impl_->drawings[id] = {std::move(key), out, viewportFirst, viewportSpan};
+  impl_->drawings[id]={std::move(key),out,viewportFirst,viewportSpan};
   return out;
 }
 void LegacyEngine::setSampleRate(float rate) {
@@ -2795,6 +2817,8 @@ std::string LegacyEngine::diagnosticJson() const {
     << ",\"voice_activity\":" << impl_->voiceActivityJson()
     << ",\"initialized\":" << (impl_->initialized ? "true" : "false")
     << ",\"active\":" << (impl_->active ? "true" : "false")
+    << ",\"waveform_envelope_builds\":" << impl_->waveformEnvelopeBuilds
+    << ",\"waveform_envelope_cache_hits\":" << impl_->waveformEnvelopeCacheHits
     << ",\"pre_master_gain_db\":" << impl_->config.preMasterGainDb
     << ",\"pre_master_gain_conversions\":" << impl_->masterGainConversions
     << ",\"timer_callbacks\":" << impl_->timerCallbacks

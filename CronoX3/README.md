@@ -1,23 +1,21 @@
-# CronoX 3 ARM64 — CRX007
+# CronoX 3 ARM64 — CRX008
 
-CRX007 corrige les sept points signalés après le test réussi de CRX006 dans l’hôte :
+CRX008 corrige les cinq points signalés après CRX007 :
 
-- +6 dB fixe avant le Master, avec les valeurs, l’automation et les états sauvegardés du Master conservés.
-- Nom du preset lu dans le format original et mémorisé au rappel ; « unknown » n’est plus considéré comme un nom valide.
-- Deux colonnes File du sampler restaurées : 16 champs récupérés dans le constructeur CLabelPl original.
-- Police Helvetica d’origine, tailles de 9 à 14 points suivant les champs ; colonnes File à 10 points et valeurs usuelles à 11 points.
-- Suppression du texte « off » superposé aux boutons Chord et ECS ; leurs menus restent actifs.
-- Boutons Charger un son…, Banque de sons… et Copier le diagnostic centrés entre le bas du clavier et le bas de la fenêtre.
-- Pied de fenêtre : « CronoX 3 ARM64 port OA 2026 . CRX007 ».
+- Loop Sampler : repères de boucle dessinés par la routine originale, déplacement à la souris et saisie en cliquant sur les valeurs numériques. Les limites et le positionnement restent gérés par les paramètres originaux.
+- Forme d’onde : cache conservé quand seuls les repères ou d’autres paramètres changent ; calcul d’affichage extrait du code original et lectures découpées pour laisser travailler l’audio.
+- Main : banque sur la première ligne, preset sur la seconde, textes centrés. Le dossier du preset sélectionné est mémorisé dans l’état AU.
+- Main : noms d’effets dessinés par-dessus les commandes avec assez de place, sans changer les zones de clic des menus.
+- Pied réduit à 9 points et abaissé au niveau des boutons : « CronoX 3 ARM64 port OA 2026 . CRX008 ».
 
-Quitter Logic et Live, décompacter le ZIP `Demarrer-CronoX-CRX007.zip`, puis ouvrir `Demarrer-CronoX-CRX007.command`. Le lanceur télécharge les sources épinglées et vérifie leur SHA256. Il conserve le projet et les objets compilés sous `~/CronoX3-ARM64/projet`, lance la compilation ARM64, les tests C++, la prévalidation Cocoa/audio, l’installation transactionnelle et `auval -v aumu CrT3 LinP`. Le mot de passe administrateur sert à la copie dans `/Library`. Les rapports ZIP sont enregistrés sur le Bureau. En cas d’échec, la version ARM Test précédente est conservée ou restaurée.
+Quitter Logic et Live, décompacter `Demarrer-CronoX-CRX008.zip`, puis ouvrir `Demarrer-CronoX-CRX008.command`. Le lanceur vérifie les sources épinglées, conserve le projet/cache dans `~/CronoX3-ARM64/projet`, compile pour ARM64, teste les commandes, les boucles, la vue Cocoa et le rendu audio. Il installe avec sauvegarde transactionnelle et exécute `auval -v aumu CrT3 LinP`. Les rapports ZIP sont créés sur le Bureau. En cas d’échec, la version ARM Test précédente est conservée ou restaurée.
 
-Le composant est **CronoX 3 ARM Test**, identité **aumu/CrT3/LinP**, bundle `com.linplug.au.CronoX3.ARMTest`, installé dans `/Library/Audio/Plug-Ins/Components/CronoX 3 ARM Test.component`. CronoX 3 original **CrX3** et **Sophistry CP038** sont préservés. L’identifiant original sera rétabli après validation finale pour la restauration des anciens projets. Les états de test restent identifiés CrT3.
+Composant **CronoX 3 ARM Test**, identité **aumu/CrT3/LinP**, bundle `com.linplug.au.CronoX3.ARMTest`, fichier `/Library/Audio/Plug-Ins/Components/CronoX 3 ARM Test.component`. CronoX original **CrX3** et **Sophistry CP038** sont préservés. Les identifiants d’origine seront rétablis après validation finale pour rouvrir les anciens projets. Les états de test restent identifiés CrT3.
 
-Les préférences de test utilisent `com.linplug.CronoX3.ARMTest`. Le moteur peut lire la licence déjà enregistrée dans `com.linplug.CronoX3`, sans écrire dans ce domaine. Les vérifications originales restent en place. Aucune clé ni préférence privée ne doit être publiée. « Banque de sons… » permet de changer le dossier de la banque ARM Test.
+Le gain de **+6 dB avant le Master** de CRX007 est conservé, avec les valeurs, l’automation et la sérialisation originales du Master. Les 413 unités du moteur audio traduit sont inchangées. La correction de calcul concerne l’affichage. Préférences de test : `com.linplug.CronoX3.ARMTest`, avec lecture possible de la licence originale sans écriture dans `com.linplug.CronoX3`. Aucune clé ni préférence privée ne doit être transmise ou publiée.
 
-L’interface comprend Main, Gen 1+2, Gen 3+4, Filters, Effects, Modulation, Settings, le clavier et la vue 5.1. Panneaux, styles, coordonnées, menus, chaînes et dessins proviennent des routines originales traduites ; l’affichage et les gestes sont adaptés en Cocoa. Le navigateur de dossiers/catégories d’origine est remplacé par la sélection native FXP/AU et Prev/Load/Next/Save. Le moteur traduit comprend 413 unités C++, 211 282 instructions i386 et 786 267 opérations p-code, compilées pour ARM64, sans décodeur x86 à l’exécution. Ces unités n’ont pas changé depuis CRX001 ; le gain CRX007 est appliqué à la conversion du coefficient du Master dans l’adaptateur des imports.
+L’interface comprend les sept pages, le clavier et la vue 5.1. Le navigateur original reste adapté en choix natif FXP/AU et Prev/Load/Next/Save. Pour un FXP, la banque affichée est son dossier ; cette information est conservée au rappel des nouveaux états AU. Un ancien état sans ce nom utilise le dossier de sons configuré en repli.
 
-Résultats : l’utilisateur a validé CRX005 pour l’Audio Unit, le son et plusieurs presets, avec une comparaison favorable non exhaustive. Il confirme le fonctionnement et l’affichage de CRX006. Les tests de développement CRX007 passent : 107 configurations d’interface, 54 cas de gain, 15 volumes sans modification et rappel de banque avec données inchangées. Le composant et les sondes passent la compilation et le lien strict Mach-O ARM64 ; les 110 images originales et les 3 symboles exportés sont contrôlés. **L’exécution Cocoa et auval de CRX007 restent à effectuer sur le Mac utilisateur.** Aucune équivalence sonore exhaustive ni comparaison CPU définitive n’est annoncée.
+Tests acquis : 107 configurations, 54 cas de gain, 15 volumes inchangés, 28 régressions et Bash 3.2. Le nouveau test compare 164 colonnes d’extrema et les tracés complets à l’exécution originale sur quatre vues ; il vérifie les éditions et intercale 316 rendus aux frontières du zoom. Compilation et lien strict Mach-O ARM64 réussis ; 110 images et trois symboles exportés vérifiés. **Cocoa, auval et les manipulations/audio CRX008 doivent encore être exécutés sur votre Mac.** Les mesures de développement ne mesurent pas le CPU dans Live ni une conformité sonore exhaustive.
 
-Checkpoints et reprise : `CRX_REPRISE.md`, `cronox-status.json`, `checkpoints/cronox/UI-Recovery-CRX007.tar.gz` et les preuves `evidence/cronox-crx007-*.json`. Les versions antérieures et leurs lanceurs restent disponibles.
+Reprise : `CRX_REPRISE.md`, `cronox-status.json`, `evidence/cronox-crx008-*.json` et `checkpoints/cronox/`. CRX007 reste disponible comme point de retour.

@@ -1,0 +1,62 @@
+{
+  "checkpoint": "CRX008",
+  "scope": "Linux translated-engine and original graphics comparisons; mocked shell orchestration; no macOS execution",
+  "passed": true,
+  "loop_sampler": {
+    "passed": true,
+    "original_extrema_columns_bit_equal": 164,
+    "original_zoom_scroll_views": 4,
+    "complete_original_wave_paths_bit_equal": true,
+    "loop_start_end_markers": true,
+    "numeric_and_graphical_edits": true,
+    "marker_edits_reuse_sample_envelope": true,
+    "waveform_safe_boundaries": 164,
+    "rendered_at_zoom_boundaries": 316,
+    "original_full_wave_replay_ms": 39.4719,
+    "largest_zoom_read_section_ms": 2.71093,
+    "timings_are_machine_local": true,
+    "macos_host": false,
+    "macos_ui_executed": false
+  },
+  "editor_bindings": {
+    "passed": true,
+    "pages_and_modes": 107,
+    "unique_tags": 863,
+    "choice_reads": 2576,
+    "safe_boundaries": 6329,
+    "original_drawings": 10,
+    "edit_cases": 15,
+    "program_unchanged_by_ui_reads": true,
+    "macos_ui_executed": false
+  },
+  "retained_crx007_corrections": {
+    "passed": true,
+    "pre_master_signal_cases": 54,
+    "unaffected_other_volume_controls": 15,
+    "master_and_serialized_state_preserved": true,
+    "original_sampler_filename": true,
+    "sampler_font_fields": 16,
+    "font_family": "Helvetica",
+    "gain_conversions": 21,
+    "macos_ui_executed": false
+  },
+  "build_shell": {
+    "scope": "Build shell orchestration with mocked Apple tools only",
+    "bash": "GNU bash, version 3.2.0(2)-release (x86_64-unknown-linux-gnu)",
+    "baseline_failure_reproduced": false,
+    "cold_compilation_units": 14,
+    "cpp_and_objcpp_flags_preserved": true,
+    "empty_compiler_arguments": 0,
+    "paths_with_spaces_passed": true,
+    "warm_object_cache_reused": true,
+    "single_source_invalidation_passed": true,
+    "macos_execution": false,
+    "auval_executed": false,
+    "passed": true
+  },
+  "python_regression_tests": 28,
+  "python_regressions_passed": true,
+  "macos_runtime_executed": false,
+  "auval_executed": false,
+  "core_archive_sha256": "0897c74f4f6c41b6afe716fff9986cb4d8c507306af420416afd043e88a45c61"
+}

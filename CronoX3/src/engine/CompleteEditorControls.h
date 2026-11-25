@@ -139,13 +139,14 @@ inline bool completeControlEditable(unsigned tag) {
         return true;
     }
   // Y axes and original viewport aliases are not standalone widgets.
-  return (tag >= 523 && tag <= 578) || (tag >= 585 && tag <= 600) ||
+  return (tag >= 815 && tag <= 820) || tag==835 || tag==836 ||
+         (tag >= 523 && tag <= 578) || (tag >= 585 && tag <= 600) ||
          (tag >= 940 && tag <= 957) || tag == 610;
 }
 inline bool completeControlStringEditable(unsigned tag) {
   if (tag == 766)
     return false;
-  if (tag == 648 || (tag >= 953 && tag <= 958))
+  if (tag == 648 || (tag >= 953 && tag <= 960))
     return true; // Original arpeggiator bytes and loop-marker display aliases.
   for (const auto &c : recoveredControls())
     if (c.tag == tag &&

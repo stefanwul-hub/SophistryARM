@@ -244,6 +244,7 @@ EditorFileInfo LegacyEngine::Impl::performEditorFile(U32 tag,
       throw std::runtime_error(
           "The original module loader rejected the file type or size");
     ++editorRevision;
+    if (!editorFileDescription.save) ++waveformRevision;
   }
   return editorFileDescription;
 }

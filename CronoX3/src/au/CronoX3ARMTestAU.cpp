@@ -165,7 +165,7 @@ class CronoX3ARMTestAU final : public ausdk::MusicDeviceBase {
   double previousSample_ = 0;
   bool rendered_ = false;
   std::string lastError_;
-  std::string lastKnownPresetName_;
+  std::string lastKnownPresetName_,lastKnownBankName_;
   std::vector<std::uint8_t> lastRestoredChunk_;
   bool lastRestoredProgram_ = false, stateLoaded_ = false;
   std::uint64_t restoreAttempts_ = 0, notesReceived_ = 0, renderCalls_ = 0;
@@ -204,6 +204,7 @@ class CronoX3ARMTestAU final : public ausdk::MusicDeviceBase {
         bytes == lastRestoredChunk_ && program == lastRestoredProgram_
             ? lastKnownPresetName_
             : std::string();
+    const auto previousBank=bytes==lastRestoredChunk_&&program==lastRestoredProgram_?lastKnownBankName_:std::string();
     lastRestoredChunk_ = bytes;
     lastRestoredProgram_ = program;
     if (countAttempt)
@@ -214,6 +215,7 @@ class CronoX3ARMTestAU final : public ausdk::MusicDeviceBase {
     engine_.restoreChunk(bytes, program);
     syncParameters();
     lastKnownPresetName_ = engine_.presetName();
+    lastKnownBankName_=previousBank;
     if (!usablePresetName(lastKnownPresetName_) &&
         !previousLabel.empty())
       lastKnownPresetName_ = previousLabel;
@@ -229,6 +231,7 @@ class CronoX3ARMTestAU final : public ausdk::MusicDeviceBase {
     std::ostringstream out;
     out << "{\"wrapper_version\":" << jsonText(sophistry::wrapperVersion)
         << ",\"preset_name\":" << jsonText(lastKnownPresetName_)
+        << ",\"preset_bank_name\":" << jsonText(lastKnownBankName_)
         << ",\"state_loaded\":" << (stateLoaded_ ? "true" : "false")
         << ",\"restore_attempts\":" << restoreAttempts_
         << ",\"restore_status\":" << lastRestoreStatus_
@@ -483,6 +486,10 @@ public:
   OSStatus GetPropertyInfo(AudioUnitPropertyID id, AudioUnitScope scope,
                            AudioUnitElement element, UInt32 &bytes,
                            bool &writable) override {
+    if(id==sophistry::presetBankNameProperty) {
+      if(scope!=kAudioUnitScope_Global||element)return kAudioUnitErr_InvalidScope;
+      bytes=sophistry::presetBankNameBytes;writable=true;return noErr;
+    }
     if (id == sophistry::editorPanelProperty || id == sophistry::generatorPanelProperty || id == sophistry::generatorEditProperty) return kAudioUnitErr_InvalidProperty;
     if (id == sophistry::editorKnobProperty) {
       const auto key = element & 2047;
@@ -611,6 +618,13 @@ public:
   }
   OSStatus GetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, void *data) override {
+    if(id==sophistry::presetBankNameProperty) {
+      if(scope!=kAudioUnitScope_Global||element||!data)return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]()->OSStatus {
+        std::memset(data,0,sophistry::presetBankNameBytes);
+        std::memcpy(data,lastKnownBankName_.data(),std::min<std::size_t>(lastKnownBankName_.size(),sophistry::presetBankNameBytes-1));return noErr;
+      });
+    }
     if (id == sophistry::editorPanelProperty || id == sophistry::generatorPanelProperty || id == sophistry::generatorEditProperty) return kAudioUnitErr_InvalidProperty;
     if (id == sophistry::editorKnobProperty) {
       if (scope != kAudioUnitScope_Global || !data || element >> 31)
@@ -684,13 +698,16 @@ public:
       if (scope != kAudioUnitScope_Global || !data ||
           element > (id == sophistry::editorPanelProperty ? 1u : 9u))
         return kAudioUnitErr_InvalidPropertyValue;
-      return guarded([&]() -> OSStatus {
+      return guarded([&](std::unique_lock<std::recursive_mutex>& lock) -> OSStatus {
         if (id == sophistry::editorPanelProperty)
           *static_cast<sophistry::EditorPanelState *>(data) =
               engine_.editorPanel(element);
         else
           *static_cast<sophistry::EditorDrawing *>(data) =
-              engine_.editorDrawing(element);
+              engine_.editorDrawing(element,[&,generation=editorGeneration_] {
+                lock.unlock();std::this_thread::yield();lock.lock();
+                if(generation!=editorGeneration_)throw EditorReadInterrupted{};
+              });
         return noErr;
       });
     }
@@ -773,6 +790,14 @@ public:
   OSStatus SetProperty(AudioUnitPropertyID id, AudioUnitScope scope,
                        AudioUnitElement element, const void *data,
                        UInt32 bytes) override {
+    if(id==sophistry::presetBankNameProperty) {
+      if(scope!=kAudioUnitScope_Global||element||!data||!bytes||bytes>sophistry::presetBankNameBytes)return kAudioUnitErr_InvalidPropertyValue;
+      const auto label=static_cast<const char*>(data);
+      if(label[bytes-1]||std::memchr(label,0,bytes-1))return kAudioUnitErr_InvalidPropertyValue;
+      return guarded([&]()->OSStatus {
+        lastKnownBankName_.assign(label,bytes-1);return noErr;
+      });
+    }
     if (id == sophistry::editorPanelProperty || id == sophistry::generatorPanelProperty || id == sophistry::generatorEditProperty) return kAudioUnitErr_InvalidProperty;
     if (id == sophistry::editorFileProperty) {
       if (scope != kAudioUnitScope_Global || element || !data ||
@@ -1039,6 +1064,11 @@ public:
         CFDictionarySetValue(dict, CFSTR("CronoX3ARMPresetName"), label);
         CFRelease(label);
       }
+      if(!lastKnownBankName_.empty()) {
+        CFStringRef bank=CFStringCreateWithCString(nullptr,lastKnownBankName_.c_str(),kCFStringEncodingUTF8);
+        if(!bank)return OSStatus(-108);
+        CFDictionarySetValue(dict,CFSTR("CronoX3ARMBankName"),bank);CFRelease(bank);
+      }
       // A small vendor metadata field in the standard AU state identifies the
       // code loaded by a remote host without relying on a private property.
       // No runtime status, private settings or bookmark is serialized here.
@@ -1102,6 +1132,7 @@ public:
                    : std::string();
       };
       const auto originalLabel = savedName(CFSTR("CronoX3ARMPresetName"));
+      lastKnownBankName_=savedName(CFSTR("CronoX3ARMBankName"));
       const auto hostLabel = savedName(CFSTR("name"));
       if (usablePresetName(originalLabel))
         lastKnownPresetName_ = originalLabel;

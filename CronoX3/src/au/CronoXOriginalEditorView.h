@@ -20,6 +20,9 @@
   auto status =
       AudioUnitGetProperty(_audioUnit, sophistry::editorDrawingProperty,
                            kAudioUnitScope_Global, _drawingID, &value, &size);
+  // A concurrent edit can interrupt a yielding snapshot. Retain the last
+  // completed drawing and let the next refresh retry, without blanking it.
+  if(status==kAudioUnitErr_CannotDoInCurrentContext)return;
   if (!status && (size != sizeof(value) || value.version != 1 ||
                   value.count > value.lines.size()))
     status = kAudioUnitErr_InvalidPropertyValue;
@@ -65,11 +68,21 @@
   [NSGraphicsContext restoreGraphicsState];
 }
 - (NSDictionary *)report {
+  unsigned loopStart=0,loopEnd=0;
+  for(unsigned i=0;i<drawing_.count;++i) {
+    auto l=drawing_.lines[i];
+    if(l.x1==l.x2&&l.y1==3&&l.y2==float(drawing_.height-1)) {
+      if(l.color==0xff0040ff)++loopStart;
+      if(l.color==0xff4000a0)++loopEnd;
+    }
+  }
   return @{
     @"status" : @(drawingStatus_),
     @"drawing_id" : @(_drawingID),
     @"visible" : @(!self.hidden),
     @"lines" : @(drawing_.count),
+    @"loop_start_marker_lines" : @(loopStart),
+    @"loop_end_marker_lines" : @(loopEnd),
     @"source_frames" : @(drawing_.sourceFrames),
     @"sample_rate" : @(drawing_.sampleRate)
   };

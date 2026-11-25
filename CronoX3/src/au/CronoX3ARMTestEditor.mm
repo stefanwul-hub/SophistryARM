@@ -56,7 +56,7 @@ namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
 @end
 @implementation CronoX3ARMTestEditorView {
   AudioUnit unit_;
-  NSTextField* name_;NSTextField* activity_;NSTextField* notice_;
+  NSTextField* name_;NSTextField* bank_;NSTextField* activity_;NSTextField* notice_;
   NSURL* current_;NSTimer* refresh_;
   NSImage* originalFrame_;
   CronoX3CompletePanel *root_,*panel_,*bottom_;
@@ -75,14 +75,15 @@ namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
   bottom_=[[CronoX3CompletePanel alloc] initWithAudioUnit:unit bundle:bundle];
   bottom_.page=8;bottom_.frame=NSMakeRect(0,348,762,129);bottom_.changeTarget=self;[self addSubview:bottom_];
   browser_=[NSMutableArray array];
-  name_=crxLabel(NSMakeRect(27,228,138,28),@"…",11);[self addSubview:name_];[browser_ addObject:name_];
+  bank_=crxLabel(NSMakeRect(27,228,138,14),@"—",11);bank_.alignment=NSTextAlignmentCenter;[self addSubview:bank_];[browser_ addObject:bank_];
+  name_=crxLabel(NSMakeRect(27,242,138,14),@"…",11);name_.alignment=NSTextAlignmentCenter;[self addSubview:name_];[browser_ addObject:name_];
   const SEL actions[]={@selector(previous:),@selector(load:),@selector(next:),@selector(save:)};
   NSArray* titles=@[@"Prev",@"Load",@"Next",@"Save"];
   for(unsigned i=0;i<4;++i){
     NSButton* b=crxButton(NSMakeRect(21+38*i,265,38,15),@"",self,actions[i]);
     b.bordered=NO;b.toolTip=titles[i];[self addSubview:b];[browser_ addObject:b];
   }
-  [self addSubview:crxLabel(NSMakeRect(10,482,305,16),@"CronoX 3 ARM64 port OA 2026 . CRX007",11)];
+  [self addSubview:crxLabel(NSMakeRect(10,487,305,16),@"CronoX 3 ARM64 port OA 2026 . CRX008",9)];
   [self addSubview:crxButton(NSMakeRect(320,487,132,24),@"Charger un son…",self,@selector(load:))];
   [self addSubview:crxButton(NSMakeRect(458,487,132,24),@"Banque de sons…",self,@selector(bank:))];
   [self addSubview:crxButton(NSMakeRect(596,487,156,24),@"Copier le diagnostic",self,@selector(diagnostic:))];
@@ -126,6 +127,12 @@ namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
     }
   }
   name_.stringValue=cronox::usablePresetName(preset.UTF8String?:"")?preset:@"état initial";
+  NSString* bank=[s[@"preset_bank_name"] isKindOfClass:NSString.class]?s[@"preset_bank_name"]:@"";
+  if(!bank.length) {
+    CFPropertyListRef saved=CFPreferencesCopyValue(CFSTR("CronoX3ARMSampleRoot"),CFSTR("com.linplug.CronoX3.ARMTest"),kCFPreferencesCurrentUser,kCFPreferencesAnyHost);
+    if(saved) {if(CFGetTypeID(saved)==CFStringGetTypeID())bank=[(__bridge NSString*)saved lastPathComponent];CFRelease(saved);}
+  }
+  bank_.stringValue=bank.length?bank:@"—";
   float master=0;BOOL hasMaster=!AudioUnitGetParameter(unit_,134,kAudioUnitScope_Global,0,&master);
   double peak=[s[@"maximum_output"] doubleValue];
   NSString* level=peak>0?[NSString stringWithFormat:@"%.1f dBFS",20*std::log10(peak)]:@"silence";
@@ -164,6 +171,13 @@ namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
   if(importedName.length) {
     AUPreset label{-1,(__bridge CFStringRef)importedName};
     result=AudioUnitSetProperty(unit_,kAudioUnitProperty_PresentPreset,kAudioUnitScope_Global,0,&label,sizeof(label));
+    if(result){notice_.stringValue=crxError(unit_,result);return NO;}
+  }
+  std::array<char,sophistry::presetBankNameBytes> existing{};UInt32 bankBytes=UInt32(existing.size());
+  bool hasBank=!AudioUnitGetProperty(unit_,sophistry::presetBankNameProperty,kAudioUnitScope_Global,0,existing.data(),&bankBytes)&&existing[0];
+  if(importedName.length||!hasBank) {
+    const char* label=url.URLByDeletingLastPathComponent.lastPathComponent.UTF8String;
+    result=AudioUnitSetProperty(unit_,sophistry::presetBankNameProperty,kAudioUnitScope_Global,0,label,UInt32(std::strlen(label)+1));
     if(result){notice_.stringValue=crxError(unit_,result);return NO;}
   }
   current_=url;[self refresh];return YES;
@@ -220,14 +234,15 @@ namespace { NSDictionary *status(AudioUnit unit) { return crxStatus(unit); } }
   [self completeSelectPage:@(original)];return pages;
 }
 - (NSDictionary*)cronoxComparisonReport {
-  NSMutableArray* buttons=[NSMutableArray array];NSString* footer=@"";
+  NSMutableArray* buttons=[NSMutableArray array];NSString* footer=@"";CGFloat footerSize=0,footerY=0;
   for(NSView* v in self.subviews) {
     if([v isKindOfClass:NSButton.class] && v.frame.origin.y>477)
       [buttons addObject:@{@"title":[(NSButton*)v title],@"center_y":@(NSMidY(v.frame))}];
-    if([v isKindOfClass:NSTextField.class] && [[(NSTextField*)v stringValue] hasPrefix:@"CronoX 3 ARM64 port"])
-      footer=[(NSTextField*)v stringValue];
+    if([v isKindOfClass:NSTextField.class] && [[(NSTextField*)v stringValue] hasPrefix:@"CronoX 3 ARM64 port"]) {
+      footer=[(NSTextField*)v stringValue];footerSize=[(NSTextField*)v font].pointSize;footerY=v.frame.origin.y;
+    }
   }
-  return @{@"comparison_view":@YES,@"original_panels_available":@YES,@"original_panel_recovery_complete":@NO,@"subtype":@"CrT3",@"width":@(self.frame.size.width),@"height":@(self.frame.size.height),@"preset_name":name_.stringValue,@"original_font_available":@([NSFont fontWithName:@"Helvetica" size:11]!=nil),@"font_family":@"Helvetica",@"footer":footer,@"utility_buttons":buttons,@"main":[panel_ report],@"shell":[root_ report],@"bottom":[bottom_ report]};
+  return @{@"comparison_view":@YES,@"original_panels_available":@YES,@"original_panel_recovery_complete":@NO,@"subtype":@"CrT3",@"width":@(self.frame.size.width),@"height":@(self.frame.size.height),@"preset_name":name_.stringValue,@"preset_bank_name":bank_.stringValue,@"bank_and_preset_centered":@(bank_.alignment==NSTextAlignmentCenter&&name_.alignment==NSTextAlignmentCenter&&bank_.frame.origin.y<name_.frame.origin.y),@"original_font_available":@([NSFont fontWithName:@"Helvetica" size:11]!=nil),@"font_family":@"Helvetica",@"footer":footer,@"footer_font_size":@(footerSize),@"footer_top":@(footerY),@"utility_buttons":buttons,@"main":[panel_ report],@"shell":[root_ report],@"bottom":[bottom_ report]};
 }
 @end
 @interface CronoX3ARMTestCocoaFactory : NSObject <AUCocoaUIBase>

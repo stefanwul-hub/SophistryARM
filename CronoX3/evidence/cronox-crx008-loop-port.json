@@ -1,0 +1,53 @@
+{
+  "checkpoint": "CRX008",
+  "original_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "original_functions": {
+    "constructor": "0x78c3e createLopEdits",
+    "pixel_traversal": "0x9d83c drawSample",
+    "native_display_extrema_extraction": "0x9c8c4 getMaxMin",
+    "retained_original_painting": "0x9d58c drawAllMinMax",
+    "restored_original_markers": "0x9cbb6 drawLoopPoints",
+    "pointer_selection": "0x9d33e onMouseDown",
+    "pointer_conversion": "0x9d21e onMouseMoved",
+    "numeric_normalizer": "0x131e8 Parameter_c::setValue"
+  },
+  "dsp_units_changed": 0,
+  "pre_master_gain_db": 6,
+  "graphical_marker_tags": [
+    [
+      815,
+      817,
+      819,
+      835
+    ],
+    [
+      816,
+      818,
+      820,
+      836
+    ]
+  ],
+  "numeric_display_aliases": [
+    953,
+    954,
+    955,
+    956,
+    957,
+    958,
+    959,
+    960
+  ],
+  "extrema_cache_key": [
+    "sample identity/revision",
+    "sample pointer/frames/rate",
+    "zoom",
+    "scroll"
+  ],
+  "yield_boundary": "after each completed native display column; original scratch rebuilt after yields",
+  "native_display_extrema_compared_bit_for_bit": true,
+  "original_full_paths_compared_bit_for_bit": true,
+  "comparison_fixture": "Public Lightgarden and BT_cronox18.wav",
+  "comparison_views": 4,
+  "exhaustive_audio_or_timing_equivalence_claimed": false,
+  "current_macos_runtime_validated": false
+}

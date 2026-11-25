@@ -1,6 +1,6 @@
 {
   "project": "CronoX 3 ARM64",
-  "checkpoint": "CRX007",
+  "checkpoint": "CRX008",
   "original_version": "3.6.6",
   "original_architectures": [
     "i386",
@@ -44,7 +44,7 @@
   "original_au_bridge_is_not_native_au": true,
   "editor_bindings_available": true,
   "remaining_work": [
-    "Mac validation of CRX007 corrections, Cocoa, audio and auval",
+    "Mac validation of CRX008 Loop Sampler gestures, audio during edits, Cocoa and auval",
     "Exhaustive original-versus-port comparison remains unverified",
     "Native preset file selection replaces original folder/category browser",
     "Restore original AU identity only after final user validation"
@@ -94,9 +94,15 @@
   "original_ui_panels": 86,
   "original_ui_recorded_controls": 1072,
   "original_ui_pngs": 110,
-  "accepted_ui_reference": "CRX006",
+  "accepted_ui_reference": "CRX007",
   "accepted_ui_reference_user_validated": true,
   "original_ui_control_tags": 877,
-  "last_user_accepted_host_checkpoint": "CRX006",
-  "last_user_accepted_auval_checkpoint": "CRX005"
+  "last_user_accepted_host_checkpoint": "CRX007",
+  "last_user_accepted_auval_checkpoint": "CRX005",
+  "loop_markers_and_numeric_edits_implemented": true,
+  "original_loop_graphics_fixture_paths_verified": true,
+  "waveform_extrema_cache_separated_from_marker_changes": true,
+  "waveform_reads_yield_for_audio": true,
+  "preset_bank_name_persisted": true,
+  "original_dsp_kernel_changed_since_crx001": false
 }
