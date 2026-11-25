@@ -1,0 +1,19 @@
+CronoX 3 ARM64 — CRX007
+
+Quittez Logic et Live. Décompactez ce ZIP puis ouvrez Demarrer-CronoX-CRX007.command.
+Le script télécharge et décompacte les sources, conserve le cache existant,
+compile en ARM64, lance les tests C++, Cocoa, audio et auval, puis installe
+CronoX 3 ARM Test.component dans /Library/Audio/Plug-Ins/Components.
+Seul le composant ARM Test est remplacé ; l’original CrX3 et Sophistry CP038
+restent en place. Le rapport ZIP se trouve sur le Bureau.
+
+Correctifs : +6 dB avant Master, nom des presets, colonnes File du sampler,
+Helvetica et tailles originales, suppression des libellés off Chord/ECS,
+centrage vertical des boutons utilitaires et nouveau pied CRX007.
+Les valeurs et l’automation du Master sont conservées.
+
+Compilation/lien ARM64 et tests de développement vérifiés. La validation
+Cocoa et auval CRX007 sera exécutée par ce script sur votre Mac.
+
+Sources épinglées : 44c95567d5619cb47ba5c4ccf6eec1bcc6aab2fb
+SHA256 archive source : cd26351e8ec12e9cb43ae4fd7d6479a07bd98326f1c8173ccfe64885f357d878
