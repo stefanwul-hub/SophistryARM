@@ -1,0 +1,23 @@
+{
+  "checkpoint": "CRX009",
+  "source_commit": "64eecc90568f64a7f9e94a11b39f17f76b0643cc",
+  "source_archive_sha256": "2d89cb74d684f0acfcb92c9dad9e397e4fcf75f2d5546696af6df2674eceb337",
+  "source_archive_bytes": 74944002,
+  "launcher_zip_sha256": "3508d48111a2f240fd354fdb04e6bfabd98ca03d8d7d1d620d9b802d4cbf243a",
+  "launcher_zip_bytes": 2100,
+  "archive_verification": {
+    "source_commit": "64eecc90568f64a7f9e94a11b39f17f76b0643cc",
+    "zip_sha256": "2d89cb74d684f0acfcb92c9dad9e397e4fcf75f2d5546696af6df2674eceb337",
+    "bytes": 74944002,
+    "all_crc_verified": true,
+    "cronox_files_compared": 264,
+    "all_git_blob_hashes_verified": true,
+    "executable_modes_verified": true,
+    "unrelated_root_entries_preserved": 46
+  },
+  "original_identity_preserved": true,
+  "sophistry_root_untouched": true,
+  "macos_runtime_validated": false,
+  "accepted_audio_reference": "CRX005",
+  "accepted_ui_reference": "CRX008"
+}

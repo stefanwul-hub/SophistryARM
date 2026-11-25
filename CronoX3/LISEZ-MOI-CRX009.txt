@@ -1,0 +1,24 @@
+CronoX 3 ARM64 — CRX009
+
+Quittez Logic et Live, décompactez le ZIP puis ouvrez Demarrer-CronoX-CRX009.command.
+Le script télécharge les sources vérifiées, conserve le cache de compilation,
+compile en ARM64 et lance les tests C++, menus/clavier, Loop Sampler, Cocoa,
+audio et auval. Il installe CronoX 3 ARM Test.component dans
+/Library/Audio/Plug-Ins/Components, avec sauvegarde et récupération de la
+version ARM Test précédente en cas d’échec. Rapport ZIP sur le Bureau.
+CronoX original CrX3 et Sophistry CP038 sont conservés.
+
+Correctifs : menus de banques/presets en cliquant sur leurs noms, rectangles
+et ligne de base d’origine, Helvetica 12 points, gris #D2D2D2 ; clavier animé
+par les notes jouées, avec raccords d’accords extraits du code original.
+Si nécessaire, cliquez sur la ligne de banque puis sur
+« Choisir le dossier des banques… » pour indiquer le dossier des presets.
+Le bouton « Banque de sons… » sert toujours au dossier des samples.
+Gain avant Master +6 dB et corrections du Loop Sampler conservés.
+
+Compilation/lien ARM64 et tests de développement vérifiés. Cocoa et auval
+CRX009 seront exécutés par le script sur votre Mac. Les manipulations et
+l’audio dans vos projets Logic/Live restent à confirmer sur votre machine.
+
+Sources épinglées : 64eecc90568f64a7f9e94a11b39f17f76b0643cc
+SHA256 archive source : 2d89cb74d684f0acfcb92c9dad9e397e4fcf75f2d5546696af6df2674eceb337
