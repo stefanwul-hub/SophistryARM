@@ -166,5 +166,9 @@
   "crx013_hardware_and_arm64_reverb_fixture_blocks": 480,
   "crx013_dsp_arithmetic_changed": false,
   "crx013_original_runtime_dispatch_413_unit_cache_unchanged": true,
-  "crx013_validation_status": "All shipping probes compile/link ARM64; original-instruction reverb and historical probes pass; ready for pinned publication, Mac execution pending"
+  "crx013_validation_status": "Published and direct downloads verified; awaiting user Mac installation, runtime and auval result",
+  "crx013_source_commit": "cf7fcf027da5f2415da11fdda2dad1623044169d",
+  "crx013_launcher_commit": "11303f66c6b627ed858bb83e871a08745aa286ed",
+  "crx013_download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/11303f66c6b627ed858bb83e871a08745aa286ed/CronoX3/Demarrer-CronoX-CRX013.zip",
+  "crx013_public_downloads_verified": true
 }

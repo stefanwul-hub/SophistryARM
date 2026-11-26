@@ -1,5 +1,7 @@
 # CronoX 3 ARM64 — CRX013
 
+[Télécharger le lanceur CRX013](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/11303f66c6b627ed858bb83e871a08745aa286ed/CronoX3/Demarrer-CronoX-CRX013.zip).
+
 CRX013 corrige l’arrêt de compilation d’un outil de validation : le nouvel espace de noms interne de la réverbération pouvait entrer en conflit avec celui de l’interface dans les sondes historiques. Il porte désormais un nom distinct. Les calculs DSP, les paramètres, les queues sonores et la polyphonie sont inchangés par cette correction.
 
 Le rapport CRX012 confirme que le composant avait été construit et signé, puis que CronoXCorrectionsProbe échouait sur huit références ambiguës à cronox. L’installation s’arrêtait avant copie, tests audio et auval ; la version ARM Test précédente est donc conservée. Le message « replacing existing signature » n’était pas la cause.
