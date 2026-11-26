@@ -60,7 +60,7 @@
   "native_kernel_compiled_arm64": true,
   "arm64_instruction_replay_cases": 6228,
   "original_au_bridge_arm64_qemu_passed": true,
-  "native_audio_unit_status": "CRX011 Matrix/arp accepted; CPU unresolved; RV002 fixes standalone RV001 FXP rejection, Mac measurement pending",
+  "native_audio_unit_status": "CRX011 accepted; CPU unresolved; RV003 standalone comparison fixes legacy sample locations for the Intel host",
   "original_preference_writes_isolated": true,
   "original_license_read_fallback": true,
   "original_timer_lifecycle_integrated": true,
@@ -128,7 +128,11 @@
   "rv001_changes_production_component": false,
   "rv001_cpu_measurements_started": false,
   "rv001_diagnostic_failure": "FXP version at12 compared to AU subtype; valid chunk FXP rejected before AU creation",
-  "rv002_diagnostic_macos_executed": false,
+  "rv002_diagnostic_macos_executed": true,
   "rv002_fxp_parser_real_reference_passed": true,
-  "rv002_changes_production_component": false
+  "rv002_changes_production_component": false,
+  "rv002_user_failure_stage": "1/4 Original Intel: old Windows sample path",
+  "rv003_diagnostic_macos_executed": false,
+  "rv003_changes_production_component": false,
+  "rv003_sample_links_tested_without_asset_fallback": true
 }

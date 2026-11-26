@@ -1,0 +1,39 @@
+{
+  "checkpoint": "CRX011 + RV003 standalone sample-path fix",
+  "local_base_commit": "d2fdc69042a0bb5f9a9844517bb6b76119b21fe0",
+  "previous_public_checkpoint": "ae65142bea0981cd22564ffad8436860b78638e9",
+  "user_confirmed_failure": "RV002 / 1 of 4 Original Intel: File error - load failed, old Windows path c:/VSTPlugins/Sophistry",
+  "method": "Private temporary sample symlinks and Intel-host current directory; exact same unmodified AU bank",
+  "original_file_calls": [
+    "stat$INODE64",
+    "fopen"
+  ],
+  "original_dsp_or_file_api_patched": false,
+  "sample_parameters_or_bank_bytes_rewritten": false,
+  "loaded_samples_resolved_using_same_roots_and_duplicate_policy_as_arm": true,
+  "content_verified_before_each_measurement": true,
+  "manifest_and_state_remain_private": true,
+  "sample_folder_preferences_written": false,
+  "sample_folder_bookmark_read_only": true,
+  "licence_values_read_or_published_by_path_preflight": false,
+  "regression_test": "tests/CronoXReverbSamplePathsProbe.cpp",
+  "original_translated_disk_failure_reproduced_and_fixed": true,
+  "full_bank_recall_without_fallback_resolver_passed": true,
+  "au_bank_and_sample_bytes_unchanged": true,
+  "temporary_cleanup_preserves_sample_targets": true,
+  "sanitizers": [
+    "address",
+    "undefined behavior"
+  ],
+  "cross_compilation_and_strict_link": [
+    "arm64",
+    "x86_64"
+  ],
+  "macos_rv003_runtime_executed": false,
+  "production_component_changed": false,
+  "rv001_and_rv002_preserved": true,
+  "sophistry_cp038_frozen": true,
+  "cpu_issue_resolved": false,
+  "publication_scope": "CronoX3/ only; preserve all other root entries",
+  "fresh_bank_recall_has_no_cached_samples_or_resolver_roots": true
+}

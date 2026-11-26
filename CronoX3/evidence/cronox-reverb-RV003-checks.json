@@ -1,0 +1,31 @@
+{
+  "diagnostic": "RV003",
+  "sample_paths": {
+    "passed": true,
+    "original_translated_path_cases": 5,
+    "sample_string_tags_checked": 32,
+    "private_links": 2,
+    "inactive_references_ignored": 2,
+    "original_disk_open_failed_without_alias_and_succeeded_with_alias": true,
+    "full_bank_recall_without_asset_resolver_passed": true,
+    "fresh_recall_has_no_cached_samples_or_resolver_roots": true,
+    "temporary_cleanup_preserved_sample_targets": true,
+    "full_sample_bytes_identical": true,
+    "au_bank_bytes_unchanged": true,
+    "unsafe_alias_inputs_rejected": 3,
+    "native_duplicate_resolution_matches": 4,
+    "licence_or_audio_gate_changed": false,
+    "macos_original_x86_64_au_executed": false
+  },
+  "address_and_undefined_behavior_sanitizers_passed": true,
+  "synthetic_fourfold_ratio_when_banks_and_assets_match": true,
+  "different_sample_manifests_reject_comparison": true,
+  "failed_preflight_rejects_all_cpu_results": true,
+  "macos_runtime_executed": false,
+  "production_component_changed": false,
+  "passed": true,
+  "fxp_header_unchanged_from_rv002": true,
+  "timed_render_loop_unchanged_from_rv002": true,
+  "render_loop_sha256": "9555a544386263e1f264ec6e8942ad4c838ce64042f5bf242b13b49faa327c83",
+  "bash32_syntax_checked": true
+}

@@ -1,0 +1,53 @@
+{
+  "diagnostic": "RV003",
+  "archive": "Diagnostiquer-CronoX-Reverbe-RV003.zip",
+  "bytes": 20478,
+  "sha256": "5c0204f66083d6abff03cddb3b73e61b93e2200b02215ad7c0d74136d4079372",
+  "files": [
+    {
+      "path": "diagnostics/reverb-RV003/LIRE-MOI.txt",
+      "bytes": 3585,
+      "sha256": "73bcd01dff9d52c2d8bc3c91e7bac3992f530953592708038197778392043706",
+      "mode": "0o100644"
+    },
+    {
+      "path": "diagnostics/reverb-RV003/Diagnostiquer-CronoX-Reverbe-RV003.command",
+      "bytes": 5037,
+      "sha256": "d13c7b7478c0c3415bbcdd92eb4bebae5043c24d77a04bce71b9a773ab6f0797",
+      "mode": "0o100755"
+    },
+    {
+      "path": "diagnostics/reverb-RV003/CronoXReverbProbe.mm",
+      "bytes": 21920,
+      "sha256": "2e7cd1b7607042fdf267daa45a4c4e254926804f7e814a80c7fcfc0051836782",
+      "mode": "0o100644"
+    },
+    {
+      "path": "diagnostics/reverb-RV003/CronoXFxpHeader.h",
+      "bytes": 1823,
+      "sha256": "aa2412ea6987a1466890f57f2de5bceda54f38d75e89680505cfe7ead271e094",
+      "mode": "0o100644"
+    },
+    {
+      "path": "diagnostics/reverb-RV003/LegacySamplePaths.h",
+      "bytes": 7445,
+      "sha256": "e91fbd0039f2acf8fc2faa660325cf81963cefe28b929bb621380c3b4b7ccc59",
+      "mode": "0o100644"
+    },
+    {
+      "path": "diagnostics/reverb-RV003/CronoXSampleAliases.h",
+      "bytes": 7280,
+      "sha256": "aa3002c5bf133fcce673fbc19dfd180d8636f63894276c06f8d0b84f91d4038b",
+      "mode": "0o100644"
+    },
+    {
+      "path": "diagnostics/reverb-RV003/summarize.py",
+      "bytes": 5686,
+      "sha256": "935342a5d9c8a6250a8cfffea04bc3650168b71ca0eb6b8b78046ffa3a893db3",
+      "mode": "0o100644"
+    }
+  ],
+  "archive_crc_contents_modes_verified": true,
+  "macos_runtime_executed": false,
+  "production_component_changed": false
+}
