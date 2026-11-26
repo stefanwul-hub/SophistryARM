@@ -1,0 +1,35 @@
+{
+  "project": "Elastik 1 ARM64 port",
+  "authorization": "Explicit standing user authorisation for current and future public publications in this project",
+  "user_message": "Je donne un accord élargi pour toutes les futures publications.",
+  "client_date": "2026-11-27",
+  "client_timezone": "Europe/Paris",
+  "context": "Reply to the request to publish ELA003 detailed analysis and future analysis archives and compiled objects from the same supplied Elastik 1.5.2.3 binary",
+  "repository": "stefanwul-hub/SophistryARM",
+  "branch": "codex/sophistry-native-checkpoints",
+  "directory": "Elastik",
+  "source_material": {
+    "original_version": "1.5.2.3",
+    "installer_sha256": "e72aa430ddb833de7e50d4157962caf45d8f75da105d68969cfad5a0b56c6939",
+    "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920"
+  },
+  "authorised_publication_categories": [
+    "Current and future reverse-engineering notes, schemas, decompilation and disassembly derived from this original binary",
+    "Native port source code and development/build/install scripts",
+    "Verification, audio comparison and profiling reports without private user data",
+    "Compiled ARM64 objects and plugin builds",
+    "Successive source, analysis and checkpoint archives and documentation"
+  ],
+  "includes_previously_pending_ELA003_notes_schemas_reports_and_detailed_archive": true,
+  "ask_again_for_same_publication_scope": false,
+  "excluded": [
+    "User sound banks",
+    "User serial numbers, registration secrets and activation data",
+    "User private preferences and personal project data"
+  ],
+  "frozen_references": {
+    "Sophistry": "CP038",
+    "CronoX3": "CRX013"
+  },
+  "technical_scope_note": "Permission to publish does not assert that the complete native engine or Audio Unit is available, validated, or able to restore old projects."
+}
