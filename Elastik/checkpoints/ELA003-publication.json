@@ -1,0 +1,32 @@
+{
+  "checkpoint": "ELA003",
+  "publication_kind": "Native C++ source and isolated probe only",
+  "base_public_commit": "7195e0a81c34e44d6eadbd0d6e6f6dd6490fd395",
+  "public_tree": "a75f0a7dea8f25bbbb0fed2e78c5b73f31a9c442",
+  "all_previous_files_preserved": true,
+  "unrelated_root_entries_preserved": 47,
+  "Sophistry_CP038_preserved": true,
+  "CronoX_CRX013_tree_unchanged": true,
+  "public_new_files": [
+    "Elastik/ELA003-LISEZ-MOI.txt",
+    "Elastik/Elastik-ELA003-checkpoint.zip",
+    "Elastik/checkpoints/ELA003-code-progress.json",
+    "Elastik/checkpoints/ELA003-download.json",
+    "Elastik/src/OriginalVoiceChunk.cpp",
+    "Elastik/src/OriginalVoiceChunk.h",
+    "Elastik/tests/VoiceChunkProbe.cpp"
+  ],
+  "detailed_analysis_notes_schemas_and_reports_public": false,
+  "detailed_analysis_publication": "Awaiting specific or standing user consent after automatic review rejection",
+  "complete_native_audio_unit_available": false,
+  "public_source_commit": "f4a7376596649dcb359325dee0ba9b6fda5640ce",
+  "direct_code_download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/f4a7376596649dcb359325dee0ba9b6fda5640ce/Elastik/Elastik-ELA003-checkpoint.zip",
+  "private_full_checkpoint": "work/Elastik-ELA003-complete-checkpoint.zip",
+  "comparison_cases_passed_per_platform": 1760,
+  "arm64_test_execution": "Linux AArch64 under QEMU; not macOS Audio Unit validation",
+  "test_infrastructure_note": "One initial QEMU process SIGSEGV; exact case subsequently passed 24 replays, then the whole 1760-case run passed without DSP changes. Cause undetermined.",
+  "download_verified_http_status": 200,
+  "download_verified_bytes": 4127,
+  "download_verified_sha256": "845ca53a9bb19ea2e6005059dd9076a5198ecd6129af597723ab511d16c14a9b",
+  "public_zip_verified_source_and_probe_only": true
+}
