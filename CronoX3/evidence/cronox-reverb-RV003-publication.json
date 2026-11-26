@@ -1,0 +1,42 @@
+{
+  "diagnostic": "RV003",
+  "local_source_commit": "ffae974d9e5b5adf4335e9180a48712d43a9030c",
+  "remote_source_commit": "7539e519cc1c6166fa1786ce54516c2cb5366bf5",
+  "branch": "codex/sophistry-native-checkpoints",
+  "download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/7539e519cc1c6166fa1786ce54516c2cb5366bf5/CronoX3/Diagnostiquer-CronoX-Reverbe-RV003.zip",
+  "archive_bytes": 20478,
+  "archive_sha256": "5c0204f66083d6abff03cddb3b73e61b93e2200b02215ad7c0d74136d4079372",
+  "downloaded_zip_crc_contents_modes_and_sha256_verified": true,
+  "publication_tree": {
+    "base_root": "90103f8e23d2a0a757f35f5dac01c14f5044b02b",
+    "new_root": "171e62d97f08876cfe05b787c90aa968b960b0fb",
+    "unrelated_root_entries_preserved": 46,
+    "only_expected_files_changed": true,
+    "changed_files": [
+      "CRX_REPRISE.md",
+      "Diagnostiquer-CronoX-Reverbe-RV003.zip",
+      "checkpoints/cronox/CRX011-Reverb-RV003.json",
+      "cronox-status.json",
+      "diagnostics/reverb-RV003/CronoXFxpHeader.h",
+      "diagnostics/reverb-RV003/CronoXReverbProbe.mm",
+      "diagnostics/reverb-RV003/CronoXSampleAliases.h",
+      "diagnostics/reverb-RV003/Diagnostiquer-CronoX-Reverbe-RV003.command",
+      "diagnostics/reverb-RV003/LIRE-MOI.txt",
+      "diagnostics/reverb-RV003/LegacySamplePaths.h",
+      "diagnostics/reverb-RV003/summarize.py",
+      "evidence/cronox-reverb-RV003-checks.json",
+      "evidence/cronox-reverb-RV003-cross-link.json",
+      "evidence/cronox-reverb-RV003-package.json",
+      "tests/CronoXReverbSamplePathsProbe.cpp"
+    ],
+    "production_plugin_and_previous_diagnostics_preserved": true,
+    "private_state_or_report_published": false
+  },
+  "original_translated_file_lookup_failure_reproduced_and_fixed_with_private_links": true,
+  "fresh_full_bank_recall_without_sample_cache_or_asset_resolver_passed": true,
+  "sample_bytes_and_au_bank_unchanged": true,
+  "original_dsp_or_file_apis_patched": false,
+  "macos_rv003_execution_pending": true,
+  "cpu_issue_resolved": false,
+  "raw_private_state_or_report_published": false
+}
