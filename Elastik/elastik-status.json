@@ -92,5 +92,9 @@
   "GNArchiver_class_directory_decoder_available": true,
   "GNArchiver_object_bodies_decoded": false,
   "original_typed_integer_roundtrips": 265,
-  "original_typed_string_tests": 5
+  "original_typed_string_tests": 5,
+  "detailed_decompilation_archive_public": true,
+  "detailed_decompilation_archive": "analysis/ELA002-original-state-render-decompiled.zip",
+  "detailed_archive_specific_user_consent": true,
+  "detailed_archive_consent_record": "evidence/ELA002/detailed-archive-publication-consent.json"
 }

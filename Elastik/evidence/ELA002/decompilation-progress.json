@@ -120,6 +120,8 @@
   "translated_complete_dsp_helpers": 1,
   "whole_original_dsp_translated": false,
   "old_project_restored": false,
-  "detailed_archive_publication": "Blocked by automatic approval review pending explicit user consent; retained in local checkpoint",
-  "detailed_archive_in_public_checkpoint_zip": false
+  "detailed_archive_publication": "Explicit user consent received; published as a separate detailed archive",
+  "detailed_archive_in_public_checkpoint_zip": false,
+  "detailed_archive_public": true,
+  "specific_user_consent_record": "evidence/ELA002/detailed-archive-publication-consent.json"
 }

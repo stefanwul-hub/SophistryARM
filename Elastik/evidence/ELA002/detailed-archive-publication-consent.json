@@ -1,0 +1,23 @@
+{
+  "checkpoint": "ELA002",
+  "date": "2026-11-26",
+  "timezone": "Europe/Paris",
+  "evidence_kind": "Explicit user reply in this conversation",
+  "user_message": "J'autorise.",
+  "in_response_to": "Autorisez-vous explicitement la publication publique de l’archive détaillée des décompilations ELA002, actuellement sauvegardée localement ?",
+  "approved_action": "Publish the exact detailed ELA002 decompilation archive in the public GitHub repository",
+  "repository": "stefanwul-hub/SophistryARM",
+  "branch": "codex/sophistry-native-checkpoints",
+  "archive_path": "Elastik/analysis/ELA002-original-state-render-decompiled.zip",
+  "archive_bytes": 237226,
+  "archive_sha256": "9e16585df1c4aab12793443d42f93d59cf4004312e8d352a6645348e7dbc8ccc",
+  "contents": {
+    "distinct_decompiled_functions": 129,
+    "disassembly_included": true,
+    "class_index_included": true,
+    "macos_arm64_object_included": true,
+    "whole_audio_unit_included": false,
+    "user_banks_or_private_preferences_included": false
+  },
+  "scope_note": "Specific consent for the archive identified in the preceding question; no claim of a complete native engine or restored project."
+}

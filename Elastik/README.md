@@ -14,6 +14,6 @@ La sauvegarde contient les scripts, le source C++, les preuves de comparaison, l
 
 [Notes et reproduction ELA002](analysis/ELA002-notes.md) · [Reprise](ELASTIK_REPRISE.md) · [État](elastik-status.json) · [Preuves](evidence/ELA002) · [Source de la routine portée](src/OriginalPlanarSum.cpp)
 
-L’archive détaillée des fonctions décompilées et l’objet Mach-O sont conservés dans la sauvegarde de travail. Leur ajout au dépôt public attend une autorisation spécifique demandée par le contrôle automatique. Le ZIP public ELA002 contient notre code et les preuves ; les archives de décompilation y sont exclues.
+L’[archive détaillée des fonctions décompilées et de l’objet Mach-O ARM64](analysis/ELA002-original-state-render-decompiled.zip) est publiée séparément, après votre autorisation explicite. Elle contient 129 fonctions distinctes avec leur désassemblage et le relevé des classes utiles. L’[autorisation est enregistrée](evidence/ELA002/detailed-archive-publication-consent.json). Le ZIP du checkpoint source ELA002 reste inchangé ; l’archive détaillée se télécharge séparément.
 
 Le checkpoint ELA001 et ses preuves restent conservés. L’existence d’Elastik 3 natif ARM ne démontre pas la reprise des projets Elastik 1.

@@ -2,7 +2,7 @@
 
 Le checkpoint poursuit l’objectif de restauration des projets Elastik 1. Le moteur complet n’est pas disponible. Aucune banque utilisateur ni sauvegarde originale n’a été reçue depuis ELA001. Le code de Sophistry CP038 et de CronoX CRX013 reste figé.
 
-Les métadonnées GNU C++ d’origine permettent maintenant d’identifier 520 enregistrements RTTI et les tables virtuelles de 12 classes utiles. Le relevé est dans `selected-original-classes.json`, à l’intérieur de l’archive locale des décompilations. Le script public `scripts/index_original_classes.py` permet de le reproduire avec le binaire fourni. Il relie des adresses de code à `ETInstrument`, `ETProgram`, `ETInstrumentVoice`, `ETKeyMapping`, au cache de rendu, au pitch shifter, au rééchantillonneur et aux archiveurs.
+Les métadonnées GNU C++ d’origine permettent maintenant d’identifier 520 enregistrements RTTI et les tables virtuelles de 12 classes utiles. Le relevé est dans `selected-original-classes.json`, à l’intérieur de l’[archive détaillée des décompilations](ELA002-original-state-render-decompiled.zip). Le script public `scripts/index_original_classes.py` permet de le reproduire avec le binaire fourni. Il relie des adresses de code à `ETInstrument`, `ETProgram`, `ETInstrumentVoice`, `ETKeyMapping`, au cache de rendu, au pitch shifter, au rééchantillonneur et aux archiveurs.
 
 Le chemin audio relevé dans l’original est :
 
@@ -20,9 +20,9 @@ La routine complète `0x161700..0x161774`, soit 117 octets, est traduite dans `s
 
 Le programme de comparaison exécute ces 117 octets originaux sous Unicorn, sans moteur et sans appels d’hôte. Il compare tous les octets des buffers au C++ compilé. Les 73 cas couvrent 0/1/2/4/16 canaux, les tailles 0/1/7/32/257/1024, le bit de format, les zéros signés, les valeurs subnormales, les chevauchements et une sommation de la boucle WAV incluse. Ils représentent 140 512 mots de stockage float32, avec les zones de garde. Tous concordent sur l’exécutable Linux x86-64 et sur l’exécutable AArch64 exécuté sous QEMU. Ce dernier test n’est pas une exécution macOS. Les NaN, les infinis en entrée et les autres modes flottants ne sont pas validés.
 
-Le même source est compilé en objet Mach-O ARM64, CPU `0x0100000c`, sous-type 0, avec Zig 0.14.1 et son Clang. L’objet est conservé dans l’archive d’analyse locale. Ce fichier `.o` n’est pas un plugin. Aucun `auval`, chargement dans Logic/Live ni rendu complet du moteur n’est établi.
+Le même source est compilé en objet Mach-O ARM64, CPU `0x0100000c`, sous-type 0, avec Zig 0.14.1 et son Clang. L’objet est inclus dans l’archive détaillée d’analyse. Ce fichier `.o` n’est pas un plugin. Aucun `auval`, chargement dans Logic/Live ni rendu complet du moteur n’est établi.
 
-Le contrôle automatique a refusé l’envoi public de l’archive détaillée de décompilation en l’absence d’une autorisation explicite pour ce contenu dérivé du binaire privé. L’archive est conservée pour la reprise et exclue du ZIP public ELA002. Le source C++ que nous avons écrit et les rapports de vérification peuvent être publiés. Les scripts d’analyse permettent de régénérer les décompilations localement à partir de l’original.
+Après le refus initial du contrôle automatique, l’utilisateur a explicitement autorisé la publication publique de cette archive par sa réponse « J’autorise. ». L’archive exacte de 237 226 octets, SHA-256 `9e16585df1c4aab12793443d42f93d59cf4004312e8d352a6645348e7dbc8ccc`, est donc publiée séparément. Le ZIP du checkpoint source ELA002 reste inchangé et exclut les archives détaillées. L’autorisation spécifique figure dans `evidence/ELA002/detailed-archive-publication-consent.json`. Les scripts d’analyse permettent également de régénérer les décompilations localement à partir de l’original.
 
 Pour l’état, `ETInstrument::save` à `0x1b416` utilise `GNKeyValueArchiver` avec l’option 2. `0x155546` forme un graphe sous la clé `objects` ; les entrées portent `@id` et `@isa` (`0x155396`). L’option 2 fait sérialiser ce graphe par `GNArchiver`, à partir de `0x1b5932`. La version 0 du dictionnaire AU ClassInfo et la version 1 de ce flux binaire sont deux niveaux distincts.
 
