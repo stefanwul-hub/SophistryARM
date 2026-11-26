@@ -1,0 +1,11 @@
+CronoX 3 ARM64 — CRX013
+
+Quittez Logic et Live. Décompactez le ZIP puis ouvrez Demarrer-CronoX-CRX013.command.
+
+CRX013 corrige la collision de noms C++ qui bloquait la compilation de CronoXCorrectionsProbe dans CRX012. Le composant et toutes les sondes des scripts ont été recompilés et liés en ARM64. Les calculs de réverbération restent ceux préparés dans CRX012.
+
+Le lanceur télécharge les sources épinglées et vérifiées, conserve le projet et le cache existants, compile, exécute les contrôles et auval, puis met à jour uniquement CronoX 3 ARM Test.component dans /Library/Audio/Plug-Ins/Components. La copie nécessite le mot de passe administrateur de votre Mac. La version ARM Test précédente est conservée ou restaurée en cas d’échec.
+
+Le rapport CronoX3-rapports-CRX013-….zip est créé sur le Bureau. Après installation confirmée, vous pourrez comparer Breath And Butter à l’original. Le gain CPU réel reste à mesurer.
+
+CronoX original CrX3 et Sophistry CP038 sont préservés. Les licences et le dossier de sons restent enregistrés. Ne transmettez jamais de numéro de série ni de préférences privées.
