@@ -1,0 +1,17 @@
+{
+  "checkpoint": "ELA003",
+  "scope": "Native C++ voice-chunk and next-cursor prototype",
+  "new_original_routines_ported": 2,
+  "comparison_cases_passed_per_platform": 1760,
+  "platforms": [
+    "linux-x86_64",
+    "aarch64-linux-under-qemu"
+  ],
+  "macos_arm64_object_compiles": true,
+  "decoded_sample_fixtures_used": true,
+  "whole_engine_or_audio_unit_available": false,
+  "full_analysis_saved_locally": true,
+  "detailed_analysis_publication": "Blocked by automatic approval review; specific or standing user consent requested",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}

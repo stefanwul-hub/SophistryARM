@@ -1,0 +1,16 @@
+Elastik ELA003 — source C++ du traitement de blocs
+
+Cette archive contient notre source natif et son programme d’essai isolé.
+Elle n’est pas un Audio Unit et ne remplace aucun composant installé.
+Les comparaisons locales avec l’original concordent sur 1760 cas, sur x86-64
+et sur ARM64 sous QEMU. L’objet macOS ARM64 compile également.
+Les samples de test sont fournis déjà décodés ; le décodeur de fichiers,
+le cache de pitch et le moteur complet restent à porter.
+
+Compilation avec Xcode depuis le dossier Elastik extrait :
+xcrun clang++ -std=c++17 -O2 -fno-fast-math -ffp-contract=off -fno-vectorize -fno-slp-vectorize src/OriginalVoiceChunk.cpp tests/VoiceChunkProbe.cpp -o VoiceChunkProbe
+
+VoiceChunkProbe utilise un protocole binaire de fixtures de développement.
+Ce programme ne constitue pas une application musicale utilisable seule.
+Le banc complet et les analyses sont enregistrés dans le checkpoint local ;
+leur publication attend la réponse à la demande d’autorisation affichée.

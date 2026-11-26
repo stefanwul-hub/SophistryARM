@@ -1,0 +1,23 @@
+{
+  "checkpoint": "ELA003",
+  "kind": "Public native C++ source and isolated probe only; detailed analysis awaiting consent",
+  "filename": "Elastik-ELA003-checkpoint.zip",
+  "bytes": 4127,
+  "sha256": "845ca53a9bb19ea2e6005059dd9076a5198ecd6129af597723ab511d16c14a9b",
+  "files": [
+    "src/OriginalVoiceChunk.cpp",
+    "src/OriginalVoiceChunk.h",
+    "tests/VoiceChunkProbe.cpp",
+    "ELA003-LISEZ-MOI.txt"
+  ],
+  "detailed_analysis_notes_or_schemas_included": false,
+  "raw_decompilation_archives_included": false,
+  "full_comparison_reports_included": false,
+  "native_complete_audio_unit_included": false,
+  "original_vs_native_cases_passed_per_platform": 1760,
+  "platforms": [
+    "linux-x86_64",
+    "aarch64-linux-under-qemu"
+  ],
+  "full_source_analysis_snapshot_local": "work/Elastik-ELA003-source-analysis-checkpoint.zip"
+}
