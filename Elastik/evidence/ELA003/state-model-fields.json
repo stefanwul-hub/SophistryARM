@@ -1,0 +1,277 @@
+{
+  "checkpoint": "ELA003",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "basis": "Original class registration decompilation; not a saved user state",
+  "classes": [
+    {
+      "class": "ETProgram",
+      "class_registration_function": "0x0015ecac",
+      "decompiled_input_sha256": "82567e3865d46b4bfe45ee9f6c83e68e42221d0d548de486dd3dcd0fbbba5b68",
+      "fields": [
+        {
+          "name": "_autoselect",
+          "original_i386_offset": "0xc",
+          "original_member_bytes": 1,
+          "registration_type_tag": "b",
+          "type": "boolean"
+        },
+        {
+          "name": "_automapMode",
+          "original_i386_offset": "0x18",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_algorithm",
+          "original_i386_offset": "0x30",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_formattedTempo",
+          "original_i386_offset": "0x34",
+          "original_member_bytes": 4,
+          "type": "object property",
+          "declared_class": "GNString"
+        },
+        {
+          "name": "_keyMappings",
+          "original_i386_offset": "0x1c",
+          "original_member_bytes": 4,
+          "type": "relationship",
+          "declared_class": "GNList"
+        },
+        {
+          "name": "_automationParameters",
+          "original_i386_offset": "0x20",
+          "original_member_bytes": 4,
+          "type": "relationship",
+          "declared_class": "ETAutomationParameter"
+        },
+        {
+          "name": "_syncUserTempoToFileTempo",
+          "original_i386_offset": "0x38",
+          "original_member_bytes": 1,
+          "registration_type_tag": "i",
+          "type": "int32"
+        }
+      ]
+    },
+    {
+      "class": "ETKeyMapping",
+      "class_registration_function": "0x001489c0",
+      "decompiled_input_sha256": "4284c2c919ce86b138e0d04d06cb48a89eb1f17d936079711d3ef09aaad281ac",
+      "fields": [
+        {
+          "name": "_soundFilePath",
+          "original_i386_offset": "0x24",
+          "original_member_bytes": 4,
+          "type": "object property",
+          "declared_class": "GNString"
+        },
+        {
+          "name": "_soundBankIdentifier",
+          "original_i386_offset": "0x28",
+          "original_member_bytes": 4,
+          "type": "object property",
+          "declared_class": "GNString"
+        },
+        {
+          "name": "_volume",
+          "original_i386_offset": "0x2c",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_envelopeRelease",
+          "original_i386_offset": "0x30",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_envelopeAttack",
+          "original_i386_offset": "0x34",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_filterResonance",
+          "original_i386_offset": "0x38",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_filterCutOff",
+          "original_i386_offset": "0x3c",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_filterQ",
+          "original_i386_offset": "0x40",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_filterType",
+          "original_i386_offset": "0x44",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_filterOn",
+          "original_i386_offset": "0x48",
+          "original_member_bytes": 1,
+          "registration_type_tag": "b",
+          "type": "boolean"
+        },
+        {
+          "name": "_firstOutputChannelIndex",
+          "original_i386_offset": "0x4c",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_pitchShiftSemitones",
+          "original_i386_offset": "0x50",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_pitchShiftCent",
+          "original_i386_offset": "0x54",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_loopMode",
+          "original_i386_offset": "0x58",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_direction",
+          "original_i386_offset": "0x5c",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_snapDivisor",
+          "original_i386_offset": "0x60",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_panorama",
+          "original_i386_offset": "0x64",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_isUserKey",
+          "original_i386_offset": "0x68",
+          "original_member_bytes": 1,
+          "registration_type_tag": "b",
+          "type": "boolean"
+        },
+        {
+          "name": "_startDegree",
+          "original_i386_offset": "0x6c",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_stopDegree",
+          "original_i386_offset": "0x70",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_program",
+          "original_i386_offset": "0x78",
+          "original_member_bytes": 4,
+          "type": "relationship",
+          "declared_class": "ETProgram"
+        },
+        {
+          "name": "_midiNote",
+          "original_i386_offset": "0x7c",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_startStopLinked",
+          "original_i386_offset": "0x74",
+          "original_member_bytes": 1,
+          "registration_type_tag": "b",
+          "type": "boolean"
+        },
+        {
+          "name": "_automatationTargets",
+          "original_i386_offset": "0x80",
+          "original_member_bytes": 4,
+          "type": "relationship",
+          "declared_class": "ETAutomationTarget"
+        },
+        {
+          "name": "_pitchShifterMode",
+          "original_i386_offset": "0x84",
+          "original_member_bytes": 4,
+          "registration_type_tag": "i",
+          "type": "int32"
+        },
+        {
+          "name": "_userTempoFactor",
+          "original_i386_offset": "0x88",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_dirt",
+          "original_i386_offset": "0xc",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_resonanceDirt",
+          "original_i386_offset": "0x10",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        },
+        {
+          "name": "_limiterKnee",
+          "original_i386_offset": "0x14",
+          "original_member_bytes": 4,
+          "registration_type_tag": "f",
+          "type": "float32"
+        }
+      ]
+    }
+  ],
+  "total_registered_fields": 36,
+  "actual_user_state_received": false,
+  "object_bodies_decoded": false,
+  "old_project_restored": false
+}

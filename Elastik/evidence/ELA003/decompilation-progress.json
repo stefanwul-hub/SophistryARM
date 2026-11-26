@@ -1,0 +1,50 @@
+{
+  "checkpoint": "ELA003",
+  "decompiler": "Ghidra 11.3.2",
+  "archive": "analysis/ELA003-original-sample-state-decompiled.zip",
+  "archive_bytes": 100848,
+  "archive_sha256": "7464289aa5e58589ee16a3888f3b8e8fe3911c1f0e5d1200642096b8a6406753",
+  "archive_public": true,
+  "archive_storage": "Public repository and complete source/analysis checkpoint",
+  "distinct_functions_selected_this_checkpoint": 44,
+  "new_functions_beyond_ELA002": 33,
+  "distinct_functions_across_checkpoints": 188,
+  "registered_model_fields_recovered": 36,
+  "phases": [
+    {
+      "directory": "ELA003-sample",
+      "functions": 8,
+      "roots": [
+        "0x00152664",
+        "0x001f0c92",
+        "0x0015197c",
+        "0x0014ac64"
+      ],
+      "depth": 1
+    },
+    {
+      "directory": "ELA003-state",
+      "functions": 39,
+      "roots": [
+        "0x001489c0",
+        "0x0015ecac",
+        "0x000284f4",
+        "0x00028680",
+        "0x0006325c",
+        "0x00063374",
+        "0x0002c7ec",
+        "0x00029f66",
+        "0x00084ff2",
+        "0x000851d4",
+        "0x00034c02",
+        "0x00035a8a"
+      ],
+      "depth": 1
+    }
+  ],
+  "complete_engine_translated": false,
+  "old_project_restored": false,
+  "archive_publication_status": "Authorised by explicit standing user consent for current and future publications",
+  "source_and_reports_can_be_published": true,
+  "standing_consent_record": "PUBLICATION_AUTHORIZATION.json"
+}

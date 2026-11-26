@@ -1,0 +1,27 @@
+{
+  "checkpoint": "ELA003",
+  "status": "Voice chunk and cursor routines ported and compared; complete native engine pending",
+  "new_original_routines_translated": 2,
+  "new_original_routine_bytes": 2326,
+  "total_original_routines_translated": 3,
+  "comparison_cases_per_platform": 1760,
+  "compared_platforms": [
+    "linux-x86_64",
+    "aarch64-linux-under-qemu"
+  ],
+  "macos_arm64_object_compiled": true,
+  "decoded_sample_provider_used_for_tests": true,
+  "file_decoder_or_whole_voice_port_complete": false,
+  "registered_state_model_fields_recovered": 36,
+  "new_functions_decompiled": 33,
+  "total_selected_functions_decompiled": 188,
+  "actual_user_state_received": false,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "detailed_original_analysis_saved_locally": true,
+  "detailed_original_analysis_publication_waiting_for_user": false,
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true,
+  "detailed_original_analysis_public": true,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json"
+}

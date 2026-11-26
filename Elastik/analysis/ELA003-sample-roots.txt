@@ -1,0 +1,4 @@
+0x152664 # Complete voice chunk reader, loops, reversal and fades
+0x1f0c92 # Audio-file sample read dispatch
+0x15197c # Next sample cursor after chunk
+0x14ac64 # Key mapping sample frame count

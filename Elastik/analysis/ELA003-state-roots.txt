@@ -1,0 +1,12 @@
+0x1489c0 # ETKeyMapping original class description
+0x15ecac # ETProgram original class description
+0x284f4 # GNData restore
+0x28680 # GNData save
+0x6325c # GNDictionary restore
+0x63374 # GNDictionary save
+0x2c7ec # GNList restore
+0x29f66 # GNList save
+0x84ff2 # GNNumber restore
+0x851d4 # GNNumber save
+0x34c02 # GNString restore
+0x35a8a # GNString save

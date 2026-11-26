@@ -11,7 +11,8 @@
   "decoded_sample_fixtures_used": true,
   "whole_engine_or_audio_unit_available": false,
   "full_analysis_saved_locally": true,
-  "detailed_analysis_publication": "Blocked by automatic approval review; specific or standing user consent requested",
+  "detailed_analysis_publication": "Published with the full ELA003 analysis checkpoint under standing consent",
   "Sophistry_CP038_frozen": true,
-  "CronoX_CRX013_frozen": true
+  "CronoX_CRX013_frozen": true,
+  "standing_consent_record": "PUBLICATION_AUTHORIZATION.json"
 }

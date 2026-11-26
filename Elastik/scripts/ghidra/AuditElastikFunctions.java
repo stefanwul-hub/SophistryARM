@@ -88,7 +88,7 @@ public class AuditElastikFunctions extends GhidraScript {
         println("Elastik function audit: "+address+" "+r.decompileCompleted());
       }
     } finally {decompiler.dispose();}
-    Map<String,Object> report=new LinkedHashMap<>();report.put("checkpoint","ELA002");report.put("scope","Original selected AU/state/render code, analysis only");report.put("original_sha256",currentProgram.getExecutableSHA256());report.put("roots",roots);report.put("explicit_instruction_verified_sizes",explicitSizes);report.put("direct_call_depth",depth);report.put("functions",results);report.put("native_engine_built",false);
+    Map<String,Object> report=new LinkedHashMap<>();report.put("checkpoint",args.length>4?args[4]:"ELA002");report.put("scope","Original selected AU/state/render code, analysis only");report.put("original_sha256",currentProgram.getExecutableSHA256());report.put("roots",roots);report.put("explicit_instruction_verified_sizes",explicitSizes);report.put("direct_call_depth",depth);report.put("functions",results);report.put("native_engine_built",false);
     Files.writeString(output.resolve("function-audit.json"),new GsonBuilder().setPrettyPrinting().create().toJson(report)+"\n");
   }
 }

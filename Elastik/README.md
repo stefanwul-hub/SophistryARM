@@ -1,19 +1,19 @@
-# Elastik 1 — portage ARM64 en cours, ELA002
+# Elastik 1 — portage ARM64 en cours, ELA003
 
 Objectif : rouvrir les anciens projets Audio Unit utilisant Elastik 1. L’original est Elastik 1.5.2.3, Intel 32 bits / PowerPC 32 bits, identité `aumu/ELSK/UBER`. Sophistry CP038 et CronoX CRX013 restent figés.
 
-ELA002 apporte une première routine DSP intégralement traduite depuis ses 117 octets d’origine : la sommation des buffers float32 des voix. Les 73 comparaisons avec le code machine i386 concordent bit à bit, sur x86-64 et sur ARM64 exécuté sous QEMU. Le source est aussi compilé en objet macOS ARM64. Cela valide cette routine isolée ; le moteur complet reste à porter.
+ELA003 porte deux routines supplémentaires : la lecture d’un bloc de samples avec ses limites de boucle, son inversion et ses fondus, puis le calcul de la position suivante. Leurs 1 760 comparaisons avec les instructions i386 d’origine concordent bit à bit sur x86-64 et sur ARM64 sous QEMU. Le même source compile en objet macOS ARM64.
 
-Le chemin audio des voix est identifié. Les décompilations sélectionnées couvrent maintenant 155 fonctions distinctes, et 12 classes utiles sont reliées à leurs tables virtuelles. L’analyse du format d’état a progressé : graphe `objects/@id/@isa`, archive binaire et primitives typées, vérifiées par exécution de l’original. Un inspecteur lit désormais les répertoires de classes et d’objets, sans restaurer le son.
+Le banc fournit les samples déjà décodés à l’API de lecture d’origine. Il valide ces routines de traitement de bloc, leurs buffers et leurs états ; le véritable décodeur de fichiers, le cache/pitch et le traitement complet d’une voix restent à porter. Les limites de ces essais, dont un arrêt QEMU isolé non reproduit ensuite, figurent dans les notes et les preuves.
 
-**Aucun composant Elastik ARM64 installable n’est encore disponible.** Il n’y a pas encore de rendu du moteur complet, de validation `auval` ni de restauration de projet démontrée. Les tests ARM64 exécutés ici utilisent Linux sous QEMU ; le fichier Mach-O est un objet de compilation, pas un Audio Unit.
+Pour préparer les états, 36 champs de définition des modèles `ETProgram` et `ETKeyMapping` sont récupérés : fichiers et identifiants de banques, boucles, enveloppes, filtres, pitch, tempo et automation. Les noms originaux sont conservés. Le décodage des corps d’archive et le rappel d’un état utilisateur ne sont pas encore établis.
 
-Vos banques « Elastik Tutorial.elastik » et « Ueberschall Liquid Instruments » sont notées. Leurs fichiers et un état `.aupreset` ou projet original restent attendus pour les vérifications correspondantes.
+**Aucun composant Elastik ARM64 installable n’est encore disponible.** Il n’y a pas encore de rendu du moteur complet, de validation `auval` ni de restauration de projet démontrée. Vos banques « Elastik Tutorial.elastik » et « Ueberschall Liquid Instruments » sont notées ; leurs fichiers et un état ou projet original restent attendus pour les vérifications correspondantes.
 
-La sauvegarde contient les scripts, le source C++, les preuves de comparaison, les décompilations et les instructions de reprise. L’installateur original et les banques restent hors de Git ; les références exactes sont dans [reference-input.json](reference-input.json). Aucun script ne remplace de composant dans `/Library`.
+[Notes et reproduction ELA003](analysis/ELA003-notes.md) · [Reprise](ELASTIK_REPRISE.md) · [État](elastik-status.json) · [Preuves](evidence/ELA003) · [Source du lecteur de blocs](src/OriginalVoiceChunk.cpp)
 
-[Notes et reproduction ELA002](analysis/ELA002-notes.md) · [Reprise](ELASTIK_REPRISE.md) · [État](elastik-status.json) · [Preuves](evidence/ELA002) · [Source de la routine portée](src/OriginalPlanarSum.cpp)
+Le [checkpoint complet ELA003](Elastik-ELA003-complet-checkpoint.zip) réunit les sources, les scripts, les schémas de modèle, les rapports et les décompilations. L’[archive détaillée ELA003](analysis/ELA003-original-sample-state-decompiled.zip) est aussi disponible séparément. L’installateur original et les banques restent hors de Git ; le paquet d’origine reste nécessaire pour reproduire les essais contre le binaire.
 
-L’[archive détaillée des fonctions décompilées et de l’objet Mach-O ARM64](analysis/ELA002-original-state-render-decompiled.zip) est publiée séparément, après votre autorisation explicite. Elle contient 129 fonctions distinctes avec leur désassemblage et le relevé des classes utiles. L’[autorisation est enregistrée](evidence/ELA002/detailed-archive-publication-consent.json). Le ZIP du checkpoint source ELA002 reste inchangé ; l’archive détaillée se télécharge séparément.
+Les checkpoints ELA001 et ELA002 sont conservés, y compris l’[archive ELA002 publiée après votre accord explicite](analysis/ELA002-original-state-render-decompiled.zip). Les références du binaire sont dans [reference-input.json](reference-input.json). Aucun script ne remplace de composant dans `/Library`.
 
-Le checkpoint ELA001 et ses preuves restent conservés. L’existence d’Elastik 3 natif ARM ne démontre pas la reprise des projets Elastik 1.
+Votre [accord élargi pour toutes les futures publications du portage](PUBLICATION_AUTHORIZATION.json) est enregistré. Il couvre les notes, schémas, décompilations, sources, rapports et objets compilés issus du même original Elastik, sans redemander à chaque checkpoint. Les banques, numéros de série, données d’activation et préférences personnelles restent exclus. Le petit ZIP de code seul ELA003 est conservé comme premier instantané ; le checkpoint complet ci-dessus contient les éléments ajoutés après cet accord.

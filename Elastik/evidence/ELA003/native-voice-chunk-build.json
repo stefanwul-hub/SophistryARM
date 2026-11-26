@@ -1,0 +1,61 @@
+{
+  "checkpoint": "ELA003",
+  "translated_original_functions": [
+    {
+      "address": "0x152664",
+      "bytes": 2064,
+      "role": "Voice chunk DSP, loop range, reversal and fades"
+    },
+    {
+      "address": "0x15197c",
+      "bytes": 262,
+      "role": "Next cursor calculation"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "src/OriginalVoiceChunk.cpp",
+      "sha256": "248221a8ceea7a944837f8b1889f2dc62451a6fce11c3a3f53fdfe098bf355a1"
+    },
+    {
+      "path": "src/OriginalVoiceChunk.h",
+      "sha256": "3f8516febd6a6f55316d7622a8d98fa679a7373d4fb1ba6cb1741567f8676c1a"
+    }
+  ],
+  "compiler": "Zig 0.14.1 embedded Clang",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-vectorize",
+    "-fno-slp-vectorize",
+    "-fno-exceptions",
+    "-fno-rtti",
+    "-fno-stack-protector"
+  ],
+  "macos_object": {
+    "format": "Mach-O 64-bit ARM64",
+    "cpu_type": "0x100000c",
+    "cpu_subtype": 0,
+    "type": "MH_OBJECT",
+    "bytes": 9496,
+    "sha256": "4f0f14362d2904ca5ba8f7d15ae77578b23b259428fee6908a0a767a694a2b38"
+  },
+  "arm64_test_program": {
+    "format": "ELF64 AArch64",
+    "sha256": "56938a4555b69e52c646a5808d08de670a60c4d5708a4ed4f07e62d664ae9448",
+    "execution": "QEMU 7.2.0 user mode"
+  },
+  "test_infrastructure_observation": {
+    "initial_arm64_process_exit_signal": "SIGSEGV",
+    "first_case": "generated-planar-pcm-loop-0-1023-mode-0-dir-1-pos-1023-n-100-ch-1",
+    "exact_case_successful_replays": 24,
+    "following_complete_arm64_run_passed_cases": 1760,
+    "dsp_source_changes_between_attempts": false,
+    "cause_diagnosed": false
+  },
+  "original_file_decoder_or_pitch_cache_ported": false,
+  "full_native_engine_available": false,
+  "macos_audio_unit_validated": false
+}

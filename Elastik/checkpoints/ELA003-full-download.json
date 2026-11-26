@@ -1,0 +1,14 @@
+{
+  "checkpoint": "ELA003",
+  "kind": "Complete source/analysis checkpoint; not a complete native Audio Unit",
+  "filename": "Elastik-ELA003-complet-checkpoint.zip",
+  "source_local_commit": "ef5a48e0873bef26178cd8f411a9c9044d55ebdb",
+  "bytes": 625981,
+  "sha256": "a19ed561bcb31fdd983e03f68b479daf84ea79995407cbd5d189e06d87090fdd",
+  "raw_original_analysis_included": true,
+  "standing_consent_record": "PUBLICATION_AUTHORIZATION.json",
+  "original_installer_included": false,
+  "user_banks_serial_numbers_activation_data_or_private_preferences_included": false,
+  "complete_native_audio_unit_included": false,
+  "comparison_cases_passed_per_platform": 1760
+}

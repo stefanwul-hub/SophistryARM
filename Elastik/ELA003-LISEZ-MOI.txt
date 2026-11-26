@@ -12,5 +12,7 @@ xcrun clang++ -std=c++17 -O2 -fno-fast-math -ffp-contract=off -fno-vectorize -fn
 
 VoiceChunkProbe utilise un protocole binaire de fixtures de développement.
 Ce programme ne constitue pas une application musicale utilisable seule.
-Le banc complet et les analyses sont enregistrés dans le checkpoint local ;
-leur publication attend la réponse à la demande d’autorisation affichée.
+Le banc complet et les analyses sont publiés dans le checkpoint complet
+Elastik-ELA003-complet-checkpoint.zip après l’accord élargi de l’utilisateur.
+PUBLICATION_AUTHORIZATION.json enregistre cet accord pour les publications
+actuelles et futures du même portage, sans données personnelles privées.
