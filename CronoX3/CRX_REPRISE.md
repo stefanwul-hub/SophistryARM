@@ -1,3 +1,23 @@
+# CRX013 — contrôles complets réussis, publication à terminer
+
+Le renommage sophistry::native_reverb est le seul changement des quatre fichiers DSP/sondes concernés, après normalisation vérifiée égale à CRX012. Toutes les 13 sondes des DEUX scripts ont été compilées réellement et liées en Mach-O ARM64, ainsi que le composant. Le validateur de couverture versionné refuse la preuve CRX012 partielle et accepte la preuve CRX013 complète. Preuves evidence/cronox-crx013-{macos-cross-link,checks}.json. La sonde Corrections qui échouait est compilée ET exécutée avec succès sous Linux ; de même LoopSampler, BrowserKeyboard et NativeReverb. Les480 blocs concordent encore bit à bit avec l’original sur matériel Intel et ARM64/QEMU ; la table de référence est inchangée. Les28 régressions Python, scripts et cache Bash3.2 passent.
+
+Ni l’AU ni auval CRX013 ne sont exécutés ici sur Mac. Publier maintenant la source, vérifier son archive complète, créer le lanceur CRX013 épinglé et vérifier son ZIP direct, puis sauvegarder les métadonnées finales. Ne modifier aucun calcul pour résoudre ce problème de compilation. Les413 unités, Runtime et Dispatch restent ceux de CRX012, donc le cache utilisateur est conservé. Branch HEAD attendu7d05ab1d74d7f4c91fa6bfe8033298e184ef3961 ; les46 autres entrées racine, CrX3 et Sophistry CP038 doivent rester identiques.
+
+---
+
+# Reprise — rapport CRX012 reçu, correction de compilation CRX013
+
+26 novembre 2026 : rapport utilisateur CronoX3-rapports-CRX012-20261126T134002Z.zip reçu. Le composant est construit et signé ; vérifications CrT3, symboles privés et110images réussies. Échec ENSUITE dans la compilation de CronoXCorrectionsProbe :8 erreurs « reference to cronox is ambiguous », entre ::cronox (interface) et sophistry::cronox (nouvel interne DSP) importé par using namespace sophistry. Ce n’est pas un échec de signature ni d’auval. La transaction système n’a pas commencé ; CRX011 reste installé. Aucune sonde audio, concordance réverbération, factory Cocoa ou auval CRX012 n’a été exécutée sur Mac. Preuve publique sans chemins : evidence/cronox-crx012-user-report.json ; rapport brut privé work/crx013/user-report.
+
+La reproduction réelle au compilateur ARM64 retrouve exactement les8erreurs. La vérification croisée CRX012 avait omis les sondes historiques contenant directement LegacyEngine.cpp ; ne pas minimiser cet oubli. CRX013 renomme uniquement l’espace de noms interne de la réverbération en sophistry::native_reverb (4fichiers, normalisation prouvée égale aux octets CRX012). Aucun calcul, paramètre, seuil, queue, nombre de voix, cache d’unité, identifiant, licence ou préférence modifié. Version CRX-013, build13001, installateur distinct. Vérifier toutes les sondes réelles employées par scripts/build-cronox-engine.sh et scripts/build-cronox-audio-unit.sh, au lieu d’une liste partielle.
+
+Travail en cours : work/crx013/cross-build-shipping.py compile réellement puis lie strictement le composant et les13sondes des scripts. Le validateur versionné analysis/cronox/check_shipping_build_coverage.py dérive leur liste des scripts et refuse une preuve incomplète ; la preuve CRX012 est explicitement rejetée. Le renommage doit repasser les480blocs de réverbération originaux et les sondes historiques avant publication. Conserver les413unités, Runtime et Dispatch de CRX012 : tous restent inchangés, donc cache réutilisable.
+
+Publier seulement sous CronoX3/ dans codex/sophistry-native-checkpoints, en conservant les46autres entrées racine, CrX3 original et Sophistry CP038. Dernière tête distante connue7d05ab1d74d7f4c91fa6bfe8033298e184ef3961. Après compilation/lien complets, livrer un lanceur CRX013 épinglé/vérifié et sauvegarder les preuves et la reprise. Ne pas demander une nouvelle mesure CPU avant que le candidat ne puisse être installé ; le gain réel reste non mesuré.
+
+---
+
 # Reprise — CRX012 publié et téléchargements vérifiés, retour Mac attendu
 
 Publication du 26 novembre 2026 : source GitHub `5ef81e18abfbee95d9c983a40bfe167dea1234d7` (base locale `55b111b65d2de7fafd4904143c768c32642b1ae6`), archive75329327octets SHA256 `b92d6de67b2bba6e5f854798bad992b171616fbb9875e6195bdee5da9a5f5745`. Les355 fichiers CronoX ont été comparés aux blobs Git, CRC et modes exécutables vérifiés. Préparation locale :415 fichiers du noyau/413 unités, image/imports/initialisateurs et110 images originaux vérifiés. Sources générées inchangées.

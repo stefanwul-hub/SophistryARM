@@ -9,7 +9,7 @@
 #include <cstring>
 #include <initializer_list>
 
-namespace sophistry::cronox {
+namespace sophistry::native_reverb {
 struct ReverbMemory {
   std::uint8_t* data;
   std::size_t size;
@@ -196,4 +196,4 @@ struct NativeReverbPlan {
     }
   }
 };
-} // namespace sophistry::cronox
+} // namespace sophistry::native_reverb

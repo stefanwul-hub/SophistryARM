@@ -1,0 +1,19 @@
+{
+  "checkpoint": "CRX012",
+  "stage": "compilation",
+  "exit_code": 1,
+  "component_built_and_signed": true,
+  "identity_exports_and_110_images_passed": true,
+  "failure": "CronoXCorrectionsProbe compilation: reference to cronox is ambiguous between ::cronox and sophistry::cronox",
+  "compilation_error_count": 8,
+  "system_component_copy_reached": false,
+  "candidate_factory_executed": false,
+  "native_reverb_validation_executed": false,
+  "auval_executed": false,
+  "system_installation_committed": false,
+  "previous_component_preserved": true,
+  "original_CrX3_targeted": false,
+  "raw_report_published": false,
+  "cause": "Internal reverb namespace added in CRX012 becomes visible via using namespace sophistry in preexisting probe; prior cross-build omitted that probe",
+  "fix_planned": "Use a distinct internal reverb namespace and compile/link all installer probes without suppressing any check"
+}

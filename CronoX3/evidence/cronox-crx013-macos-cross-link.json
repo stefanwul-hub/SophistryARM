@@ -1,0 +1,283 @@
+{
+  "checkpoint": "CRX013",
+  "scope": "ARM64 Mach-O cross-compile/link of the component and ALL shipping engine/AU probes; no macOS execution",
+  "binaries": [
+    {
+      "binary": "CronoX3ARMTest",
+      "bytes": 35277808,
+      "sha256": "f26b5c45b61eea93de3d6cdf4acd8f548b450fd83385ab7d9f788100e1bbbaa1",
+      "arm64_mach_o": true,
+      "strict_link_passed": true
+    },
+    {
+      "binary": "CronoXAUBridgeProbe",
+      "bytes": 34617664,
+      "sha256": "aa145bceef1d364628c679fc8363be9915b9b2f762c7d598bfaccd34f94935e1",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXAUBridgeProbe.cpp",
+      "source_sha256": "88ad638f8df61cb9c8e1253f3d120cde94ab10b1e206e11576db9572589096d6",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXBootProbe",
+      "bytes": 34617232,
+      "sha256": "95c5ba1fad0614b4c439b4d6424fbdf30d729cb3d3327b4b6f613c21f3b1becc",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXBootProbe.cpp",
+      "source_sha256": "b27955cf10bef3f9e6e62775f5521c50407038495d5474d9ecf10417767b5f7e",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXBrowserKeyboardProbe",
+      "bytes": 34678624,
+      "sha256": "60c94bebfe8a8b5601ee4df18f7a29fc1f45475ca27494671721f0ef0cea44ab",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXBrowserKeyboardProbe.cpp",
+      "source_sha256": "c41ec37e61ece46ada948d1a5d801c0b75da2617f2f475253ed542bd47e73e7f",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXComparisonProbe",
+      "bytes": 1394016,
+      "sha256": "6fb6f1699862e9503deb1a2e8db1167804cba5b0ee24da64a5028a83a19b0ebb",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXComparisonProbe.mm",
+      "source_sha256": "df0a1d669a899981f24204d3eeb1248328867ad590e6f872ca4e9462348b7337",
+      "flags": [
+        "-std=c++20",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math",
+        "-DAUSDK_HAVE_MIDI_MAPPING=0",
+        "-DAUSDK_HAVE_XML_NAMES=0",
+        "-DAUSDK_HAVE_MIDI2=0",
+        "-I/workspace/work/CronoX3ARM/third_party/AudioUnitSDK/include",
+        "-fobjc-arc"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXControlThreadProbe",
+      "bytes": 34617824,
+      "sha256": "bfddd13babb877ceb0cdfd33e43eb78d03058de6a0ae1ae599ab593eb4d9ea06",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXControlThreadProbe.cpp",
+      "source_sha256": "965693bdbc66d0d554527abebee550a7cc73b6e08a3ca2fb6745a1026c2d9d97",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXCorrectionsProbe",
+      "bytes": 34642736,
+      "sha256": "2f64528e9816d75bc060a2cb70e40a8278c3b8a64826c0ba29ad77b9e8aedf0e",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXCorrectionsProbe.cpp",
+      "source_sha256": "d0fefc2ff19fe3537209ac4c2e94dcaea98aa3ffd9fdad8fca709a3277703d82",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXEditorProbe",
+      "bytes": 34743296,
+      "sha256": "95e8ad8be3a91e45596bc07142651617e373817d3165321abdcf5255b6e613b5",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXEditorProbe.cpp",
+      "source_sha256": "c907bd8639f84f6f38779fd60ef981fc98acbd15ec3ebc9a20673fc99a44dca8",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXLoopSamplerProbe",
+      "bytes": 34645440,
+      "sha256": "7980c305b27dc1606119c8b30532569e18dfb5035b588970006c43b67751914c",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXLoopSamplerProbe.cpp",
+      "source_sha256": "4fb70b886c6075acc05e0671746462a5ad77dd46898b986c2befe9f41557a02a",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXModulationProbe",
+      "bytes": 34643744,
+      "sha256": "46d0677a464fbec722549049ad047340e9537bd8db1e5691f4adaca0916c7553",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXModulationProbe.cpp",
+      "source_sha256": "adb91d994a54818be3f9ce3119d8992eb32886a4ef6f955bd7feb3c87ef62891",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXNativeReverbProbe",
+      "bytes": 34660048,
+      "sha256": "5d711f49e916d490c4ca22be5b88e52862d3230b3c1c16902ff5c6a3331d3253",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXNativeReverbProbe.cpp",
+      "source_sha256": "6afcc66bed419446479059f4190dc888e1799116b985111ae6fb800c21a2d64d",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXRegistrationProbe",
+      "bytes": 482880,
+      "sha256": "59a1a38f5f5aacdd79697e1876161747f8c5bc2e9c15ea5662171c1c6897e205",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXRegistrationProbe.cpp",
+      "source_sha256": "13b46cd50ff69e4ab80ae50c94cf5ee5729c92c3a8038303d72c485509c56ae2",
+      "flags": [
+        "-std=c++20",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math",
+        "-DAUSDK_HAVE_MIDI_MAPPING=0",
+        "-DAUSDK_HAVE_XML_NAMES=0",
+        "-DAUSDK_HAVE_MIDI2=0",
+        "-I/workspace/work/CronoX3ARM/third_party/AudioUnitSDK/include"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "CronoXRunLoopProbe",
+      "bytes": 34618976,
+      "sha256": "f99549078fd04f402d6b77c4c1b02de8419f486271c78b0b9353643099b18d55",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/CronoXRunLoopProbe.cpp",
+      "source_sha256": "83576ac6354a197da0c673e2d5294fbe737e3fba442f820c8b077ac62b9ef55c",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "binary": "GuestStdStringProbe",
+      "bytes": 500208,
+      "sha256": "aee50c1825ea13b82d0d9995432d1e7365fe4e73438274a6a34030ff433e3b38",
+      "arm64_mach_o": true,
+      "strict_link_passed": true,
+      "source": "tests/GuestStdStringProbe.cpp",
+      "source_sha256": "7271cd04c0044051d68901cc5d8d77b956bdb9264cb712a85e9df1e7ce7c3109",
+      "flags": [
+        "-std=c++17",
+        "-O2",
+        "-g0",
+        "-ffp-contract=off",
+        "-fno-fast-math"
+      ],
+      "newly_compiled": true,
+      "derived_binary_removed_after_hashing": true
+    }
+  ],
+  "all_original_generated_units_reused": 413,
+  "dispatch_and_runtime_unchanged_since_CRX012": true,
+  "exports_isolated": true,
+  "auval_executed": false,
+  "macos_runtime_executed": false,
+  "passed": true,
+  "shipping_coverage": {
+    "passed": true,
+    "shipping_probe_count": 13,
+    "all_shipping_probes_newly_compiled_and_strictly_linked_arm64": true,
+    "required_probes": [
+      "CronoXAUBridgeProbe",
+      "CronoXBootProbe",
+      "CronoXBrowserKeyboardProbe",
+      "CronoXComparisonProbe",
+      "CronoXControlThreadProbe",
+      "CronoXCorrectionsProbe",
+      "CronoXEditorProbe",
+      "CronoXLoopSamplerProbe",
+      "CronoXModulationProbe",
+      "CronoXNativeReverbProbe",
+      "CronoXRegistrationProbe",
+      "CronoXRunLoopProbe",
+      "GuestStdStringProbe"
+    ],
+    "macos_execution_is_separate": true
+  }
+}

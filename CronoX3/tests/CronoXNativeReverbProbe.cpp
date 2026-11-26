@@ -21,12 +21,12 @@ unsigned checkOriginalLayouts(const char* preset,const char* samples) {
   // original buffer scheduler set its span/offset, as in an actual host.
   std::array<std::array<float,256>,2> silence{};float* outputs[]={silence[0].data(),silence[1].data()};
   engine.process(outputs,2,256);
-  auto& h=*engine.impl_;cronox::ReverbMemory m{h.cpu->memory,h.cpu->memory_size};
+  auto& h=*engine.impl_;native_reverb::ReverbMemory m{h.cpu->memory,h.cpu->memory_size};
   unsigned found=0,prepared=0;
   for (U32 instance:{0u,1u}) for(U32 offset:{0x5dc0u,0xada8u,0xfd90u}) {
     const U32 at=0x1000000+0x3f5a90+instance*0x11c94+offset;
     const U32 vt=m.word(at);if(vt!=0x128908 && vt!=0x12a4c8)continue;
-    ++found;cronox::NativeReverbPlan p;
+    ++found;native_reverb::NativeReverbPlan p;
     if (p.prepare(m,0xd400e,at,256)) ++prepared;
     else if(m.flag(at+0x168)) {
       std::cerr<<"Original reverb object "<<std::hex<<at<<" input "<<m.word(at+0x120)<<" output "<<m.word(at+0x128)<<std::dec<<" did not prepare\n";
@@ -43,7 +43,7 @@ int main(int argc,char** argv) {try {
   const bool baseline=argc>1 && std::string(argv[1])=="--baseline";
   std::unique_ptr<LegacyEngine::Impl> host(static_cast<LegacyEngine::Impl*>(cr_reverb_create(!baseline)));
   if (!host) throw std::runtime_error(cr_reverb_error());
-  cronox::ReverbMemory m{host->cpu->memory,host->cpu->memory_size};
+  native_reverb::ReverbMemory m{host->cpu->memory,host->cpu->memory_size};
   unsigned blocks=0;double seconds=0;
   for (unsigned i=0;i<reverb_fixture::cases;++i) {
     const auto c=reverb_fixture::prepare(m,i);

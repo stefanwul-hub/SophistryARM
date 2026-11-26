@@ -1,0 +1,12 @@
+{
+  "checkpoint": "CRX013",
+  "state": "Full ARM64 shipping compile/link verified, source publication preparing",
+  "previous_component_installed": "CRX011",
+  "CRX012_failure": "Compilation of CronoXCorrectionsProbe before any copy or auval",
+  "fix": "Distinct internal reverb namespace, no arithmetic change",
+  "shipping_probes_compiled_and_linked": 13,
+  "reverb_original_instruction_fixture_blocks": 480,
+  "macos_runtime_executed": false,
+  "auval_executed": false,
+  "next": "Publish pinned CRX013 launcher; user Mac must install successfully before the CPU comparison"
+}

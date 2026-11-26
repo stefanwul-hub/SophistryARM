@@ -1,0 +1,191 @@
+{
+  "checkpoint": "CRX013",
+  "passed": true,
+  "original_mac_compile_error_reproduced": true,
+  "same_eight_ambiguous_namespace_errors": true,
+  "internal_namespace_only_source_changes": [
+    {
+      "path": "src/engine/CronoXNativeReverb.h",
+      "before_sha256": "0d40e9027300ec056efddc17327b64b358727add7370650bb782d503d55c71ee",
+      "after_sha256": "28a616ff389791a136355a714346d221e4a2d9eb08dbb88eb1167d68095cec4e",
+      "only_internal_namespace_renamed": true
+    },
+    {
+      "path": "src/engine/LegacyEngine.cpp",
+      "before_sha256": "c281562055623184afa3d44f5cea5cade4f8292b4555f59be304e7b8e58c93fe",
+      "after_sha256": "43dcb162774ccbe16db50425e392beb404653269ad43a6f4ec78b30e2c1cd84d",
+      "only_internal_namespace_renamed": true
+    },
+    {
+      "path": "tests/CronoXReverbFixtures.h",
+      "before_sha256": "cfbc2a356ab68d7e3e2ae9e9c78d67277a6bce149cbcb3e0eff474cc3eb9911e",
+      "after_sha256": "44a19b1e56aee707f31da244c5c551783d188eb48330e284a353c14d882d483a",
+      "only_internal_namespace_renamed": true
+    },
+    {
+      "path": "tests/CronoXNativeReverbProbe.cpp",
+      "before_sha256": "aa1fa97f806c26ae3512db7bc6e4c0e8f808f981ed125b68e3632e22fde4704d",
+      "after_sha256": "6afcc66bed419446479059f4190dc888e1799116b985111ae6fb800c21a2d64d",
+      "only_internal_namespace_renamed": true
+    }
+  ],
+  "all_shipping_probe_arm64_compile_link": {
+    "passed": true,
+    "shipping_probe_count": 13,
+    "all_shipping_probes_newly_compiled_and_strictly_linked_arm64": true,
+    "required_probes": [
+      "CronoXAUBridgeProbe",
+      "CronoXBootProbe",
+      "CronoXBrowserKeyboardProbe",
+      "CronoXComparisonProbe",
+      "CronoXControlThreadProbe",
+      "CronoXCorrectionsProbe",
+      "CronoXEditorProbe",
+      "CronoXLoopSamplerProbe",
+      "CronoXModulationProbe",
+      "CronoXNativeReverbProbe",
+      "CronoXRegistrationProbe",
+      "CronoXRunLoopProbe",
+      "GuestStdStringProbe"
+    ],
+    "macos_execution_is_separate": true
+  },
+  "previous_partial_CRX012_coverage_rejected": true,
+  "original_hardware_reverb_differential": {
+    "passed": true,
+    "scope": "Effect-only artificial states, actual original i386 instructions on x86 hardware versus static lift and direct float32 C++; not whole-preset or AU validation",
+    "cases": 160,
+    "blocks_each": 3,
+    "compared_bytes": 125829120,
+    "same_state_delays_and_outputs_bitwise": true,
+    "native_blocks": 480,
+    "fallbacks": 0,
+    "elapsed_seconds": 7.798071791999973,
+    "original_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+    "original_instruction_oracle": "ELF64 I/O shell, hardware compatibility-mode i386 effect instructions; only memcpy platform adapter",
+    "unicorn_ftz_denormal_disagreements_not_used_as_reference": 45,
+    "mono_stereo_inplace_and_buffer_mix": true,
+    "modulation_and_diffusors": true,
+    "normal_and_denormal_arithmetic": true
+  },
+  "arm64_qemu": {
+    "passed": true,
+    "original_instruction_fixture_cases": 160,
+    "blocks": 480,
+    "all_state_and_output_hashes_equal_original": true,
+    "native_path": true,
+    "native_blocks": 480,
+    "fallback_cases": 1,
+    "render_cpu_seconds": 0.124818,
+    "original_initialized_layouts_accepted": 3,
+    "effect_fixtures_do_not_enter_synth_or_license_gate": true,
+    "whole_preset_audio_validated": false
+  },
+  "original_expected_hash_table_unchanged": true,
+  "historical_and_native_cpp_probes_linux": [
+    {
+      "probe": "CronoXCorrectionsProbe",
+      "passed": true,
+      "result": {
+        "passed": true,
+        "pre_master_signal_cases": 54,
+        "unaffected_other_volume_controls": 15,
+        "master_and_serialized_state_preserved": true,
+        "original_sampler_filename": true,
+        "sampler_font_fields": 16,
+        "font_family": "Helvetica",
+        "gain_conversions": 21,
+        "macos_ui_executed": false
+      },
+      "binary_sha256": "1d83681b38d4cacaa987d5457d9497dd92cbaa44c483a6198e0cafee66d95c10",
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "probe": "CronoXLoopSamplerProbe",
+      "passed": true,
+      "result": {
+        "passed": true,
+        "original_extrema_columns_bit_equal": 164,
+        "original_zoom_scroll_views": 4,
+        "complete_original_wave_paths_bit_equal": true,
+        "loop_start_end_markers": true,
+        "numeric_and_graphical_edits": true,
+        "marker_edits_reuse_sample_envelope": true,
+        "waveform_safe_boundaries": 164,
+        "rendered_at_zoom_boundaries": 316,
+        "original_full_wave_replay_ms": 34.8103,
+        "largest_zoom_read_section_ms": 2.89208,
+        "timings_are_machine_local": true,
+        "macos_host": false,
+        "macos_ui_executed": false
+      },
+      "binary_sha256": "97269aa2b495f13853c18d8b90c2402ed4daae91d257b2f2b491b484e7fc6cfd",
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "probe": "CronoXBrowserKeyboardProbe",
+      "passed": true,
+      "result": {
+        "passed": true,
+        "original_keyboard_chord_masks": 4354,
+        "original_capture_hash_matches": true,
+        "original_manager_notes_read_only": true,
+        "released_notes_up": true,
+        "original_bank_filter_order_and_labels": true,
+        "selected_bank_isolated": true,
+        "macos_ui_executed": false
+      },
+      "binary_sha256": "564c9ad894209745080034a8f83f14b5cc8a166ea23a39ce5b9d9378b2832da2",
+      "derived_binary_removed_after_hashing": true
+    },
+    {
+      "probe": "CronoXNativeReverbProbe",
+      "passed": true,
+      "result": {
+        "passed": true,
+        "original_instruction_fixture_cases": 160,
+        "blocks": 480,
+        "all_state_and_output_hashes_equal_original": true,
+        "native_path": true,
+        "native_blocks": 480,
+        "fallback_cases": 1,
+        "render_cpu_seconds": 0.0153,
+        "original_initialized_layouts_accepted": 3,
+        "effect_fixtures_do_not_enter_synth_or_license_gate": true,
+        "whole_preset_audio_validated": false
+      },
+      "binary_sha256": "4e8b77942afb4ec4729bc168fe7649fb2d58e057a29e880b67a0e68dd5420917",
+      "derived_binary_removed_after_hashing": true
+    }
+  ],
+  "python_regressions_passed": 28,
+  "au_build_bash32": {
+    "scope": "Build shell orchestration with mocked Apple tools only",
+    "bash": "GNU bash, version 3.2.0(2)-release (x86_64-unknown-linux-gnu)",
+    "baseline_failure_reproduced": false,
+    "cold_compilation_units": 14,
+    "cpp_and_objcpp_flags_preserved": true,
+    "empty_compiler_arguments": 0,
+    "paths_with_spaces_passed": true,
+    "warm_object_cache_reused": true,
+    "single_source_invalidation_passed": true,
+    "macos_execution": false,
+    "auval_executed": false,
+    "passed": true
+  },
+  "core_cache_bash32": {
+    "passed": true,
+    "shell": "GNU bash, version 3.2.0(2)-release (x86_64-unknown-linux-gnu)",
+    "old_unit_and_runtime_keys_preserved": true,
+    "only_dispatcher_recompiled": true,
+    "repeat_build_recompiles_zero_objects": true,
+    "helper_invalidates_only_dispatcher": true,
+    "generated_original_sources_unchanged": true,
+    "compiler_is_fixture_not_macos_validation": true
+  },
+  "core_runtime_dispatch_and_413_units_unchanged_since_crx012": true,
+  "dsp_arithmetic_changed": false,
+  "macos_runtime_executed": false,
+  "auval_executed": false,
+  "cpu_improvement_measured_on_mac": false
+}

@@ -8,8 +8,8 @@ using U=std::uint32_t;
 constexpr U base=0x300000,size=0x20000,obj=base,vt=0x302000,bvt=0x302400;
 constexpr unsigned cases=160;
 struct Case {U entry;int frames;bool flush;};
-inline Case prepare(sophistry::cronox::ReverbMemory m,unsigned number) {
-  using namespace sophistry::cronox;
+inline Case prepare(sophistry::native_reverb::ReverbMemory m,unsigned number) {
+  using namespace sophistry::native_reverb;
   if (number>=cases) throw std::runtime_error("Unknown reverb fixture");
   U seed=0x4c696e50u+number*197u;
   auto random=[&]() {seed^=seed<<13;seed^=seed>>17;seed^=seed<<5;return seed;};

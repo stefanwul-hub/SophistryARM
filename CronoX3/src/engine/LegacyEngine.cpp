@@ -569,9 +569,9 @@ struct LegacyEngine::Impl {
   }
   static void reverbEntry(void* user,U32 entry,SlCpu* cpu) {
     auto& host=*static_cast<Impl*>(user);
-    cronox::ReverbMemory m{cpu->memory,cpu->memory_size};
+    native_reverb::ReverbMemory m{cpu->memory,cpu->memory_size};
     const U32 sp=host.reg(0x10);
-    cronox::NativeReverbPlan plan;
+    native_reverb::NativeReverbPlan plan;
     U32 renderEntry=entry;
     const bool wrapper=entry==0xd42d8;
     if (wrapper && m.range(sp,12)) {

@@ -1,6 +1,6 @@
 {
   "project": "CronoX 3 ARM64",
-  "checkpoint": "CRX012",
+  "checkpoint": "CRX013",
   "original_version": "3.6.6",
   "original_architectures": [
     "i386",
@@ -16,7 +16,7 @@
     "display_name": "CronoX 3 ARM Test",
     "component_filename": "CronoX 3 ARM Test.component",
     "profile": "comparison",
-    "build_version": "12001"
+    "build_version": "13001"
   },
   "base_checkpoint": "Sophistry CP038",
   "base_commit": "4c24b4bf01d9cc8c2fb266cc8cec026aa8ff84fb",
@@ -61,7 +61,7 @@
   "native_kernel_compiled_arm64": true,
   "arm64_instruction_replay_cases": 6228,
   "original_au_bridge_arm64_qemu_passed": true,
-  "native_audio_unit_status": "CRX012 candidate: direct original reverb loops; CRX011 last user accepted; CPU outcome pending Mac measurements",
+  "native_audio_unit_status": "CRX013 preparing: internal namespace collision fix, all shipping probes must compile/link before publication",
   "original_preference_writes_isolated": true,
   "original_license_read_fallback": true,
   "original_timer_lifecycle_integrated": true,
@@ -85,7 +85,7 @@
   "registration_wait_added": true,
   "apple_python_optional_xattr_api_handled": true,
   "registration_diagnostics_are_optional": true,
-  "macos_candidate_checkpoint": "CRX012",
+  "macos_candidate_checkpoint": "CRX013",
   "last_auval_checkpoint": "CRX003",
   "current_checkpoint_macos_runtime_tested": false,
   "native_au_macos_runtime_validated": false,
@@ -152,5 +152,19 @@
   "crx012_public_downloads_verified": true,
   "crx012_validation_status": "Awaiting user Mac installation/auval and Breath And Butter CPU/audio comparison",
   "crx009_exit_code": 134,
-  "crx009_copy_reached": false
+  "crx009_copy_reached": false,
+  "crx012_macos_build_reached_signed_component": true,
+  "crx012_shipping_probe_compile_failed": true,
+  "crx012_failure_probe": "CronoXCorrectionsProbe",
+  "crx012_failure_cause": "Ambiguous ::cronox and sophistry::cronox namespace after using namespace sophistry",
+  "crx012_system_copy_reached": false,
+  "crx013_internal_namespace_rename_only": true,
+  "crx013_macos_runtime_tested": false,
+  "crx013_all_shipping_probes_cross_link_passed": true,
+  "crx013_shipping_probe_count": 13,
+  "crx013_namespace_error_reproduced": true,
+  "crx013_hardware_and_arm64_reverb_fixture_blocks": 480,
+  "crx013_dsp_arithmetic_changed": false,
+  "crx013_original_runtime_dispatch_413_unit_cache_unchanged": true,
+  "crx013_validation_status": "All shipping probes compile/link ARM64; original-instruction reverb and historical probes pass; ready for pinned publication, Mac execution pending"
 }
