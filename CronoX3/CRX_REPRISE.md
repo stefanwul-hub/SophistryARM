@@ -1,3 +1,17 @@
+# Reprise — CRX012 publié et téléchargements vérifiés, retour Mac attendu
+
+Publication du 26 novembre 2026 : source GitHub `5ef81e18abfbee95d9c983a40bfe167dea1234d7` (base locale `55b111b65d2de7fafd4904143c768c32642b1ae6`), archive75329327octets SHA256 `b92d6de67b2bba6e5f854798bad992b171616fbb9875e6195bdee5da9a5f5745`. Les355 fichiers CronoX ont été comparés aux blobs Git, CRC et modes exécutables vérifiés. Préparation locale :415 fichiers du noyau/413 unités, image/imports/initialisateurs et110 images originaux vérifiés. Sources générées inchangées.
+
+Lanceur GitHub `34154b97eda6a604ea35deb2755c18995d8cc769` : https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/34154b97eda6a604ea35deb2755c18995d8cc769/CronoX3/Demarrer-CronoX-CRX012.zip . ZIP2056octets, SHA256 `296c715a7e0f32279bc10e1ac70f191d5aedc90401d7de1413eb99cb36d8a772`, deux fichiers dont .command exécutable ; téléchargement direct comparé octet pour octet. Réutilise le cache Mac, ne remplace que ARM Test. La sonde de concordance est obligatoire avant copie ; restent les tests audio, rappel, interface, auval, rendu enregistré et rollback historiques. Identité aumu/CrT3/LinP, build12001, version CronoX3ARM CRX-012. Les46 autres entrées racine et les originaux CrX3/Sophistry CP038 sont préservés.
+
+Résultat à attendre : rapport CronoX3-rapports-CRX012-… du Mac, puis comparaison Breath And Butter dans Live avec l’original. Vérifier native-reverb.json (160cas,480blocs,3vrais objets acceptés), installation/auval et les compteurs native_reverb_blocks/frames/fallbacks dans Copier le diagnostic. Si échec, lire native-reverb.log ou l’étape de prévalidation avant de proposer un autre changement. Aucun rendu CRX012 ni auval n’a été exécuté ici sous macOS ; la compilation croisée n’est pas une validation Mac. CRX011 reste le dernier installé accepté jusqu’au retour utilisateur.
+
+Les nouvelles boucles sont identiques aux instructions i386 originales sur480blocs de référence (matériel Intel et ARM64/QEMU). Cela établit la concordance des cas d’effet couverts, pas une preuve exhaustive de tous les presets. Aucun seuil, voice stealing, timer, release, chemin de sample, préférence, licence ou gain n’a été changé. Le CPU hors réverbération est encore élevé dans RV003 ; ne pas présenter CRX012 comme correction de toute la surcharge. Le compteur de thread Intel RV003 est incohérent : retenir le temps de PROCESSUS, jamais le ratio automatique220×.
+
+Preuves : evidence/cronox-crx012-{publication,reverb-differential,native-reverb-checks,macos-cross-link,regressions}.json ; sources/tests dans les commits locaux f6c0c7e,a9bfb8f,7e8a28c,55b111b,8191861. Rapport brut privé work/reverb-RV003/user-report ; ne pas publier de chemins personnels, état AU, clé, bookmark ou préférences. Toute publication reste limitée à CronoX3/. Continuer à sauvegarder source/lanceur/checkpoint et préserver Sophistry CP038.
+
+---
+
 # Reprise — CRX012 en préparation, réverbération originale en C++ direct
 
 Point local enregistré le 26 novembre 2026. Le nouveau `CronoXNativeReverb.h` retranscrit les instructions float32 de comb::processMod, render12/render22 et leur sélecteur render 0xd42d8. Le dispatcher est dérivé hors de src/lifter/cronox ; les 413 unités et le runtime restent inchangés. L’activation est explicite dans le composant CrT3 ; les états inconnus reprennent le code généré complet. Aucun seuil de silence, release, timer de queue ou nombre de voix n’est changé.
