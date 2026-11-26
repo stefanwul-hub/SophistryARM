@@ -1,0 +1,37 @@
+{
+  "checkpoint": "ELA002",
+  "publication": "Detailed analysis archive after specific user authorisation",
+  "base_public_commit": "66525be64530910be9afd8967cb72405a3c70ca1",
+  "published_tree": "17856e330e29c6171b040b0b86e88c5155d63ec4",
+  "all_changes_within_Elastik": true,
+  "unrelated_root_entries_preserved": 47,
+  "Sophistry_CP038_preserved": true,
+  "CronoX_CRX013_tree_unchanged": true,
+  "source_checkpoint_zip_unchanged": true,
+  "changed_existing_files": [
+    "Elastik/ELASTIK_REPRISE.md",
+    "Elastik/README.md",
+    "Elastik/analysis/ELA002-notes.md",
+    "Elastik/elastik-status.json",
+    "Elastik/evidence/ELA002/decompilation-progress.json"
+  ],
+  "new_files": [
+    "Elastik/analysis/ELA002-original-state-render-decompiled.zip",
+    "Elastik/evidence/ELA002/detailed-archive-publication-consent.json"
+  ],
+  "explicit_user_consent_record": "evidence/ELA002/detailed-archive-publication-consent.json",
+  "archive_path": "analysis/ELA002-original-state-render-decompiled.zip",
+  "archive_git_blob": "f6ee4fd8fc52fcd8559e6fc58ddd051040473faa",
+  "archive_sha256": "9e16585df1c4aab12793443d42f93d59cf4004312e8d352a6645348e7dbc8ccc",
+  "archive_bytes": 237226,
+  "installable_native_audio_unit": false,
+  "public_commit": "f334c9310135aff42f3c9ff82971a7e34ac397fb",
+  "directory_url": "https://github.com/stefanwul-hub/SophistryARM/tree/f334c9310135aff42f3c9ff82971a7e34ac397fb/Elastik",
+  "direct_download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/f334c9310135aff42f3c9ff82971a7e34ac397fb/Elastik/analysis/ELA002-original-state-render-decompiled.zip",
+  "download_verified_http_status": 200,
+  "download_verified_sha256": "9e16585df1c4aab12793443d42f93d59cf4004312e8d352a6645348e7dbc8ccc",
+  "download_verified_bytes": 237226,
+  "download_zip_crc_verified": true,
+  "distinct_decompiled_functions_verified": 129,
+  "included_object_architecture_verified": "Mach-O 64-bit ARM64 object"
+}
