@@ -22,7 +22,14 @@ else
   shared=(-shared)
   library="$DEST/liblift-whole.so"
 fi
-sources=("$ROOT/src/lifter/LifterRuntime.cpp" "$SOURCE/Dispatch.cpp" "$SOURCE"/Unit*.cpp)
+dispatch="$SOURCE/Dispatch.cpp"
+if [[ "$SOURCE" == "$ROOT/src/lifter/cronox" ]]; then
+  # Preserve the pinned sources and all 413 existing unit cache keys. Only
+  # this small dispatcher gains the opt-in native reverb entry selection.
+  python3 "$ROOT/scripts/derive-cronox-dispatch.py" "$dispatch" "$DEST/derived/Dispatch.cpp"
+  dispatch="$DEST/derived/Dispatch.cpp"
+fi
+sources=("$ROOT/src/lifter/LifterRuntime.cpp" "$dispatch" "$SOURCE"/Unit*.cpp)
 compiler_version="$("${compiler[@]}" --version)"
 objects=()
 pids=()
@@ -36,7 +43,7 @@ wait_batch(){
 for source in "${sources[@]}"; do
   name="$(basename "$source" .cpp)"
   object="$DEST/$name.o";objects+=("$object")
-  key="$( { printf '%s\n' "${compiler[*]}" "${flags[*]}" "$compiler_version"; cat "$ROOT/src/lifter/LifterRuntime.h" "$source"; } | shasum -a 256 | awk '{print $1}')"
+  key="$( { printf '%s\n' "${compiler[*]}" "${flags[*]}" "$compiler_version"; cat "$ROOT/src/lifter/LifterRuntime.h" "$source"; if [[ "$source" == "$DEST/derived/Dispatch.cpp" ]]; then cat "$ROOT/src/lifter/CronoXHookPriority.h"; fi; } | shasum -a 256 | awk '{print $1}')"
   if [[ -f "$object" && -f "$object.compile.sha256" && "$(cat "$object.compile.sha256")" == "$key" ]]; then
     completed=$((completed+1))
     continue

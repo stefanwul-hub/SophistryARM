@@ -1,0 +1,50 @@
+{
+  "checkpoint": "CRX012",
+  "passed": true,
+  "linux_x86_64_native": {
+    "passed": true,
+    "original_instruction_fixture_cases": 160,
+    "blocks": 480,
+    "all_state_and_output_hashes_equal_original": true,
+    "native_path": true,
+    "native_blocks": 480,
+    "fallback_cases": 1,
+    "render_cpu_seconds": 0.021479,
+    "original_initialized_layouts_accepted": 3,
+    "effect_fixtures_do_not_enter_synth_or_license_gate": true,
+    "whole_preset_audio_validated": false
+  },
+  "linux_x86_64_generic": {
+    "passed": true,
+    "original_instruction_fixture_cases": 160,
+    "blocks": 480,
+    "all_state_and_output_hashes_equal_original": true,
+    "native_path": false,
+    "native_blocks": 0,
+    "fallback_cases": 1,
+    "render_cpu_seconds": 0.31752,
+    "original_initialized_layouts_accepted": 0,
+    "effect_fixtures_do_not_enter_synth_or_license_gate": true,
+    "whole_preset_audio_validated": false
+  },
+  "arm64_qemu": {
+    "passed": true,
+    "original_instruction_fixture_cases": 160,
+    "blocks": 480,
+    "all_state_and_output_hashes_equal_original": true,
+    "native_path": true,
+    "native_blocks": 480,
+    "fallback_cases": 1,
+    "render_cpu_seconds": 0.11301,
+    "original_initialized_layouts_accepted": 3,
+    "effect_fixtures_do_not_enter_synth_or_license_gate": true,
+    "whole_preset_audio_validated": false
+  },
+  "artificial_effect_cpu_generic_over_native_linux": 14.782811117836026,
+  "cpu_scope": "Artificial states in Linux, not Mac, Live or a complete preset; ratio is not a predicted host improvement",
+  "arm64_binary_sha256": "8d3c1c7e53138791af1274eb87983105e9eca7ff39b129d7e22ec6fb1c35bf08",
+  "arm64_binary_bytes": 41881952,
+  "macos_executed": false,
+  "original_generated_kernel_units": 413,
+  "generated_unit_files_changed": false
+}

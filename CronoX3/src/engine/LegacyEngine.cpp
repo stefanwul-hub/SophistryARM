@@ -1,6 +1,7 @@
 #include "LegacyEngine.h"
 #include "CronoXLoopDisplay.h"
 #include "AudioFloatMode.h"
+#include "CronoXNativeReverb.h"
 #include "../lifter/LifterRuntime.h"
 #include "GuestAllocator.h"
 #include "LegacyImageData.h"
@@ -113,6 +114,7 @@ struct LegacyEngine::Impl {
   U32 masterGainParameter = 0;
   double preMasterGain = 1;
   U64 masterGainConversions = 0;
+  U64 nativeReverbBlocks = 0, nativeReverbFrames = 0, nativeReverbFallbacks = 0;
   void refreshMasterGain();
   bool renderFloatModeApplied = false, renderFloatModeWasAlreadyEnabled = false;
   struct DrawingCache {
@@ -244,6 +246,11 @@ struct LegacyEngine::Impl {
         epoch = U32(std::chrono::system_clock::to_time_t(
             std::chrono::system_clock::now()));
       indexAssets(config.assetDirectories);
+      if (config.nativeCronoXReverb) {
+        for (U32 entry : {0xd3d70u,0xd400eu,0xd42d8u})
+          if (sl_hook(cpu,entry,&Impl::reverbEntry,this))
+            throw std::runtime_error("Cannot register native CronoX reverb");
+      }
     } catch (...) {
       sl_destroy(cpu);
       cpu = nullptr;
@@ -507,14 +514,15 @@ struct LegacyEngine::Impl {
     randomRear = (randomRear + 1) % 31;
     return value >> 1;
   }
-  U32 run(U32 entry, std::initializer_list<U32> args, U64 budget = 300000000) {
-    U32 at = stack;
+  U32 run(U32 entry, std::initializer_list<U32> args, U64 budget = 300000000,
+          U32 callStack = stack) {
+    U32 at = callStack;
     put(at, stop);
     for (U32 v : args) {
       at += 4;
       put(at, v);
     }
-    reg(0x10, stack);
+    reg(0x10, callStack);
     // Control operations build rate-dependent tables: initialization at
     // 192 kHz needs 55,566,775 lifted instructions in the AU regression.
     // The audio render calls below retain their separate 30M guard.
@@ -537,6 +545,62 @@ struct LegacyEngine::Impl {
       if (!remaining)
         throw std::runtime_error("Guest instruction budget exceeded");
     }
+  }
+  // A reverb entry can be reached while another original function is active.
+  // Never reuse the top-level fixed stack for its three buffer-method calls.
+  // Save the entire register image (including x87/SSE) and dispatcher state;
+  // p-code temporaries have only instruction-local lifetime.
+  U32 reverbBufferCall(U32 entry,std::initializer_list<U32> args,U32 childStack) {
+    struct Restore {
+      SlCpu& c;
+      std::array<std::uint8_t,0x2000> registers;
+      U32 pc,stop,fault;
+      U64 steps,limit;
+      explicit Restore(SlCpu& v):c(v),pc(v.pc),stop(v.stop),fault(v.fault),steps(v.steps),limit(v.limit) {
+        std::memcpy(registers.data(),c.reg,registers.size());
+      }
+      ~Restore() {
+        std::memcpy(c.reg,registers.data(),registers.size());
+        c.pc=pc;c.stop=stop;c.fault=fault;c.steps=steps;c.limit=limit;
+      }
+    } restore(*cpu);
+    if (restore.steps>=restore.limit) throw std::runtime_error("Reverb buffer budget exhausted");
+    return run(entry,args,restore.limit-restore.steps,childStack);
+  }
+  static void reverbEntry(void* user,U32 entry,SlCpu* cpu) {
+    auto& host=*static_cast<Impl*>(user);
+    cronox::ReverbMemory m{cpu->memory,cpu->memory_size};
+    const U32 sp=host.reg(0x10);
+    cronox::NativeReverbPlan plan;
+    U32 renderEntry=entry;
+    const bool wrapper=entry==0xd42d8;
+    if (wrapper && m.range(sp,12)) {
+      const U32 self=m.word(sp+4);
+      if (m.range(self,0x85c) && m.range(m.word(self+0x120),0x54) && m.flag(self+0x168))
+        renderEntry=m.word(self+0x120)==m.word(self+0x128) || !m.flag(m.word(self+0x120)+0x22)?0xd400e:0xd3d70;
+    }
+    if (sp<0x4000 || !m.range(sp,12) ||
+        !plan.prepare(m,renderEntry,m.word(sp+4),m.integer(sp+8))) {
+      ++host.nativeReverbFallbacks;
+      return;
+    }
+    const U32 scratch=sp-0x100,childStack=sp-0x1000;
+    const U32 returnAddress=m.word(sp);
+    if (wrapper) m.data[plan.self+0x16d]=1;
+    host.zero(scratch,16);
+    if (!host.reverbBufferCall(plan.wantWrite,{plan.output,scratch,scratch+4},childStack) ||
+        !host.reverbBufferCall(plan.wantRead,{plan.input,scratch+8,plan.mono?0:scratch+12},childStack))
+      throw std::runtime_error("Original reverb buffer request failed");
+    const U32 inL=m.word(scratch+8),inR=plan.mono?inL:m.word(scratch+12);
+    const U32 outL=m.word(scratch),outR=m.word(scratch+4);
+    if (!m.floats(inL,plan.frames) || !m.floats(inR,plan.frames) ||
+        !m.floats(outL,plan.frames) || !m.floats(outR,plan.frames))
+      throw std::runtime_error("Original reverb returned invalid buffers");
+    plan.render(m,inL,inR,outL,outR);
+    host.reverbBufferCall(plan.doneWrite,{plan.output},childStack);
+    if (wrapper) m.data[plan.self+0x16d]=0;
+    ++host.nativeReverbBlocks;host.nativeReverbFrames+=plan.frames;
+    host.reg(0x10,sp+4);cpu->pc=returnAddress;
   }
   U32 dispatch(U32 opcode, U32 index = 0, U32 value = 0, U32 pointer = 0,
                U32 opt = 0) {
@@ -2836,6 +2900,10 @@ std::string LegacyEngine::diagnosticJson() const {
     << ",\"waveform_envelope_cache_hits\":" << impl_->waveformEnvelopeCacheHits
     << ",\"pre_master_gain_db\":" << impl_->config.preMasterGainDb
     << ",\"pre_master_gain_conversions\":" << impl_->masterGainConversions
+    << ",\"native_reverb_enabled\":" << (impl_->config.nativeCronoXReverb?"true":"false")
+    << ",\"native_reverb_blocks\":" << impl_->nativeReverbBlocks
+    << ",\"native_reverb_frames\":" << impl_->nativeReverbFrames
+    << ",\"native_reverb_fallbacks\":" << impl_->nativeReverbFallbacks
     << ",\"timer_callbacks\":" << impl_->timerCallbacks
     << ",\"timers_registered\":" << impl_->timers.size()
     << ",\"disposed\":" << (impl_->disposed ? "true" : "false")

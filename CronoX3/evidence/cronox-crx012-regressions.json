@@ -1,0 +1,31 @@
+{
+  "checkpoint": "CRX012",
+  "passed": true,
+  "python_registration_and_transaction_regressions": 28,
+  "python_regression_log": "28 tests / OK",
+  "au_build_bash32": {
+    "scope": "Build shell orchestration with mocked Apple tools only",
+    "bash": "GNU bash, version 3.2.0(2)-release (x86_64-unknown-linux-gnu)",
+    "baseline_failure_reproduced": false,
+    "cold_compilation_units": 14,
+    "cpp_and_objcpp_flags_preserved": true,
+    "empty_compiler_arguments": 0,
+    "paths_with_spaces_passed": true,
+    "warm_object_cache_reused": true,
+    "single_source_invalidation_passed": true,
+    "macos_execution": false,
+    "auval_executed": false,
+    "passed": true
+  },
+  "core_dispatch_cache_bash32": {
+    "passed": true,
+    "original_runtime_and_unit_keys_preserved": true,
+    "only_dispatch_recompiled_after_upgrade": true,
+    "zero_objects_recompiled_on_repeat": true,
+    "helper_change_invalidates_dispatch_only": true,
+    "single_unit_change_invalidates_single_unit": true,
+    "original_generated_dispatch_source_unchanged": true
+  },
+  "original_fallback_tested": true,
+  "macos_runtime_executed": false
+}

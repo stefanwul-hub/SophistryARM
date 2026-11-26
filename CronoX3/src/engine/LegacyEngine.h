@@ -26,6 +26,9 @@ struct LegacyEngineConfig {
   bool useLocalMacPreferences = false;
   bool recycleFreedBlocks = false;
   bool audioUnitMode = false;
+  // Direct, original-instruction-checked reverb loops. Unsupported objects
+  // keep using the complete generated code, as do existing reference tests.
+  bool nativeCronoXReverb = false;
   // Constant calibration before the original Master multiplication. Raw dB,
   // normalized automation and serialized presets remain original.
   float preMasterGainDb = 0;

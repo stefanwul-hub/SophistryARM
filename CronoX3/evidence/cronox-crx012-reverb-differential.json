@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "scope": "Effect-only artificial states, actual original i386 instructions on x86 hardware versus static lift and direct float32 C++; not whole-preset or AU validation",
+  "cases": 160,
+  "blocks_each": 3,
+  "compared_bytes": 125829120,
+  "same_state_delays_and_outputs_bitwise": true,
+  "native_blocks": 480,
+  "fallbacks": 0,
+  "elapsed_seconds": 7.041593743000703,
+  "original_i386_sha256": "fe5f50d2213cfdd072c98cd4083d92bf24d9dc5ea8115b25a64cc8df08ed9969",
+  "original_instruction_oracle": "ELF64 I/O shell, hardware compatibility-mode i386 effect instructions; only memcpy platform adapter",
+  "unicorn_ftz_denormal_disagreements_not_used_as_reference": 45,
+  "mono_stereo_inplace_and_buffer_mix": true,
+  "modulation_and_diffusors": true,
+  "normal_and_denormal_arithmetic": true
+}

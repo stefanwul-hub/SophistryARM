@@ -1,0 +1,11 @@
+{
+  "checkpoint": "CRX012",
+  "state": "Candidate ready for Mac validation; direct original reverb translation verified on Intel hardware and ARM64/QEMU",
+  "original_generated_units_preserved": 413,
+  "reverb_fixture_cases": 160,
+  "reverb_fixture_blocks": 480,
+  "accepted_installed_reference": "CRX011",
+  "macos_runtime_executed": false,
+  "cpu_issue_resolved": false,
+  "next": "Publish pinned launcher, run installer on user Mac, then compare Breath And Butter CPU/tail with original; keep CrT3/CrX3 coexistence and Sophistry CP038 frozen"
+}

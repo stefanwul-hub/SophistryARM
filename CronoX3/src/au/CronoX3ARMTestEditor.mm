@@ -118,7 +118,7 @@ NSURL* crxURL(const std::filesystem::path& p) {std::error_code e;return p.empty(
     NSButton* b=crxButton(NSMakeRect(21+38*i,265,38,15),@"",self,actions[i]);
     b.bordered=NO;b.toolTip=titles[i];[self addSubview:b];[browser_ addObject:b];
   }
-  [self addSubview:crxLabel(NSMakeRect(10,487,305,16),@"CronoX 3 ARM64 port OA 2026 . CRX011",9)];
+  [self addSubview:crxLabel(NSMakeRect(10,487,305,16),@"CronoX 3 ARM64 port OA 2026 . CRX012",9)];
   [self addSubview:crxButton(NSMakeRect(320,487,132,24),@"Charger un son…",self,@selector(load:))];
   [self addSubview:crxButton(NSMakeRect(458,487,132,24),@"Banque de sons…",self,@selector(bank:))];
   [self addSubview:crxButton(NSMakeRect(596,487,156,24),@"Copier le diagnostic",self,@selector(diagnostic:))];

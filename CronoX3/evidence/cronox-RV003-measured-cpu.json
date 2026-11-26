@@ -1,0 +1,138 @@
+{
+  "diagnostic": "RV003",
+  "preset": "Breath And Butter",
+  "scope": "Offline AU hosts at real-time cadence, 44.1 kHz / 256; process CPU per audio second, not the Live meter",
+  "same_input_bank_and_sample_manifest": true,
+  "cpu_measurement_used": "CLOCK_PROCESS_CPUTIME_ID",
+  "intel_thread_clock_not_used_for_cross_architecture_ratio": true,
+  "thread_clock_limitation": "Intel/Rosetta thread time is about 42x lower than process CPU and render elapsed; an OS-wide cause is not established by this report",
+  "trials": {
+    "original-reverb": {
+      "chord": {
+        "begin_audio_seconds": 0.35,
+        "end_audio_seconds": 1.2,
+        "process_cpu_ratio": 0.10860080997242637,
+        "thread_cpu_ratio": 0.002574209567440255,
+        "render_elapsed_ratio": 0.11050966507886172,
+        "peak": 0.12216786295175552
+      },
+      "late_tail": {
+        "begin_audio_seconds": 10,
+        "end_audio_seconds": 12,
+        "process_cpu_ratio": 0.02908462412925663,
+        "thread_cpu_ratio": 0.0006667047685274732,
+        "render_elapsed_ratio": 0.028468627853590354,
+        "peak": 3.2634790159136173e-07
+      },
+      "idle": {
+        "begin_audio_seconds": 20,
+        "end_audio_seconds": 23,
+        "process_cpu_ratio": 0.00578136948529401,
+        "thread_cpu_ratio": 0.0001078095703125145,
+        "render_elapsed_ratio": 0.004534301486174284,
+        "peak": 0
+      },
+      "last_nonzero_interval_end": 16.875102040816326,
+      "first_zero_occupied_voices_after_note_off": null,
+      "voice_counters_consistent": true,
+      "peak": 0.12619458138942719
+    },
+    "arm-reverb": {
+      "chord": {
+        "begin_audio_seconds": 0.35,
+        "end_audio_seconds": 1.2,
+        "process_cpu_ratio": 0.5664435747931982,
+        "thread_cpu_ratio": 0.565816892715993,
+        "render_elapsed_ratio": 0.5664752412799224,
+        "peak": 0.24375614523887634
+      },
+      "late_tail": {
+        "begin_audio_seconds": 10,
+        "end_audio_seconds": 12,
+        "process_cpu_ratio": 0.4274027488873858,
+        "thread_cpu_ratio": 0.4248038568691925,
+        "render_elapsed_ratio": 0.4358048314138656,
+        "peak": 4.99387965646747e-07
+      },
+      "idle": {
+        "begin_audio_seconds": 20,
+        "end_audio_seconds": 23,
+        "process_cpu_ratio": 0.033779262408086236,
+        "thread_cpu_ratio": 0.031822050634199316,
+        "render_elapsed_ratio": 0.03441191636196428,
+        "peak": 0
+      },
+      "last_nonzero_interval_end": 16.875102040816326,
+      "first_zero_occupied_voices_after_note_off": 2.072380952380952,
+      "voice_counters_consistent": true,
+      "peak": 0.2517920136451721
+    },
+    "original-bypass": {
+      "chord": {
+        "begin_audio_seconds": 0.35,
+        "end_audio_seconds": 1.2,
+        "process_cpu_ratio": 0.08457228860294103,
+        "thread_cpu_ratio": 0.001997253989545027,
+        "render_elapsed_ratio": 0.08701820713164335,
+        "peak": 0.12177566438913345
+      },
+      "late_tail": {
+        "begin_audio_seconds": 10,
+        "end_audio_seconds": 12,
+        "process_cpu_ratio": 0.005748231907894649,
+        "thread_cpu_ratio": 0.00010639882328753705,
+        "render_elapsed_ratio": 0.004630371998663377,
+        "peak": 0
+      },
+      "idle": {
+        "begin_audio_seconds": 20,
+        "end_audio_seconds": 23,
+        "process_cpu_ratio": 0.0062765487132348,
+        "thread_cpu_ratio": 0.00011608912913605004,
+        "render_elapsed_ratio": 0.005150742190585499,
+        "peak": 0
+      },
+      "last_nonzero_interval_end": 8.98031746031746,
+      "first_zero_occupied_voices_after_note_off": null,
+      "voice_counters_consistent": true,
+      "peak": 0.12632377445697784
+    },
+    "arm-bypass": {
+      "chord": {
+        "begin_audio_seconds": 0.35,
+        "end_audio_seconds": 1.2,
+        "process_cpu_ratio": 0.5290176011029418,
+        "thread_cpu_ratio": 0.5278388140309054,
+        "render_elapsed_ratio": 0.594039007927371,
+        "peak": 0.24297365546226501
+      },
+      "late_tail": {
+        "begin_audio_seconds": 10,
+        "end_audio_seconds": 12,
+        "process_cpu_ratio": 0.03284940136416347,
+        "thread_cpu_ratio": 0.0309639226320589,
+        "render_elapsed_ratio": 0.03215287223307595,
+        "peak": 0
+      },
+      "idle": {
+        "begin_audio_seconds": 20,
+        "end_audio_seconds": 23,
+        "process_cpu_ratio": 0.03284565027573525,
+        "thread_cpu_ratio": 0.031200272047333135,
+        "render_elapsed_ratio": 0.033232741270840804,
+        "peak": 0
+      },
+      "last_nonzero_interval_end": 8.98031746031746,
+      "first_zero_occupied_voices_after_note_off": 2.072380952380952,
+      "voice_counters_consistent": true,
+      "peak": 0.25204968452453613
+    }
+  },
+  "cpu_issue_resolved": false,
+  "raw_state_or_private_report_published": false,
+  "chord_arm_over_intel_process_cpu": 5.215831953159627,
+  "late_tail_arm_over_intel_process_cpu": 14.695144313639432,
+  "same_last_nonzero_interval_with_reverb": true,
+  "same_last_nonzero_interval_without_reverb": true,
+  "conclusion": "This three-note case retires its voices; expensive translated reverb calculations account for most of the late CPU load. Do not shorten tails or cap voices as a fix."
+}

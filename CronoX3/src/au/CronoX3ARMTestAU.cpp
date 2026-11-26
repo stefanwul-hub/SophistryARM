@@ -80,6 +80,7 @@ struct HostedConfiguration {
 HostedConfiguration configuration() {
   HostedConfiguration result;
   auto &c = result.engine;
+  c.nativeCronoXReverb = true;
   c.audioUnitMode = true;
   c.preMasterGainDb = sophistry::outputGainDb;
   c.useLocalMacPreferences = true;

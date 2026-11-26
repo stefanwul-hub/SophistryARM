@@ -32,7 +32,7 @@ inline void restoreNativeAudioFloatState(NativeAudioFloatState state) {
   _mm_setcsr(static_cast<unsigned>(state.control));
 #endif
 }
-// Original AU render 0xa7014 saves MXCSR, ORs 0x8040 (FTZ/DAZ), and
+// CronoX AUBase::DoRender 0xc4280 saves MXCSR, ORs 0x8040 (FTZ/DAZ), and
 // restores it before returning. Guest LDMXCSR only changes the register
 // image; native SSE/ARM arithmetic also needs the corresponding mode.
 class ScopedOriginalAudioFloatMode {
