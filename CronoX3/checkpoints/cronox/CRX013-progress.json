@@ -1,6 +1,6 @@
 {
   "checkpoint": "CRX013",
-  "state": "Published, all source/download hashes verified; awaiting user Mac validation",
+  "state": "User validated; frozen reference",
   "previous_component_installed": "CRX011",
   "CRX012_failure": "Compilation of CronoXCorrectionsProbe before any copy or auval",
   "fix": "Distinct internal reverb namespace, no arithmetic change",
@@ -8,8 +8,11 @@
   "reverb_original_instruction_fixture_blocks": 480,
   "macos_runtime_executed": false,
   "auval_executed": false,
-  "next": "Publish pinned CRX013 launcher; user Mac must install successfully before the CPU comparison",
+  "next": "Keep CRX013 unchanged while exploring Elastik 1, including its archived AU states",
   "source_commit": "cf7fcf027da5f2415da11fdda2dad1623044169d",
   "launcher_commit": "11303f66c6b627ed858bb83e871a08745aa286ed",
-  "download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/11303f66c6b627ed858bb83e871a08745aa286ed/CronoX3/Demarrer-CronoX-CRX013.zip"
+  "download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/11303f66c6b627ed858bb83e871a08745aa286ed/CronoX3/Demarrer-CronoX-CRX013.zip",
+  "compilation_and_validation_user_confirmed": true,
+  "reverb_cpu_retirement_user_confirmed": true,
+  "reference_frozen": true
 }

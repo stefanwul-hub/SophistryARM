@@ -1,0 +1,12 @@
+{
+  "checkpoint": "ELA001",
+  "range_source": "Original __eh_frame metadata, normalized to 32-bit addresses",
+  "eh_frame_records": 10871,
+  "function_ranges_in_code_sections": 10436,
+  "sum_function_bytes": 2655711,
+  "code_section_bytes": 2901398,
+  "exports_confirmed": true,
+  "all_function_names_or_semantics_recovered": false,
+  "machine_code_executed": false,
+  "native_port_built": false
+}

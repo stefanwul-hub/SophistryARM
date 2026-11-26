@@ -1,0 +1,19 @@
+{
+  "checkpoint": "CRX013",
+  "reference_frozen": true,
+  "confirmation_date": "2026-11-26",
+  "evidence_kind": "Explicit user message; no new diagnostic archive",
+  "compilation_and_validation_user_confirmed": true,
+  "audio_playback_user_confirmed": true,
+  "reverb_cpu_released_when_sound_ends_user_confirmed": true,
+  "whole_synth_cpu_ratio_measured": false,
+  "exhaustive_audio_null_comparison_claimed": false,
+  "source_commit": "cf7fcf027da5f2415da11fdda2dad1623044169d",
+  "launcher_commit": "11303f66c6b627ed858bb83e871a08745aa286ed",
+  "download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/11303f66c6b627ed858bb83e871a08745aa286ed/CronoX3/Demarrer-CronoX-CRX013.zip",
+  "au_identity": "aumu/CrT3/LinP",
+  "identity_changed": false,
+  "original_CrX3_replaced": false,
+  "Sophistry_CP038_unchanged": true,
+  "next_task": "Elastik 1 old-project restoration, isolated from this reference"
+}

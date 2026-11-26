@@ -1,0 +1,77 @@
+{
+  "project": "Elastik 1 ARM64",
+  "checkpoint": "ELA001",
+  "goal": "Restore old projects containing Elastik 1 Audio Unit instances",
+  "original_version": "1.5.2.3",
+  "original_architectures": [
+    "i386",
+    "ppc"
+  ],
+  "original_au_identity": {
+    "type": "aumu",
+    "subtype": "ELSK",
+    "manufacturer": "UBER",
+    "bundle_identifier": "com.ueberschall.elastik.au",
+    "resource_version": 65537
+  },
+  "original_interface": "Carbon, custom GN framework",
+  "text_exports_with_names": 2,
+  "function_ranges_recovered_from_unwind_metadata": 10436,
+  "host_import_stubs": 814,
+  "host_pointer_imports": 20,
+  "host_external_relocations": 720,
+  "guest_image_mapped_bytes": 4666264,
+  "original_resource_files": 125,
+  "original_gui_background_size": [
+    600,
+    400
+  ],
+  "original_ui_font": "Verdana 9, small size 8",
+  "builtin_unmodified_wave_fixture": {
+    "name": "01drm120elastik_2.WAV",
+    "sample_rate": 44100,
+    "channels": 2,
+    "bits": 16,
+    "frames": 176399,
+    "sha256": "3a34c829da83d0b79773927fd2d026479a8038f4f7666c29a745aff2968b342f"
+  },
+  "user_named_banks": [
+    {
+      "name": "Elastik Tutorial.elastik",
+      "bank_file_received": false,
+      "compatibility_verified": false
+    },
+    {
+      "name_or_product_family": "Ueberschall Liquid Instruments",
+      "exact_filenames_known": false,
+      "bank_file_received": false,
+      "compatibility_verified": false
+    }
+  ],
+  "user_project_or_aupreset_received": false,
+  "native_arm64_audio_unit_available": false,
+  "installation_enabled": false,
+  "original_engine_initialized": false,
+  "original_engine_audio_rendered": false,
+  "translated_dsp_fidelity_verified": false,
+  "old_projects_reopened": false,
+  "license_or_authorization_changed": false,
+  "bank_keys_or_private_preferences_published": false,
+  "baseline_other_plugins": {
+    "Sophistry": "CP038 frozen",
+    "CronoX3": "CRX013 user validated and frozen"
+  },
+  "remaining_work": [
+    "Finish mapping original AU ClassInfo state save/restore and the GN archive schema",
+    "Compare one real saved Elastik 1 state to the original code",
+    "Identify and translate the sample playback/time-pitch engine preserving behaviour",
+    "Supply necessary modern host/framework bindings and a compatible native AU",
+    "Validate state recall, audio behaviour and CPU on user Mac before original AU replacement"
+  ],
+  "publication_directory": "Elastik",
+  "reference_CronoX_changed": false,
+  "selected_functions_decompiled": 32,
+  "au_state_header_validation_identified": true,
+  "state_payload_decoder_complete": false,
+  "first_native_engine_milestone_reached": false
+}

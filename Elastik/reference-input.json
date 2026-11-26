@@ -1,0 +1,11 @@
+{
+  "checkpoint": "ELA001",
+  "input_filename": "ElastikAU.pkg.zip",
+  "sha256": "e72aa430ddb833de7e50d4157962caf45d8f75da105d68969cfad5a0b56c6939",
+  "bytes": 4794860,
+  "source": "User supplied installer attachment",
+  "local_original": "reference/ElastikAU.pkg.zip",
+  "original_installer_not_republished_at_this_checkpoint": true,
+  "expected_component_binary_sha256": "a411462c21f3a7f5e546bf5fc76fc62afebe7e7abe92900e75695383ef3d6601",
+  "expected_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920"
+}

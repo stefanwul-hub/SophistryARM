@@ -1,0 +1,37 @@
+{
+  "checkpoint": "ELA001",
+  "source_archive_sha256": "9b4aca313f9ba24da8c4c2b2473f4023ca9a3efcd009d117644c3a46e2be0f84",
+  "directory_records": [
+    {
+      "name": "elastik",
+      "directory": true,
+      "bytes": null,
+      "offset": null
+    },
+    {
+      "name": "01drm120elastik_2.WAV",
+      "directory": false,
+      "bytes": 707036,
+      "offset": 1688
+    },
+    {
+      "name": "Info.plist",
+      "directory": false,
+      "bytes": 96,
+      "offset": 708724
+    }
+  ],
+  "wave": {
+    "channels": 2,
+    "sample_rate": 44100,
+    "bits": 16,
+    "frames": 176399,
+    "seconds": 3.9999773242630385,
+    "bytes": 707036,
+    "sha256": "3a34c829da83d0b79773927fd2d026479a8038f4f7666c29a745aff2968b342f"
+  },
+  "audio_bytes_unchanged": true,
+  "original_engine_rendered": false,
+  "native_arm64_plugin_built": false,
+  "bank_authorization_modified": false
+}

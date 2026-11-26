@@ -1,0 +1,13 @@
+{
+  "checkpoint": "ELA001",
+  "status": "Initial source analysis and AU state contract saved; native engine not yet available",
+  "original_version": "1.5.2.3",
+  "target": "Restore original Elastik 1 AU projects",
+  "function_ranges_recovered": 10436,
+  "selected_functions_decompiled": 32,
+  "builtin_audio_fixture_identified": true,
+  "user_banks_named_but_not_received": true,
+  "user_project_awaited": true,
+  "installation_enabled": false,
+  "CronoX_CRX013_frozen": true
+}

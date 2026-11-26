@@ -1,0 +1,848 @@
+[
+  {
+    "path": ".",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Info.plist",
+    "bytes": 903,
+    "regular": true,
+    "sha256": "220abc965a08398b08ca11c29f87db7866e5d5d9605c632d08264c8ce7889a8c"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/MacOS",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/MacOS/Elastik",
+    "bytes": 9560908,
+    "regular": true,
+    "sha256": "a411462c21f3a7f5e546bf5fc76fc62afebe7e7abe92900e75695383ef3d6601"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/PkgInfo",
+    "bytes": 8,
+    "regular": true,
+    "sha256": "d06a80ba92de0833d0ed03de1b02b7c8913f126d9e8c8931b190765dd5d83b11"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/arrow_down.cbf",
+    "bytes": 168,
+    "regular": true,
+    "sha256": "b544862399529cc938096ce7271effd16ed555e1b097ab0485ac56813e611ae4"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/arrow_left1.cbf",
+    "bytes": 148,
+    "regular": true,
+    "sha256": "c021060639d67b4e8099e279a59ab2386d2cad229f7bbac3cd78ed115ece62dc"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/arrow_left2.cbf",
+    "bytes": 148,
+    "regular": true,
+    "sha256": "f718f176eee35f5661cef1b760ee61c7c5cf46470f480bdfda2703c669608159"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/arrow_play.cbf",
+    "bytes": 108,
+    "regular": true,
+    "sha256": "042976133d73ed6bbd192a36d842b0cca068f5f2a827de1e340d73b4a8bbce5e"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/arrow_right1.cbf",
+    "bytes": 148,
+    "regular": true,
+    "sha256": "b56ec1a4987a2b6b109e2e0a053531d53e622c422b4d236876d13d594025243a"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/arrow_right2.cbf",
+    "bytes": 148,
+    "regular": true,
+    "sha256": "483110aaaddc76020e20cea482065fa987180fd4567526381d4928d3ad7870f8"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/arrow_updown.cbf",
+    "bytes": 288,
+    "regular": true,
+    "sha256": "bb34c405980a769c79e54217975223b6b2a72d2e23e779de19f33bc9bfa6651c"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/AudioUnit.r",
+    "bytes": 4860,
+    "regular": true,
+    "sha256": "76e87ac5fe14f251df88b79b7bc72201d4b062bafbb6a70ca7660502abea5356"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/automation_active.cbf",
+    "bytes": 272,
+    "regular": true,
+    "sha256": "b603d978ca5de3f8658a4ee26e0e908e18301183f26bffb3a9ef0363f884a94c"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/automation_inactive.cbf",
+    "bytes": 272,
+    "regular": true,
+    "sha256": "72dfc00733751d62d9eb1046269c66c662dace8f240ef11353ee4b4be08b001d"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/bg.cbf",
+    "bytes": 960008,
+    "regular": true,
+    "sha256": "abe27e84f24e075e3cf964885bb3b0231ada5512b15021c379fd519199a96638"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/button.cbf",
+    "bytes": 4568,
+    "regular": true,
+    "sha256": "67a0ef35ac9a426d85ad86f131591074cbc93cc8d2bc2533801e97f1a6d19eda"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/button_off.cbf",
+    "bytes": 4188,
+    "regular": true,
+    "sha256": "7f92fcf202f6eb3db7e453af3d961c0b6b760da8564b686f75801e91f89ab4b7"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/button_on.cbf",
+    "bytes": 4188,
+    "regular": true,
+    "sha256": "b4d9dd07939699ca9c14865bde33365d1fe0191fed55d2677bdd3cc71586e8d3"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/button_pressed.cbf",
+    "bytes": 4568,
+    "regular": true,
+    "sha256": "872ee073dcfff783dab173220dcc01e35b0092dac767ae191447a5829e245cbf"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/dir_to_left.cbf",
+    "bytes": 4188,
+    "regular": true,
+    "sha256": "746ccdab3a2348cd6489a8b2cab85c64c591604f3c0e4c44503bd3f2ace896da"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/dir_to_right.cbf",
+    "bytes": 4188,
+    "regular": true,
+    "sha256": "5a5fcc5c104283f459b45ccf060a79efed511003f7fb41b7dc0c6d1f9a0ed578"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/display_lightness.cbf",
+    "bytes": 172152,
+    "regular": true,
+    "sha256": "8135b1f6f53c1a34a73e2db42930e817664a487a4e0310cda4edfc170e837ee1"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/Elastik.elastik",
+    "bytes": 708820,
+    "regular": true,
+    "sha256": "9b4aca313f9ba24da8c4c2b2473f4023ca9a3efcd009d117644c3a46e2be0f84"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/Elastik.rsrc",
+    "bytes": 790,
+    "regular": true,
+    "sha256": "80d70a7c159c8015b2384386b8883372a521a82bb024ce36fc91d115aea8be58"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/automation_midi.cbf",
+    "bytes": 272,
+    "regular": true,
+    "sha256": "cb6e73ea8453bbd7c312fd1333117e8851f32f629c817760eb0773285d720d86"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/display_bg.cbf",
+    "bytes": 232332,
+    "regular": true,
+    "sha256": "6ac9d54883cc4ab47c1efb1c5c55a60da4cecd23b611e9434331e05a0fac0fc7"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/elastic_logo.cbf",
+    "bytes": 13736,
+    "regular": true,
+    "sha256": "0504734294385a5d2078411100c5d47bac20d96f76f6931018ae2d933bd05b80"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/env_grid_effect.cbf",
+    "bytes": 13368,
+    "regular": true,
+    "sha256": "e8b3c8a8d10a24cd16eb72c2e0f00f61b535ab4b9809e548651c57eee12b950c"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/handel_end_red.cbf",
+    "bytes": 2276,
+    "regular": true,
+    "sha256": "2d1fc8eb771e529a835e3f4eb3856de221ce7466f02cacc91af6d2f4ff1f4e7f"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/handel_start_red.cbf",
+    "bytes": 2276,
+    "regular": true,
+    "sha256": "4701154b9bd8137f905e8bd8d6cd2e484b804b29255bcb31076b15786005f5d0"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/Info.plist",
+    "bytes": 3782,
+    "regular": true,
+    "sha256": "754304f48242fa6492cae7c0a5a01a5a308d18d183a06a112ae018e9de0b72ed"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/Info_W32.plist",
+    "bytes": 625,
+    "regular": true,
+    "sha256": "a0d1c2b36e3d875c4b87930878b593f7d26ff2efa79fcd57118e2b3fe690af01"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/keyboard_black_pressed.cbf",
+    "bytes": 1204,
+    "regular": true,
+    "sha256": "1abbbdb504ddce0fc4cdb7cdd52803b67a19bbc84c3944798105e7fd2a38289d"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/keyboard_white_pressed.cbf",
+    "bytes": 1664,
+    "regular": true,
+    "sha256": "560281bebca207b50ba87f3b63d049dc25fd9f8d342349fa8246c577be13e87f"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/radar_line_ccw.cbf",
+    "bytes": 11624,
+    "regular": true,
+    "sha256": "d50ae73ea22925463fe1fa811e15247105f5825803c0eccbf201c3de3b93cff3"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/radar_line_cw.cbf",
+    "bytes": 11624,
+    "regular": true,
+    "sha256": "b09325ddf3586526517e9427c54893dd695a94adfeeed5fcd3e05876c10a0abd"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/runner_enable.cbf",
+    "bytes": 492,
+    "regular": true,
+    "sha256": "61a923b3e06c2c68febc610edd8bfdcf301072ec9d51cde554510836f0f1bb00"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikBlue.appearance/sync_on.cbf",
+    "bytes": 368,
+    "regular": true,
+    "sha256": "4a646e034d11643974809bbc42fb802e340288be88b0fb2be5a2596906662fd8"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/automation_midi.cbf",
+    "bytes": 272,
+    "regular": true,
+    "sha256": "37ded04da1c48f3b51302459674a0be5ca24d8f9dd5d7e36299cfcab02ab2554"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/display_bg.cbf",
+    "bytes": 232332,
+    "regular": true,
+    "sha256": "254e0fff994a5f0b828a53b2d1b775d434dfecc53d2dde84b8e585163ecbed8e"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/elastic_logo.cbf",
+    "bytes": 13736,
+    "regular": true,
+    "sha256": "e2352e756c263dcf318a260510b2ed3e397ef1a4cbe9ef4f85bdb801c8ce92ba"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/env_grid_effect.cbf",
+    "bytes": 13368,
+    "regular": true,
+    "sha256": "18a92f4759ef9ec91a0876cc8551c237718f8320fe778990ed2af7a3ff7d5f70"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/handel_end_red.cbf",
+    "bytes": 2276,
+    "regular": true,
+    "sha256": "bf22eb8acb8fecd6d606ad72577abcfcadbd19cba9523b7c70a3f557d303418d"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/handel_start_red.cbf",
+    "bytes": 2276,
+    "regular": true,
+    "sha256": "6391ddec821267386be6bd38eb5fbc5293542a8eeed3c11fc3506d13e121245f"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/Info.plist",
+    "bytes": 3757,
+    "regular": true,
+    "sha256": "4c5131a3c07106a3e973d8ba03d81397af9269f5b51cadefce1026cc27ee4808"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/Info_W32.plist",
+    "bytes": 625,
+    "regular": true,
+    "sha256": "a0d1c2b36e3d875c4b87930878b593f7d26ff2efa79fcd57118e2b3fe690af01"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/keyboard_black_pressed.cbf",
+    "bytes": 1204,
+    "regular": true,
+    "sha256": "e71900f2058e75d15d6d7291a802589a037894869a9ab94f58f5c30961c5fd1b"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/keyboard_white_pressed.cbf",
+    "bytes": 1664,
+    "regular": true,
+    "sha256": "072942163f98495fffeda76528d96297f500e94cdc285d8bc634ff0a1d142e95"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/radar_line_ccw.cbf",
+    "bytes": 11624,
+    "regular": true,
+    "sha256": "ac0a84904352c5698737330ed3ca2aaee568e7c8a6c76a2b94f1afd659ba2a61"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/radar_line_cw.cbf",
+    "bytes": 11624,
+    "regular": true,
+    "sha256": "84648a61e0d2af5b8ab6eeeffc78dfe77072737527b4fcc2428b8ae7abfccdb3"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/runner_enable.cbf",
+    "bytes": 492,
+    "regular": true,
+    "sha256": "f62e73d9155f4fd70c11720e88fd161fcbcdc50420cbfbaa69867a8cdbeb1ab5"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/scrool_horizantal.cbf",
+    "bytes": 1448,
+    "regular": true,
+    "sha256": "64d0cb1b68b97b083dad82c0b66e4069cfd9191b4466a65913c0a78a450207ef"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/scrool_vertical.cbf",
+    "bytes": 1448,
+    "regular": true,
+    "sha256": "d055b261eac6be1656c35c87603ae9994f1204088daf053528b4fb245cec70a0"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/seperation_thin.cbf",
+    "bytes": 38992,
+    "regular": true,
+    "sha256": "3165cff4a0dacb4a16e0f33ade3ca199bf314ed681a14016142de43f3d2059a0"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikGreen.appearance/sync_on.cbf",
+    "bytes": 368,
+    "regular": true,
+    "sha256": "c4b449daf90f6f7179ddfd56c6c3bd2bffa49a2ba8777356ff8591fa3d080d2d"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/automation_midi.cbf",
+    "bytes": 272,
+    "regular": true,
+    "sha256": "117cde4bb4e4f157263c6e55c2a73b095a58db2995b00f7a0077c500272f39a7"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/display_bg.cbf",
+    "bytes": 232332,
+    "regular": true,
+    "sha256": "c5a7a5f3a53133c4722c1ffa760765b99b317e9c6716e3e5fbc26070ece85b8b"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/elastic_logo.cbf",
+    "bytes": 13736,
+    "regular": true,
+    "sha256": "e431af15c1934a0800eaf1061591117bdd59224ce732c3b8d9e14ef1a4e0a00c"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/env_grid_effect.cbf",
+    "bytes": 13368,
+    "regular": true,
+    "sha256": "1315e14f62a7c8bb0bb36ef42e7a5b0344537641974b3dc5e4b3b6db64c99f2d"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/handel_end_red.cbf",
+    "bytes": 2276,
+    "regular": true,
+    "sha256": "b707fcfa85558224439244e76ba64a113917628f5f75c76d5e2cd6e80edc26ec"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/handel_start_red.cbf",
+    "bytes": 2276,
+    "regular": true,
+    "sha256": "a8b7f6142da6cccd4b7b3b18eeabb6a7d50064d6851c711b8c927f5e22d9b29f"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/Info.plist",
+    "bytes": 3774,
+    "regular": true,
+    "sha256": "f80cbd357d5ac47394c33911805763d82622c548544846e68f3e31e89998e469"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/Info_W32.plist",
+    "bytes": 625,
+    "regular": true,
+    "sha256": "a0d1c2b36e3d875c4b87930878b593f7d26ff2efa79fcd57118e2b3fe690af01"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/keyboard_black_pressed.cbf",
+    "bytes": 1204,
+    "regular": true,
+    "sha256": "e0a70716feacc7679d6188e33581c48b250c971706bb7552098de7f2d8bc498e"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/keyboard_white_pressed.cbf",
+    "bytes": 1664,
+    "regular": true,
+    "sha256": "559d81cce19416afda4187f4cca41f90ff617725f994d91ab8b469c34e7fde64"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/radar_line_ccw.cbf",
+    "bytes": 11624,
+    "regular": true,
+    "sha256": "338fc4c0ce3c410c9f23aae2d543b46056750f87d1be1f21dc05a4f9803e7bf3"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/radar_line_cw.cbf",
+    "bytes": 11624,
+    "regular": true,
+    "sha256": "35d963347a390e2533bf3c63b53f4aca33d5d482991ce7535ca016ab8ec0b8eb"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/runner_enable.cbf",
+    "bytes": 492,
+    "regular": true,
+    "sha256": "9bc4303d9bfc268a85063fff5ed25aebc4a3f74a1f04d3fdc685a7cdeaa7714f"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikRed.appearance/sync_on.cbf",
+    "bytes": 368,
+    "regular": true,
+    "sha256": "4f0220921b56edc6f053e1fbb8e64e8e038e8700fe7d6025e8b1ecd003d257b6"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance",
+    "bytes": 0,
+    "regular": false,
+    "sha256": null
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/automation_midi.cbf",
+    "bytes": 272,
+    "regular": true,
+    "sha256": "5081de50940b3c151b292a6d6f905effbe5faff37229d2d248e2bc19ff27de37"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/display_bg.cbf",
+    "bytes": 232332,
+    "regular": true,
+    "sha256": "5d3670a0cf3b5b0d5c09cef11b52b2c19ad373e59e4098b82d05b84df70960fa"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/elastic_logo.cbf",
+    "bytes": 13736,
+    "regular": true,
+    "sha256": "fc4d89874fc0aee9c1ba4d4daccef1c3f1ed58d181e533acada73d6066869fa6"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/env_grid_effect.cbf",
+    "bytes": 13368,
+    "regular": true,
+    "sha256": "833b198959212c7a3205761646c65e949252cdf5dcf2fdea3a5111e68fc8da30"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/handel_end_red.cbf",
+    "bytes": 2276,
+    "regular": true,
+    "sha256": "01e09b2386f19eeac162f4473ccd87676384add3b1603c824af7ce44a0dd34c7"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/handel_start_red.cbf",
+    "bytes": 2276,
+    "regular": true,
+    "sha256": "da76dc190d46ab82d8564cbf6dbc940796c8de4f295bf2dd24a7b0a6a7f2970c"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/Info.plist",
+    "bytes": 3774,
+    "regular": true,
+    "sha256": "d5ba795b32edb46c252cfcb58471f6ba5310275c73ad2f8b8841074a4635968f"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/Info_W32.plist",
+    "bytes": 625,
+    "regular": true,
+    "sha256": "a0d1c2b36e3d875c4b87930878b593f7d26ff2efa79fcd57118e2b3fe690af01"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/keyboard_black_pressed.cbf",
+    "bytes": 1204,
+    "regular": true,
+    "sha256": "eed7c3687f7040b5e86d8d251a49311f76d4a960e6b5473647616a775808ef30"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/keyboard_white_pressed.cbf",
+    "bytes": 1664,
+    "regular": true,
+    "sha256": "fa8673630b059f45bf69d55fedbd36ddcb400dd66ce8412ba36f584a162ee3a9"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/radar_line_ccw.cbf",
+    "bytes": 11624,
+    "regular": true,
+    "sha256": "584d116d01d0991bef0a9ba036bffdcfce591c7db437fb978217ee39ebe5db0b"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/radar_line_cw.cbf",
+    "bytes": 11624,
+    "regular": true,
+    "sha256": "e010eb0cd70f66411433731354c809f2b743b38f9b67f9a742378cc8780506bf"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/runner_enable.cbf",
+    "bytes": 492,
+    "regular": true,
+    "sha256": "981cb3c38c527a77f0b91afec27548fa4f4ed0408f6fb411d95652554d7290b6"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ElastikYellow.appearance/sync_on.cbf",
+    "bytes": 368,
+    "regular": true,
+    "sha256": "ff48d70d1d7e9e3a71bf75e2decca257d1e88462410693ee2239100cb1fc8ac8"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ETAgreement.gnui",
+    "bytes": 22767,
+    "regular": true,
+    "sha256": "62456730ab0d738d4b71f6507d7df3992c70b816e12d0491466d41726a110090"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ETFuture.gnui",
+    "bytes": 10782,
+    "regular": true,
+    "sha256": "edc0dcd4e0bf2e5597c6566666c0039fa201bba6f2c0bd7e52d67a9a91627c92"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ETInfoPanel.gnui",
+    "bytes": 28474,
+    "regular": true,
+    "sha256": "186c80d3828ab4ed2b98380e2910d1b1267e60d3ea9072a0eaa51f7560426f4c"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ETInstrumentController.gnui",
+    "bytes": 302143,
+    "regular": true,
+    "sha256": "0d9a1fd21471efe8646b7e0f7cdad2f3524bc21cc2d3432735b9c81de1424486"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ETPluginApplication.h",
+    "bytes": 663,
+    "regular": true,
+    "sha256": "265c54edb65a49df8ec7ed707bed9365897b486bc95b839321d4afb4d3f8d382"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ETSetup.gnui",
+    "bytes": 126964,
+    "regular": true,
+    "sha256": "e28710f4bcb466cc9e93fd84164335e8b447eb27298d7a39ca994968422b6516"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/fader.cbf",
+    "bytes": 800,
+    "regular": true,
+    "sha256": "4b7e98057f9c85e36bfac1897fd44a999dcc42d30e68a26d0ea297d745abd907"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/fader_line.cbf",
+    "bytes": 5748,
+    "regular": true,
+    "sha256": "1744b643b23c4ee8d3dc84685630ebc3bd15612665324b2fc3cbf56f40753ec0"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/handel_end_gray.cbf",
+    "bytes": 2276,
+    "regular": true,
+    "sha256": "f8cb9ec5fcb43d9a7157a064f74549ceced619452ed65d3fafe30651f78e429a"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/handel_start_gray.cbf",
+    "bytes": 2276,
+    "regular": true,
+    "sha256": "d23862b4256573103a399b14f4b3ef9cf45fff1fd83f96aeb021dd4730441335"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/input_standart.cbf",
+    "bytes": 3848,
+    "regular": true,
+    "sha256": "0d589df9ad8999e818a491d7587b59d42a7de9245b1b4fc5c1a36797c12c38bc"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/keyboard_black.cbf",
+    "bytes": 1256,
+    "regular": true,
+    "sha256": "b9d92bf48a377b26e437f782bcf819eea618e5e21d5c07d7c35bc6510bd0ea8e"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/keyboard_black_selected.cbf",
+    "bytes": 1204,
+    "regular": true,
+    "sha256": "6f055ab12edb1ae5137b648bb1f570394659133314fc7f96ca0968f021ace8ea"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/keyboard_black_selected_pressed.cbf",
+    "bytes": 1204,
+    "regular": true,
+    "sha256": "c31209cab0aea53215abd23d8b7e4d4a1999b77dd8144485690c61cadd14b300"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/keyboard_border.cbf",
+    "bytes": 59864,
+    "regular": true,
+    "sha256": "53426ddc177287dec1acb28c65216a3d3ce562df970704cf959cd037cb0f96a8"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/keyboard_disabled_with_corner.cbf",
+    "bytes": 55628,
+    "regular": true,
+    "sha256": "998856be47fa64908a6b282fc3000a0e3ab1c979f22ab26980cdc048fff8b8cc"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/keyboard_white.cbf",
+    "bytes": 1664,
+    "regular": true,
+    "sha256": "14786637b04389ac4a8820e6f8ea5eb482305dca58f79d2c00212f5fbdd5acb8"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/keyboard_white_selected.cbf",
+    "bytes": 1664,
+    "regular": true,
+    "sha256": "478628536dc64109888a8c96e1f873602d1242c1073182579b1759a787ab3148"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/keyboard_white_selected_pressed.cbf",
+    "bytes": 1664,
+    "regular": true,
+    "sha256": "4043fd20adb79c7bd62d2eb89240462c56c245848e8a9ba881da950f55e696f0"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/loop_icon.cbf",
+    "bytes": 408,
+    "regular": true,
+    "sha256": "3cb94af99071ec1a3d008dec034c6ff0f3679b2f48d2623e995438c1b55405f8"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/loop_icon_pressed.cbf",
+    "bytes": 408,
+    "regular": true,
+    "sha256": "7bf50bea96e02f88c63584f3f8f73ae2e3a3286a316f6dc980c3850e3b26cc52"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/metal_round_0.cbf",
+    "bytes": 295944,
+    "regular": true,
+    "sha256": "8fdf756dd6c4c878ddda493d5419416273c7fc2456737fc0faf4af7d0802bb5d"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/metal_round_1.cbf",
+    "bytes": 295944,
+    "regular": true,
+    "sha256": "b0143e3d95cb6d07c1f0cc3bcc19fc6c9b8e3db322365004571ab24d86669e42"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/metal_round_16.cbf",
+    "bytes": 295944,
+    "regular": true,
+    "sha256": "14fc2ce3960a893215fd16c163ab8112e6bdb4d72e435f2ebb936d83ac868b00"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/metal_round_2.cbf",
+    "bytes": 295944,
+    "regular": true,
+    "sha256": "65f1eadf341ff36bdd028c91c85f290c1cc67c2ef91a29eee036eca22ce05828"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/metal_round_32.cbf",
+    "bytes": 295944,
+    "regular": true,
+    "sha256": "1ad468e80b24d90a2567d351538dd9eeb4baea5c59e65fa86c38ec8e54c24ac6"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/metal_round_4.cbf",
+    "bytes": 295944,
+    "regular": true,
+    "sha256": "25b6d6498f470f152938f3c9ce39790cf93ad153fcd3557f4f829db3c59037f6"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/metal_round_8.cbf",
+    "bytes": 295944,
+    "regular": true,
+    "sha256": "1e03785a28ee14bbca9bccd4e717f0934b9eea89b2d53aa05cad642a0e1f6fb8"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/metal_round_shadow.cbf",
+    "bytes": 314728,
+    "regular": true,
+    "sha256": "7b072300a1164fb609e96e45e1ec36a131a95a16b8c980f5d35bda37b57c364a"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/modus_trennlinie.cbf",
+    "bytes": 1968,
+    "regular": true,
+    "sha256": "93c3c16ffb4b56b600731eee95c1295605554eb4a3abdb9c3f5fdfacf9c0aee8"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/playstatus_off.cbf",
+    "bytes": 1756,
+    "regular": true,
+    "sha256": "06141beddcf7ece648f163d5073f6771e02d8fda33ab71f157bdcf9b92f99ef9"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/playstatus_on.cbf",
+    "bytes": 1736,
+    "regular": true,
+    "sha256": "0e275aac9380201930a8a41b534a9d60c72b61ea50cb3a0248d0bb099e7ccd28"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/runner_disable.cbf",
+    "bytes": 492,
+    "regular": true,
+    "sha256": "57a9f35734a64d7611d365d3388d98d6c587404cf5d9070a87e9500e9cfd3767"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/save_icon.cbf",
+    "bytes": 316,
+    "regular": true,
+    "sha256": "856c2cbcb2dbf933687014e5778dc7d6b61c958c28a7b8e05b37b882fd30ded6"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/save_icon_pressed.cbf",
+    "bytes": 316,
+    "regular": true,
+    "sha256": "2e6dfb92c33faa01f590d5f457f5a32bb950040ef7d5079c5862da8a814fe5bb"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/search-aktiv.cbf",
+    "bytes": 264,
+    "regular": true,
+    "sha256": "754992c7110236d65fdf06be2300328cafe5cfaefde818c65c85846ce6d60256"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/search-passiv.cbf",
+    "bytes": 264,
+    "regular": true,
+    "sha256": "a7bc00c73e2402bd2dfa0d4faf6b76659f7a2fba1143e774e96b34026543bc39"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/setup.cbf",
+    "bytes": 316,
+    "regular": true,
+    "sha256": "42ca93c5858ba1dc63a80e8f7ff069eed4c96478cf8fde859cfbe533a85f2f7d"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/setup_pressed.cbf",
+    "bytes": 316,
+    "regular": true,
+    "sha256": "a13f3bb564acfc9eade5469d771b3b8e0afe1bb811e933eecd18ee38c68baa19"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/switcher.cbf",
+    "bytes": 1756,
+    "regular": true,
+    "sha256": "7b49ae03f051c8435c6a03a418992047022665ee93c9fed9864776b4b3538f98"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/switcher_disabled.cbf",
+    "bytes": 1756,
+    "regular": true,
+    "sha256": "805d9338f06d9e2712f6305d1b3538ea707943e1f95014c31497ce4a980dca9f"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/switcher_pressed.cbf",
+    "bytes": 1756,
+    "regular": true,
+    "sha256": "ae96823a7071acc49287f90d2fd9dd5a7dbb11073e0854cd63eff49cecec1172"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/sync_needed.cbf",
+    "bytes": 448,
+    "regular": true,
+    "sha256": "1aafd81c7c01a66a95492e2d4c28021a00aa18eadadb262befcd8ab63d872d46"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/sync_off_big.cbf",
+    "bytes": 448,
+    "regular": true,
+    "sha256": "3e6a7d746ce6211ad504b3c6918f057a06253c99583b22d0e2d594d6f0fe73fb"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/sync_off_small.cbf",
+    "bytes": 368,
+    "regular": true,
+    "sha256": "7f9e5d419ffc3053041056285b8d92b72473e2833aa2d9249f972e83bf9219da"
+  },
+  {
+    "path": "Library/Audio/Plug-Ins/Components/Elastik.component/Contents/Resources/ueberschall.cbf",
+    "bytes": 8072,
+    "regular": true,
+    "sha256": "5600eb3abc7a1fe3e997e12b8ce06f0ab49f9e5dc8c8b92f4a42f7ccc4785b4e"
+  }
+]

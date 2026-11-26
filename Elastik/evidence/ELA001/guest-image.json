@@ -1,0 +1,3405 @@
+{
+  "scope": "Guest data loader metadata only; no engine initialization or machine-code execution",
+  "original_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "mapped_bytes": 4666264,
+  "mapped_sha256": "1a1b4517b074682d2c88817b7279ed31a45f068bf9e95d84002b13a4db66448e",
+  "segments": [
+    {
+      "name": "__TEXT",
+      "address": 0,
+      "size": 3563520,
+      "fileoff": 0,
+      "filesize": 3563520
+    },
+    {
+      "name": "__DATA",
+      "address": 3563520,
+      "size": 475136,
+      "fileoff": 3563520,
+      "filesize": 450560
+    },
+    {
+      "name": "__IMPORT",
+      "address": 4038656,
+      "size": 8192,
+      "fileoff": 4014080,
+      "filesize": 8192
+    },
+    {
+      "name": "__LINKEDIT",
+      "address": 4046848,
+      "size": 619416,
+      "fileoff": 4022272,
+      "filesize": 619416
+    }
+  ],
+  "zero_filled_sections": [
+    {
+      "name": "__common",
+      "address": "0x3d3920",
+      "bytes": 1420,
+      "all_zero": true
+    },
+    {
+      "name": "__bss",
+      "address": "0x3d3ec0",
+      "bytes": 24592,
+      "all_zero": true
+    }
+  ],
+  "function_imports": [
+    {
+      "address": 4038656,
+      "name": "_dlopen"
+    },
+    {
+      "address": 4038661,
+      "name": "__keymgr_get_and_lock_processwide_ptr"
+    },
+    {
+      "address": 4038666,
+      "name": "_free"
+    },
+    {
+      "address": 4038671,
+      "name": "_malloc"
+    },
+    {
+      "address": 4038676,
+      "name": "__keymgr_set_and_unlock_processwide_ptr"
+    },
+    {
+      "address": 4038681,
+      "name": "_dlsym"
+    },
+    {
+      "address": 4038686,
+      "name": "__keymgr_get_and_lock_processwide_ptr_2"
+    },
+    {
+      "address": 4038691,
+      "name": "_calloc"
+    },
+    {
+      "address": 4038696,
+      "name": "_CFDictionaryRemoveAllValues"
+    },
+    {
+      "address": 4038701,
+      "name": "_AddEventTypesToHandler"
+    },
+    {
+      "address": 4038706,
+      "name": "_CFDictionaryAddValue"
+    },
+    {
+      "address": 4038711,
+      "name": "_CFDictionaryGetCount"
+    },
+    {
+      "address": 4038716,
+      "name": "__ZdlPv"
+    },
+    {
+      "address": 4038721,
+      "name": "_RemoveEventHandler"
+    },
+    {
+      "address": 4038726,
+      "name": "_CFDictionaryGetKeysAndValues"
+    },
+    {
+      "address": 4038731,
+      "name": "_CFDictionaryGetValueIfPresent"
+    },
+    {
+      "address": 4038736,
+      "name": "_InstallEventHandler"
+    },
+    {
+      "address": 4038741,
+      "name": "_CFDictionaryCreateMutable"
+    },
+    {
+      "address": 4038746,
+      "name": "_CFRelease"
+    },
+    {
+      "address": 4038751,
+      "name": "_CFArrayCreate"
+    },
+    {
+      "address": 4038756,
+      "name": "_CFArrayGetValueAtIndex"
+    },
+    {
+      "address": 4038761,
+      "name": "_CFDataCreateMutable"
+    },
+    {
+      "address": 4038766,
+      "name": "_memcpy"
+    },
+    {
+      "address": 4038771,
+      "name": "_setjmp"
+    },
+    {
+      "address": 4038776,
+      "name": "_CFDictionaryGetValue"
+    },
+    {
+      "address": 4038781,
+      "name": "_CFNumberCreate"
+    },
+    {
+      "address": 4038786,
+      "name": "_memset"
+    },
+    {
+      "address": 4038791,
+      "name": "__ZdaPv"
+    },
+    {
+      "address": 4038796,
+      "name": "_CFDataAppendBytes"
+    },
+    {
+      "address": 4038801,
+      "name": "_CFStringCompare"
+    },
+    {
+      "address": 4038806,
+      "name": "_SetComponentInstanceStorage"
+    },
+    {
+      "address": 4038811,
+      "name": "_CFArrayCreateMutable"
+    },
+    {
+      "address": 4038816,
+      "name": "_CFRetain"
+    },
+    {
+      "address": 4038821,
+      "name": "__Znwm"
+    },
+    {
+      "address": 4038826,
+      "name": "_CFArrayAppendValue"
+    },
+    {
+      "address": 4038831,
+      "name": "__Znam"
+    },
+    {
+      "address": 4038836,
+      "name": "_GetComponentInfo"
+    },
+    {
+      "address": 4038841,
+      "name": "_CFDataGetBytePtr"
+    },
+    {
+      "address": 4038846,
+      "name": "_AUParameterSet"
+    },
+    {
+      "address": 4038851,
+      "name": "_CFDictionaryGetTypeID"
+    },
+    {
+      "address": 4038856,
+      "name": "___cxa_begin_catch"
+    },
+    {
+      "address": 4038861,
+      "name": "_CFStringGetCString"
+    },
+    {
+      "address": 4038866,
+      "name": "_CFDictionarySetValue"
+    },
+    {
+      "address": 4038871,
+      "name": "_CFNumberGetValue"
+    },
+    {
+      "address": 4038876,
+      "name": "_CFArrayGetCount"
+    },
+    {
+      "address": 4038881,
+      "name": "_CFDataGetLength"
+    },
+    {
+      "address": 4038886,
+      "name": "__Unwind_Resume"
+    },
+    {
+      "address": 4038891,
+      "name": "___cxa_end_catch"
+    },
+    {
+      "address": 4038896,
+      "name": "_GetComponentInstanceStorage"
+    },
+    {
+      "address": 4038901,
+      "name": "_AUEventListenerNotify"
+    },
+    {
+      "address": 4038906,
+      "name": "_CFGetTypeID"
+    },
+    {
+      "address": 4038911,
+      "name": "_AudioUnitGetProperty"
+    },
+    {
+      "address": 4038916,
+      "name": "_CreateUserPaneControl"
+    },
+    {
+      "address": 4038921,
+      "name": "_ClearKeyboardFocus"
+    },
+    {
+      "address": 4038926,
+      "name": "_GetEventClass"
+    },
+    {
+      "address": 4038931,
+      "name": "_HIViewAddSubview"
+    },
+    {
+      "address": 4038936,
+      "name": "_GetEventParameter"
+    },
+    {
+      "address": 4038941,
+      "name": "_NewEventLoopTimerUPP"
+    },
+    {
+      "address": 4038946,
+      "name": "_DisposeControl"
+    },
+    {
+      "address": 4038951,
+      "name": "_GetEventKind"
+    },
+    {
+      "address": 4038956,
+      "name": "_SizeControl"
+    },
+    {
+      "address": 4038961,
+      "name": "_GetMainEventLoop"
+    },
+    {
+      "address": 4038966,
+      "name": "_puts"
+    },
+    {
+      "address": 4038971,
+      "name": "_InstallEventLoopTimer"
+    },
+    {
+      "address": 4038976,
+      "name": "_GetWindowAttributes"
+    },
+    {
+      "address": 4038981,
+      "name": "_GetControlEventTarget"
+    },
+    {
+      "address": 4038986,
+      "name": "_EmbedControl"
+    },
+    {
+      "address": 4038991,
+      "name": "_DisposeEventLoopTimerUPP"
+    },
+    {
+      "address": 4038996,
+      "name": "_RemoveEventLoopTimer"
+    },
+    {
+      "address": 4039001,
+      "name": "_CFShow"
+    },
+    {
+      "address": 4039006,
+      "name": "_CFStringGetLength"
+    },
+    {
+      "address": 4039011,
+      "name": "_CFBundleGetIdentifier"
+    },
+    {
+      "address": 4039016,
+      "name": "_CFBundleGetValueForInfoDictionaryKey"
+    },
+    {
+      "address": 4039021,
+      "name": "_CFStringCompareWithOptions"
+    },
+    {
+      "address": 4039026,
+      "name": "_CFBundleGetMainBundle"
+    },
+    {
+      "address": 4039031,
+      "name": "_CFBundleCloseBundleResourceMap"
+    },
+    {
+      "address": 4039036,
+      "name": "_CFBundleOpenBundleResourceMap"
+    },
+    {
+      "address": 4039041,
+      "name": "_CFBundleGetBundleWithIdentifier"
+    },
+    {
+      "address": 4039046,
+      "name": "_CFURLCopyFileSystemPath"
+    },
+    {
+      "address": 4039051,
+      "name": "_CFBundleCopyExecutableURL"
+    },
+    {
+      "address": 4039056,
+      "name": "_realloc"
+    },
+    {
+      "address": 4039061,
+      "name": "_DisposeHandle"
+    },
+    {
+      "address": 4039066,
+      "name": "_HLock"
+    },
+    {
+      "address": 4039071,
+      "name": "_memmove"
+    },
+    {
+      "address": 4039076,
+      "name": "_HUnlock"
+    },
+    {
+      "address": 4039081,
+      "name": "_MemError"
+    },
+    {
+      "address": 4039086,
+      "name": "_PurgeSpace"
+    },
+    {
+      "address": 4039091,
+      "name": "_NewHandle"
+    },
+    {
+      "address": 4039096,
+      "name": "_vsprintf"
+    },
+    {
+      "address": 4039101,
+      "name": "_HLockHi"
+    },
+    {
+      "address": 4039106,
+      "name": "_GetCurrentEventTime"
+    },
+    {
+      "address": 4039111,
+      "name": "_longjmp"
+    },
+    {
+      "address": 4039116,
+      "name": "_CFBundleLoadExecutable"
+    },
+    {
+      "address": 4039121,
+      "name": "_CFNumberIsFloatType"
+    },
+    {
+      "address": 4039126,
+      "name": "_CFDataCreate"
+    },
+    {
+      "address": 4039131,
+      "name": "_CFStringCreateMutableCopy"
+    },
+    {
+      "address": 4039136,
+      "name": "_AddResource"
+    },
+    {
+      "address": 4039141,
+      "name": "_CloseResFile"
+    },
+    {
+      "address": 4039146,
+      "name": "_Get1Resource"
+    },
+    {
+      "address": 4039151,
+      "name": "_CFStringCreateWithCharacters"
+    },
+    {
+      "address": 4039156,
+      "name": "_UseResFile"
+    },
+    {
+      "address": 4039161,
+      "name": "_SetResLoad"
+    },
+    {
+      "address": 4039166,
+      "name": "_FSpOpenResFile"
+    },
+    {
+      "address": 4039171,
+      "name": "_CFBundleCreate"
+    },
+    {
+      "address": 4039176,
+      "name": "_GetHandleSize"
+    },
+    {
+      "address": 4039181,
+      "name": "_FSpCreateResFile"
+    },
+    {
+      "address": 4039186,
+      "name": "_CFURLCreateCopyAppendingPathComponent"
+    },
+    {
+      "address": 4039191,
+      "name": "_CFBooleanGetTypeID"
+    },
+    {
+      "address": 4039196,
+      "name": "_CFURLCreateFromFSRef"
+    },
+    {
+      "address": 4039201,
+      "name": "_CFArrayGetTypeID"
+    },
+    {
+      "address": 4039206,
+      "name": "_CFNumberGetTypeID"
+    },
+    {
+      "address": 4039211,
+      "name": "_UpdateResFile"
+    },
+    {
+      "address": 4039216,
+      "name": "_CFStringGetTypeID"
+    },
+    {
+      "address": 4039221,
+      "name": "_CFDataGetTypeID"
+    },
+    {
+      "address": 4039226,
+      "name": "_FSGetCatalogInfo"
+    },
+    {
+      "address": 4039231,
+      "name": "_CFStringNormalize"
+    },
+    {
+      "address": 4039236,
+      "name": "_CFAllocatorGetDefault"
+    },
+    {
+      "address": 4039241,
+      "name": "_CFStringGetCharactersPtr"
+    },
+    {
+      "address": 4039246,
+      "name": "_FSFindFolder"
+    },
+    {
+      "address": 4039251,
+      "name": "_CFStringGetCharacters"
+    },
+    {
+      "address": 4039256,
+      "name": "_CFDateGetTypeID"
+    },
+    {
+      "address": 4039261,
+      "name": "_ResError"
+    },
+    {
+      "address": 4039266,
+      "name": "_PostEventToQueue"
+    },
+    {
+      "address": 4039271,
+      "name": "_AEGetDescData"
+    },
+    {
+      "address": 4039276,
+      "name": "_NavGetDefaultDialogOptions"
+    },
+    {
+      "address": 4039281,
+      "name": "_NavGetFile"
+    },
+    {
+      "address": 4039286,
+      "name": "_SendEventToEventTarget"
+    },
+    {
+      "address": 4039291,
+      "name": "_SetWindowClass"
+    },
+    {
+      "address": 4039296,
+      "name": "_GetGlobalMouse"
+    },
+    {
+      "address": 4039301,
+      "name": "_NewNavObjectFilterUPP"
+    },
+    {
+      "address": 4039306,
+      "name": "_AERemoveEventHandler"
+    },
+    {
+      "address": 4039311,
+      "name": "_exit"
+    },
+    {
+      "address": 4039316,
+      "name": "_NavChooseFolder"
+    },
+    {
+      "address": 4039321,
+      "name": "_RunAppModalLoopForWindow"
+    },
+    {
+      "address": 4039326,
+      "name": "_RunApplicationEventLoop"
+    },
+    {
+      "address": 4039331,
+      "name": "_NewHandleClear"
+    },
+    {
+      "address": 4039336,
+      "name": "_CreateEvent"
+    },
+    {
+      "address": 4039341,
+      "name": "_srand"
+    },
+    {
+      "address": 4039346,
+      "name": "_CFURLCreateWithBytes"
+    },
+    {
+      "address": 4039351,
+      "name": "_AECreateDesc"
+    },
+    {
+      "address": 4039356,
+      "name": "_ReceiveNextEvent"
+    },
+    {
+      "address": 4039361,
+      "name": "_IsUserCancelEventRef"
+    },
+    {
+      "address": 4039366,
+      "name": "_NavCustomControl"
+    },
+    {
+      "address": 4039371,
+      "name": "_AEGetNthPtr"
+    },
+    {
+      "address": 4039376,
+      "name": "_FSpMakeFSRef"
+    },
+    {
+      "address": 4039381,
+      "name": "_CreateStandardAlert"
+    },
+    {
+      "address": 4039386,
+      "name": "_IsWindowCollapsed"
+    },
+    {
+      "address": 4039391,
+      "name": "_AECountItems"
+    },
+    {
+      "address": 4039396,
+      "name": "___cxa_guard_release"
+    },
+    {
+      "address": 4039401,
+      "name": "_AEProcessAppleEvent"
+    },
+    {
+      "address": 4039406,
+      "name": "_HMSetHelpTagsDisplayed"
+    },
+    {
+      "address": 4039411,
+      "name": "_ReleaseEvent"
+    },
+    {
+      "address": 4039416,
+      "name": "_SetWindowModality"
+    },
+    {
+      "address": 4039421,
+      "name": "_IsWindowVisible"
+    },
+    {
+      "address": 4039426,
+      "name": "_NavCompleteSave"
+    },
+    {
+      "address": 4039431,
+      "name": "_NewEventHandlerUPP"
+    },
+    {
+      "address": 4039436,
+      "name": "_NewNavEventUPP"
+    },
+    {
+      "address": 4039441,
+      "name": "_NewAEEventHandlerUPP"
+    },
+    {
+      "address": 4039446,
+      "name": "_AEGetDescDataSize"
+    },
+    {
+      "address": 4039451,
+      "name": "_AEGetParamDesc"
+    },
+    {
+      "address": 4039456,
+      "name": "_RemoveEventFromQueue"
+    },
+    {
+      "address": 4039461,
+      "name": "_GetNextWindowOfClass"
+    },
+    {
+      "address": 4039466,
+      "name": "_NavPutFile"
+    },
+    {
+      "address": 4039471,
+      "name": "_NavDisposeReply"
+    },
+    {
+      "address": 4039476,
+      "name": "_InitCursor"
+    },
+    {
+      "address": 4039481,
+      "name": "___cxa_guard_abort"
+    },
+    {
+      "address": 4039486,
+      "name": "_GetMainEventQueue"
+    },
+    {
+      "address": 4039491,
+      "name": "_GetNextWindow"
+    },
+    {
+      "address": 4039496,
+      "name": "_HMSetTagDelay"
+    },
+    {
+      "address": 4039501,
+      "name": "_GetFrontWindowOfClass"
+    },
+    {
+      "address": 4039506,
+      "name": "_ConvertEventRefToEventRecord"
+    },
+    {
+      "address": 4039511,
+      "name": "_GetCurrentKeyModifiers"
+    },
+    {
+      "address": 4039516,
+      "name": "_AEGetNthDesc"
+    },
+    {
+      "address": 4039521,
+      "name": "_QuitAppModalLoopForWindow"
+    },
+    {
+      "address": 4039526,
+      "name": "_GetWindowEventTarget"
+    },
+    {
+      "address": 4039531,
+      "name": "_RunStandardAlert"
+    },
+    {
+      "address": 4039536,
+      "name": "_FindWindow"
+    },
+    {
+      "address": 4039541,
+      "name": "_FrontWindow"
+    },
+    {
+      "address": 4039546,
+      "name": "_GetStandardAlertDefaultParams"
+    },
+    {
+      "address": 4039551,
+      "name": "_AEInstallEventHandler"
+    },
+    {
+      "address": 4039556,
+      "name": "_RetainEvent"
+    },
+    {
+      "address": 4039561,
+      "name": "_GetCurrentEventLoop"
+    },
+    {
+      "address": 4039566,
+      "name": "_IsEventInQueue"
+    },
+    {
+      "address": 4039571,
+      "name": "___cxa_guard_acquire"
+    },
+    {
+      "address": 4039576,
+      "name": "_SetEventParameter"
+    },
+    {
+      "address": 4039581,
+      "name": "_GetApplicationEventTarget"
+    },
+    {
+      "address": 4039586,
+      "name": "_GetUserFocusWindow"
+    },
+    {
+      "address": 4039591,
+      "name": "_floor"
+    },
+    {
+      "address": 4039596,
+      "name": "_strcmp"
+    },
+    {
+      "address": 4039601,
+      "name": "_CFURLCreateWithString"
+    },
+    {
+      "address": 4039606,
+      "name": "_CFURLCreateDataAndPropertiesFromResource"
+    },
+    {
+      "address": 4039611,
+      "name": "_rand"
+    },
+    {
+      "address": 4039616,
+      "name": "_qsort"
+    },
+    {
+      "address": 4039621,
+      "name": "_strchr"
+    },
+    {
+      "address": 4039626,
+      "name": "_strncpy"
+    },
+    {
+      "address": 4039631,
+      "name": "_sprintf"
+    },
+    {
+      "address": 4039636,
+      "name": "_strcpy"
+    },
+    {
+      "address": 4039641,
+      "name": "_strstr"
+    },
+    {
+      "address": 4039646,
+      "name": "_pthread_mach_thread_np"
+    },
+    {
+      "address": 4039651,
+      "name": "_thread_switch"
+    },
+    {
+      "address": 4039656,
+      "name": "_pthread_setspecific"
+    },
+    {
+      "address": 4039661,
+      "name": "_pthread_create"
+    },
+    {
+      "address": 4039666,
+      "name": "_pthread_attr_init"
+    },
+    {
+      "address": 4039671,
+      "name": "_pthread_self"
+    },
+    {
+      "address": 4039676,
+      "name": "_thread_info"
+    },
+    {
+      "address": 4039681,
+      "name": "_pthread_yield_np"
+    },
+    {
+      "address": 4039686,
+      "name": "_pthread_exit"
+    },
+    {
+      "address": 4039691,
+      "name": "_pthread_getspecific"
+    },
+    {
+      "address": 4039696,
+      "name": "_thread_policy_set"
+    },
+    {
+      "address": 4039701,
+      "name": "_host_info"
+    },
+    {
+      "address": 4039706,
+      "name": "_mach_error_string"
+    },
+    {
+      "address": 4039711,
+      "name": "_pthread_attr_setdetachstate"
+    },
+    {
+      "address": 4039716,
+      "name": "_pthread_attr_destroy"
+    },
+    {
+      "address": 4039721,
+      "name": "_pthread_key_create"
+    },
+    {
+      "address": 4039726,
+      "name": "_pthread_cancel"
+    },
+    {
+      "address": 4039731,
+      "name": "_mach_host_self"
+    },
+    {
+      "address": 4039736,
+      "name": "_floorf"
+    },
+    {
+      "address": 4039741,
+      "name": "_GetDragMouse"
+    },
+    {
+      "address": 4039746,
+      "name": "_RectRgn"
+    },
+    {
+      "address": 4039751,
+      "name": "_SetUserFocusWindow"
+    },
+    {
+      "address": 4039756,
+      "name": "_DisposeRgn"
+    },
+    {
+      "address": 4039761,
+      "name": "_GetDragPasteboard"
+    },
+    {
+      "address": 4039766,
+      "name": "_GetDragDropAction"
+    },
+    {
+      "address": 4039771,
+      "name": "_SameProcess"
+    },
+    {
+      "address": 4039776,
+      "name": "_RemoveReceiveHandler"
+    },
+    {
+      "address": 4039781,
+      "name": "_RemoveTrackingHandler"
+    },
+    {
+      "address": 4039786,
+      "name": "_GetDragAllowableActions"
+    },
+    {
+      "address": 4039791,
+      "name": "_NewRgn"
+    },
+    {
+      "address": 4039796,
+      "name": "_HMHideTag"
+    },
+    {
+      "address": 4039801,
+      "name": "_SetDragAllowableActions"
+    },
+    {
+      "address": 4039806,
+      "name": "_GetDragModifiers"
+    },
+    {
+      "address": 4039811,
+      "name": "_GetGWorldPixMap"
+    },
+    {
+      "address": 4039816,
+      "name": "_SelectWindow"
+    },
+    {
+      "address": 4039821,
+      "name": "_GetCurrentProcess"
+    },
+    {
+      "address": 4039826,
+      "name": "_GetCursor"
+    },
+    {
+      "address": 4039831,
+      "name": "_GetFrontProcess"
+    },
+    {
+      "address": 4039836,
+      "name": "_InstallReceiveHandler"
+    },
+    {
+      "address": 4039841,
+      "name": "_SetFrontProcess"
+    },
+    {
+      "address": 4039846,
+      "name": "_TrackDrag"
+    },
+    {
+      "address": 4039851,
+      "name": "_DisposeGWorld"
+    },
+    {
+      "address": 4039856,
+      "name": "_InstallTrackingHandler"
+    },
+    {
+      "address": 4039861,
+      "name": "_HMDisplayTag"
+    },
+    {
+      "address": 4039866,
+      "name": "_SetDragDropAction"
+    },
+    {
+      "address": 4039871,
+      "name": "_IsWindowActive"
+    },
+    {
+      "address": 4039876,
+      "name": "_SetDragImage"
+    },
+    {
+      "address": 4039881,
+      "name": "_SetCursor"
+    },
+    {
+      "address": 4039886,
+      "name": "_NewDragWithPasteboard"
+    },
+    {
+      "address": 4039891,
+      "name": "_HMInstallWindowContentCallback"
+    },
+    {
+      "address": 4039896,
+      "name": "_NewHMWindowContentUPP"
+    },
+    {
+      "address": 4039901,
+      "name": "_HMInstallControlContentCallback"
+    },
+    {
+      "address": 4039906,
+      "name": "_DisposeHMControlContentUPP"
+    },
+    {
+      "address": 4039911,
+      "name": "_DisposeHMWindowContentUPP"
+    },
+    {
+      "address": 4039916,
+      "name": "_GetWindowFromPort"
+    },
+    {
+      "address": 4039921,
+      "name": "_GetControlOwner"
+    },
+    {
+      "address": 4039926,
+      "name": "_NewHMControlContentUPP"
+    },
+    {
+      "address": 4039931,
+      "name": "_GetWindowBounds"
+    },
+    {
+      "address": 4039936,
+      "name": "___toupper"
+    },
+    {
+      "address": 4039941,
+      "name": "_atoi"
+    },
+    {
+      "address": 4039946,
+      "name": "_sscanf"
+    },
+    {
+      "address": 4039951,
+      "name": "_unlink"
+    },
+    {
+      "address": 4039956,
+      "name": "_DisposePtr"
+    },
+    {
+      "address": 4039961,
+      "name": "_PBCatSearchSync"
+    },
+    {
+      "address": 4039966,
+      "name": "_ConvertLocalToUTCDateTime"
+    },
+    {
+      "address": 4039971,
+      "name": "_FSDeleteObject"
+    },
+    {
+      "address": 4039976,
+      "name": "_stat"
+    },
+    {
+      "address": 4039981,
+      "name": "_FSCreateFork"
+    },
+    {
+      "address": 4039986,
+      "name": "_FSMoveObject"
+    },
+    {
+      "address": 4039991,
+      "name": "_FSResolveAliasFile"
+    },
+    {
+      "address": 4039996,
+      "name": "_chown"
+    },
+    {
+      "address": 4040001,
+      "name": "_FSGetCatalogInfoBulk"
+    },
+    {
+      "address": 4040006,
+      "name": "_FSCreateDirectoryUnicode"
+    },
+    {
+      "address": 4040011,
+      "name": "_FSGetVolumeInfo"
+    },
+    {
+      "address": 4040016,
+      "name": "_FSCloseIterator"
+    },
+    {
+      "address": 4040021,
+      "name": "_FSPathMakeRef"
+    },
+    {
+      "address": 4040026,
+      "name": "_FSGetResourceForkName"
+    },
+    {
+      "address": 4040031,
+      "name": "_FSIsAliasFile"
+    },
+    {
+      "address": 4040036,
+      "name": "_FSCloseFork"
+    },
+    {
+      "address": 4040041,
+      "name": "_FSOpenIterator"
+    },
+    {
+      "address": 4040046,
+      "name": "_chmod"
+    },
+    {
+      "address": 4040051,
+      "name": "_FSSetCatalogInfo"
+    },
+    {
+      "address": 4040056,
+      "name": "_ConvertUTCToLocalDateTime"
+    },
+    {
+      "address": 4040061,
+      "name": "_FSOpenFork"
+    },
+    {
+      "address": 4040066,
+      "name": "_FSpGetFInfo"
+    },
+    {
+      "address": 4040071,
+      "name": "___dynamic_cast"
+    },
+    {
+      "address": 4040076,
+      "name": "_pthread_mutex_init"
+    },
+    {
+      "address": 4040081,
+      "name": "_pthread_mutex_destroy"
+    },
+    {
+      "address": 4040086,
+      "name": "_pthread_mutex_trylock"
+    },
+    {
+      "address": 4040091,
+      "name": "_pthread_mutex_unlock"
+    },
+    {
+      "address": 4040096,
+      "name": "_pthread_mutex_lock"
+    },
+    {
+      "address": 4040101,
+      "name": "_GetScriptVariable"
+    },
+    {
+      "address": 4040106,
+      "name": "_GetScriptManagerVariable"
+    },
+    {
+      "address": 4040111,
+      "name": "_AuthorizationFree"
+    },
+    {
+      "address": 4040116,
+      "name": "_AuthorizationCreate"
+    },
+    {
+      "address": 4040121,
+      "name": "_AuthorizationCopyRights"
+    },
+    {
+      "address": 4040126,
+      "name": "_dup2"
+    },
+    {
+      "address": 4040131,
+      "name": "_AuthorizationExecuteWithPrivileges"
+    },
+    {
+      "address": 4040136,
+      "name": "_kill"
+    },
+    {
+      "address": 4040141,
+      "name": "_read"
+    },
+    {
+      "address": 4040146,
+      "name": "_pipe"
+    },
+    {
+      "address": 4040151,
+      "name": "_waitpid"
+    },
+    {
+      "address": 4040156,
+      "name": "_abort"
+    },
+    {
+      "address": 4040161,
+      "name": "_close"
+    },
+    {
+      "address": 4040166,
+      "name": "_fork"
+    },
+    {
+      "address": 4040171,
+      "name": "_execv"
+    },
+    {
+      "address": 4040176,
+      "name": "___error"
+    },
+    {
+      "address": 4040181,
+      "name": "_CGContextFillRect"
+    },
+    {
+      "address": 4040186,
+      "name": "_CGBitmapContextCreate"
+    },
+    {
+      "address": 4040191,
+      "name": "_SetMenuItemKeyGlyph"
+    },
+    {
+      "address": 4040196,
+      "name": "_PtrToHand"
+    },
+    {
+      "address": 4040201,
+      "name": "_CGContextTranslateCTM"
+    },
+    {
+      "address": 4040206,
+      "name": "_CGColorSpaceCreateDeviceRGB"
+    },
+    {
+      "address": 4040211,
+      "name": "_UnlockPixels"
+    },
+    {
+      "address": 4040216,
+      "name": "_CGImageRelease"
+    },
+    {
+      "address": 4040221,
+      "name": "_KLGetCurrentKeyboardLayout"
+    },
+    {
+      "address": 4040226,
+      "name": "_SetItemCmd"
+    },
+    {
+      "address": 4040231,
+      "name": "_SetPort"
+    },
+    {
+      "address": 4040236,
+      "name": "_SetMenuItemModifiers"
+    },
+    {
+      "address": 4040241,
+      "name": "_CreateCGContextForPort"
+    },
+    {
+      "address": 4040246,
+      "name": "_SetMenuItemCommandKey"
+    },
+    {
+      "address": 4040251,
+      "name": "_GetGWorld"
+    },
+    {
+      "address": 4040256,
+      "name": "_GetPixRowBytes"
+    },
+    {
+      "address": 4040261,
+      "name": "_NewGWorld"
+    },
+    {
+      "address": 4040266,
+      "name": "_GraphicsImportSetBoundsRect"
+    },
+    {
+      "address": 4040271,
+      "name": "_CGContextRelease"
+    },
+    {
+      "address": 4040276,
+      "name": "_CFPreferencesSynchronize"
+    },
+    {
+      "address": 4040281,
+      "name": "_CFPreferencesGetAppBooleanValue"
+    },
+    {
+      "address": 4040286,
+      "name": "_LockPixels"
+    },
+    {
+      "address": 4040291,
+      "name": "_CloseComponent"
+    },
+    {
+      "address": 4040296,
+      "name": "_PtrAndHand"
+    },
+    {
+      "address": 4040301,
+      "name": "_GetPortBounds"
+    },
+    {
+      "address": 4040306,
+      "name": "_CGContextFlush"
+    },
+    {
+      "address": 4040311,
+      "name": "_GraphicsImportDraw"
+    },
+    {
+      "address": 4040316,
+      "name": "_CGContextScaleCTM"
+    },
+    {
+      "address": 4040321,
+      "name": "_CFPreferencesSetValue"
+    },
+    {
+      "address": 4040326,
+      "name": "_KLGetKeyboardLayoutProperty"
+    },
+    {
+      "address": 4040331,
+      "name": "_GetGraphicsImporterForDataRef"
+    },
+    {
+      "address": 4040336,
+      "name": "_CGContextDrawImage"
+    },
+    {
+      "address": 4040341,
+      "name": "_CGImageCreateWithJPEGDataProvider"
+    },
+    {
+      "address": 4040346,
+      "name": "_CGDataProviderRelease"
+    },
+    {
+      "address": 4040351,
+      "name": "_GraphicsImportSetGWorld"
+    },
+    {
+      "address": 4040356,
+      "name": "_CGDataProviderCreateWithData"
+    },
+    {
+      "address": 4040361,
+      "name": "_GetPixBaseAddr"
+    },
+    {
+      "address": 4040366,
+      "name": "_CGImageCreateWithPNGDataProvider"
+    },
+    {
+      "address": 4040371,
+      "name": "_CGImageGetHeight"
+    },
+    {
+      "address": 4040376,
+      "name": "_CGColorSpaceRelease"
+    },
+    {
+      "address": 4040381,
+      "name": "_CGImageCreate"
+    },
+    {
+      "address": 4040386,
+      "name": "_GraphicsImportGetNaturalBounds"
+    },
+    {
+      "address": 4040391,
+      "name": "_OffsetRect"
+    },
+    {
+      "address": 4040396,
+      "name": "_SetGWorld"
+    },
+    {
+      "address": 4040401,
+      "name": "_KeyTranslate"
+    },
+    {
+      "address": 4040406,
+      "name": "_CGContextSetRGBFillColor"
+    },
+    {
+      "address": 4040411,
+      "name": "_CGImageGetWidth"
+    },
+    {
+      "address": 4040416,
+      "name": "_SetMenuItemTextWithCFString"
+    },
+    {
+      "address": 4040421,
+      "name": "_EnableMenuItem"
+    },
+    {
+      "address": 4040426,
+      "name": "_SetMenuTitleWithCFString"
+    },
+    {
+      "address": 4040431,
+      "name": "_DisableMenuItem"
+    },
+    {
+      "address": 4040436,
+      "name": "_SetMenuItemHierarchicalMenu"
+    },
+    {
+      "address": 4040441,
+      "name": "_system"
+    },
+    {
+      "address": 4040446,
+      "name": "_NPickColor"
+    },
+    {
+      "address": 4040451,
+      "name": "_PLstrcpy"
+    },
+    {
+      "address": 4040456,
+      "name": "_NewNColorChangedUPP"
+    },
+    {
+      "address": 4040461,
+      "name": "_LSFindApplicationForInfo"
+    },
+    {
+      "address": 4040466,
+      "name": "_LSRegisterFSRef"
+    },
+    {
+      "address": 4040471,
+      "name": "_LSOpenCFURLRef"
+    },
+    {
+      "address": 4040476,
+      "name": "_LSOpenFromRefSpec"
+    },
+    {
+      "address": 4040481,
+      "name": "_CFURLCreateWithFileSystemPath"
+    },
+    {
+      "address": 4040486,
+      "name": "_cos"
+    },
+    {
+      "address": 4040491,
+      "name": "_pow"
+    },
+    {
+      "address": 4040496,
+      "name": "_sin"
+    },
+    {
+      "address": 4040501,
+      "name": "_OTGetProtAddress"
+    },
+    {
+      "address": 4040506,
+      "name": "_CloseOpenTransportInContext"
+    },
+    {
+      "address": 4040511,
+      "name": "_OTGetIndexedPort"
+    },
+    {
+      "address": 4040516,
+      "name": "_OTUnbind"
+    },
+    {
+      "address": 4040521,
+      "name": "_OTCloseProvider"
+    },
+    {
+      "address": 4040526,
+      "name": "_OTCreateConfiguration"
+    },
+    {
+      "address": 4040531,
+      "name": "_OTBind"
+    },
+    {
+      "address": 4040536,
+      "name": "_OTOpenEndpointInContext"
+    },
+    {
+      "address": 4040541,
+      "name": "_InitOpenTransportInContext"
+    },
+    {
+      "address": 4040546,
+      "name": "_OTGetDeviceTypeFromPortRef"
+    },
+    {
+      "address": 4040551,
+      "name": "_ATSUSetStyleRefCon"
+    },
+    {
+      "address": 4040556,
+      "name": "_ATSUSetAttributes"
+    },
+    {
+      "address": 4040561,
+      "name": "_ATSUCreateStyle"
+    },
+    {
+      "address": 4040566,
+      "name": "_FMGetFontFromFontFamilyInstance"
+    },
+    {
+      "address": 4040571,
+      "name": "_ATSUDisposeStyle"
+    },
+    {
+      "address": 4040576,
+      "name": "_ATSUSetRunStyle"
+    },
+    {
+      "address": 4040581,
+      "name": "_ATSUCreateTextLayout"
+    },
+    {
+      "address": 4040586,
+      "name": "_ATSUSetLayoutControls"
+    },
+    {
+      "address": 4040591,
+      "name": "_ATSUClearSoftLineBreaks"
+    },
+    {
+      "address": 4040596,
+      "name": "_ATSUDisposeTextLayout"
+    },
+    {
+      "address": 4040601,
+      "name": "_ATSUSetTextPointerLocation"
+    },
+    {
+      "address": 4040606,
+      "name": "_ATSUDrawText"
+    },
+    {
+      "address": 4040611,
+      "name": "_ATSUSetTransientFontMatching"
+    },
+    {
+      "address": 4040616,
+      "name": "_ATSUPositionToOffset"
+    },
+    {
+      "address": 4040621,
+      "name": "_CGContextRestoreGState"
+    },
+    {
+      "address": 4040626,
+      "name": "_ATSUGetLineControl"
+    },
+    {
+      "address": 4040631,
+      "name": "_CGContextSaveGState"
+    },
+    {
+      "address": 4040636,
+      "name": "_ATSUBreakLine"
+    },
+    {
+      "address": 4040641,
+      "name": "_ATSUOffsetToPosition"
+    },
+    {
+      "address": 4040646,
+      "name": "_log10"
+    },
+    {
+      "address": 4040651,
+      "name": "_RemoveWindowProxy"
+    },
+    {
+      "address": 4040656,
+      "name": "_FSNewAlias"
+    },
+    {
+      "address": 4040661,
+      "name": "_SetWindowModified"
+    },
+    {
+      "address": 4040666,
+      "name": "_SetWindowProxyAlias"
+    },
+    {
+      "address": 4040671,
+      "name": "_FMGetFontFamilyName"
+    },
+    {
+      "address": 4040676,
+      "name": "_SetFontInfoForSelection"
+    },
+    {
+      "address": 4040681,
+      "name": "_MeasureText"
+    },
+    {
+      "address": 4040686,
+      "name": "_TextFace"
+    },
+    {
+      "address": 4040691,
+      "name": "_TextFont"
+    },
+    {
+      "address": 4040696,
+      "name": "_FPShowHideFontPanel"
+    },
+    {
+      "address": 4040701,
+      "name": "_FMGetNextFontFamily"
+    },
+    {
+      "address": 4040706,
+      "name": "_GetThemeFont"
+    },
+    {
+      "address": 4040711,
+      "name": "_GetFontInfo"
+    },
+    {
+      "address": 4040716,
+      "name": "_FPIsFontPanelVisible"
+    },
+    {
+      "address": 4040721,
+      "name": "_FMGetFontFamilyFromName"
+    },
+    {
+      "address": 4040726,
+      "name": "_TextSize"
+    },
+    {
+      "address": 4040731,
+      "name": "_FMDisposeFontFamilyIterator"
+    },
+    {
+      "address": 4040736,
+      "name": "_FMCreateFontFamilyIterator"
+    },
+    {
+      "address": 4040741,
+      "name": "_SetMenuBar"
+    },
+    {
+      "address": 4040746,
+      "name": "_AcquireRootMenu"
+    },
+    {
+      "address": 4040751,
+      "name": "_NewMenu"
+    },
+    {
+      "address": 4040756,
+      "name": "_DeleteMenuItem"
+    },
+    {
+      "address": 4040761,
+      "name": "_SetItemMark"
+    },
+    {
+      "address": 4040766,
+      "name": "_EnableMenuCommand"
+    },
+    {
+      "address": 4040771,
+      "name": "_GetMenuEventTarget"
+    },
+    {
+      "address": 4040776,
+      "name": "_InsertMenuItemTextWithCFString"
+    },
+    {
+      "address": 4040781,
+      "name": "_SetMenuItemCommandID"
+    },
+    {
+      "address": 4040786,
+      "name": "_AppendMenuItemTextWithCFString"
+    },
+    {
+      "address": 4040791,
+      "name": "_GetNewMBar"
+    },
+    {
+      "address": 4040796,
+      "name": "_GetMenuItemHierarchicalMenu"
+    },
+    {
+      "address": 4040801,
+      "name": "_CGContextSetAlpha"
+    },
+    {
+      "address": 4040806,
+      "name": "_DrawPicture"
+    },
+    {
+      "address": 4040811,
+      "name": "_CreateCGImageFromPixMaps"
+    },
+    {
+      "address": 4040816,
+      "name": "_GetPort"
+    },
+    {
+      "address": 4040821,
+      "name": "_QDGetPictureBounds"
+    },
+    {
+      "address": 4040826,
+      "name": "_CopyBits"
+    },
+    {
+      "address": 4040831,
+      "name": "_GetMainDevice"
+    },
+    {
+      "address": 4040836,
+      "name": "_GetGDevice"
+    },
+    {
+      "address": 4040841,
+      "name": "_GetResource"
+    },
+    {
+      "address": 4040846,
+      "name": "_RGBForeColor"
+    },
+    {
+      "address": 4040851,
+      "name": "_DetachResource"
+    },
+    {
+      "address": 4040856,
+      "name": "_GetPicture"
+    },
+    {
+      "address": 4040861,
+      "name": "_CGContextClipToRect"
+    },
+    {
+      "address": 4040866,
+      "name": "_GetPortBitMapForCopyBits"
+    },
+    {
+      "address": 4040871,
+      "name": "_RGBBackColor"
+    },
+    {
+      "address": 4040876,
+      "name": "_FillRect"
+    },
+    {
+      "address": 4040881,
+      "name": "_RepositionWindow"
+    },
+    {
+      "address": 4040886,
+      "name": "_CreateRootControl"
+    },
+    {
+      "address": 4040891,
+      "name": "_OpColor"
+    },
+    {
+      "address": 4040896,
+      "name": "_CollapseWindow"
+    },
+    {
+      "address": 4040901,
+      "name": "_GetWindowGreatestAreaDevice"
+    },
+    {
+      "address": 4040906,
+      "name": "_GetWindowPort"
+    },
+    {
+      "address": 4040911,
+      "name": "_SetThemeWindowBackground"
+    },
+    {
+      "address": 4040916,
+      "name": "_HideWindow"
+    },
+    {
+      "address": 4040921,
+      "name": "_SetWindowTitleWithCFString"
+    },
+    {
+      "address": 4040926,
+      "name": "_GetAvailableWindowPositioningBounds"
+    },
+    {
+      "address": 4040931,
+      "name": "_SizeWindow"
+    },
+    {
+      "address": 4040936,
+      "name": "_DisposeWindow"
+    },
+    {
+      "address": 4040941,
+      "name": "_ShowWindow"
+    },
+    {
+      "address": 4040946,
+      "name": "_MoveWindow"
+    },
+    {
+      "address": 4040951,
+      "name": "_CreateNewWindow"
+    },
+    {
+      "address": 4040956,
+      "name": "_ChangeWindowAttributes"
+    },
+    {
+      "address": 4040961,
+      "name": "_DeactivateControl"
+    },
+    {
+      "address": 4040966,
+      "name": "_SetControlFontStyle"
+    },
+    {
+      "address": 4040971,
+      "name": "_DrawControlInCurrentPort"
+    },
+    {
+      "address": 4040976,
+      "name": "_AutoEmbedControl"
+    },
+    {
+      "address": 4040981,
+      "name": "_SetControlBounds"
+    },
+    {
+      "address": 4040986,
+      "name": "_NewControl"
+    },
+    {
+      "address": 4040991,
+      "name": "_GetControlReference"
+    },
+    {
+      "address": 4040996,
+      "name": "_SetControlData"
+    },
+    {
+      "address": 4041001,
+      "name": "_NewControlActionUPP"
+    },
+    {
+      "address": 4041006,
+      "name": "_ActivateControl"
+    },
+    {
+      "address": 4041011,
+      "name": "_SetControlValue"
+    },
+    {
+      "address": 4041016,
+      "name": "_SetControlAction"
+    },
+    {
+      "address": 4041021,
+      "name": "_SetControlTitleWithCFString"
+    },
+    {
+      "address": 4041026,
+      "name": "_AudioGetHostClockFrequency"
+    },
+    {
+      "address": 4041031,
+      "name": "_AudioGetCurrentHostTime"
+    },
+    {
+      "address": 4041036,
+      "name": "_MPYield"
+    },
+    {
+      "address": 4041041,
+      "name": "_TickCount"
+    },
+    {
+      "address": 4041046,
+      "name": "_CFBundleGetFunctionPointerForName"
+    },
+    {
+      "address": 4041051,
+      "name": "_MakeDataExecutable"
+    },
+    {
+      "address": 4041056,
+      "name": "_Get1IndResource"
+    },
+    {
+      "address": 4041061,
+      "name": "_SetClip"
+    },
+    {
+      "address": 4041066,
+      "name": "_GetResInfo"
+    },
+    {
+      "address": 4041071,
+      "name": "_strrchr"
+    },
+    {
+      "address": 4041076,
+      "name": "_CurResFile"
+    },
+    {
+      "address": 4041081,
+      "name": "_Count1Resources"
+    },
+    {
+      "address": 4041086,
+      "name": "_GetMemFragment"
+    },
+    {
+      "address": 4041091,
+      "name": "_NewPtr"
+    },
+    {
+      "address": 4041096,
+      "name": "_GetClip"
+    },
+    {
+      "address": 4041101,
+      "name": "_ClipRect"
+    },
+    {
+      "address": 4041106,
+      "name": "_OpenAComponentResFile"
+    },
+    {
+      "address": 4041111,
+      "name": "_AudioUnitSetProperty"
+    },
+    {
+      "address": 4041116,
+      "name": "_AudioUnitInitialize"
+    },
+    {
+      "address": 4041121,
+      "name": "_AudioUnitGetPropertyInfo"
+    },
+    {
+      "address": 4041126,
+      "name": "_CFPropertyListCreateXMLData"
+    },
+    {
+      "address": 4041131,
+      "name": "_FindNextComponent"
+    },
+    {
+      "address": 4041136,
+      "name": "_CountComponents"
+    },
+    {
+      "address": 4041141,
+      "name": "_AUListenerCreate"
+    },
+    {
+      "address": 4041146,
+      "name": "_AudioUnitReset"
+    },
+    {
+      "address": 4041151,
+      "name": "_AudioUnitUninitialize"
+    },
+    {
+      "address": 4041156,
+      "name": "_AudioUnitRender"
+    },
+    {
+      "address": 4041161,
+      "name": "_CFPropertyListCreateFromXMLData"
+    },
+    {
+      "address": 4041166,
+      "name": "_MusicDeviceMIDIEvent"
+    },
+    {
+      "address": 4041171,
+      "name": "_AUListenerAddParameter"
+    },
+    {
+      "address": 4041176,
+      "name": "_AudioUnitGetParameter"
+    },
+    {
+      "address": 4041181,
+      "name": "_AudioUnitSetParameter"
+    },
+    {
+      "address": 4041186,
+      "name": "_AUListenerDispose"
+    },
+    {
+      "address": 4041191,
+      "name": "_CloseComponentResFile"
+    },
+    {
+      "address": 4041196,
+      "name": "_ReleaseResource"
+    },
+    {
+      "address": 4041201,
+      "name": "_OpenAComponent"
+    },
+    {
+      "address": 4041206,
+      "name": "_AUParameterListenerNotify"
+    },
+    {
+      "address": 4041211,
+      "name": "_FSSetForkPosition"
+    },
+    {
+      "address": 4041216,
+      "name": "_setrlimit"
+    },
+    {
+      "address": 4041221,
+      "name": "_FSReadFork"
+    },
+    {
+      "address": 4041226,
+      "name": "_FSSetForkSize"
+    },
+    {
+      "address": 4041231,
+      "name": "_FSGetForkPosition"
+    },
+    {
+      "address": 4041236,
+      "name": "_FSGetDataForkName"
+    },
+    {
+      "address": 4041241,
+      "name": "_getrlimit"
+    },
+    {
+      "address": 4041246,
+      "name": "_FSFlushFork"
+    },
+    {
+      "address": 4041251,
+      "name": "_FSCreateFileUnicode"
+    },
+    {
+      "address": 4041256,
+      "name": "_FSWriteFork"
+    },
+    {
+      "address": 4041261,
+      "name": "_sem_wait"
+    },
+    {
+      "address": 4041266,
+      "name": "_sem_post"
+    },
+    {
+      "address": 4041271,
+      "name": "_sem_open"
+    },
+    {
+      "address": 4041276,
+      "name": "_getpid"
+    },
+    {
+      "address": 4041281,
+      "name": "_sem_close"
+    },
+    {
+      "address": 4041286,
+      "name": "_CFURLGetString"
+    },
+    {
+      "address": 4041291,
+      "name": "_PasteboardCopyPasteLocation"
+    },
+    {
+      "address": 4041296,
+      "name": "_PasteboardClear"
+    },
+    {
+      "address": 4041301,
+      "name": "_PasteboardGetItemIdentifier"
+    },
+    {
+      "address": 4041306,
+      "name": "_PasteboardCopyItemFlavors"
+    },
+    {
+      "address": 4041311,
+      "name": "_PasteboardSynchronize"
+    },
+    {
+      "address": 4041316,
+      "name": "_PasteboardCopyItemFlavorData"
+    },
+    {
+      "address": 4041321,
+      "name": "_PasteboardPutItemFlavor"
+    },
+    {
+      "address": 4041326,
+      "name": "_PasteboardCreate"
+    },
+    {
+      "address": 4041331,
+      "name": "_PasteboardGetItemCount"
+    },
+    {
+      "address": 4041336,
+      "name": "_PasteboardSetPromiseKeeper"
+    },
+    {
+      "address": 4041341,
+      "name": "_CGContextGetCTM"
+    },
+    {
+      "address": 4041346,
+      "name": "_CGContextFillPath"
+    },
+    {
+      "address": 4041351,
+      "name": "_CGContextRotateCTM"
+    },
+    {
+      "address": 4041356,
+      "name": "_ScrollRect"
+    },
+    {
+      "address": 4041361,
+      "name": "_CGContextDrawPath"
+    },
+    {
+      "address": 4041366,
+      "name": "_CGContextAddCurveToPoint"
+    },
+    {
+      "address": 4041371,
+      "name": "_CGContextClip"
+    },
+    {
+      "address": 4041376,
+      "name": "_CGContextClearRect"
+    },
+    {
+      "address": 4041381,
+      "name": "_CGContextMoveToPoint"
+    },
+    {
+      "address": 4041386,
+      "name": "_CGContextAddLineToPoint"
+    },
+    {
+      "address": 4041391,
+      "name": "_CGContextAddPath"
+    },
+    {
+      "address": 4041396,
+      "name": "_CGContextConcatCTM"
+    },
+    {
+      "address": 4041401,
+      "name": "_CGContextAddArc"
+    },
+    {
+      "address": 4041406,
+      "name": "_CGContextBeginPath"
+    },
+    {
+      "address": 4041411,
+      "name": "_CGContextSetLineWidth"
+    },
+    {
+      "address": 4041416,
+      "name": "_CGContextSetRGBStrokeColor"
+    },
+    {
+      "address": 4041421,
+      "name": "_CGContextStrokePath"
+    },
+    {
+      "address": 4041426,
+      "name": "_CGContextClosePath"
+    },
+    {
+      "address": 4041431,
+      "name": "_CGContextStrokeRect"
+    },
+    {
+      "address": 4041436,
+      "name": "_CGContextSetShouldAntialias"
+    },
+    {
+      "address": 4041441,
+      "name": "_SetOrigin"
+    },
+    {
+      "address": 4041446,
+      "name": "_CGContextRetain"
+    },
+    {
+      "address": 4041451,
+      "name": "_HIThemeDrawTabPane"
+    },
+    {
+      "address": 4041456,
+      "name": "_GetThemeBrushAsColor"
+    },
+    {
+      "address": 4041461,
+      "name": "_HIThemeDrawFocusRect"
+    },
+    {
+      "address": 4041466,
+      "name": "_HIThemeDrawGroupBox"
+    },
+    {
+      "address": 4041471,
+      "name": "_HIThemeDrawTrack"
+    },
+    {
+      "address": 4041476,
+      "name": "_HIThemeDrawTab"
+    },
+    {
+      "address": 4041481,
+      "name": "_HIThemeDrawFrame"
+    },
+    {
+      "address": 4041486,
+      "name": "_HIThemeDrawButton"
+    },
+    {
+      "address": 4041491,
+      "name": "_HIThemeDrawMenuBackground"
+    },
+    {
+      "address": 4041496,
+      "name": "_HIThemeDrawBackground"
+    },
+    {
+      "address": 4041501,
+      "name": "_GetThemeScrollBarArrowStyle"
+    },
+    {
+      "address": 4041506,
+      "name": "_HIThemeDrawSeparator"
+    },
+    {
+      "address": 4041511,
+      "name": "___tolower"
+    },
+    {
+      "address": 4041516,
+      "name": "___maskrune"
+    },
+    {
+      "address": 4041521,
+      "name": "_strncmp"
+    },
+    {
+      "address": 4041526,
+      "name": "_fgets"
+    },
+    {
+      "address": 4041531,
+      "name": "_fopen"
+    },
+    {
+      "address": 4041536,
+      "name": "_ftell"
+    },
+    {
+      "address": 4041541,
+      "name": "_fseek"
+    },
+    {
+      "address": 4041546,
+      "name": "_fwrite"
+    },
+    {
+      "address": 4041551,
+      "name": "_fputs"
+    },
+    {
+      "address": 4041556,
+      "name": "_fprintf"
+    },
+    {
+      "address": 4041561,
+      "name": "_fputc"
+    },
+    {
+      "address": 4041566,
+      "name": "_fclose"
+    },
+    {
+      "address": 4041571,
+      "name": "_atof"
+    },
+    {
+      "address": 4041576,
+      "name": "_CFAbsoluteTimeGetDayOfYear"
+    },
+    {
+      "address": 4041581,
+      "name": "_CFAbsoluteTimeGetGregorianDate"
+    },
+    {
+      "address": 4041586,
+      "name": "_CFTimeZoneGetSecondsFromGMT"
+    },
+    {
+      "address": 4041591,
+      "name": "_CFAbsoluteTimeGetDayOfWeek"
+    },
+    {
+      "address": 4041596,
+      "name": "_CFAbsoluteTimeGetCurrent"
+    },
+    {
+      "address": 4041601,
+      "name": "_CFTimeZoneCopySystem"
+    },
+    {
+      "address": 4041606,
+      "name": "_CFGregorianDateGetAbsoluteTime"
+    },
+    {
+      "address": 4041611,
+      "name": "_AESend"
+    },
+    {
+      "address": 4041616,
+      "name": "_AEPutParamPtr"
+    },
+    {
+      "address": 4041621,
+      "name": "_AEPutParamDesc"
+    },
+    {
+      "address": 4041626,
+      "name": "_AECreateList"
+    },
+    {
+      "address": 4041631,
+      "name": "_AEDisposeDesc"
+    },
+    {
+      "address": 4041636,
+      "name": "_AECreateAppleEvent"
+    },
+    {
+      "address": 4041641,
+      "name": "_FNNotify"
+    },
+    {
+      "address": 4041646,
+      "name": "_PBHSetDirAccessSync"
+    },
+    {
+      "address": 4041651,
+      "name": "_GetTextEncodingBase"
+    },
+    {
+      "address": 4041656,
+      "name": "_PBHGetVolParmsSync"
+    },
+    {
+      "address": 4041661,
+      "name": "_PBHMoveRenameSync"
+    },
+    {
+      "address": 4041666,
+      "name": "_PBVolumeMount"
+    },
+    {
+      "address": 4041671,
+      "name": "_CreateTextToUnicodeInfo"
+    },
+    {
+      "address": 4041676,
+      "name": "_PBUnlockRangeSync"
+    },
+    {
+      "address": 4041681,
+      "name": "_ConvertFromTextToUnicode"
+    },
+    {
+      "address": 4041686,
+      "name": "_PBHGetDirAccessSync"
+    },
+    {
+      "address": 4041691,
+      "name": "_HGetVol"
+    },
+    {
+      "address": 4041696,
+      "name": "_CreateTextEncoding"
+    },
+    {
+      "address": 4041701,
+      "name": "_PBGetVolMountInfoSize"
+    },
+    {
+      "address": 4041706,
+      "name": "_PBHMapNameSync"
+    },
+    {
+      "address": 4041711,
+      "name": "_FSGetForkSize"
+    },
+    {
+      "address": 4041716,
+      "name": "_HSetVol"
+    },
+    {
+      "address": 4041721,
+      "name": "_PBMakeFSRefUnicodeSync"
+    },
+    {
+      "address": 4041726,
+      "name": "_FreeMem"
+    },
+    {
+      "address": 4041731,
+      "name": "_MaxBlock"
+    },
+    {
+      "address": 4041736,
+      "name": "_GetUTCDateTime"
+    },
+    {
+      "address": 4041741,
+      "name": "_FSExchangeObjects"
+    },
+    {
+      "address": 4041746,
+      "name": "_FSIterateForks"
+    },
+    {
+      "address": 4041751,
+      "name": "_PBHMapIDSync"
+    },
+    {
+      "address": 4041756,
+      "name": "_DisposeUnicodeToTextInfo"
+    },
+    {
+      "address": 4041761,
+      "name": "_CreateUnicodeToTextInfo"
+    },
+    {
+      "address": 4041766,
+      "name": "_DisposeTextToUnicodeInfo"
+    },
+    {
+      "address": 4041771,
+      "name": "_PBCreateFileIDRefSync"
+    },
+    {
+      "address": 4041776,
+      "name": "_PBResolveFileIDRefSync"
+    },
+    {
+      "address": 4041781,
+      "name": "_FSRenameUnicode"
+    },
+    {
+      "address": 4041786,
+      "name": "_ConvertFromUnicodeToText"
+    },
+    {
+      "address": 4041791,
+      "name": "_FSGetForkCBInfo"
+    },
+    {
+      "address": 4041796,
+      "name": "_FSRefMakePath"
+    },
+    {
+      "address": 4041801,
+      "name": "_PBMakeFSRefSync"
+    },
+    {
+      "address": 4041806,
+      "name": "_UpgradeScriptInfoToTextEncoding"
+    },
+    {
+      "address": 4041811,
+      "name": "_PBLockRangeSync"
+    },
+    {
+      "address": 4041816,
+      "name": "_PBHCopyFileSync"
+    },
+    {
+      "address": 4041821,
+      "name": "_PBGetVolMountInfo"
+    },
+    {
+      "address": 4041826,
+      "name": "_InvalWindowRect"
+    },
+    {
+      "address": 4041831,
+      "name": "_MIDISend"
+    },
+    {
+      "address": 4041836,
+      "name": "_MIDIInputPortCreate"
+    },
+    {
+      "address": 4041841,
+      "name": "_MIDIGetSource"
+    },
+    {
+      "address": 4041846,
+      "name": "_MIDIOutputPortCreate"
+    },
+    {
+      "address": 4041851,
+      "name": "_MIDIPortDisconnectSource"
+    },
+    {
+      "address": 4041856,
+      "name": "_MIDIGetDestination"
+    },
+    {
+      "address": 4041861,
+      "name": "_MIDIClientCreate"
+    },
+    {
+      "address": 4041866,
+      "name": "_MIDIPortConnectSource"
+    },
+    {
+      "address": 4041871,
+      "name": "_MIDIEntityGetDevice"
+    },
+    {
+      "address": 4041876,
+      "name": "_AudioConvertHostTimeToNanos"
+    },
+    {
+      "address": 4041881,
+      "name": "_MIDIGetNumberOfDestinations"
+    },
+    {
+      "address": 4041886,
+      "name": "_MIDIGetNumberOfSources"
+    },
+    {
+      "address": 4041891,
+      "name": "_MIDIFlushOutput"
+    },
+    {
+      "address": 4041896,
+      "name": "_MIDIObjectGetStringProperty"
+    },
+    {
+      "address": 4041901,
+      "name": "_AudioConvertNanosToHostTime"
+    },
+    {
+      "address": 4041906,
+      "name": "_MIDIEndpointGetEntity"
+    },
+    {
+      "address": 4041911,
+      "name": "_QDSwapTextFlags"
+    },
+    {
+      "address": 4041916,
+      "name": "_ATSUGetGlyphBounds"
+    },
+    {
+      "address": 4041921,
+      "name": "_create_fftsetup"
+    },
+    {
+      "address": 4041926,
+      "name": "_sinf"
+    },
+    {
+      "address": 4041931,
+      "name": "_vsmul"
+    },
+    {
+      "address": 4041936,
+      "name": "_atan2"
+    },
+    {
+      "address": 4041941,
+      "name": "_vm_deallocate"
+    },
+    {
+      "address": 4041946,
+      "name": "_ztoc"
+    },
+    {
+      "address": 4041951,
+      "name": "_destroy_fftsetup"
+    },
+    {
+      "address": 4041956,
+      "name": "_ctoz"
+    },
+    {
+      "address": 4041961,
+      "name": "_fft_zrip"
+    },
+    {
+      "address": 4041966,
+      "name": "_vm_allocate"
+    },
+    {
+      "address": 4041971,
+      "name": "_asin"
+    },
+    {
+      "address": 4041976,
+      "name": "_atan"
+    },
+    {
+      "address": 4041981,
+      "name": "_GetControlBounds"
+    },
+    {
+      "address": 4041986,
+      "name": "_AudioUnitCarbonViewCreate"
+    },
+    {
+      "address": 4041991,
+      "name": "_CFURLGetFSRef"
+    },
+    {
+      "address": 4041996,
+      "name": "_cosf"
+    },
+    {
+      "address": 4042001,
+      "name": "_fflush"
+    },
+    {
+      "address": 4042006,
+      "name": "_CFBundleCopyResourcesDirectoryURL"
+    },
+    {
+      "address": 4042011,
+      "name": "_AudioHardwareGetProperty"
+    },
+    {
+      "address": 4042016,
+      "name": "_AudioDeviceAddPropertyListener"
+    },
+    {
+      "address": 4042021,
+      "name": "_AudioDeviceSetProperty"
+    },
+    {
+      "address": 4042026,
+      "name": "_AudioHardwareGetPropertyInfo"
+    },
+    {
+      "address": 4042031,
+      "name": "_AudioDeviceGetPropertyInfo"
+    },
+    {
+      "address": 4042036,
+      "name": "_AudioDeviceGetProperty"
+    },
+    {
+      "address": 4042041,
+      "name": "_printf"
+    },
+    {
+      "address": 4042046,
+      "name": "_AudioDeviceStart"
+    },
+    {
+      "address": 4042051,
+      "name": "_AudioDeviceStop"
+    },
+    {
+      "address": 4042056,
+      "name": "_AudioDeviceAddIOProc"
+    },
+    {
+      "address": 4042061,
+      "name": "_AudioDeviceRemoveIOProc"
+    },
+    {
+      "address": 4042066,
+      "name": "_CFBundleCopyPrivateFrameworksURL"
+    },
+    {
+      "address": 4042071,
+      "name": "_CGPathAddLineToPoint"
+    },
+    {
+      "address": 4042076,
+      "name": "_CGPathAddCurveToPoint"
+    },
+    {
+      "address": 4042081,
+      "name": "_CGPathRelease"
+    },
+    {
+      "address": 4042086,
+      "name": "_CGPathMoveToPoint"
+    },
+    {
+      "address": 4042091,
+      "name": "_CGPathAddArc"
+    },
+    {
+      "address": 4042096,
+      "name": "_CGPathGetBoundingBox"
+    },
+    {
+      "address": 4042101,
+      "name": "_CGPathCloseSubpath"
+    },
+    {
+      "address": 4042106,
+      "name": "_CGPathCreateMutable"
+    },
+    {
+      "address": 4042111,
+      "name": "_CGPathCreateMutableCopy"
+    },
+    {
+      "address": 4042116,
+      "name": "_fgetc"
+    },
+    {
+      "address": 4042121,
+      "name": "_fread"
+    },
+    {
+      "address": 4042126,
+      "name": "_fdopen"
+    },
+    {
+      "address": 4042131,
+      "name": "_strcat"
+    },
+    {
+      "address": 4042136,
+      "name": "_ungetc"
+    },
+    {
+      "address": 4042141,
+      "name": "_ferror"
+    },
+    {
+      "address": 4042146,
+      "name": "_CFRunLoopStop"
+    },
+    {
+      "address": 4042151,
+      "name": "_CFRunLoopAddSource"
+    },
+    {
+      "address": 4042156,
+      "name": "_CFMessagePortCreateRemote"
+    },
+    {
+      "address": 4042161,
+      "name": "_CFMessagePortSendRequest"
+    },
+    {
+      "address": 4042166,
+      "name": "_mach_port_destroy"
+    },
+    {
+      "address": 4042171,
+      "name": "_CFRunLoopRun"
+    },
+    {
+      "address": 4042176,
+      "name": "_CFMessagePortInvalidate"
+    },
+    {
+      "address": 4042181,
+      "name": "_CFDataCreateWithBytesNoCopy"
+    },
+    {
+      "address": 4042186,
+      "name": "_CFMessagePortCreateRunLoopSource"
+    },
+    {
+      "address": 4042191,
+      "name": "_CFMessagePortCreateLocal"
+    },
+    {
+      "address": 4042196,
+      "name": "_CFRunLoopGetCurrent"
+    },
+    {
+      "address": 4042201,
+      "name": "_mach_msg"
+    },
+    {
+      "address": 4042206,
+      "name": "_mach_port_insert_right"
+    },
+    {
+      "address": 4042211,
+      "name": "_mach_port_deallocate"
+    },
+    {
+      "address": 4042216,
+      "name": "_task_get_special_port"
+    },
+    {
+      "address": 4042221,
+      "name": "_shmdt"
+    },
+    {
+      "address": 4042226,
+      "name": "_bootstrap_register"
+    },
+    {
+      "address": 4042231,
+      "name": "_bootstrap_look_up"
+    },
+    {
+      "address": 4042236,
+      "name": "_mach_port_allocate"
+    },
+    {
+      "address": 4042241,
+      "name": "_shmat"
+    },
+    {
+      "address": 4042246,
+      "name": "_shmget"
+    },
+    {
+      "address": 4042251,
+      "name": "_SetWindowGroup"
+    },
+    {
+      "address": 4042256,
+      "name": "_RetainWindowGroup"
+    },
+    {
+      "address": 4042261,
+      "name": "_SendBehind"
+    },
+    {
+      "address": 4042266,
+      "name": "_SetWindowBounds"
+    },
+    {
+      "address": 4042271,
+      "name": "_DisposeEventHandlerUPP"
+    },
+    {
+      "address": 4042276,
+      "name": "_GetWindowGroup"
+    },
+    {
+      "address": 4042281,
+      "name": "_GetWindowGroupOfClass"
+    },
+    {
+      "address": 4042286,
+      "name": "_CreateWindowGroup"
+    },
+    {
+      "address": 4042291,
+      "name": "_GetRootControl"
+    },
+    {
+      "address": 4042296,
+      "name": "_SendWindowGroupBehind"
+    },
+    {
+      "address": 4042301,
+      "name": "_Get1NamedResource"
+    },
+    {
+      "address": 4042306,
+      "name": "_ReadPartialResource"
+    },
+    {
+      "address": 4042311,
+      "name": "___udivdi3"
+    },
+    {
+      "address": 4042316,
+      "name": "_fcntl"
+    },
+    {
+      "address": 4042321,
+      "name": "_socket"
+    },
+    {
+      "address": 4042326,
+      "name": "_write"
+    },
+    {
+      "address": 4042331,
+      "name": "_strerror"
+    },
+    {
+      "address": 4042336,
+      "name": "_accept"
+    },
+    {
+      "address": 4042341,
+      "name": "_listen"
+    },
+    {
+      "address": 4042346,
+      "name": "_send"
+    },
+    {
+      "address": 4042351,
+      "name": "_recvfrom"
+    },
+    {
+      "address": 4042356,
+      "name": "_recv"
+    },
+    {
+      "address": 4042361,
+      "name": "_sendto"
+    },
+    {
+      "address": 4042366,
+      "name": "_inet_ntoa"
+    },
+    {
+      "address": 4042371,
+      "name": "_getservbyname"
+    },
+    {
+      "address": 4042376,
+      "name": "_getsockname"
+    },
+    {
+      "address": 4042381,
+      "name": "_select"
+    },
+    {
+      "address": 4042386,
+      "name": "_setsockopt"
+    },
+    {
+      "address": 4042391,
+      "name": "_connect"
+    },
+    {
+      "address": 4042396,
+      "name": "_getpeername"
+    },
+    {
+      "address": 4042401,
+      "name": "_shutdown"
+    },
+    {
+      "address": 4042406,
+      "name": "_bind"
+    },
+    {
+      "address": 4042411,
+      "name": "_gethostbyname"
+    },
+    {
+      "address": 4042416,
+      "name": "_inet_addr"
+    },
+    {
+      "address": 4042421,
+      "name": "_gethostname"
+    },
+    {
+      "address": 4042426,
+      "name": "_gethostbyaddr"
+    },
+    {
+      "address": 4042431,
+      "name": "_CGPDFDocumentCreateWithURL"
+    },
+    {
+      "address": 4042436,
+      "name": "_CGPDFDocumentRelease"
+    },
+    {
+      "address": 4042441,
+      "name": "_CGPDFDocumentGetNumberOfPages"
+    },
+    {
+      "address": 4042446,
+      "name": "_CGPDFPageGetRotationAngle"
+    },
+    {
+      "address": 4042451,
+      "name": "_CGPDFDocumentGetPage"
+    },
+    {
+      "address": 4042456,
+      "name": "_CGPDFPageRelease"
+    },
+    {
+      "address": 4042461,
+      "name": "_CGPDFPageGetBoxRect"
+    },
+    {
+      "address": 4042466,
+      "name": "_CGContextDrawPDFPage"
+    },
+    {
+      "address": 4042471,
+      "name": "_CGContextSetInterpolationQuality"
+    },
+    {
+      "address": 4042476,
+      "name": "_CGContextGetInterpolationQuality"
+    },
+    {
+      "address": 4042481,
+      "name": "_CFBundleCopyResourceURL"
+    },
+    {
+      "address": 4042486,
+      "name": "_ceilf"
+    },
+    {
+      "address": 4042491,
+      "name": "_CFStringCreateWithCString"
+    },
+    {
+      "address": 4042496,
+      "name": "_CloseConnection"
+    },
+    {
+      "address": 4042501,
+      "name": "_FindSymbol"
+    },
+    {
+      "address": 4042506,
+      "name": "_CFBundleGetVersionNumber"
+    },
+    {
+      "address": 4042511,
+      "name": "_GetDiskFragment"
+    },
+    {
+      "address": 4042516,
+      "name": "_FSMakeFSRefUnicode"
+    },
+    {
+      "address": 4042521,
+      "name": "_GetProcessBundleLocation"
+    },
+    {
+      "address": 4042526,
+      "name": "_Gestalt"
+    },
+    {
+      "address": 4042531,
+      "name": "_FSOpenResFile"
+    },
+    {
+      "address": 4042536,
+      "name": "_PMGetPageRange"
+    },
+    {
+      "address": 4042541,
+      "name": "_PMSessionPrintDialog"
+    },
+    {
+      "address": 4042546,
+      "name": "_PMSessionBeginPage"
+    },
+    {
+      "address": 4042551,
+      "name": "_PMSessionDefaultPrintSettings"
+    },
+    {
+      "address": 4042556,
+      "name": "_PMSetJobNameCFString"
+    },
+    {
+      "address": 4042561,
+      "name": "_PMCreateSession"
+    },
+    {
+      "address": 4042566,
+      "name": "_PMSessionBeginDocument"
+    },
+    {
+      "address": 4042571,
+      "name": "_PMGetUnadjustedPaperRect"
+    },
+    {
+      "address": 4042576,
+      "name": "_PMSessionError"
+    },
+    {
+      "address": 4042581,
+      "name": "_PMGetLastPage"
+    },
+    {
+      "address": 4042586,
+      "name": "_PMRelease"
+    },
+    {
+      "address": 4042591,
+      "name": "_PMGetJobNameCFString"
+    },
+    {
+      "address": 4042596,
+      "name": "_PMSessionGetGraphicsContext"
+    },
+    {
+      "address": 4042601,
+      "name": "_PMSetFirstPage"
+    },
+    {
+      "address": 4042606,
+      "name": "_PMCreatePageFormat"
+    },
+    {
+      "address": 4042611,
+      "name": "_PMGetFirstPage"
+    },
+    {
+      "address": 4042616,
+      "name": "_PMSessionDefaultPageFormat"
+    },
+    {
+      "address": 4042621,
+      "name": "_PMSessionEndDocument"
+    },
+    {
+      "address": 4042626,
+      "name": "_PMSetPageRange"
+    },
+    {
+      "address": 4042631,
+      "name": "_PMSessionSetDocumentFormatGeneration"
+    },
+    {
+      "address": 4042636,
+      "name": "_PMSetLastPage"
+    },
+    {
+      "address": 4042641,
+      "name": "_PMCreatePrintSettings"
+    },
+    {
+      "address": 4042646,
+      "name": "_PMSessionEndPage"
+    },
+    {
+      "address": 4042651,
+      "name": "_powf"
+    },
+    {
+      "address": 4042656,
+      "name": "_ceil"
+    },
+    {
+      "address": 4042661,
+      "name": "_expf"
+    },
+    {
+      "address": 4042666,
+      "name": "_vsub"
+    },
+    {
+      "address": 4042671,
+      "name": "_vmul"
+    },
+    {
+      "address": 4042676,
+      "name": "_vsq"
+    },
+    {
+      "address": 4042681,
+      "name": "_vadd"
+    },
+    {
+      "address": 4042686,
+      "name": "_logf"
+    },
+    {
+      "address": 4042691,
+      "name": "_atan2f"
+    },
+    {
+      "address": 4042696,
+      "name": "_tanh"
+    },
+    {
+      "address": 4042701,
+      "name": "_div"
+    },
+    {
+      "address": 4042706,
+      "name": "_log"
+    },
+    {
+      "address": 4042711,
+      "name": "_vatan2f"
+    },
+    {
+      "address": 4042716,
+      "name": "_exp"
+    },
+    {
+      "address": 4042721,
+      "name": "_tanf"
+    }
+  ],
+  "pointer_imports": [
+    {
+      "address": 4042730,
+      "name": "___gxx_personality_v0"
+    },
+    {
+      "address": 4042738,
+      "name": "_kCFTypeDictionaryKeyCallBacks"
+    },
+    {
+      "address": 4042742,
+      "name": "_kCFTypeDictionaryValueCallBacks"
+    },
+    {
+      "address": 4042758,
+      "name": "_kCFBundleVersionKey"
+    },
+    {
+      "address": 4042774,
+      "name": "_kCFAllocatorDefault"
+    },
+    {
+      "address": 4042778,
+      "name": "_kCFAllocatorSystemDefault"
+    },
+    {
+      "address": 4042806,
+      "name": "_kCFAbsoluteTimeIntervalSince1904"
+    },
+    {
+      "address": 4042826,
+      "name": "_kCFPreferencesAnyHost"
+    },
+    {
+      "address": 4042834,
+      "name": "_kCFPreferencesCurrentUser"
+    },
+    {
+      "address": 4042838,
+      "name": "_kCFBooleanFalse"
+    },
+    {
+      "address": 4042842,
+      "name": "_kCFBooleanTrue"
+    },
+    {
+      "address": 4042914,
+      "name": "__DefaultRuneLocale"
+    },
+    {
+      "address": 4042934,
+      "name": "_kMIDIPropertyName"
+    },
+    {
+      "address": 4042938,
+      "name": "_kMIDIPropertyManufacturer"
+    },
+    {
+      "address": 4042942,
+      "name": "_mach_task_self_"
+    },
+    {
+      "address": 4042954,
+      "name": "___sF"
+    },
+    {
+      "address": 4043070,
+      "name": "_kCFRunLoopDefaultMode"
+    },
+    {
+      "address": 4043074,
+      "name": "_kCFAllocatorNull"
+    },
+    {
+      "address": 4043082,
+      "name": "_h_errno"
+    },
+    {
+      "address": 4043102,
+      "name": "_kCFTypeArrayCallBacks"
+    }
+  ],
+  "external_relocations": 720,
+  "external_data_symbols": [
+    "__ZTISt9bad_alloc",
+    "__ZTIl",
+    "__ZTIs",
+    "__ZTVN10__cxxabiv117__class_type_infoE",
+    "__ZTVN10__cxxabiv120__si_class_type_infoE",
+    "__ZTVN10__cxxabiv121__vmi_class_type_infoE",
+    "___CFConstantStringClassReference",
+    "___cxa_pure_virtual"
+  ],
+  "global_initializers": [
+    "0x365fc0"
+  ],
+  "whole_engine_initialized": false
+}

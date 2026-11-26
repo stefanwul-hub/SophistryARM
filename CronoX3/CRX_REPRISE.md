@@ -1,3 +1,13 @@
+# CRX013 — référence validée et gelée par l’utilisateur (26 novembre 2026)
+
+L’utilisateur confirme explicitement que le plugin compile et valide, et que le CPU s’arrête maintenant avec le son : le problème de réverbération est corrigé. Il demande de garder CRX013 comme version de référence puis confie un autre plugin, Elastik. Ne pas modifier le DSP, les gains, l’interface, les identifiants ou l’installeur CRX013 pendant ce nouveau travail. Aumu/CrT3/LinP reste le profil installé ; ne pas remplacer CrX3 sous prétexte de cette validation.
+
+Référence immuable : source GitHub cf7fcf027da5f2415da11fdda2dad1623044169d, lanceur11303f66c6b627ed858bb83e871a08745aa286ed, ZIP https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/11303f66c6b627ed858bb83e871a08745aa286ed/CronoX3/Demarrer-CronoX-CRX013.zip . Sommes et preuves de téléchargement dans evidence/cronox-crx013-publication.json. Nouvelle preuve evidence/cronox-crx013-user-acceptance.json. Il n’y a pas de nouveau rapport CRX013 joint : cette validation est une confirmation utilisateur, pas un relevé quantitatif CPU ni une preuve exhaustive de tous les presets. La parité CPU de tout le synthétiseur n’est pas revendiquée.
+
+Nouvelle tâche séparée /workspace/work/ElastikARM : archive ElastikAU.pkg.zip, Elastik1.5.2.3. Objectif confirmé via réponse utilisateur : RETROUVER LES ANCIENS PROJETS ELASTIK1. Ne pas substituer simplement Elastik3, même s’il existe en Apple Silicon, sans vérifier reprise d’état et son. Sophistry CP038 est toujours gelé. Aucun nouveau changement de moteur CronoX n’est requis.
+
+---
+
 # Reprise — CRX013 publié, téléchargement vérifié ; attendre le rapport Mac
 
 Source GitHub `cf7fcf027da5f2415da11fdda2dad1623044169d`, source locale7f0c360 ; archive75348629octets, SHA256 `df027960359bb1dbffcd3b1a357e2df9a90c5b9d88106064aeb1ae83f160f7d2`. Les365 fichiers CronoX sont comparés aux blobs Git avec CRC/modes vérifiés. Lanceur GitHub `11303f66c6b627ed858bb83e871a08745aa286ed` : https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/11303f66c6b627ed858bb83e871a08745aa286ed/CronoX3/Demarrer-CronoX-CRX013.zip . ZIP1919octets, SHA256 `97ee981d42f3621bd5e0f316bba5fbf8e462b322406e56ec8a54aa8ece70ad99`, deux fichiers, .command exécutable. Téléchargement direct comparé octet pour octet. Seuls18 fichiers source puis3fichiers lanceur changent sous CronoX3 ; les46autres entrées racine restent identiques. Preuve evidence/cronox-crx013-publication.json.

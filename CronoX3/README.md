@@ -1,5 +1,7 @@
 # CronoX 3 ARM64 — CRX013
 
+**Version de référence validée par l’utilisateur le 26 novembre 2026.** Compilation et validation confirmées ; le CPU de la réverbération se libère avec la fin du son. Le développement est gelé pendant le travail séparé sur Elastik 1.
+
 [Télécharger le lanceur CRX013](https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/11303f66c6b627ed858bb83e871a08745aa286ed/CronoX3/Demarrer-CronoX-CRX013.zip).
 
 CRX013 corrige l’arrêt de compilation d’un outil de validation : le nouvel espace de noms interne de la réverbération pouvait entrer en conflit avec celui de l’interface dans les sondes historiques. Il porte désormais un nom distinct. Les calculs DSP, les paramètres, les queues sonores et la polyphonie sont inchangés par cette correction.
@@ -12,7 +14,7 @@ Le composant et les 13 sondes utilisées par les scripts moteur/AU ont tous ét�
 
 La réverbération C++ directe préparée dans CRX012 reste activée. Ses boucles reprennent les instructions originales, sans raccourcir la queue ni réduire les voix. Les 413 unités originales, le runtime et le dispatcher de CRX012 sont inchangés et leur cache reste utilisable.
 
-**CRX013 attend son exécution et auval sur votre Mac.** Ces vérifications de développement ne constituent pas une validation de l’AU sous macOS. Le gain CPU réel dans Live/Logic reste à mesurer avec Breath And Butter après une installation confirmée. La surcharge du synthétiseur sans réverbération reste également à traiter.
+L’utilisateur confirme la compilation, la validation et la correction de la réverbération sur son Mac. Aucun nouveau rapport chiffré n’est joint et la parité CPU de tout le synthétiseur avec l’original n’est pas revendiquée. Les preuves de développement et de publication restent conservées.
 
 Seul /Library/Audio/Plug-Ins/Components/CronoX 3 ARM Test.component est ciblé, identité aumu/CrT3/LinP, build13001. CronoX original CrX3, Sophistry CP038, les préférences et la calibration de +6 dB avant Master sont conservés. Les identifiants originaux restent réservés à la restauration finale des projets.
 

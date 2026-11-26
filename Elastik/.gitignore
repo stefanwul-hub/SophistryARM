@@ -1,0 +1,7 @@
+/work/
+/reference/
+__pycache__/
+*.pyc
+
+/evidence/ELA001/decompiled-entry/
+/evidence/ELA001/original-background.png

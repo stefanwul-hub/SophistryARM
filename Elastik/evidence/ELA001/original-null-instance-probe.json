@@ -1,0 +1,50 @@
+{
+  "scope": "Original i386 null-instance calls under Unicorn; no engine initialization",
+  "results": [
+    {
+      "selector": -4,
+      "argument": null,
+      "completed": true,
+      "return_signed": -50,
+      "unbound_import_calls": 0
+    },
+    {
+      "selector": -3,
+      "argument": 15,
+      "completed": true,
+      "return_signed": -50,
+      "unbound_import_calls": 0
+    },
+    {
+      "selector": -3,
+      "argument": 14,
+      "completed": true,
+      "return_signed": -50,
+      "unbound_import_calls": 0
+    },
+    {
+      "selector": -3,
+      "argument": 16,
+      "completed": true,
+      "return_signed": -50,
+      "unbound_import_calls": 0
+    },
+    {
+      "selector": -3,
+      "argument": 4660,
+      "completed": true,
+      "return_signed": -50,
+      "unbound_import_calls": 0
+    },
+    {
+      "selector": -2,
+      "argument": null,
+      "completed": true,
+      "return_signed": -50,
+      "unbound_import_calls": 0
+    }
+  ],
+  "all_original_paramerr_results_match": true,
+  "audio_rendered": false,
+  "native_arm64_plugin_built": false
+}

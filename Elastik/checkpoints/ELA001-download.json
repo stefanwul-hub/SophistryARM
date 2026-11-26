@@ -1,0 +1,13 @@
+{
+  "checkpoint": "ELA001",
+  "kind": "Analysis and resumption source snapshot; no native plugin or installer",
+  "filename": "Elastik-ELA001-checkpoint.zip",
+  "source_local_commit": "b7044bac65a2a2a57af44f3a241bbf61a4449177",
+  "bytes": 119896,
+  "sha256": "37ac3c7900c5bba7af9efca3025248ecea97cd2493c547397beadfc3e54be7aa",
+  "archive_entries": 31,
+  "original_installer_included": false,
+  "original_installer_required_to_reproduce_analysis": true,
+  "private_user_banks_included": false,
+  "native_audio_unit_included": false
+}
