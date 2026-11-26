@@ -1,0 +1,4 @@
+0x1b5af0 # GNArchiver write objects to stream
+0x1b78e2 # GNUnarchiver decode binary data
+0x1b9924 # GNUnarchiver recognizes original binary format
+0x1ba042 # GNUnarchiver additional decode entry

@@ -1,0 +1,11 @@
+0x155546 # GNKeyValueArchiver vtable +0x298
+0x1551e8 # GNKeyValueArchiver vtable +0x29c
+0x154216 # GNKeyValueArchiver vtable +0x2a8
+0x12114c # GNKeyValueUnarchiver vtable +0x29c
+0x121e32 # GNKeyValueUnarchiver vtable +0x2a8
+0x1211b0 # GNKeyValueUnarchiver vtable +0x2ac
+0x121a50 # GNKeyValueUnarchiver vtable +0x2b0
+0x1b7f8 # ETInstrument block processing, reached by original AU render
+0x1cafe # ETInstrument pre-block callback
+0x15f752,14 # ETProgram attachment to instrument
+0x15f258,11 # ETProgram numeric getter used during restore

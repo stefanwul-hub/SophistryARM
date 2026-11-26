@@ -1,0 +1,15 @@
+{
+  "checkpoint": "ELA002",
+  "kind": "Source and analysis checkpoint; no installable Audio Unit",
+  "filename": "Elastik-ELA002-checkpoint.zip",
+  "source_local_commit": "4442d5ee840a9677b4854c1210d290521af26b92",
+  "bytes": 135087,
+  "sha256": "8794e2071472f19c96532c538229d0314202508e26cb55127001cebf0ce3bd28",
+  "original_installer_included": false,
+  "user_banks_included": false,
+  "native_complete_plugin_included": false,
+  "complete_original_dsp_helpers_translated": 1,
+  "original_vs_cpp_bitwise_test_cases_per_platform": 73,
+  "original_decompiled_archives_included": false,
+  "public_contents": "Our translated C++ helper, analysis scripts, notes and comparison reports; no raw decompilations or original binary"
+}

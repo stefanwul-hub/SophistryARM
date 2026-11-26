@@ -1,0 +1,125 @@
+{
+  "checkpoint": "ELA002",
+  "archive": "analysis/ELA002-original-state-render-decompiled.zip",
+  "archive_bytes": 237226,
+  "archive_sha256": "9e16585df1c4aab12793443d42f93d59cf4004312e8d352a6645348e7dbc8ccc",
+  "ghidra_version": "11.3.2",
+  "distinct_functions_decompiled_this_checkpoint": 129,
+  "new_distinct_functions_beyond_ELA001": 123,
+  "distinct_selected_functions_across_checkpoints": 155,
+  "original_rtti_records": 520,
+  "selected_classes_with_vtables": 12,
+  "phases": [
+    {
+      "folder": "ELA002-decompiled",
+      "selected_functions": 33,
+      "roots": [
+        "0x00153fb6",
+        "0x001551ce",
+        "0x00120f0e",
+        "0x0001b2bc",
+        "0x0001b34c",
+        "0x00005490",
+        "0x0001b658",
+        "0x0001b7ae",
+        "0x001563c2",
+        "0x0001b9ba",
+        "0x0001b52e",
+        "0x00155e94",
+        "0x00155f10"
+      ],
+      "direct_call_depth": 1,
+      "explicit_sizes": {
+        "0x001551ce": 14,
+        "0x0001b34c": 14
+      }
+    },
+    {
+      "folder": "ELA002-codec-voice",
+      "selected_functions": 50,
+      "roots": [
+        "0x00155546",
+        "0x001551e8",
+        "0x00154216",
+        "0x0012114c",
+        "0x00121e32",
+        "0x001211b0",
+        "0x00121a50",
+        "0x0001b7f8",
+        "0x0001cafe",
+        "0x0015f752",
+        "0x0015f258"
+      ],
+      "direct_call_depth": 1,
+      "explicit_sizes": {
+        "0x0015f752": 14,
+        "0x0015f258": 11
+      }
+    },
+    {
+      "folder": "ELA002-binary-mixer",
+      "selected_functions": 25,
+      "roots": [
+        "0x001b5932",
+        "0x001b7682",
+        "0x001532f8",
+        "0x00161700",
+        "0x0002e182",
+        "0x0003169e",
+        "0x000315e4"
+      ],
+      "direct_call_depth": 1,
+      "explicit_sizes": {
+        "0x00161700": 117
+      }
+    },
+    {
+      "folder": "ELA002-binary-state",
+      "selected_functions": 19,
+      "roots": [
+        "0x001b5af0",
+        "0x001b78e2",
+        "0x001b9924",
+        "0x001ba042"
+      ],
+      "direct_call_depth": 1,
+      "explicit_sizes": {}
+    },
+    {
+      "folder": "ELA002-binary-layout",
+      "selected_functions": 11,
+      "roots": [
+        "0x001b71e2",
+        "0x001b73d8",
+        "0x001b6fa0",
+        "0x001b7d1a",
+        "0x001b7d92",
+        "0x001b9ba6",
+        "0x001b7e2a",
+        "0x001b7f6c",
+        "0x001b8078",
+        "0x001b99a2",
+        "0x001b9a32"
+      ],
+      "direct_call_depth": 0,
+      "explicit_sizes": {}
+    },
+    {
+      "folder": "ELA002-stream",
+      "selected_functions": 16,
+      "roots": [
+        "0x001640f2",
+        "0x00163006",
+        "0x00164748",
+        "0x00162ba6"
+      ],
+      "direct_call_depth": 1,
+      "explicit_sizes": {}
+    }
+  ],
+  "translated_complete_dsp_helpers": 1,
+  "whole_original_dsp_translated": false,
+  "old_project_restored": false,
+  "detailed_archive_publication": "Blocked by automatic approval review pending explicit user consent; retained in local checkpoint",
+  "detailed_archive_in_public_checkpoint_zip": false
+}

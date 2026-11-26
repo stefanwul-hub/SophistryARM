@@ -1,0 +1,11 @@
+0x1b71e2 # GNArchiver writes archive header
+0x1b73d8 # GNArchiver writes body
+0x1b6fa0 # GNArchiver builds object registry
+0x1b7d1a # GNUnarchiver slot 0x2b0
+0x1b7d92 # GNUnarchiver slot 0x2b4
+0x1b9ba6 # GNUnarchiver slot 0x2b8
+0x1b7e2a # GNUnarchiver slot 0x2bc
+0x1b7f6c # GNUnarchiver slot 0x2c0
+0x1b8078 # GNUnarchiver slot 0x2c4
+0x1b99a2 # GNUnarchiver slot 0x2cc
+0x1b9a32 # GNUnarchiver slot 0x2d0

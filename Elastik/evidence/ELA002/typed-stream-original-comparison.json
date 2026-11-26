@@ -1,0 +1,50 @@
+{
+  "checkpoint": "ELA002",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "scope": "Original typed integer/string state primitives only",
+  "integer_roundtrips_against_original": 265,
+  "string_encodings_against_original": 5,
+  "integer_wire_format": "ASCII i followed by big-endian signed int32",
+  "string_wire_format": "ASCII * followed by typed byte length and cached string bytes",
+  "original_functions": [
+    "0x1640f2",
+    "0x163006",
+    "0x164748"
+  ],
+  "host_binding": "libc memcpy only",
+  "memcpy_calls": 7,
+  "constructed_memory_records": [
+    "GNTypedStream",
+    "GNData",
+    "GNString"
+  ],
+  "synthetic_header_sha256": "b951d4703731208caf4466560a495b4127518be19020c803c981531bfe693def",
+  "synthetic_header_decoded": {
+    "format": "GNArchiver binary with GNTypedStream tags",
+    "version": 1,
+    "classes": [
+      {
+        "number": 1,
+        "version": 0,
+        "name": "GNDictionary"
+      },
+      {
+        "number": 2,
+        "version": 0,
+        "name": "GNList"
+      }
+    ],
+    "object_count": 1,
+    "unknown_object_class_numbers": [],
+    "body_offset": 70,
+    "body_bytes": 0,
+    "data_sha256": "b951d4703731208caf4466560a495b4127518be19020c803c981531bfe693def",
+    "object_bodies_decoded": false,
+    "old_project_restored": false
+  },
+  "synthetic_header_is_complete_preset": false,
+  "actual_user_state_tested": false,
+  "engine_initialized": false,
+  "license_or_activation_path_executed": false,
+  "old_project_restored": false
+}

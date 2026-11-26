@@ -1,0 +1,13 @@
+0x153fb6 # State archiver constructor
+0x1551ce,14 # Leaf setter without FDE; original instructions end with ret at 0x1551db
+0x120f0e # State unarchiver constructor
+0x1b2bc # Core state model restore, original vtable +0x3b4
+0x1b34c,14 # Leaf getter without FDE; original instructions end with ret at 0x1b359
+0x5490 # AU render wrapper reached by selector 14
+0x1b658
+0x1b7ae
+0x1563c2
+0x1b9ba
+0x1b52e
+0x155e94
+0x155f10

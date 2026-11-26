@@ -1,0 +1,37 @@
+{
+  "checkpoint": "ELA002",
+  "translated_source": "src/OriginalPlanarSum.cpp",
+  "source_sha256": "6ddbc4299c85bb0f25824da05230113abc4a59b8b60d4b551ca03fa55e8e2527",
+  "scope": "Complete 117-byte planar float32 summing helper only",
+  "compiler": "Zig 0.14.1 embedded Clang",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-vectorize",
+    "-fno-slp-vectorize",
+    "-fno-exceptions",
+    "-fno-rtti",
+    "-fno-stack-protector"
+  ],
+  "macos_object": {
+    "format": "Mach-O 64-bit",
+    "architecture": "arm64",
+    "cpu_type": "0x100000c",
+    "cpu_subtype": 0,
+    "filetype": "MH_OBJECT",
+    "bytes": 2792,
+    "sha256": "e134c0e06f7aafbc2a98018e4f505c4e74734b0400b5da9de271faed53da1ea2"
+  },
+  "test_executable": {
+    "format": "ELF64 little-endian",
+    "machine": 183,
+    "architecture": "AArch64",
+    "sha256": "d85ad5e32052da43713dce27b1eab667053f459e86489ac5906101d62780c28b",
+    "execution": "qemu-aarch64-static"
+  },
+  "macos_plugin_built": false,
+  "macos_audio_unit_validated": false,
+  "complete_engine_built": false
+}

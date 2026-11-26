@@ -1,0 +1,7 @@
+0x1b5932 # GNArchiver vtable +0x298; selected by AU save format 2
+0x1b7682 # GNUnarchiver constructor used for original binary recognition
+0x1532f8 # ETInstrumentVoice audio block processor
+0x161700,117 # Full original per-voice summing helper; ret at 0x161774, no FDE
+0x2e182 # GNObject key/value state encoding
+0x3169e # Reflective property state encoding
+0x315e4 # Reflective property state decoding

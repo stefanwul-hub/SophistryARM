@@ -1,0 +1,21 @@
+{
+  "checkpoint": "ELA002",
+  "status": "One complete original DSP helper translated and verified; full native engine pending",
+  "translated_complete_helpers": 1,
+  "helper_original_bytes": 117,
+  "bitwise_cases_per_platform": 73,
+  "compared_storage_words_per_platform": 140512,
+  "platforms": [
+    "linux-x86_64",
+    "aarch64-linux-under-qemu"
+  ],
+  "macos_arm64_object_compiled": true,
+  "original_functions_selected_across_checkpoints": 155,
+  "original_typed_integer_roundtrips": 265,
+  "original_typed_string_encodings": 5,
+  "actual_user_state_received": false,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}

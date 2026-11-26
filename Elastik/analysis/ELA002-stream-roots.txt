@@ -1,0 +1,4 @@
+0x1640f2 # GN stream writes tagged signed 32-bit integer
+0x163006 # GN stream reads tagged signed 32-bit integer
+0x164748 # GN stream writes tagged string
+0x162ba6 # Default stream byte-order/type-tag configuration

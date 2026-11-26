@@ -1,0 +1,3 @@
+Elastik-*-checkpoint.zip export-ignore
+analysis/*-decompiled.zip export-ignore
+checkpoints/*-download.json export-ignore
