@@ -1,0 +1,26 @@
+{
+  "base_public_commit": "2f0069a19ce416f549acde56d31298026f257466",
+  "candidate_tree_sha": "c0b7fcd75120a2d2e55913315eeb6f438e918d69",
+  "unrelated_root_entries_preserved": 46,
+  "only_new_directory": "Elastik",
+  "new_Elastik_files": 26,
+  "existing_files_changed": [
+    "CronoX3/CRX_REPRISE.md",
+    "CronoX3/README.md",
+    "CronoX3/checkpoints/cronox/CRX013-progress.json",
+    "CronoX3/cronox-status.json"
+  ],
+  "Sophistry_CP038_preserved": true,
+  "CronoX_CRX013_code_preserved": true,
+  "CronoX_metadata_only": true,
+  "all_public_blob_hashes_match_local_git": true,
+  "public_source_commit": "4271170c52c0f844f6d659ac17639cde375b6dcc",
+  "public_branch": "codex/sophistry-native-checkpoints",
+  "directory_url": "https://github.com/stefanwul-hub/SophistryARM/tree/4271170c52c0f844f6d659ac17639cde375b6dcc/Elastik",
+  "direct_download_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/4271170c52c0f844f6d659ac17639cde375b6dcc/Elastik/Elastik-ELA001-checkpoint.zip",
+  "native_component_available": false,
+  "download_verified_http_status": 200,
+  "download_verified_bytes": 119896,
+  "download_verified_sha256": "37ac3c7900c5bba7af9efca3025248ecea97cd2493c547397beadfc3e54be7aa",
+  "download_zip_crc_verified": true
+}
