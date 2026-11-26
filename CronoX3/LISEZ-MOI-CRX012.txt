@@ -1,0 +1,12 @@
+CronoX 3 ARM64 — CRX012
+
+1. Quittez Logic et Live.
+2. Décompactez le ZIP puis ouvrez Demarrer-CronoX-CRX012.command.
+3. Le lanceur récupère les sources vérifiées, conserve le cache de compilation, compile en ARM64 et lance les contrôles de concordance, les tests audio et auval.
+4. Seul CronoX 3 ARM Test.component est mis à jour dans /Library/Audio/Plug-Ins/Components. Le mot de passe administrateur de votre Mac sera demandé pour cette copie. En cas d’échec, la version ARM Test précédente est conservée ou restaurée.
+
+CRX012 retranscrit directement les calculs originaux de réverbération pour réduire le surcoût du portage. Les queues sonores, les releases, la polyphonie et le gain de +6 dB avant Master sont conservés. Les 480 blocs de référence sont revérifiés sur votre Mac avant installation. La baisse CPU dans vos hôtes et la comparaison d’un preset complet restent à confirmer.
+
+Après installation, comparez Breath And Butter avec l’original, y compris après relâchement de l’accord. Le rapport CronoX3-rapports-CRX012-….zip est créé sur le Bureau. Le bouton Copier le diagnostic du plugin donne aussi le nombre de blocs de réverbération exécutés par le nouveau code.
+
+CronoX original CrX3 et Sophistry CP038 restent installés. Ne transmettez jamais de numéro de série ou de fichier de préférences privées. Aucun effacement de licence ou de banque de sons n’est requis.
