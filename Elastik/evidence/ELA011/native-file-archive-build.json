@@ -1,0 +1,121 @@
+{
+  "checkpoint": "ELA011",
+  "client_date": "2026-11-27",
+  "translated_original_functions": [
+    {
+      "address": "0xe0a4c",
+      "bytes": 1815,
+      "role": "GNFA header and directory parser"
+    },
+    {
+      "address": "0xe05a2",
+      "bytes": 154,
+      "role": "Archive path file predicate"
+    },
+    {
+      "address": "0xe09c0",
+      "bytes": 139,
+      "role": "Archive path low-word file size"
+    },
+    {
+      "address": "0xe3e38",
+      "bytes": 443,
+      "role": "Shared or cloned backing stream binding"
+    },
+    {
+      "address": "0xe4172",
+      "bytes": 663,
+      "role": "Member read and 64-bit cursor update"
+    },
+    {
+      "address": "0xe440a",
+      "bytes": 336,
+      "role": "Member seek"
+    },
+    {
+      "address": "0xe455a",
+      "bytes": 362,
+      "role": "Member end seek"
+    },
+    {
+      "address": "0xe063c",
+      "bytes": 577,
+      "role": "Materialized file data and optional bank delegate"
+    }
+  ],
+  "new_original_routine_bytes": 4489,
+  "total_original_routines_translated": 57,
+  "total_original_routine_bytes": 35551,
+  "new_selected_decompilations": 38,
+  "total_selected_decompilations": 322,
+  "source_files": [
+    {
+      "path": "src/OriginalFileArchive.h",
+      "bytes": 4422,
+      "sha256": "4584e66928146c88296968225bc538c6a8e8c61a03380854dc175572d4d5cbb0"
+    },
+    {
+      "path": "src/OriginalFileArchive.cpp",
+      "bytes": 7178,
+      "sha256": "6841ba04431aac26d050db08f86ca5514fc700d495cc96bad91c85ced3a05606"
+    },
+    {
+      "path": "tests/FileArchiveProbe.cpp",
+      "bytes": 9297,
+      "sha256": "1238b88f34e3e543c27eb85ee48b0837339a4960154d04a6239fff00f043e509"
+    },
+    {
+      "path": "tests/ArchiveWaveProbe.cpp",
+      "bytes": 6998,
+      "sha256": "11ab490cf7809669c463c6d15f1eebc457c34fce8cbfaf4802ad8acadb803feb"
+    },
+    {
+      "path": "scripts/compare_original_file_archive.py",
+      "bytes": 19519,
+      "sha256": "f0a7649bd307982b85db61ff139eafc50e91481720c6e9c2908fe81b72b0890c"
+    },
+    {
+      "path": "scripts/compare_original_archive_wave.py",
+      "bytes": 5978,
+      "sha256": "14805ffa828f87dad2a65027afcefd80021f55ab07e45c8029ddcc5da1c352df"
+    },
+    {
+      "path": "scripts/verify_archive_wave_audio.py",
+      "bytes": 3644,
+      "sha256": "6331e94262f6f6a8aac85a71a2cbf79fbaf63304085f22fc2ce879ca9a55db55"
+    },
+    {
+      "path": "scripts/build_planar_sum_probe.py",
+      "bytes": 4350,
+      "sha256": "e3fb926f99f92ee22d817eb30df9a7950c441e2377a17a41807ccb8eedcd0a08"
+    }
+  ],
+  "comparisons": {
+    "file-archive": {
+      "cases_per_platform": 600,
+      "compared_bytes_per_platform": 9881777,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "archive-wave": {
+      "cases_per_platform": 64,
+      "compared_bytes_per_platform": 4222190,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    }
+  },
+  "total_cases_per_platform": 664,
+  "total_compared_bytes_per_platform": 14103967,
+  "macos_arm64_object_compiled": true,
+  "native_macos_execution": false,
+  "native_audio_unit_available": false,
+  "complete_instrument_engine_built": false,
+  "GNFA_read_container_ported_for_documented_contracts": true,
+  "builtin_GNFA_to_WAVE_audio_verified": true,
+  "protected_user_bank_compatibility_verified": false,
+  "real_bank_delegate_ported": false,
+  "archive_path_lookup_and_file_factory_ported": false,
+  "actual_GN_runtime_validated": false,
+  "thread_concurrency_validated": false,
+  "previous_native_sources_changed": false,
+  "standing_authorization": "PUBLICATION_AUTHORIZATION.json",
+  "automatic_fixture_retries": 0
+}

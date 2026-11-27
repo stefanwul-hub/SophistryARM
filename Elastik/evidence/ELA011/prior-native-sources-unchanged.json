@@ -1,0 +1,107 @@
+{
+  "checkpoint": "ELA011",
+  "base_local_commit": "c108b12b730b9d2827839acecbafb11119dba32e",
+  "all_previous_native_source_files_unchanged": true,
+  "files": [
+    {
+      "path": "src/OriginalBufferedPcm.cpp",
+      "git_blob_sha": "2b1de6c75621698340b62fd684e16781897e0427"
+    },
+    {
+      "path": "src/OriginalBufferedPcm.h",
+      "git_blob_sha": "6528b8da44f16a8e02c148e783e0165dce0afd38"
+    },
+    {
+      "path": "src/OriginalCacheLifecycle.cpp",
+      "git_blob_sha": "3f71ffaa069e2d3177adaed77172ed32b2bd7079"
+    },
+    {
+      "path": "src/OriginalCacheLifecycle.h",
+      "git_blob_sha": "c90aa737a546c68f03a9ece4498c309d1d9c08a4"
+    },
+    {
+      "path": "src/OriginalCacheRefill.cpp",
+      "git_blob_sha": "df3afa9d1d6f1973d4d252ca26cf5d2a5f11b7c6"
+    },
+    {
+      "path": "src/OriginalCacheRefill.h",
+      "git_blob_sha": "94daa325c2c45aa366202e745fb7bc5104036687"
+    },
+    {
+      "path": "src/OriginalFileOpen.cpp",
+      "git_blob_sha": "a2561f843486a9a61f6a9dfde3e899df3a8a7d81"
+    },
+    {
+      "path": "src/OriginalFileOpen.h",
+      "git_blob_sha": "ce9706941b445546b5913593f863865e6ea0af4e"
+    },
+    {
+      "path": "src/OriginalPlanarSum.cpp",
+      "git_blob_sha": "99baba1e6ca0fd9a4d0c96d83a737e12056a2b75"
+    },
+    {
+      "path": "src/OriginalSampleCache.cpp",
+      "git_blob_sha": "b6544463ee97c5e80ffe193d0077110aaf49db10"
+    },
+    {
+      "path": "src/OriginalSampleCache.h",
+      "git_blob_sha": "735ac598ea86c9245895fd26c4a89eb068a1374b"
+    },
+    {
+      "path": "src/OriginalSampleFile.cpp",
+      "git_blob_sha": "d88d82a2ba8e499a5ea1e50c9f7da058160af384"
+    },
+    {
+      "path": "src/OriginalSampleFile.h",
+      "git_blob_sha": "377d40fd460dce8a17bf02236d264066abe92198"
+    },
+    {
+      "path": "src/OriginalSampleFormat.cpp",
+      "git_blob_sha": "1b04afa3cbaf9b766badb4e12216e8ff9aaae361"
+    },
+    {
+      "path": "src/OriginalSampleFormat.h",
+      "git_blob_sha": "e14db73cfa552e06472c64c885f36415157fca22"
+    },
+    {
+      "path": "src/OriginalTimer.cpp",
+      "git_blob_sha": "50764836e438adf051922a6fc5adf2c14ad5eb61"
+    },
+    {
+      "path": "src/OriginalTimer.h",
+      "git_blob_sha": "ff9a9195a94a2919ee1a5b811191e46ebe4e533b"
+    },
+    {
+      "path": "src/OriginalVoiceChunk.cpp",
+      "git_blob_sha": "7756b0aabd768b704e2fc216e7bee8d4f6332a0d"
+    },
+    {
+      "path": "src/OriginalVoiceChunk.h",
+      "git_blob_sha": "1854fba93d6770a5711e5fe1c57e8464b7d1f4e8"
+    },
+    {
+      "path": "src/OriginalWave.cpp",
+      "git_blob_sha": "aced791251b2af3d9a4c7108e8e7a4b2453d9794"
+    },
+    {
+      "path": "src/OriginalWave.h",
+      "git_blob_sha": "f91e93de4255a8d895e2d6fbfd3b9b1b34ac7cd6"
+    },
+    {
+      "path": "src/OriginalWaveAdpcm.cpp",
+      "git_blob_sha": "8b124ae8cacb264fae65cee648d2ce9013b5454a"
+    },
+    {
+      "path": "src/OriginalWaveAdpcm.h",
+      "git_blob_sha": "44256c82c094fd4fb9c3f020d5a1a0614c3d1e86"
+    },
+    {
+      "path": "src/OriginalWaveChunks.cpp",
+      "git_blob_sha": "c389e97c2607f45e90ac1a1eb61fe630bac47482"
+    },
+    {
+      "path": "src/OriginalWaveChunks.h",
+      "git_blob_sha": "4c2ec096518e8d24195b7ee0037544007ea5b497"
+    }
+  ]
+}

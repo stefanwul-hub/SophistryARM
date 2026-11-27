@@ -1,0 +1,31 @@
+{
+  "checkpoint": "ELA011",
+  "new_original_routine_bytes": 4489,
+  "total_original_routines_translated": 57,
+  "total_original_routine_bytes": 35551,
+  "comparisons": {
+    "file-archive": {
+      "cases_per_platform": 600,
+      "compared_bytes_per_platform": 9881777,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "archive-wave": {
+      "cases_per_platform": 64,
+      "compared_bytes_per_platform": 4222190,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    }
+  },
+  "total_cases_per_platform": 664,
+  "total_compared_bytes_per_platform": 14103967,
+  "status": "GNFA directory/member/data path and direct WAVE decoding verified; bank catalog/delegate and native runtime pending",
+  "new_original_routines_translated": 8,
+  "new_functions_decompiled": 38,
+  "total_selected_functions_decompiled": 322,
+  "macos_arm64_objects_compiled": 1,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "public_download_verified": false,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}

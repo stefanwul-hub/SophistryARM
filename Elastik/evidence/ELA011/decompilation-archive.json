@@ -1,0 +1,13 @@
+{
+  "path": "analysis/ELA011-original-gnfa-decompiled.zip",
+  "bytes": 135674,
+  "sha256": "c6aa45a64cdec9e7bcbefcac0024356ff5ac3f533d95a209732daab6031fd1ba",
+  "checkpoint": "ELA011",
+  "zip_crc_verified": true,
+  "exported_functions": 70,
+  "distinct_functions": 58,
+  "new_distinct_functions": 38,
+  "total_selected_distinct_functions": 322,
+  "contains_original_bank_or_executable": false,
+  "entries": 145
+}
