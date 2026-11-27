@@ -28,7 +28,9 @@ def build(output, compiler=None, kind='planar-sum'):
                'buffered-pcm': ('src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'tests/BufferedPcmProbe.cpp'),
                'sample-cache': ('src/OriginalSampleCache.cpp', 'tests/SampleCacheProbe.cpp'),
                'sample-file': ('src/OriginalSampleCache.cpp', 'src/OriginalSampleFile.cpp', 'src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'src/OriginalVoiceChunk.cpp', 'tests/SampleFileProbe.cpp'),
-               'cache-refill': ('src/OriginalSampleCache.cpp', 'src/OriginalSampleFile.cpp', 'src/OriginalCacheRefill.cpp', 'src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'src/OriginalVoiceChunk.cpp', 'tests/CacheRefillProbe.cpp')}[kind]
+               'cache-refill': ('src/OriginalSampleCache.cpp', 'src/OriginalSampleFile.cpp', 'src/OriginalCacheRefill.cpp', 'src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'src/OriginalVoiceChunk.cpp', 'tests/CacheRefillProbe.cpp'),
+               'cache-lifecycle': ('src/OriginalCacheLifecycle.cpp', 'src/OriginalSampleFormat.cpp', 'tests/CacheLifecycleProbe.cpp'),
+               'timer': ('src/OriginalTimer.cpp', 'tests/TimerProbe.cpp')}[kind]
     command = [compiler] + flags + [str(root / name) for name in sources] + ['-o', str(output)]
     subprocess.run(command, check=True)
     print(json.dumps({'output': str(output), 'probe': kind, 'compiler': version.splitlines()[0],
@@ -39,6 +41,6 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--compiler')
-    p.add_argument('--kind', choices=['planar-sum', 'voice-chunk', 'sample-format', 'buffered-pcm', 'sample-cache', 'sample-file', 'cache-refill'], default='planar-sum')
+    p.add_argument('--kind', choices=['planar-sum', 'voice-chunk', 'sample-format', 'buffered-pcm', 'sample-cache', 'sample-file', 'cache-refill', 'cache-lifecycle', 'timer'], default='planar-sum')
     a = p.parse_args()
     build(a.output, a.compiler, a.kind)

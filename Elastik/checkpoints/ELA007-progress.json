@@ -1,0 +1,34 @@
+{
+  "checkpoint": "ELA007",
+  "status": "Valid-domain cache lifecycle and timer control translated and compared; actual platform runtime and whole engine pending",
+  "new_original_routines_translated": 14,
+  "new_original_routine_bytes": 3425,
+  "total_original_routines_translated": 32,
+  "total_original_routine_bytes": 13029,
+  "comparisons": {
+    "cache-lifecycle": {
+      "cases_per_platform": 195,
+      "compared_bytes_per_platform": 244192124,
+      "trace_events_per_platform": 2276,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    },
+    "timer": {
+      "cases_per_platform": 280,
+      "compared_bytes_per_platform": 184208,
+      "trace_events_per_platform": 3446,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    }
+  },
+  "ela006_regression_cases_per_platform_unchanged": 1390,
+  "new_functions_decompiled": 24,
+  "total_selected_functions_decompiled": 262,
+  "macos_arm64_objects_compiled": 2,
+  "event_loop_timer_native_binding_available": false,
+  "actual_GN_reference_counting_validated": false,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "detailed_original_analysis_authorized": true,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}

@@ -20,6 +20,7 @@ struct ElastikOriginalSampleFile {
     void (*lock)(void*);
     void (*unlock)(void*);
     ElastikOriginalSampleDiagnostics diagnostics;
+    unsigned sample_format = 0x44; // Original encoded format at file +0x20.
 };
 
 // Original 0x1af4e2 (794 bytes). File, cache and buffers must have valid

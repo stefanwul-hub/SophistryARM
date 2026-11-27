@@ -1,0 +1,285 @@
+{
+  "checkpoint": "ELA007",
+  "client_date": "2026-11-27",
+  "translated_original_functions": [
+    {
+      "address": "0x217cd2",
+      "bytes": 128,
+      "role": "Cache field initialization"
+    },
+    {
+      "address": "0x217db8",
+      "bytes": 291,
+      "role": "Cache array allocation"
+    },
+    {
+      "address": "0x218b82",
+      "bytes": 359,
+      "role": "Sound cache configuration and shared scratch growth"
+    },
+    {
+      "address": "0x2182e0",
+      "bytes": 242,
+      "role": "Acquire or reuse client"
+    },
+    {
+      "address": "0x2183d2",
+      "bytes": 25,
+      "role": "Release client"
+    },
+    {
+      "address": "0x217fe2",
+      "bytes": 90,
+      "role": "Start cache timer"
+    },
+    {
+      "address": "0x21803c",
+      "bytes": 49,
+      "role": "Stop cache timer"
+    },
+    {
+      "address": "0x217edc",
+      "bytes": 151,
+      "role": "Cache cleanup"
+    },
+    {
+      "address": "0x6fdb4",
+      "bytes": 594,
+      "role": "Start callback timer"
+    },
+    {
+      "address": "0x6faba",
+      "bytes": 762,
+      "role": "Start action timer"
+    },
+    {
+      "address": "0x6f75c",
+      "bytes": 173,
+      "role": "Cancel timer"
+    },
+    {
+      "address": "0x6f80a",
+      "bytes": 354,
+      "role": "Direct timer fire"
+    },
+    {
+      "address": "0x6fa3c",
+      "bytes": 125,
+      "role": "Event timer callback"
+    },
+    {
+      "address": "0x6f96c",
+      "bytes": 82,
+      "role": "Timer cleanup"
+    }
+  ],
+  "new_original_routine_bytes": 3425,
+  "total_original_routines_translated": 32,
+  "total_original_routine_bytes": 13029,
+  "translation_scope": "Valid-domain data/control effects with explicit GN object/allocator/exception and OS scheduling bindings",
+  "source_files": [
+    {
+      "path": "src/OriginalCacheLifecycle.cpp",
+      "bytes": 5732,
+      "sha256": "3a6ddfca9ba69f9c10168835e8cd2ebee4681d061e8fd580e78956b9b18f81b1"
+    },
+    {
+      "path": "src/OriginalCacheLifecycle.h",
+      "bytes": 3118,
+      "sha256": "a69aa571d22f380f70ec37b1b2e5c6f7631f600262063b4e1f012460f7b005aa"
+    },
+    {
+      "path": "src/OriginalTimer.cpp",
+      "bytes": 3433,
+      "sha256": "988f906e12b32a773359b86b72cf171c1fe4e002a179f202c13bd5025c36050f"
+    },
+    {
+      "path": "src/OriginalTimer.h",
+      "bytes": 2499,
+      "sha256": "9a40848b50ad3099d0f22d92bf6376d4268328db9f214d08385d86e761f70602"
+    },
+    {
+      "path": "src/OriginalSampleCache.h",
+      "bytes": 2145,
+      "sha256": "eb0eb0136579b8eff15670bca9322558961eaaf58742a6b2de14d62bed37e87b"
+    },
+    {
+      "path": "src/OriginalSampleFile.h",
+      "bytes": 2939,
+      "sha256": "0057af00af94b5572c29688549b06b7ea7caec249195cec989bf947b7a4670d7"
+    },
+    {
+      "path": "tests/CacheLifecycleProbe.cpp",
+      "bytes": 6046,
+      "sha256": "bf215158081894cab09e8e862b8cb4f3af3e925cc6067702cc2118ed3b84ee69"
+    },
+    {
+      "path": "tests/TimerProbe.cpp",
+      "bytes": 4310,
+      "sha256": "adbdfd64702ed1aaed9ab2f91d20301044ea0649a2e7db7af7a3e61e3ef2eabe"
+    },
+    {
+      "path": "scripts/compare_original_cache_lifecycle.py",
+      "bytes": 12271,
+      "sha256": "58e98fbc755bae4430ad1156506d6c21085d07ee14cdeff913904c40f806367c"
+    },
+    {
+      "path": "scripts/compare_original_timer.py",
+      "bytes": 10673,
+      "sha256": "3ebe771d0a137d6b8cc5d06fbe86b23b4cf5c6ae7ffaf63e8b9657bafd5afb8a"
+    },
+    {
+      "path": "scripts/build_planar_sum_probe.py",
+      "bytes": 2856,
+      "sha256": "68def4ef41aec53c1e2f33f1ac42c22c310da5a688f54a54ef676641962cc77b"
+    }
+  ],
+  "compiler": "Zig 0.14.1 embedded Clang",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-vectorize",
+    "-fno-slp-vectorize",
+    "-fno-exceptions",
+    "-fno-rtti",
+    "-fno-stack-protector"
+  ],
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-c"
+  ],
+  "arm64_probe_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-nostdlib++"
+  ],
+  "macos_objects": [
+    {
+      "path": "work/ELA007-native/OriginalCacheLifecycle-arm64-macos.o",
+      "bytes": 11984,
+      "sha256": "f1f29f9c0ea6ac55736d1013057d40e6dff7fac146c2296513c9e8a068722909",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    },
+    {
+      "path": "work/ELA007-native/OriginalTimer-arm64-macos.o",
+      "bytes": 9008,
+      "sha256": "c20673e98b35da183158ae99ed9f014e1a1df5cb403f247618227e0facea105d",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    }
+  ],
+  "arm64_test_programs": [
+    {
+      "path": "work/ELA007-native/cache-lifecycle-aarch64",
+      "bytes": 993976,
+      "sha256": "b874c38c8792190c37b5a8dc774e828d02491f8533a5991a61c086901674ef71",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0 Linux user mode"
+    },
+    {
+      "path": "work/ELA007-native/timer-aarch64",
+      "bytes": 931896,
+      "sha256": "7c7af9cce77b2b58f06734eadefccf9dc2f304c0a194b804c2f899f02d208015",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0 Linux user mode"
+    }
+  ],
+  "host_compiler": "GCC 14.2.0",
+  "host_flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-tree-vectorize"
+  ],
+  "ubsan_extra_flags": [
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "comparisons": {
+    "cache-lifecycle": {
+      "cases_per_platform": 195,
+      "compared_bytes_per_platform": 244192124,
+      "trace_events_per_platform": 2276,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    },
+    "timer": {
+      "cases_per_platform": 280,
+      "compared_bytes_per_platform": 184208,
+      "trace_events_per_platform": 3446,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    }
+  },
+  "regression_against_ELA006": [
+    {
+      "kind": "file",
+      "platform": "host",
+      "cases": 813,
+      "matches_all_previous_case_hashes": true,
+      "report": {
+        "path": "evidence/ELA007/ela006-file-regression-host.json",
+        "bytes": 219258,
+        "sha256": "984bdb785055e6e8e394bbc07a3bb71e297ba2150ff53b2ff91d67daf2b0305d"
+      }
+    },
+    {
+      "kind": "file",
+      "platform": "arm64",
+      "cases": 813,
+      "matches_all_previous_case_hashes": true,
+      "report": {
+        "path": "evidence/ELA007/ela006-file-regression-arm64.json",
+        "bytes": 219270,
+        "sha256": "2bc900b33ec58d839b99d18faff35231ca21fe62371bd10bf15d5801be305aaa"
+      }
+    },
+    {
+      "kind": "refill",
+      "platform": "host",
+      "cases": 577,
+      "matches_all_previous_case_hashes": true,
+      "report": {
+        "path": "evidence/ELA007/ela006-refill-regression-host.json",
+        "bytes": 177331,
+        "sha256": "c3d827f90e243947175a30cdc7b2741f9bad55c0c13bdd050de847d905c0ed1c"
+      }
+    },
+    {
+      "kind": "refill",
+      "platform": "arm64",
+      "cases": 577,
+      "matches_all_previous_case_hashes": true,
+      "report": {
+        "path": "evidence/ELA007/ela006-refill-regression-arm64.json",
+        "bytes": 177343,
+        "sha256": "831652364cda14b133b75019a12cc177cd35bb356465353d953f1c0f0cf29bef"
+      }
+    }
+  ],
+  "pointer_comparison": "Logical allocation/object tokens; untouched slot pointers normalized; client padding preserved",
+  "native_macos_execution": false,
+  "actual_GN_reference_counting_and_pool_drain_validated": false,
+  "actual_event_loop_scheduler_executed": false,
+  "concurrent_cache_mutation_tested": false,
+  "complete_engine_built": false,
+  "macos_audio_unit_validated": false,
+  "automatic_fixture_retries": 0,
+  "licensed_bank_access_modified": false,
+  "strict_syntax_check_flags": [
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fsyntax-only"
+  ],
+  "strict_syntax_check_passed": true
+}

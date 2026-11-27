@@ -1,0 +1,23 @@
+0x217c04 # Base cache class metadata
+0x217cd2 # Base cache field initialization
+0x217db8 # Buffer/map/client storage allocation
+0x217edc # Base cache cleanup (vtable +0x4c)
+0x217fe2 # Start periodic processing
+0x21803c # Stop periodic processing and release timer
+0x21806e,19 # Timer-present predicate, exact bytes through RET
+0x2182e0 # Acquire or reuse a client request record
+0x2183d2,25 # Release a client without reducing high-water count
+0x218502 # Generic cache process implementation
+0x218a58 # Sound cache class metadata
+0x218aa6 # Sound cache initialization
+0x218b82 # File-specific cache configuration
+0x1ac9dc # Lazy cache creation and timer ownership
+0x6f604 # GNTimer class metadata
+0x6f96c # GNTimer cleanup (vtable +0x4c)
+0x6f75c # Cancel timer
+0x6f80a # Direct timer fire with temporary autorelease pool
+0x6f9be,9 # Cleanup trampoline through JMP, verified before next function
+0x6fa3c # Carbon event-loop timer callback
+0x6faba # Retain action objects and install timer
+0x6fdb4 # Retain callback timer and install in current event loop
+0x70218 # Timer factory

@@ -15,7 +15,7 @@ struct ElastikOriginalSampleCache {
     int* block_to_slot;
     int slot_count;
     unsigned char underrun;
-    const ElastikOriginalCacheClient* clients;
+    ElastikOriginalCacheClient* clients;
     int client_count;
     int frames;
     int chunk_frames;

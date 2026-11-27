@@ -1,6 +1,6 @@
 {
   "project": "Elastik 1 ARM64",
-  "checkpoint": "ELA006",
+  "checkpoint": "ELA007",
   "goal": "Restore old projects containing Elastik 1 Audio Unit instances",
   "original_version": "1.5.2.3",
   "original_architectures": [
@@ -62,25 +62,25 @@
     "CronoX3": "CRX013 user validated and frozen"
   },
   "remaining_work": [
-    "Port cache allocation/lifetime and original Carbon event-loop timer ownership to native bindings; verify synchronization and concurrency",
-    "Translate original WAVE/container parsing and required compressed sample codecs",
+    "Translate original WAVE header/container parser 0x24ce76, then required bank containers/codecs",
     "Port remaining whole-voice DSP and loop/pitch/time-stretch path",
+    "Connect cache/timer lifecycle to native event-loop and GN object/exception bindings; verify synchronization and concurrency",
     "Decode GNArchiver object bodies and connect ETProgram/ETKeyMapping schemas",
     "Compare a real saved Elastik 1 state with the original code and verify user banks",
-    "Build complete native framework, Audio Unit and Cocoa bindings, then verify state recall, audio and CPU on the user Mac"
+    "Build complete native framework, Audio Unit and Cocoa bindings; verify state recall, audio and CPU on the user Mac"
   ],
   "publication_directory": "Elastik",
   "reference_CronoX_changed": false,
-  "selected_functions_decompiled": 238,
+  "selected_functions_decompiled": 262,
   "au_state_header_validation_identified": true,
   "state_payload_decoder_complete": false,
   "first_native_engine_milestone_reached": false,
-  "new_functions_decompiled_this_checkpoint": 11,
+  "new_functions_decompiled_this_checkpoint": 24,
   "original_rtti_records": 520,
   "selected_original_class_vtables_recovered": 12,
   "original_audio_render_path_identified": true,
   "complete_original_dsp_helpers_translated": 18,
-  "translated_helper_bytes": 9604,
+  "translated_helper_bytes": 13029,
   "helper_bitwise_comparison_cases": 73,
   "helper_compared_storage_words_per_platform": 140512,
   "helper_compared_platforms": [
@@ -108,13 +108,13 @@
   "voice_chunk_decoded_fixture_provider_only": false,
   "original_file_decoder_or_pitch_cache_executed": false,
   "registered_state_model_fields_recovered": 36,
-  "current_detailed_analysis_archive": "analysis/ELA006-original-refill-lifecycle-decompiled.zip",
+  "current_detailed_analysis_archive": "analysis/ELA007-original-cache-timer-decompiled.zip",
   "current_detailed_analysis_archive_public": true,
-  "current_detailed_analysis_publication_status": "Published under standing user consent",
+  "current_detailed_analysis_publication_status": "Prepared under standing user consent; publication receipt follows",
   "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
   "current_and_future_publications_authorised": true,
   "repeat_authorization_required_for_same_scope": false,
-  "complete_original_routines_translated": 18,
+  "complete_original_routines_translated": 32,
   "pcm_sample_format_conversion_bitwise_cases_per_platform": 1350,
   "buffered_pcm_reader_bitwise_cases_per_platform": 673,
   "buffered_pcm_reader_original_byte_reads_per_platform": 5332,
@@ -163,5 +163,14 @@
     "native_timer_lifecycle_translated": false,
     "autonomous_worker_thread_equivalence_proven": false,
     "refill_pass_invoked_directly_in_tests": true
-  }
+  },
+  "cache_allocation_lifecycle_translated": true,
+  "cache_client_acquisition_release_translated": true,
+  "timer_control_translated_for_valid_contracts": true,
+  "cache_lifecycle_comparison_cases_per_platform": 195,
+  "timer_comparison_cases_per_platform": 280,
+  "timer_and_cache_lifecycle_macos_arm64_objects_compiled": true,
+  "actual_event_loop_scheduler_validated": false,
+  "actual_GN_reference_counting_and_pool_drain_validated": false,
+  "ela006_regression_cases_per_platform_unchanged": 1390
 }

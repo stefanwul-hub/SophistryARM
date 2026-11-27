@@ -1,0 +1,40 @@
+{
+  "checkpoint": "ELA007",
+  "functions_saved_this_phase": 40,
+  "all_selected_functions_decompiled": true,
+  "new_distinct_functions": 24,
+  "total_distinct_functions": 262,
+  "new_addresses": [
+    "0x1e860",
+    "0x1ffde",
+    "0x59c92",
+    "0x59f14",
+    "0x6f604",
+    "0x6f75c",
+    "0x6f80a",
+    "0x6f96c",
+    "0x6f9be",
+    "0x6fa3c",
+    "0x6faba",
+    "0x83b04",
+    "0x83b2e",
+    "0x13158c",
+    "0x131b4a",
+    "0x217c04",
+    "0x217edc",
+    "0x217fe2",
+    "0x21803c",
+    "0x21806e",
+    "0x2182e0",
+    "0x2183d2",
+    "0x218502",
+    "0x218a58"
+  ],
+  "ghidra_project_read_only": true,
+  "explicit_sizes_verified": {
+    "0x0021806e": 19,
+    "0x002183d2": 25,
+    "0x0006f9be": 9
+  },
+  "audit_sha256": "4bf7d19c1b10999ac364b7651092419bce63f851daeeaf2a5d7a4926b4435e5c"
+}
