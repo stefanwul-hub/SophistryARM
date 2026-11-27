@@ -10,5 +10,29 @@
   },
   "contains_original_installer": false,
   "contains_user_bank": false,
-  "native_audio_unit_available": false
+  "native_audio_unit_available": false,
+  "public_source_commit": "13289406cfd50694f465231f2b278b750f6c23c1",
+  "verified_public_downloads": [
+    {
+      "path": "Elastik-ELA008-complet-checkpoint.zip",
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/13289406cfd50694f465231f2b278b750f6c23c1/Elastik/Elastik-ELA008-complet-checkpoint.zip",
+      "http_status": 200,
+      "bytes": 2106220,
+      "sha256": "bd178b62ec91ccbb30464f0a27b48002e84feee5ca1e0e177ec841077f5013db",
+      "zip_entries": 194,
+      "zip_crc_verified": true,
+      "matches_local_archive": true
+    },
+    {
+      "path": "analysis/ELA008-original-wave-decompiled.zip",
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/13289406cfd50694f465231f2b278b750f6c23c1/Elastik/analysis/ELA008-original-wave-decompiled.zip",
+      "http_status": 200,
+      "bytes": 125022,
+      "sha256": "3ab245f43a22e81885d1d1e8a173719e8c53ea8a4c8e53fab30284da7bcf4cd4",
+      "zip_entries": 102,
+      "zip_crc_verified": true,
+      "matches_local_archive": true
+    }
+  ],
+  "package_file_manifest_verified": true
 }

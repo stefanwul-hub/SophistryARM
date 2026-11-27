@@ -31,5 +31,13 @@
     "Sophistry": "CP038",
     "CronoX3": "CRX013"
   },
-  "technical_scope_note": "Permission to publish does not assert that the complete native engine or Audio Unit is available, validated, or able to restore old projects."
+  "technical_scope_note": "Permission to publish does not assert that the complete native engine or Audio Unit is available, validated, or able to restore old projects.",
+  "github_create_blob_explicitly_authorised": true,
+  "additional_user_confirmation": {
+    "client_date": "2026-11-27",
+    "user_message": "J'autorise toujours Github à créer un blob dans stefanwul-hub, ne me le demande plus. Compris ?",
+    "confirmation_reply": "Oui, merci.",
+    "repository": "stefanwul-hub/SophistryARM",
+    "ask_again_for_blob_creation": false
+  }
 }

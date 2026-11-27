@@ -22,5 +22,7 @@
   "old_project_restored": false,
   "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
   "Sophistry_CP038_frozen": true,
-  "CronoX_CRX013_frozen": true
+  "CronoX_CRX013_frozen": true,
+  "public_download_verified": true,
+  "public_source_commit": "13289406cfd50694f465231f2b278b750f6c23c1"
 }
