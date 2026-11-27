@@ -23,8 +23,9 @@
   "macos_arm64_objects_compiled": 1,
   "native_audio_unit_available": false,
   "old_project_restored": false,
-  "public_download_verified": false,
+  "public_download_verified": true,
   "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
   "Sophistry_CP038_frozen": true,
-  "CronoX_CRX013_frozen": true
+  "CronoX_CRX013_frozen": true,
+  "public_source_commit": "7418f6b0785646f0b0855133a80f27e447642a45"
 }
