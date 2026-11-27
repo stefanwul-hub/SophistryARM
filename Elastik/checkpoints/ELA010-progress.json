@@ -1,0 +1,30 @@
+{
+  "checkpoint": "ELA010",
+  "new_original_routine_bytes": 1798,
+  "total_original_routines_translated": 49,
+  "total_original_routine_bytes": 31062,
+  "comparisons": {
+    "file-open": {
+      "cases_per_platform": 1481,
+      "compared_bytes_per_platform": 618268,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "file-pipeline": {
+      "cases_per_platform": 74,
+      "compared_bytes_per_platform": 18131090,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    }
+  },
+  "total_cases_per_platform": 1555,
+  "status": "Original file/WAVE/cache/voice-chunk path verified; complete native GN runtime and engine pending",
+  "new_original_routines_translated": 5,
+  "new_functions_decompiled": 3,
+  "total_selected_functions_decompiled": 284,
+  "macos_arm64_objects_compiled": 1,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "public_download_verified": false,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}

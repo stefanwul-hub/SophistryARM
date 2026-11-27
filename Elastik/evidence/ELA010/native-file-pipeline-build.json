@@ -1,0 +1,103 @@
+{
+  "checkpoint": "ELA010",
+  "client_date": "2026-11-27",
+  "translated_original_functions": [
+    {
+      "address": "0x219202",
+      "bytes": 464,
+      "role": "Reader format selection and unsupported-only retry"
+    },
+    {
+      "address": "0x1adbb6",
+      "bytes": 840,
+      "role": "Sample file opening and paired mono setup"
+    },
+    {
+      "address": "0x1ac9dc",
+      "bytes": 105,
+      "role": "Lazy sound-cache creation and start"
+    },
+    {
+      "address": "0x219a4c",
+      "bytes": 263,
+      "role": "Shared chunk metadata projection"
+    },
+    {
+      "address": "0x249f1e",
+      "bytes": 126,
+      "role": "WAVE metadata and legacy Melodyne sample count"
+    }
+  ],
+  "new_original_routine_bytes": 1798,
+  "total_original_routines_translated": 49,
+  "total_original_routine_bytes": 31062,
+  "new_selected_decompilations": 3,
+  "total_selected_decompilations": 284,
+  "source_files": [
+    {
+      "path": "src/OriginalFileOpen.h",
+      "bytes": 4089,
+      "sha256": "110bbee8e049e053d88ed167fb9372bd26e796e00c7ffd1ff2c038a4e1c04d2c"
+    },
+    {
+      "path": "src/OriginalFileOpen.cpp",
+      "bytes": 5623,
+      "sha256": "8890a5206b107d78546463f3e4363bcac530260b1ab5b32efb556d35ff5a1bce"
+    },
+    {
+      "path": "tests/FileOpenProbe.cpp",
+      "bytes": 6375,
+      "sha256": "c72d449cb89db128daf7d21d590b9854b538dc09acc94699f2442ddc57c7e08a"
+    },
+    {
+      "path": "tests/FilePipelineProbe.cpp",
+      "bytes": 9921,
+      "sha256": "0b0fccbfcecc6a165ef76b4110493af66d00e318def282e45afa5dcd58df1f0d"
+    },
+    {
+      "path": "scripts/compare_original_file_open.py",
+      "bytes": 15098,
+      "sha256": "bf8f2f111b6e4d3f62023d44a73c6788256db02bbabb2fb124d050496ad37f58"
+    },
+    {
+      "path": "scripts/compare_original_file_pipeline.py",
+      "bytes": 14059,
+      "sha256": "a2c54fecb89f02c7a4d4af55fc8f5073a5776bdad187e1441341e4a43f63aae7"
+    },
+    {
+      "path": "scripts/verify_file_pipeline_audio.py",
+      "bytes": 3775,
+      "sha256": "a04e07e01090221a529d160f6a5dd5c8dbf31fa9069732364e1dfda880576040"
+    },
+    {
+      "path": "scripts/build_planar_sum_probe.py",
+      "bytes": 3984,
+      "sha256": "3a3a169154bc8a91a4d253440cbd40ab97be8e0f8a4f2b4af13d353573cf1003"
+    }
+  ],
+  "comparisons": {
+    "file-open": {
+      "cases_per_platform": 1481,
+      "compared_bytes_per_platform": 618268,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "file-pipeline": {
+      "cases_per_platform": 74,
+      "compared_bytes_per_platform": 18131090,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    }
+  },
+  "total_cases_per_platform": 1555,
+  "macos_arm64_object_compiled": true,
+  "native_macos_execution": false,
+  "native_audio_unit_available": false,
+  "complete_voice_engine_built": false,
+  "bank_containers_ported": false,
+  "actual_GN_runtime_validated": false,
+  "thread_concurrency_validated": false,
+  "mono_partner_filename_heuristic_ported": false,
+  "AIFF_SND_SDII_readers_ported": false,
+  "previous_native_sources_changed": false,
+  "standing_authorization": "PUBLICATION_AUTHORIZATION.json",
+  "automatic_fixture_retries": 0
+}

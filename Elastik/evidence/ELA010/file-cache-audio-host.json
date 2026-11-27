@@ -1,0 +1,28 @@
+{
+  "frames": 176399,
+  "channels": 2,
+  "sample_rate": 44100,
+  "original_wave_sha256": "3a34c829da83d0b79773927fd2d026479a8038f4f7666c29a745aff2968b342f",
+  "cache_slots_derived_and_filled": 11,
+  "all_cached_samples_match_independent_pcm16_reference": true,
+  "final_cache_block_tail_zeroed": true,
+  "cold_voice_read_zero": true,
+  "cached_and_direct_voice_audio_identical": true,
+  "interleaved_float32_sha256": "555760159fb2f5e4331d3df06df12c1e659b27585601687f8ab364cd3e3d4ef3",
+  "measurements": [
+    {
+      "channel": 0,
+      "peak": 0.999969482421875,
+      "rms": 0.3317181348906584
+    },
+    {
+      "channel": 1,
+      "peak": 0.999969482421875,
+      "rms": 0.3218807571570194
+    }
+  ],
+  "actual_macos_execution": false,
+  "full_instrument_render": false,
+  "checkpoint": "ELA010",
+  "platform": "x86_64-linux"
+}

@@ -1,0 +1,12 @@
+{
+  "path": "analysis/ELA010-original-file-open-decompiled.zip",
+  "bytes": 37223,
+  "sha256": "d33a4101e7eaede4654e06feab133405089290be7e31cfa6edbe8e7c18a1fb94",
+  "checkpoint": "ELA010",
+  "functions": 26,
+  "new_functions": 3,
+  "total_distinct_selected_functions": 284,
+  "contains_original_executable": false,
+  "contains_user_bank": false,
+  "zip_crc_verified": true
+}
