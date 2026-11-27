@@ -10,5 +10,31 @@
   },
   "contains_original_installer": false,
   "contains_user_bank": false,
-  "native_audio_unit_available": false
+  "native_audio_unit_available": false,
+  "source_public_git_commit": "cffd6345a84d88dfc7ab70ac64fa40cb0cda0725",
+  "complete_public_archive_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/cffd6345a84d88dfc7ab70ac64fa40cb0cda0725/Elastik/Elastik-ELA011-complet-checkpoint.zip",
+  "detailed_analysis_archive_url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/cffd6345a84d88dfc7ab70ac64fa40cb0cda0725/Elastik/analysis/ELA011-original-gnfa-decompiled.zip",
+  "public_download_verified": true,
+  "downloads": [
+    {
+      "path": "Elastik-ELA011-complet-checkpoint.zip",
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/cffd6345a84d88dfc7ab70ac64fa40cb0cda0725/Elastik/Elastik-ELA011-complet-checkpoint.zip",
+      "bytes": 3766916,
+      "sha256": "94345111618cec2bd26570d822f844ecef97f21bf7c607eab41f208538fca188",
+      "http_status": 200,
+      "matches_local_bytes": true,
+      "zip_crc_verified": true,
+      "manifest_verified": true
+    },
+    {
+      "path": "analysis/ELA011-original-gnfa-decompiled.zip",
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/cffd6345a84d88dfc7ab70ac64fa40cb0cda0725/Elastik/analysis/ELA011-original-gnfa-decompiled.zip",
+      "bytes": 135674,
+      "sha256": "c6aa45a64cdec9e7bcbefcac0024356ff5ac3f533d95a209732daab6031fd1ba",
+      "http_status": 200,
+      "matches_local_bytes": true,
+      "zip_crc_verified": true,
+      "manifest_verified": false
+    }
+  ]
 }
