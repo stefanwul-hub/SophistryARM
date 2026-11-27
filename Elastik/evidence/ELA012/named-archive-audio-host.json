@@ -1,0 +1,45 @@
+{
+  "checkpoint": "ELA012",
+  "scope": "Complete PCM WAVE selected by name from the original GNFA bank through native path resolver, read factory and member I/O",
+  "original_archive_sha256": "9b4aca313f9ba24da8c4c2b2473f4023ca9a3efcd009d117644c3a46e2be0f84",
+  "reference_wave_sha256": "3a34c829da83d0b79773927fd2d026479a8038f4f7666c29a745aff2968b342f",
+  "reference_wave_supplied_to_native_executable": false,
+  "frames": 176399,
+  "channels": 2,
+  "sample_rate": 44100,
+  "runs": [
+    {
+      "stream_mode": "shared save/restore",
+      "all_samples_match_independent_pcm16_reference": true,
+      "container_source_position_preserved": true,
+      "path_resolved_to_index": 2,
+      "original_read_factory_used": true,
+      "interleaved_float32_sha256": "555760159fb2f5e4331d3df06df12c1e659b27585601687f8ab364cd3e3d4ef3"
+    },
+    {
+      "stream_mode": "dedicated clone",
+      "all_samples_match_independent_pcm16_reference": true,
+      "container_source_position_preserved": true,
+      "path_resolved_to_index": 2,
+      "original_read_factory_used": true,
+      "interleaved_float32_sha256": "555760159fb2f5e4331d3df06df12c1e659b27585601687f8ab364cd3e3d4ef3"
+    }
+  ],
+  "measurements": [
+    {
+      "channel": 0,
+      "peak": 0.999969482421875,
+      "rms": 0.3317181348906584
+    },
+    {
+      "channel": 1,
+      "peak": 0.999969482421875,
+      "rms": 0.3218807571570194
+    }
+  ],
+  "original_archive_or_audio_published": false,
+  "protected_user_bank_compatibility_verified": false,
+  "complete_engine_rendered": false,
+  "macos_audio_unit_validated": false,
+  "platform": "linux-x86_64"
+}

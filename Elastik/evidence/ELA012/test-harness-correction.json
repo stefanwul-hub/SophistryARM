@@ -1,0 +1,9 @@
+{
+  "checkpoint": "ELA012",
+  "initial_sanitizer_finding": "ArchiveNameProbe stored the skipped-operation sentinel -1 in an enum whose valid range is 0..4",
+  "correction": "Separate bool skipped; serialize -1 as an int only; no engine/source routine changes",
+  "initial_failure_fixture": "lookup-layout0-pathnone-index0-clone0-shared0",
+  "affected_test_file": "tests/ArchiveNameProbe.cpp",
+  "expected_bytes_unchanged": true,
+  "automatic_retries_used": false
+}

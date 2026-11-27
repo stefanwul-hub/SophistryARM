@@ -1,0 +1,36 @@
+{
+  "checkpoint": "ELA012",
+  "new_original_routine_bytes": 2286,
+  "total_original_routines_translated": 65,
+  "total_original_routine_bytes": 37837,
+  "comparisons": {
+    "byte-file": {
+      "cases_per_platform": 192,
+      "compared_bytes_per_platform": 86224,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "archive-names": {
+      "cases_per_platform": 384,
+      "compared_bytes_per_platform": 19227432,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "named-archive-wave": {
+      "cases_per_platform": 68,
+      "compared_bytes_per_platform": 4221398,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    }
+  },
+  "total_cases_per_platform": 644,
+  "total_compared_bytes_per_platform": 23535054,
+  "macos_arm64_objects_compiled": 2,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true,
+  "status": "Named GNFA lookup/read factory and memory/fork methods compared; bank catalog/delegate and native runtime pending",
+  "new_original_routines_translated": 8,
+  "new_functions_decompiled": 19,
+  "total_selected_functions_decompiled": 341,
+  "public_download_verified": false
+}

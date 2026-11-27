@@ -1,0 +1,166 @@
+{
+  "checkpoint": "ELA012",
+  "client_date": "2026-11-27",
+  "translated_original_functions": [
+    {
+      "address": "0xdf8d2",
+      "bytes": 321,
+      "role": "GNFA path lookup"
+    },
+    {
+      "address": "0xe3ff4",
+      "bytes": 381,
+      "role": "GNFA read file factory"
+    },
+    {
+      "address": "0x17f8a0",
+      "bytes": 119,
+      "role": "GNFile bind data and rewind"
+    },
+    {
+      "address": "0x17f918",
+      "bytes": 591,
+      "role": "GNFile memory/fork read"
+    },
+    {
+      "address": "0x180a68",
+      "bytes": 236,
+      "role": "GNFile position"
+    },
+    {
+      "address": "0x180c72",
+      "bytes": 329,
+      "role": "GNFile seek"
+    },
+    {
+      "address": "0x180b54",
+      "bytes": 285,
+      "role": "GNFile end"
+    },
+    {
+      "address": "0xdfab4",
+      "bytes": 24,
+      "role": "Archive file logical or base position"
+    }
+  ],
+  "new_original_routine_bytes": 2286,
+  "total_original_routines_translated": 65,
+  "total_original_routine_bytes": 37837,
+  "new_selected_decompilations": 19,
+  "total_selected_decompilations": 341,
+  "source_files": [
+    {
+      "path": "src/OriginalArchiveLookup.cpp",
+      "bytes": 2696,
+      "sha256": "1863db2129ee27094c26c2d7b2be5467b200248d12615f9801b2e7226b3bcbc6"
+    },
+    {
+      "path": "src/OriginalArchiveLookup.h",
+      "bytes": 2480,
+      "sha256": "d1bf547e419cc9146669724a5ddd5439459a43d5302653ac919fdc49cc670754"
+    },
+    {
+      "path": "src/OriginalByteFile.cpp",
+      "bytes": 3028,
+      "sha256": "ae21ead134293fbf76a83a5684dd61335243e487f8e3baeccb86018517767cfd"
+    },
+    {
+      "path": "src/OriginalByteFile.h",
+      "bytes": 2250,
+      "sha256": "d1ad5a9e6af946101a7fbd12a44675050c3ffab6f3cf3dcfc613ed5e5354505b"
+    },
+    {
+      "path": "tests/ByteFileProbe.cpp",
+      "bytes": 4659,
+      "sha256": "aea1785db5ff5d2ace3eed1fe2dc6ada8ddabec2321383026c52b71363b4550d"
+    },
+    {
+      "path": "tests/ArchiveNameFixture.h",
+      "bytes": 9028,
+      "sha256": "98347d70dad52d95bd5dad8d5c85e64a4220e0315e79394553c273f69a987838"
+    },
+    {
+      "path": "tests/ArchiveNameProbe.cpp",
+      "bytes": 2998,
+      "sha256": "9b3f9df62ec14ac467b16e2119937af357db988fc07f7fc3a9675bd9309847c8"
+    },
+    {
+      "path": "tests/NamedArchiveWaveProbe.cpp",
+      "bytes": 6354,
+      "sha256": "7c78d1f88ee9e4ac7c48c4d1ca0845872c6ddb473134ca38a2303cdbb9fb0fb3"
+    },
+    {
+      "path": "tests/LegacyArchiveStringTable.h",
+      "bytes": 3052,
+      "sha256": "6f80892d8fd065411b9e045e5e09580faa8bd2cb7b3f40afb37bb5b40974a8b6"
+    },
+    {
+      "path": "scripts/compare_original_byte_file.py",
+      "bytes": 9422,
+      "sha256": "69f2bce8c5a04c3d77c3857a74701e2f798fa0b632484b534e92d391155a7c22"
+    },
+    {
+      "path": "scripts/compare_original_archive_names.py",
+      "bytes": 6201,
+      "sha256": "caa534f92e9366c03efdc0f004e370cd92b6565c5d9515e263f77f21613c0509"
+    },
+    {
+      "path": "scripts/original_archive_name_oracle.py",
+      "bytes": 9513,
+      "sha256": "a3241494414dc3217356b745df032143280ed3a1c84393c7a1da5e58c8e861aa"
+    },
+    {
+      "path": "scripts/compare_original_named_archive_wave.py",
+      "bytes": 5454,
+      "sha256": "d784285bac37b57594eec17abefc12191a6a317a834bb9777f3ec88adddaad16"
+    },
+    {
+      "path": "scripts/verify_named_archive_wave_audio.py",
+      "bytes": 4266,
+      "sha256": "37a3801b880a431186ae11f41258074c1d84b0d4bb1cf7881b244fd0ae6f0004"
+    },
+    {
+      "path": "scripts/build_planar_sum_probe.py",
+      "bytes": 4955,
+      "sha256": "c45d27581e659687782a5b8ccd72423ec7582074107ef473d6bc2d852cd2d948"
+    }
+  ],
+  "comparisons": {
+    "byte-file": {
+      "cases_per_platform": 192,
+      "compared_bytes_per_platform": 86224,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "archive-names": {
+      "cases_per_platform": 384,
+      "compared_bytes_per_platform": 19227432,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "named-archive-wave": {
+      "cases_per_platform": 68,
+      "compared_bytes_per_platform": 4221398,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    }
+  },
+  "total_cases_per_platform": 644,
+  "total_compared_bytes_per_platform": 23535054,
+  "macos_arm64_objects_compiled": 2,
+  "native_macos_execution": false,
+  "native_audio_unit_available": false,
+  "complete_instrument_engine_built": false,
+  "GNFA_path_lookup_and_read_factory_translated": true,
+  "GNFile_data_and_fork_methods_translated_for_documented_contracts": true,
+  "native_GNString_object_runtime_ported": false,
+  "actual_macos_fork_io_validated": false,
+  "actual_GN_ownership_exceptions_or_scheduler_validated": false,
+  "real_bank_delegate_translated": false,
+  "protected_user_bank_compatibility_verified": false,
+  "independent_builtin_audio_match": true,
+  "complete_builtin_frames_independently_compared": 176399,
+  "old_project_restored": false,
+  "writing_append_factory_translated": false,
+  "E2c14_corrected_interpretation": "Writer/append; E3ff4 is read factory for both stream and memory modes",
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}

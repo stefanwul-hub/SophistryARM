@@ -1,0 +1,644 @@
+{
+  "checkpoint": "ELA012",
+  "original_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "address": "0x366b20",
+  "entries": [
+    {
+      "byte": 1,
+      "unicode": 1
+    },
+    {
+      "byte": 2,
+      "unicode": 2
+    },
+    {
+      "byte": 3,
+      "unicode": 3
+    },
+    {
+      "byte": 4,
+      "unicode": 4
+    },
+    {
+      "byte": 5,
+      "unicode": 5
+    },
+    {
+      "byte": 6,
+      "unicode": 6
+    },
+    {
+      "byte": 7,
+      "unicode": 7
+    },
+    {
+      "byte": 8,
+      "unicode": 8
+    },
+    {
+      "byte": 9,
+      "unicode": 9
+    },
+    {
+      "byte": 10,
+      "unicode": 10
+    },
+    {
+      "byte": 11,
+      "unicode": 11
+    },
+    {
+      "byte": 12,
+      "unicode": 12
+    },
+    {
+      "byte": 13,
+      "unicode": 13
+    },
+    {
+      "byte": 14,
+      "unicode": 14
+    },
+    {
+      "byte": 15,
+      "unicode": 15
+    },
+    {
+      "byte": 16,
+      "unicode": 16
+    },
+    {
+      "byte": 17,
+      "unicode": 17
+    },
+    {
+      "byte": 18,
+      "unicode": 18
+    },
+    {
+      "byte": 19,
+      "unicode": 19
+    },
+    {
+      "byte": 20,
+      "unicode": 20
+    },
+    {
+      "byte": 21,
+      "unicode": 21
+    },
+    {
+      "byte": 22,
+      "unicode": 22
+    },
+    {
+      "byte": 23,
+      "unicode": 23
+    },
+    {
+      "byte": 24,
+      "unicode": 24
+    },
+    {
+      "byte": 25,
+      "unicode": 25
+    },
+    {
+      "byte": 26,
+      "unicode": 26
+    },
+    {
+      "byte": 27,
+      "unicode": 27
+    },
+    {
+      "byte": 28,
+      "unicode": 28
+    },
+    {
+      "byte": 29,
+      "unicode": 29
+    },
+    {
+      "byte": 30,
+      "unicode": 30
+    },
+    {
+      "byte": 31,
+      "unicode": 31
+    },
+    {
+      "byte": 128,
+      "unicode": 196
+    },
+    {
+      "byte": 129,
+      "unicode": 197
+    },
+    {
+      "byte": 130,
+      "unicode": 199
+    },
+    {
+      "byte": 131,
+      "unicode": 201
+    },
+    {
+      "byte": 132,
+      "unicode": 209
+    },
+    {
+      "byte": 133,
+      "unicode": 214
+    },
+    {
+      "byte": 134,
+      "unicode": 220
+    },
+    {
+      "byte": 135,
+      "unicode": 225
+    },
+    {
+      "byte": 136,
+      "unicode": 224
+    },
+    {
+      "byte": 137,
+      "unicode": 226
+    },
+    {
+      "byte": 138,
+      "unicode": 228
+    },
+    {
+      "byte": 139,
+      "unicode": 227
+    },
+    {
+      "byte": 140,
+      "unicode": 229
+    },
+    {
+      "byte": 141,
+      "unicode": 231
+    },
+    {
+      "byte": 142,
+      "unicode": 233
+    },
+    {
+      "byte": 143,
+      "unicode": 232
+    },
+    {
+      "byte": 144,
+      "unicode": 234
+    },
+    {
+      "byte": 145,
+      "unicode": 235
+    },
+    {
+      "byte": 146,
+      "unicode": 237
+    },
+    {
+      "byte": 147,
+      "unicode": 236
+    },
+    {
+      "byte": 148,
+      "unicode": 238
+    },
+    {
+      "byte": 149,
+      "unicode": 239
+    },
+    {
+      "byte": 150,
+      "unicode": 241
+    },
+    {
+      "byte": 151,
+      "unicode": 243
+    },
+    {
+      "byte": 152,
+      "unicode": 242
+    },
+    {
+      "byte": 153,
+      "unicode": 244
+    },
+    {
+      "byte": 154,
+      "unicode": 246
+    },
+    {
+      "byte": 155,
+      "unicode": 245
+    },
+    {
+      "byte": 156,
+      "unicode": 250
+    },
+    {
+      "byte": 157,
+      "unicode": 249
+    },
+    {
+      "byte": 158,
+      "unicode": 251
+    },
+    {
+      "byte": 159,
+      "unicode": 252
+    },
+    {
+      "byte": 160,
+      "unicode": 8224
+    },
+    {
+      "byte": 161,
+      "unicode": 176
+    },
+    {
+      "byte": 162,
+      "unicode": 162
+    },
+    {
+      "byte": 163,
+      "unicode": 163
+    },
+    {
+      "byte": 164,
+      "unicode": 167
+    },
+    {
+      "byte": 165,
+      "unicode": 8226
+    },
+    {
+      "byte": 166,
+      "unicode": 182
+    },
+    {
+      "byte": 167,
+      "unicode": 223
+    },
+    {
+      "byte": 168,
+      "unicode": 174
+    },
+    {
+      "byte": 169,
+      "unicode": 169
+    },
+    {
+      "byte": 170,
+      "unicode": 8482
+    },
+    {
+      "byte": 171,
+      "unicode": 180
+    },
+    {
+      "byte": 172,
+      "unicode": 168
+    },
+    {
+      "byte": 173,
+      "unicode": 8800
+    },
+    {
+      "byte": 174,
+      "unicode": 198
+    },
+    {
+      "byte": 175,
+      "unicode": 216
+    },
+    {
+      "byte": 176,
+      "unicode": 8734
+    },
+    {
+      "byte": 177,
+      "unicode": 177
+    },
+    {
+      "byte": 178,
+      "unicode": 8804
+    },
+    {
+      "byte": 179,
+      "unicode": 8805
+    },
+    {
+      "byte": 180,
+      "unicode": 165
+    },
+    {
+      "byte": 181,
+      "unicode": 181
+    },
+    {
+      "byte": 182,
+      "unicode": 8706
+    },
+    {
+      "byte": 183,
+      "unicode": 8721
+    },
+    {
+      "byte": 184,
+      "unicode": 8719
+    },
+    {
+      "byte": 185,
+      "unicode": 960
+    },
+    {
+      "byte": 186,
+      "unicode": 8747
+    },
+    {
+      "byte": 187,
+      "unicode": 170
+    },
+    {
+      "byte": 188,
+      "unicode": 186
+    },
+    {
+      "byte": 189,
+      "unicode": 937
+    },
+    {
+      "byte": 190,
+      "unicode": 230
+    },
+    {
+      "byte": 191,
+      "unicode": 248
+    },
+    {
+      "byte": 192,
+      "unicode": 191
+    },
+    {
+      "byte": 193,
+      "unicode": 161
+    },
+    {
+      "byte": 194,
+      "unicode": 172
+    },
+    {
+      "byte": 195,
+      "unicode": 8730
+    },
+    {
+      "byte": 196,
+      "unicode": 402
+    },
+    {
+      "byte": 197,
+      "unicode": 8776
+    },
+    {
+      "byte": 198,
+      "unicode": 8710
+    },
+    {
+      "byte": 199,
+      "unicode": 171
+    },
+    {
+      "byte": 200,
+      "unicode": 187
+    },
+    {
+      "byte": 201,
+      "unicode": 8230
+    },
+    {
+      "byte": 202,
+      "unicode": 160
+    },
+    {
+      "byte": 203,
+      "unicode": 192
+    },
+    {
+      "byte": 204,
+      "unicode": 195
+    },
+    {
+      "byte": 205,
+      "unicode": 213
+    },
+    {
+      "byte": 206,
+      "unicode": 338
+    },
+    {
+      "byte": 207,
+      "unicode": 339
+    },
+    {
+      "byte": 208,
+      "unicode": 8211
+    },
+    {
+      "byte": 209,
+      "unicode": 8212
+    },
+    {
+      "byte": 210,
+      "unicode": 8220
+    },
+    {
+      "byte": 211,
+      "unicode": 8221
+    },
+    {
+      "byte": 212,
+      "unicode": 8216
+    },
+    {
+      "byte": 213,
+      "unicode": 8217
+    },
+    {
+      "byte": 214,
+      "unicode": 247
+    },
+    {
+      "byte": 215,
+      "unicode": 9674
+    },
+    {
+      "byte": 216,
+      "unicode": 255
+    },
+    {
+      "byte": 217,
+      "unicode": 376
+    },
+    {
+      "byte": 218,
+      "unicode": 8260
+    },
+    {
+      "byte": 219,
+      "unicode": 8364
+    },
+    {
+      "byte": 220,
+      "unicode": 8249
+    },
+    {
+      "byte": 221,
+      "unicode": 8250
+    },
+    {
+      "byte": 222,
+      "unicode": 64257
+    },
+    {
+      "byte": 223,
+      "unicode": 64258
+    },
+    {
+      "byte": 224,
+      "unicode": 8225
+    },
+    {
+      "byte": 225,
+      "unicode": 183
+    },
+    {
+      "byte": 226,
+      "unicode": 8218
+    },
+    {
+      "byte": 227,
+      "unicode": 8222
+    },
+    {
+      "byte": 228,
+      "unicode": 8240
+    },
+    {
+      "byte": 229,
+      "unicode": 194
+    },
+    {
+      "byte": 230,
+      "unicode": 202
+    },
+    {
+      "byte": 231,
+      "unicode": 193
+    },
+    {
+      "byte": 232,
+      "unicode": 203
+    },
+    {
+      "byte": 233,
+      "unicode": 200
+    },
+    {
+      "byte": 234,
+      "unicode": 205
+    },
+    {
+      "byte": 235,
+      "unicode": 206
+    },
+    {
+      "byte": 236,
+      "unicode": 207
+    },
+    {
+      "byte": 237,
+      "unicode": 204
+    },
+    {
+      "byte": 238,
+      "unicode": 211
+    },
+    {
+      "byte": 239,
+      "unicode": 212
+    },
+    {
+      "byte": 240,
+      "unicode": 63743
+    },
+    {
+      "byte": 241,
+      "unicode": 210
+    },
+    {
+      "byte": 242,
+      "unicode": 218
+    },
+    {
+      "byte": 243,
+      "unicode": 219
+    },
+    {
+      "byte": 244,
+      "unicode": 217
+    },
+    {
+      "byte": 245,
+      "unicode": 305
+    },
+    {
+      "byte": 246,
+      "unicode": 710
+    },
+    {
+      "byte": 247,
+      "unicode": 732
+    },
+    {
+      "byte": 248,
+      "unicode": 175
+    },
+    {
+      "byte": 249,
+      "unicode": 728
+    },
+    {
+      "byte": 250,
+      "unicode": 729
+    },
+    {
+      "byte": 251,
+      "unicode": 730
+    },
+    {
+      "byte": 252,
+      "unicode": 184
+    },
+    {
+      "byte": 253,
+      "unicode": 733
+    },
+    {
+      "byte": 254,
+      "unicode": 731
+    },
+    {
+      "byte": 255,
+      "unicode": 711
+    }
+  ],
+  "scope": "Exact encoding-0 table used by original GNString helpers; full encoding function not claimed ported"
+}
