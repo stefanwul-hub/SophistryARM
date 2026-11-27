@@ -5,6 +5,7 @@ import ghidra.app.decompiler.*;
 import ghidra.program.model.listing.*;
 import ghidra.program.model.address.*;
 import ghidra.program.model.symbol.SourceType;
+import ghidra.program.model.data.IntegerDataType;
 import com.google.gson.GsonBuilder;
 import java.nio.file.*;
 import java.util.*;
@@ -70,6 +71,19 @@ public class AuditElastikFunctions extends GhidraScript {
         }
       }
     }
+    Map<String,String> verifiedReturnTypes=new LinkedHashMap<>();
+    if(functions.containsKey(0x21827eL)) {
+      // MOV EAX,[EDI+1c]; LEA EDX,[EAX+1]; MOV [EDI+1c],EDX.
+      // EAX retains the previous slot count through the RET epilogue.
+      byte[] countReturn=new byte[9];currentProgram.getMemory().getBytes(toAddr(0x2182bcL),countReturn);
+      if(!Arrays.equals(countReturn,new byte[]{(byte)0x8b,0x47,0x1c,(byte)0x8d,0x50,0x01,(byte)0x89,0x57,0x1c}))
+        throw new Exception("Unexpected cache slot-count return instructions");
+      functions.get(0x21827eL).setReturnType(IntegerDataType.dataType,SourceType.USER_DEFINED);
+      functions.get(0x21827eL).setCallingConvention("__cdecl");
+      functions.get(0x21827eL).replaceParameters(Function.FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS,
+          true,SourceType.USER_DEFINED,new ParameterImpl("cache",IntegerDataType.dataType,currentProgram));
+      verifiedReturnTypes.put("0x0021827e","int32 __cdecl(int32 cache); EAX returns the old slot count before increment");
+    }
     DecompInterface decompiler=new DecompInterface();decompiler.openProgram(currentProgram);
     List<Map<String,Object>> results=new ArrayList<>();
     try {
@@ -95,7 +109,7 @@ public class AuditElastikFunctions extends GhidraScript {
         println("Elastik function audit: "+address+" "+r.decompileCompleted());
       }
     } finally {decompiler.dispose();}
-    Map<String,Object> report=new LinkedHashMap<>();report.put("checkpoint",args.length>4?args[4]:"ELA002");report.put("scope","Original selected AU/state/render code, analysis only");report.put("original_sha256",currentProgram.getExecutableSHA256());report.put("roots",roots);report.put("explicit_instruction_verified_sizes",explicitSizes);report.put("direct_call_depth",depth);report.put("functions",results);report.put("native_engine_built",false);
+    Map<String,Object> report=new LinkedHashMap<>();report.put("checkpoint",args.length>4?args[4]:"ELA002");report.put("scope","Original selected AU/state/render code, analysis only");report.put("original_sha256",currentProgram.getExecutableSHA256());report.put("roots",roots);report.put("explicit_instruction_verified_sizes",explicitSizes);report.put("instruction_verified_return_types",verifiedReturnTypes);report.put("direct_call_depth",depth);report.put("functions",results);report.put("native_engine_built",false);
     Files.writeString(output.resolve("function-audit.json"),new GsonBuilder().setPrettyPrinting().create().toJson(report)+"\n");
   }
 }

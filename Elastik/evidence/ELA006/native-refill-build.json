@@ -1,0 +1,244 @@
+{
+  "checkpoint": "ELA006",
+  "client_date": "2026-11-27",
+  "translated_original_functions": [
+    {
+      "address": "0x1afed2",
+      "bytes": 695,
+      "role": "Direct multichannel file read with clipping and lock/error handling"
+    },
+    {
+      "address": "0x21827e",
+      "bytes": 79,
+      "role": "Allocate an additional cache buffer and return old slot count"
+    },
+    {
+      "address": "0x218d5e",
+      "bytes": 686,
+      "role": "Complete cache refill pass over active requests"
+    }
+  ],
+  "new_original_routine_bytes": 1460,
+  "total_original_routines_translated": 18,
+  "total_original_routine_bytes": 9604,
+  "translation_scope": "Data/state effects for valid metadata, allocations and buffers, with explicit platform interfaces",
+  "source_files": [
+    {
+      "path": "src/OriginalSampleCache.h",
+      "bytes": 2151,
+      "sha256": "11b2436ee3720f11d1f80bcaf01356dd308f1adba1bc2a91723422ae96f032f3"
+    },
+    {
+      "path": "src/OriginalSampleCache.cpp",
+      "bytes": 3813,
+      "sha256": "17a5262e9c83f529430cb53696f980e363887f7191ad0e508d974a2869cb27e2"
+    },
+    {
+      "path": "src/OriginalSampleFile.h",
+      "bytes": 2862,
+      "sha256": "01c29780c9896b137ab58cefe6cc105cb91e248572587e951bb55e6a70b96003"
+    },
+    {
+      "path": "src/OriginalSampleFile.cpp",
+      "bytes": 5867,
+      "sha256": "4f3ca0ec54b762c62250d79c53a72409913e2175b5b7b986ec9dde57e66eaf5c"
+    },
+    {
+      "path": "src/OriginalCacheRefill.h",
+      "bytes": 1319,
+      "sha256": "4437354c81d77dfec420bb94f3a557171c8dbdfb6428e79c20ccb53385f9f15b"
+    },
+    {
+      "path": "src/OriginalCacheRefill.cpp",
+      "bytes": 2861,
+      "sha256": "fe53274a55bd89f8892b2fe97fb6d24c8e1d5a4c948a64e8a5bb2c949444cf3d"
+    },
+    {
+      "path": "tests/SampleProbeIO.h",
+      "bytes": 3455,
+      "sha256": "187e6977924d72e3cf91b7788ae379f91c39b4bcc03db2da5e614692c7b5cf08"
+    },
+    {
+      "path": "tests/SampleFileProbe.cpp",
+      "bytes": 6105,
+      "sha256": "2ef616a1fbe135fea99b0a69c1b7952372f4be56ea21cf928fcd34b22258efc2"
+    },
+    {
+      "path": "tests/CacheRefillProbe.cpp",
+      "bytes": 9032,
+      "sha256": "166559fc4c4cb2baf1ea364d0c75b1b5c31b28976c0d6a15c98d9c68f9a45fe9"
+    },
+    {
+      "path": "scripts/compare_original_cache_refill.py",
+      "bytes": 15492,
+      "sha256": "93991f2c3232ee53d241125daba7100f6ff7eff8dadcce9d9a17d60b5bae4ca0"
+    },
+    {
+      "path": "scripts/native_probe.py",
+      "bytes": 2849,
+      "sha256": "6d4fc397df18a45eb3c1ea4c5ebf94219388e9afd229ce56b6bdf7e4fe57433e"
+    }
+  ],
+  "compiler": "Zig 0.14.1 embedded Clang",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-vectorize",
+    "-fno-slp-vectorize",
+    "-fno-exceptions",
+    "-fno-rtti",
+    "-fno-stack-protector"
+  ],
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-c"
+  ],
+  "arm64_probe_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-nostdlib++"
+  ],
+  "macos_objects": [
+    {
+      "path": "work/ELA006-native/OriginalSampleCache-arm64-macos.o",
+      "bytes": 9592,
+      "sha256": "1c011043b5ad2e21ad99192bc2ca67861caf01451af919177fb77fd31fb8bd2e",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    },
+    {
+      "path": "work/ELA006-native/OriginalSampleFile-arm64-macos.o",
+      "bytes": 15352,
+      "sha256": "fad9f90e11fc4a366a44bfc15d127bd90ff75d5b2ba6b1caf46a3d9d606e670a",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    },
+    {
+      "path": "work/ELA006-native/OriginalCacheRefill-arm64-macos.o",
+      "bytes": 8256,
+      "sha256": "fe1d9090929c7a4cc98edca82f9c679f5c224b5f868ddc2e5a7098776b8d3822",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    }
+  ],
+  "arm64_test_programs": [
+    {
+      "path": "work/ELA006-native/sample-cache-aarch64",
+      "bytes": 966720,
+      "sha256": "4d97dba06e2761c173e932d614c32d17d5fe017e1cf7075bf268acee579fc35a",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0, Linux user mode"
+    },
+    {
+      "path": "work/ELA006-native/sample-file-aarch64",
+      "bytes": 1011312,
+      "sha256": "d79acb14a18b8a25e20a6533fa1d319d14fcfa65328b7ac3decce3f661c7a85d",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0, Linux user mode"
+    },
+    {
+      "path": "work/ELA006-native/cache-refill-aarch64",
+      "bytes": 1033888,
+      "sha256": "ad1c5bd6353f60ff8b0b5212034a54e131f80c5ebfb9afb10e9f09ce7b6d2577",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0, Linux user mode"
+    }
+  ],
+  "host_compiler": "GCC 14.2.0",
+  "host_flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-tree-vectorize"
+  ],
+  "ubsan_extra_flags": [
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "comparisons": {
+    "multichannel": {
+      "cases_per_platform": 301,
+      "compared_bytes_per_platform": 884421,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    },
+    "cache-refill": {
+      "cases_per_platform": 577,
+      "compared_bytes_per_platform": 3304055,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    }
+  },
+  "regression_against_ELA005": [
+    {
+      "kind": "cache",
+      "platform": "linux-x86_64",
+      "cases": 244,
+      "matches_all_original_ELA005_case_hashes": true,
+      "report": {
+        "path": "evidence/ELA006/ela005-cache-regression-host.json",
+        "bytes": 63490,
+        "sha256": "beeb015bb473996cc8739c6b111b9613cc3f5fc31383dc2bd74c71b723a84ab0"
+      }
+    },
+    {
+      "kind": "cache",
+      "platform": "aarch64-linux-under-qemu",
+      "cases": 244,
+      "matches_all_original_ELA005_case_hashes": true,
+      "report": {
+        "path": "evidence/ELA006/ela005-cache-regression-arm64.json",
+        "bytes": 63502,
+        "sha256": "a752e7b3e15637e05c4accf194a3ced63c83c60d76ef4975d3bce5447c97ef64"
+      }
+    },
+    {
+      "kind": "file",
+      "platform": "linux-x86_64",
+      "cases": 813,
+      "matches_all_original_ELA005_case_hashes": true,
+      "report": {
+        "path": "evidence/ELA006/ela005-file-regression-host.json",
+        "bytes": 219258,
+        "sha256": "984bdb785055e6e8e394bbc07a3bb71e297ba2150ff53b2ff91d67daf2b0305d"
+      }
+    },
+    {
+      "kind": "file",
+      "platform": "aarch64-linux-under-qemu",
+      "cases": 813,
+      "matches_all_original_ELA005_case_hashes": true,
+      "report": {
+        "path": "evidence/ELA006/ela005-file-regression-arm64.json",
+        "bytes": 219270,
+        "sha256": "2bc900b33ec58d839b99d18faff35231ca21fe62371bd10bf15d5801be305aaa"
+      }
+    }
+  ],
+  "pointer_comparison": "Logical slot tokens; data/maps/indices/traces compared byte for byte",
+  "original_reference_MXCSR": "0x1f80",
+  "original_reference_x87_control": "0x037f",
+  "floating_exception_status_registers_compared": false,
+  "no_qemu_process_failure_observed_this_checkpoint": true,
+  "automatic_fixture_retries": 0,
+  "original_clock_import": "_GetCurrentEventTime",
+  "native_macos_execution": false,
+  "actual_GN_exception_and_allocation_runtime_validated": false,
+  "native_event_loop_timer_available": false,
+  "concurrent_cache_mutation_tested": false,
+  "wave_container_parser_translated": false,
+  "complete_engine_built": false,
+  "macos_audio_unit_validated": false,
+  "licensed_bank_access_modified": false,
+  "probe_response_timeout_seconds": 15,
+  "truncated_probe_response_test_passed": true
+}

@@ -1,8 +1,8 @@
 #pragma once
 
 // Native fields used by the original cache routines, not an i386 object layout.
-// The asynchronous producer and its synchronization are separate layers.
-struct ElastikOriginalCacheBlock { int block; const float* samples; };
+// Thread scheduling and synchronization are separate platform layers.
+struct ElastikOriginalCacheBlock { int block; float* samples; };
 struct ElastikOriginalCacheClient { unsigned char active; int first_block; int last_block; };
 using ElastikOriginalSampleDiagnostic = void (*)(void*, int, int, int, int, int);
 struct ElastikOriginalSampleDiagnostics {
@@ -11,8 +11,8 @@ struct ElastikOriginalSampleDiagnostics {
     ElastikOriginalSampleDiagnostic emit;
 };
 struct ElastikOriginalSampleCache {
-    const ElastikOriginalCacheBlock* blocks;
-    const int* block_to_slot;
+    ElastikOriginalCacheBlock* blocks;
+    int* block_to_slot;
     int slot_count;
     unsigned char underrun;
     const ElastikOriginalCacheClient* clients;

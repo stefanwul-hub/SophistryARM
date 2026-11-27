@@ -1,0 +1,18 @@
+Elastik 1 ARM64 — checkpoint de développement ELA006
+
+Le passage de remplissage charge maintenant les octets PCM dans un cache
+initialement vide, puis alimente le fournisseur de samples et les blocs
+de voix. La lecture multicanal et la croissance des buffers sont portées.
+
+301 cas multicanaux et 577 scénarios de remplissage concordent bit à bit
+avec les instructions i386 sur x86-64 et ARM64 sous QEMU. Les 1 057 cas
+d’ELA005 restent identiques. Trois objets macOS ARM64 sont compilés.
+
+Le cycle de vie du cache et son timer Carbon restent à adapter, ainsi que
+les autres parties du moteur, les états, l’interface et l’Audio Unit.
+Ce checkpoint ne fournit pas encore un composant installable ni auval.
+
+Lire README.md, analysis/ELA006-notes.md et ELASTIK_REPRISE.md.
+Les essais nécessitent l’original ElastikAU.pkg.zip, exclu du paquet.
+Les publications suivent PUBLICATION_AUTHORIZATION.json.
+Sophistry CP038 et CronoX CRX013 restent figés.

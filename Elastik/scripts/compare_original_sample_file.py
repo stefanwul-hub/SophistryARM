@@ -238,7 +238,8 @@ class OriginalFileOracle(OriginalCacheOracle):
         channels = 1 if index else (self.f[1] & 255 if self.f[1] & 0x100 else self.f[1])
         mask = sum((1 << c) for c in range(channels) if self.word(outputs + c * 4))
         self.trace.append([4, index, first, count, mask])
-        if self.f[8]:
+        self.observe_reader_call(index, first, count)
+        if self.f[8] == 1 or self.f[8] == index + 2:
             # Simulate the platform GN exception boundary, not a sample decode.
             sp, ret, registers, frame = self.jump
             assert self.word(THREAD + 0x28) == frame
@@ -246,6 +247,9 @@ class OriginalFileOracle(OriginalCacheOracle):
             for register, value in registers.items(): uc.reg_write(register, value)
             uc.reg_write(UC_X86_REG_ESP, sp + 4); uc.reg_write(UC_X86_REG_EIP, ret); uc.reg_write(UC_X86_REG_EAX, 1)
         # Otherwise execute the actual original WAVE -> buffered PCM reader.
+
+    def observe_reader_call(self, index, first, count):
+        pass
 
     def setup(self, case):
         h, f, v = case['h'], case['f'], case['v']
@@ -294,7 +298,13 @@ class OriginalFileOracle(OriginalCacheOracle):
         elif f[2] == 3:
             args = struct.pack('<5I2d', HANDLE, STORAGE + 32, f[13], f[11] & 0xffffffff, f[12], *case['window'][:2])
             result = self.call_packed(0x1f0c92, args)
-        else: result = self.call(0x152664, VOICE, STORAGE + 32, f[13], f[11], f[12], NEXT if v[6] else 0, RANGE)
+        elif f[2] == 4: result = self.call(0x152664, VOICE, STORAGE + 32, f[13], f[11], f[12], NEXT if v[6] else 0, RANGE)
+        else:
+            outputs = 0x52b000
+            channels = f[1] & 255 if f[1] & 0x100 else f[1]
+            pointers = [STORAGE + c * h[7] * 4 + 32 if f[13] & (1 << c) else 0 for c in range(channels)]
+            if pointers: self.put(outputs, *pointers)
+            result = self.call(0x1afed2, FILE, outputs, f[11], f[12])
         assert self.depth == 0 and self.word(THREAD + 0x28) == 0
         underrun, clients, mapping, ids, pool = self.cache_snapshot(h)
         answer = pack([result, underrun, len(self.diagnostics), len(self.trace), self.word(NEXT), self.word(RANGE), self.word(RANGE + 4), self.word(VOICE + 0xb0)])

@@ -55,6 +55,40 @@ extern "C" bool elastik_original_read_file_channel(
     return ok;
 }
 
+extern "C" bool elastik_original_read_file_channels(
+    const ElastikOriginalSampleFile* file, float* const* outputs, int first, int count) noexcept {
+    const unsigned channels = file->channel_format & 0x100u ? file->channel_format & 0xffu : file->channel_format;
+    const int frames = frame_count(file);
+    const int end = add_i32(first, count);
+    if (first < 0 || frames < end) {
+        for (unsigned channel = 0; channel < channels; ++channel)
+            if (outputs[channel]) __builtin_memset(outputs[channel], 0, static_cast<unsigned>(count) * 4u);
+        if (first < 0) {
+            count = end;
+            if (count < 1) return true;
+            first = 0;
+        }
+        if (frames < end) {
+            if (frames <= first) return true;
+            count = frames - first;
+        }
+    }
+    file->lock(file->lock_context);
+    bool ok;
+    if (file->separate_channel_readers == 1) {
+        const auto* left = file->channel_readers[0];
+        ok = left->read(left->context, outputs, first, count);
+        if (ok) {
+            const auto* right = file->channel_readers[1];
+            ok = right->read(right->context, outputs + 1, first, count);
+        }
+    } else {
+        ok = file->reader->read(file->reader->context, outputs, first, count);
+    }
+    file->unlock(file->lock_context);
+    return ok;
+}
+
 extern "C" void elastik_original_prepare_file_range(
     const ElastikOriginalSampleFile* file, ElastikOriginalCacheClient* client,
     int first, int count, double before, double after) noexcept {

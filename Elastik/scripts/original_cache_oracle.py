@@ -68,6 +68,8 @@ class OriginalCacheOracle:
             values = [5, 0, 0, 0, 0]
         elif text == b'GNAudioConvertSampleFormat(): Unsupported output format.':
             values = [6, 0, 0, 0, 0]
+        elif text == b'getSamplesOfChannelForRange failed':
+            values = [7, 0, 0, 0, 0]
         else:
             raise ValueError('Unexpected original diagnostic ' + repr(text))
         self.diagnostics.append(values)

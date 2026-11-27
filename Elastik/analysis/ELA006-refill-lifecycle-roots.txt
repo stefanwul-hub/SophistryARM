@@ -1,0 +1,10 @@
+0x218d5e # Complete sample-cache refill pass
+0x21827e # Grow buffer slots; EAX returns old count, not void
+0x1afed2 # Direct multichannel file read with GN exception/lock boundary
+0xa8fe,9 # Original Carbon GetCurrentEventTime thunk, verified to JMP end
+0xacae # GN capacity-warning/dialog boundary
+0x217db8 # Allocation/configuration on initialized file cache
+0x1ac9dc # GNSoundFile lazy cache getter/creation
+0x218aa6 # GNSoundFileCache initialization and ownership
+0x217fd0,17 # Original timer callback forwards to vtable +0x1a8
+0x70218 # GNTimer creation, called with 0.2-second interval by cache owner

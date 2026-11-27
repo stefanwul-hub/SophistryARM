@@ -1,0 +1,34 @@
+{
+  "checkpoint": "ELA006",
+  "status": "Cache refill/growth and multichannel read ported; PCM -> empty cache -> provider -> voice chunk compared; event-loop lifecycle and whole engine pending",
+  "new_original_routines_translated": 3,
+  "new_original_routine_bytes": 1460,
+  "total_original_routines_translated": 18,
+  "total_original_routine_bytes": 9604,
+  "comparisons": {
+    "multichannel": {
+      "cases_per_platform": 301,
+      "compared_bytes_per_platform": 884421,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    },
+    "cache-refill": {
+      "cases_per_platform": 577,
+      "compared_bytes_per_platform": 3304055,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    }
+  },
+  "refill_passes_per_platform": 1707,
+  "ela005_regression_cases_per_platform_unchanged": 1057,
+  "new_functions_decompiled": 11,
+  "total_selected_functions_decompiled": 238,
+  "macos_arm64_objects_compiled": 3,
+  "original_refill_pass_executed": true,
+  "decoded_sample_cache_fill_substituted": false,
+  "event_loop_timer_native_binding_available": false,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "detailed_original_analysis_public": true,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}

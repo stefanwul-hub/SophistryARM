@@ -1,0 +1,37 @@
+{
+  "checkpoint": "ELA006",
+  "decompiler": "Ghidra 11.3.2",
+  "project_mode": "readOnly; program annotations discarded, generated analysis retained",
+  "archive": "analysis/ELA006-original-refill-lifecycle-decompiled.zip",
+  "archive_bytes": 49785,
+  "archive_sha256": "73183eeeaaf3a73a4ddb5e65fc5658e3999ba9724758850bc236edf79026a94b",
+  "archive_public": true,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "distinct_functions_selected_this_checkpoint": 24,
+  "new_functions_beyond_ELA005": 11,
+  "distinct_functions_across_checkpoints": 238,
+  "phases": [
+    {
+      "directory": "ELA006-refill-lifecycle",
+      "functions": 24,
+      "roots": [
+        "0x00218d5e",
+        "0x0021827e",
+        "0x001afed2",
+        "0x0000a8fe",
+        "0x0000acae",
+        "0x00217db8",
+        "0x001ac9dc",
+        "0x00218aa6",
+        "0x00217fd0",
+        "0x00070218"
+      ],
+      "depth": 1
+    }
+  ],
+  "instruction_verified_return_types": {
+    "0x0021827e": "int32 __cdecl(int32 cache); EAX returns the old slot count before increment"
+  },
+  "complete_engine_translated": false,
+  "old_project_restored": false
+}

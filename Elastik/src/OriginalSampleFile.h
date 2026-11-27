@@ -29,6 +29,13 @@ struct ElastikOriginalSampleFile {
 extern "C" bool elastik_original_read_file_channel(
     const ElastikOriginalSampleFile*, float* destination, int channel,
     int first, int count, bool direct) noexcept;
+// Original 0x1afed2 (695 bytes), direct multichannel read with clipping and
+// the shared lock. Separate-reader mode is the original paired mono path:
+// it always invokes its two readers, including for a null output pointer.
+// Loaded reader(s), valid output array and lock callbacks are required when
+// the clipped range reaches a read operation. No closed-file guard is added.
+extern "C" bool elastik_original_read_file_channels(
+    const ElastikOriginalSampleFile*, float* const* outputs, int first, int count) noexcept;
 // Original 0x1aecf0 (324 bytes), with client-pointer getter adapted.
 extern "C" void elastik_original_prepare_file_range(
     const ElastikOriginalSampleFile*, ElastikOriginalCacheClient*, int first, int count,

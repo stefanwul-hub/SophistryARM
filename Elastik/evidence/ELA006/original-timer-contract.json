@@ -1,0 +1,20 @@
+{
+  "checkpoint": "ELA006",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "cache_lazy_creation": "0x1ac9dc",
+  "cache_initialization": "0x218aa6",
+  "cache_file_configuration": "0x218b82",
+  "timer_factory": "0x70218",
+  "timer_setup": "0x6fdb4",
+  "timer_callback": "0x217fd0",
+  "callback_vtable_offset": "0x1a8",
+  "sample_cache_callback_target": "0x218d5e",
+  "initial_delay_seconds": 0.2,
+  "repeat_interval_seconds": 0.2,
+  "event_loop": "GetCurrentEventLoop, InstallEventLoopTimer",
+  "source_double_bits": "0x3fc999999999999a",
+  "clock_for_refill_profiling": "GetCurrentEventTime",
+  "native_timer_lifecycle_translated": false,
+  "autonomous_worker_thread_equivalence_proven": false,
+  "refill_pass_invoked_directly_in_tests": true
+}
