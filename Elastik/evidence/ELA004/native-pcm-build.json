@@ -1,0 +1,128 @@
+{
+  "checkpoint": "ELA004",
+  "client_date": "2026-11-27",
+  "compiler": "Zig 0.14.1 embedded Clang",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-vectorize",
+    "-fno-slp-vectorize",
+    "-fno-exceptions",
+    "-fno-rtti",
+    "-fno-stack-protector"
+  ],
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-c"
+  ],
+  "arm64_probe_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-nostdlib++"
+  ],
+  "translated_original_functions": [
+    {
+      "address": "0x161584",
+      "bytes": 128,
+      "role": "Sample byte width"
+    },
+    {
+      "address": "0x1619b0",
+      "bytes": 2922,
+      "role": "Sample format and channel conversion data effects"
+    },
+    {
+      "address": "0x219820",
+      "bytes": 556,
+      "role": "Buffered PCM byte reader"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "src/OriginalSampleFormat.cpp",
+      "bytes": 7018,
+      "sha256": "b180865d4bb72ad7fb36dac05e8e4f61158870ebd829cbfd75faf58b2b3a0f91"
+    },
+    {
+      "path": "src/OriginalSampleFormat.h",
+      "bytes": 750,
+      "sha256": "e8f88d8a269cce6c077e30013ddcbddba852c18acd9f1098687b225d3ea977e1"
+    },
+    {
+      "path": "src/OriginalBufferedPcm.cpp",
+      "bytes": 2167,
+      "sha256": "08a3dd389ad8826d152f88c9e01e5e1a7644f5a50e9b915e6c28d45982bd7cf2"
+    },
+    {
+      "path": "src/OriginalBufferedPcm.h",
+      "bytes": 1172,
+      "sha256": "72e3dbc4af17ccf246df87865e10f11cbfe222f531ec90820b1ae6654d9dc12a"
+    },
+    {
+      "path": "tests/SampleFormatProbe.cpp",
+      "bytes": 1427,
+      "sha256": "4abcc064b18ff3b6861b02b6a762fd11d52a3be2a11c95a0cd0af0c09bccd6b5"
+    },
+    {
+      "path": "tests/BufferedPcmProbe.cpp",
+      "bytes": 3858,
+      "sha256": "ef53789960c300ba030cf95dc1919db417ad8aa2f6a35677cfeb0f1ad84b0819"
+    }
+  ],
+  "macos_objects": [
+    {
+      "path": "work/ELA004-native/OriginalSampleFormat-arm64-macos.o",
+      "bytes": 11952,
+      "sha256": "e393f9e0f52d7cdf4115068c29d58d28292a9e3f199852bdaebc57df88157a02",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    },
+    {
+      "path": "work/ELA004-native/OriginalBufferedPcm-arm64-macos.o",
+      "bytes": 5760,
+      "sha256": "686086e77953d775844e6f26ae62a8ebb660a1b099e6c43c66c6186a25c4e4e3",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    }
+  ],
+  "arm64_test_programs": [
+    {
+      "path": "work/ELA004-native/sample-format-aarch64",
+      "bytes": 957624,
+      "sha256": "8bef2bfb8c2408d061767f1c7ddfdba61afe761903bc3323f511ee6b5dbcb3e7",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0, Linux user mode"
+    },
+    {
+      "path": "work/ELA004-native/buffered-pcm-aarch64",
+      "bytes": 970568,
+      "sha256": "7cad499a8d745739777daa85db019918e9535edddf1dd8af3956e7404d30745b",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0, Linux user mode"
+    }
+  ],
+  "comparisons": {
+    "sample-formats": {
+      "cases_per_platform": 1350,
+      "identical_reference_and_native_case_hashes_across_platforms": true
+    },
+    "buffered-pcm": {
+      "cases_per_platform": 673,
+      "identical_reference_and_native_case_hashes_across_platforms": true
+    }
+  },
+  "qemu_process_observation": "qemu-process-observation.json",
+  "native_macos_execution": false,
+  "macos_audio_unit_validated": false,
+  "complete_engine_built": false,
+  "wave_container_parser_translated": false,
+  "licensed_bank_access_modified": false
+}

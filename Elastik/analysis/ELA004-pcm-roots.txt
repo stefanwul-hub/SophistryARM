@@ -1,0 +1,3 @@
+0x1619b0 # Original channel/format converter used by file readers
+0x161584,128 # Original sample byte width incl. jump table; final ret at 0x161603
+0x219820 # Original buffered byte reads and planar float conversion

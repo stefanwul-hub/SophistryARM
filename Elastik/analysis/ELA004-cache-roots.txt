@@ -1,0 +1,3 @@
+0x21900c # Original sample-cache channel lookup
+0x218cf6,82 # Original client cache-range request, final ret at 0x218d47
+0x218d48,22 # Original client range invalidation, final ret at 0x218d5d

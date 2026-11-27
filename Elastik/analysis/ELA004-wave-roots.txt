@@ -1,0 +1,4 @@
+0x24cc60 # Original WAVE reader virtual channel read
+0x219704 # Generic original sound-file reader
+0x24ce76 # Original WAVE open/header read
+0x249f1e # Original WAVE metadata access

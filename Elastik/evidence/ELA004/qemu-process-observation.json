@@ -1,0 +1,169 @@
+{
+  "initial_arm64_process_failures": 2,
+  "signals": "SIGSEGV",
+  "failing_cases": [
+    "matrix-03-00-n-2-stride-1-0",
+    "matrix-13-03-n-2-stride-4-2"
+  ],
+  "last_exact_fixture_sha256": "c673a8165cb6a17bc0e4ce9386ca04a9d3f5b04cd3324a1ae3c85332972bf614",
+  "subsequent_exact_fixture_replays": [
+    {
+      "run": 1,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 2,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 3,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 4,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 5,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 6,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 7,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 8,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 9,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 10,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 11,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 12,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 13,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 14,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 15,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 16,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 17,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 18,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 19,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 20,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 21,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 22,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 23,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    },
+    {
+      "run": 24,
+      "exit_code": 0,
+      "all_bytes_match": true,
+      "stderr": ""
+    }
+  ],
+  "cause_diagnosed": false,
+  "dsp_source_changed": false,
+  "following_complete_persistent_arm64_runs": {
+    "sample-formats": {
+      "cases_per_platform": 1350,
+      "identical_reference_and_native_case_hashes_across_platforms": true
+    },
+    "buffered-pcm": {
+      "cases_per_platform": 673,
+      "identical_reference_and_native_case_hashes_across_platforms": true
+    }
+  },
+  "automatic_fixture_retries": 0,
+  "probe_protocol_changed_to_persistent_process": true
+}

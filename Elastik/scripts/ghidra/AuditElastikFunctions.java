@@ -25,6 +25,13 @@ public class AuditElastikFunctions extends GhidraScript {
     Function pic=getFunctionAt(thunk);
     if(pic==null)pic=currentProgram.getFunctionManager().createFunction("__i686.get_pc_thunk.bx",thunk,thunkBody,SourceType.USER_DEFINED);
     pic.setCallFixup("get_pc_thunk_bx");
+    // Some small format routines use ECX for their original PIC jump tables.
+    Address cxThunk=toAddr(0x2e5020L);byte[] cxBytes=new byte[4];currentProgram.getMemory().getBytes(cxThunk,cxBytes);
+    if(!Arrays.equals(cxBytes,new byte[]{(byte)0x8b,(byte)0x0c,(byte)0x24,(byte)0xc3}))throw new Exception("Unexpected ECX PIC helper");
+    AddressSet cxBody=new AddressSet(cxThunk,cxThunk.add(3));new DisassembleCommand(cxThunk,cxBody,true).applyTo(currentProgram,monitor);
+    Function cxPic=getFunctionAt(cxThunk);
+    if(cxPic==null)cxPic=currentProgram.getFunctionManager().createFunction("__i686.get_pc_thunk.cx",cxThunk,cxBody,SourceType.USER_DEFINED);
+    cxPic.setCallFixup("get_pc_thunk_cx");
     Map<Long,Long> ranges=new HashMap<>();
     for(String line:Files.readAllLines(Paths.get(args[0]))) {
       if(line.startsWith("address,"))continue;

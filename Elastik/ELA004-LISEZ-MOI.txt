@@ -1,0 +1,16 @@
+Elastik 1 ARM64 — checkpoint de développement ELA004
+
+Lecture PCM et conversion de formats issues du code machine original :
+1 350 cas de conversion et 673 cas de lecture concordent bit à bit sur
+x86-64 et ARM64 sous QEMU. Deux objets macOS ARM64 sont compilés.
+
+Ce paquet est une sauvegarde de développement, pas un plugin installable.
+Le moteur intégral, le cache/pitch, les corps d’état et l’Audio Unit restent
+à compléter. Aucune validation auval ni reprise de projet n’est annoncée.
+
+Lire README.md, analysis/ELA004-notes.md et ELASTIK_REPRISE.md.
+Les essais se reproduisent avec le paquet original ElastikAU.pkg.zip,
+qui n’est pas inclus. L’archive ne contient aucune banque utilisateur.
+
+Les publications suivent PUBLICATION_AUTHORIZATION.json.
+Sophistry CP038 et CronoX CRX013 restent figés.

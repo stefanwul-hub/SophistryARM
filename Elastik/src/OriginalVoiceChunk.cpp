@@ -77,7 +77,7 @@ extern "C" int elastik_original_read_voice_chunk(
     } else if (last < first && first <= start && s->sample_frames < start + count) {
         range->count = s->sample_frames - start;
     }
-    // Original provider call 0x1f0c92, both percentage arguments exactly 100.
+    // Original provider call 0x1f0c92, both cache-range arguments exactly 100.
     // Original code only logs a failed provider result and continues.
     (void)read(context, output, channel, range->start, range->count, 100.0, 100.0);
     if (next_sample) *next_sample = elastik_original_next_sample(s, range->start, range->count, direction);

@@ -1,0 +1,14 @@
+{
+  "checkpoint": "ELA004",
+  "source_local_git_commit": "eacc39720896e82e3b58fb836ad897de8065df94",
+  "complete_public_archive": {
+    "path": "Elastik-ELA004-complet-checkpoint.zip",
+    "bytes": 981955,
+    "sha256": "7291a52e91f6a2ff0c2b61294628c75ee6440f2c7d4492e9d920703b4f80e020",
+    "entries": 98,
+    "zip_crc_verified": true
+  },
+  "contains_original_installer": false,
+  "contains_user_bank": false,
+  "native_audio_unit_available": false
+}

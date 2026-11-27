@@ -142,7 +142,7 @@ def compare(binary, runner, prefix, demo, platform):
             'original_cursor_function': '0x15197c', 'original_cursor_function_bytes': 262,
             'original_chunk_sha256': hashlib.sha256(image.initial[0x152664:0x152e74]).hexdigest(),
             'compiled_platform': platform, 'reference_execution': 'Original i386 bytes in Unicorn, MXCSR=0x1f80',
-            'original_sample_provider_api_adapted': '0x1f0c92: decoded fixture samples, percentages 100/100',
+            'original_sample_provider_api_adapted': '0x1f0c92: decoded fixture samples, cache-range arguments 100/100',
             'original_file_decoder_or_pitch_cache_executed': False, 'original_engine_initialized': False,
             'fixture_count': len(cases), 'processed_channel_samples': total_samples,
             'all_cases_match_bit_for_bit': True, 'compared': ['all output and guard bytes', 'both channel fade states', 'loop read range', 'optional next cursor', 'cached direction'],

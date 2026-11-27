@@ -1,0 +1,3 @@
+0x1af4e2 # Original audio-file channel sample reader and conversion dispatch
+0x1aecf0 # Original post-read processing and gain envelope
+0x1afb00 # Original sample-read API combines reader and post-processing

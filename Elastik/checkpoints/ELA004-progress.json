@@ -1,0 +1,28 @@
+{
+  "checkpoint": "ELA004",
+  "status": "Original sample format converter and buffered PCM reader ported and compared; full engine pending",
+  "new_original_routines_translated": 3,
+  "new_original_routine_bytes": 3606,
+  "total_original_routines_translated": 6,
+  "total_original_routine_bytes": 6049,
+  "comparison_cases_per_platform": {
+    "sample-formats": {
+      "cases_per_platform": 1350,
+      "identical_reference_and_native_case_hashes_across_platforms": true
+    },
+    "buffered-pcm": {
+      "cases_per_platform": 673,
+      "identical_reference_and_native_case_hashes_across_platforms": true
+    }
+  },
+  "new_functions_decompiled": 30,
+  "total_selected_functions_decompiled": 218,
+  "macos_arm64_objects_compiled": true,
+  "whole_file_container_decoding_complete": false,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "detailed_original_analysis_public": true,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}
