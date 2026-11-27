@@ -1,0 +1,44 @@
+{
+  "checkpoint": "ELA008",
+  "scope": "Complete embedded WAVE container to planar float32 PCM, no synth voice/pitch processing",
+  "original_wave_sha256": "3a34c829da83d0b79773927fd2d026479a8038f4f7666c29a745aff2968b342f",
+  "frames": 176399,
+  "channels": 2,
+  "sample_rate": 44100,
+  "duration_seconds": 3.9999773242630385,
+  "all_frames_match_original_i386": true,
+  "all_samples_match_independent_pcm16_divide_by_32768": true,
+  "channel_measurements": [
+    {
+      "channel": 0,
+      "frames": 176399,
+      "peak": 0.999969482421875,
+      "rms": 0.3317181348906584,
+      "float32_sha256": "a65d97fdbb9883a370ac7fd15a98fffdeba345af640228c3aaaae1c6f032599a"
+    },
+    {
+      "channel": 1,
+      "frames": 176399,
+      "peak": 0.999969482421875,
+      "rms": 0.3218807571570194,
+      "float32_sha256": "79d093ad7e788e1b66085469f3612a936a95cc895a186a61d2629901f5d5a7ca"
+    }
+  ],
+  "execution": [
+    {
+      "platform": "host",
+      "all_output_bytes_match_original_i386": true,
+      "all_audio_samples_match_source_pcm16_normalization": true
+    },
+    {
+      "platform": "aarch64",
+      "all_output_bytes_match_original_i386": true,
+      "all_audio_samples_match_source_pcm16_normalization": true
+    }
+  ],
+  "interleaved_float32_sha256": "555760159fb2f5e4331d3df06df12c1e659b27585601687f8ab364cd3e3d4ef3",
+  "audio_artifact_private": true,
+  "original_wave_or_rendered_audio_published": false,
+  "complete_instrument_engine_tested": false,
+  "macos_audio_unit_tested": false
+}

@@ -1,0 +1,172 @@
+{
+  "checkpoint": "ELA008",
+  "client_date": "2026-11-27",
+  "translated_original_functions": [
+    {
+      "address": "0x24ce76",
+      "bytes": 11316,
+      "role": "WAVE header and chunk dispatcher, explicit GN/IO and inst/acid boundaries"
+    },
+    {
+      "address": "0x24bfce",
+      "bytes": 522,
+      "role": "Chunk scanner and one-byte alignment recovery"
+    },
+    {
+      "address": "0x249976",
+      "bytes": 129,
+      "role": "Encoded sample-format getter"
+    },
+    {
+      "address": "0x2499f8",
+      "bytes": 44,
+      "role": "Encoded channel-format getter"
+    },
+    {
+      "address": "0x249a3c",
+      "bytes": 11,
+      "role": "Frame-count getter"
+    },
+    {
+      "address": "0x2498bc",
+      "bytes": 175,
+      "role": "Fixed-length broadcast string helper, inlined Parser::fixed_text"
+    }
+  ],
+  "new_original_routine_bytes": 12197,
+  "total_original_routines_translated": 38,
+  "total_original_routine_bytes": 25226,
+  "inlined_scalar_read_helpers_not_counted_separately": [
+    "0x17fb68",
+    "0x17fc6e",
+    "0x17ff80",
+    "0x180086"
+  ],
+  "translation_scope": "Valid-domain container/state effects, explicit GN/IO/error/object and inst/acid bindings",
+  "source_files": [
+    {
+      "path": "src/OriginalWave.h",
+      "bytes": 3309,
+      "sha256": "442b1d92c812fb20140b09a7a5943c947a2f70c9d1b6779a6c965d0f76cadad7"
+    },
+    {
+      "path": "src/OriginalWave.cpp",
+      "bytes": 16575,
+      "sha256": "4838757d08b9cdc9551250b754ddb595db354a68a913a1a1ae2796b51d3eafbf"
+    },
+    {
+      "path": "tests/WaveProbe.cpp",
+      "bytes": 9121,
+      "sha256": "e6282a635dd66d571c53626a17d6099b448b6aaf544b4b81971516a9b0a1a826"
+    },
+    {
+      "path": "scripts/compare_original_wave.py",
+      "bytes": 15605,
+      "sha256": "c7fca8e2a3ae309be7e510380dd8f0a70f3f566470c88d20f4d430d40ec65b09"
+    },
+    {
+      "path": "scripts/wave_fixtures.py",
+      "bytes": 8767,
+      "sha256": "d896de6fe4fbf144da450f732bbad4e96a5101a49b1355a6b94dfc2bc5efa83a"
+    },
+    {
+      "path": "scripts/verify_original_wave_audio.py",
+      "bytes": 4207,
+      "sha256": "98dcc81b0ad0bba70db83a4508b87a8cc5d7422b6d9571cc655bdba60787b39c"
+    },
+    {
+      "path": "scripts/build_planar_sum_probe.py",
+      "bytes": 2999,
+      "sha256": "dc23082a677ad7b31010dcc654fe00f0547ac061ece8f76495ba585c9eceda7d"
+    }
+  ],
+  "compiler": "Zig 0.14.1 embedded Clang",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-vectorize",
+    "-fno-slp-vectorize",
+    "-fno-exceptions",
+    "-fno-rtti",
+    "-fno-stack-protector"
+  ],
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-c"
+  ],
+  "arm64_probe_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-nostdlib++"
+  ],
+  "macos_objects": [
+    {
+      "path": "work/ELA008-native/OriginalWave-arm64-macos.o",
+      "bytes": 81552,
+      "sha256": "d8b35ceab167b13a7e4d9803cd4170eda2019696c94f70bcab5cb1d5b60577a9",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    }
+  ],
+  "arm64_test_programs": [
+    {
+      "path": "work/ELA008-native/wave-aarch64",
+      "bytes": 1102392,
+      "sha256": "09d8e55fe3725debe2b5ae0eac21074907145aff846ccba6cec1082f7e5e9974",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0 Linux user mode"
+    }
+  ],
+  "host_compiler": "GCC 14.2.0",
+  "host_flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-tree-vectorize"
+  ],
+  "ubsan_extra_flags": [
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "asan_extra_flags": [
+    "-fsanitize=address,undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "strict_syntax_check_flags": [
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fsyntax-only"
+  ],
+  "strict_syntax_check_passed": true,
+  "comparison": {
+    "cases_per_platform": 1078,
+    "compared_bytes_per_platform": 4267966,
+    "platform_trace_events_per_platform": 22290,
+    "pcm_render_cases_per_platform": 126,
+    "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+  },
+  "complete_embedded_wave_frames": 176399,
+  "complete_embedded_wave_channels": 2,
+  "complete_embedded_wave_matches_independent_pcm16_arithmetic": true,
+  "previous_kernel_sources_modified": false,
+  "previous_kernel_regression_corpus_rerun": false,
+  "native_macos_execution": false,
+  "actual_GN_objects_and_reference_counting_validated": false,
+  "actual_macos_file_io_validated": false,
+  "inst_acid_payload_decoders_implemented": false,
+  "compressed_audio_decoders_implemented": false,
+  "whole_voice_pitch_and_time_stretching_tested": false,
+  "complete_engine_built": false,
+  "macos_audio_unit_validated": false,
+  "automatic_fixture_retries": 0,
+  "licensed_bank_access_modified": false
+}

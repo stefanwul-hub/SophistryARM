@@ -1,0 +1,14 @@
+0x24ce76 # Original complete WAVE header/chunk dispatcher
+0x24bfce # Chunk header recognition and one-byte alignment recovery
+0x24940e # WAVE reader field initialization
+0x249976,129 # Encoded sample-format getter, through RET before NOP
+0x2499f8,44 # Channel-format getter
+0x249a3c,11 # Frame-count getter, through RET before NOP
+0x17fb68 # Read scalar 32-bit integer
+0x17fc6e # Read scalar 16-bit integer
+0x17ff80 # Read scalar 64-bit integer
+0x180086 # Read single byte
+0x2498bc # Fixed-length broadcast text
+0x289de8 # Instrument metadata factory
+0x28a322 # ACID metadata factory
+0x24cc60 # WAVE channel read dispatch

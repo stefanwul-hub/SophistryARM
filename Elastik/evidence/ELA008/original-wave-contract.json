@@ -1,0 +1,34 @@
+{
+  "checkpoint": "ELA008",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "original_wave_open": "0x24ce76",
+  "open_selects_little_endian_by_GNFile_setter": "0x17f560(stream, 0)",
+  "setter_is_not_seek": true,
+  "original_scanner": "0x24bfce",
+  "scanner_known_id_rows": 21,
+  "scanner_final_nontext_row_hex": "b54cd02e00",
+  "scanner_can_recover_one_alignment_byte": true,
+  "scanner_oversize_data_allowed_then_clamped": true,
+  "header_end_loop_comparison": "position < RIFF_size - 1",
+  "pcm_frame_count": "data_bytes / channels / ceil(bits / 8), signed divisions in original order",
+  "unknown_chunks_preserved_as": "privateChunks: alternating original tag and GNData",
+  "musical_metadata_keys": [
+    "chunks.cuePoints",
+    "chunks.dataList",
+    "chunks.sample",
+    "chunks.regionList",
+    "chunks.Broadcast Audio Extension"
+  ],
+  "list_label_and_note_nonempty_consumed_count_extra_bytes": 4,
+  "compressed_headers_parsed": [
+    2,
+    17
+  ],
+  "compressed_audio_decoded": false,
+  "inst_acid_decoder_bindings": "Opaque fixture objects; subdecoder payload interpretation remains to port",
+  "scalar_read_assertions_and_GN_object_lifetimes_are_platform_boundaries": true,
+  "string_encoding_conversion_binding": "Original encoding 4 bytes; tests compare logical byte strings, not native GN encodings",
+  "successful_scalar_reads_required_to_fill_requested_bytes": true,
+  "failed_scalar_reads_preserve_partial_destination_writes": true,
+  "undefined_i386_stack_bytes_on_failed_alignment_read_not_contractual": true
+}

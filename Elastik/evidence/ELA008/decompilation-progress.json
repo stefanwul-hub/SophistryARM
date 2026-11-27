@@ -1,0 +1,24 @@
+{
+  "checkpoint": "ELA008",
+  "functions_saved_this_phase": 49,
+  "all_selected_functions_decompiled": true,
+  "new_distinct_functions": 9,
+  "total_distinct_functions": 271,
+  "new_addresses": [
+    "0x17f5d8",
+    "0x219446",
+    "0x24940e",
+    "0x249976",
+    "0x2499f8",
+    "0x249a3c",
+    "0x28971c",
+    "0x28983c",
+    "0x28a128"
+  ],
+  "ghidra_project_read_only": true,
+  "explicit_instruction_verified_sizes": {
+    "0x00249976": 129,
+    "0x002499f8": 44,
+    "0x00249a3c": 11
+  }
+}

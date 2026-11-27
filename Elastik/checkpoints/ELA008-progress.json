@@ -1,0 +1,26 @@
+{
+  "checkpoint": "ELA008",
+  "status": "Original WAVE header/chunk dispatcher and getters translated, PCM integration and complete embedded sample compared; musical subdecoders, codecs and whole engine pending",
+  "new_original_routines_translated": 6,
+  "new_original_routine_bytes": 12197,
+  "total_original_routines_translated": 38,
+  "total_original_routine_bytes": 25226,
+  "comparison": {
+    "cases_per_platform": 1078,
+    "compared_bytes_per_platform": 4267966,
+    "platform_trace_events_per_platform": 22290,
+    "pcm_render_cases_per_platform": 126,
+    "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+  },
+  "new_functions_decompiled": 9,
+  "total_selected_functions_decompiled": 271,
+  "macos_arm64_objects_compiled": 1,
+  "complete_embedded_wave_frames": 176399,
+  "inst_acid_subdecoders_translated": false,
+  "compressed_audio_decoders_translated": false,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}
