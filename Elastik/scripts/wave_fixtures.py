@@ -99,7 +99,7 @@ def fixtures(wave):
         payload=(b'Description\0'.ljust(256,b'x')+b'Originator\0'.ljust(32,b' ')+b'Reference\0'.ljust(32,b' ')+b'2026-11-27'+b'12:34:56'+struct.pack('<Qh',0xffffffffffffffff,1)+b'u'*64+b'\0'*190+history)
         metadata.append((f'bext-history{history.hex()}',chunk(b'bext',payload)))
     for tag in [b'inst',b'acid']:
-        for n in [0,6,24]:metadata.append((f'{tag.decode()}-opaque-payload{n}',chunk(tag,b'q'*n)))
+        for n in [0,6,24]:metadata.append((f'{tag.decode()}-payload{n}',chunk(tag,b'q'*n)))
     for name,part in metadata:
         for before in [False,True]:
             parts=[fmt(),part,chunk(b'data',b'\0'*132)] if before else [fmt(),chunk(b'data',b'\0'*132),part]
@@ -110,6 +110,30 @@ def fixtures(wave):
             for read in range(3,18):yield fixture(name+f'-failed-read{read}',raw,fail=read)
     for read in range(15):yield fixture(f'base-failed-read{read}',base,fail=read)
     for tag in [b'inst',b'acid']:yield fixture(f'{tag.decode()}-decoder-returns-nil',riff([fmt(),chunk(tag,b'q'*24),chunk(b'data',b'\0'*132)]),flags=4)
+    for flags in [0,1,2,3,0x80000002]:
+        for root in [0,60,-1]:
+            instrument=chunk(b'inst',bytes([60,239,250,0,127,1,127]))
+            acid=chunk(b'acid',struct.pack('<IhHIIhhI',flags,root,0x8000,0x7f800001,16,8,7,0x7fc01234))
+            for before in [False,True]:
+                parts=[fmt(),instrument,acid,chunk(b'data',b'\0'*132)] if before else [fmt(),chunk(b'data',b'\0'*132),acid,instrument]
+                yield fixture(f'instrument-and-acid-flags{flags:x}-root{root}-before{before}',riff(parts),mode=3,count=17,flags=1)
+    from compare_original_wave_adpcm import ms_block,dvi_block,MS_COEFFICIENTS
+    for tag in [2,17]:
+        for channels in [1,2]:
+            for units in [1,2,4]:
+                if tag==2:
+                    block_frames=18;values=18;blocks=[ms_block(rng,channels,values) for _ in range(4)]
+                    extra=struct.pack('<HHH',32,values,7)+b''.join(struct.pack('<hh',*pair) for pair in MS_COEFFICIENTS)
+                else:
+                    block_frames=1+units*8;values=block_frames*channels;blocks=[dvi_block(rng,channels,units,reserved=1 if units==4 else 0) for _ in range(4)]
+                    extra=struct.pack('<HH',2,values)
+                block_bytes=len(blocks[0]);header=chunk(b'fmt ',struct.pack('<HHIIHH',tag,channels,44100,22100,block_bytes,4)+extra)
+                raw=riff([header,chunk(b'data',b''.join(blocks)),chunk(b'inst',bytes([60,0,250,0,127,1,127])),chunk(b'acid',struct.pack('<IhHIIhhI',2,60,0,0,16,4,4,0))])
+                for first in [0,1,block_frames-1,block_frames+1]:
+                    for count in [0,1,block_frames*2+1]:
+                        yield fixture(f'compressed-wave-tag{tag}-ch{channels}-units{units}-first{first}-count{count}',raw,mode=3,first=first,count=count)
+                for read in [0,3,7,11,17,30]:
+                    yield fixture(f'compressed-wave-failed-read-tag{tag}-ch{channels}-units{units}-read{read}',raw,mode=3,first=1,count=block_frames*2,fail=read)
     raw=Path(wave).read_bytes();assert hashlib.sha256(raw).hexdigest()==WAVE_SHA
     for first in [0,77123,176382]:
         yield fixture(f'embedded-original-wave-first{first}',raw,mode=3,first=first,count=17,capacity=257,flags=1)

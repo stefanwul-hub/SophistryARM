@@ -31,7 +31,9 @@ def build(output, compiler=None, kind='planar-sum'):
                'cache-refill': ('src/OriginalSampleCache.cpp', 'src/OriginalSampleFile.cpp', 'src/OriginalCacheRefill.cpp', 'src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'src/OriginalVoiceChunk.cpp', 'tests/CacheRefillProbe.cpp'),
                'cache-lifecycle': ('src/OriginalCacheLifecycle.cpp', 'src/OriginalSampleFormat.cpp', 'tests/CacheLifecycleProbe.cpp'),
                'timer': ('src/OriginalTimer.cpp', 'tests/TimerProbe.cpp'),
-               'wave': ('src/OriginalWave.cpp', 'src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'tests/WaveProbe.cpp')}[kind]
+               'wave': ('src/OriginalWave.cpp', 'src/OriginalWaveChunks.cpp', 'src/OriginalWaveAdpcm.cpp', 'src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'tests/WaveProbe.cpp'),
+               'wave-chunks': ('src/OriginalWaveChunks.cpp', 'tests/WaveChunksProbe.cpp'),
+               'wave-adpcm': ('src/OriginalWaveAdpcm.cpp', 'src/OriginalWave.cpp', 'src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'tests/WaveAdpcmProbe.cpp')}[kind]
     command = [compiler] + flags + [str(root / name) for name in sources] + ['-o', str(output)]
     subprocess.run(command, check=True)
     print(json.dumps({'output': str(output), 'probe': kind, 'compiler': version.splitlines()[0],
@@ -42,6 +44,6 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--compiler')
-    p.add_argument('--kind', choices=['planar-sum', 'voice-chunk', 'sample-format', 'buffered-pcm', 'sample-cache', 'sample-file', 'cache-refill', 'cache-lifecycle', 'timer', 'wave'], default='planar-sum')
+    p.add_argument('--kind', choices=['planar-sum', 'voice-chunk', 'sample-format', 'buffered-pcm', 'sample-cache', 'sample-file', 'cache-refill', 'cache-lifecycle', 'timer', 'wave', 'wave-chunks', 'wave-adpcm'], default='planar-sum')
     a = p.parse_args()
     build(a.output, a.compiler, a.kind)

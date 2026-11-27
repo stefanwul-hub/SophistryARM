@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Compare unmodified original WAVE parsing, scanner/getters and PCM rendering.
 
-GN object primitives, byte I/O, GN exceptions and inst/acid subdecoders are
-explicit boundaries. Container parsing and numeric reads execute original code.
-The inst/acid bindings return opaque test objects; they do not decode music data.
+GN object primitives, byte I/O, GN exceptions and chunk factory ownership are
+explicit boundaries. Container parsing, numeric reads, inst/ACID payload readers
+and MS/DVI ADPCM decoders execute original code. Typed chunk fields are compared.
 """
 import argparse
 import hashlib
@@ -14,6 +14,7 @@ from original_cache_oracle import OriginalCacheOracle, STACK, RETURN
 from native_probe import NativeProbe
 from legacy_image import SHA
 from wave_fixtures import fixtures,WAVE_SHA
+from original_wave_chunks_oracle import ChunkOracle
 from unicorn import UC_HOOK_CODE
 from unicorn.x86_const import UC_X86_REG_ESP,UC_X86_REG_EIP,UC_X86_REG_EAX,UC_X86_REG_EDX,UC_X86_REG_EFLAGS,UC_X86_REG_MXCSR
 
@@ -33,6 +34,7 @@ def serialize(n):
 class WaveOracle(OriginalCacheOracle):
     def __init__(self,binary):
         super().__init__(binary);self.uc.mem_map(0x800000,0x3000000)
+        self.chunk_oracle=ChunkOracle(binary)
         callbacks={0x500d00:self.read,0x500d10:self.position,0x500d20:self.seek,0x500d30:lambda *x:self.finish(FILE),0x500d40:self.length,
                    0x500d50:self.open,0x500d60:self.retain_io,0x500d70:lambda *x:self.finish(0),0x500e00:self.object_noop,
                    0x500e10:self.resize_or_name,0x630b6:lambda *x:self.construct(1),0x29d44:lambda *x:self.construct(2),
@@ -40,7 +42,7 @@ class WaveOracle(OriginalCacheOracle):
                    0x64626:self.get,0x2bb40:self.append,0x63426:self.identity,0x29ddc:self.count,0x278d6:self.count,
                    0x180166:self.read_data,0x3887c:self.create_string,0x38d00:self.data_string,0x39d7a:self.create_string_default,
                    0x27b4e:self.data_lock,0x27abc:self.data_bytes,0x27bec:self.identity,0xbf34:self.raise_error,0xbfd6:self.raise_error,
-                   0x289de8:lambda *x:self.decode(False),0x28a322:lambda *x:self.decode(True),0xaecc:self.allocate_dvi}
+                   0x289de8:lambda *x:self.decode(False),0x28a322:lambda *x:self.decode(True),0xaecc:self.allocate_dvi,0xb122:self.release_block}
         for at,callback in callbacks.items():self.uc.hook_add(UC_HOOK_CODE,callback,begin=at,end=at)
         self.import_handlers.update(__Znwm=self.new,__Znam=self.new,__ZdlPv=self.delete,_strncmp=self.strncmp,_strcmp=self.strcmp,___udivdi3=self.divide_u64)
         self.put(IOVT+0x40,0x500d60);self.put(IOVT+0x1a8,0x500d30,0x500d00);self.put(IOVT+0x1b8,0x500d10,0,0x500d20)
@@ -109,9 +111,21 @@ class WaveOracle(OriginalCacheOracle):
     def decode(self,acid):
         kind,data=self.arguments(2);assert kind==2
         if not data or self.case['h'][15]&4:self.finish(0)
-        else:self.finish(self.node(7,(b'acid' if acid else b'inst')+self.n(data)['value']))
+        else:
+            # A separate pinned i386 instance executes the actual payload reader
+            # while this instance is paused at its GN factory/lifetime boundary.
+            status,state=self.chunk_oracle.decoded_state(acid,self.n(data)['value'])
+            self.finish(0 if status else self.node(7,(b'acid' if acid else b'inst')+state))
     def allocate_dvi(self,*unused):
-        size,=self.arguments(1);self.record(8,size);self.finish(0 if self.case['h'][15]&8 else self.alloc(size))
+        size,=self.arguments(1)
+        if self.audio_active:
+            pointer=self.alloc(size);self.uc.mem_write(pointer,b'\xa5'*size);self.raw_allocations.append(pointer);self.record(11,size,len(self.raw_allocations));self.finish(pointer)
+        else:
+            self.record(8,size)
+            if self.case['h'][15]&8:self.finish(0)
+            else:
+                pointer=self.alloc(size);self.raw_allocations.append(pointer);self.finish(pointer)
+    def release_block(self,*unused):pointer,=self.arguments(1);self.record(12,self.raw_allocations.index(pointer)+1);self.finish()
     def open(self,*unused):self.record(5,self.case['h'][3]);self.finish(IO if self.case['h'][3] else 0)
     def retain_io(self,*unused):self.record(6);self.finish(IO)
     def seek(self,*unused):obj,at=self.arguments(2);assert obj==IO;self.at=at if at<0x80000000 else at-0x100000000;self.record(1,self.at);self.finish()
@@ -133,6 +147,7 @@ class WaveOracle(OriginalCacheOracle):
         elif text.startswith(b'Wave: File '):self.record(7,2,args[2],args[3])
         elif text==b'Wave playlists not supported':self.record(7,3)
         elif text==b'Wave wavelists not supported':self.record(7,4)
+        elif text==b'IMA ADPCM synchronisation error.':self.record(7,5)
         elif text.startswith(b'Reading sound failed:'):self.record(9,*args[1:4])
         elif text==b'GNAudioConvertSampleFormat(): Unsupported input format.':self.record(10,1)
         elif text==b'GNAudioConvertSampleFormat(): Unsupported output format.':self.record(10,2)
@@ -144,7 +159,7 @@ class WaveOracle(OriginalCacheOracle):
         if not self.error and self.uc.reg_read(UC_X86_REG_EIP)!=RETURN:raise ValueError(f'Original {address:#x} did not return')
         return self.uc.reg_read(UC_X86_REG_EAX)
     def execute(self,case):
-        self.case=case;h=case['h'];self.at=self.reads=0;self.trace=[];self.nodes={};self.heap=0x1000000;self.data_heap=0x2000000
+        self.case=case;h=case['h'];self.at=self.reads=0;self.trace=[];self.nodes={};self.heap=0x1000000;self.data_heap=0x2000000;self.audio_active=False;self.raw_allocations=[];self.render_format=0
         self.uc.mem_write(0x700000,bytes(0x10000));self.uc.mem_write(WAVE,bytes(0x1000));self.put(WAVE,0x3a9908)
         for off,value in [(0x1e,h[6]),(0x1a,h[7]),(0x1c,h[8])]:self.uc.mem_write(WAVE+off,struct.pack('<H',value&65535))
         self.put(WAVE+0x20,h[9]);self.put(WAVE+0x28,h[10]);self.uc.mem_write(WAVE+0x48,b'\xa5'*2048)
@@ -157,11 +172,12 @@ class WaveOracle(OriginalCacheOracle):
         elif h[0]!=2:self.call(0x24ce76,WAVE,PATH);status=self.error
         channels=frames=0;audio=[];buffer=b''
         if h[0]==3 and status==0:
+            self.render_format=struct.unpack('<h',self.uc.mem_read(WAVE+0x1e,2))[0]
             channels=struct.unpack('<h',self.uc.mem_read(WAVE+0x1a,2))[0];frames=h[13];self.put(WAVE+0xc,h[14],BUFFER);self.uc.mem_write(BUFFER,b'\xa5'*h[14])
             for channel in range(channels):
                 at=0x2800000+channel*0x200000;self.put(CHANNELS+channel*4,at);self.uc.mem_write(at,struct.pack('<f',0.03125)*(frames+16))
-            self.call(0x24cc60,WAVE,CHANNELS,h[12],frames)
-            assert not self.error
+            self.audio_active=True;self.call(0x24cc60,WAVE,CHANNELS,h[12],frames);self.audio_active=False
+            status=self.error
             audio=[bytes(self.uc.mem_read(0x2800000+channel*0x200000,(frames+16)*4)) for channel in range(channels)];buffer=bytes(self.uc.mem_read(BUFFER,h[14]))
         s=lambda off:struct.unpack('<h',self.uc.mem_read(WAVE+off,2))[0]
         header=[status,int(self.word(WAVE+0x14)!=0),s(0x18),s(0x1a),s(0x1c),s(0x1e),self.word(WAVE+0x20),self.word(WAVE+0x24),self.word(WAVE+0x28),self.word(WAVE+0x2c),self.word(WAVE+0x30),s(0x38),s(0x3a),s(0x3c),s(0x3e),s(0x40),int(self.word(WAVE+0x44)!=0),self.call(0x249976,WAVE),self.call(0x2499f8,WAVE),self.call(0x249a3c,WAVE)]
@@ -171,20 +187,21 @@ class WaveOracle(OriginalCacheOracle):
 
 def compare(binary,runner,prefix,platform,wave):
     oracle=WaveOracle(binary)
-    probe=NativeProbe(prefix+[str(runner.resolve())],persistent=True);cases=[];total=events=audio_cases=0
+    probe=NativeProbe(prefix+[str(runner.resolve())],persistent=True);cases=[];total=events=audio_cases=pcm_cases=compressed_cases=0
     for case in fixtures(wave):
         try:expected=oracle.execute(case)
         except Exception as e:raise RuntimeError(f'Original failed at {case["name"]}: {e}') from e
         data=pack(case['h'])+case['raw'];actual=probe.run(data,len(expected))
         if actual.returncode or actual.stdout!=expected:
-            folder=Path('work/ELA008-native');folder.mkdir(parents=True,exist_ok=True)
+            folder=Path('work/ELA009-native');folder.mkdir(parents=True,exist_ok=True)
             for label,b in [('fixture',data),('original',expected),('native',actual.stdout),('stderr',actual.stderr)]: (folder/f'failing-wave-{label}.bin').write_bytes(b)
             at=next((i for i,(a,b) in enumerate(zip(expected,actual.stdout)) if a!=b),min(len(expected),len(actual.stdout)))
             raise ValueError(f'WAVE mismatch {case["name"]}: exit={actual.returncode} byte={at} expected={expected[at:at+24].hex()} native={actual.stdout[at:at+24].hex()}')
         total+=len(expected);events+=len(oracle.trace);audio_cases+=case['h'][0]==3
+        pcm_cases+=oracle.render_format in (1,3);compressed_cases+=oracle.render_format in (2,17)
         cases.append(dict(name=case['name'],mode=case['h'][0],status=struct.unpack_from('<i',expected)[0],trace_events=len(oracle.trace),all_bytes_match=True,sha256=hashlib.sha256(expected).hexdigest()))
     probe.close()
-    return dict(checkpoint='ELA008',scope='Original WAVE container parsing, scalar metadata, musical chunk graph and PCM rendering',original_i386_sha256=SHA,compiled_platform=platform,fixture_count=len(cases),compared_bytes=total,platform_trace_events=events,pcm_render_cases=audio_cases,all_cases_match_bit_for_bit=True,original_header_parser_executed=True,header_derived_metadata_substituted=False,original_numeric_file_reads_executed=True,embedded_wave_cases=4,embedded_wave_sha256=WAVE_SHA,complete_embedded_wave_frames=176399,boundaries_adapted=['byte file open/retain/position/length/read/seek','GN metadata primitives and raw-data reads','GN exceptions represented by status','inst/acid subdecoders return opaque fixture objects','DVI scratch allocator','unsigned 64-bit compiler runtime division'],inst_acid_payloads_decoded=False,compressed_audio_decoded=False,actual_GN_objects_and_reference_counting_validated=False,actual_macos_file_io_validated=False,complete_engine_built=False,macos_audio_unit_validated=False,automatic_fixture_retries=0,cases=cases)
+    return dict(checkpoint='ELA009',scope='Original WAVE container, real inst/ACID payloads and PCM/MS/DVI rendering',original_i386_sha256=SHA,compiled_platform=platform,fixture_count=len(cases),compared_bytes=total,platform_trace_events=events,audio_path_cases=audio_cases,pcm_render_cases=pcm_cases,compressed_render_cases=compressed_cases,all_cases_match_bit_for_bit=True,original_header_parser_executed=True,header_derived_metadata_substituted=False,original_numeric_file_reads_executed=True,embedded_wave_cases=4,embedded_wave_sha256=WAVE_SHA,complete_embedded_wave_frames=176399,boundaries_adapted=['byte file open/retain/position/length/read/seek','GN metadata primitives and raw-data reads','GN exceptions represented by status','GN inst/ACID factory ownership and typed object bridge; original payload methods execute','sample/block allocators','unsigned 64-bit compiler runtime division'],inst_acid_payloads_decoded=True,compressed_audio_decoded=True,actual_GN_objects_and_reference_counting_validated=False,actual_macos_file_io_validated=False,complete_engine_built=False,macos_audio_unit_validated=False,automatic_fixture_retries=0,cases=cases)
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('binary',type=Path);p.add_argument('runner',type=Path);p.add_argument('--runner-prefix',action='append',default=[]);p.add_argument('--platform',required=True);p.add_argument('--wave',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()

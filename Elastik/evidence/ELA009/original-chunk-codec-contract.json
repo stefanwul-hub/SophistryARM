@@ -1,0 +1,38 @@
+{
+  "checkpoint": "ELA009",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "instrument_minimum_payload_bytes": 7,
+  "instrument_byte_fields_are_signed": true,
+  "instrument_wire_field_order": [
+    "base_note",
+    "detune",
+    "gain",
+    "low_note",
+    "high_note",
+    "low_velocity",
+    "high_velocity"
+  ],
+  "instrument_serialized_length": "flags bit0 set:7; clear:8 with final zero",
+  "acid_required_payload_bytes": 24,
+  "acid_float_offsets_read_but_not_retained": [
+    8,
+    20
+  ],
+  "acid_root_mode": "3 iff flags bit1 and signed root != 0, else 0",
+  "acid_root_offset": "signed root - 48 when root mode enabled, else 0",
+  "acid_one_shot_flag": "flags bit0 clears beats without changing previous looping byte",
+  "acid_loop_flag": "flags bit0 clear sets looping byte to 1",
+  "adpcm_positive_normalization": "float(sample) / 32767.0f",
+  "adpcm_nonpositive_normalization": "float(sample) * 2^-15",
+  "ms_signed_prediction_sum_wraps_i32_before_division": true,
+  "ms_prediction_division_truncates_toward_zero": true,
+  "ms_delta_state_wraps_u16": true,
+  "dvi_delta_arithmetic_wraps_i16": true,
+  "dvi_index_uses_parity_for_multichannel": true,
+  "dvi_dispatch_block_frames": "signed field +0x3e divided by channels",
+  "compressed_zero_frame_read_still_reads_one_block": true,
+  "compressed_read_requires_full_block_even_when_read_returns_true": true,
+  "normal_block_release_not_called_after_original_read_exception": true,
+  "real_GN_reference_counting_and_exception_unwind_is_platform_binding": true,
+  "whole_voice_and_time_stretching_tested": false
+}

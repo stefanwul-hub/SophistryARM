@@ -1,0 +1,235 @@
+{
+  "checkpoint": "ELA009",
+  "client_date": "2026-11-27",
+  "translated_original_functions": [
+    {
+      "address": "0x28900e",
+      "bytes": 347,
+      "role": "WAVE instrument payload reader"
+    },
+    {
+      "address": "0x288744",
+      "bytes": 433,
+      "role": "WAVE ACID time/scale payload reader"
+    },
+    {
+      "address": "0x28916a",
+      "bytes": 150,
+      "role": "WAVE instrument byte serializer"
+    },
+    {
+      "address": "0x24c638",
+      "bytes": 1575,
+      "role": "Microsoft ADPCM block decoder"
+    },
+    {
+      "address": "0x249b18",
+      "bytes": 1000,
+      "role": "DVI/IMA ADPCM block decoder"
+    },
+    {
+      "address": "0x24cc60",
+      "bytes": 533,
+      "role": "Complete WAVE PCM/ADPCM frame read dispatch"
+    }
+  ],
+  "new_original_routine_bytes": 4038,
+  "total_original_routines_translated": 44,
+  "total_original_routine_bytes": 29264,
+  "translation_scope": "Valid-domain metadata, PCM/ADPCM data/control effects; GN factory/lifetime/error and byte I/O bindings explicit",
+  "source_files": [
+    {
+      "path": "src/OriginalWaveChunks.h",
+      "bytes": 1279,
+      "sha256": "98271f0cf3bfc9a77ed841b6e31e82838e1fe00f7014058c68807a0adb23a63f"
+    },
+    {
+      "path": "src/OriginalWaveChunks.cpp",
+      "bytes": 2693,
+      "sha256": "4254486dba0fcf252a1f4450877cd8c1e8ac1ca0a9f517f91727a6d0afc058cb"
+    },
+    {
+      "path": "src/OriginalWaveAdpcm.h",
+      "bytes": 1747,
+      "sha256": "bc5e07f6fb1b5cdec46c9660f02c3401a80f8a7421883284346306a4d205ff49"
+    },
+    {
+      "path": "src/OriginalWaveAdpcm.cpp",
+      "bytes": 8137,
+      "sha256": "2a6d0f285ced2a066f943a24c296db301d04209e8e1e1205cd3841cdb0379e13"
+    },
+    {
+      "path": "tests/WaveChunksProbe.cpp",
+      "bytes": 1814,
+      "sha256": "19bdfce75cc8083ef7d9ca38168410639c79d7c58b3c00a1315cd966c198f3ba"
+    },
+    {
+      "path": "tests/WaveAdpcmProbe.cpp",
+      "bytes": 4360,
+      "sha256": "b2cf57bb5f08aeb695b67883b181fe7abd1ac320da2c0e55e49774c41727fec9"
+    },
+    {
+      "path": "tests/WaveProbe.cpp",
+      "bytes": 10272,
+      "sha256": "bb63e8c058dd242cbddc03d7f7aaf87ce20445c33d2507d50055997c32e8bea4"
+    },
+    {
+      "path": "scripts/original_wave_chunks_oracle.py",
+      "bytes": 4151,
+      "sha256": "d875cfa282740f35729f5a14d286edaa107c2760b0f2e57c5df4ab2d13d2a539"
+    },
+    {
+      "path": "scripts/compare_original_wave_chunks.py",
+      "bytes": 4173,
+      "sha256": "a85e22e4a3fe4490ae58152436424da7c1be63f76fcbd111958a82125d52370b"
+    },
+    {
+      "path": "scripts/compare_original_wave_adpcm.py",
+      "bytes": 12190,
+      "sha256": "362a05c775a80431aa659917b973c413d09b2da20cb052b5c7ae8bf4ce4318c9"
+    },
+    {
+      "path": "scripts/compare_original_wave.py",
+      "bytes": 16953,
+      "sha256": "0b967591da02cb6de435597dec266f86ffa55483edea3ba4f60fd0644bb3ba66"
+    },
+    {
+      "path": "scripts/wave_fixtures.py",
+      "bytes": 10751,
+      "sha256": "1d4cbf77dc55d0961739f1395acfac1cfb7fc969e3e02f38c5dcad1fd4e38f19"
+    },
+    {
+      "path": "scripts/verify_original_wave_audio.py",
+      "bytes": 4207,
+      "sha256": "46e2d80e33455ee96a4c870eb6b77cd71ce0b54716c6f8c16f0a27683599b0ad"
+    },
+    {
+      "path": "scripts/build_planar_sum_probe.py",
+      "bytes": 3353,
+      "sha256": "4be43f59d35fca796468cd3f99dcf9a607bbf4684264d630be3e2240170751f0"
+    }
+  ],
+  "compiler": "Zig 0.14.1 embedded Clang",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-vectorize",
+    "-fno-slp-vectorize",
+    "-fno-exceptions",
+    "-fno-rtti",
+    "-fno-stack-protector"
+  ],
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-c"
+  ],
+  "arm64_probe_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-nostdlib++"
+  ],
+  "macos_objects": [
+    {
+      "path": "work/ELA009-native/OriginalWaveChunks-arm64-macos.o",
+      "bytes": 5712,
+      "sha256": "990f0713100f5384cb05fdbfdcac638e12c47be8c0fbef83656fdbcfc0f9436d",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    },
+    {
+      "path": "work/ELA009-native/OriginalWaveAdpcm-arm64-macos.o",
+      "bytes": 18976,
+      "sha256": "40cf381acdd65672d001627cc93da2bdfe074b1fb66f08f91f3bddee77d5650a",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    }
+  ],
+  "arm64_test_programs": [
+    {
+      "path": "work/ELA009-native/wave-chunks-aarch64",
+      "bytes": 954096,
+      "sha256": "59a795ac60ab72cdbea242f7d01303fa450584f952d1a0b799dc48252d048327",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0 Linux user mode"
+    },
+    {
+      "path": "work/ELA009-native/wave-adpcm-aarch64",
+      "bytes": 1084088,
+      "sha256": "0434f3e1a3ab888d64c84f8e7c8b7c880769faaa3e29513d43a149b2c7544789",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0 Linux user mode"
+    },
+    {
+      "path": "work/ELA009-native/wave-aarch64",
+      "bytes": 1124080,
+      "sha256": "3a747fdfd5873f87c99b4e001d03d65059d08f50bdf6a0d7bca98f5e51c72f6a",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0 Linux user mode"
+    }
+  ],
+  "host_compiler": "GCC 14.2.0",
+  "host_flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-tree-vectorize"
+  ],
+  "ubsan_extra_flags": [
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "asan_extra_flags": [
+    "-fsanitize=address,undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "strict_syntax_check_flags": [
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fsyntax-only"
+  ],
+  "strict_syntax_check_passed": true,
+  "comparisons": {
+    "chunks": {
+      "cases_per_platform": 2556,
+      "compared_bytes_per_platform": 133664,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "adpcm": {
+      "cases_per_platform": 3020,
+      "compared_bytes_per_platform": 7446828,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "wave": {
+      "cases_per_platform": 1324,
+      "compared_bytes_per_platform": 5129726,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    }
+  },
+  "total_cases_per_platform": 6900,
+  "previous_wave_cases_unchanged": 1070,
+  "previous_wave_cases_expected_changed": 8,
+  "complete_embedded_wave_frames": 176399,
+  "complete_embedded_wave_float32_sha256": "555760159fb2f5e4331d3df06df12c1e659b27585601687f8ab364cd3e3d4ef3",
+  "native_macos_execution": false,
+  "actual_GN_objects_and_reference_counting_validated": false,
+  "actual_macos_file_io_validated": false,
+  "inst_acid_payload_decoders_implemented": true,
+  "wave_ms_dvi_audio_decoders_implemented": true,
+  "AIFF_metadata_decoders_implemented": false,
+  "whole_voice_pitch_and_time_stretching_tested": false,
+  "complete_engine_built": false,
+  "macos_audio_unit_validated": false,
+  "automatic_fixture_retries": 0,
+  "licensed_bank_access_modified": false
+}

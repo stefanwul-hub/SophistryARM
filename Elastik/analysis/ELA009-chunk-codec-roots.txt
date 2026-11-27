@@ -1,0 +1,8 @@
+0x28900e # WAVE instrument payload reader
+0x288744 # WAVE ACID payload reader
+0x28916a # WAVE instrument payload writer/companion
+0x288f5e,23 # Instrument class name getter through JMP
+0x288698,23 # ACID class name getter through JMP
+0x24c638,1575 # WAVE Microsoft ADPCM decoder, final JMP before NOP at 0x24cc5f
+0x249b18 # WAVE DVI/IMA ADPCM channel decoder
+0x24cc60 # WAVE frame read dispatch

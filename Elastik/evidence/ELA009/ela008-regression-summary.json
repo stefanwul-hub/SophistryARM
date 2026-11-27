@@ -1,0 +1,19 @@
+{
+  "checkpoint": "ELA009",
+  "baseline_cases": 1078,
+  "unchanged_case_hashes": 1070,
+  "expected_changed_cases": [
+    "inst-payload6-before-dataFalse",
+    "inst-payload6-before-dataTrue",
+    "inst-payload24-before-dataFalse",
+    "inst-payload24-before-dataTrue",
+    "acid-payload6-before-dataFalse",
+    "acid-payload6-before-dataTrue",
+    "acid-payload24-before-dataFalse",
+    "acid-payload24-before-dataTrue"
+  ],
+  "reason": "Actual payload readers replace opaque factory test objects; short payloads are rejected and valid payloads return decoded fields",
+  "other_baseline_cases_unchanged": true,
+  "new_wave_integration_cases": 246,
+  "complete_embedded_wave_sha256_unchanged": true
+}

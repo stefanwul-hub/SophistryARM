@@ -1,0 +1,34 @@
+{
+  "checkpoint": "ELA009",
+  "status": "Actual WAVE inst/ACID payloads, MS/DVI ADPCM and full WAVE read dispatch ported and compared; whole-engine connection and platform runtime pending",
+  "new_original_routines_translated": 6,
+  "new_original_routine_bytes": 4038,
+  "total_original_routines_translated": 44,
+  "total_original_routine_bytes": 29264,
+  "comparisons": {
+    "chunks": {
+      "cases_per_platform": 2556,
+      "compared_bytes_per_platform": 133664,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "adpcm": {
+      "cases_per_platform": 3020,
+      "compared_bytes_per_platform": 7446828,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "wave": {
+      "cases_per_platform": 1324,
+      "compared_bytes_per_platform": 5129726,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    }
+  },
+  "total_cases_per_platform": 6900,
+  "new_functions_decompiled": 10,
+  "total_selected_functions_decompiled": 281,
+  "macos_arm64_objects_compiled": 2,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}

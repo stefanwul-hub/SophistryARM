@@ -43,7 +43,7 @@ def verify(binary, wave_path, candidates, audio_output=None):
     if audio_output:
         header=b'RIFF'+struct.pack('<I',36+len(interleaved))+b'WAVEfmt '+struct.pack('<IHHIIHH',16,3,channels,rate,rate*channels*4,channels*4,32)+b'data'+struct.pack('<I',len(interleaved))
         audio_output.parent.mkdir(parents=True,exist_ok=True);audio_output.write_bytes(header+interleaved)
-    return dict(checkpoint='ELA008',scope='Complete embedded WAVE container to planar float32 PCM, no synth voice/pitch processing',original_wave_sha256=WAVE_SHA,frames=frames,channels=channels,sample_rate=rate,duration_seconds=frames/rate,all_frames_match_original_i386=True,all_samples_match_independent_pcm16_divide_by_32768=True,channel_measurements=measurements,execution=runs,interleaved_float32_sha256=hashlib.sha256(interleaved).hexdigest(),audio_artifact_private=True,original_wave_or_rendered_audio_published=False,complete_instrument_engine_tested=False,macos_audio_unit_tested=False)
+    return dict(checkpoint='ELA009',scope='Complete embedded WAVE container to planar float32 PCM, no synth voice/pitch processing',original_wave_sha256=WAVE_SHA,frames=frames,channels=channels,sample_rate=rate,duration_seconds=frames/rate,all_frames_match_original_i386=True,all_samples_match_independent_pcm16_divide_by_32768=True,channel_measurements=measurements,execution=runs,interleaved_float32_sha256=hashlib.sha256(interleaved).hexdigest(),audio_artifact_private=True,original_wave_or_rendered_audio_published=False,complete_instrument_engine_tested=False,macos_audio_unit_tested=False)
 
 
 if __name__=='__main__':

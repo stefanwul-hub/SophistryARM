@@ -1,4 +1,6 @@
 #include "../src/OriginalWave.h"
+#include "../src/OriginalWaveChunks.h"
+#include "../src/OriginalWaveAdpcm.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,13 +59,24 @@ static void* read_data(void* p,int n){
     int actual=n;if(!read(p,result->data,&actual))return nullptr;result->length=actual;return result;
 }
 static void* decode(void* p,bool acid,void* data){
-    // Explicit opaque subdecoder boundary, not an inst/ACID implementation.
     if(!data)return nullptr;
     auto* d=static_cast<Node*>(data);auto* c=static_cast<Context*>(p);if(c->flags&4)return nullptr;
-    auto* n=node(c,7,nullptr,d->length+4);memcpy(n->data,acid?"acid":"inst",4);memcpy(n->data+4,d->data,d->length);return n;
+    int values[7]{},count=7;
+    if(acid){
+        ElastikOriginalAcidChunk state{};
+        if(elastik_original_read_acid_chunk(&state,d->data,d->length)!=ElastikWaveOk)return nullptr;
+        const int parsed[]{state.looping,state.numerator,state.denominator,state.beats,state.root_offset,state.root_mode};memcpy(values,parsed,24);count=6;
+    }else{
+        ElastikOriginalInstrumentChunk state{};
+        if(elastik_original_read_instrument_chunk(&state,d->data,d->length)!=ElastikWaveOk)return nullptr;
+        const int parsed[]{state.base_note,state.detune,state.low_note,state.high_note,state.low_velocity,state.high_velocity,state.gain};memcpy(values,parsed,28);
+    }
+    auto* n=node(c,7,nullptr,4+count*4);memcpy(n->data,acid?"acid":"inst",4);memcpy(n->data+4,values,count*4);return n;
 }
 static const char* chunk_name(void*,void* p){return !memcmp(static_cast<Node*>(p)->data,"acid",4)?"GNSoundFileTimeAndScaleChunk":"GNSoundFileInstrumentChunk";}
 static void* allocate_dvi(void* p,int n){auto* c=static_cast<Context*>(p);c->event(8,n);if(c->flags&8)return nullptr;if(c->allocation_count>=128||n<0)abort();void* r=calloc(static_cast<size_t>(n)+1,1);c->allocations[c->allocation_count++]=r;return r;}
+static unsigned char* allocate_block(void* p,int n){auto* c=static_cast<Context*>(p);if(c->allocation_count>=128||n<0)abort();auto* r=static_cast<unsigned char*>(malloc(n+1));memset(r,0xa5,n);c->allocations[c->allocation_count++]=r;c->event(11,n,c->allocation_count);return r;}
+static void release_block(void* p,unsigned char* value){auto* c=static_cast<Context*>(p);for(int i=0;i<c->allocation_count;++i)if(c->allocations[i]==value){c->event(12,i+1);return;}abort();}
 static bool output(const void* p,size_t n){return fwrite(p,1,n,stdout)==n;}
 static bool serialize(Node* n){
     if(!n){int zero=0;return output(&zero,4);}int h[]{n->kind,n->length};if(!output(h,8))return false;
@@ -87,7 +100,8 @@ static int run(const int* h){
         outputs=static_cast<float**>(calloc(channels,sizeof(float*)));for(int i=0;i<channels;++i){outputs[i]=static_cast<float*>(malloc((frames+16)*4));for(int f=0;f<frames+16;++f)outputs[i][f]=0.03125f;}
         buffer=static_cast<unsigned char*>(malloc(h[14]));memset(buffer,0xa5,h[14]);ElastikOriginalReadBuffer b{buffer,h[14]};
         const ElastikOriginalReaderDiagnostics diagnostics{c,read_failed,format_failed};
-        elastik_original_read_buffered_pcm(&b,outputs,h[12],frames,elastik_original_wave_sample_format(&w),elastik_original_wave_channel_format(&w),w.data_offset,&io.bytes,&diagnostics);
+        const ElastikOriginalWaveReadPlatform platform{c,allocate_block,release_block};
+        status=elastik_original_read_wave(&w,&b,outputs,h[12],frames,&io.bytes,&platform,&diagnostics,&io);
     }
     const int result[]{status,w.stream_open,w.block_align,w.channels,w.bits,w.format,w.sample_bytes,w.sample_rate,w.frames,w.average_bytes,w.data_offset,w.ms_samples_per_block,w.ms_block_bytes,w.ms_coefficient_count,w.dvi_values_per_block,w.dvi_block_bytes,w.dvi_samples?1:0,
         static_cast<int>(elastik_original_wave_sample_format(&w)),static_cast<int>(elastik_original_wave_channel_format(&w)),elastik_original_wave_frames(&w)};
