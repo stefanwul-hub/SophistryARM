@@ -10,5 +10,29 @@
   },
   "contains_original_installer": false,
   "contains_user_bank": false,
-  "native_audio_unit_available": false
+  "native_audio_unit_available": false,
+  "public_source_commit": "2ab3512884e58ec90ee3820c21b2553c829a19b4",
+  "verified_public_downloads": [
+    {
+      "path": "Elastik-ELA009-complet-checkpoint.zip",
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/2ab3512884e58ec90ee3820c21b2553c829a19b4/Elastik/Elastik-ELA009-complet-checkpoint.zip",
+      "http_status": 200,
+      "bytes": 3342738,
+      "sha256": "b83969e978f4f249ebf5e81ef42209b424ff995d28733b24d3bd6d0cf0604f48",
+      "zip_entries": 225,
+      "zip_crc_verified": true,
+      "matches_local_archive": true
+    },
+    {
+      "path": "analysis/ELA009-original-chunks-codecs-decompiled.zip",
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/2ab3512884e58ec90ee3820c21b2553c829a19b4/Elastik/analysis/ELA009-original-chunks-codecs-decompiled.zip",
+      "http_status": 200,
+      "bytes": 58209,
+      "sha256": "ad108d044a0f8e37fc5b3b0a3b9b03c3c28b1d6487ace337610df5199cb73994",
+      "zip_entries": 55,
+      "zip_crc_verified": true,
+      "matches_local_archive": true
+    }
+  ],
+  "package_file_manifest_verified": true
 }
