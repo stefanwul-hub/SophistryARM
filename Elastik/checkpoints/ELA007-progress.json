@@ -30,5 +30,7 @@
   "detailed_original_analysis_authorized": true,
   "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
   "Sophistry_CP038_frozen": true,
-  "CronoX_CRX013_frozen": true
+  "CronoX_CRX013_frozen": true,
+  "public_download_verified": true,
+  "public_source_commit": "c09d421ac980bb7397b3a7ef92539347ea5f26ff"
 }

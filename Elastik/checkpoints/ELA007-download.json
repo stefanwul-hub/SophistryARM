@@ -10,5 +10,29 @@
   },
   "contains_original_installer": false,
   "contains_user_bank": false,
-  "native_audio_unit_available": false
+  "native_audio_unit_available": false,
+  "public_source_commit": "c09d421ac980bb7397b3a7ef92539347ea5f26ff",
+  "verified_public_downloads": [
+    {
+      "path": "Elastik-ELA007-complet-checkpoint.zip",
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/c09d421ac980bb7397b3a7ef92539347ea5f26ff/Elastik/Elastik-ELA007-complet-checkpoint.zip",
+      "http_status": 200,
+      "bytes": 1797872,
+      "sha256": "0d6f1701bb261f7b96fc868dabebfac570ab0ab03e79c605c01b2139d5f58e23",
+      "zip_entries": 175,
+      "zip_crc_verified": true,
+      "matches_local_archive": true
+    },
+    {
+      "path": "analysis/ELA007-original-cache-timer-decompiled.zip",
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/c09d421ac980bb7397b3a7ef92539347ea5f26ff/Elastik/analysis/ELA007-original-cache-timer-decompiled.zip",
+      "http_status": 200,
+      "bytes": 66280,
+      "sha256": "2d49d970dffa4478a9f015744df21ce6538a5b49fa26840606224ee743c8fdb2",
+      "zip_entries": 85,
+      "zip_crc_verified": true,
+      "matches_local_archive": true
+    }
+  ],
+  "package_file_manifest_verified": true
 }
