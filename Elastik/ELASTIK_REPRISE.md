@@ -1,4 +1,4 @@
-# Reprise Elastik — ELA015, restauration des anciens projets
+# Reprise Elastik — ELA016, restauration des anciens projets
 
 **Autorisation de publication active et permanente.** Le 27 novembre 2026 (Europe/Paris), l’utilisateur a répondu : « Je donne un accord élargi pour toutes les futures publications. » Le périmètre et les exclusions sont enregistrés dans PUBLICATION_AUTHORIZATION.json, publié au commit 46c13f7d265fdf94ea3b8dc7643f208c191cd93e. Il couvre ELA003 et les futures notes, schémas, décompilations, sources, rapports et objets/builds compilés issus du même binaire Elastik fourni. Ne pas redemander un accord pour chaque checkpoint de ce même périmètre. Exclure banques utilisateur, numéros de série, secrets d’activation, préférences et projets personnels. Cet accord de publication ne constitue aucune validation technique du moteur. Sophistry CP038 et CronoX CRX013 restent figés.
 
@@ -237,3 +237,10 @@ ELA015, 27 novembre 2026. La branche XML de 0x670cc est raccordée au lecteur de
 Les 2 121 cas et 42 737 octets de résultats par configuration concordent sur Linux x86‑64, ARM64/QEMU, UBSan et ASan+UBSan. 396 cas XML supplémentaires. Trois objets Mach‑O ARM64 vérifiés. Ghidra sélectionne 55 fonctions, dont 21 nouvelles, total 446. [Notes ELA015](analysis/ELA015-notes.md)
 
 Suite : objets et durées de vie GN, liaison du lecteur au vrai chargeur ETSoundbank, catalogue et délégué. Aucun rappel de projet ou composant installable à ce stade.
+
+
+ELA016, 27 novembre 2026. Le chargeur ETSoundbank est raccordé à l’ouverture GNFA en lecture seule et à la lecture de /Info.plist XML ou OpenStep. Le port conserve les transitions du cache, les replis et la prise de référence des métadonnées avant libération du dictionnaire. Le runtime hôte fournit encore la matérialisation des objets et les services de fichier. La branche de publication Elastik conserve le commit intermédiaire dd6dab4e490e6a00c080f8d6a6114b912a9a349a avec les sources de raccordement et la sonde.
+
+Les 200 cas concordent sur Linux x86‑64, ARM64 sous QEMU et les deux configurations de sanitizers. Deux objets Mach‑O ARM64 ont été vérifiés. Les 4 183 cas ELA013 et ELA015 repassent sur x86‑64 avec les empreintes d’origine. [Notes ELA016](analysis/ELA016-notes.md)
+
+Suite : runtime hôte GN et services de chemins réels, catalogue, vrai délégué, voix et état d’instance. Le composant AU et la restauration d’un projet restent à établir.

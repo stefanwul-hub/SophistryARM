@@ -1,0 +1,82 @@
+{
+  "checkpoint": "ELA016",
+  "checkpoint_base_commit": "3d068e484ecc30fad1b674a7348fc768b2964aa2",
+  "source_progress_commit": "dd6dab4e490e6a00c080f8d6a6114b912a9a349a",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "tools": [
+    "GCC 14.2.0",
+    "Zig 0.14.1",
+    "Unicorn 2.1.4",
+    "QEMU AArch64 10.0.13"
+  ],
+  "common_flags": [
+    "-std=c++17",
+    "-fno-fast-math",
+    "-ffp-contract=off"
+  ],
+  "strict_host_flags": [
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fno-tree-vectorize"
+  ],
+  "aarch64_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-O2"
+  ],
+  "ubsan_flags": [
+    "-O1",
+    "-g",
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "asan_ubsan_flags": [
+    "-O1",
+    "-g",
+    "-fsanitize=address,undefined",
+    "-fno-sanitize-recover=all",
+    "-fno-omit-frame-pointer",
+    "-no-pie"
+  ],
+  "asan_environment": {
+    "ASAN_OPTIONS": "detect_leaks=1"
+  },
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-O2",
+    "-c"
+  ],
+  "mach_o_objects": [
+    {
+      "file": "OriginalSoundbank-arm64-macos.o",
+      "sha256": "acf75dafcfca032390b4bda200d2923fac353e78f6cd2df7216459250eda6661",
+      "bytes": 30408,
+      "cpu": "0x100000c",
+      "cpu_subtype": 0,
+      "file_type": "MH_OBJECT"
+    },
+    {
+      "file": "OriginalSoundbankArchive-arm64-macos.o",
+      "sha256": "eb05d6cd6f918043fd5d421ccfffce6c393c1bddca1d2f2d006a84ed85214c7a",
+      "bytes": 234936,
+      "cpu": "0x100000c",
+      "cpu_subtype": 0,
+      "file_type": "MH_OBJECT"
+    }
+  ],
+  "fixture_count_per_configuration": 200,
+  "result_bytes_per_configuration": 211620,
+  "all_four_per_case_report_hashes_equal": true,
+  "old_corpora_x86_64_regression": {
+    "ela013": 2062,
+    "ela015": 2121,
+    "original_case_hashes_equal": true
+  },
+  "original_built_in_soundbank_tested": true,
+  "actual_macos_execution": false,
+  "audio_unit_built": false
+}
