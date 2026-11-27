@@ -1,4 +1,4 @@
-#include "OriginalSoundbank.h"
+#include "OriginalSoundbankInternal.h"
 static void replace(void*& old,void* value,const ElastikOriginalSoundbankPlatform* p) noexcept {
     if(old!=value){if(old)p->reference(p->context,2,old);old=value;if(value)p->reference(p->context,1,value);}
 }
@@ -42,35 +42,66 @@ extern "C" void* elastik_original_bank_source(ElastikOriginalSoundbank* b,
     }
     return nullptr;
 }
-static void path_diagnostic(const ElastikOriginalSoundbankPlatform* p,int code,void* path) noexcept {
+namespace elastik_soundbank_detail {
+
+void path_diagnostic(const ElastikOriginalSoundbankPlatform* p,int code,void* path) noexcept {
     void* name=p->path_name(p->context,path);if(name)name=p->path_name(p->context,path);
     p->diagnostic(p->context,code,name);
 }
-extern "C" void* elastik_original_bank_archive(ElastikOriginalSoundbank* b,
-    const ElastikOriginalSoundbankPlatform* p) noexcept {
+
+void apply_metadata(ElastikOriginalSoundbank* b, const ElastikOriginalSoundbankPlatform* p,
+                    void* info) noexcept {
+    void* name=p->description(p->context,info);if(name)name=p->description(p->context,info);
+    p->diagnostic(p->context,3,name);
+    replace(b->identifier,immutable(p->dictionary_get(p->context,info,"identifier"),p),p);
+    replace(b->title,p->dictionary_get(p->context,info,"title"),p);
+    replace(b->serial,p->dictionary_get(p->context,info,"serial"),p);
+    replace(b->color,p->dictionary_get(p->context,info,"color"),p);
+    void* grace=p->dictionary_get(p->context,info,"gracePeriode");
+    if(grace)b->grace_period=static_cast<double>(p->number_float(p->context,grace));
+}
+
+void* load(ElastikOriginalSoundbank* b, const ElastikOriginalSoundbankPlatform* p,
+           const ArchiveReader& reader) {
     void* path=elastik_original_bank_source(b,p); // Also runs for cached archives.
     if(!b->archive&&path&&p->path_is_file(p->context,path)){
         if(b->identifier){p->reference(p->context,2,b->identifier);b->identifier=nullptr;}
         b->archive=p->construct_archive(p->context);
-        if(p->open_archive(p->context,b->archive,path)!=ElastikArchiveOk){invalidate(b,p);return nullptr;}
-        void* member=p->archive_member(p->context,b->archive,"/Info.plist");
-        if(!member||!p->path_is_file(p->context,member))path_diagnostic(p,1,path);
-        else{
-            void* info=p->parse_plist(p->context,member);
-            if(!info)path_diagnostic(p,2,path);
-            else{
-                void* name=p->description(p->context,info);if(name)name=p->description(p->context,info);
-                p->diagnostic(p->context,3,name);
-                replace(b->identifier,immutable(p->dictionary_get(p->context,info,"identifier"),p),p);
-                replace(b->title,p->dictionary_get(p->context,info,"title"),p);
-                replace(b->serial,p->dictionary_get(p->context,info,"serial"),p);
-                replace(b->color,p->dictionary_get(p->context,info,"color"),p);
-                void* grace=p->dictionary_get(p->context,info,"gracePeriode");
-                if(grace)b->grace_period=static_cast<double>(p->number_float(p->context,grace));
-            }
+        if(reader.open(reader.context,b->archive,path)!=ElastikArchiveOk){
+            invalidate(b,p);
+            return nullptr;
         }
+        reader.read_metadata(reader.context,b,p,path);
         if(!b->identifier)replace(b->identifier,immutable(p->path_posix(p->context,path),p),p);
         if(!b->title)replace(b->title,p->path_name(p->context,path),p);
     }
     return b->archive;
+}
+
+} // namespace elastik_soundbank_detail
+
+static int open_legacy(const void* context, void* archive, void* source) noexcept {
+    const auto* p = static_cast<const ElastikOriginalSoundbankPlatform*>(context);
+    return p->open_archive(p->context, archive, source);
+}
+
+static void read_legacy(const void*, ElastikOriginalSoundbank* bank,
+                        const ElastikOriginalSoundbankPlatform* p, void* source) noexcept {
+    void* member = p->archive_member(p->context, bank->archive, "/Info.plist");
+    if (!member || !p->path_is_file(p->context, member)) {
+        elastik_soundbank_detail::path_diagnostic(p, 1, source);
+        return;
+    }
+    void* info = p->parse_plist(p->context, member);
+    if (!info) {
+        elastik_soundbank_detail::path_diagnostic(p, 2, source);
+        return;
+    }
+    elastik_soundbank_detail::apply_metadata(bank, p, info);
+}
+
+extern "C" void* elastik_original_bank_archive(ElastikOriginalSoundbank* b,
+    const ElastikOriginalSoundbankPlatform* p) noexcept {
+    // The shared loader only calls the original nonthrowing callbacks here.
+    return elastik_soundbank_detail::load(b,p,{p,open_legacy,read_legacy});
 }

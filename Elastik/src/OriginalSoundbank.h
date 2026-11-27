@@ -28,7 +28,7 @@ struct ElastikOriginalSoundbankPlatform {
     void* (*parse_plist)(void*,void* path);
     void* (*description)(void*,void* object);
     void* (*dictionary_get)(void*,void* dictionary,const char* key);
-    float (*number_float)(void*,void* number);
+    float (*number_float)(void*,void* value); // Original GNString float getter for gracePeriode.
     void (*diagnostic)(void*,int code,void* name); // 1 missing, 2 invalid, 3 loaded
 };
 // Originals: identifier 0x1a9b78(86), source 0x1a9bda(77), root
