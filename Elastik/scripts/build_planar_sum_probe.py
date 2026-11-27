@@ -42,7 +42,7 @@ def build(output, compiler=None, kind='planar-sum'):
                'archive-names': ('src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'tests/ArchiveNameProbe.cpp'),
                'named-archive-wave': ('src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'src/OriginalWave.cpp', 'src/OriginalWaveChunks.cpp', 'src/OriginalWaveAdpcm.cpp', 'src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'tests/NamedArchiveWaveProbe.cpp'),
                'soundbank': ('src/OriginalSoundbank.cpp', 'tests/SoundbankProbe.cpp'),
-               'property-list': ('src/OriginalPropertyList.cpp', 'src/OriginalArchivePropertyList.cpp', 'src/OriginalArchiveOpen.cpp', 'src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'tests/PropertyListProbe.cpp'),
+               'property-list': ('src/OriginalPropertyList.cpp', 'src/OriginalPropertyListXml.cpp', 'third_party/tinyxml2/tinyxml2.cpp', 'src/OriginalArchivePropertyList.cpp', 'src/OriginalArchiveOpen.cpp', 'src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'tests/PropertyListProbe.cpp'),
                'archive-open': ('src/OriginalArchiveOpen.cpp', 'src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'tests/ArchiveOpenProbe.cpp')}[kind]
     command = [compiler] + flags + [str(root / name) for name in sources] + ['-o', str(output)]
     subprocess.run(command, check=True)

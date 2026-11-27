@@ -1,8 +1,8 @@
 #include "OriginalPropertyList.h"
+#include "OriginalPropertyListXml.h"
 #include "OriginalStringEncoding.h"
 
 #include <algorithm>
-#include <cmath>
 #include <limits>
 #include <optional>
 
@@ -15,6 +15,9 @@ const ElastikPropertyValue* ElastikPropertyValue::find(std::u16string_view key) 
 }
 
 namespace {
+
+using elastik_plist_detail::decode_utf8;
+using elastik_plist_detail::number_real;
 
 bool probe_space(unsigned char ch) noexcept {
     return ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n';
@@ -57,39 +60,6 @@ bool has_openstep_marker(std::string_view bytes, bool path) noexcept {
         if (!closed) return ch == '{';
     }
     return false;
-}
-
-std::u16string decode_utf8(std::string_view bytes) {
-    std::u16string result;
-    result.reserve(bytes.size());
-    for (size_t pos = 0; pos < bytes.size();) {
-        const auto first = static_cast<unsigned char>(bytes[pos++]);
-        if (first < 0x80) {
-            result.push_back(first);
-            continue;
-        }
-        if (first < 0xc2 || first > 0xf4) return {};
-        const unsigned count = first < 0xe0 ? 1 : first < 0xf0 ? 2 : 3;
-        if (bytes.size() - pos < count) return {};
-        uint32_t unit = first & (0x7fu >> (count + 1));
-        for (unsigned i = 0; i < count; ++i) {
-            const auto continuation = static_cast<unsigned char>(bytes[pos++]);
-            if (continuation < 0x80 || continuation > 0xbf) return {};
-            unit = (unit << 6) | (continuation & 0x3f);
-        }
-        if ((count == 2 && unit < 0x800) || (count == 3 && unit < 0x10000) || unit > 0x10ffff) {
-            return {};
-        }
-        if (unit < 0x10000) {
-            // Original UTF-8 accepts a surrogate encoded as a three-byte unit.
-            result.push_back(static_cast<char16_t>(unit));
-        } else {
-            unit -= 0x10000;
-            result.push_back(static_cast<char16_t>(0xd800 + (unit >> 10)));
-            result.push_back(static_cast<char16_t>(0xdc00 + (unit & 0x3ff)));
-        }
-    }
-    return result;
 }
 
 std::u16string decode(std::string_view bytes, ElastikPropertyListFormat format) {
@@ -149,29 +119,6 @@ int32_t number_integer(std::u16string_view text) noexcept {
         value = value * 10 + (ch - u'0');
     }
     return static_cast<int32_t>(std::min(value, static_cast<uint32_t>(std::numeric_limits<int32_t>::max())));
-}
-
-// A bare token is classified as numeric only if all its characters are in
-// "-+.0123456789". The grammar excludes signs, and therefore also exponents.
-float number_real(std::u16string_view text) noexcept {
-    double value = 0;
-    int64_t scale = 0;
-    bool after_dot = false;
-    for (char16_t ch : text) {
-        if (ch == u'.' && !after_dot) {
-            after_dot = true;
-            continue;
-        }
-        if (!digit(ch)) break;
-        if (value < 1.7976931346825464e307) {
-            value = value * 10 + (ch - u'0');
-            if (after_dot) --scale;
-        } else if (!after_dot) {
-            ++scale;
-        }
-    }
-    if (value != 0 && scale != 0) value *= std::pow(10.0, scale);
-    return static_cast<float>(value);
 }
 
 class OpenStepParser {
@@ -354,7 +301,7 @@ ElastikPropertyListFormat elastik_original_plist_format(std::string_view bytes,
 
 ElastikPropertyList elastik_original_plist(std::string_view bytes, bool has_reader) {
     const auto format = elastik_original_plist_format(bytes, has_reader);
-    if (format == ElastikPropertyListFormat::Xml) return {format, ElastikPropertyListStatus::XmlPending, {}};
+    if (format == ElastikPropertyListFormat::Xml) return elastik_plist_detail::parse_xml(bytes);
     const auto text = decode(bytes, format);
     OpenStepParser parser(text);
     auto value = parser.value();

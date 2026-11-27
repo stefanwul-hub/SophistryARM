@@ -1,4 +1,4 @@
-# Reprise Elastik — ELA014, restauration des anciens projets
+# Reprise Elastik — ELA015, restauration des anciens projets
 
 **Autorisation de publication active et permanente.** Le 27 novembre 2026 (Europe/Paris), l’utilisateur a répondu : « Je donne un accord élargi pour toutes les futures publications. » Le périmètre et les exclusions sont enregistrés dans PUBLICATION_AUTHORIZATION.json, publié au commit 46c13f7d265fdf94ea3b8dc7643f208c191cd93e. Il couvre ELA003 et les futures notes, schémas, décompilations, sources, rapports et objets/builds compilés issus du même binaire Elastik fourni. Ne pas redemander un accord pour chaque checkpoint de ce même périmètre. Exclure banques utilisateur, numéros de série, secrets d’activation, préférences et projets personnels. Cet accord de publication ne constitue aucune validation technique du moteur. Sophistry CP038 et CronoX CRX013 restent figés.
 
@@ -230,3 +230,10 @@ ELA014, 27 novembre 2026. Le parseur natif reçoit les octets d’un membre GNFA
 Correction de l’adresse logique de la plist intégrée : l’entrée 3 a parent 0. /Info.plist se résout et livre les 96 octets complets. /elastik/Info.plist ne se résout pas. Les vrais corps i386 d’ouverture/recherche/lecture alimentent le vrai parseur i386 dans deux VM. La sonde native enchaîne le même chemin dans un processus.
 
 ELA014 vérifie 1 725 cas et 17 692 octets de résultats par configuration sur Linux x86‑64, ARM64/QEMU, UBSan et ASan+UBSan. Les 2 831 cas ELA013 repassent sur x86‑64. Deux objets Mach‑O ARM64 vérifiés. 63 corps sélectionnés sous Ghidra, dont 35 nouveaux, total 425. Installer original et payload restent dans reference/ à partir de l’attachement vérifié. Aucune validation Mac, aucun AU installable et aucun projet restauré.
+
+
+ELA015, 27 novembre 2026. La branche XML de 0x670cc est raccordée au lecteur de membres GNFA déjà utilisé par OpenStep. La projection reprend 0x66e46, 0x673d2 et 0x67a06, les scanners numériques et les conventions d’entités et de décodage Base64. La date conserve les arguments du constructeur GN pour la future liaison CoreFoundation. TinyXML-2 11.0.0 est inclus avec sa licence. Le texte brut qui suit un document est rejeté par la version native et les octets de remplissage Base64 sont déterministes.
+
+Les 2 121 cas et 42 737 octets de résultats par configuration concordent sur Linux x86‑64, ARM64/QEMU, UBSan et ASan+UBSan. 396 cas XML supplémentaires. Trois objets Mach‑O ARM64 vérifiés. Ghidra sélectionne 55 fonctions, dont 21 nouvelles, total 446. [Notes ELA015](analysis/ELA015-notes.md)
+
+Suite : objets et durées de vie GN, liaison du lecteur au vrai chargeur ETSoundbank, catalogue et délégué. Aucun rappel de projet ou composant installable à ce stade.

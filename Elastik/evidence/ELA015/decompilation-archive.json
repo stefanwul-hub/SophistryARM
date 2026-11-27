@@ -1,0 +1,14 @@
+{
+  "checkpoint": "ELA015",
+  "ghidra_version": "11.3.2",
+  "read_only": true,
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "selected_functions": 55,
+  "new_selected_functions": 21,
+  "selected_all_checkpoints": 446,
+  "direct_call_depth": 1,
+  "archive": "analysis/ELA015-original-xml-plist-decompiled.zip",
+  "archive_sha256": "a49d7e9d895dec3b4a2c6ed77f8f795bc85c25084d693c1701647fa18f2c039d",
+  "archive_bytes": 89406,
+  "entries": 112
+}

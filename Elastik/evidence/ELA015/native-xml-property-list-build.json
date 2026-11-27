@@ -1,0 +1,97 @@
+{
+  "checkpoint": "ELA015",
+  "base_checkpoint": "477ac9de26c4ac816d8913c8a6a481bfbd7b44fb",
+  "publication_base_head": "68dcccc7826c58189d0d631524934fdee80f7727",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "mach_o_objects": [
+    {
+      "file": "OriginalPropertyList-arm64-macos.o",
+      "sha256": "e9436d543031d08169ba8d6e8977317af26c749ce2591d0427eef5fe2f1ea30c",
+      "bytes": 826536,
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "file_type": "MH_OBJECT"
+    },
+    {
+      "file": "OriginalPropertyListXml-arm64-macos.o",
+      "sha256": "00b86d0bccc64d5032ef1788256fe27f5e750f69908cdfcb2a5ec2d4aafffc14",
+      "bytes": 946064,
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "file_type": "MH_OBJECT"
+    },
+    {
+      "file": "tinyxml2-arm64-macos.o",
+      "sha256": "0f48ba089caf20295e683fabe0d69bae5ef1513b914c4f04e1d918dc892fd247",
+      "bytes": 454528,
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "file_type": "MH_OBJECT"
+    }
+  ],
+  "tools": [
+    "GCC 14.2.0",
+    "Zig 0.14.1",
+    "QEMU AArch64 10.0.13",
+    "Unicorn 2.1.4",
+    "Ghidra 11.3.2"
+  ],
+  "common_compile_flags": [
+    "-std=c++17",
+    "-fno-fast-math",
+    "-ffp-contract=off"
+  ],
+  "strict_gcc_flags": [
+    "-O2",
+    "-fno-tree-vectorize",
+    "-Wall",
+    "-Wextra",
+    "-Werror"
+  ],
+  "ubsan_flags": [
+    "-O1",
+    "-g",
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "asan_ubsan_flags": [
+    "-O1",
+    "-g",
+    "-fsanitize=address,undefined",
+    "-fno-sanitize-recover=all",
+    "-fno-omit-frame-pointer",
+    "-no-pie"
+  ],
+  "asan_options": "detect_leaks=1",
+  "arm64_linux_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-O2"
+  ],
+  "arm64_macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-O2",
+    "-c"
+  ],
+  "xml_nesting_limit": {
+    "level_bound": 128,
+    "tested_values": [
+      140,
+      540
+    ]
+  },
+  "tinyxml2": {
+    "tag": "11.0.0",
+    "source": "https://github.com/leethomason/tinyxml2/tree/11.0.0",
+    "upstream_file_sha256": {
+      "LICENSE.txt": "9332252e9b9e46db8285d4a3f0bf25f139bf1dca6781b956d57f2302efca6432",
+      "tinyxml2.cpp": "95f64e4cb06c9e147d5b12e8860c88898944858dfbc38fed92ebf918f1436554",
+      "tinyxml2.h": "0f3c6e5a91b6d65caca3cc7239926455f21e488cff80ac3d27c74f5262fd2602"
+    },
+    "load_external_dtd": false
+  },
+  "actual_macos_execution": false,
+  "audio_unit_built": false
+}

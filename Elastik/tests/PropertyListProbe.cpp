@@ -28,6 +28,13 @@ bool value(const ElastikPropertyValue& node) {
             return scalar('s') && string(item);
         } else if constexpr (std::is_same_v<T, int32_t>) {
             return scalar('i') && scalar(item);
+        } else if constexpr (std::is_same_v<T, int64_t>) {
+            return scalar('q') && scalar(item);
+        } else if constexpr (std::is_same_v<T, bool>) {
+            return scalar('b') && scalar(static_cast<uint8_t>(item));
+        } else if constexpr (std::is_same_v<T, ElastikPropertyDate>) {
+            return scalar('t') && scalar(static_cast<uint8_t>(item.use_current_time)) &&
+                   write(item.calendar.data(), item.calendar.size() * sizeof(int32_t));
         } else if constexpr (std::is_same_v<T, float>) {
             return scalar('f') && scalar(item);
         } else if constexpr (std::is_same_v<T, ElastikPropertyValue::Data>) {

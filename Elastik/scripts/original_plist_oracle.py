@@ -45,7 +45,7 @@ class PropertyListOracle(OriginalCacheOracle):
             0x29d44: self.list_init,
             0x2bb40: self.list_push,
             0x18bc7c: self.scanner_init,
-            0x18ab46: self.identity,  # No skippable characters in numeric tokens.
+            0x18ab46: self.skip_scanner_space,
             0x67103: self.xml,
             0x1a5eb8: lambda *args: setattr(self, 'format', 1),
             0x1a5f6c: lambda *args: setattr(self, 'format', 2),
@@ -261,6 +261,9 @@ class PropertyListOracle(OriginalCacheOracle):
         scanner = self.reserve(24)
         self.put(scanner, 0x390d88, 0, 0, obj, 0, 0)
         self.finish(scanner)
+
+    def skip_scanner_space(self, *unused):
+        self.identity()  # OpenStep numeric tokens have no spaces.
 
     def xml(self, *unused):
         self.format = 0
