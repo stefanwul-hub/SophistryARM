@@ -10,5 +10,29 @@
   },
   "contains_original_installer": false,
   "contains_user_bank": false,
-  "native_audio_unit_available": false
+  "native_audio_unit_available": false,
+  "public_source_commit": "9474deae419c4bd1b20d1599c1548894a600c7d6",
+  "verified_public_downloads": [
+    {
+      "path": "Elastik-ELA006-complet-checkpoint.zip",
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/9474deae419c4bd1b20d1599c1548894a600c7d6/Elastik/Elastik-ELA006-complet-checkpoint.zip",
+      "http_status": 200,
+      "bytes": 1518116,
+      "sha256": "50b897669f3b999c605339e5131fd51256fcaf49fd9f02e9eb94d05febb98561",
+      "zip_entries": 149,
+      "zip_crc_verified": true,
+      "matches_local_archive": true
+    },
+    {
+      "path": "analysis/ELA006-original-refill-lifecycle-decompiled.zip",
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/9474deae419c4bd1b20d1599c1548894a600c7d6/Elastik/analysis/ELA006-original-refill-lifecycle-decompiled.zip",
+      "http_status": 200,
+      "bytes": 49785,
+      "sha256": "73183eeeaaf3a73a4ddb5e65fc5658e3999ba9724758850bc236edf79026a94b",
+      "zip_entries": 54,
+      "zip_crc_verified": true,
+      "matches_local_archive": true
+    }
+  ],
+  "package_file_manifest_verified": true
 }
