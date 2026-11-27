@@ -1,5 +1,5 @@
 #pragma once
-// Pinned encoding-0 table for test bindings; no UTF-8 substitution.
+// Encoding 0 byte-to-UTF-16 pairs from Elastik i386 at 0x366b20.
 struct LegacyArchiveCharacter {unsigned char byte;unsigned short unicode;};
 static constexpr LegacyArchiveCharacter legacy_archive_characters[]{
     {1,0x0001},

@@ -22,7 +22,7 @@ static void setup(Context* c,const int* h,unsigned char* raw,uint16_t* units){
     void* p=static_cast<ArchiveNameBase::Context*>(c);
     c->opening={p,read_file,size,construct,ArchiveNameFixture::string_length,character,retain_string,retain_owner};
 }
-static bool summary(Context* c,int open_status,int repeated,int path_status,ElastikOriginalArchivePath* path){
+static inline bool summary(Context* c,int open_status,int repeated,int path_status,ElastikOriginalArchivePath* path){
     const auto& a=c->archive;const int h[]{open_status,repeated,path_status,path?1:0,c->container.file?1:0,a.stream?1:0,static_cast<int>(a.header_bytes),static_cast<int>(a.version),static_cast<int>(a.directory_layout),static_cast<int>(a.entry_count),a.entries?1:0,a.read_only,c->capacity,static_cast<int>(a.file_bytes),static_cast<int>(a.file_bytes>>32),c->pos[0],c->pos[1],c->path.archive?1:0,static_cast<int>(c->path.index),c->path.unresolved?1:0,c->depth,c->owners,c->paths};
     if(!ArchiveNameFixture::output(h,sizeof(h)))return false;
     for(int i=0;i<c->capacity;++i)if(!ArchiveNameBase::write_entry(c->entries[i]))return false;

@@ -42,6 +42,7 @@ def build(output, compiler=None, kind='planar-sum'):
                'archive-names': ('src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'tests/ArchiveNameProbe.cpp'),
                'named-archive-wave': ('src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'src/OriginalWave.cpp', 'src/OriginalWaveChunks.cpp', 'src/OriginalWaveAdpcm.cpp', 'src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'tests/NamedArchiveWaveProbe.cpp'),
                'soundbank': ('src/OriginalSoundbank.cpp', 'tests/SoundbankProbe.cpp'),
+               'property-list': ('src/OriginalPropertyList.cpp', 'src/OriginalArchivePropertyList.cpp', 'src/OriginalArchiveOpen.cpp', 'src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'tests/PropertyListProbe.cpp'),
                'archive-open': ('src/OriginalArchiveOpen.cpp', 'src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'tests/ArchiveOpenProbe.cpp')}[kind]
     command = [compiler] + flags + [str(root / name) for name in sources] + ['-o', str(output)]
     subprocess.run(command, check=True)
@@ -53,6 +54,6 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--compiler')
-    p.add_argument('--kind', choices=['planar-sum', 'voice-chunk', 'sample-format', 'buffered-pcm', 'sample-cache', 'sample-file', 'cache-refill', 'cache-lifecycle', 'timer', 'wave', 'wave-chunks', 'wave-adpcm', 'file-open', 'file-pipeline', 'file-archive', 'archive-wave', 'byte-file', 'archive-names', 'named-archive-wave', 'soundbank', 'archive-open'], default='planar-sum')
+    p.add_argument('--kind', choices=['planar-sum', 'voice-chunk', 'sample-format', 'buffered-pcm', 'sample-cache', 'sample-file', 'cache-refill', 'cache-lifecycle', 'timer', 'wave', 'wave-chunks', 'wave-adpcm', 'file-open', 'file-pipeline', 'file-archive', 'archive-wave', 'byte-file', 'archive-names', 'named-archive-wave', 'soundbank', 'property-list', 'archive-open'], default='planar-sum')
     a = p.parse_args()
     build(a.output, a.compiler, a.kind)

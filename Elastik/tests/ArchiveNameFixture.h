@@ -1,6 +1,6 @@
 #pragma once
 #include "../src/OriginalArchiveLookup.h"
-#include "LegacyArchiveStringTable.h"
+#include "../src/OriginalStringEncoding.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -78,7 +78,7 @@ static ElastikArchiveStatus prepare(Context* c,const int* h){
 }
 static void cleanup(Context* c){for(int i=0;i<c->component_count;++i)free(c->components[i]);for(int i=0;i<c->file_count;++i)free(c->files[i]);for(int i=0;i<c->data_count;++i)free(c->data[i].bytes);free(c->entries);free(c->raw);free(c->path_units);free(c);}
 static bool output(const void* p,size_t n){return !n||fwrite(p,1,n,stdout)==n;}
-static bool snapshot(Context* c){
+static inline bool snapshot(Context* c){
     const int n=c->file_count;if(!output(&n,4))return false;
     for(int i=0;i<n;++i){const auto& f=c->files[i]->value;const int v[]{data_id(c,f.base.data),f.base.fork,f.base.position,f.base.length,f.member.path?1:0,f.member.backing?static_cast<int>(f.member.backing-c->streams)+1:0,f.member.shared,static_cast<int>(f.member.position),static_cast<int>(f.member.position>>32),f.writing};if(!output(v,sizeof(v)))return false;}
     if(!output(&c->data_count,4))return false;

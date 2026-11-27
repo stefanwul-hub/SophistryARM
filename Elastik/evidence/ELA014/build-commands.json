@@ -1,0 +1,39 @@
+{
+  "checkpoint": "ELA014",
+  "tools": [
+    "GCC 14.2.0",
+    "Zig 0.14.1",
+    "QEMU AArch64 10.0.13",
+    "Unicorn 2.1.4",
+    "Ghidra 11.3.2"
+  ],
+  "common_compile_flags": [
+    "-std=c++17",
+    "-fno-fast-math",
+    "-ffp-contract=off"
+  ],
+  "sources": [
+    "src/OriginalPropertyList.cpp",
+    "src/OriginalArchivePropertyList.cpp",
+    "src/OriginalArchiveOpen.cpp",
+    "src/OriginalArchiveLookup.cpp",
+    "src/OriginalByteFile.cpp",
+    "src/OriginalFileArchive.cpp",
+    "tests/PropertyListProbe.cpp"
+  ],
+  "strict_x86_64": "g++ -O2 -Wall -Wextra -Werror",
+  "sanitized_x86_64": [
+    "g++ -O1 -g -fsanitize=undefined -fno-sanitize-recover=all",
+    "g++ -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer -no-pie"
+  ],
+  "asan_environment": {
+    "ASAN_OPTIONS": "detect_leaks=1"
+  },
+  "linux_arm64": "zig c++ -target aarch64-linux-musl -static -O2",
+  "macos_arm64_objects": "zig c++ -target aarch64-macos -O2 -c",
+  "comparison": "python3 scripts/compare_original_property_list.py reference/Elastik.i386 RUNNER --platform LABEL --output RESULT",
+  "arm64_comparison_extra_args": [
+    "--runner-prefix",
+    "qemu-aarch64"
+  ]
+}

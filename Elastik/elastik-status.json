@@ -1,6 +1,6 @@
 {
   "project": "Elastik 1 ARM64",
-  "checkpoint": "ELA013",
+  "checkpoint": "ELA014",
   "goal": "Restore old projects containing Elastik 1 Audio Unit instances",
   "original_version": "1.5.2.3",
   "original_architectures": [
@@ -62,7 +62,7 @@
     "CronoX3": "CRX013 user validated and frozen"
   },
   "remaining_work": [
-    "Port/connect original property-list parser and native GN archive/object ownership/exceptions, then integrate bank metadata with actual source services",
+    "Port the XML plist branch and native GN object ownership/exceptions, then connect the plist reader to ETSoundbank and actual source services",
     "Port global ETSoundbank catalog and real bank delegate/authorization, required format readers and whole-voice loop/pitch/time-stretch DSP",
     "Connect file/cache/timer lifecycle to native event-loop and verify concurrency and actual OS file services",
     "Decode GNArchiver object bodies and verify real saved Elastik 1 states and user banks",
@@ -70,11 +70,11 @@
   ],
   "publication_directory": "Elastik",
   "reference_CronoX_changed": false,
-  "selected_functions_decompiled": 390,
+  "selected_functions_decompiled": 425,
   "au_state_header_validation_identified": true,
   "state_payload_decoder_complete": false,
   "first_native_engine_milestone_reached": false,
-  "new_functions_decompiled_this_checkpoint": 49,
+  "new_functions_decompiled_this_checkpoint": 35,
   "original_rtti_records": 520,
   "selected_original_class_vtables_recovered": 12,
   "original_audio_render_path_identified": true,
@@ -107,9 +107,9 @@
   "voice_chunk_decoded_fixture_provider_only": false,
   "original_file_decoder_or_pitch_cache_executed": true,
   "registered_state_model_fields_recovered": 41,
-  "current_detailed_analysis_archive": "analysis/ELA013-original-soundbank-decompiled.zip",
+  "current_detailed_analysis_archive": "analysis/ELA014-original-plist-decompiled.zip",
   "current_detailed_analysis_archive_public": true,
-  "current_detailed_analysis_publication_status": "Published and immutable archive download verified",
+  "current_detailed_analysis_publication_status": "Included in the ELA014 publication",
   "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
   "current_and_future_publications_authorised": true,
   "repeat_authorization_required_for_same_scope": false,
@@ -236,5 +236,14 @@
   "bank_loading_macos_arm64_objects_compiled": 2,
   "property_list_parser_translated": false,
   "global_bank_catalog_translated": false,
-  "bank_GN_ownership_and_constructor_ported": false
+  "bank_GN_ownership_and_constructor_ported": false,
+  "openstep_property_list_parser_translated": true,
+  "xml_property_list_parser_translated": false,
+  "openstep_archive_member_pipeline_tested": true,
+  "openstep_property_list_comparison_cases_per_platform": 1725,
+  "openstep_property_list_archive_pipeline_cases_per_platform": 45,
+  "builtin_bank_info_plist_resolved_path": "/Info.plist",
+  "builtin_bank_info_plist_original_bytes": 96,
+  "property_list_macos_arm64_objects_compiled": 2,
+  "ela013_bank_archive_x86_64_regression_cases": 2831
 }

@@ -1,0 +1,57 @@
+{
+  "checkpoint": "ELA014",
+  "checkpoint_base_commit": "c94d14865073c8816d7d415041d85aee5a21beef",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "original_installer_sha256": "e72aa430ddb833de7e50d4157962caf45d8f75da105d68969cfad5a0b56c6939",
+  "verified_ela013_archive_sha256": "3328478e261cad8cf4829c37fb041d409e1a18577c8668707a15569ea43ddb5c",
+  "native_object_files": [
+    {
+      "source": "src/OriginalPropertyList.cpp",
+      "path": "evidence/ELA014/OriginalPropertyList-arm64-macos.o",
+      "bytes": 755576,
+      "sha256": "7b85dea00900a2cb2f2d0f78fae762d59853982a64b4b2b99fb8bf9751eb6dd1",
+      "magic": "0xfeedfacf",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "file_type": "MH_OBJECT"
+    },
+    {
+      "source": "src/OriginalArchivePropertyList.cpp",
+      "path": "evidence/ELA014/OriginalArchivePropertyList-arm64-macos.o",
+      "bytes": 321176,
+      "sha256": "5dfdb53bb7791c13834d364c5ae7962c156029a48a6692a1199a39e8678c45a7",
+      "magic": "0xfeedfacf",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "file_type": "MH_OBJECT"
+    }
+  ],
+  "case_names_and_sha256_identical_across_four_configurations": true,
+  "differential_cases_per_configuration": 1725,
+  "result_bytes_per_configuration": 17692,
+  "ela013_x86_64_regression": [
+    {
+      "suite": "soundbank",
+      "cases": 2062,
+      "all_case_names_and_hashes_match_ela013": true
+    },
+    {
+      "suite": "archive-open",
+      "cases": 769,
+      "all_case_names_and_hashes_match_ela013": true
+    }
+  ],
+  "native_depth_limit": {
+    "maximum_value_depth": 128,
+    "test_nested_arrays": 150,
+    "both_openstep_routes_rejected": true
+  },
+  "built_in_root_plist": {
+    "path": "/Info.plist",
+    "bytes": 96,
+    "sha256": "56c88669d0b5358acab74a337f3e5a7d184f16525c21748d5729c812d5020fca",
+    "nonresolving_path": "/elastik/Info.plist"
+  },
+  "macos_runtime_tested": false,
+  "audio_unit_built": false
+}
