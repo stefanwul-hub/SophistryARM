@@ -1,0 +1,13 @@
+{
+  "output": "/workspace/work/ElastikARM/work/ELA013-archive-open-host",
+  "probe": "archive-open",
+  "compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-tree-vectorize"
+  ],
+  "audio_unit_built": false
+}

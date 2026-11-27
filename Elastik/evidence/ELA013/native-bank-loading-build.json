@@ -1,0 +1,175 @@
+{
+  "checkpoint": "ELA013",
+  "client_date": "2026-11-27",
+  "translated_original_functions": [
+    {
+      "address": "0x1a9b78",
+      "bytes": 86,
+      "role": "Bank identifier and immutable copy"
+    },
+    {
+      "address": "0x1a9bda",
+      "bytes": 77,
+      "role": "Bank source/invalidation"
+    },
+    {
+      "address": "0x1a9cb4",
+      "bytes": 55,
+      "role": "Bank root path"
+    },
+    {
+      "address": "0x1a9cf8",
+      "bytes": 55,
+      "role": "Bank title"
+    },
+    {
+      "address": "0x1a9d3c",
+      "bytes": 55,
+      "role": "Bank color"
+    },
+    {
+      "address": "0x1a9d80",
+      "bytes": 55,
+      "role": "Bank serial field"
+    },
+    {
+      "address": "0x1a9dc4",
+      "bytes": 55,
+      "role": "Bank response field"
+    },
+    {
+      "address": "0x1a99d2",
+      "bytes": 199,
+      "role": "Bank object-reference cleanup"
+    },
+    {
+      "address": "0x1a9c28",
+      "bytes": 127,
+      "role": "Bank source-file resolution"
+    },
+    {
+      "address": "0x1aa964",
+      "bytes": 98,
+      "role": "Bank source-file replacement"
+    },
+    {
+      "address": "0x1aa9c6",
+      "bytes": 1143,
+      "role": "Lazy archive and bank metadata"
+    },
+    {
+      "address": "0xe13de",
+      "bytes": 217,
+      "role": "Read-only archive open and parser dispatch"
+    },
+    {
+      "address": "0xe168c",
+      "bytes": 433,
+      "role": "Absolute member path factory"
+    },
+    {
+      "address": "0xe1a68",
+      "bytes": 18,
+      "role": "Container path factory forwarding"
+    }
+  ],
+  "new_original_routine_bytes": 2673,
+  "total_original_routines_translated": 79,
+  "total_original_routine_bytes": 40510,
+  "new_selected_decompilations": 49,
+  "total_selected_decompilations": 390,
+  "source_files": [
+    {
+      "path": "src/OriginalSoundbank.cpp",
+      "bytes": 4388,
+      "sha256": "f3d4bf55ac4f5d8d8b82e741525070e50cf441f36d180aa69ae0bf817b5c5003"
+    },
+    {
+      "path": "src/OriginalSoundbank.h",
+      "bytes": 3088,
+      "sha256": "b15e9c0f00f5c1f3255aa3025ca68490d0f7abc7da89e3a1aadc14d207414b67"
+    },
+    {
+      "path": "src/OriginalArchiveOpen.cpp",
+      "bytes": 1620,
+      "sha256": "a56c63380bf684a3b38025ec8322de4150da1dd6dba5b38e330e93a1977095b6"
+    },
+    {
+      "path": "src/OriginalArchiveOpen.h",
+      "bytes": 2020,
+      "sha256": "5b806c6e97def18fbd8642a15545009335cfd0b3eca4fb1648fe7604494df222"
+    },
+    {
+      "path": "tests/SoundbankProbe.cpp",
+      "bytes": 5177,
+      "sha256": "1fbf29ecadf2074d406f53bf1e128f3b0ed8c2da1df73c199fff759f03971f58"
+    },
+    {
+      "path": "tests/ArchiveOpenFixture.h",
+      "bytes": 3027,
+      "sha256": "aecf03d06c54dfff85e48ff09a5c31cf217116416b6504984d0255200c32cf7f"
+    },
+    {
+      "path": "tests/ArchiveOpenProbe.cpp",
+      "bytes": 2048,
+      "sha256": "8f72ecaa4fa48269720f14aa33002c5df318a9d576f0c9f5eee1bc1d4bea5762"
+    },
+    {
+      "path": "scripts/compare_original_soundbank.py",
+      "bytes": 13879,
+      "sha256": "5886cacd9ef63ed77d14d07dc735168e18e973bb87485dfea58bd9c21ae2e59f"
+    },
+    {
+      "path": "scripts/compare_original_archive_open.py",
+      "bytes": 9325,
+      "sha256": "f4bb555a6ca6b166444c46faa0b2fb9acf7b2b36b32e1140fd2d28a8af4175e8"
+    },
+    {
+      "path": "scripts/recover_soundbank_model.py",
+      "bytes": 2055,
+      "sha256": "8bbbcc3c492641d9a95b01264f81a5ccf86e7154cbf022bc85c431967fc024e2"
+    },
+    {
+      "path": "scripts/build_planar_sum_probe.py",
+      "bytes": 5257,
+      "sha256": "447c404225fcd4c3be278c7133972ac33ce4d363974cb983891df7d51cf3d184"
+    }
+  ],
+  "comparisons": {
+    "soundbank": {
+      "cases_per_platform": 2062,
+      "compared_bytes_per_platform": 1602008,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "archive-open": {
+      "cases_per_platform": 769,
+      "compared_bytes_per_platform": 3924524,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    }
+  },
+  "total_cases_per_platform": 2831,
+  "total_compared_bytes_per_platform": 5526532,
+  "macos_arm64_objects_compiled": 2,
+  "native_macos_execution": false,
+  "native_audio_unit_available": false,
+  "complete_instrument_engine_built": false,
+  "bank_metadata_source_setters_and_lazy_archive_translated": true,
+  "GNFA_read_only_open_and_absolute_paths_translated": true,
+  "property_list_parser_ported": false,
+  "global_bank_catalog_ported": false,
+  "bank_constructor_and_GN_lifetimes_ported": false,
+  "real_bank_delegate_translated": false,
+  "protected_user_bank_compatibility_verified": false,
+  "bank_authorization_or_grace_check_bypassed": false,
+  "actual_user_serial_or_response_received_or_published": false,
+  "soundbank_state_registered_fields_identified": 5,
+  "all_state_registered_fields_identified": 41,
+  "actual_macos_fork_io_validated": false,
+  "actual_GN_ownership_exceptions_or_scheduler_validated": false,
+  "old_project_restored": false,
+  "new_bank_class_and_real_GNFA_combined_in_same_integration_corpus": false,
+  "native_audio_decoder_or_gain_changed": false,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}

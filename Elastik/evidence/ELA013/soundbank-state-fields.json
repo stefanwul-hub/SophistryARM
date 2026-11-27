@@ -1,0 +1,49 @@
+{
+  "checkpoint": "ELA013",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "class_name": "ETSoundbank",
+  "class_registration_function": "0x1a9596",
+  "decompiled_input_sha256": "9f50f044673feb1075a90c237a7845249f4965cdcb3360fd659a8a53120fc384",
+  "fields": [
+    {
+      "name": "_identifier",
+      "original_i386_offset": "0x10",
+      "original_member_bytes": 4,
+      "type": "object value",
+      "registration_type_tag": "@"
+    },
+    {
+      "name": "_sourceFilePosixPath",
+      "original_i386_offset": "0x1c",
+      "original_member_bytes": 4,
+      "type": "object property",
+      "declared_class": "GNString"
+    },
+    {
+      "name": "_rootFilePath",
+      "original_i386_offset": "0x20",
+      "original_member_bytes": 4,
+      "type": "relationship",
+      "declared_class": "GNFilePath"
+    },
+    {
+      "name": "_serialNumber",
+      "original_i386_offset": "0x14",
+      "original_member_bytes": 4,
+      "type": "object property",
+      "declared_class": "GNString"
+    },
+    {
+      "name": "_responseCode",
+      "original_i386_offset": "0x18",
+      "original_member_bytes": 4,
+      "type": "object property",
+      "declared_class": "GNString"
+    }
+  ],
+  "total_registered_fields": 5,
+  "actual_user_state_received": false,
+  "object_bodies_decoded": false,
+  "private_serial_or_response_data_received": false,
+  "old_project_restored": false
+}

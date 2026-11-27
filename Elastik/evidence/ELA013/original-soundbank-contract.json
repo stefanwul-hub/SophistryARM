@@ -1,0 +1,52 @@
+{
+  "checkpoint": "ELA013",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "source_bank_class": "ETSoundbank",
+  "original_vtable": "0x392d28",
+  "path_predicate_slot": "0x1d0",
+  "archive_path_predicate_address": "0xe05a2",
+  "predicate_means_positive_length_file_not_merely_directory_exists": true,
+  "metadata_path": "/Info.plist",
+  "metadata_keys": [
+    "identifier",
+    "title",
+    "serial",
+    "color",
+    "gracePeriode"
+  ],
+  "grace_read_precision": "float32 widened to double, retaining old value if key is absent",
+  "source_resolution_attempted_even_when_archive_already_cached": true,
+  "system_path_creation_null_does_not_attempt_resource_fallback": true,
+  "source_setter_invalidates_archive_even_when_source_object_is_identical": true,
+  "archive_open_exception_is_caught_but_metadata_parser_callback_exceptions_are_not_caught_by_this_routine": true,
+  "bank_read_open_forces_readonly_before_acquiring_reader": true,
+  "cannot_open_exception_preserved_as_distinct_status_5": "GNFileArchiveCannotOpenArchiveException",
+  "ordinary_archive_data_read_exception_status_3": "GNFileArchiveCannotReadArchiveException",
+  "original_bank_constructor_analysis_only": {
+    "addresses": [
+      "0x1aa5d8",
+      "0x1a9862",
+      "0x1a98d0"
+    ],
+    "object_references_zeroed": true,
+    "grace_double_zeroed": true,
+    "mounted_at_double_not_written_by_constructor": true,
+    "GN_base_constructor_and_allocation_are_runtime_dependencies": true
+  },
+  "builtin_resource_bank": {
+    "sha256": "9b4aca313f9ba24da8c4c2b2473f4023ca9a3efcd009d117644c3a46e2be0f84",
+    "metadata_actually_at": "/elastik/Info.plist",
+    "root_Info_plist_absent": true,
+    "format": "OpenStep property list, not XML",
+    "metadata_keys": [
+      "color",
+      "identifier",
+      "title"
+    ],
+    "original_builtin_data_not_published": true
+  },
+  "actual_user_bank_received": false,
+  "protected_bank_authorization_or_decoder_ported": false,
+  "property_list_parser_ported": false,
+  "native_GN_objects_ownership_exceptions_or_OS_validated": false
+}

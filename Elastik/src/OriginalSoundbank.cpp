@@ -1,0 +1,76 @@
+#include "OriginalSoundbank.h"
+static void replace(void*& old,void* value,const ElastikOriginalSoundbankPlatform* p) noexcept {
+    if(old!=value){if(old)p->reference(p->context,2,old);old=value;if(value)p->reference(p->context,1,value);}
+}
+static void invalidate(ElastikOriginalSoundbank* b,const ElastikOriginalSoundbankPlatform* p) noexcept {
+    if(b->archive)p->reference(p->context,2,b->archive);
+    b->archive=nullptr;
+}
+static void* immutable(void* value,const ElastikOriginalSoundbankPlatform* p) noexcept {
+    return value&&p->is_mutable(p->context,value)?p->immutable_copy(p->context,value):value;
+}
+extern "C" void elastik_original_bank_set(ElastikOriginalSoundbank* b,
+    ElastikSoundbankField field,void* value,const ElastikOriginalSoundbankPlatform* p) noexcept {
+    switch(field){
+    case ElastikBankIdentifier:replace(b->identifier,immutable(value,p),p);break;
+    case ElastikBankSource:invalidate(b,p);replace(b->source_path,value,p);break;
+    case ElastikBankRoot:replace(b->root_path,value,p);break;
+    case ElastikBankTitle:replace(b->title,value,p);break;
+    case ElastikBankColor:replace(b->color,value,p);break;
+    case ElastikBankSerial:replace(b->serial,value,p);break;
+    case ElastikBankResponse:replace(b->response,value,p);break;
+    default:break; // Only the seven original public setters are in contract.
+    }
+}
+extern "C" void elastik_original_bank_set_file(ElastikOriginalSoundbank* b,
+    void* path,const ElastikOriginalSoundbankPlatform* p) noexcept {
+    void* value=path?p->path_posix(p->context,path):nullptr;
+    invalidate(b,p);replace(b->source_path,value,p);
+}
+extern "C" void elastik_original_bank_clear(ElastikOriginalSoundbank* b,
+    const ElastikOriginalSoundbankPlatform* p) noexcept {
+    void** fields[]{&b->color,&b->response,&b->serial,&b->identifier,&b->source_path,
+        &b->root_path,&b->archive,&b->title};
+    for(auto field:fields){if(*field)p->reference(p->context,2,*field);*field=nullptr;}
+}
+extern "C" void* elastik_original_bank_source(ElastikOriginalSoundbank* b,
+    const ElastikOriginalSoundbankPlatform* p) noexcept {
+    if(b->source_path&&p->string_length(p->context,b->source_path)!=0){
+        void* path=p->system_path(p->context,b->source_path);
+        if(path){if(p->path_is_file(p->context,path))return path;
+            return p->resource_path(p->context,p->last_component(p->context,b->source_path));}
+    }
+    return nullptr;
+}
+static void path_diagnostic(const ElastikOriginalSoundbankPlatform* p,int code,void* path) noexcept {
+    void* name=p->path_name(p->context,path);if(name)name=p->path_name(p->context,path);
+    p->diagnostic(p->context,code,name);
+}
+extern "C" void* elastik_original_bank_archive(ElastikOriginalSoundbank* b,
+    const ElastikOriginalSoundbankPlatform* p) noexcept {
+    void* path=elastik_original_bank_source(b,p); // Also runs for cached archives.
+    if(!b->archive&&path&&p->path_is_file(p->context,path)){
+        if(b->identifier){p->reference(p->context,2,b->identifier);b->identifier=nullptr;}
+        b->archive=p->construct_archive(p->context);
+        if(p->open_archive(p->context,b->archive,path)!=ElastikArchiveOk){invalidate(b,p);return nullptr;}
+        void* member=p->archive_member(p->context,b->archive,"/Info.plist");
+        if(!member||!p->path_is_file(p->context,member))path_diagnostic(p,1,path);
+        else{
+            void* info=p->parse_plist(p->context,member);
+            if(!info)path_diagnostic(p,2,path);
+            else{
+                void* name=p->description(p->context,info);if(name)name=p->description(p->context,info);
+                p->diagnostic(p->context,3,name);
+                replace(b->identifier,immutable(p->dictionary_get(p->context,info,"identifier"),p),p);
+                replace(b->title,p->dictionary_get(p->context,info,"title"),p);
+                replace(b->serial,p->dictionary_get(p->context,info,"serial"),p);
+                replace(b->color,p->dictionary_get(p->context,info,"color"),p);
+                void* grace=p->dictionary_get(p->context,info,"gracePeriode");
+                if(grace)b->grace_period=static_cast<double>(p->number_float(p->context,grace));
+            }
+        }
+        if(!b->identifier)replace(b->identifier,immutable(p->path_posix(p->context,path),p),p);
+        if(!b->title)replace(b->title,p->path_name(p->context,path),p);
+    }
+    return b->archive;
+}

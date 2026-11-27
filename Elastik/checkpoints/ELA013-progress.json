@@ -1,0 +1,31 @@
+{
+  "checkpoint": "ELA013",
+  "new_original_routine_bytes": 2673,
+  "total_original_routines_translated": 79,
+  "total_original_routine_bytes": 40510,
+  "comparisons": {
+    "soundbank": {
+      "cases_per_platform": 2062,
+      "compared_bytes_per_platform": 1602008,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    },
+    "archive-open": {
+      "cases_per_platform": 769,
+      "compared_bytes_per_platform": 3924524,
+      "identical_case_hashes_across_x86_arm64_ubsan_and_asan": true
+    }
+  },
+  "total_cases_per_platform": 2831,
+  "total_compared_bytes_per_platform": 5526532,
+  "macos_arm64_objects_compiled": 2,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true,
+  "status": "Bank metadata/cache control and real read-only GNFA opening/paths compared; plist/runtime/catalog/delegate integration pending",
+  "new_original_routines_translated": 14,
+  "new_functions_decompiled": 49,
+  "total_selected_functions_decompiled": 390,
+  "public_download_verified": false
+}
