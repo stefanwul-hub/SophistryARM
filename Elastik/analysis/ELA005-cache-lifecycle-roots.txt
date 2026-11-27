@@ -1,0 +1,13 @@
+0x217db8 # Buffer allocation/configuration on an initialized cache object
+0x218d5e # Cache processing entry from original vtable +0x1a8
+0x2181d6,168 # Reusable slot scan; instruction-verified through 0x21827d
+0x218102 # Synchronous slot lookup
+0x21900c # Synchronous consumer, including underrun prefix
+0x218cf6,82 # Client request, instruction-verified bound
+0x218d48,22 # Client invalidation, instruction-verified bound
+0x1af4e2 # File channel read, clipping, direct/cache selection
+0x1aecf0 # Prepare expanded cache range
+0x1afb00 # Read and prepare using original global direct mode
+0x1f0c92 # Voice sample-handle provider, now executed in integration test
+0x1adbb6 # File open metadata, including reader sample rate -> file +0x18
+0x249a24,24 # WAVE sample-rate getter, instruction-verified before 0x249a3c

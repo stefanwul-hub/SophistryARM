@@ -1,0 +1,37 @@
+{
+  "checkpoint": "ELA005",
+  "decompiler": "Ghidra 11.3.2",
+  "project_mode": "readOnly; program changes discarded, generated analysis retained",
+  "archive": "analysis/ELA005-original-cache-file-decompiled.zip",
+  "archive_bytes": 52244,
+  "archive_sha256": "7ffe4960c321d178a83cf530bc907f45cc24dbdcfdf8386940d006f8e003c0c1",
+  "archive_public": true,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "distinct_functions_selected_this_checkpoint": 26,
+  "new_functions_beyond_ELA004": 9,
+  "distinct_functions_across_checkpoints": 227,
+  "phases": [
+    {
+      "directory": "ELA005-cache-lifecycle",
+      "functions": 26,
+      "roots": [
+        "0x00217db8",
+        "0x00218d5e",
+        "0x002181d6",
+        "0x00218102",
+        "0x0021900c",
+        "0x00218cf6",
+        "0x00218d48",
+        "0x001af4e2",
+        "0x001aecf0",
+        "0x001afb00",
+        "0x001f0c92",
+        "0x001adbb6",
+        "0x00249a24"
+      ],
+      "depth": 1
+    }
+  ],
+  "complete_engine_translated": false,
+  "old_project_restored": false
+}

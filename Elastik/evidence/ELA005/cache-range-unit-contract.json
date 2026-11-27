@@ -1,0 +1,31 @@
+{
+  "checkpoint": "ELA005",
+  "field": "GNSoundFile + 0x18",
+  "identified_value": "Sample rate in frames per second",
+  "evidence": [
+    {
+      "function": "0x1adbb6",
+      "sample_rate_getter_vtable_offset": "0x1b8",
+      "store_instruction": "0x1adc5f",
+      "store": "fstp qword ptr [edi+0x18]"
+    },
+    {
+      "function": "0x249a24",
+      "reader_field": "WAVE reader + 0x24",
+      "conversion": "CVTSI2SD then x87 return"
+    },
+    {
+      "function": "0x24ce76",
+      "container": "RIFF/WAVE fmt chunk",
+      "field_read": "uint32 after format tag and channel count, into param_1 + 9"
+    },
+    {
+      "function": "0x1aecf0",
+      "operation": "truncate before/after seconds * sample rate, then expand and bound range"
+    }
+  ],
+  "two_100_arguments_are_gain_percentages": false,
+  "extended_range_arguments_unit": "seconds",
+  "original_reader_and_rate_state_supplied_by_fixture": true,
+  "actual_original_file_open_executed": false
+}

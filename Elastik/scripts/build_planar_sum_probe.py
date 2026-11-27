@@ -25,7 +25,9 @@ def build(output, compiler=None, kind='planar-sum'):
     sources = {'planar-sum': ('src/OriginalPlanarSum.cpp', 'tests/PlanarSumProbe.cpp'),
                'voice-chunk': ('src/OriginalVoiceChunk.cpp', 'tests/VoiceChunkProbe.cpp'),
                'sample-format': ('src/OriginalSampleFormat.cpp', 'tests/SampleFormatProbe.cpp'),
-               'buffered-pcm': ('src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'tests/BufferedPcmProbe.cpp')}[kind]
+               'buffered-pcm': ('src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'tests/BufferedPcmProbe.cpp'),
+               'sample-cache': ('src/OriginalSampleCache.cpp', 'tests/SampleCacheProbe.cpp'),
+               'sample-file': ('src/OriginalSampleCache.cpp', 'src/OriginalSampleFile.cpp', 'src/OriginalSampleFormat.cpp', 'src/OriginalBufferedPcm.cpp', 'src/OriginalVoiceChunk.cpp', 'tests/SampleFileProbe.cpp')}[kind]
     command = [compiler] + flags + [str(root / name) for name in sources] + ['-o', str(output)]
     subprocess.run(command, check=True)
     print(json.dumps({'output': str(output), 'probe': kind, 'compiler': version.splitlines()[0],
@@ -36,6 +38,6 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--compiler')
-    p.add_argument('--kind', choices=['planar-sum', 'voice-chunk', 'sample-format', 'buffered-pcm'], default='planar-sum')
+    p.add_argument('--kind', choices=['planar-sum', 'voice-chunk', 'sample-format', 'buffered-pcm', 'sample-cache', 'sample-file'], default='planar-sum')
     a = p.parse_args()
     build(a.output, a.compiler, a.kind)

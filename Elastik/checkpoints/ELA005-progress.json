@@ -1,0 +1,33 @@
+{
+  "checkpoint": "ELA005",
+  "status": "Synchronous sample cache and file wrapper ported and connected through real provider to PCM and chunk DSP; asynchronous fill and whole engine pending",
+  "new_original_routines_translated": 9,
+  "new_original_routine_bytes": 2095,
+  "total_original_routines_translated": 15,
+  "total_original_routine_bytes": 8144,
+  "comparisons": {
+    "sample-cache": {
+      "cases_per_platform": 244,
+      "compared_bytes_per_platform": 2932172,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    },
+    "sample-file": {
+      "cases_per_platform": 813,
+      "compared_bytes_per_platform": 2315081,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    }
+  },
+  "cache_operation_count_per_platform": 22373,
+  "voice_chunk_integration_cases_per_platform": 198,
+  "new_functions_decompiled": 9,
+  "total_selected_functions_decompiled": 227,
+  "macos_arm64_objects_compiled": true,
+  "original_sample_provider_executed": true,
+  "asynchronous_cache_producer_translated": false,
+  "native_audio_unit_available": false,
+  "old_project_restored": false,
+  "detailed_original_analysis_public": true,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_frozen": true,
+  "CronoX_CRX013_frozen": true
+}

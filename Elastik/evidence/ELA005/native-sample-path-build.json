@@ -1,0 +1,200 @@
+{
+  "checkpoint": "ELA005",
+  "client_date": "2026-11-27",
+  "translated_original_functions": [
+    {
+      "address": "0x218102",
+      "bytes": 130,
+      "role": "Cache slot lookup"
+    },
+    {
+      "address": "0x2181d6",
+      "bytes": 168,
+      "role": "Reusable slot protected by all active client requests"
+    },
+    {
+      "address": "0x21900c",
+      "bytes": 337,
+      "role": "Planar cache read"
+    },
+    {
+      "address": "0x218cf6",
+      "bytes": 82,
+      "role": "Cache range request"
+    },
+    {
+      "address": "0x218d48",
+      "bytes": 22,
+      "role": "Cache range invalidation"
+    },
+    {
+      "address": "0x1af4e2",
+      "bytes": 794,
+      "role": "File channel wrapper"
+    },
+    {
+      "address": "0x1aecf0",
+      "bytes": 324,
+      "role": "Prepare expanded cache range"
+    },
+    {
+      "address": "0x1afb00",
+      "bytes": 159,
+      "role": "Combined read and prepare"
+    },
+    {
+      "address": "0x1f0c92",
+      "bytes": 79,
+      "role": "Sample handle provider"
+    }
+  ],
+  "new_original_routine_bytes": 2095,
+  "total_original_routines_translated": 15,
+  "total_original_routine_bytes": 8144,
+  "translation_scope": "Valid metadata and buffer domain; original data and state effects with explicit platform interfaces",
+  "source_files": [
+    {
+      "path": "src/OriginalSampleCache.cpp",
+      "bytes": 3813,
+      "sha256": "17a5262e9c83f529430cb53696f980e363887f7191ad0e508d974a2869cb27e2"
+    },
+    {
+      "path": "src/OriginalSampleCache.h",
+      "bytes": 2172,
+      "sha256": "d4031e084c4832ab99a16c367107d9d74a14f7d194d38030719917deb6903f4f"
+    },
+    {
+      "path": "src/OriginalSampleFile.cpp",
+      "bytes": 4530,
+      "sha256": "e699a714b5d67655e8e8340b5271cf99d28889bbf3af37437e4a8f14a20d2f03"
+    },
+    {
+      "path": "src/OriginalSampleFile.h",
+      "bytes": 2334,
+      "sha256": "d9e345c7d67ab579202b30ecd559875cb10a3c3ec6f906aba7fb87c2988b0d45"
+    },
+    {
+      "path": "src/OriginalSampleFormat.cpp",
+      "bytes": 7018,
+      "sha256": "b180865d4bb72ad7fb36dac05e8e4f61158870ebd829cbfd75faf58b2b3a0f91"
+    },
+    {
+      "path": "src/OriginalBufferedPcm.cpp",
+      "bytes": 2167,
+      "sha256": "08a3dd389ad8826d152f88c9e01e5e1a7644f5a50e9b915e6c28d45982bd7cf2"
+    },
+    {
+      "path": "src/OriginalVoiceChunk.cpp",
+      "bytes": 5273,
+      "sha256": "60e50ea75859847fde15fc42d4c0f095259b4bbfe4b2f9584fd519ab31c71f9e"
+    },
+    {
+      "path": "tests/SampleCacheProbe.cpp",
+      "bytes": 4617,
+      "sha256": "d588ba7e9d55c0e1717a30d8069a9724165294448f610526abd5e4dbdadc6288"
+    },
+    {
+      "path": "tests/SampleFileProbe.cpp",
+      "bytes": 8490,
+      "sha256": "fb5262c91a102544e4bb679055957f22f362e03ac747ae0daf4509f6286b772f"
+    },
+    {
+      "path": "scripts/original_cache_oracle.py",
+      "bytes": 5652,
+      "sha256": "57aae354f8538f1be342ee8a09fd91b36b2164a314711dc08277457629123916"
+    }
+  ],
+  "compiler": "Zig 0.14.1 embedded Clang",
+  "flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-vectorize",
+    "-fno-slp-vectorize",
+    "-fno-exceptions",
+    "-fno-rtti",
+    "-fno-stack-protector"
+  ],
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-c"
+  ],
+  "arm64_probe_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-nostdlib++"
+  ],
+  "macos_objects": [
+    {
+      "path": "work/ELA005-native/OriginalSampleCache-arm64-macos.o",
+      "bytes": 9592,
+      "sha256": "b3e26b43c34b83e1b2db7cf75af251eef5480e2d67966a3eb68cfc1ab0c54dd3",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    },
+    {
+      "path": "work/ELA005-native/OriginalSampleFile-arm64-macos.o",
+      "bytes": 12712,
+      "sha256": "3b03953b7b7cb5e905cc603450262cd691f1943c2254bad2a80a3ba114fe963a",
+      "format": "Mach-O 64-bit ARM64",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "type": "MH_OBJECT"
+    }
+  ],
+  "arm64_test_programs": [
+    {
+      "path": "work/ELA005-native/sample-cache-aarch64",
+      "bytes": 966744,
+      "sha256": "e86999dfb1e6b6cabb982f4445c63134e0fb49c03c4854f2202b24298238b7da",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0, Linux user mode"
+    },
+    {
+      "path": "work/ELA005-native/sample-file-aarch64",
+      "bytes": 1008040,
+      "sha256": "14395480216e7d308ad94c95c2607711035f01394e4c3d6aafb41484c58f51ea",
+      "format": "ELF64 AArch64",
+      "execution": "QEMU 7.2.0, Linux user mode"
+    }
+  ],
+  "host_compiler": "GCC 14.2.0",
+  "host_flags": [
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-tree-vectorize"
+  ],
+  "ubsan_extra_flags": [
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "comparisons": {
+    "sample-cache": {
+      "cases_per_platform": 244,
+      "compared_bytes_per_platform": 2932172,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    },
+    "sample-file": {
+      "cases_per_platform": 813,
+      "compared_bytes_per_platform": 2315081,
+      "identical_case_hashes_across_x86_arm64_and_ubsan": true
+    }
+  },
+  "no_qemu_process_failure_observed_this_checkpoint": true,
+  "automatic_fixture_retries": 0,
+  "native_macos_execution": false,
+  "actual_GN_platform_exception_runtime_validated": false,
+  "actual_concurrent_cache_mutation_tested": false,
+  "asynchronous_cache_producer_ported": false,
+  "wave_container_parser_translated": false,
+  "complete_engine_built": false,
+  "macos_audio_unit_validated": false,
+  "licensed_bank_access_modified": false
+}

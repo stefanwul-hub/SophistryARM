@@ -1,0 +1,18 @@
+Elastik 1 ARM64 — checkpoint de développement ELA005
+
+Le consommateur du cache, la recherche d’un emplacement réutilisable et le
+gestionnaire de fichier sont portés et raccordés au lecteur PCM et aux blocs
+de voix. Neuf routines supplémentaires sont traduites depuis l’original.
+
+244 cas de cache (22 373 opérations) et 813 cas de chemin de lecture passent
+bit à bit sur x86-64 et ARM64 sous QEMU. Ces essais incluent 198 intégrations
+de blocs de voix et 24 cas utilisant les octets du WAV intégré.
+
+Le remplissage asynchrone du cache, les conteneurs/codecs nécessaires, les
+voix complètes, les états et l’Audio Unit restent à terminer. Aucun AU
+installable, auval ou ancien projet restauré n’est annoncé ici.
+
+Lire README.md, analysis/ELA005-notes.md et ELASTIK_REPRISE.md.
+Les essais nécessitent l’original ElastikAU.pkg.zip, exclu de ce paquet.
+Les publications suivent PUBLICATION_AUTHORIZATION.json.
+Sophistry CP038 et CronoX CRX013 restent figés.
