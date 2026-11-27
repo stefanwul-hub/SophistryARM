@@ -1,0 +1,43 @@
+{
+  "checkpoint": "ELA012",
+  "repository": "stefanwul-hub/SophistryARM",
+  "branch": "codex/sophistry-native-checkpoints",
+  "directory": "Elastik",
+  "public_source_commit": "3e08952cd15042e4c4deb7df0aa8a67bc102e6dd",
+  "public_tree_sha": "d67f160eee7f8fa8a58c9e059d0ed47964351446",
+  "parent_public_commit": "97bb5643748efcfed5454047e041bb8f42239fb5",
+  "uploaded_blobs": 49,
+  "tree_sha": "d67f160eee7f8fa8a58c9e059d0ed47964351446",
+  "local_files_verified": 346,
+  "outside_entries_unchanged": 4748,
+  "outside_root_entries_unchanged": 47,
+  "all_checks_passed": true,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_unchanged": true,
+  "CronoX_CRX013_unchanged": true,
+  "complete_engine_built": false,
+  "native_audio_unit_available": false,
+  "downloads_verified": true,
+  "immutable_downloads": {
+    "Elastik-ELA012-complet-checkpoint.zip": {
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/3e08952cd15042e4c4deb7df0aa8a67bc102e6dd/Elastik/Elastik-ELA012-complet-checkpoint.zip",
+      "http_status": 200,
+      "bytes": 4004400,
+      "sha256": "6474404c57ec1e7bff684e624e2b120e6edbc89b69ecc0633886f5be3503b2bf",
+      "entries": 321,
+      "identical_to_local_archive": true,
+      "zip_crc_verified": true,
+      "complete_manifest_verified": true
+    },
+    "analysis/ELA012-original-named-files-decompiled.zip": {
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/3e08952cd15042e4c4deb7df0aa8a67bc102e6dd/Elastik/analysis/ELA012-original-named-files-decompiled.zip",
+      "http_status": 200,
+      "bytes": 127026,
+      "sha256": "e7703199dc3e4c001895e1bb6715d40cc947a1a78faa5ae2e3e2c6e77c840138",
+      "entries": 145,
+      "identical_to_local_archive": true,
+      "zip_crc_verified": true,
+      "complete_manifest_verified": false
+    }
+  }
+}

@@ -32,5 +32,6 @@
   "new_original_routines_translated": 8,
   "new_functions_decompiled": 19,
   "total_selected_functions_decompiled": 341,
-  "public_download_verified": false
+  "public_download_verified": true,
+  "public_source_commit": "3e08952cd15042e4c4deb7df0aa8a67bc102e6dd"
 }
