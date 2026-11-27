@@ -10,5 +10,26 @@
   },
   "contains_original_installer": false,
   "contains_user_bank": false,
-  "native_audio_unit_available": false
+  "native_audio_unit_available": false,
+  "public_source_commit": "34ba2f1c20976c869d2cd9a77ced3365fba2be85",
+  "public_archive_verification": {
+    "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/34ba2f1c20976c869d2cd9a77ced3365fba2be85/Elastik/Elastik-ELA013-complet-checkpoint.zip",
+    "http_status": 200,
+    "bytes": 4392166,
+    "sha256": "3328478e261cad8cf4829c37fb041d409e1a18577c8668707a15569ea43ddb5c",
+    "entries": 356,
+    "identical_to_local_archive": true,
+    "zip_crc_verified": true,
+    "complete_manifest_verified": true
+  },
+  "detailed_analysis_archive_verification": {
+    "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/34ba2f1c20976c869d2cd9a77ced3365fba2be85/Elastik/analysis/ELA013-original-soundbank-decompiled.zip",
+    "http_status": 200,
+    "bytes": 149199,
+    "sha256": "93f687e64e79663ae613a05cee38a299438ab983a0bf73adcebce64952b22a33",
+    "entries": 197,
+    "identical_to_local_archive": true,
+    "zip_crc_verified": true,
+    "complete_manifest_verified": false
+  }
 }

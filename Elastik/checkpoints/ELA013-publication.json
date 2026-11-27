@@ -1,0 +1,43 @@
+{
+  "checkpoint": "ELA013",
+  "repository": "stefanwul-hub/SophistryARM",
+  "branch": "codex/sophistry-native-checkpoints",
+  "directory": "Elastik",
+  "public_source_commit": "34ba2f1c20976c869d2cd9a77ced3365fba2be85",
+  "public_tree_sha": "653b570e04ebec5eb67b85d1875bb92d29052fa7",
+  "parent_public_commit": "14907a35810fa8e26eb3dc8e9ebf100e56748968",
+  "uploaded_blobs": 40,
+  "tree_sha": "653b570e04ebec5eb67b85d1875bb92d29052fa7",
+  "local_files_verified": 383,
+  "outside_entries_unchanged": 4748,
+  "outside_root_entries_unchanged": 47,
+  "all_checks_passed": true,
+  "standing_publication_authorization_record": "PUBLICATION_AUTHORIZATION.json",
+  "Sophistry_CP038_unchanged": true,
+  "CronoX_CRX013_unchanged": true,
+  "complete_engine_built": false,
+  "native_audio_unit_available": false,
+  "downloads_verified": true,
+  "immutable_downloads": {
+    "Elastik-ELA013-complet-checkpoint.zip": {
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/34ba2f1c20976c869d2cd9a77ced3365fba2be85/Elastik/Elastik-ELA013-complet-checkpoint.zip",
+      "http_status": 200,
+      "bytes": 4392166,
+      "sha256": "3328478e261cad8cf4829c37fb041d409e1a18577c8668707a15569ea43ddb5c",
+      "entries": 356,
+      "identical_to_local_archive": true,
+      "zip_crc_verified": true,
+      "complete_manifest_verified": true
+    },
+    "analysis/ELA013-original-soundbank-decompiled.zip": {
+      "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/34ba2f1c20976c869d2cd9a77ced3365fba2be85/Elastik/analysis/ELA013-original-soundbank-decompiled.zip",
+      "http_status": 200,
+      "bytes": 149199,
+      "sha256": "93f687e64e79663ae613a05cee38a299438ab983a0bf73adcebce64952b22a33",
+      "entries": 197,
+      "identical_to_local_archive": true,
+      "zip_crc_verified": true,
+      "complete_manifest_verified": false
+    }
+  }
+}
