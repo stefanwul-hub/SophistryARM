@@ -1,0 +1,40 @@
+{
+  "checkpoint": "ELA025",
+  "source_progress_commit": "95215eb040c049f0fbc1c27d965f7a1ba76c87e6",
+  "probe_platforms": [
+    "Linux x86-64 GCC 14.2.0",
+    "Linux ARM64 Zig 0.14.1 + QEMU",
+    "Linux x86-64 ASan+UBSan"
+  ],
+  "fully_matching_reports_except_platform": true,
+  "reference_regressions": [
+    {
+      "checkpoint": "ELA019",
+      "cases": 40,
+      "sha256": "6686144c2a0177cd63c0f005be7517deaa25fb4c1724cef271fdd3c16ebeddb4"
+    },
+    {
+      "checkpoint": "ELA020",
+      "cases": 26,
+      "sha256": "99ab0641ca82e6274edb0fc78a3e3abbd38c8a0586fc61a9d08413db77e8c553"
+    }
+  ],
+  "mach_o_objects": [
+    {
+      "path": "evidence/ELA025/OriginalProgramSampleTransform-arm64-macos.o",
+      "bytes": 96464,
+      "sha256": "cc4df942216396f8bccd1ed52193a710295904698cb6d672807ecd7167cd7c02",
+      "cpu": "ARM64",
+      "type": "MH_OBJECT"
+    },
+    {
+      "path": "evidence/ELA025/OriginalProgramSamples-arm64-macos.o",
+      "bytes": 438592,
+      "sha256": "e7628f5b043fca860d955ce3b874c53739aa24b9aec3ba728d3960081d216f3f",
+      "cpu": "ARM64",
+      "type": "MH_OBJECT"
+    }
+  ],
+  "macos_executed": false,
+  "audio_unit_built": false
+}

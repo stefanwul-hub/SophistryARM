@@ -290,3 +290,6 @@ ELA023, 28 novembre 2026. Le moteur retrouve les affectations MIDI dans les deux
 
 
 ELA024, 28 novembre 2026. Les quatre modes de filtre et leurs paramètres sauvegardés sont raccordés à la voix en lecture directe. Le port suit les transitions des coefficients, les remises à zéro de l’historique et la suite de modulation. Les 77 séquences et 790 blocs concordent avec l’i386 sur x86‑64, ARM64 sous QEMU et ASan+UBSan. Le pitch, l’étirement temporel, la synchronisation hôte et la validation du composant AU sur macOS restent à faire. [Notes ELA024](analysis/ELA024-notes.md)
+
+
+ELA025, 28 novembre 2026. Le lecteur récupère les réglages de hauteur et de tempo. Le résolveur ouvre le son source et calcule le rapport de hauteur, le rapport de durée, le sélecteur du processeur et la longueur attendue. Les 65 cas concordent avec l’i386 sur x86‑64, ARM64 sous QEMU et ASan+UBSan. Le rendu PCM élastique, son cache, la synchronisation hôte et la validation du composant AU sur macOS restent à faire. [Notes ELA025](analysis/ELA025-notes.md)
