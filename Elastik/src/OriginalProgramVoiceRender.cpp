@@ -66,6 +66,7 @@ bool trigger_program_voice(ProgramVoicePlayback& voice, const ProgramMapping& ma
     if (configure_program_voice(loop, mapping, sample, output_channels) != VoiceLoopStatus::Ready) return false;
 
     voice.loop = loop;
+    voice.filter.clear_history();
     voice.loop.chunk.released = 0;
     for (int channel = 0; channel < std::min(output_channels, 2); ++channel) {
         const float gain = voice_gain(mapping.mix, channel);
@@ -109,9 +110,13 @@ bool release_program_voice(ProgramVoicePlayback& voice, const ProgramMapping& ma
 }
 
 VoiceRenderResult render_program_voice(ProgramVoicePlayback& voice, const ProgramMapping& mapping,
-    ElastikOriginalSampleHandle& sample, float* const* outputs, int output_channels, int frames) noexcept {
+    ElastikOriginalSampleHandle& sample, float* const* outputs, int output_channels, int frames,
+    ProgramVoiceFilterContext* filter_context) noexcept {
     if (!voice.active) return {VoiceRenderStatus::Inactive, 0};
-    if (mapping.mix.filter_on) return {VoiceRenderStatus::FilterRequired, 0};
+    if (mapping.mix.filter_on && !filter_context) return {VoiceRenderStatus::FilterRequired, 0};
+    if (mapping.mix.filter_on && !ProgramVoiceFilter::valid(mapping.filter, *filter_context)) {
+        return {VoiceRenderStatus::InvalidVoice, 0};
+    }
     auto& loop = voice.loop;
     auto& chunk = loop.chunk;
     const auto direction = mapping.loop.direction;
@@ -125,12 +130,12 @@ VoiceRenderResult render_program_voice(ProgramVoicePlayback& voice, const Progra
 
     const int channels = std::min(output_channels, 2);
     const int first_output = (mapping.mix.first_output_channel / 2 * 2) % output_channels;
-    const bool envelopes = voice.attack.step != 0.0f || voice.release.step != 0.0f;
-    if (first_output < 0 || first_output > output_channels - (envelopes ? 2 : channels)) {
+    const bool pair_required = mapping.mix.filter_on || voice.attack.step != 0.0f || voice.release.step != 0.0f;
+    if (first_output < 0 || first_output > output_channels - (pair_required ? 2 : channels)) {
         return {VoiceRenderStatus::InvalidVoice, 0};
     }
     auto* const pair = outputs + first_output;
-    if (!pair[0] || ((channels == 2 || envelopes) && !pair[1])) {
+    if (!pair[0] || ((channels == 2 || pair_required) && !pair[1])) {
         return {VoiceRenderStatus::InvalidVoice, 0};
     }
 
@@ -174,6 +179,8 @@ VoiceRenderResult render_program_voice(ProgramVoicePlayback& voice, const Progra
         }
     }
 
+    if (mapping.mix.filter_on) voice.filter.render(mapping.filter, *filter_context, pair, frames);
+    else voice.filter.bypass();
     multiply_envelope(voice.attack, pair, frames);
     multiply_envelope(voice.release, pair, frames);
     if (chunk.released && voice.release.step == 0.0f) {

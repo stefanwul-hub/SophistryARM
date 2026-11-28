@@ -32,6 +32,7 @@ struct ProgramVoicePlayback {
     uint8_t velocity = 0;
     uint8_t release_velocity = 0;
     int release_offset = -1;
+    ProgramVoiceFilter filter{};
 };
 
 // ETProgram::keyMappingForMidiNote (0x15f296), including the alternate
@@ -56,8 +57,9 @@ struct VoiceRenderResult {
 // Direct sample branch of 0x1532f8. Audio buffers use distinct planar outputs
 // with sufficient room for frames. Provide the resolved sample, a configured
 // loop, and the current envelope ramps. A host may supply a start offset via
-// leading_frames. The caller handles the Finished note notification.
+// leading_frames. A filter-enabled stereo voice needs the processor context.
+// The caller handles the Finished note notification.
 VoiceRenderResult render_program_voice(ProgramVoicePlayback&, const ProgramMapping&,
-    ElastikOriginalSampleHandle&, float* const* outputs, int output_channels, int frames) noexcept;
+    ElastikOriginalSampleHandle&, float* const* outputs, int output_channels, int frames, ProgramVoiceFilterContext* filter_context = nullptr) noexcept;
 
 } // namespace elastik_state

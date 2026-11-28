@@ -1,0 +1,8 @@
+0x151aa0 # Voice allocation and setup of four filters
+0x1f351c # Filter constructor
+0x1f2f6a # Clear filter history
+0x1f318a # Coefficient update
+0x1f35c4 # Filter initialization
+0x1f379e # Planar filter render
+0x14b522 # Mapping construction
+0x14b680 # Mapping reflection

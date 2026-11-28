@@ -1,6 +1,7 @@
 #pragma once
 
 #include "OriginalKeyedState.h"
+#include "OriginalProgramVoiceFilter.h"
 
 namespace elastik_state {
 
@@ -29,6 +30,7 @@ struct ProgramMapping {
     Reference program;
     ProgramLoopSettings loop{};
     ProgramMixSettings mix{};
+    ProgramFilterSettings filter{};
 };
 
 struct ProgramState {
