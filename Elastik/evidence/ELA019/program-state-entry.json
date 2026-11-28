@@ -1,0 +1,46 @@
+{
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "routines_executed": [
+    "0x1b416",
+    "0x1551ce",
+    "0x1b34c",
+    "0x1b4aa",
+    "0x1b2bc",
+    "0x15f258",
+    "0x15f752"
+  ],
+  "null_input_keeps_program": true,
+  "resulting_tempo": 123.75,
+  "trace": [
+    {
+      "operation": "save-root",
+      "root": "ETProgram",
+      "archive_format": 2
+    },
+    {
+      "operation": "load-root",
+      "root": "ETProgram"
+    },
+    {
+      "operation": "detach-and-release-old-program"
+    },
+    {
+      "operation": "retain-new-program"
+    },
+    {
+      "operation": "check-key-mapping",
+      "index": 0
+    },
+    {
+      "operation": "request-sample-load",
+      "index": 0
+    },
+    {
+      "operation": "check-key-mapping",
+      "index": 1
+    }
+  ],
+  "payload_serialization_and_decode_are_bindings": true,
+  "mapping_sample_reads_are_bindings": true,
+  "actual_user_state_tested": false
+}
