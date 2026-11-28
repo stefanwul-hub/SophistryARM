@@ -1,0 +1,45 @@
+{
+  "checkpoint": "ELA017",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "classes": [
+    {
+      "name": "GNData",
+      "primary_vtable": "0x36e728",
+      "body_read": "0x284f4",
+      "body_write": "0x28680"
+    },
+    {
+      "name": "GNDictionary",
+      "primary_vtable": "0x371a88",
+      "body_read": "0x6325c",
+      "body_write": "0x63374"
+    },
+    {
+      "name": "GNList",
+      "primary_vtable": "0x36e8e8",
+      "body_read": "0x2c7ec",
+      "body_write": "0x29f66"
+    },
+    {
+      "name": "GNNumber",
+      "primary_vtable": "0x374468",
+      "body_read": "0x84ff2",
+      "body_write": "0x851d4"
+    },
+    {
+      "name": "GNString",
+      "primary_vtable": "0x36ec68",
+      "body_read": "0x34c02",
+      "body_write": "0x35a8a"
+    }
+  ],
+  "original_archive_header_and_body_writer": [
+    "0x1b71e2",
+    "0x1b73d8"
+  ],
+  "original_two_pass_body_reader": "0x1b92b4",
+  "reference_writer": "0x1b66c4",
+  "reference_reader": "0x1b8a38",
+  "key_value_envelope_writer": "0x155546",
+  "key_value_record_writer": "0x155396"
+}

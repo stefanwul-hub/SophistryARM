@@ -1,4 +1,4 @@
-# Reprise Elastik — ELA016, restauration des anciens projets
+# Reprise Elastik — ELA017, restauration des anciens projets
 
 **Autorisation de publication active et permanente.** Le 27 novembre 2026 (Europe/Paris), l’utilisateur a répondu : « Je donne un accord élargi pour toutes les futures publications. » Le périmètre et les exclusions sont enregistrés dans PUBLICATION_AUTHORIZATION.json, publié au commit 46c13f7d265fdf94ea3b8dc7643f208c191cd93e. Il couvre ELA003 et les futures notes, schémas, décompilations, sources, rapports et objets/builds compilés issus du même binaire Elastik fourni. Ne pas redemander un accord pour chaque checkpoint de ce même périmètre. Exclure banques utilisateur, numéros de série, secrets d’activation, préférences et projets personnels. Cet accord de publication ne constitue aucune validation technique du moteur. Sophistry CP038 et CronoX CRX013 restent figés.
 
@@ -244,3 +244,10 @@ ELA016, 27 novembre 2026. Le chargeur ETSoundbank est raccordé à l’ouverture
 Les 200 cas concordent sur Linux x86‑64, ARM64 sous QEMU et les deux configurations de sanitizers. Deux objets Mach‑O ARM64 ont été vérifiés. Les 4 183 cas ELA013 et ELA015 repassent sur x86‑64 avec les empreintes d’origine. [Notes ELA016](analysis/ELA016-notes.md)
 
 Suite : runtime hôte GN et services de chemins réels, catalogue, vrai délégué, voix et état d’instance. Le composant AU et la restauration d’un projet restent à établir.
+
+
+ELA017, 28 novembre 2026. Le décodeur natif de GNArchiver v1 restitue les corps GNDictionary, GNList, GNString, GNNumber et GNData sans compression. Il préserve les références, y compris en avant, nulles et cycliques. Les tests couvrent un exemple GNKeyValue de structure objects/@id/@isa. Le lecteur signale séparément la valeur manquante des entiers 64 bits v2, car l’écrivain d’origine n’émet que leur type. [Notes ELA017](analysis/ELA017-notes.md)
+
+392 archives, 1 503 objets et 58 078 octets de résultat concordent sur Linux x86‑64, ARM64/QEMU et les deux configurations de sanitizers. La sonde compare les vrais corps de lecture et d’écriture i386 en liant le runtime d’objets. 603 troncatures et variantes invalides sont rejetées côté natif. Un objet Mach‑O ARM64 est vérifié. 90 fonctions sélectionnées sous Ghidra, 43 nouvelles, total 489. Sources et sonde sauvegardées au commit intermédiaire f53e3802b808dfdddf45912e741997683a39c83b.
+
+Suite : interpréter les champs et références GNKeyValue des modèles Elastik, puis vérifier le rappel avec un état réel d’Elastik 1 et ses banques. L’intégration macOS, l’AU et la restitution sonore complète restent à établir.

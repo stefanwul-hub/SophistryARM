@@ -1,0 +1,73 @@
+{
+  "checkpoint": "ELA017",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "source_progress_commit": "f53e3802b808dfdddf45912e741997683a39c83b",
+  "tools": [
+    "GCC 14.2.0",
+    "Zig 0.14.1",
+    "QEMU AArch64 10.0.13",
+    "Unicorn 2.1.4",
+    "Ghidra 11.3.2"
+  ],
+  "common_flags": [
+    "-std=c++17",
+    "-fno-fast-math",
+    "-ffp-contract=off"
+  ],
+  "strict_host_flags": [
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fno-tree-vectorize"
+  ],
+  "arm64_linux_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-O2"
+  ],
+  "ubsan_flags": [
+    "-O1",
+    "-g",
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "asan_ubsan_flags": [
+    "-O1",
+    "-g",
+    "-fsanitize=address,undefined",
+    "-fno-sanitize-recover=all",
+    "-fno-omit-frame-pointer",
+    "-no-pie"
+  ],
+  "asan_environment": {
+    "ASAN_OPTIONS": "detect_leaks=1"
+  },
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-O2",
+    "-c"
+  ],
+  "mach_o_object": {
+    "path": "evidence/ELA017/OriginalStateArchive-arm64-macos.o",
+    "sha256": "fac003e943f36f7b0f3ff88284861971640e624551fed90139708c275d8d0a08",
+    "bytes": 501272,
+    "cpu": "0x100000c",
+    "cpu_subtype": 0,
+    "file_type": "MH_OBJECT"
+  },
+  "synthetic_key_value_fixture": {
+    "path": "evidence/ELA017/synthetic-key-value-envelope.bin",
+    "bytes": 596,
+    "sha256": "e9293ea5135c20e3777cf8d1044342d4e560c7a4e8c47339a1693bc98a78b039",
+    "obtained_from_i386_writer": true,
+    "original_user_state": false
+  },
+  "all_four_reports_match_per_case": true,
+  "ela002_typed_stream_report_identical": true,
+  "original_64_bit_integer_encoder_diagnostics": 156,
+  "actual_macos_execution": false,
+  "audio_unit_built": false
+}

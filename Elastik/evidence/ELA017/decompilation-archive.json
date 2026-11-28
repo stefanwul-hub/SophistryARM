@@ -1,0 +1,12 @@
+{
+  "checkpoint": "ELA017",
+  "ghidra_version": "11.3.2",
+  "read_only": true,
+  "selected_functions": 90,
+  "new_selected_functions": 43,
+  "selected_all_checkpoints": 489,
+  "archive": "analysis/ELA017-original-state-bodies-decompiled.zip",
+  "archive_sha256": "0bc811872cd43108a4d492f360215f9c45deb4a16c544cb531ace20db1c624ec",
+  "archive_bytes": 167289,
+  "entries": 204
+}
