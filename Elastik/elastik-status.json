@@ -1,6 +1,6 @@
 {
   "project": "Elastik 1 ARM64",
-  "checkpoint": "ELA022",
+  "checkpoint": "ELA023",
   "goal": "Restore old projects containing Elastik 1 Audio Unit instances",
   "original_version": "1.5.2.3",
   "original_architectures": [
@@ -70,11 +70,11 @@
   ],
   "publication_directory": "Elastik",
   "reference_CronoX_changed": false,
-  "selected_functions_decompiled": 573,
+  "selected_functions_decompiled": 580,
   "au_state_header_validation_identified": true,
   "state_payload_decoder_complete": false,
   "first_native_engine_milestone_reached": false,
-  "new_functions_decompiled_this_checkpoint": 0,
+  "new_functions_decompiled_this_checkpoint": 7,
   "original_rtti_records": 520,
   "selected_original_class_vtables_recovered": 12,
   "original_audio_render_path_identified": true,
@@ -301,5 +301,14 @@
   "ETInstrumentVoice_direct_multiblock_sequences": 52,
   "ETInstrumentVoice_direct_multiblock_blocks": 260,
   "ETInstrumentVoice_direct_multiblock_finished_notes": 26,
-  "ETInstrumentVoice_direct_render_object_compiled": true
+  "ETInstrumentVoice_direct_render_object_compiled": true,
+  "ETKeyMapping_attack_and_release_decoded": true,
+  "ETProgram_midi_lookup_orders_compared": 2,
+  "ETProgram_midi_lookup_notes_per_order": 128,
+  "ETInstrumentVoice_direct_trigger_and_release_ported": true,
+  "ETInstrumentVoice_direct_lifecycle_sequences": 48,
+  "ETInstrumentVoice_direct_lifecycle_render_blocks": 240,
+  "ETInstrumentVoice_direct_lifecycle_finished_voices": 48,
+  "ETInstrumentVoice_direct_lifecycle_macos_object_compiled": true,
+  "ETInstrumentVoice_host_midi_scheduling_bound": false
 }

@@ -1,0 +1,27 @@
+{
+  "checkpoint": "ELA023",
+  "source_progress_commit": "16a8884f5154f1e867b407de779937771f63d010",
+  "probe_platforms": [
+    "Linux x86-64 GCC 14.2.0",
+    "Linux ARM64 Zig 0.14.1 + QEMU",
+    "Linux x86-64 ASan+UBSan"
+  ],
+  "fully_matching_reports_except_platform": true,
+  "lookup_programs": 2,
+  "lookup_notes": 256,
+  "reference_regression": {
+    "checkpoint": "ELA022",
+    "sequences": 52,
+    "blocks": 260,
+    "sha256": "995a45a62a1fdba49e3684956272d12889f59b9892b90650b2d285e4f4c67b14"
+  },
+  "mach_o_object": {
+    "path": "evidence/ELA023/OriginalProgramVoiceRender-arm64-macos.o",
+    "bytes": 243600,
+    "sha256": "a7d3973e79720044f7a0065086bae0783d29cc69e976b3e52043326791043f10",
+    "cpu": "ARM64",
+    "type": "MH_OBJECT"
+  },
+  "macos_executed": false,
+  "audio_unit_built": false
+}

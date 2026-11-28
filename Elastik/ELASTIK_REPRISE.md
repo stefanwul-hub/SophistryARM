@@ -284,3 +284,6 @@ Suite. Raccorder la préparation du cache et le cycle de la voix, puis appliquer
 
 
 ELA022, 28 novembre 2026. Le rendu direct d’une voix enchaîne les blocs restaurés et conserve le curseur, les rampes, le gain, le panorama et les transitions de boucle. Les 52 séquences et 260 blocs concordent avec l’i386 sur x86‑64, ARM64 sous QEMU et ASan+UBSan. La synchronisation hôte, le filtre et le raccordement du pitch restent à faire. [Notes ELA022](analysis/ELA022-notes.md)
+
+
+ELA023, 28 novembre 2026. Le moteur retrouve les affectations MIDI dans les deux ordres d’ETProgram. Il déclenche la voix avec ses gains et son enveloppe d’attaque et calcule le relâchement à partir de la longueur de la boucle. Deux programmes synthétiques couvrent chacun les 128 notes MIDI. Les 48 séquences, 240 blocs et 48 fins de voix concordent avec l’i386 sur x86‑64, ARM64 sous QEMU et ASan+UBSan. Le filtre, le pitch, l’étirement temporel, la synchronisation hôte et la validation du composant AU sur macOS restent à faire. [Notes ELA023](analysis/ELA023-notes.md)
