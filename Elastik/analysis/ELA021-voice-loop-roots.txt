@@ -1,0 +1,15 @@
+0x14acc6 # Read effective loop start
+0x14ad0a # Read effective loop end
+0x14b090 # Recalculate key mapping frame bounds
+0x14ad4e # Set key mapping start in frames
+0x14af3e # Set key mapping stop in frames
+0x14b252 # Replace sample and invalidate key mapping
+0x14a5d8 # Sample tempo used for mapping
+0x152472 # Initialize playback positions and fades
+0x151aa0 # Voice operation using effective loop bounds
+0x14ac64 # Mapping event before voice chunks
+0x14a576,17 # Mapping state applied before voice chunks
+0x14d374 # Derive playback range length
+0x14a1f4,11 # Key mapping loop mode accessor
+0x149f34,11 # Key mapping direction accessor
+0x1c8ba,19 # Voice channels

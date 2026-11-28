@@ -23,6 +23,9 @@ struct ElastikOriginalSampleFile {
     unsigned sample_format = 0x44; // Original encoded format at file +0x20.
 };
 
+// Original 0x1ab7c0. A zero cached count falls through to the loaded reader.
+extern "C" int elastik_original_file_frame_count(const ElastikOriginalSampleFile*) noexcept;
+
 // Original 0x1af4e2 (794 bytes). File, cache and buffers must have valid
 // metadata; requested count >= 0, channel >= 0, channel count <= 255.
 // Direct reads require the shared lock callbacks. GN exception machinery,

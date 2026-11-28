@@ -1,6 +1,7 @@
 #include "OriginalProgramState.h"
 #include "OriginalScannedNumber.h"
 
+#include <cstring>
 #include <limits>
 #include <utility>
 
@@ -118,6 +119,13 @@ private:
         return signed_number(number_bits(record, name, 'i', static_cast<uint32_t>(fallback), error));
     }
 
+    float floating(const ModelRecord& record, std::u16string_view name, ProgramError error) const {
+        const auto bits = number_bits(record, name, 'f', 0, error);
+        float value;
+        std::memcpy(&value, &bits, sizeof(value));
+        return value;
+    }
+
     bool boolean(const ModelRecord& record, std::u16string_view name, bool fallback, ProgramError error) const {
         return number_bits(record, name, 'b', fallback, error) != 0;
     }
@@ -132,7 +140,9 @@ private:
         }
         result_.mappings.push_back({
             mapping.dictionary, integer(mapping, u"midiNote", 0, error), boolean(mapping, u"isUserKey", false, error),
-            text(mapping, u"soundFilePath", error), text(mapping, u"soundBankIdentifier", error), program
+            text(mapping, u"soundFilePath", error), text(mapping, u"soundBankIdentifier", error), program,
+            {floating(mapping, u"startDegree", error), floating(mapping, u"stopDegree", error),
+             integer(mapping, u"direction", 0, error), integer(mapping, u"loopMode", 1, error)}
         });
     }
 

@@ -7,7 +7,7 @@ static int cvtt_i32(double value) noexcept {
     if (!(value >= -2147483648.0 && value < 2147483648.0)) return bits_i32(0x80000000u);
     return static_cast<int>(value);
 }
-static int frame_count(const ElastikOriginalSampleFile* file) noexcept {
+extern "C" int elastik_original_file_frame_count(const ElastikOriginalSampleFile* file) noexcept {
     if (file->known_frames) return file->known_frames;
     return file->reader ? file->reader->frame_count(file->reader->context) : 0;
 }
@@ -20,7 +20,7 @@ extern "C" bool elastik_original_read_file_channel(
         return false;
     }
     const unsigned channels = file->channel_format & 0x100u ? file->channel_format & 0xffu : file->channel_format;
-    const int frames = frame_count(file);
+    const int frames = elastik_original_file_frame_count(file);
     if (!channels) return false;
     if (channel >= static_cast<int>(channels)) channel = static_cast<int>(channels) - 1;
     const int end = add_i32(first, count);
@@ -58,7 +58,7 @@ extern "C" bool elastik_original_read_file_channel(
 extern "C" bool elastik_original_read_file_channels(
     const ElastikOriginalSampleFile* file, float* const* outputs, int first, int count) noexcept {
     const unsigned channels = file->channel_format & 0x100u ? file->channel_format & 0xffu : file->channel_format;
-    const int frames = frame_count(file);
+    const int frames = elastik_original_file_frame_count(file);
     const int end = add_i32(first, count);
     if (first < 0 || frames < end) {
         for (unsigned channel = 0; channel < channels; ++channel)
@@ -96,7 +96,7 @@ extern "C" void elastik_original_prepare_file_range(
     if (before > 0.0) first = sub_i32(first, cvtt_i32(before * file->sample_rate));
     if (after > 0.0) end = add_i32(end, cvtt_i32(after * file->sample_rate));
     if (first < 0) first = 0;
-    if (frame_count(file) <= end) {
+    if (elastik_original_file_frame_count(file) <= end) {
         end = file->known_frames;
         if (!end) {
             if (!file->reader) end = -1;
@@ -107,7 +107,7 @@ extern "C" void elastik_original_prepare_file_range(
     }
     if (end <= first || !file->cache) return;
     count = sub_i32(end, first);
-    const int frames = frame_count(file);
+    const int frames = elastik_original_file_frame_count(file);
     if (first < 0) {
         count = add_i32(count, first);
         if (count < 1) return;

@@ -4,6 +4,13 @@
 
 namespace elastik_state {
 
+struct ProgramLoopSettings {
+    float start_degree = 0.0f;
+    float stop_degree = 0.0f;
+    int32_t direction = 0;
+    int32_t mode = 1;
+};
+
 struct ProgramMapping {
     Reference record;
     int32_t midi_note;
@@ -11,6 +18,7 @@ struct ProgramMapping {
     Reference sample_path;
     Reference bank_identifier;
     Reference program;
+    ProgramLoopSettings loop{};
 };
 
 struct ProgramState {
