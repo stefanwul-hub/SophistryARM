@@ -1,0 +1,10 @@
+0x15f48c # Program sample lookup
+0x14bcd4 # Mapping sample resolution
+0x14a83e # Mapping catalogue checks after decode
+0x68b5e # Lookup usable bank
+0x68ad2 # Find bank by identifier
+0x9af5e # Construct a system path from the sample string
+0x1aa9c6 # Resolve the bank archive
+0xe1a68,18 # Build a member path from the bank archive
+0x1adefe # Construct and open sound file with exception handling
+0x1adbb6 # Open sample file
