@@ -1,0 +1,15 @@
+0x160ba8 # ETProgram post-decode
+0x160584 # ETProgram init
+0x1601f0 # ETProgram class factory
+0x160842 # ETProgram property interception
+0x149c92 # ETKeyMapping init
+0x14b522 # ETKeyMapping class factory
+0x14c2c8 # ETKeyMapping property interception
+0x14bcd4 # ETKeyMapping resolve its sample
+0x14a6c0,19 # ETKeyMapping query sample state
+0x12114c # Keyed restore main entry
+0x5b64 # Audio Unit ClassInfo receiver
+0x34496 # Convert a GNString into a double
+0x14a83e # Test mapping initialization
+0x14b946 # Attach a key mapping to a program
+0x156ca8,14 # Configure an automation parameter

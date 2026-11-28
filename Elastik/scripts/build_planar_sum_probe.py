@@ -44,6 +44,7 @@ def build(output, compiler=None, kind='planar-sum'):
                'soundbank': ('src/OriginalSoundbank.cpp', 'tests/SoundbankProbe.cpp'),
                'property-list': ('src/OriginalPropertyList.cpp', 'src/OriginalPropertyListXml.cpp', 'third_party/tinyxml2/tinyxml2.cpp', 'src/OriginalArchivePropertyList.cpp', 'src/OriginalArchiveOpen.cpp', 'src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'tests/PropertyListProbe.cpp'),
                'soundbank-archive': ('src/OriginalSoundbank.cpp', 'src/OriginalSoundbankArchive.cpp', 'src/OriginalPropertyList.cpp', 'src/OriginalPropertyListXml.cpp', 'third_party/tinyxml2/tinyxml2.cpp', 'src/OriginalArchivePropertyList.cpp', 'src/OriginalArchiveOpen.cpp', 'src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'tests/SoundbankArchiveProbe.cpp'),
+               'program-state': ('src/OriginalStateArchive.cpp', 'src/OriginalKeyedState.cpp', 'src/OriginalProgramState.cpp', 'tests/ProgramStateProbe.cpp'),
                'keyed-state': ('src/OriginalStateArchive.cpp', 'src/OriginalKeyedState.cpp', 'tests/KeyedStateProbe.cpp'),
                'state-archive': ('src/OriginalStateArchive.cpp', 'tests/StateArchiveProbe.cpp'),
                'archive-open': ('src/OriginalArchiveOpen.cpp', 'src/OriginalArchiveLookup.cpp', 'src/OriginalByteFile.cpp', 'src/OriginalFileArchive.cpp', 'tests/ArchiveOpenProbe.cpp')}[kind]
@@ -57,6 +58,6 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--compiler')
-    p.add_argument('--kind', choices=['planar-sum', 'voice-chunk', 'sample-format', 'buffered-pcm', 'sample-cache', 'sample-file', 'cache-refill', 'cache-lifecycle', 'timer', 'wave', 'wave-chunks', 'wave-adpcm', 'file-open', 'file-pipeline', 'file-archive', 'archive-wave', 'byte-file', 'archive-names', 'named-archive-wave', 'soundbank', 'property-list', 'soundbank-archive', 'state-archive', 'keyed-state', 'archive-open'], default='planar-sum')
+    p.add_argument('--kind', choices=['planar-sum', 'voice-chunk', 'sample-format', 'buffered-pcm', 'sample-cache', 'sample-file', 'cache-refill', 'cache-lifecycle', 'timer', 'wave', 'wave-chunks', 'wave-adpcm', 'file-open', 'file-pipeline', 'file-archive', 'archive-wave', 'byte-file', 'archive-names', 'named-archive-wave', 'soundbank', 'property-list', 'soundbank-archive', 'state-archive', 'keyed-state', 'program-state', 'archive-open'], default='planar-sum')
     a = p.parse_args()
     build(a.output, a.compiler, a.kind)

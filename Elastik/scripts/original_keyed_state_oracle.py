@@ -19,6 +19,9 @@ MODEL_CLASSES = {
 
 
 class KeyedStateOracle(StateArchiveReaderOracle):
+    model_classes = MODEL_CLASSES
+    finalize_models = False
+
     def __init__(self, binary):
         super().__init__(binary)
         self.import_handlers.update({'_setjmp': self.ignore, '_strcmp': self.strcmp})
@@ -41,7 +44,7 @@ class KeyedStateOracle(StateArchiveReaderOracle):
         self.put(AUTORELEASE_VTABLE + 0x44, NO_ACTION)
         self.put(self.vtables['GNList'] + 0x48, NO_ACTION)
         self.model_tables = {}
-        for i, (name, (registration, _, original_table)) in enumerate(MODEL_CLASSES.items()):
+        for i, (name, (registration, _, original_table)) in enumerate(self.model_classes.items()):
             table = MODEL_TABLES + i * 0x200
             self.uc.mem_write(table, bytes(self.uc.mem_read(original_table, 0x198)))
             self.put(table + 8, DESCRIPTOR_BY_OBJECT)
@@ -216,12 +219,12 @@ class KeyedStateOracle(StateArchiveReaderOracle):
         self.id_map = 0
         self.read_archive(raw, header)
         self.binary_refs = {ptr: ref for ref, ptr in enumerate([0] + self.registries[OBJECTS])}
-        self.member_names = {name: [] for name in MODEL_CLASSES}
+        self.member_names = {name: [] for name in self.model_classes}
         self.property_trace = []
         self.expected_records = expected_records
 
         self.lookup_or_register('GNObject')
-        for name, (entry, cache, _) in MODEL_CLASSES.items():
+        for name, (entry, cache, _) in self.model_classes.items():
             if cache:
                 self.put(cache, 0)
                 assert self.call(entry) == self.model_descriptors[name]
@@ -234,6 +237,7 @@ class KeyedStateOracle(StateArchiveReaderOracle):
         self.put(0x3d400c, short_keys)
         self.uc.mem_write(KEYED, bytes(0x40))
         self.put(KEYED, DISPATCH)
+        self.uc.mem_write(KEYED + 0x30, bytes([self.finalize_models]))
         root = self.call(0x1211b0, KEYED, self.registries[OBJECTS][0])
         order = self.registries[self.word(KEYED + 0x1c)]
         self.record_ptrs = self.registries[self.word(KEYED + 0x18)]

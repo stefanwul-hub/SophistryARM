@@ -1,0 +1,6 @@
+0x18b560 # GNScanner scan double
+0x18aa3a # GNScanner initialize string
+0x15f48c # Locate a sample in a bank for the program
+0x14a31e,14 # Set mapping MIDI note
+0x14a256,14 # Set mapping user key flag
+0x1210b4 # Read foundation graph from serialized data

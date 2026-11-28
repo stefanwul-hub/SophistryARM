@@ -54,9 +54,10 @@ public:
             result_.mappings.reserve(mappings->size());
             for (const auto& item : *mappings) add_mapping(item);
         } else {
-            // Original ETProgram init (0x160584).
+            // ETProgram creates the notes, then its post-decode clears
+            // the user-key flag on the empty mappings (0x14b946).
             for (int32_t note = 36; note <= 103; ++note) {
-                result_.mappings.push_back({0, note, note >= 72, 0, 0, 0});
+                result_.mappings.push_back({0, note, false, 0, 0, 0});
             }
         }
 
