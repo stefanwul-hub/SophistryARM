@@ -1,0 +1,18 @@
+0x1211b0 # Restore model graph from the keyed envelope
+0x1216e8 # Decode a named value from an explicit dictionary
+0x1218f2 # Decode a named value or reference
+0x1219d4 # Test for the presence of a key
+0x155396 # Write model ID and class
+0x155546 # Wrap the model records in objects
+0x315e4 # Restore reflectively registered properties
+0x3169e # Store reflectively registered properties
+0x21866 # Enumerate registered property keys
+0x2f962 # Decide whether to restore dynamically
+0x2fad6 # Set a registered property
+0x1c220 # Restore ETInstrument
+0x1489c0 # Register ETKeyMapping
+0x15ecac # Register ETProgram
+0x217c0 # Collect declared property keys
+0x1557ae # Store inline objects
+0x1559ae # Store links to model objects
+0x34962 # Convert GNString to a C string for comparison
