@@ -1,0 +1,34 @@
+{
+  "checkpoint": "ELA021",
+  "date": "2026-11-28",
+  "timezone": "Europe/Paris",
+  "public_repository": "stefanwul-hub/SophistryARM",
+  "branch": "codex/sophistry-native-checkpoints",
+  "public_checkpoint_commit": "24ab60117fe02f9e4168ec15cd5fd35987b4b7db",
+  "public_checkpoint_parent": "d1b071d7db22a20c622c8032c517cdc9be1424b6",
+  "public_checkpoint_tree": "3eee1989ced50a9737d5bb35ea154f10fa00cb06",
+  "source_snapshot_commit": "f6142c3af63437838a8fd404ebda09d75e681247",
+  "source_progress_commit": "d1b071d7db22a20c622c8032c517cdc9be1424b6",
+  "first_native_progress_commit": "21626061e14b7147c10b87fc8c583a9449596e35",
+  "changed_paths_confined_to": "Elastik/",
+  "changed_paths": 14,
+  "full_checkpoint": {
+    "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/24ab60117fe02f9e4168ec15cd5fd35987b4b7db/Elastik/Elastik-ELA021-complet-checkpoint.zip",
+    "bytes": 7091922,
+    "sha256": "ebe1e53238848c4a48f6a9ea4c0489d644432c8f3214e179c244c46875bd36f2",
+    "zip_entries": 502,
+    "manifest_entries_verified": 501,
+    "download_matches_local_bytes": true,
+    "differential_cases_reproduced_from_download": 132,
+    "validation_cases_reproduced_from_download": 6,
+    "pcm_frames_compared_from_download": 13603
+  },
+  "decompilation_archive": {
+    "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/24ab60117fe02f9e4168ec15cd5fd35987b4b7db/Elastik/analysis/ELA021-original-voice-loop-decompiled.zip",
+    "bytes": 41948,
+    "sha256": "fef700c6431627790dc1a4d6764bb17f9d6494f3b8bcca2601de83453c491c74",
+    "download_matches_local_bytes": true
+  },
+  "includes_original_installer_or_user_bank": false,
+  "native_audio_unit_available": false
+}
