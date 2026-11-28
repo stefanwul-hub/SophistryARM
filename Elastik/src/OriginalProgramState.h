@@ -11,6 +11,13 @@ struct ProgramLoopSettings {
     int32_t mode = 1;
 };
 
+struct ProgramMixSettings {
+    float volume = 0.7f;
+    float panorama = 0.5f;
+    int32_t first_output_channel = 0;
+    bool filter_on = false;
+};
+
 struct ProgramMapping {
     Reference record;
     int32_t midi_note;
@@ -19,6 +26,7 @@ struct ProgramMapping {
     Reference bank_identifier;
     Reference program;
     ProgramLoopSettings loop{};
+    ProgramMixSettings mix{};
 };
 
 struct ProgramState {

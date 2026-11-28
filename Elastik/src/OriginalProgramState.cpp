@@ -119,8 +119,10 @@ private:
         return signed_number(number_bits(record, name, 'i', static_cast<uint32_t>(fallback), error));
     }
 
-    float floating(const ModelRecord& record, std::u16string_view name, ProgramError error) const {
-        const auto bits = number_bits(record, name, 'f', 0, error);
+    float floating(const ModelRecord& record, std::u16string_view name, float fallback, ProgramError error) const {
+        uint32_t fallback_bits;
+        std::memcpy(&fallback_bits, &fallback, sizeof(fallback_bits));
+        const auto bits = number_bits(record, name, 'f', fallback_bits, error);
         float value;
         std::memcpy(&value, &bits, sizeof(value));
         return value;
@@ -141,8 +143,10 @@ private:
         result_.mappings.push_back({
             mapping.dictionary, integer(mapping, u"midiNote", 0, error), boolean(mapping, u"isUserKey", false, error),
             text(mapping, u"soundFilePath", error), text(mapping, u"soundBankIdentifier", error), program,
-            {floating(mapping, u"startDegree", error), floating(mapping, u"stopDegree", error),
-             integer(mapping, u"direction", 0, error), integer(mapping, u"loopMode", 1, error)}
+            {floating(mapping, u"startDegree", 0.0f, error), floating(mapping, u"stopDegree", 0.0f, error),
+             integer(mapping, u"direction", 0, error), integer(mapping, u"loopMode", 1, error)},
+            {floating(mapping, u"volume", 0.7f, error), floating(mapping, u"panorama", 0.5f, error),
+             integer(mapping, u"firstOutputChannelIndex", 0, error), boolean(mapping, u"filterOn", false, error)}
         });
     }
 
