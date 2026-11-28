@@ -1,0 +1,26 @@
+{
+  "checkpoint": "ELA023",
+  "date": "2026-11-28",
+  "timezone": "Europe/Paris",
+  "public_repository": "stefanwul-hub/SophistryARM",
+  "branch": "codex/sophistry-native-checkpoints",
+  "source_progress_commit": "16a8884f5154f1e867b407de779937771f63d010",
+  "public_checkpoint_commit": "54b96a88b3b27beee220c60485bb3b776ac11593",
+  "public_checkpoint_tree": "314314efcb35b45c1eab81355723bd7d8ee1a067",
+  "source_snapshot_commit": "05d158b98baf21becf968095836a6c4eeca837ef",
+  "changed_paths_confined_to": "Elastik/",
+  "full_checkpoint": {
+    "path": "Elastik-ELA023-complet-checkpoint.zip",
+    "bytes": 7220816,
+    "sha256": "b00346045444a76a8547ee202a321fbb3b072548b5c30d9312256067359c40ba",
+    "entries": 523,
+    "zip_crc_verified": true,
+    "url": "https://raw.githubusercontent.com/stefanwul-hub/SophistryARM/54b96a88b3b27beee220c60485bb3b776ac11593/Elastik/Elastik-ELA023-complet-checkpoint.zip",
+    "manifest_entries_verified": 522,
+    "download_matches_local_bytes": true,
+    "sequences_reproduced_from_download": 48,
+    "audio_blocks_reproduced_from_download": 240,
+    "lookup_notes_reproduced_from_download": 256
+  },
+  "native_audio_unit_available": false
+}
