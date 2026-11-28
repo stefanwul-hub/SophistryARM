@@ -1,0 +1,63 @@
+{
+  "checkpoint": "ELA021",
+  "source_progress_commit": "d1b071d7db22a20c622c8032c517cdc9be1424b6",
+  "tool_versions": [
+    "GCC 14.2.0",
+    "Zig 0.14.1",
+    "QEMU AArch64 10.0.13",
+    "Unicorn 2.1.4",
+    "Ghidra 11.3.2"
+  ],
+  "common_flags": [
+    "-std=c++17",
+    "-ffp-contract=off"
+  ],
+  "host_flags": [
+    "-O2",
+    "-fno-fast-math",
+    "-fno-tree-vectorize"
+  ],
+  "arm64_linux_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-O2",
+    "-fno-fast-math"
+  ],
+  "sanitizer_flags": [
+    "-O1",
+    "-g",
+    "-fno-sanitize-recover=all",
+    "-fno-omit-frame-pointer"
+  ],
+  "ubsan_only_flags": [
+    "-fsanitize=undefined"
+  ],
+  "asan_ubsan_flags": [
+    "-fsanitize=address,undefined",
+    "-no-pie"
+  ],
+  "asan_environment": {
+    "ASAN_OPTIONS": "detect_leaks=1"
+  },
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-c"
+  ],
+  "mach_o_object": {
+    "path": "evidence/ELA021/OriginalProgramVoice-arm64-macos.o",
+    "bytes": 29352,
+    "sha256": "2d9deda1ff8c7c2649292ad98d6a51af7861fb14a167eeba97a1ee1dd66f5fe7",
+    "cpu": "0x100000c",
+    "cpu_subtype": 0,
+    "file_type": "MH_OBJECT"
+  },
+  "actual_macos_execution": false,
+  "audio_unit_built": false,
+  "all_program_voice_reports_match_except_platform": true
+}

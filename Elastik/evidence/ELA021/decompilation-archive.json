@@ -1,0 +1,14 @@
+{
+  "checkpoint": "ELA021",
+  "ghidra_version": "11.3.2",
+  "read_only": true,
+  "selected_functions": 31,
+  "new_selected_functions": 19,
+  "selected_all_checkpoints": 573,
+  "archive": {
+    "path": "analysis/ELA021-original-voice-loop-decompiled.zip",
+    "bytes": 41948,
+    "sha256": "fef700c6431627790dc1a4d6764bb17f9d6494f3b8bcca2601de83453c491c74"
+  },
+  "entries": 64
+}

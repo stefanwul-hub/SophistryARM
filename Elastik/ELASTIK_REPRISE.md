@@ -274,3 +274,10 @@ ELA020, 28 novembre 2026. Le résolveur natif parcourt les affectations d’ELA0
 Les 26 cas et 80 affectations concordent sur Linux x86‑64, ARM64 sous QEMU, UBSan et ASan+UBSan. Pour la banque fournie avec Elastik, la sonde lit et décode les 176 399 trames stéréo de la boucle WAV à partir d’un état synthétique. Les deux canaux concordent avec la conversion PCM16 indépendante. [Rapports ELA020](evidence/ELA020)
 
 Suite. Raccorder le catalogue hôte et la gestion des fichiers, puis exécuter les réglages de voix, de boucle, de pitch et de tempo sur les échantillons chargés. Le composant AU, l’exécution macOS et le rappel sur un état d’époque restent à vérifier.
+
+
+ELA021, 28 novembre 2026. Le lecteur natif extrait les bornes de boucle, le sens et le mode d’ETKeyMapping. À partir du fichier ouvert, la routine d’initialisation reproduit le calcul inclusif des bornes, y compris le passage par la fin du fichier, et initialise le curseur et les fondus du lecteur de blocs. [Notes ELA021](analysis/ELA021-notes.md)
+
+Les 132 cas et 13 603 trames concordent sur Linux x86‑64, ARM64 sous QEMU, UBSan et ASan+UBSan. Quatre cas utilisent la boucle WAV fournie. Les rapports ELA005 et ELA020 repassent à l’identique. [Rapports ELA021](evidence/ELA021)
+
+Suite. Raccorder la préparation du cache et le cycle de la voix, puis appliquer les réglages de pitch, d’étirement temporel, de gain et de filtre. Le composant AU, l’exécution macOS et le rappel d’un état d’époque restent à vérifier.
