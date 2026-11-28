@@ -39,8 +39,13 @@ public:
     bool has_field(const Archive&, const ModelRecord&, std::u16string_view key) const noexcept;
     KeyedValue field(const Archive&, const ModelRecord&, std::u16string_view key) const noexcept;
 
+    // A keyed GNList serializes a count and zero-based decimal member keys.
+    // A malformed or incomplete list returns no value.
+    std::optional<std::vector<KeyedValue>> list_items(const Archive&, const ModelRecord&) const;
+
 private:
     friend KeyedStateResult index_keyed_state(const Archive&);
+    KeyedValue resolve_model(const Archive&, Reference) const noexcept;
     std::vector<ModelRecord> records_; // Original restoration order. First entry is the root.
     std::map<ModelId, Reference> by_id_;
 };

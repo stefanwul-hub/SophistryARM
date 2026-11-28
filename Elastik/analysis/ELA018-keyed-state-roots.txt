@@ -16,3 +16,9 @@
 0x1557ae # Store inline objects
 0x1559ae # Store links to model objects
 0x34962 # Convert GNString to a C string for comparison
+0x3b05e # Derive the registered property name from the member name
+0xa0cc4,11 # Read the registered property name
+0x3a042 # GNString substring
+0x1c4fe,5 # ETInstrument post-decode callback
+0x2c7ec # Restore GNList including keyed mode
+0x29f66 # Store GNList including keyed mode
