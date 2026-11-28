@@ -251,3 +251,10 @@ ELA017, 28 novembre 2026. Le décodeur natif de GNArchiver v1 restitue les corps
 392 archives, 1 503 objets et 58 078 octets de résultat concordent sur Linux x86‑64, ARM64/QEMU et les deux configurations de sanitizers. La sonde compare les vrais corps de lecture et d’écriture i386 en liant le runtime d’objets. 603 troncatures et variantes invalides sont rejetées côté natif. Un objet Mach‑O ARM64 est vérifié. 90 fonctions sélectionnées sous Ghidra, 43 nouvelles, total 489. Sources et sonde sauvegardées au commit intermédiaire f53e3802b808dfdddf45912e741997683a39c83b.
 
 Suite : interpréter les champs et références GNKeyValue des modèles Elastik, puis vérifier le rappel avec un état réel d’Elastik 1 et ses banques. L’intégration macOS, l’AU et la restitution sonore complète restent à établir.
+
+
+ELA018, 28 novembre 2026. L’index GNKeyValue conserve l’ordre des enregistrements, leur classe et leurs identifiants. Les références de modèle et les valeurs intégrées sont résolues comme dans le lecteur i386. Les listes GNList à clés retrouvent les affectations de touches à partir de leur compte et de clés décimales. L’enregistrement i386 confirme 7 clés d’ETProgram et 29 d’ETKeyMapping, sans le tiret bas initial des noms de membres. [Notes ELA018](analysis/ELA018-notes.md)
+
+Quarante graphes, 427 enregistrements et 385 éléments de listes concordent sur Linux x86‑64, ARM64 sous QEMU, UBSan et ASan+UBSan. Les rapports comparent 10 010 recherches par configuration et vérifient 23 cas invalides côté natif. L’analyse couvre 86 fonctions, dont 25 nouvelles, soit 514 au total. Les sources du jalon et la sonde figurent dans le commit public intermédiaire d1231d3cab5bf4c89480b7e718c206daf0fdf97b. [Rapports ELA018](evidence/ELA018)
+
+Suite. Relier la restauration à la structure réelle d’ETInstrument et aux paramètres hôte. Raccorder les banques et leurs chemins au champ de mapping, puis vérifier le rappel sur un état d’époque avec son audio. L’exécution sur macOS et le composant AU restent à établir.

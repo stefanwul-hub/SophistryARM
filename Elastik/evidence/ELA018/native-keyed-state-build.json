@@ -1,0 +1,67 @@
+{
+  "checkpoint": "ELA018",
+  "source_progress_commit": "d1231d3cab5bf4c89480b7e718c206daf0fdf97b",
+  "tool_versions": [
+    "GCC 14.2.0",
+    "Zig 0.14.1",
+    "QEMU AArch64 10.0.13",
+    "Unicorn 2.1.4",
+    "Ghidra 11.3.2"
+  ],
+  "common_flags": [
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror"
+  ],
+  "host_flags": [
+    "-O2",
+    "-fno-tree-vectorize",
+    "-fno-fast-math",
+    "-ffp-contract=off"
+  ],
+  "arm64_linux_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off"
+  ],
+  "ubsan_flags": [
+    "-O1",
+    "-g",
+    "-pedantic",
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all",
+    "-fno-omit-frame-pointer"
+  ],
+  "asan_ubsan_flags": [
+    "-O1",
+    "-g",
+    "-pedantic",
+    "-fsanitize=address,undefined",
+    "-fno-sanitize-recover=all",
+    "-fno-omit-frame-pointer",
+    "-no-pie"
+  ],
+  "asan_environment": {
+    "ASAN_OPTIONS": "detect_leaks=1"
+  },
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-O2",
+    "-c"
+  ],
+  "mach_o_object": {
+    "path": "evidence/ELA018/OriginalKeyedState-arm64-macos.o",
+    "bytes": 376200,
+    "sha256": "1fa31f357e650e410a41078cf848153c34e20a98a4994b7371b86996921cc762",
+    "cpu": "0x100000c",
+    "cpu_subtype": 0,
+    "file_type": "MH_OBJECT"
+  },
+  "actual_macos_execution": false,
+  "audio_unit_built": false
+}

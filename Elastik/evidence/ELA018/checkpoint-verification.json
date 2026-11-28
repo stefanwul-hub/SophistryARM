@@ -1,0 +1,10 @@
+{
+  "checkpoint": "ELA018",
+  "all_four_reports_match_per_case": true,
+  "ELA017_host_regression": {
+    "report_sha256": "1c3748f4c23f6fe0cd900d95872ccb88544ee0319bb0bf02e284521ca8b68a30",
+    "matches_previous_excluding_platform_label": true,
+    "compared_cases": 392,
+    "native_validation_cases": 603
+  }
+}

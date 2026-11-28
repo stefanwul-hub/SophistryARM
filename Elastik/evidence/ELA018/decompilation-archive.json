@@ -1,0 +1,14 @@
+{
+  "checkpoint": "ELA018",
+  "ghidra_version": "11.3.2",
+  "read_only": true,
+  "selected_functions": 86,
+  "new_selected_functions": 25,
+  "selected_all_checkpoints": 514,
+  "archive": {
+    "path": "analysis/ELA018-original-keyed-state-decompiled.zip",
+    "bytes": 142045,
+    "sha256": "5f452ecd69eee28436cea3c23adb862a7098bae87e4942f3dc83e2ac944238df"
+  },
+  "entries": 174
+}
