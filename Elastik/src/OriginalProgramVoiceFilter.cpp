@@ -79,26 +79,27 @@ void ProgramVoiceFilter::render(const ProgramFilterSettings& settings, ProgramVo
     const int order = settings.q + 1;
     const float resonance = (static_cast<float>(settings.q) * -0.1f + 1.0f) * settings.resonance;
     const bool changed_order = order != mode.order;
-    const bool changed = mode.cutoff_hz != cutoff || mode.resonance != resonance || mode.rate != context.sample_rate ||
-        (nonlinear && (mode.dirt != settings.dirt || mode.resonance_dirt != settings.resonance_dirt ||
-                       mode.limiter_knee != settings.limiter_knee));
-    bool begin_ramp = false;
+    mode.dirty |= mode.cutoff_hz != cutoff || mode.resonance != resonance || mode.rate != context.sample_rate;
+    mode.order = order;
+    mode.rate = context.sample_rate;
+    mode.cutoff_hz = cutoff;
+    mode.resonance = resonance;
+    if (nonlinear) {
+        mode.dirty |= mode.dirt != settings.dirt || mode.resonance_dirt != settings.resonance_dirt ||
+            mode.limiter_knee != settings.limiter_knee;
+        mode.dirt = settings.dirt;
+        mode.resonance_dirt = settings.resonance_dirt;
+        mode.limiter_knee = settings.limiter_knee;
+    }
     if (changed_order) mode.history = {};
-    if (changed_order || changed) {
+
+    // The limiter uses the new knee immediately. The other control changes
+    // wait for the current coefficient sweep unless the order changes.
+    const bool begin_ramp = !changed_order && mode.dirty && !mode.remaining;
+    if (changed_order || begin_ramp) {
         const auto previous = mode.target;
-        mode.order = order;
-        mode.rate = context.sample_rate;
-        mode.cutoff_hz = cutoff;
-        mode.resonance = resonance;
-        if (nonlinear) {
-            mode.dirt = settings.dirt;
-            mode.resonance_dirt = settings.resonance_dirt;
-            mode.limiter_knee = settings.limiter_knee;
-        }
         update_coefficients(mode);
-        // An order change resets history. During an existing sweep, new
-        // targets keep that sweep's step and countdown until its endpoint.
-        begin_ramp = !changed_order && !mode.remaining;
+        mode.dirty = false;
         if (begin_ramp) {
             mode.current = previous;
             mode.step = {mode.target.feedback - previous.feedback, mode.target.input - previous.input,

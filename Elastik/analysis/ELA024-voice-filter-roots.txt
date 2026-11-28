@@ -1,8 +1,11 @@
+0x15152c # Voice constructor and previous filter type
 0x151aa0 # Voice allocation and setup of four filters
 0x1f351c # Filter constructor
+0x1f2cea,46 # Set order and clear the affected filter's history
 0x1f2f6a # Clear filter history
-0x1f318a # Coefficient update
+0x1f318a # Four-stage filter sample calculation
 0x1f35c4 # Filter initialization
-0x1f379e # Planar filter render
-0x14b522 # Mapping construction
-0x14b680 # Mapping reflection
+0x1f379e # Planar filter render and coefficient ramps
+0x227dae,135 # Symmetric feedback limiter
+0x14b522 # Filter defaults in the mapping factory
+0x14a14e,50 # Order-adjusted filter resonance

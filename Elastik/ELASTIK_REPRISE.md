@@ -287,3 +287,6 @@ ELA022, 28 novembre 2026. Le rendu direct d’une voix enchaîne les blocs resta
 
 
 ELA023, 28 novembre 2026. Le moteur retrouve les affectations MIDI dans les deux ordres d’ETProgram. Il déclenche la voix avec ses gains et son enveloppe d’attaque et calcule le relâchement à partir de la longueur de la boucle. Deux programmes synthétiques couvrent chacun les 128 notes MIDI. Les 48 séquences, 240 blocs et 48 fins de voix concordent avec l’i386 sur x86‑64, ARM64 sous QEMU et ASan+UBSan. Le filtre, le pitch, l’étirement temporel, la synchronisation hôte et la validation du composant AU sur macOS restent à faire. [Notes ELA023](analysis/ELA023-notes.md)
+
+
+ELA024, 28 novembre 2026. Les quatre modes de filtre et leurs paramètres sauvegardés sont raccordés à la voix en lecture directe. Le port suit les transitions des coefficients, les remises à zéro de l’historique et la suite de modulation. Les 77 séquences et 790 blocs concordent avec l’i386 sur x86‑64, ARM64 sous QEMU et ASan+UBSan. Le pitch, l’étirement temporel, la synchronisation hôte et la validation du composant AU sur macOS restent à faire. [Notes ELA024](analysis/ELA024-notes.md)

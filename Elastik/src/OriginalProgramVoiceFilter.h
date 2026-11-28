@@ -45,6 +45,7 @@ struct ProgramVoiceFilter {
         double rate = 0.0;
         int order = 0;
         int remaining = 0;
+        bool dirty = false;
     };
 
     int previous_type = -1;
