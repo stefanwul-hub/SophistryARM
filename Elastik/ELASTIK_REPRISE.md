@@ -267,3 +267,10 @@ ELA019, 28 novembre 2026. Le lecteur natif vérifie le ClassInfo, lit la racine 
 Quarante archives synthétiques et 522 affectations concordent sur Linux x86‑64, ARM64 sous QEMU, UBSan et ASan+UBSan. L’analyse sélectionne 77 fonctions, dont 36 nouvelles. Les tests i386 exercent la vérification ClassInfo, le chargement du graphe, le tempo et l’attache au moteur avec des liaisons d’objets et de catalogue. [Rapports ELA019](evidence/ELA019)
 
 Suite. Raccorder les chemins et identifiants archivés au catalogue de banques et ouvrir les échantillons correspondants. Il reste à appliquer les paramètres au moteur natif, puis à vérifier le rappel et le rendu dans Logic et Live sur macOS.
+
+
+ELA020, 28 novembre 2026. Le résolveur natif parcourt les affectations d’ELA019 et suit la recherche de l’échantillon source d’après les routines i386. Les ouvertures réussies sont mises en cache par chemin. La fabrique de fichier reçoit un chemin système ou un chemin de membre GNFA. L’accès au catalogue de banques et les services de fichiers hôte sont des liaisons. [Notes ELA020](analysis/ELA020-notes.md)
+
+Les 26 cas et 80 affectations concordent sur Linux x86‑64, ARM64 sous QEMU, UBSan et ASan+UBSan. Pour la banque fournie avec Elastik, la sonde lit et décode les 176 399 trames stéréo de la boucle WAV à partir d’un état synthétique. Les deux canaux concordent avec la conversion PCM16 indépendante. [Rapports ELA020](evidence/ELA020)
+
+Suite. Raccorder le catalogue hôte et la gestion des fichiers, puis exécuter les réglages de voix, de boucle, de pitch et de tempo sur les échantillons chargés. Le composant AU, l’exécution macOS et le rappel sur un état d’époque restent à vérifier.

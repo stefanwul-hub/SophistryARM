@@ -1,0 +1,14 @@
+{
+  "checkpoint": "ELA020",
+  "ghidra_version": "11.3.2",
+  "read_only": true,
+  "selected_functions": 43,
+  "new_selected_functions": 4,
+  "selected_all_checkpoints": 554,
+  "archive": {
+    "path": "analysis/ELA020-original-sample-lookup-decompiled.zip",
+    "bytes": 70141,
+    "sha256": "422a12d67aa628eeda886341ba684b92e79c0c1bd740c64bf9552bb0d8738b39"
+  },
+  "entries": 88
+}
