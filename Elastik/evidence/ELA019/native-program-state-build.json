@@ -1,0 +1,70 @@
+{
+  "checkpoint": "ELA019",
+  "source_progress_commit": "9c45a93e4265674b38656ab3b62f083116453c3f",
+  "tool_versions": [
+    "GCC 14.2.0",
+    "Zig 0.14.1",
+    "QEMU AArch64 10.0.13",
+    "Unicorn 2.1.4",
+    "Ghidra 11.3.2"
+  ],
+  "common_flags": [
+    "-std=c++17",
+    "-ffp-contract=off"
+  ],
+  "host_flags": [
+    "-O2",
+    "-fno-tree-vectorize",
+    "-fno-fast-math"
+  ],
+  "arm64_linux_flags": [
+    "-target",
+    "aarch64-linux-musl",
+    "-static",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fno-fast-math"
+  ],
+  "sanitizer_flags": [
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-fno-sanitize-recover=all",
+    "-fno-omit-frame-pointer"
+  ],
+  "asan_ubsan_only_flags": [
+    "-fsanitize=address,undefined",
+    "-no-pie"
+  ],
+  "ubsan_only_flags": [
+    "-fsanitize=undefined"
+  ],
+  "asan_environment": {
+    "ASAN_OPTIONS": "detect_leaks=1"
+  },
+  "macos_object_flags": [
+    "-target",
+    "aarch64-macos",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-c"
+  ],
+  "mach_o_object": {
+    "path": "evidence/ELA019/OriginalProgramState-arm64-macos.o",
+    "bytes": 545208,
+    "sha256": "02bf4986de43a2f437b378e263fd552b4a08875a62d1c197b02f7f05e7a46759",
+    "cpu": "0x100000c",
+    "cpu_subtype": 0,
+    "file_type": "MH_OBJECT"
+  },
+  "actual_macos_execution": false,
+  "audio_unit_built": false,
+  "all_four_program_reports_match": true
+}

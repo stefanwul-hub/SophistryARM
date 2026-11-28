@@ -1,0 +1,526 @@
+{
+  "checkpoint": "ELA019",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "platform": "linux-x86-64-ubsan",
+  "original_routines_executed": [
+    "0x5b64",
+    "0x1b71e2",
+    "0x1b73d8",
+    "0x1b92b4",
+    "0x1211b0",
+    "0x160584",
+    "0x315e4",
+    "0x160ba8",
+    "0x34496",
+    "0x18b560",
+    "0x14b946",
+    "0x1b2bc",
+    "0x14a6c0"
+  ],
+  "verified_entry_points": [
+    "GNArchiver payload",
+    "numeric AU ClassInfo and payload"
+  ],
+  "runtime_bindings": [
+    "CoreFoundation and component lookup",
+    "allocation, ownership and GN collection storage",
+    "class registry and factories",
+    "write decoded properties into original member storage",
+    "GNScanner strings and C pow",
+    "synthetic bank catalogue and sample load capture"
+  ],
+  "differential_cases": [
+    {
+      "case": "program-00",
+      "input_sha256": "c82492e1b8e933f498f73d8cf9fef7a6efc55eacddd90cb29eb079b6ffdc029b",
+      "result_sha256": "7012bb7d9853bd52bf05f5067439ee0a5436087a74d2b117c9f3ecf4084e5506",
+      "records": 1,
+      "key_mappings": 68,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 1715
+    },
+    {
+      "case": "program-01",
+      "input_sha256": "a089c5cc1204f26bf796e80f318449f675b7be36984bb1bda9b82a7380af8d5f",
+      "result_sha256": "00e13d2c9940e45e60d12fd149c64d7562801f352dc091ca42bf4cad900bb7ac",
+      "records": 5,
+      "key_mappings": 1,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 107
+    },
+    {
+      "case": "program-02",
+      "input_sha256": "a139ac71062d1c7eefd5d6d64d4277589a983e97344d3fa2a5b167056d2eb7a0",
+      "result_sha256": "0968080436b52447ac78c8077f42ffd3b50fac12bc96abbad629b03e139debc8",
+      "records": 12,
+      "key_mappings": 2,
+      "automation_slots": 8,
+      "original_sample_load_requests": 1,
+      "compared_bytes_per_entry": 131
+    },
+    {
+      "case": "program-03",
+      "input_sha256": "f382cc9c5a1d9728f57c465a5de7d8cedb511163b182284e02813ceb8a09e8dd",
+      "result_sha256": "5fa1aa0616499bfa4f1da3d51da3a79bd666f6a2f8ee0b48c908ae2a4b1a8225",
+      "records": 25,
+      "key_mappings": 14,
+      "automation_slots": 8,
+      "original_sample_load_requests": 7,
+      "compared_bytes_per_entry": 419
+    },
+    {
+      "case": "program-04",
+      "input_sha256": "0b1f090619dfb515bf136f76372eb00675d52ff5593d366077ca3d3bdb8258d8",
+      "result_sha256": "11a0c723bd593aef5d68cb74a866f89879b8d820cd3f098a2f552a3eabea30c9",
+      "records": 13,
+      "key_mappings": 0,
+      "automation_slots": 10,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 91
+    },
+    {
+      "case": "program-05",
+      "input_sha256": "031f152fd16eae0c495eaab4ae86b6762cdb80737372bd3921b4563764480300",
+      "result_sha256": "28707601ec0eb2f1a942a8e7a10f2a1ba0877b3f8698709eca2837f643c0ab68",
+      "records": 4,
+      "key_mappings": 3,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 155
+    },
+    {
+      "case": "program-06",
+      "input_sha256": "3ef4f12ed7d3f593de0a79f5e2a0619629d5b09867a256354010615b7d59cdcc",
+      "result_sha256": "1d79b3f4affbcb0aa7d29144be81cfbed77f90de938cec3bd77778c75d72e78b",
+      "records": 4,
+      "key_mappings": 2,
+      "automation_slots": 8,
+      "original_sample_load_requests": 1,
+      "compared_bytes_per_entry": 131
+    },
+    {
+      "case": "program-07",
+      "input_sha256": "9c5f87935bfc5b9259c0bc60523804af804665b1c9392ada0e6515b37c93d76d",
+      "result_sha256": "fe14804371454b2e7e454f52c54bb063a67dfc76045e8ee5d8514870da62e38f",
+      "records": 24,
+      "key_mappings": 14,
+      "automation_slots": 8,
+      "original_sample_load_requests": 7,
+      "compared_bytes_per_entry": 419
+    },
+    {
+      "case": "program-08",
+      "input_sha256": "6c97574a49769d3d78992bebed8218891f3f54de84f53df6997541d3ca4343e0",
+      "result_sha256": "22365ee9f29dca26674f41ceb8e8cd8cdedda9f10fe2954eaa135a02b7c94ad4",
+      "records": 10,
+      "key_mappings": 68,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 1715
+    },
+    {
+      "case": "program-09",
+      "input_sha256": "c1a534dddc0e761f027c9829a6a6a3acbb4e64812b1ec7b060d8971e13820c50",
+      "result_sha256": "f94ac84e2fc0e6d436812a7adb9f82bd9aa1d51daaaeaac50769f2c01e14c8e5",
+      "records": 14,
+      "key_mappings": 1,
+      "automation_slots": 10,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 115
+    },
+    {
+      "case": "program-10",
+      "input_sha256": "e10338bd7f3b26be3fda87db80f95d7258d2509d7fb2202f1392838a5c1adb21",
+      "result_sha256": "6c88e8d4f22e375b8e38bc66a2cbc2d12a226282b150b7545c9f28e064e54e7f",
+      "records": 5,
+      "key_mappings": 4,
+      "automation_slots": 8,
+      "original_sample_load_requests": 2,
+      "compared_bytes_per_entry": 179
+    },
+    {
+      "case": "program-11",
+      "input_sha256": "9a6b29ff3e59c2f68a4ec895dfafbd07a5c5f4e5f3ea2039c8c0c138fc058125",
+      "result_sha256": "5f166770ba55d2a91bf41eda89193292960ff878e12e1497ab53e86de61bb649",
+      "records": 18,
+      "key_mappings": 14,
+      "automation_slots": 8,
+      "original_sample_load_requests": 7,
+      "compared_bytes_per_entry": 419
+    },
+    {
+      "case": "program-12",
+      "input_sha256": "b185fee0089ec390500598f2e4e386815c1b7efbc8771896bd64e25d62856611",
+      "result_sha256": "077c803c2c310dea7372e772672d82197af2d7e492dc2819b36fadf1a142f544",
+      "records": 2,
+      "key_mappings": 0,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 83
+    },
+    {
+      "case": "program-13",
+      "input_sha256": "4d7da936bf6244d0a1960c61c87f92bd7d43bd545db4123291c4b3aeb9118ea2",
+      "result_sha256": "26df0e0247d501328f7a34fde577e79fbc3dc908bfa45f8fe64115e9d121f631",
+      "records": 12,
+      "key_mappings": 1,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 107
+    },
+    {
+      "case": "program-14",
+      "input_sha256": "f4ecec42834510abe1a5253699618624745e74ef523ece5caa381800da539317",
+      "result_sha256": "305efb1e0405e3e3bdf3ac08e13045ec5240cdcac641512304598fe373f054ad",
+      "records": 15,
+      "key_mappings": 2,
+      "automation_slots": 10,
+      "original_sample_load_requests": 1,
+      "compared_bytes_per_entry": 139
+    },
+    {
+      "case": "program-15",
+      "input_sha256": "58716247c2c3d74730ce80af448124e59a30806c0904a30ae9760e5639f3861b",
+      "result_sha256": "428a2fd6824647b92bb793202fbfa96f0c0fd0c08d41644d61f33888b551e193",
+      "records": 17,
+      "key_mappings": 16,
+      "automation_slots": 8,
+      "original_sample_load_requests": 8,
+      "compared_bytes_per_entry": 467
+    },
+    {
+      "case": "program-16",
+      "input_sha256": "d23033517b73d94440c18f8c30bf9fa53e48e7edaee75448c48bb94677af4511",
+      "result_sha256": "a97370be8962d7fd5b34248e538c6abd5af5a0011304d89ffc27cc5fad932b90",
+      "records": 3,
+      "key_mappings": 68,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 1715
+    },
+    {
+      "case": "program-17",
+      "input_sha256": "7e2edbbc8e17cbfe36bbe34e37f85eb33ca2d26d4a1428280875f8cf36a08bdd",
+      "result_sha256": "205f224933d60daf5d65e507dabf90052c5f759e2794ee4f88f9fdcdd4e77d03",
+      "records": 11,
+      "key_mappings": 1,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 107
+    },
+    {
+      "case": "program-18",
+      "input_sha256": "dc5a810683f3f46f4d6c3223651fe0c4bc656e206166c787780a246d86f65701",
+      "result_sha256": "9dc9f9861a6db8aaf5d5e42a26fcbf29c10d1438c3a1000dc49cc6af2f19436e",
+      "records": 4,
+      "key_mappings": 2,
+      "automation_slots": 8,
+      "original_sample_load_requests": 1,
+      "compared_bytes_per_entry": 131
+    },
+    {
+      "case": "program-19",
+      "input_sha256": "0a7c5af1d9052d4c5a3a9ccf84050a85df73c0a39b52fbd3f133c686912610d5",
+      "result_sha256": "92692e5b3c62a85011d0a45a47b67260a420a83c5ff7d51df28cf6346f06a294",
+      "records": 27,
+      "key_mappings": 14,
+      "automation_slots": 10,
+      "original_sample_load_requests": 7,
+      "compared_bytes_per_entry": 427
+    },
+    {
+      "case": "program-20",
+      "input_sha256": "8707468b7188bb2230e53dd2ef687a8235f8d8d80a0b9e95a35c5461631bb5db",
+      "result_sha256": "513e982d7e7f825688b9cbab252f87a31ca3b1716edb30c23dadcae15385e96c",
+      "records": 3,
+      "key_mappings": 0,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 83
+    },
+    {
+      "case": "program-21",
+      "input_sha256": "e07e1164caf029694b24dffc330c669b7028508c59277f455371c4ceed0cd018",
+      "result_sha256": "4400f0a8cd27ae750e5b6291de6ef17dffea4e818c450dd6af49bd962eae4abd",
+      "records": 5,
+      "key_mappings": 1,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 107
+    },
+    {
+      "case": "program-22",
+      "input_sha256": "6d1594ac388ab7f7ff47fd4aa76109a124be6a235778649e5274fec6d889b2df",
+      "result_sha256": "c371cc256f14ab2a86bbec7588935eb19beb033b7ee8c0f1da0567e1038320c1",
+      "records": 12,
+      "key_mappings": 2,
+      "automation_slots": 8,
+      "original_sample_load_requests": 1,
+      "compared_bytes_per_entry": 131
+    },
+    {
+      "case": "program-23",
+      "input_sha256": "c9949c9c1987d29bb75f41e7a1784dfcad5f782aa736ae898e50aa22841f556c",
+      "result_sha256": "83a8d58773317cf2ed78e102b14060655854737779eca7cc331238e0996aff59",
+      "records": 25,
+      "key_mappings": 14,
+      "automation_slots": 8,
+      "original_sample_load_requests": 7,
+      "compared_bytes_per_entry": 419
+    },
+    {
+      "case": "program-24",
+      "input_sha256": "f70db5913e3d6794904fb20f76ad286e811ded31076a9dc8ba929398e93448f4",
+      "result_sha256": "b8e214256f01be7e71dec8b03f3854b5cc057cec51f7bdedb61b897b27fae5fc",
+      "records": 1,
+      "key_mappings": 68,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 1715
+    },
+    {
+      "case": "program-25",
+      "input_sha256": "bdbcafa84def05ef93ee95b53ac81bd3590c52e53d6fb280d67befbe327a281f",
+      "result_sha256": "759c8a6b2bb898187adb1d90eba733282ec4622857b3d35f959155732b9cc322",
+      "records": 4,
+      "key_mappings": 3,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 155
+    },
+    {
+      "case": "program-26",
+      "input_sha256": "ebc9cb4e0fd9e323cbac45bfa122fb3bb0cdc3960d3d2f72f33dda0643444f5d",
+      "result_sha256": "b22d27cdecdde373656291ee399b50863afa8199406783d0bc100987d3bbf825",
+      "records": 6,
+      "key_mappings": 2,
+      "automation_slots": 8,
+      "original_sample_load_requests": 1,
+      "compared_bytes_per_entry": 131
+    },
+    {
+      "case": "program-27",
+      "input_sha256": "836285c583f3cc243d8d6e86c22ad68e7e43c0df3600bc1ba08bfd2b14db1be9",
+      "result_sha256": "8f014556b6acafc6c90865009f91cb618dcbf4b550521f8c2f1456a4939a8ad7",
+      "records": 24,
+      "key_mappings": 14,
+      "automation_slots": 8,
+      "original_sample_load_requests": 7,
+      "compared_bytes_per_entry": 419
+    },
+    {
+      "case": "program-28",
+      "input_sha256": "8c64fa29465f6d454042f3598ac1f4f9be534a45c6d7a5c3eee9ea438bc15e68",
+      "result_sha256": "3339057a6be89064e1d5513589ecf24348cbccda1e2bd35a8795e50ca604e9f6",
+      "records": 11,
+      "key_mappings": 0,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 83
+    },
+    {
+      "case": "program-29",
+      "input_sha256": "3f5ae79bd519fe502a40be918cfb4104be42def92662bfbf7063aaec31340dec",
+      "result_sha256": "65f3637c6153080332c9eba77c593dfacd4f22884a543f18499b20f4c7d2d4fd",
+      "records": 14,
+      "key_mappings": 1,
+      "automation_slots": 10,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 115
+    },
+    {
+      "case": "program-30",
+      "input_sha256": "6feff9508d7ca593eccbf8ac09d0fe9a6cee04c33474367697c5c8f37460c29b",
+      "result_sha256": "c62642e3be5e60dd37286ff4c847e83a69df4d710d6073afd6908a60ebae6e93",
+      "records": 4,
+      "key_mappings": 4,
+      "automation_slots": 8,
+      "original_sample_load_requests": 2,
+      "compared_bytes_per_entry": 179
+    },
+    {
+      "case": "program-31",
+      "input_sha256": "34197681c221b757d281703aded0108e4ce31a2d2ea37b5c8ed0130583d12a4e",
+      "result_sha256": "fc3c1b95bd105726ca00a61390ec4449b1489af65942ec0cfe67e4132ab05a7b",
+      "records": 18,
+      "key_mappings": 14,
+      "automation_slots": 8,
+      "original_sample_load_requests": 7,
+      "compared_bytes_per_entry": 419
+    },
+    {
+      "case": "program-32",
+      "input_sha256": "1598bae486111525770d75f8abd02df982f25e4d8f73bbacda2d4ae659becb92",
+      "result_sha256": "0ba9b083be0938c2cf4c3717388793bc72d75961dc890e444db41938025e4e2a",
+      "records": 9,
+      "key_mappings": 68,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 1715
+    },
+    {
+      "case": "program-33",
+      "input_sha256": "98ba3a6870015cc753eb6ca1867251500799133ee887cf7e16c88d66045124de",
+      "result_sha256": "0db23b1ac6a26bcea172cec170c41acfc6d215d8c2ed5ec34180411c29ae9bc8",
+      "records": 12,
+      "key_mappings": 1,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 107
+    },
+    {
+      "case": "program-34",
+      "input_sha256": "4b64e3241b40e56b1a87ede9259559c7f5db0a2149740964e6d85a9e50eff36e",
+      "result_sha256": "d26e27b28f91a856fc65a64f6c60f1ff9f8f72792da8f62306178c47bbf8ade9",
+      "records": 15,
+      "key_mappings": 2,
+      "automation_slots": 10,
+      "original_sample_load_requests": 1,
+      "compared_bytes_per_entry": 139
+    },
+    {
+      "case": "program-35",
+      "input_sha256": "2de31a429fe4ae981b5277adb22d658c6e8833828349964291270c0349b24114",
+      "result_sha256": "7cdf266db08b95d5b04d4bed885dfc02c8a947c10334e78aca88be0ebb474dd3",
+      "records": 17,
+      "key_mappings": 16,
+      "automation_slots": 8,
+      "original_sample_load_requests": 8,
+      "compared_bytes_per_entry": 467
+    },
+    {
+      "case": "program-36",
+      "input_sha256": "c96b2f8c69375b5cd2885ce15b5c456a2f34227753554825aa0c54bf8856c8c8",
+      "result_sha256": "47a8c64717d901534e81410c943bc41d0f03326e802551c84dc9e5e22890826f",
+      "records": 2,
+      "key_mappings": 0,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 83
+    },
+    {
+      "case": "program-37",
+      "input_sha256": "f0666df29e8d8c577516cd8c66b85f3f015cd0e6ad65c744f7d852ef7644f3d5",
+      "result_sha256": "65792991d8f494e0d45c408068ccf389e9c7dccf5e29d5d6e1c8510f4030d6dc",
+      "records": 11,
+      "key_mappings": 1,
+      "automation_slots": 8,
+      "original_sample_load_requests": 0,
+      "compared_bytes_per_entry": 107
+    },
+    {
+      "case": "program-38",
+      "input_sha256": "93a230aa82ed8806b8ab0b2445feac29325a2f13f10d929de6636565ae3bdcc5",
+      "result_sha256": "ebb6a298d42a5891cd6011e1b7376c23c0f64672c51a77d043984b750dc09828",
+      "records": 13,
+      "key_mappings": 2,
+      "automation_slots": 8,
+      "original_sample_load_requests": 1,
+      "compared_bytes_per_entry": 131
+    },
+    {
+      "case": "program-39",
+      "input_sha256": "f1c7b8bc64c072c726169d718c60844f15e21967e9ed77bb8e7c098957fe1143",
+      "result_sha256": "c9a1303b4fa34b9e780ea5d92aeb87e906c974a72276fcfcf27993a55108d3da",
+      "records": 27,
+      "key_mappings": 14,
+      "automation_slots": 10,
+      "original_sample_load_requests": 7,
+      "compared_bytes_per_entry": 427
+    }
+  ],
+  "native_validation_cases": [
+    {
+      "case": "invalid-root-class",
+      "result_sha256": "44bb5c7f19012c7c31ff380297ee2124c83077be476f7ffb580d85abce04c108"
+    },
+    {
+      "case": "invalid-formattedTempo",
+      "result_sha256": "de34eb11899e5860bd8072b529e4e75dd9460d172a5c813a26413bfff95ebbb6"
+    },
+    {
+      "case": "invalid-autoselect",
+      "result_sha256": "de34eb11899e5860bd8072b529e4e75dd9460d172a5c813a26413bfff95ebbb6"
+    },
+    {
+      "case": "invalid-algorithm",
+      "result_sha256": "de34eb11899e5860bd8072b529e4e75dd9460d172a5c813a26413bfff95ebbb6"
+    },
+    {
+      "case": "dangling-keyMappings",
+      "result_sha256": "84ca344dcd1e9dd2d32c56effe9fa5a3ebb074dd76ea45150cece9ca648f269d"
+    },
+    {
+      "case": "incomplete-keyMappings",
+      "result_sha256": "84ca344dcd1e9dd2d32c56effe9fa5a3ebb074dd76ea45150cece9ca648f269d"
+    },
+    {
+      "case": "dangling-automationParameters",
+      "result_sha256": "7f2a593209f41858eb2e71722c63321388b7663a5853a3e6e635a184baec29f6"
+    },
+    {
+      "case": "incomplete-automationParameters",
+      "result_sha256": "7f2a593209f41858eb2e71722c63321388b7663a5853a3e6e635a184baec29f6"
+    },
+    {
+      "case": "wrong-member-class-keyMappings",
+      "result_sha256": "c05fd31371df5c7f61fda8fe9aa3c8fdaefb208d07dbbe9bf4772d98748e9e3a"
+    },
+    {
+      "case": "wrong-member-class-automationParameters",
+      "result_sha256": "d412248486f0410ddfca8f8c21b785b09a16d732d227d58c87adccdb91284982"
+    },
+    {
+      "case": "nonstring-sample-path",
+      "result_sha256": "8cdab93be8b26e9264c44c60d0dde2eba239ef689e7f526e181abf3b4f2c3821"
+    },
+    {
+      "case": "version-mismatch",
+      "original_rejected_before_engine": true,
+      "result_sha256": "fd1b99579c88a4f533613a38dd643f7bd7e6cf97feeac1c95a0d90e68d7ae3db"
+    },
+    {
+      "case": "type-mismatch",
+      "original_rejected_before_engine": true,
+      "result_sha256": "5563cc1568e244183804e0db3cec6ff9bf577f4a403924096177bf4a586160da"
+    },
+    {
+      "case": "subtype-mismatch",
+      "original_rejected_before_engine": true,
+      "result_sha256": "5563cc1568e244183804e0db3cec6ff9bf577f4a403924096177bf4a586160da"
+    },
+    {
+      "case": "manufacturer-mismatch",
+      "original_rejected_before_engine": true,
+      "result_sha256": "5563cc1568e244183804e0db3cec6ff9bf577f4a403924096177bf4a586160da"
+    },
+    {
+      "case": "empty-data",
+      "result_sha256": "c61d9a25f0e0ca1b0d917d253164615c722f4f501bb8f2b7da0a962dd4fef521"
+    }
+  ],
+  "native_pending_locator_cases": [
+    {
+      "case": "retain-path-without-bank-id",
+      "input_sha256": "b7c3a27970a59afb581bbd6e414a8d1bc60348b0bc14a6eae212be9013fd783a",
+      "result_sha256": "7855e625586e88c0ae7ae9e89a2a2498009b655de086dfaea70a56f7e79bf510"
+    },
+    {
+      "case": "retain-unresolved-bank",
+      "input_sha256": "647c899b171fe83b49b7eb6735cd111b663207ec3b8acd816e647c0ef9d5bec2",
+      "result_sha256": "5071fe874ce0fb24c203983c0a5fd86185f47cbd8d473a7e166250a398f3317c"
+    }
+  ],
+  "totals": {
+    "records": 459,
+    "key_mappings": 522,
+    "automation_slots": 334,
+    "original_sample_load_requests": 84,
+    "compared_bytes_per_entry": 15904
+  },
+  "real_banks_used": false,
+  "user_state_tested": false,
+  "audio_unit_built": false
+}

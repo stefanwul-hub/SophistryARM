@@ -1,0 +1,14 @@
+{
+  "checkpoint": "ELA019",
+  "ghidra_version": "11.3.2",
+  "read_only": true,
+  "selected_functions": 77,
+  "new_selected_functions": 36,
+  "selected_all_checkpoints": 550,
+  "archive": {
+    "path": "analysis/ELA019-original-program-state-decompiled.zip",
+    "bytes": 146886,
+    "sha256": "bafe37f15118e7b52710f6324feeba57f8652a6cf3a52b4946b236cce6e871d6"
+  },
+  "entries": 172
+}

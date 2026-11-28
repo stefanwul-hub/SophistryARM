@@ -1,0 +1,17 @@
+{
+  "checkpoint": "ELA019",
+  "reports": [
+    {
+      "checkpoint": "ELA015",
+      "same_report_bytes": true,
+      "cases": 2121,
+      "sha256": "c89ab1b1db98988f3e331c1e6983e1736ae74d66905c98e54d3f2335cf94c876"
+    },
+    {
+      "checkpoint": "ELA018",
+      "same_report_bytes": true,
+      "cases": 40,
+      "sha256": "3d95e247a70996fb7e99daede0cc12f7ad706974aa7a6000ce43f828426861c3"
+    }
+  ]
+}

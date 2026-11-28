@@ -260,3 +260,10 @@ Quarante graphes, 427 enregistrements et 385 éléments de listes concordent sur
 Suite. Relier la restauration à la structure réelle d’ETInstrument et aux paramètres hôte. Raccorder les banques et leurs chemins au champ de mapping, puis vérifier le rappel sur un état d’époque avec son audio. L’exécution sur macOS et le composant AU restent à établir.
 
 Relevé ELA019, 28 novembre 2026. La racine passée à GNKeyValueArchiver par la sauvegarde AU est le programme actif `ETProgram`. La restauration transmet la racine désérialisée au setter de programme du moteur. Le test i386 observe la reprise du tempo et la demande de chargement d’échantillon pour les affectations concernées. [Relevé et reproduction](analysis/ELA019-program-entry-progress.md)
+
+
+ELA019, 28 novembre 2026. Le lecteur natif vérifie le ClassInfo, lit la racine ETProgram, convertit le tempo et projette les affectations de touches avec leur note MIDI, le chemin de l’échantillon et l’identifiant de banque. Les valeurs d’automation d’origine restent dans le graphe et les emplacements par défaut sont assurés jusqu’à huit. Un état qui omet la liste des touches hérite de 68 affectations vides. [Notes ELA019](analysis/ELA019-notes.md)
+
+Quarante archives synthétiques et 522 affectations concordent sur Linux x86‑64, ARM64 sous QEMU, UBSan et ASan+UBSan. L’analyse sélectionne 77 fonctions, dont 36 nouvelles. Les tests i386 exercent la vérification ClassInfo, le chargement du graphe, le tempo et l’attache au moteur avec des liaisons d’objets et de catalogue. [Rapports ELA019](evidence/ELA019)
+
+Suite. Raccorder les chemins et identifiants archivés au catalogue de banques et ouvrir les échantillons correspondants. Il reste à appliquer les paramètres au moteur natif, puis à vérifier le rappel et le rendu dans Logic et Live sur macOS.

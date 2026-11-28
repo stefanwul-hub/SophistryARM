@@ -1,6 +1,6 @@
 {
   "project": "Elastik 1 ARM64",
-  "checkpoint": "ELA018",
+  "checkpoint": "ELA019",
   "goal": "Restore old projects containing Elastik 1 Audio Unit instances",
   "original_version": "1.5.2.3",
   "original_architectures": [
@@ -65,16 +65,16 @@
     "Implement the macOS source services and host GN object runtime for the connected ETSoundbank reader, then exercise actual user bank inputs",
     "Port global ETSoundbank catalog and real bank delegate/authorization, required format readers and whole-voice loop/pitch/time-stretch DSP",
     "Connect file/cache/timer lifecycle to native event-loop and verify concurrency and actual OS file services",
-    "Connect the keyed archive model graph to original ETInstrument/AU ClassInfo, apply model constructors and setters, and verify a real saved Elastik 1 state",
+    "Resolve the decoded AU program mappings through the bank catalogue and sample reader, apply model settings and automation, and verify a real saved Elastik 1 state",
     "Build complete native framework, Audio Unit and Cocoa bindings; verify state recall, audio and CPU on the user Mac"
   ],
   "publication_directory": "Elastik",
   "reference_CronoX_changed": false,
-  "selected_functions_decompiled": 514,
+  "selected_functions_decompiled": 550,
   "au_state_header_validation_identified": true,
   "state_payload_decoder_complete": false,
   "first_native_engine_milestone_reached": false,
-  "new_functions_decompiled_this_checkpoint": 25,
+  "new_functions_decompiled_this_checkpoint": 36,
   "original_rtti_records": 520,
   "selected_original_class_vtables_recovered": 12,
   "original_audio_render_path_identified": true,
@@ -269,5 +269,15 @@
   "GNKeyValue_original_setter_calls_traced_per_platform": 8768,
   "GNKeyValue_native_validation_cases_per_platform": 23,
   "GNKeyValue_macos_arm64_objects_compiled": 1,
-  "GNKeyValue_actual_model_setters_executed": false
+  "GNKeyValue_actual_model_setters_executed": false,
+  "AU_numeric_class_info_validation_ported": true,
+  "AU_active_program_projection_ported": true,
+  "ETProgram_synthetic_cases_compared_per_platform": 40,
+  "ETProgram_key_mappings_compared_per_platform": 522,
+  "ETProgram_automation_slots_compared_per_platform": 334,
+  "ETProgram_native_validation_cases_per_platform": 16,
+  "ETProgram_pending_locator_cases_per_platform": 2,
+  "ETProgram_arm64_macos_object_compiled": true,
+  "ETProgram_actual_bank_resolution_tested": false,
+  "ETProgram_native_engine_attachment_tested": false
 }
