@@ -28,7 +28,23 @@ struct ProgramVoicePlayback {
     ElastikOriginalRamp release{};
     int leading_frames = -1;
     bool active = true;
+    uint8_t note = 0x80;
+    uint8_t velocity = 0;
+    uint8_t release_velocity = 0;
+    int release_offset = -1;
 };
+
+// ETProgram::keyMappingForMidiNote (0x15f296), including the alternate
+// saved list order. A missing slot is returned as null.
+const ProgramMapping* program_mapping_for_note(const ProgramState&, uint8_t note) noexcept;
+
+// Direct sample voice lifecycle (0x152e74 and 0x1521a0). The host selects
+// and opens the mapped sample and schedules the calls at the MIDI event.
+// A failed initialization leaves the existing voice intact.
+bool trigger_program_voice(ProgramVoicePlayback&, const ProgramMapping&, const ElastikOriginalSampleFile&,
+    int output_channels, uint8_t note, uint8_t velocity, int sample_offset) noexcept;
+bool release_program_voice(ProgramVoicePlayback&, const ProgramMapping&, const ElastikOriginalSampleFile&,
+    int output_channels, uint8_t velocity, int sample_offset) noexcept;
 
 enum class VoiceRenderStatus : uint8_t { Rendered, Finished, Inactive, InvalidVoice, FilterRequired, Stalled };
 

@@ -7,6 +7,17 @@ namespace elastik_state {
 namespace {
 
 constexpr ElastikOriginalRamp loop_fade{1.0f, 0.0f, 0.01f};
+constexpr double envelope_threshold = 0.00001;
+
+float voice_gain(const ProgramMixSettings& mix, int channel) noexcept {
+    const float pan = mix.panorama;
+    if (channel == 1 && pan < 0.5f) return mix.volume * (pan + pan);
+    if (channel == 0 && pan > 0.5f) {
+        const float attenuation = 1.0f - pan;
+        return mix.volume * (attenuation + attenuation);
+    }
+    return mix.volume;
+}
 
 void advance(ElastikOriginalRamp& ramp) noexcept {
     ramp.current += ramp.step;
@@ -36,6 +47,66 @@ void multiply_envelope(ElastikOriginalRamp& envelope, float* const* pair, int fr
 }
 
 } // namespace
+
+const ProgramMapping* program_mapping_for_note(const ProgramState& program, uint8_t note) noexcept {
+    const auto& mappings = program.mappings;
+    if (note < 36 || note > 103 || mappings.empty()) return nullptr;
+    const auto index = static_cast<size_t>(mappings.front().midi_note == 36 ? note - 36 :
+                                           (note <= 71 ? note : note - 72));
+    return index < mappings.size() ? &mappings[index] : nullptr;
+}
+
+bool trigger_program_voice(ProgramVoicePlayback& voice, const ProgramMapping& mapping,
+    const ElastikOriginalSampleFile& sample, int output_channels, uint8_t note, uint8_t velocity,
+    int sample_offset) noexcept {
+    if (output_channels < 1 || sample_offset < -1 || note > 127 ||
+        !std::isfinite(mapping.mix.volume) || !std::isfinite(mapping.mix.panorama) ||
+        !std::isfinite(mapping.mix.envelope_attack)) return false;
+    auto loop = voice.loop;
+    if (configure_program_voice(loop, mapping, sample, output_channels) != VoiceLoopStatus::Ready) return false;
+
+    voice.loop = loop;
+    voice.loop.chunk.released = 0;
+    for (int channel = 0; channel < std::min(output_channels, 2); ++channel) {
+        const float gain = voice_gain(mapping.mix, channel);
+        voice.gain[channel] = {gain, gain, 0.0f};
+    }
+
+    const float attack = mapping.mix.envelope_attack;
+    const float step = attack > envelope_threshold ? 1.0f / (static_cast<float>(loop.length) * attack) : 1.0f;
+    voice.attack = step >= 1.0f ? ElastikOriginalRamp{1.0f, 1.0f, 0.0f}
+                                : ElastikOriginalRamp{1.0f, 0.0f, step};
+    voice.release = {0.0f, 1.0f, 0.0f};
+    voice.leading_frames = sample_offset;
+    voice.release_offset = -1;
+    voice.note = note;
+    voice.velocity = velocity;
+    voice.active = true;
+    return true;
+}
+
+bool release_program_voice(ProgramVoicePlayback& voice, const ProgramMapping& mapping,
+    const ElastikOriginalSampleFile& sample, int output_channels, uint8_t velocity,
+    int sample_offset) noexcept {
+    const float release = mapping.mix.envelope_release;
+    if (!voice.active || output_channels < 1 || !std::isfinite(release) || sample_offset < 0) return false;
+    float step = 0.0f;
+    if (release > envelope_threshold) {
+        auto current = voice.loop;
+        if (configure_program_voice(current, mapping, sample, output_channels) != VoiceLoopStatus::Ready) return false;
+        const float computed = -1.0f / (static_cast<float>(current.length) * release);
+        if (computed > -1.0f) step = computed;
+    } else {
+        for (int channel = 0; channel < std::min(output_channels, 2); ++channel) {
+            voice.loop.chunk.fade_out[channel] = {0.0f, 1.0f, -0.01f};
+        }
+    }
+    voice.release.step = step;
+    voice.release_velocity = velocity;
+    voice.release_offset = sample_offset;
+    voice.loop.chunk.released = 1;
+    return true;
+}
 
 VoiceRenderResult render_program_voice(ProgramVoicePlayback& voice, const ProgramMapping& mapping,
     ElastikOriginalSampleHandle& sample, float* const* outputs, int output_channels, int frames) noexcept {
@@ -69,9 +140,6 @@ VoiceRenderResult render_program_voice(ProgramVoicePlayback& voice, const Progra
     for (int channel = 0; channel < channels; ++channel) std::fill_n(pair[channel], written, 0.0f);
     voice.leading_frames = -1;
 
-    const float pan = mapping.mix.panorama;
-    const int attenuation_channel = pan < 0.5f ? 1 : (pan > 0.5f ? 0 : -1);
-    const float pan_factor = pan < 0.5f ? pan + pan : (1.0f - pan) + (1.0f - pan);
     while (written < frames) {
         int next = loop.cursor;
         int count = 0;
@@ -80,8 +148,7 @@ VoiceRenderResult render_program_voice(ProgramVoicePlayback& voice, const Progra
             count = elastik_original_read_voice_chunk(&chunk, pair[channel] + written, channel,
                 loop.cursor, frames - written, &next, &range, elastik_original_sample_provider, &sample);
             if (count <= 0) return {VoiceRenderStatus::Stalled, written};
-            const auto target = channel == attenuation_channel ? mapping.mix.volume * pan_factor : mapping.mix.volume;
-            multiply_gain(voice.gain[channel], target, pair[channel] + written, count);
+            multiply_gain(voice.gain[channel], voice_gain(mapping.mix, channel), pair[channel] + written, count);
         }
         loop.cursor = next;
         written += count;
@@ -112,6 +179,7 @@ VoiceRenderResult render_program_voice(ProgramVoicePlayback& voice, const Progra
     if (chunk.released && voice.release.step == 0.0f) {
         chunk.released = 0;
         voice.active = false;
+        voice.note = 0x80;
         return {VoiceRenderStatus::Finished, written};
     }
     return {VoiceRenderStatus::Rendered, written};

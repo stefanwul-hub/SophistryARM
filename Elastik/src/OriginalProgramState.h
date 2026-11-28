@@ -16,6 +16,8 @@ struct ProgramMixSettings {
     float panorama = 0.5f;
     int32_t first_output_channel = 0;
     bool filter_on = false;
+    float envelope_attack = 0.0f;
+    float envelope_release = 0.0f;
 };
 
 struct ProgramMapping {

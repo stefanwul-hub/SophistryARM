@@ -146,7 +146,8 @@ private:
             {floating(mapping, u"startDegree", 0.0f, error), floating(mapping, u"stopDegree", 0.0f, error),
              integer(mapping, u"direction", 0, error), integer(mapping, u"loopMode", 1, error)},
             {floating(mapping, u"volume", 0.7f, error), floating(mapping, u"panorama", 0.5f, error),
-             integer(mapping, u"firstOutputChannelIndex", 0, error), boolean(mapping, u"filterOn", false, error)}
+             integer(mapping, u"firstOutputChannelIndex", 0, error), boolean(mapping, u"filterOn", false, error),
+             floating(mapping, u"envelopeAttack", 0.0f, error), floating(mapping, u"envelopeRelease", 0.0f, error)}
         });
     }
 

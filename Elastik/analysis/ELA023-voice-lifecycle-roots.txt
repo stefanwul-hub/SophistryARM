@@ -1,0 +1,6 @@
+0x152e74 # ETInstrumentVoice trigger method (+0x360)
+0x1521a0 # ETInstrumentVoice release method (+0x364)
+0x152064 # Voice lifecycle helper
+0x151f14 # Voice lifecycle helper
+0x156756,29 # Finish voice (+0x368)
+0x152472 # Configure cursor and fades
