@@ -281,3 +281,6 @@ ELA021, 28 novembre 2026. Le lecteur natif extrait les bornes de boucle, le sens
 Les 132 cas et 13 603 trames concordent sur Linux x86‑64, ARM64 sous QEMU, UBSan et ASan+UBSan. Quatre cas utilisent la boucle WAV fournie. Les rapports ELA005 et ELA020 repassent à l’identique. [Rapports ELA021](evidence/ELA021)
 
 Suite. Raccorder la préparation du cache et le cycle de la voix, puis appliquer les réglages de pitch, d’étirement temporel, de gain et de filtre. Le composant AU, l’exécution macOS et le rappel d’un état d’époque restent à vérifier.
+
+
+ELA022, 28 novembre 2026. Le rendu direct d’une voix enchaîne les blocs restaurés et conserve le curseur, les rampes, le gain, le panorama et les transitions de boucle. Les 52 séquences et 260 blocs concordent avec l’i386 sur x86‑64, ARM64 sous QEMU et ASan+UBSan. La synchronisation hôte, le filtre et le raccordement du pitch restent à faire. [Notes ELA022](analysis/ELA022-notes.md)

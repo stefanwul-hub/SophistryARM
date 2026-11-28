@@ -1,0 +1,438 @@
+{
+  "checkpoint": "ELA022",
+  "platform": "linux-arm64-qemu",
+  "original_i386_sha256": "5b313e738d92c438253927e8d57969ddfd99302b1d978372ac9e045490698920",
+  "cases": 52,
+  "blocks": 260,
+  "audio_bytes": 458096,
+  "original_read_calls": 767,
+  "finished_voices": 26,
+  "original_0x1532f8_executed": true,
+  "original_filter_disabled": true,
+  "original_host_bindings": [
+    "synthetic PCM provider",
+    "fixed timestamp",
+    "unsynchronized start",
+    "instrument note end notification",
+    "GN state and object runtime"
+  ],
+  "audio_unit_built": false,
+  "results": [
+    {
+      "case": "render-00",
+      "sha256": "57f75910bff81d4877bae37a26996fc44c8977c300a22f45a207701da7b3a620",
+      "blocks": 5,
+      "audio_bytes": 3792,
+      "read_calls": 3,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-01",
+      "sha256": "3007ec29129705e3e4b3fb317dcb4bd692f78ca633b89ef5a014563b457f1531",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 6,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-02",
+      "sha256": "8bcaedaf89573c6332cf47afa529c4f8310b2125f2c6c659f222f7071dfdd1c4",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 6,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-03",
+      "sha256": "46a0697945960f58ed3f3b5f8d6f1fcd1eb6b24361dc7f488249bd8514e894fd",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 14,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-04",
+      "sha256": "b3c84a3621e7d8260fd49ac7a0d487fbcdbdc8809a2eab4519a722b1c589a844",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 14,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-05",
+      "sha256": "1b67e100c203245d145a4bc0e10876da878e6f6b2837a573979e4b4f79698ec0",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 14,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-06",
+      "sha256": "f65c51be2867984ebe9ff503e8682f548de4d792c13cdc350d8f9f7d70177115",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 6,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-07",
+      "sha256": "b80a7a673804f78471f2d59aec0eea81d5cf1a542085249101738722d59a8a95",
+      "blocks": 5,
+      "audio_bytes": 3792,
+      "read_calls": 3,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-08",
+      "sha256": "250369741a1a4a75987b5cba840200acd4a8807f4d1c3ebff25171ce43773f69",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 6,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-09",
+      "sha256": "042a53e1f69150735238939df681e7c0d288a4d4f8f68b815c0f332ee8c6970b",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 14,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-10",
+      "sha256": "a70bb7a2e6e0201064f5afa37ff4a7cbbb913de4ceeb8983c88677f9c4251934",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 14,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-11",
+      "sha256": "782e6a9bef437aff61f91056c4e2a44c99144f1a4e986e3b4373507c7896824e",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 14,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-12",
+      "sha256": "6c999894bb264680c2cc3ddf96e70a6e69e100fc6738435e5bd5f3c04b86b686",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 4,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-13",
+      "sha256": "45862093e4b2fc564166fde26b83ddd429cfee7989334c9b1de666b6614de9ce",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 4,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-14",
+      "sha256": "899bdf6d47abecf2b8a5f9b0e3b694287f17305a45ef7c3ea9971c9c06564fdc",
+      "blocks": 5,
+      "audio_bytes": 3792,
+      "read_calls": 2,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-15",
+      "sha256": "8152dfc57d7843b9343f4a63d1b573366d6da3f7fb057cd2ac47031709174498",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 22,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-16",
+      "sha256": "2a94cc0fcd317743bc4e89e575ac4bf232d4afbf26a05c47a8673590d8c06fc4",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 22,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-17",
+      "sha256": "d3952cfcdf0bc080e6b010954b9442e8b1aaa9f93e4d9bbcdc29a47282cfbe10",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 22,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-18",
+      "sha256": "91a9c75fef2ff4f5ba521a0192afcd326153acaa230e734254506a7833da42e6",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 4,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-19",
+      "sha256": "9bb952f3ab0f961456f7a15c2f8e80efcb365f3aae79f9419519c0f833d96c0f",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 4,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-20",
+      "sha256": "1560b26d8f527841c02d5ee42353a4333e2cc0c98772296b2eec625e7d2afcf8",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 4,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-21",
+      "sha256": "3928fa6460f93305a2c3a9845864b2bf4ef647ba41809def6f1833bc72070d29",
+      "blocks": 5,
+      "audio_bytes": 3792,
+      "read_calls": 11,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-22",
+      "sha256": "305e1b15930bb7d00c3b19ec5cc0a0253c882c15b36da1efc61aca85b24cba89",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 22,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-23",
+      "sha256": "76218d0d13565dccdd2a396757116ca5236b6d7937b5e6a0c3a27897d07f411f",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 22,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-24",
+      "sha256": "a5c47885dd88e7d3777323b16d2dc1c80c028d5ef1f1c6ba0087b34545f9fc3a",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 6,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-25",
+      "sha256": "06e2bb7867ddba841c1a6cee8f78d78099a5a2a63182db998c1036319f52005f",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 6,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-26",
+      "sha256": "6ff8d28d562adbbe3aa47fc934376922a40a1bec5ea8faca9f964f73ca31b2c9",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 6,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-27",
+      "sha256": "2686214755a909fc4a37edfbd71d875f1196eafc27159209ff0555eabc63c816",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 54,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-28",
+      "sha256": "30e991c8924266b98307fade15ba2945d3432fb4f690220ac63a1dd880bc6a9a",
+      "blocks": 5,
+      "audio_bytes": 3792,
+      "read_calls": 27,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-29",
+      "sha256": "9a447feff06ee04343d3f907460be4cdc824d7a487df3b2c825ec83db70a474f",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 54,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-30",
+      "sha256": "86fe70adbd1c235f9ff301f725adba140d8834e2a5ee758bbdc46a3971c5d58d",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 6,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-31",
+      "sha256": "3dbd671e5f6ed4a830af9434f804ce732831a444066b920569f47e780543b59f",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 6,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-32",
+      "sha256": "f07fb0b3a1131ec15918028da8fdcc1631f1a7c07ee192144697d7c0920406c6",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 6,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-33",
+      "sha256": "cdef20c420a8186306141ec8be0abfac14cc6b60b77d5f05cdf4ad20b72f29c4",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 54,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-34",
+      "sha256": "3cd733f934dd042df7559e674ff2735c5c4a2543e450b71651f472ee6909c292",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 54,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-35",
+      "sha256": "8e19f54d8dacd9ecd91acc05c077c183a2eb34f8bb236f3ded22fe878e73f2be",
+      "blocks": 5,
+      "audio_bytes": 3792,
+      "read_calls": 27,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-36",
+      "sha256": "23c86c3fd719c16aca765e2a16ddbd7865c6932b052e65482791a8e33e53e5b9",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 8,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-37",
+      "sha256": "aaf54b23ebfda99de9e180cea784a176342738cd20e6bd49f46a9cd426d43954",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 8,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-38",
+      "sha256": "e6e9c97f1bc4a3139ad1ddc19d7966d20a22d919f7b31afa1e0a8c1481493648",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 8,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-39",
+      "sha256": "bb76189caecb24655f9eb23db8e107a31f9873e154c65b3e99f833f931748c07",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 18,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-40",
+      "sha256": "c0de58ecb39ec03eb44046b85c104ffe02ab689792ccf5fc4b6afda216eb64b4",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 18,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-41",
+      "sha256": "5eadd79ed4fc1d5c333bc8082d7c00fe31f157294d70295ea914c9db4ff178fa",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 18,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-42",
+      "sha256": "e96c6b0323e033ab23c3ac974ebb63460b00a03ff613818a9dd31788307fdfad",
+      "blocks": 5,
+      "audio_bytes": 3792,
+      "read_calls": 4,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-43",
+      "sha256": "8c94ea47d181603ccb847ef016f7c7c9cbf7062e06b1ea70b94a0bb42f17463e",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 8,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-44",
+      "sha256": "3d1ac2fd2bdeaa05ad91e6b291658adcda740a4074e29808e8ad975003737868",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 8,
+      "finished_voices": 1
+    },
+    {
+      "case": "render-45",
+      "sha256": "bc7a4750745717fc4851f749293aa31aec24834bafd2648bcfcc980557965880",
+      "blocks": 5,
+      "audio_bytes": 15168,
+      "read_calls": 18,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-46",
+      "sha256": "b3a181708f89226d0fa6d7e34b491b9449d4083fbec29b7d0c60a7b3e4400762",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 18,
+      "finished_voices": 0
+    },
+    {
+      "case": "render-47",
+      "sha256": "25014722d40c23cb7c4b63dfdda1bd054eb947d6736c240016d11a955289179c",
+      "blocks": 5,
+      "audio_bytes": 7584,
+      "read_calls": 18,
+      "finished_voices": 0
+    },
+    {
+      "case": "release-0",
+      "sha256": "a7d8cb38d97603eb490ad2ca2781f15274c49b04cb422c6e363748bdc394803c",
+      "blocks": 5,
+      "audio_bytes": 2880,
+      "read_calls": 8,
+      "finished_voices": 1
+    },
+    {
+      "case": "edit-loop-0",
+      "sha256": "d5175eb7cbd58d622f6929e0913e7283dc5d38b9d356e6291d581557b90ae017",
+      "blocks": 5,
+      "audio_bytes": 8128,
+      "read_calls": 18,
+      "finished_voices": 0
+    },
+    {
+      "case": "release-1",
+      "sha256": "b1904003696d7f2694d17194160e9c0f6929564d47cc2391f753e943ed496aba",
+      "blocks": 5,
+      "audio_bytes": 2880,
+      "read_calls": 8,
+      "finished_voices": 1
+    },
+    {
+      "case": "edit-loop-1",
+      "sha256": "c3fe2852084cce1fa78e14debd213712f5931f4822e14be1b45839de8521999b",
+      "blocks": 5,
+      "audio_bytes": 8128,
+      "read_calls": 18,
+      "finished_voices": 0
+    }
+  ]
+}
