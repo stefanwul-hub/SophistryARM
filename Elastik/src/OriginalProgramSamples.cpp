@@ -1,5 +1,7 @@
 #include "OriginalProgramSamples.h"
 
+#include "OriginalSampleFile.h"
+
 #include <utility>
 
 namespace elastik_state {
@@ -52,18 +54,33 @@ SampleLookup ProgramSampleResolver::resolve(std::optional<std::u16string_view> p
     return open(*path, member);
 }
 
+SampleLookup ProgramSampleResolver::resolve_mapping(const Archive& values, const ProgramMapping& mapping) {
+    const auto path = text_at(values, mapping.sample_path);
+    const auto bank = text_at(values, mapping.bank_identifier);
+    if (!path) return {SampleLookupStatus::NoPath, {}};
+    if (!mapping.program) return {SampleLookupStatus::NoProgram, {}};
+    if (!bank) return {SampleLookupStatus::NoBankIdentifier, {}};
+    return resolve(path, bank);
+}
+
 std::vector<SampleLookup> ProgramSampleResolver::resolve_program(const ProgramState& program) {
     std::vector<SampleLookup> result;
     result.reserve(program.mappings.size());
-    for (const auto& mapping : program.mappings) {
-        const auto path = text_at(program.values, mapping.sample_path);
-        const auto bank = text_at(program.values, mapping.bank_identifier);
-        if (!path) result.push_back({SampleLookupStatus::NoPath, {}});
-        else if (!mapping.program) result.push_back({SampleLookupStatus::NoProgram, {}});
-        else if (!bank) result.push_back({SampleLookupStatus::NoBankIdentifier, {}});
-        else result.push_back(resolve(path, bank));
-    }
+    for (const auto& mapping : program.mappings) result.push_back(resolve_mapping(program.values, mapping));
     return result;
+}
+
+ProgramSamplePreparation ProgramSampleResolver::prepare_sample(const ProgramState& program, const ProgramMapping& mapping) {
+    auto source = resolve_mapping(program.values, mapping);
+    const auto* file = source.sample ? source.sample->file : nullptr;
+    const double sample_rate = file ? file->sample_rate : 0.0;
+    int frames = 0;
+    if (file && (file->known_frames || (file->reader && file->reader->frame_count))) {
+        frames = elastik_original_file_frame_count(file);
+    }
+    const auto path = text_at(program.values, mapping.sample_path);
+    auto plan = plan_program_sample(mapping, program.tempo, program.algorithm, path.value_or(u""), sample_rate, frames);
+    return {std::move(source), plan};
 }
 
 } // namespace elastik_state

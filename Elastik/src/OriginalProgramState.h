@@ -21,6 +21,13 @@ struct ProgramMixSettings {
     float envelope_release = 0.0f;
 };
 
+struct ProgramPitchSettings {
+    int32_t semitones = 0;
+    int32_t cents = 0;
+    int32_t shifter_mode = 4;
+    float user_tempo_factor = 1.0f;
+};
+
 struct ProgramMapping {
     Reference record;
     int32_t midi_note;
@@ -31,6 +38,7 @@ struct ProgramMapping {
     ProgramLoopSettings loop{};
     ProgramMixSettings mix{};
     ProgramFilterSettings filter{};
+    ProgramPitchSettings pitch{};
 };
 
 struct ProgramState {

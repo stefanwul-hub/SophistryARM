@@ -151,7 +151,9 @@ private:
             {floating(mapping, u"filterCutOff", 0.0f, error), floating(mapping, u"filterResonance", 0.0f, error),
              integer(mapping, u"filterQ", 0, error), integer(mapping, u"filterType", 0, error),
              floating(mapping, u"dirt", 0.05f, error), floating(mapping, u"resonanceDirt", 0.1f, error),
-             floating(mapping, u"limiterKnee", 0.5f, error)}
+             floating(mapping, u"limiterKnee", 0.5f, error)},
+            {integer(mapping, u"pitchShiftSemitones", 0, error), integer(mapping, u"pitchShiftCent", 0, error),
+             integer(mapping, u"pitchShifterMode", 4, error), floating(mapping, u"userTempoFactor", 1.0f, error)}
         });
     }
 

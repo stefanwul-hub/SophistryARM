@@ -1,0 +1,18 @@
+0x14b680 # Original or transformed sample decision and cache key
+0x14bcd4 # Switch between original sample and completed render
+0x14bb38 # Notification handler for prepared sample
+0x14a5d8 # Tempo parsed from the original sample basename
+0x14ab7e # Program to file tempo ratio
+0x14ac90 # Source rate for ETPitchShifterJob
+0x149fae # Resolve original source for a render job
+0x1c5456 # Construct ETPitchShifterJob from ETKeyMapping
+0x1c4930 # Process job and write transformed audio
+0x7a71a # Attach mapping to render job
+0x7a8da # Move work from queued to active
+0x7a826 # Execute a render job
+0x7b216 # Register completion and notify attached mappings
+0x22f910 # Factory supporting six offline processor selectors
+0x18b0a6 # Skip the three-character prefix
+0x18adf4 # Find the tempo token
+0x18acc0 # Collect tempo digits and decimal points
+0x18b560 # Parse the tempo as a double

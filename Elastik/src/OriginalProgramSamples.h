@@ -2,7 +2,7 @@
 
 #include "OriginalArchiveOpen.h"
 #include "OriginalFileOpen.h"
-#include "OriginalProgramState.h"
+#include "OriginalProgramSampleTransform.h"
 
 #include <memory>
 
@@ -38,6 +38,11 @@ struct SampleLookup {
     ElastikOriginalFileStatus file_status = ElastikFileOk;
 };
 
+struct ProgramSamplePreparation {
+    SampleLookup source;
+    ProgramSampleRenderPlan plan;
+};
+
 // Resolver for one caller-managed sample session. Use a fresh session when
 // changing its bank catalogue. Calls and the bound platform are serialized.
 class ProgramSampleResolver {
@@ -50,9 +55,13 @@ public:
                          std::optional<std::u16string_view> bank_identifier);
     // The sample lookup portion of 0x14bcd4, in the saved mapping order.
     std::vector<SampleLookup> resolve_program(const ProgramState&);
+    // Prepare an attached mapping using the program's live tempo and the
+    // opened source. A Render plan is passed to the offline processor.
+    ProgramSamplePreparation prepare_sample(const ProgramState&, const ProgramMapping&);
 
 private:
     SampleLookup open(std::u16string_view key, void* path);
+    SampleLookup resolve_mapping(const Archive&, const ProgramMapping&);
 
     ProgramSamplePlatform platform_;
     std::map<std::u16string, OpenedSample, std::less<>> cache_;

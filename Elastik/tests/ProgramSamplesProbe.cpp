@@ -249,6 +249,19 @@ bool report(const std::vector<SampleLookup>& lookups, const Context& context) {
     return true;
 }
 
+bool report_preparation(ProgramSampleResolver& resolver, const ProgramState& program) {
+    for (const auto& mapping : program.mappings) {
+        const auto prepared = resolver.prepare_sample(program, mapping);
+        const auto& plan = prepared.plan;
+        if (!write(prepared.source.status) || !write(plan.kind) ||
+            !write(plan.file_tempo) || !write(plan.source_rate) || !write(plan.target_tempo) ||
+            !write(plan.tempo_ratio) || !write(plan.stretch_ratio) || !write(plan.pitch_ratio) ||
+            !write(plan.shifter_mode) || !write(plan.program_algorithm) || !write(plan.processor_mode) ||
+            !write(plan.output_frames.value_or(-1))) return false;
+    }
+    return true;
+}
+
 bool run(const uint32_t* header) {
     std::string state(header[0], '\0');
     if (std::fread(state.data(), 1, state.size(), stdin) != state.size()) return false;
@@ -259,7 +272,7 @@ bool run(const uint32_t* header) {
     BankPtr bank(static_cast<BankFixture::Context*>(calloc(1, sizeof(BankFixture::Context))), BankFixture::cleanup);
     bank->raw = static_cast<unsigned char*>(malloc(header[1]));
     if (std::fread(bank->raw, 1, header[1], stdin) != header[1]) return false;
-    const int inputs[]{static_cast<int>(header[1]), 0, 0, 0, static_cast<int>(header[2]), 1, 0, 1, 0};
+    const int inputs[]{static_cast<int>(header[1]), 0, 0, 0, static_cast<int>(header[2] & 1), 1, 0, 1, 0};
     if (BankFixture::prepare(bank.get(), inputs) != ElastikArchiveOk) return false;
     bank->archive.read_only = true;
 
@@ -276,6 +289,7 @@ bool run(const uint32_t* header) {
     ProgramSampleResolver resolver({
         &context, system_path, is_file, find_bank, bank_archive, archive_string, &paths, create_sample, &files
     });
+    if (header[2] & 2) return report_preparation(resolver, *decoded.program);
     return report(resolver.resolve_program(*decoded.program), context);
 }
 

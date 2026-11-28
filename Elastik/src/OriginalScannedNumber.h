@@ -45,9 +45,9 @@ inline std::optional<int32_t> scan_exponent(std::u16string_view text) noexcept {
 
 } // namespace detail
 
-// GN scanner 0x18b560, followed by the original conversion to float32.
-// OpenStep passes only bare decimal tokens. XML also uses signs and exponents.
-inline float number_real(std::u16string_view text) noexcept {
+// GN scanner 0x18b560. OpenStep passes bare decimal tokens, while XML
+// also uses signs and exponents.
+inline double number_double(std::u16string_view text) noexcept {
     detail::skip_space(text);
     bool negative = false;
     if (!text.empty() && (text.front() == u'+' || text.front() == u'-')) {
@@ -81,7 +81,11 @@ inline float number_real(std::u16string_view text) noexcept {
         scale = std::clamp(scale + *exp, int64_t(INT32_MIN), int64_t(INT32_MAX));
     }
     if (value != 0 && scale != 0) value *= std::pow(10.0, scale);
-    return static_cast<float>(negative ? -value : value);
+    return negative ? -value : value;
+}
+
+inline float number_real(std::u16string_view text) noexcept {
+    return static_cast<float>(number_double(text));
 }
 
 } // namespace elastik_number
